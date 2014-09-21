@@ -93,16 +93,16 @@ namespace Agent
 
             // We're set to create the spiral now. To keep the size of the SolveInstance() method small, 
             // The actual functionality will be in a different method:
-            Point3d emitterPt = createEmitter(pt, continuousFlow, creationRate, numAgents);
+            PointEmitterType emitterPt = createEmitter(pt, continuousFlow, creationRate, numAgents);
 
             // Finally assign the spiral to the output parameter.
             DA.SetData(0, emitterPt);
         }
 
-        private Point3d createEmitter(Point3d pt, bool continuousFlow, int creationRate, int numAgents)
+        private PointEmitterType createEmitter(Point3d pt, bool continuousFlow, int creationRate, int numAgents)
         {
-            return pt;
-            //return new PointEmitterType(pt, continuousFlow, creationRate, numAgents);
+            //return pt;
+            return new PointEmitterType(pt, continuousFlow, creationRate, numAgents);
             //return new PointEmitterType();
             //return null;
         }
