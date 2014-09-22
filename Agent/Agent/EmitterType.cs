@@ -20,7 +20,7 @@ namespace Agent
             // TODO: Complete member initialization
         }
 
-        abstract public Point3d emit();
+        abstract public Vector3d emit();
 
         abstract public override IGH_Goo Duplicate();
 

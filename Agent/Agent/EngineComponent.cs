@@ -63,7 +63,6 @@ namespace Agent
         }
 
         ParticleSystem ps;
-
         private List<Point3d> run(Boolean reset, EmitterType emitter)
         {
 
@@ -74,7 +73,7 @@ namespace Agent
             {
                 ps = new ParticleSystem();
                 ps.particles.Clear();
-                ps.emitter = new Vector3d(emitter.emit());
+                ps.emitter = emitter;
             }
             else
             {

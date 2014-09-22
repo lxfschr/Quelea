@@ -64,13 +64,15 @@
   <ItemGroup>
     <Compile Include="EmitterDescription.cs" />
     <Compile Include="EmitterParameter.cs" />
+    <Compile Include="EmitterCrvComponent.cs" />
+    <Compile Include="EmitterCrvType.cs" />
     <Compile Include="EmitterType.cs" />
     <Compile Include="ParticleSystem.cs" />
     <Compile Include="Particle.cs" />
-    <Compile Include="EmitterPointParameter.cs" />
-    <Compile Include="EmitterPointType.cs" />
+    <Compile Include="EmitterPtParameter.cs" />
+    <Compile Include="EmitterPtType.cs" />
     <Compile Include="EngineComponent.cs" />
-    <Compile Include="EmitterPointComponent.cs" />
+    <Compile Include="EmitterPtComponent.cs" />
     <Compile Include="AgentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -93,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ptEmitterIcon.png.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\emitterCrvIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
