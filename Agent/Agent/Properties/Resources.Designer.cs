@@ -72,9 +72,19 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ptEmitterIcon {
+        internal static System.Drawing.Bitmap emitterCrvIcon {
             get {
-                object obj = ResourceManager.GetObject("ptEmitterIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("emitterCrvIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap emitterPtIcon {
+            get {
+                object obj = ResourceManager.GetObject("emitterPtIcon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

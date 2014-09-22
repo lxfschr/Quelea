@@ -11,7 +11,7 @@ namespace Agent
     class ParticleSystem
     {
         public List<Particle> particles;
-        public Vector3d emitter;
+        public EmitterType emitter;
 
         public ParticleSystem()
         {
@@ -28,7 +28,8 @@ namespace Agent
 
         public void addParticle()
         {
-            particles.Add(new Particle(emitter));
+            Vector3d emittionPt = emitter.emit();
+            particles.Add(new Particle(emittionPt));
         }
 
         public void run()
