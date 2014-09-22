@@ -94,9 +94,6 @@
     <None Include="Resources\ptEmitterIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ptEmitterIcon.png.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\emitterCrvIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

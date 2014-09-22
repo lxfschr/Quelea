@@ -25,7 +25,10 @@ namespace Agent
             Random random = new Random();
             double min = -0.5;
             double max = 0.5;
-            velocity = new Vector3d(random.NextDouble() * (max - min) + min, random.NextDouble() * (max - min) + min, random.NextDouble() * (max - min) + min);
+            double x = random.NextDouble() * (max - min) + min;
+            double y = random.NextDouble() * (max - min) + min;
+            double z = random.NextDouble() * (max - min) + min;
+            velocity = new Vector3d(x, y, z);
             this.lifespan = 30.0;
         }
 
