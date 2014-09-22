@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParticleSystem.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="PointEmitterParameter.cs" />
     <Compile Include="PointEmitterType.cs" />

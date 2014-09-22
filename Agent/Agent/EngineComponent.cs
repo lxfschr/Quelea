@@ -62,7 +62,7 @@ namespace Agent
             DA.SetDataList(0, agents);
         }
 
-        List<Particle> pList = new List<Particle>();
+        ParticleSystem ps;
 
         private List<Point3d> run(Boolean reset, PointEmitterType emitter)
         {
@@ -72,24 +72,18 @@ namespace Agent
             
             if (reset)
             {
-                pList.Clear();
+                ps = new ParticleSystem();
+                ps.particles.Clear();
+                ps.emitter = new Vector3d(emitter.emit());
             }
             else
             {
-
-                pList.Add(new Particle(new Vector3d(emitter.emit())));
-
-                for (int i = 0; i < pList.Count; i++)
+                ps.addParticle();
+                ps.run();
+                foreach (Particle p in ps.particles)
                 {
-                    Particle getP = pList[i] as Particle;
-                    getP.run();
-                    Point3d pt = new Point3d(getP.location);
+                    Point3d pt = new Point3d(p.location);
                     pts.Add(pt);
-
-                    if (getP.isDead())
-                    {
-                        pts.Remove(pt);
-                    }
                 }
             }
 
