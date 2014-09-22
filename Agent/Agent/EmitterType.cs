@@ -22,6 +22,24 @@ namespace Agent
 
         abstract public Vector3d emit();
 
+        public int CreationRate
+        {
+            get
+            {
+                return this.creationRate;
+            }
+        }
+
+        public bool ContinuousFlow
+        {
+            get
+            {
+                return this.continuousFlow;
+            }
+        }
+
+
+
         abstract public override IGH_Goo Duplicate();
 
         public override bool IsValid

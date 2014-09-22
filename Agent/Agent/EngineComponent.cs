@@ -63,6 +63,7 @@ namespace Agent
         }
 
         ParticleSystem ps;
+        int timestep;
         private List<Point3d> run(Boolean reset, EmitterType emitter)
         {
 
@@ -71,19 +72,24 @@ namespace Agent
             
             if (reset)
             {
+                timestep = 0;
                 ps = new ParticleSystem();
                 ps.particles.Clear();
                 ps.emitter = emitter;
             }
             else
             {
-                ps.addParticle();
+                if (emitter.ContinuousFlow && (timestep % emitter.CreationRate == 0))
+                {
+                    ps.addParticle();
+                }
                 ps.run();
                 foreach (Particle p in ps.particles)
                 {
                     Point3d pt = new Point3d(p.location);
                     pts.Add(pt);
                 }
+                timestep++;
             }
 
             return pts;
