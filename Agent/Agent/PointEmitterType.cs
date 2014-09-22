@@ -44,6 +44,11 @@ namespace Agent
             return new PointEmitterType(this);
         }
 
+        public Point3d emit()
+        {
+            return new Point3d(this.pt);
+        }
+
         public override bool IsValid
         {
             get
