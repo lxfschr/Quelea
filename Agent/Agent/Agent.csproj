@@ -62,10 +62,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Particle.cs" />
     <Compile Include="PointEmitterParameter.cs" />
     <Compile Include="PointEmitterType.cs" />
-    <Compile Include="MyComponent1.cs" />
-    <Compile Include="PointEmitter.cs" />
+    <Compile Include="EngineComponent.cs" />
+    <Compile Include="PointEmitterComponent.cs" />
     <Compile Include="AgentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
