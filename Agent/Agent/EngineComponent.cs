@@ -44,18 +44,18 @@ namespace Agent
             // First, we need to retrieve all data from the input parameters.
             // We'll start by declaring variables and assigning them starting values.
             Boolean reset = true;
-            PointEmitterType ptEmitter = new PointEmitterType();
+            EmitterType emitter = null;// = new EmitterType();
 
             // Then we need to access the input parameters individually. 
             // When data cannot be extracted from a parameter, we should abort this method.
             if (!DA.GetData(0, ref reset)) return;
-            if (!DA.GetData(1, ref ptEmitter)) return;
+            if (!DA.GetData(1, ref emitter)) return;
 
             // We should now validate the data and warn the user if invalid data is supplied.
 
             // We're set to create the output now. To keep the size of the SolveInstance() method small, 
             // The actual functionality will be in a different method:
-            List<Point3d> agents = run(reset, ptEmitter);
+            List<Point3d> agents = run(reset, emitter);
             //List<Point3d> agents = new List<Point3d>();
 
             // Finally assign the spiral to the output parameter.
@@ -64,7 +64,7 @@ namespace Agent
 
         ParticleSystem ps;
 
-        private List<Point3d> run(Boolean reset, PointEmitterType emitter)
+        private List<Point3d> run(Boolean reset, EmitterType emitter)
         {
 
             
