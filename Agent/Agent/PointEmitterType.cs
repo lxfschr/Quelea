@@ -4,13 +4,10 @@ using Rhino.Geometry;
 
 namespace Agent
 {
-    public class PointEmitterType : GH_Goo<Point3d>
+    public class PointEmitterType : EmitterType
     {
 
         private Point3d pt;
-        bool continuousFlow;
-        int creationRate;
-        int numAgents;
         
         // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
         public PointEmitterType()
@@ -30,6 +27,15 @@ namespace Agent
             this.numAgents = numAgents;
         }
 
+        // Constructor with initial values.
+        public PointEmitterType(Point3d pt)
+        {
+            this.pt = pt;
+            this.continuousFlow = true;
+            this.creationRate = 1;
+            this.numAgents = 10;
+        }
+
         // Copy Constructor
         public PointEmitterType(PointEmitterType ptEmitType)
         {
@@ -44,7 +50,7 @@ namespace Agent
             return new PointEmitterType(this);
         }
 
-        public Point3d emit()
+        public override Point3d emit()
         {
             return new Point3d(this.pt);
         }
@@ -60,6 +66,7 @@ namespace Agent
 
         public override string ToString()
         {
+
             string origin = "Origin Point: " + pt.ToString() + "\n";
             string continuousFlow = "ContinuousFlow: " + this.continuousFlow.ToString() + "\n";
             string creationRate = "Creation Rate: " + this.creationRate.ToString() + "\n";
