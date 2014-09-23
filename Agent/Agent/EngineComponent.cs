@@ -24,6 +24,7 @@ namespace Agent
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddBooleanParameter("Reset", "R", "Reset the scene?", GH_ParamAccess.item, true);
+            pManager.AddBooleanParameter("Live Update", "L", "Update the parameters each timestep? (More Computation)", GH_ParamAccess.item, false);
             pManager.AddGenericParameter("Emitters", "E", "Emitters in scene.", GH_ParamAccess.list);
         }
 
@@ -44,18 +45,20 @@ namespace Agent
             // First, we need to retrieve all data from the input parameters.
             // We'll start by declaring variables and assigning them starting values.
             Boolean reset = true;
-            List<EmitterType> emitters = new List<EmitterType>();// = new EmitterType();
+            bool liveUpdate = false;
+            List<EmitterType> emitters = new List<EmitterType>();
 
             // Then we need to access the input parameters individually. 
             // When data cannot be extracted from a parameter, we should abort this method.
             if (!DA.GetData(0, ref reset)) return;
-            if (!DA.GetDataList(1, emitters)) return;
+            if (!DA.GetData(1, ref liveUpdate)) return;
+            if (!DA.GetDataList(2, emitters)) return;
 
             // We should now validate the data and warn the user if invalid data is supplied.
 
             // We're set to create the output now. To keep the size of the SolveInstance() method small, 
             // The actual functionality will be in a different method:
-            List<Point3d> agents = run(reset, emitters);
+            List<Point3d> agents = run(reset, liveUpdate, emitters.ToArray());
             //List<Point3d> agents = new List<Point3d>();
 
             // Finally assign the spiral to the output parameter.
@@ -64,7 +67,7 @@ namespace Agent
 
         ParticleSystem ps;
         int timestep;
-        private List<Point3d> run(Boolean reset, List<EmitterType> emitters)
+        private List<Point3d> run(Boolean reset, bool liveUpdate, EmitterType[] emitters)
         {
 
             
@@ -75,15 +78,14 @@ namespace Agent
                 timestep = 0;
                 ps = new ParticleSystem();
                 ps.particles.Clear();
-                //ps.emitters.Clear();
-                //foreach (EmitterType emitter in emitters)
-                //{
-                //    ps.emitters.Add(emitter);
-                //}
-                ps.Emitters = emitters.ToArray();
+                setup(emitters);
             }
             else
             {
+                if (liveUpdate)
+                {
+                    setup(emitters);
+                }
                 ps.run();
                 foreach (Particle p in ps.particles)
                 {
@@ -94,6 +96,11 @@ namespace Agent
             }
 
             return pts;
+        }
+
+        private void setup(EmitterType[] emitters)
+        {
+            ps.Emitters = emitters;
         }
 
         /// <summary>
