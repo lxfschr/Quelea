@@ -24,7 +24,7 @@ namespace Agent
         protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
         {
             pManager.AddBooleanParameter("Reset", "R", "Reset the scene?", GH_ParamAccess.item, true);
-            pManager.AddGenericParameter("Emitters", "E", "Emitters in scene.", GH_ParamAccess.item);
+            pManager.AddGenericParameter("Emitters", "E", "Emitters in scene.", GH_ParamAccess.list);
         }
 
         /// <summary>
@@ -44,18 +44,18 @@ namespace Agent
             // First, we need to retrieve all data from the input parameters.
             // We'll start by declaring variables and assigning them starting values.
             Boolean reset = true;
-            EmitterType emitter = null;// = new EmitterType();
+            List<EmitterType> emitters = new List<EmitterType>();// = new EmitterType();
 
             // Then we need to access the input parameters individually. 
             // When data cannot be extracted from a parameter, we should abort this method.
             if (!DA.GetData(0, ref reset)) return;
-            if (!DA.GetData(1, ref emitter)) return;
+            if (!DA.GetDataList(1, emitters)) return;
 
             // We should now validate the data and warn the user if invalid data is supplied.
 
             // We're set to create the output now. To keep the size of the SolveInstance() method small, 
             // The actual functionality will be in a different method:
-            List<Point3d> agents = run(reset, emitter);
+            List<Point3d> agents = run(reset, emitters);
             //List<Point3d> agents = new List<Point3d>();
 
             // Finally assign the spiral to the output parameter.
@@ -64,7 +64,7 @@ namespace Agent
 
         ParticleSystem ps;
         int timestep;
-        private List<Point3d> run(Boolean reset, EmitterType emitter)
+        private List<Point3d> run(Boolean reset, List<EmitterType> emitters)
         {
 
             
@@ -75,14 +75,13 @@ namespace Agent
                 timestep = 0;
                 ps = new ParticleSystem();
                 ps.particles.Clear();
-                ps.emitter = emitter;
+                foreach (EmitterType emitter in emitters)
+                {
+                    ps.emitters.Add(emitter);
+                }
             }
             else
             {
-                if (emitter.ContinuousFlow && (timestep % emitter.CreationRate == 0))
-                {
-                    ps.addParticle();
-                }
                 ps.run();
                 foreach (Particle p in ps.particles)
                 {
