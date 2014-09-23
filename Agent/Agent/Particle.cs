@@ -16,18 +16,19 @@ namespace Agent
         public double lifespan;
         public double mass = 1;
 
+
         public Particle(Vector3d l)
         {
             location = l;
             acceleration = new Vector3d(0, 0, 0);
             //this.acceleration = new Vector3d(0, 0, -0.05);
             //this.velocity = new Vector3d(0, 0, -0.1);
-            Random random = new Random();
+            
             double min = -0.5;
             double max = 0.5;
-            double x = random.NextDouble() * (max - min) + min;
-            double y = random.NextDouble() * (max - min) + min;
-            double z = random.NextDouble() * (max - min) + min;
+            double x = Util.Random.RandomDouble(min, max);
+            double y = Util.Random.RandomDouble(min, max);
+            double z = Util.Random.RandomDouble(min, max);
             velocity = new Vector3d(x, y, z);
             this.lifespan = 30.0;
         }

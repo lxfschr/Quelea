@@ -15,7 +15,7 @@ namespace Agent
             this.crv = new Line().ToNurbsCurve();
             this.continuousFlow = true;
             this.creationRate = 1;
-            this.numAgents = 10;
+            this.numAgents = 0;
         }
 
         // Constructor with initial values.
@@ -33,7 +33,7 @@ namespace Agent
             this.crv = crv;
             this.continuousFlow = true;
             this.creationRate = 1;
-            this.numAgents = 10;
+            this.numAgents = 0;
         }
 
         // Copy Constructor
@@ -49,13 +49,14 @@ namespace Agent
         {
             return new EmitterCrvType(this);
         }
-
+        
         public override Vector3d emit()
         {
-            Random random = new Random();
+            
             double min = 0;
             double max = 1;
-            return new Vector3d(this.crv.PointAtNormalizedLength((random.NextDouble() * (max - min) + min)));
+            return new Vector3d(this.crv.PointAtNormalizedLength((Util.Random.RandomDouble(min, max))));
+            
         }
 
         public override bool IsValid
