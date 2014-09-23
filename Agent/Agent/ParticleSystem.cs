@@ -45,13 +45,21 @@ namespace Agent
             particles.Add(new Particle(emittionPt));
         }
 
+        public void addParticle(Vector3d emittionPt)
+        {
+            particles.Add(new Particle(emittionPt));
+        }
+
         public void run()
         {
             foreach(EmitterType emitter in emitters)
             {
                 if (emitter.ContinuousFlow && (timestep % emitter.CreationRate == 0))
                 {
-                    addParticle(emitter);
+                    if((emitter.NumAgents == 0) || (this.particles.Count < emitter.NumAgents))
+                    {
+                        addParticle(emitter);
+                    }
                 }
             }
             

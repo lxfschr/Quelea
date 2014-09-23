@@ -15,7 +15,7 @@ namespace Agent
             this.pt = Point3d.Origin;
             this.continuousFlow = true;
             this.creationRate = 1;
-            this.numAgents = 10;
+            this.numAgents = 0;
         }
 
         // Constructor with initial values.
@@ -33,7 +33,7 @@ namespace Agent
             this.pt = pt;
             this.continuousFlow = true;
             this.creationRate = 1;
-            this.numAgents = 10;
+            this.numAgents = 0;
         }
 
         // Copy Constructor

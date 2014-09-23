@@ -14,6 +14,7 @@ namespace Agent
         protected bool continuousFlow;
         protected int creationRate;
         protected int numAgents;
+        protected Random random = new Random();
 
         public EmitterType()
         {
@@ -38,7 +39,13 @@ namespace Agent
             }
         }
 
-
+        public int NumAgents
+        {
+            get
+            {
+                return this.numAgents;
+            }
+        }
 
         abstract public override IGH_Goo Duplicate();
 
