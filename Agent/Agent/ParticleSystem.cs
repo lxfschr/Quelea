@@ -11,14 +11,24 @@ namespace Agent
     class ParticleSystem
     {
         public List<Particle> particles;
-        public List<EmitterType> emitters;
+        //public List<EmitterType> emitters;
+        public EmitterType[] emitters;
         int timestep;
 
         public ParticleSystem()
         {
             particles = new List<Particle>();
-            emitters = new List<EmitterType>();
+            //emitters = new List<EmitterType>();
+            //emitters = new EmitterType[1];
             timestep = 0;
+        }
+
+        public EmitterType[] Emitters
+        {
+            set
+            {
+                this.emitters = value;
+            }
         }
 
         public void applyForce(Vector3d f)

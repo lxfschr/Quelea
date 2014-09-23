@@ -75,10 +75,12 @@ namespace Agent
                 timestep = 0;
                 ps = new ParticleSystem();
                 ps.particles.Clear();
-                foreach (EmitterType emitter in emitters)
-                {
-                    ps.emitters.Add(emitter);
-                }
+                //ps.emitters.Clear();
+                //foreach (EmitterType emitter in emitters)
+                //{
+                //    ps.emitters.Add(emitter);
+                //}
+                ps.Emitters = emitters.ToArray();
             }
             else
             {
