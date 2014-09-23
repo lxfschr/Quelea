@@ -11,11 +11,14 @@ namespace Agent
     class ParticleSystem
     {
         public List<Particle> particles;
-        public EmitterType emitter;
+        public List<EmitterType> emitters;
+        int timestep;
 
         public ParticleSystem()
         {
             particles = new List<Particle>();
+            emitters = new List<EmitterType>();
+            timestep = 0;
         }
 
         public void applyForce(Vector3d f)
@@ -26,7 +29,7 @@ namespace Agent
             }
         }
 
-        public void addParticle()
+        public void addParticle(EmitterType emitter)
         {
             Vector3d emittionPt = emitter.emit();
             particles.Add(new Particle(emittionPt));
@@ -34,6 +37,14 @@ namespace Agent
 
         public void run()
         {
+            foreach(EmitterType emitter in emitters)
+            {
+                if (emitter.ContinuousFlow && (timestep % emitter.CreationRate == 0))
+                {
+                    addParticle(emitter);
+                }
+            }
+            
             for (int i = particles.Count - 1; i >= 0; i--)
             {
                 Particle p = particles[i] as Particle;
@@ -43,6 +54,7 @@ namespace Agent
                     particles.Remove(p);
                 }
             }
+            timestep++;
         }
     }
 
