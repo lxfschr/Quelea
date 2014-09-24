@@ -34,7 +34,7 @@ namespace Agent
             pManager.AddPointParameter("Point", "P", "Base point for emitter", GH_ParamAccess.item, Point3d.Origin);
             pManager.AddBooleanParameter("Continuous Flow", "C", "If true, Agents will be emitted every Rth timestep.\n If false, N Agents will be emitted once.", GH_ParamAccess.item, true);
             pManager.AddIntegerParameter("Creation Rate", "R", "Rate at which new Agents are created. Every Rth timestep.", GH_ParamAccess.item, 1);
-            pManager.AddIntegerParameter("Number of Agents", "N", "The number of Agents", GH_ParamAccess.item, 10);
+            pManager.AddIntegerParameter("Number of Agents", "N", "The number of Agents", GH_ParamAccess.item, 0);
 
             pManager[2].Optional = true;
             pManager[3].Optional = true;
@@ -93,16 +93,11 @@ namespace Agent
 
             // We're set to create the output now. To keep the size of the SolveInstance() method small, 
             // The actual functionality will be in a different method:
-            EmitterPtType emitterPt = this.createEmitter(pt, continuousFlow, creationRate, numAgents);
+            EmitterPtType emitterPt = new EmitterPtType(pt, continuousFlow, creationRate, numAgents);
 
             // Finally assign the spiral to the output parameter.
             DA.SetData(0, emitterPt);
             //DA.SetData(1, pt);
-        }
-
-        private EmitterPtType createEmitter(Point3d pt, bool continuousFlow, int creationRate, int numAgents)
-        {
-            return new EmitterPtType(pt, continuousFlow, creationRate, numAgents);
         }
 
         /// <summary>
