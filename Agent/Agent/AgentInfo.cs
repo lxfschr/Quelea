@@ -10,7 +10,7 @@ namespace Agent
         {
             get
             {
-                return "Spiral";
+                return "Agent";
             }
         }
         public override Bitmap Icon

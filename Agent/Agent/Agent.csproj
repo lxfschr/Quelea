@@ -62,6 +62,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgentComponent.cs" />
+    <Compile Include="AgentType.cs" />
     <Compile Include="EmitterDescription.cs" />
     <Compile Include="EmitterParameter.cs" />
     <Compile Include="EmitterCrvComponent.cs" />

@@ -10,12 +10,9 @@ namespace Agent
         private Point3d pt;
         
         // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
-        public EmitterPtType()
+        public EmitterPtType() : base()
         {
             this.pt = Point3d.Origin;
-            this.continuousFlow = true;
-            this.creationRate = 1;
-            this.numAgents = 0;
         }
 
         // Constructor with initial values.
