@@ -29,8 +29,8 @@ namespace Agent
       this.historyLength = 0;
     }
 
-    public AgentType(int lifespan, double mass, double bodySize, 
-                     double maxSpeed, double maxForce, double visionAngle, 
+    public AgentType(int lifespan, double mass, double bodySize,
+                     double maxSpeed, double maxForce, double visionAngle,
                      double visionRadius, int historyLength)
     {
       this.lifespan = lifespan;
@@ -128,8 +128,8 @@ namespace Agent
     {
       get
       {
-        return (lifespan > 0 && mass > 0 && bodySize >= 0 && maxForce >= 0 && 
-                maxSpeed >= 0 && visionAngle >= 0 && visionRadius >= 0 && 
+        return (lifespan > 0 && mass > 0 && bodySize >= 0 && maxForce >= 0 &&
+                maxSpeed >= 0 && visionAngle >= 0 && visionRadius >= 0 &&
                 historyLength >= 0);
       }
     }
@@ -141,13 +141,13 @@ namespace Agent
       string bodySize = "Body Size: " + this.bodySize.ToString() + "\n";
       string maxForce = "Maximum Force: " + this.maxForce.ToString() + "\n";
       string maxSpeed = "Maximum Speed: " + this.maxSpeed.ToString() + "\n";
-      string visionAngle = "Vision Angle: " + this.visionAngle.ToString() + 
+      string visionAngle = "Vision Angle: " + this.visionAngle.ToString() +
                            "\n";
-      string visionRadius = "Vision Radius: " + this.visionRadius.ToString() + 
+      string visionRadius = "Vision Radius: " + this.visionRadius.ToString() +
                             "\n";
       string historyLength = "History Length: " + this.historyLength.ToString()
                              + "\n";
-      return lifespan + mass + bodySize + maxForce + maxSpeed + visionAngle + 
+      return lifespan + mass + bodySize + maxForce + maxSpeed + visionAngle +
              visionRadius + historyLength;
     }
 
