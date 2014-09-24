@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Rhino.Geometry;
 namespace Agent
 {
   namespace Util
@@ -25,6 +26,14 @@ namespace Agent
         { // synchronize
           return random.Next() * (max - min) + min;
         }
+      }
+
+      internal static Vector3d RandomVector(double min, double max)
+      {
+        double x = Util.Random.RandomDouble(min, max);
+        double y = Util.Random.RandomDouble(min, max);
+        double z = Util.Random.RandomDouble(min, max);
+        return new Vector3d(x, y, z);
       }
     }
   }
