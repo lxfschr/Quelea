@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgentComponent.cs" />
+    <Compile Include="AgentSystemComponent.cs" />
+    <Compile Include="AgentSystemType.cs" />
     <Compile Include="AgentType.cs" />
     <Compile Include="EmitterDescription.cs" />
     <Compile Include="EmitterParameter.cs" />
