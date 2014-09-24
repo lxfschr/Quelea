@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Rhino.Geometry;
+
 namespace Agent
 {
   public class AgentType : GH_Goo<Object>
@@ -17,9 +19,13 @@ namespace Agent
     private double visionRadius;
     private int historyLength;
 
+    private Vector3d location;
+    private Vector3d velocity;
+    private Vector3d acceleration;
+
     public AgentType()
     {
-      this.lifespan = 0;
+      this.lifespan = 30;
       this.mass = 1.0;
       this.bodySize = 1.0;
       this.maxSpeed = 1.0;
@@ -27,6 +33,9 @@ namespace Agent
       this.visionAngle = 15.0;
       this.visionRadius = 5.0;
       this.historyLength = 0;
+      this.location = Vector3d.Zero;
+      this.velocity = Util.Random.RandomVector(-0.5, 0.5);
+      this.acceleration = Vector3d.Zero;
     }
 
     public AgentType(int lifespan, double mass, double bodySize,
@@ -41,6 +50,28 @@ namespace Agent
       this.visionAngle = visionAngle;
       this.visionRadius = visionRadius;
       this.historyLength = historyLength;
+
+      this.location = Vector3d.Zero;
+      this.velocity = Util.Random.RandomVector(-0.5, 0.5);
+      this.acceleration = Vector3d.Zero;
+    }
+
+    public AgentType(int lifespan, double mass, double bodySize,
+                     double maxSpeed, double maxForce, double visionAngle,
+                     double visionRadius, int historyLength, Vector3d location)
+    {
+      this.lifespan = lifespan;
+      this.mass = mass;
+      this.bodySize = bodySize;
+      this.maxSpeed = maxSpeed;
+      this.maxForce = maxForce;
+      this.visionAngle = visionAngle;
+      this.visionRadius = visionRadius;
+      this.historyLength = historyLength;
+
+      this.location = location;
+      this.velocity = Util.Random.RandomVector(-0.5, 0.5);
+      this.acceleration = Vector3d.Zero;
     }
 
     public AgentType(AgentType agent)
@@ -53,6 +84,26 @@ namespace Agent
       this.visionAngle = agent.visionAngle;
       this.visionRadius = agent.visionRadius;
       this.historyLength = agent.historyLength;
+
+      this.location = agent.location;
+      this.velocity = agent.velocity;
+      this.acceleration = agent.acceleration;
+    }
+
+    public AgentType(AgentType agent, Vector3d location)
+    {
+      this.lifespan = agent.lifespan;
+      this.mass = agent.mass;
+      this.bodySize = agent.bodySize;
+      this.maxSpeed = agent.maxSpeed;
+      this.maxForce = agent.maxForce;
+      this.visionAngle = agent.visionAngle;
+      this.visionRadius = agent.visionRadius;
+      this.historyLength = agent.historyLength;
+
+      this.location = location;
+      this.velocity = agent.velocity;
+      this.acceleration = agent.acceleration;
     }
 
     public int Lifespan
@@ -117,6 +168,32 @@ namespace Agent
       {
         return this.historyLength;
       }
+    }
+
+    public void update()
+    {
+      velocity = Vector3d.Add(velocity, acceleration);
+      location = Vector3d.Add(location, velocity);
+      acceleration = Vector3d.Multiply(acceleration, 0);
+      lifespan -= 1;
+
+    }
+
+    public void applyForce(Vector3d force)
+    {
+      Vector3d f = force;
+      f = Vector3d.Divide(f, mass);
+      acceleration = Vector3d.Add(acceleration, f);
+    }
+
+    public Boolean isDead()
+    {
+      return (lifespan <= 0.0);
+    }
+
+    public void run()
+    {
+      update();
     }
 
     public override IGH_Goo Duplicate()

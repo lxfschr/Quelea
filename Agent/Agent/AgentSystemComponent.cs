@@ -75,7 +75,7 @@ namespace Agent
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      AgentSystemType system = new AgentSystemType(agents, emitters.ToArray());
+      AgentSystemType system = new AgentSystemType(agents.ToArray(), emitters.ToArray());
 
       // Finally assign the spiral to the output parameter.
       DA.SetData(0, system);
