@@ -6,15 +6,15 @@ using System.Text;
 
 namespace Agent
 {
-    class EmitterParameter : GH_Param<EmitterType>
+  class EmitterParameter : GH_Param<EmitterType>
+  {
+
+    public EmitterParameter()
+      : base(new EmitterDescription("Emitter", "Emit", "An Emitter", "Params", "Primitive"), GH_ParamAccess.item) { }
+
+    public override Guid ComponentGuid
     {
-
-        public EmitterParameter() 
-            : base(new EmitterDescription("Emitter", "Emit", "An Emitter", "Params", "Primitive"), GH_ParamAccess.item) { }
-
-        public override Guid ComponentGuid
-        {
-            get { throw new NotImplementedException(); }
-        }
+      get { throw new NotImplementedException(); }
     }
+  }
 }
