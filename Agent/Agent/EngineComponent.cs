@@ -25,7 +25,7 @@ namespace Agent
     {
       pManager.AddBooleanParameter("Reset", "R", "Reset the scene?", GH_ParamAccess.item, true);
       pManager.AddBooleanParameter("Live Update", "L", "Update the parameters each timestep? (Slower)", GH_ParamAccess.item, false);
-      pManager.AddGenericParameter("Emitters", "E", "Emitters in scene.", GH_ParamAccess.list);
+      pManager.AddGenericParameter("Systems", "S", "Systems in scene.", GH_ParamAccess.list);
     }
 
     /// <summary>
@@ -46,68 +46,63 @@ namespace Agent
       // We'll start by declaring variables and assigning them starting values.
       Boolean reset = true;
       bool liveUpdate = false;
-      List<EmitterType> emitters = new List<EmitterType>();
+      List<AgentSystemType> systems = new List<AgentSystemType>();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!DA.GetData(0, ref reset)) return;
       if (!DA.GetData(1, ref liveUpdate)) return;
-      if (!DA.GetDataList(2, emitters)) return;
+      if (!DA.GetDataList(2, systems)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      List<Point3d> agents = run(reset, liveUpdate, emitters.ToArray());
+      List<Point3d> agents = run(reset, liveUpdate, systems.ToArray());
       //List<Point3d> agents = new List<Point3d>();
 
       // Finally assign the spiral to the output parameter.
       DA.SetDataList(0, agents);
     }
-
-    ParticleSystem ps;
-    private List<Point3d> run(Boolean reset, bool liveUpdate, EmitterType[] emitters)
+    AgentSystemType agentSystem;
+    private List<Point3d> run(Boolean reset, bool liveUpdate, AgentSystemType[] systems)
     {
       List<Point3d> pts = new List<Point3d>();
 
       if (reset)
       {
-        ps = new ParticleSystem();
-        ps.particles.Clear();
-        setup(emitters);
-        foreach (EmitterType emitter in emitters)
+        foreach (AgentSystemType system in systems)
         {
-          if (!emitter.ContinuousFlow)
+          agentSystem = system;
+          agentSystem.Agents.Clear();
+          foreach (EmitterType emitter in agentSystem.Emitters)
           {
-            for (int i = 0; i < emitter.NumAgents; i++)
+            if (!emitter.ContinuousFlow)
             {
-              ps.addParticle(emitter);
+              for (int i = 0; i < emitter.NumAgents; i++)
+              {
+                agentSystem.addAgent(emitter);
+              }
             }
           }
         }
 
+
       }
       else
       {
-        if (liveUpdate)
+        foreach (AgentSystemType system in systems)
         {
-          setup(emitters);
-        }
-        ps.run();
-        foreach (Particle p in ps.particles)
-        {
-          Point3d pt = new Point3d(p.location);
-          pts.Add(pt);
+          system.run();
+          foreach (AgentType a in system.Agents)
+          {
+            Point3d pt = new Point3d(a.Location);
+            pts.Add(pt);
+          }
         }
       }
 
       return pts;
-    }
-
-    private void setup(EmitterType[] emitters)
-    {
-      ps.Emitters = emitters;
-
     }
 
     /// <summary>
@@ -128,7 +123,7 @@ namespace Agent
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{7c241f1f-a156-42e8-9e16-4fc8ddab1d5a}"); }
+      get { return new Guid("{f33b7dcb-38ff-4c5c-a109-7ab0d680c33a}"); }
     }
   }
 }
