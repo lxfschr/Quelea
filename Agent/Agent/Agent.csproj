@@ -64,8 +64,12 @@
   <ItemGroup>
     <Compile Include="AgentComponent.cs" />
     <Compile Include="AgentSystemComponent.cs" />
+    <Compile Include="AgentSystemDescription.cs" />
+    <Compile Include="AgentSystemParameter.cs" />
     <Compile Include="AgentSystemType.cs" />
     <Compile Include="AgentType.cs" />
+    <Compile Include="DecomposeAgent.cs" />
+    <Compile Include="DescriptionBase.cs" />
     <Compile Include="EmitterDescription.cs" />
     <Compile Include="EmitterParameter.cs" />
     <Compile Include="EmitterCrvComponent.cs" />

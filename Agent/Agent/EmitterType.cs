@@ -48,6 +48,46 @@ namespace Agent
       }
     }
 
+    public override bool Equals(object obj)
+    {
+      // If parameter is null return false.
+      if (obj == null)
+      {
+        return false;
+      }
+
+      // If parameter cannot be cast to Point return false.
+      EmitterType p = obj as EmitterType;
+      if ((System.Object)p == null)
+      {
+        return false;
+      }
+
+      // Return true if the fields match:
+      return this.continuousFlow.Equals(p.continuousFlow) && 
+             this.creationRate.Equals(p.creationRate) && 
+             this.numAgents.Equals(p.numAgents);
+    }
+
+    public bool Equals(EmitterType p)
+    {
+      // If parameter is null return false:
+      if ((object)p == null)
+      {
+        return false;
+      }
+
+      // Return true if the fields match:
+      return this.continuousFlow.Equals(p.continuousFlow) &&
+             this.creationRate.Equals(p.creationRate) &&
+             this.numAgents.Equals(p.numAgents);
+    }
+
+    public override int GetHashCode()
+    {
+      return this.creationRate ^ this.numAgents;
+    }
+
     abstract public override IGH_Goo Duplicate();
 
     public override bool IsValid

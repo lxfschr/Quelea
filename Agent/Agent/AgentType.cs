@@ -102,7 +102,7 @@ namespace Agent
       this.historyLength = agent.historyLength;
 
       this.location = location;
-      this.velocity = agent.velocity;
+      this.velocity = this.velocity = Util.Random.RandomVector(-0.5, 0.5);
       this.acceleration = agent.acceleration;
     }
 
@@ -170,6 +170,30 @@ namespace Agent
       }
     }
 
+    public Vector3d Location 
+    {
+      get
+      {
+        return this.location;
+      }
+    }
+
+    public Vector3d Velocity
+    {
+      get
+      {
+        return this.velocity;
+      }
+    }
+
+    public Vector3d Acceleration
+    {
+      get
+      {
+        return this.acceleration;
+      }
+    }
+
     public void update()
     {
       velocity = Vector3d.Add(velocity, acceleration);
@@ -194,6 +218,73 @@ namespace Agent
     public void run()
     {
       update();
+    }
+
+    public override bool Equals(System.Object obj)
+    {
+      // If parameter is null return false.
+      if (obj == null)
+      {
+        return false;
+      }
+
+      // If parameter cannot be cast to Point return false.
+      AgentType p = obj as AgentType;
+      if ((System.Object)p == null)
+      {
+        return false;
+      }
+
+      // Return true if the fields match:
+      return this.acceleration.Equals(p.acceleration) &&
+             this.bodySize.Equals(p.bodySize) &&
+             this.historyLength.Equals(p.historyLength) &&
+             this.lifespan.Equals(p.lifespan) &&
+             this.location.Equals(p.location) &&
+             this.mass.Equals(p.mass) &&
+             this.maxForce.Equals(p.maxForce) &&
+             this.maxSpeed.Equals(p.maxSpeed) &&
+             this.velocity.Equals(p.velocity) &&
+             this.visionAngle.Equals(p.visionAngle) &&
+             this.visionRadius.Equals(p.visionRadius);
+    }
+
+    public bool Equals(AgentType p)
+    {
+      // If parameter is null return false:
+      if ((object)p == null)
+      {
+        return false;
+      }
+
+      // Return true if the fields match:
+      return this.acceleration.Equals(p.acceleration) &&
+             this.bodySize.Equals(p.bodySize) &&
+             this.historyLength.Equals(p.historyLength) &&
+             this.lifespan.Equals(p.lifespan) &&
+             this.location.Equals(p.location) &&
+             this.mass.Equals(p.mass) &&
+             this.maxForce.Equals(p.maxForce) &&
+             this.maxSpeed.Equals(p.maxSpeed) &&
+             this.velocity.Equals(p.velocity) &&
+             this.visionAngle.Equals(p.visionAngle) &&
+             this.visionRadius.Equals(p.visionRadius);
+    }
+
+    public override int GetHashCode()
+    {
+      // Return true if the fields match:
+      return this.acceleration.GetHashCode() ^
+             this.bodySize.GetHashCode() ^
+             this.historyLength.GetHashCode() ^
+             this.lifespan.GetHashCode() ^
+             this.location.GetHashCode() ^
+             this.mass.GetHashCode() ^
+             this.maxForce.GetHashCode() ^
+             this.maxSpeed.GetHashCode() ^
+             this.velocity.GetHashCode() ^
+             this.visionAngle.GetHashCode() ^
+             this.visionRadius.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -237,5 +328,7 @@ namespace Agent
     {
       get { return "Agent"; }
     }
+
+    
   }
 }

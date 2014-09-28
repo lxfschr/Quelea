@@ -43,6 +43,28 @@ namespace Agent
       this.numAgents = ptEmitType.numAgents;
     }
 
+    public override bool Equals(object obj)
+    {
+      // If parameter cannot be cast to ThreeDPoint return false:
+      EmitterPtType p = obj as EmitterPtType;
+      if ((object)p == null)
+      {
+        return false;
+      }
+
+      return base.Equals(obj) && this.pt.Equals(p.pt);
+    }
+
+    public bool Equals(EmitterPtType p)
+    {
+      return base.Equals((EmitterPtType)p) && this.pt.Equals(p.pt);
+    }
+
+    public override int GetHashCode()
+    {
+      return base.GetHashCode() ^ this.pt.GetHashCode();
+    }
+
     public override IGH_Goo Duplicate()
     {
       return new EmitterPtType(this);

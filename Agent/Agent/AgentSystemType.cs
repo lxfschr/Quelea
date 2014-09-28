@@ -35,7 +35,8 @@ namespace Agent
 
     public AgentSystemType(AgentSystemType system)
     {
-      this.agents = system.agents;
+      this.agents = new List<AgentType>(); 
+      agents.AddRange(system.agents);
       this.agentsSettings = system.agentsSettings;
       this.emitters = system.emitters;
     }
@@ -48,11 +49,27 @@ namespace Agent
       }
     }
 
+    public AgentType[] AgentsSettings
+    {
+      get
+      {
+        return this.agentsSettings;
+      }
+      set
+      {
+        this.agentsSettings = value;
+      }
+    }
+
     public EmitterType[] Emitters
     {
       get
       {
         return this.emitters;
+      }
+      set // ToDo remove this
+      {
+        this.emitters = value;
       }
     }
 
@@ -96,6 +113,45 @@ namespace Agent
       timestep++;
     }
 
+    public override bool Equals(object obj)
+    {
+      // If parameter is null return false.
+      if (obj == null)
+      {
+        return false;
+      }
+
+      // If parameter cannot be cast to Point return false.
+      AgentSystemType s = obj as AgentSystemType;
+      if ((System.Object)s == null)
+      {
+        return false;
+      }
+
+      // Return true if the fields match:
+      return (this.Emitters.Equals(s.Emitters)) && 
+             (this.AgentsSettings.Equals(s.AgentsSettings));
+    }
+
+    public bool Equals(AgentSystemType s)
+    {
+      // If parameter is null return false:
+      if ((object)s == null)
+      {
+        return false;
+      }
+
+      // Return true if the fields match:
+      return (this.Emitters.Equals(s.Emitters)) &&
+             (this.Agents.Equals(s.Agents) ||
+             this.AgentsSettings.Equals(s.Agents));
+    }
+
+    public override int GetHashCode()
+    {
+      return this.AgentsSettings.Length ^ this.Emitters.Length;
+    }
+
     public override IGH_Goo Duplicate()
     {
       return new AgentSystemType(this);
@@ -114,7 +170,7 @@ namespace Agent
         }
         foreach (EmitterType emitter in this.emitters)
         {
-          if (!emitter.IsValid)
+          if (emitter == null || !emitter.IsValid)
           {
             return false;
           }
@@ -125,8 +181,8 @@ namespace Agent
 
     public override string ToString()
     {
-      string agents = "Agents: " + this.agents.ToString() + "\n";
-      string emitters = "Emitters: " + this.emitters.ToString() + "\n";
+      string agents = "Agents: " + this.agentsSettings.Length.ToString() + "\n";
+      string emitters = "Emitters: " + this.emitters.Length.ToString() + "\n";
       return agents + emitters;
     }
 
