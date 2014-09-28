@@ -25,7 +25,7 @@ namespace Agent
     {
       pManager.AddBooleanParameter("Reset", "R", "Reset the scene?", GH_ParamAccess.item, true);
       pManager.AddBooleanParameter("Live Update", "L", "Update the parameters each timestep? (Slower)", GH_ParamAccess.item, false);
-      pManager.AddGenericParameter("Agent Systems", "S", "Agent Systems in scene.", GH_ParamAccess.list);
+      pManager.AddGenericParameter("Systems", "S", "Systems in scene.", GH_ParamAccess.list);
     }
 
     /// <summary>
@@ -46,7 +46,6 @@ namespace Agent
       // We'll start by declaring variables and assigning them starting values.
       Boolean reset = true;
       bool liveUpdate = false;
-      List<EmitterType> emitters = new List<EmitterType>();
       List<AgentSystemType> systems = new List<AgentSystemType>();
 
       // Then we need to access the input parameters individually. 
@@ -65,57 +64,77 @@ namespace Agent
       // Finally assign the spiral to the output parameter.
       DA.SetDataList(0, agents);
     }
-
-    AgentSystemType agentSystem;
+    List<AgentSystemType> agentSystems = new List<AgentSystemType>();
+    List<Point3d> pts = new List<Point3d>();
     private List<Point3d> run(Boolean reset, bool liveUpdate, List<AgentSystemType> systems)
     {
-      List<Point3d> pts = new List<Point3d>();
-
+      int index = 0;
+      pts.Clear();
       if (reset)
       {
+        agentSystems.Clear();
         foreach (AgentSystemType system in systems)
         {
-          agentSystem = new AgentSystemType(system);
-          agentSystem.Agents.Clear();
-          setup(system.Emitters, system.AgentsSettings);
+          agentSystems.Add(new AgentSystemType(system));
           foreach (EmitterType emitter in system.Emitters)
           {
             if (!emitter.ContinuousFlow)
             {
               for (int i = 0; i < emitter.NumAgents; i++)
               {
-                agentSystem.addAgent(emitter);
+                agentSystems[index].addAgent(emitter);
               }
             }
           }
+          index++;
         }
+
 
       }
       else
       {
-        foreach (AgentSystemType system in systems)
+        if (liveUpdate)
         {
-          if (liveUpdate)
+          if (systems.Count > agentSystems.Count)
           {
-            setup(system.Emitters, system.AgentsSettings);
+            //Find the system that is not in agentSystems and add it.
+            foreach (AgentSystemType system in systems)
+            {
+              if (!agentSystems.Contains(system))
+              {
+                agentSystems.Add(new AgentSystemType(system));
+              }
+            }
           }
-          agentSystem.run();
-          foreach (AgentType p in agentSystem.Agents)
+          else if (systems.Count < agentSystems.Count)
           {
-            Point3d pt = new Point3d(p.Location);
+            foreach (AgentSystemType agentSystem in agentSystems)
+            {
+              if (!systems.Contains(agentSystem))
+              {
+                agentSystems.Remove(agentSystem);
+              }
+            }
+          }
+          foreach (AgentSystemType system in systems)
+          {
+            agentSystems[index].Emitters = systems[index].Emitters;
+            agentSystems[index].AgentsSettings = systems[index].AgentsSettings;
+            index++;
+          }
+        }
+        foreach (AgentSystemType system in agentSystems)
+        {
+          system.run();
+          foreach (AgentType a in system.Agents)
+          {
+            Point3d pt = new Point3d(a.Location);
             pts.Add(pt);
           }
         }
       }
 
       return pts;
-    }
-
-    private void setup(EmitterType[] emitters, AgentType[] agentSettings)
-    {
-      agentSystem.Emitters = emitters;
-      agentSystem.AgentsSettings = agentSettings;
-
     }
 
     /// <summary>
@@ -131,12 +150,13 @@ namespace Agent
       }
     }
 
+
     /// <summary>
     /// Gets the unique ID for this component. Do not change this ID after release.
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{3c316736-b260-4c09-8f5a-6f6b40709cbe}"); }
+      get { return new Guid("{6367e8ac-793b-42c8-888b-b6adaa8c577b}"); }
     }
   }
 }
