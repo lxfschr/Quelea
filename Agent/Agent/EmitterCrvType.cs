@@ -45,6 +45,28 @@ namespace Agent
       this.numAgents = emitCrvType.numAgents;
     }
 
+    public override bool Equals(object obj)
+    {
+      // If parameter cannot be cast to ThreeDPoint return false:
+        EmitterCrvType p = obj as EmitterCrvType;
+        if ((object)p == null)
+        {
+            return false;
+        }
+
+      return base.Equals(obj) && this.crv.Equals(p.crv);
+    }
+
+    public bool Equals(EmitterCrvType p)
+    {
+      return base.Equals((EmitterCrvType)p) && this.crv.Equals(p.crv);
+    }
+
+    public override int GetHashCode()
+    {
+      return base.GetHashCode() ^ this.crv.GetHashCode();
+    }
+
     public override IGH_Goo Duplicate()
     {
       return new EmitterCrvType(this);

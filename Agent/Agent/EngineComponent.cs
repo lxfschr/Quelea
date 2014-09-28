@@ -24,7 +24,7 @@ namespace Agent
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
       pManager.AddBooleanParameter("Reset", "R", "Reset the scene?", GH_ParamAccess.item, true);
-      pManager.AddBooleanParameter("Live Update", "L", "Update the parameters each timestep? (More Computation)", GH_ParamAccess.item, false);
+      pManager.AddBooleanParameter("Live Update", "L", "Update the parameters each timestep? (Slower)", GH_ParamAccess.item, false);
       pManager.AddGenericParameter("Emitters", "E", "Emitters in scene.", GH_ParamAccess.list);
     }
 
