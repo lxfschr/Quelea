@@ -14,6 +14,7 @@ namespace Agent
     private List<AgentType> agents;
     private AgentType[] agentsSettings;
     private EmitterType[] emitters;
+    private ForceType[] forces;
     private int timestep;
     private int nextIndex;
 
@@ -22,23 +23,25 @@ namespace Agent
       this.agents = new List<AgentType>();
       this.agentsSettings = new AgentType[] { new AgentType() };
       this.emitters = new EmitterType[] { new EmitterPtType() };
+      this.forces = new ForceType[] { };
       this.timestep = 0;
       this.nextIndex = 0;
     }
 
-    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters)
+    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters, ForceType[] forces)
     {
       this.agents = new List<AgentType>();
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
+      this.forces = forces;
     }
 
     public AgentSystemType(AgentSystemType system)
     {
-      this.agents = new List<AgentType>(); 
-      agents.AddRange(system.agents);
+      this.agents = new List<AgentType>(system.agents);
       this.agentsSettings = system.agentsSettings;
       this.emitters = system.emitters;
+      this.forces = system.forces;
     }
 
     public List<AgentType> Agents
@@ -73,6 +76,27 @@ namespace Agent
       }
     }
 
+    public ForceType[] Forces
+    {
+      get
+      {
+        return this.forces;
+      }
+      set // ToDo remove this
+      {
+        this.forces = value;
+      }
+    }
+
+    public void applyForces(AgentType a)
+    {
+      foreach (ForceType force in this.forces)
+      {
+        Vector3d forceVec = force.calcForce(a, this.agents);
+        a.applyForce(forceVec);
+      }
+    }
+
     public void applyForce(Vector3d f)
     {
       foreach (AgentType a in this.agents)
@@ -104,6 +128,7 @@ namespace Agent
       for (int i = agents.Count - 1; i >= 0; i--)
       {
         AgentType a = agents[i];
+        applyForces(a);
         a.run();
         if (a.isDead())
         {
