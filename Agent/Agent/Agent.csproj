@@ -68,6 +68,10 @@
     <Compile Include="AgentSystemParameter.cs" />
     <Compile Include="AgentSystemType.cs" />
     <Compile Include="AgentType.cs" />
+    <Compile Include="Forces\AlignForceComponent.cs" />
+    <Compile Include="Forces\CoheseForceComponent.cs" />
+    <Compile Include="Forces\AlignForceType.cs" />
+    <Compile Include="Forces\CoheseForceType.cs" />
     <Compile Include="DecomposeAgent.cs" />
     <Compile Include="DescriptionBase.cs" />
     <Compile Include="EmitterDescription.cs" />
@@ -75,6 +79,9 @@
     <Compile Include="EmitterCrvComponent.cs" />
     <Compile Include="EmitterCrvType.cs" />
     <Compile Include="EmitterType.cs" />
+    <Compile Include="Forces\SeparateForceComponent.cs" />
+    <Compile Include="Forces\SeparateForceType.cs" />
+    <Compile Include="Forces\ForceType.cs" />
     <Compile Include="ParticleSystem.cs" />
     <Compile Include="Particle.cs" />
     <Compile Include="EmitterPtParameter.cs" />
@@ -105,6 +112,7 @@
   <ItemGroup>
     <None Include="Resources\emitterCrvIcon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -120,6 +120,7 @@ namespace Agent
           {
             agentSystems[index].Emitters = systems[index].Emitters;
             agentSystems[index].AgentsSettings = systems[index].AgentsSettings;
+            agentSystems[index].Forces = systems[index].Forces;
             index++;
           }
         }
