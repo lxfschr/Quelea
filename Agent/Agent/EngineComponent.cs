@@ -33,7 +33,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
-      pManager.AddPointParameter("Agents", "A", "Agents", GH_ParamAccess.list);
+      pManager.AddGenericParameter("Agents", "A", "Agents", GH_ParamAccess.list);
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ namespace Agent
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      List<Point3d> agents = run(reset, liveUpdate, systems);
+      List<AgentType> agents = run(reset, liveUpdate, systems);
       //List<Point3d> agents = new List<Point3d>();
 
       // Finally assign the spiral to the output parameter.
@@ -66,7 +66,7 @@ namespace Agent
     }
     List<AgentSystemType> agentSystems = new List<AgentSystemType>();
     List<Point3d> pts = new List<Point3d>();
-    private List<Point3d> run(Boolean reset, bool liveUpdate, List<AgentSystemType> systems)
+    private List<AgentType> run(Boolean reset, bool liveUpdate, List<AgentSystemType> systems)
     {
       int index = 0;
       pts.Clear();
@@ -124,19 +124,29 @@ namespace Agent
             index++;
           }
         }
-      }
-
-      foreach (AgentSystemType system in agentSystems)
-      {
-        system.run();
-        foreach (AgentType a in system.Agents)
+        foreach (AgentSystemType system in agentSystems)
         {
-          Point3d pt = new Point3d(a.Location);
-          pts.Add(pt);
+          system.run();
+          //foreach (AgentType a in system.Agents)
+          //{
+          //  Point3d pt = new Point3d(a.Location);
+          //  pts.Add(pt);
+          //}
         }
       }
 
-      return pts;
+      //foreach (AgentSystemType system in agentSystems)
+      //{
+      //  system.run();
+      //  foreach (AgentType a in system.Agents)
+      //  {
+      //    Point3d pt = new Point3d(a.Location);
+      //    pts.Add(pt);
+      //  }
+      //}
+
+      //return pts;
+      return agentSystems[0].Agents;
     }
 
     /// <summary>
