@@ -72,9 +72,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap emitterCrvIcon {
+        internal static System.Drawing.Bitmap icon_agent {
             get {
-                object obj = ResourceManager.GetObject("emitterCrvIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_agent", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -82,9 +82,79 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap emitterPtIcon {
+        internal static System.Drawing.Bitmap icon_alignForce {
             get {
-                object obj = ResourceManager.GetObject("emitterPtIcon", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_alignForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_coheseForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_coheseForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_crvEmitter {
+            get {
+                object obj = ResourceManager.GetObject("icon_crvEmitter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_deconstructAgent {
+            get {
+                object obj = ResourceManager.GetObject("icon_deconstructAgent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_engine {
+            get {
+                object obj = ResourceManager.GetObject("icon_engine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_ptEmitter {
+            get {
+                object obj = ResourceManager.GetObject("icon_ptEmitter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_separateForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_separateForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_system {
+            get {
+                object obj = ResourceManager.GetObject("icon_system", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

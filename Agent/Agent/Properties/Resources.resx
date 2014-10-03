@@ -121,10 +121,31 @@
     <value />
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="emitterCrvIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\emitterCrvIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_agent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_agent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="emitterPtIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ptEmitterIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icon_alignForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_alignForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_coheseForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_coheseForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_crvEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_crvEmitter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_deconstructAgent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_deconstructAgent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_engine" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_engine.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_ptEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_ptEmitter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_separateForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_separateForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_system" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_system.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

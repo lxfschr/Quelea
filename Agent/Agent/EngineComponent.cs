@@ -124,14 +124,15 @@ namespace Agent
             index++;
           }
         }
-        foreach (AgentSystemType system in agentSystems)
+      }
+
+      foreach (AgentSystemType system in agentSystems)
+      {
+        system.run();
+        foreach (AgentType a in system.Agents)
         {
-          system.run();
-          foreach (AgentType a in system.Agents)
-          {
-            Point3d pt = new Point3d(a.Location);
-            pts.Add(pt);
-          }
+          Point3d pt = new Point3d(a.Location);
+          pts.Add(pt);
         }
       }
 

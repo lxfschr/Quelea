@@ -72,7 +72,7 @@
     <Compile Include="Forces\CoheseForceComponent.cs" />
     <Compile Include="Forces\AlignForceType.cs" />
     <Compile Include="Forces\CoheseForceType.cs" />
-    <Compile Include="DecomposeAgent.cs" />
+    <Compile Include="DeconstructAgentComponent.cs" />
     <Compile Include="DescriptionBase.cs" />
     <Compile Include="EmitterDescription.cs" />
     <Compile Include="EmitterParameter.cs" />
@@ -104,15 +104,32 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ptEmitterIcon.bmp" />
+    <None Include="Resources\icon_agent.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ptEmitterIcon.png" />
+    <None Include="Resources\icon_alignForce.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\emitterCrvIcon.png" />
+    <None Include="Resources\icon_coheseForce.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\icon_crvEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructAgent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_engine.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_ptEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_separateForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_system.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
