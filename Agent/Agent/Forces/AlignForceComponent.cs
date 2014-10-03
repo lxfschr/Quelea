@@ -27,7 +27,7 @@ namespace Agent
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddNumberParameter("Weight", "W", "Weight multiplier.", GH_ParamAccess.item, 1.0);
-      pManager.AddNumberParameter("Vision Multiplier", "V", "Vision multiplier.", GH_ParamAccess.item, 1.0);
+      pManager.AddNumberParameter("Vision Multiplier", "V", "Vision multiplier.", GH_ParamAccess.item, 2.0/3.0);
 
       // If you want to change properties of certain parameters, 
       // you can use the pManager instance to access them by index:
@@ -57,7 +57,7 @@ namespace Agent
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
       double weight = 1.0;
-      double visionRadiusMultiplier = 1.0;
+      double visionRadiusMultiplier = 2.0 / 3.0;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
@@ -95,7 +95,7 @@ namespace Agent
       {
         //You can add image files to your project resources and access them like this:
         // return Resources.IconForThisComponent;
-        return null;
+        return Properties.Resources.icon_alignForce;
       }
     }
 
