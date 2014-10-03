@@ -6,14 +6,14 @@ using Rhino.Geometry;
 
 namespace Agent
 {
-  public class DecomposeAgent : GH_Component
+  public class DeconstructAgentComponent : GH_Component
   {
     /// <summary>
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
-    public DecomposeAgent()
-      : base("DecomposeAgent", "DecomposeAgent",
-          "DecomposeAgent",
+    public DeconstructAgentComponent()
+      : base("DeconstructAgent", "DeconstructAgent",
+          "DeconstructAgent",
           "Agent", "Agent")
     {
     }
@@ -70,7 +70,7 @@ namespace Agent
       {
         //You can add image files to your project resources and access them like this:
         // return Resources.IconForThisComponent;
-        return null;
+        return Properties.Resources.icon_deconstructAgent;
       }
     }
 

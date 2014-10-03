@@ -24,7 +24,7 @@ namespace Agent
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
       pManager.AddBooleanParameter("Reset", "R", "Reset the scene?", GH_ParamAccess.item, true);
-      pManager.AddBooleanParameter("Live Update", "L", "Update the parameters each timestep? (Slower)", GH_ParamAccess.item, false);
+      pManager.AddBooleanParameter("Live Update", "L", "Update the parameters each timestep? (Slower)", GH_ParamAccess.item, true);
       pManager.AddGenericParameter("Systems", "S", "Systems in scene.", GH_ParamAccess.list);
     }
 
@@ -45,7 +45,7 @@ namespace Agent
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
       Boolean reset = true;
-      bool liveUpdate = false;
+      bool liveUpdate = true;
       List<AgentSystemType> systems = new List<AgentSystemType>();
 
       // Then we need to access the input parameters individually. 
@@ -147,7 +147,7 @@ namespace Agent
       {
         //You can add image files to your project resources and access them like this:
         // return Resources.IconForThisComponent;
-        return null;
+        return Properties.Resources.icon_engine;
       }
     }
 
