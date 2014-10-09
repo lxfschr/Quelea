@@ -31,9 +31,10 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
-      pManager.AddVectorParameter("Location", "L", "Location", GH_ParamAccess.item);
+      pManager.AddVectorParameter("Position", "P", "Position", GH_ParamAccess.item);
       pManager.AddVectorParameter("Velocity", "V", "Velocity", GH_ParamAccess.item);
       pManager.AddVectorParameter("Acceleration", "A", "Acceleration", GH_ParamAccess.item);
+      pManager.AddIntegerParameter("Lifespan", "L", "Lifespan", GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -59,6 +60,7 @@ namespace Agent
       DA.SetData(0, agent.Location);
       DA.SetData(1, agent.Velocity);
       DA.SetData(2, agent.Acceleration);
+      DA.SetData(3, agent.Lifespan);
     }
 
     /// <summary>
