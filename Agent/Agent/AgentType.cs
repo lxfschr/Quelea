@@ -28,13 +28,13 @@ namespace Agent
       this.lifespan = 30;
       this.mass = 1.0;
       this.bodySize = 1.0;
-      this.maxSpeed = 1.0;
-      this.maxForce = 1.0;
+      this.maxSpeed = 0.5;
+      this.maxForce = 0.1;
       this.visionAngle = 15.0;
       this.visionRadius = 5.0;
       this.historyLength = 0;
       this.position = Vector3d.Zero;
-      this.velocity = Util.Random.RandomVector(-0.5, 0.5);
+      this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
 
@@ -52,7 +52,7 @@ namespace Agent
       this.historyLength = historyLength;
 
       this.position = Vector3d.Zero;
-      this.velocity = Util.Random.RandomVector(-0.5, 0.5);
+      this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
 
@@ -70,7 +70,7 @@ namespace Agent
       this.historyLength = historyLength;
 
       this.position = position;
-      this.velocity = Util.Random.RandomVector(-0.5, 0.5);
+      this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
 
@@ -102,7 +102,7 @@ namespace Agent
       this.historyLength = agent.historyLength;
 
       this.position = position;
-      this.velocity = this.velocity = Util.Random.RandomVector(-0.5, 0.5);
+      this.velocity = this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = agent.acceleration;
     }
 
