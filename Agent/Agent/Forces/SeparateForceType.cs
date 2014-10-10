@@ -39,12 +39,12 @@ namespace Agent
 
       foreach (AgentType other in agents)
       {
-        double d = Vector3d.Subtract(agent.Location, other.Location).Length;
+        double d = Vector3d.Subtract(agent.Position, other.Position).Length;
         //if we are not comparing the seeker to iteself and it is at least
         //desired separation away:
         if ((d > 0) && (d < agent.VisionRadius*this.visionRadiusMultiplier))
         {
-          Vector3d diff = Vector3d.Subtract(agent.Location, other.Location);
+          Vector3d diff = Vector3d.Subtract(agent.Position, other.Position);
           diff.Unitize();
 
           //Weight the magnitude by distance to other
@@ -74,7 +74,7 @@ namespace Agent
       //Multiply the resultant vector by weight.
       steer = Vector3d.Multiply(this.weight, steer);
 
-      //Seek the average location of our neighbors.
+      //Seek the average position of our neighbors.
       return steer;
     }
 

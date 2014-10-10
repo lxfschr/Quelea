@@ -38,7 +38,7 @@ namespace Agent
 
     protected Vector3d seek(AgentType agent, Vector3d target)
     {
-      Vector3d desired = Vector3d.Subtract(target, agent.Location);
+      Vector3d desired = Vector3d.Subtract(target, agent.Position);
       desired.Unitize();
       desired = Vector3d.Multiply(desired, agent.MaxSpeed);
       Vector3d steer = Vector3d.Subtract(desired, agent.Velocity);

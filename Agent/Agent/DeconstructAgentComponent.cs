@@ -57,7 +57,7 @@ namespace Agent
       // The actual functionality will be in a different method:
 
       // Finally assign the spiral to the output parameter.
-      DA.SetData(0, agent.Location);
+      DA.SetData(0, agent.Position);
       DA.SetData(1, agent.Velocity);
       DA.SetData(2, agent.Acceleration);
       DA.SetData(3, agent.Lifespan);

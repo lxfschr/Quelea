@@ -19,7 +19,7 @@ namespace Agent
     private double visionRadius;
     private int historyLength;
 
-    private Vector3d location;
+    private Vector3d position;
     private Vector3d velocity;
     private Vector3d acceleration;
 
@@ -33,7 +33,7 @@ namespace Agent
       this.visionAngle = 15.0;
       this.visionRadius = 5.0;
       this.historyLength = 0;
-      this.location = Vector3d.Zero;
+      this.position = Vector3d.Zero;
       this.velocity = Util.Random.RandomVector(-0.5, 0.5);
       this.acceleration = Vector3d.Zero;
     }
@@ -51,14 +51,14 @@ namespace Agent
       this.visionRadius = visionRadius;
       this.historyLength = historyLength;
 
-      this.location = Vector3d.Zero;
+      this.position = Vector3d.Zero;
       this.velocity = Util.Random.RandomVector(-0.5, 0.5);
       this.acceleration = Vector3d.Zero;
     }
 
     public AgentType(int lifespan, double mass, double bodySize,
                      double maxSpeed, double maxForce, double visionAngle,
-                     double visionRadius, int historyLength, Vector3d location)
+                     double visionRadius, int historyLength, Vector3d position)
     {
       this.lifespan = lifespan;
       this.mass = mass;
@@ -69,7 +69,7 @@ namespace Agent
       this.visionRadius = visionRadius;
       this.historyLength = historyLength;
 
-      this.location = location;
+      this.position = position;
       this.velocity = Util.Random.RandomVector(-0.5, 0.5);
       this.acceleration = Vector3d.Zero;
     }
@@ -85,12 +85,12 @@ namespace Agent
       this.visionRadius = agent.visionRadius;
       this.historyLength = agent.historyLength;
 
-      this.location = agent.location;
+      this.position = agent.position;
       this.velocity = agent.velocity;
       this.acceleration = agent.acceleration;
     }
 
-    public AgentType(AgentType agent, Vector3d location)
+    public AgentType(AgentType agent, Vector3d position)
     {
       this.lifespan = agent.lifespan;
       this.mass = agent.mass;
@@ -101,7 +101,7 @@ namespace Agent
       this.visionRadius = agent.visionRadius;
       this.historyLength = agent.historyLength;
 
-      this.location = location;
+      this.position = position;
       this.velocity = this.velocity = Util.Random.RandomVector(-0.5, 0.5);
       this.acceleration = agent.acceleration;
     }
@@ -170,11 +170,11 @@ namespace Agent
       }
     }
 
-    public Vector3d Location 
+    public Vector3d Position 
     {
       get
       {
-        return this.location;
+        return this.position;
       }
     }
 
@@ -197,7 +197,7 @@ namespace Agent
     public void update()
     {
       velocity = Vector3d.Add(velocity, acceleration);
-      location = Vector3d.Add(location, velocity);
+      position = Vector3d.Add(position, velocity);
       acceleration = Vector3d.Multiply(acceleration, 0);
       lifespan -= 1;
 
@@ -240,7 +240,7 @@ namespace Agent
              this.bodySize.Equals(p.bodySize) &&
              this.historyLength.Equals(p.historyLength) &&
              this.lifespan.Equals(p.lifespan) &&
-             this.location.Equals(p.location) &&
+             this.position.Equals(p.position) &&
              this.mass.Equals(p.mass) &&
              this.maxForce.Equals(p.maxForce) &&
              this.maxSpeed.Equals(p.maxSpeed) &&
@@ -262,7 +262,7 @@ namespace Agent
              this.bodySize.Equals(p.bodySize) &&
              this.historyLength.Equals(p.historyLength) &&
              this.lifespan.Equals(p.lifespan) &&
-             this.location.Equals(p.location) &&
+             this.position.Equals(p.position) &&
              this.mass.Equals(p.mass) &&
              this.maxForce.Equals(p.maxForce) &&
              this.maxSpeed.Equals(p.maxSpeed) &&
@@ -278,7 +278,7 @@ namespace Agent
              this.bodySize.GetHashCode() ^
              this.historyLength.GetHashCode() ^
              this.lifespan.GetHashCode() ^
-             this.location.GetHashCode() ^
+             this.position.GetHashCode() ^
              this.mass.GetHashCode() ^
              this.maxForce.GetHashCode() ^
              this.maxSpeed.GetHashCode() ^
