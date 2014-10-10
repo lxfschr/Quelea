@@ -26,8 +26,8 @@ namespace Agent
       pManager.AddIntegerParameter("Lifespan", "L", "Timesteps the agent will be alive for.", GH_ParamAccess.item, 30);
       pManager.AddNumberParameter("Mass", "M", "The mass of the agent.", GH_ParamAccess.item, 1.0);
       pManager.AddNumberParameter("Body Size", "B", "The diameter of the extent of the agent's size.", GH_ParamAccess.item, 1.0);
-      pManager.AddNumberParameter("Maximum Speed", "S", "The maximum speed of the agent.", GH_ParamAccess.item, 1.0);
-      pManager.AddNumberParameter("Maximum Force", "F", "The maximum force of the agent.", GH_ParamAccess.item, 1.0);
+      pManager.AddNumberParameter("Maximum Speed", "S", "The maximum speed of the agent.", GH_ParamAccess.item, 0.5);
+      pManager.AddNumberParameter("Maximum Force", "F", "The maximum force of the agent.", GH_ParamAccess.item, 0.1);
       pManager.AddNumberParameter("Vision Angle", "A", "The maximum angle, taken from the velocity vector,  that the agent can see around it.", GH_ParamAccess.item, 15.0);
       pManager.AddNumberParameter("Vision Radius", "R", "The maximum radius around the agent that it can see.", GH_ParamAccess.item, 5.0);
       pManager.AddIntegerParameter("Length of position history", "N", "The length of position history", GH_ParamAccess.item, 1);
@@ -52,8 +52,8 @@ namespace Agent
       int lifespan = 0;
       double mass = 1.0;
       double bodySize = 1.0;
-      double maxSpeed = 1.0;
-      double maxForce = 1.0;
+      double maxSpeed = 0.5;
+      double maxForce = 0.1;
       double visionAngle = 15.0;
       double visionRadius = 5.0;
       int historyLength = 0;
