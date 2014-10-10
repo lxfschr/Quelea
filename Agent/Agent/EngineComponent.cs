@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
+using Grasshopper;
+using Grasshopper.Kernel.Data;
 
 namespace Agent
 {
@@ -33,7 +35,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter("Agents", "A", "Agents", GH_ParamAccess.list);
+      pManager.AddGenericParameter("Agents", "A", "Agents", GH_ParamAccess.tree);
     }
 
     /// <summary>
@@ -58,15 +60,15 @@ namespace Agent
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      List<AgentType> agents = run(reset, liveUpdate, systems);
+      DataTree<AgentType> agents = run(reset, liveUpdate, systems);
       //List<Point3d> agents = new List<Point3d>();
 
       // Finally assign the spiral to the output parameter.
-      DA.SetDataList(0, agents);
+      DA.SetDataTree(0, agents);
     }
     List<AgentSystemType> agentSystems = new List<AgentSystemType>();
     List<Point3d> pts = new List<Point3d>();
-    private List<AgentType> run(Boolean reset, bool liveUpdate, List<AgentSystemType> systems)
+    private DataTree<AgentType> run(Boolean reset, bool liveUpdate, List<AgentSystemType> systems)
     {
       int index = 0;
       pts.Clear();
@@ -127,26 +129,21 @@ namespace Agent
         foreach (AgentSystemType system in agentSystems)
         {
           system.run();
-          //foreach (AgentType a in system.Agents)
-          //{
-          //  Point3d pt = new Point3d(a.Position);
-          //  pts.Add(pt);
-          //}
         }
       }
 
-      //foreach (AgentSystemType system in agentSystems)
-      //{
-      //  system.run();
-      //  foreach (AgentType a in system.Agents)
-      //  {
-      //    Point3d pt = new Point3d(a.Position);
-      //    pts.Add(pt);
-      //  }
-      //}
+      DataTree<AgentType> tree = new DataTree<AgentType>();
+      int counter = 0;
+      foreach (AgentSystemType system in agentSystems)
+      {
+        foreach (AgentType agent in system.Agents)
+        {
+          tree.Add(agent, new GH_Path(counter));
+        }
+        counter++;
+      }
 
-      //return pts;
-      return agentSystems[0].Agents;
+        return tree;
     }
 
     /// <summary>
