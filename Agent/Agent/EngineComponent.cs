@@ -129,7 +129,7 @@ namespace Agent
           system.run();
           //foreach (AgentType a in system.Agents)
           //{
-          //  Point3d pt = new Point3d(a.Location);
+          //  Point3d pt = new Point3d(a.Position);
           //  pts.Add(pt);
           //}
         }
@@ -140,7 +140,7 @@ namespace Agent
       //  system.run();
       //  foreach (AgentType a in system.Agents)
       //  {
-      //    Point3d pt = new Point3d(a.Location);
+      //    Point3d pt = new Point3d(a.Position);
       //    pts.Add(pt);
       //  }
       //}

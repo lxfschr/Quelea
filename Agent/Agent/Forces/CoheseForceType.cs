@@ -41,12 +41,12 @@ namespace Agent
       {
         //Add up all the velocities and divide by the total to calculate
         //the average velocity.
-        Vector3d vec = Vector3d.Subtract(agent.Location, other.Location);
+        Vector3d vec = Vector3d.Subtract(agent.Position, other.Position);
         double d = vec.Length;
         if ((d > 0) && (d < agent.VisionRadius*this.visionRadiusMultiplier))
         {
-          //Adding up all the others' location
-          sum = Vector3d.Add(sum, other.Location);
+          //Adding up all the others' position
+          sum = Vector3d.Add(sum, other.Position);
           //For an average, we need to keep track of how many boids
           //are in our vision.
           count++;
@@ -63,7 +63,7 @@ namespace Agent
       //Multiply the resultant vector by weight.
       steer = Vector3d.Multiply(this.weight, steer);
 
-      //Seek the average location of our neighbors.
+      //Seek the average position of our neighbors.
       return steer;
     }
 

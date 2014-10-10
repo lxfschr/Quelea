@@ -10,7 +10,7 @@ namespace Agent
 {
   class Particle
   {
-    public Vector3d location = new Vector3d(0, 0, 0);
+    public Vector3d position = new Vector3d(0, 0, 0);
     public Vector3d velocity = new Vector3d(0, 0, 0);
     public Vector3d acceleration = new Vector3d(0, 0, 0);
     public double lifespan;
@@ -19,7 +19,7 @@ namespace Agent
 
     public Particle(Vector3d l)
     {
-      location = l;
+      position = l;
       acceleration = new Vector3d(0, 0, 0);
       //this.acceleration = new Vector3d(0, 0, -0.05);
       //this.velocity = new Vector3d(0, 0, -0.1);
@@ -37,7 +37,7 @@ namespace Agent
     public void update()
     {
       velocity = Vector3d.Add(velocity, acceleration);
-      location = Vector3d.Add(location, velocity);
+      position = Vector3d.Add(position, velocity);
       acceleration = Vector3d.Multiply(acceleration, 0);
       lifespan -= 1.0;
 

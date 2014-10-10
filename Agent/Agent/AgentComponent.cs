@@ -30,7 +30,7 @@ namespace Agent
       pManager.AddNumberParameter("Maximum Force", "F", "The maximum force of the agent.", GH_ParamAccess.item, 1.0);
       pManager.AddNumberParameter("Vision Angle", "A", "The maximum angle, taken from the velocity vector,  that the agent can see around it.", GH_ParamAccess.item, 15.0);
       pManager.AddNumberParameter("Vision Radius", "R", "The maximum radius around the agent that it can see.", GH_ParamAccess.item, 5.0);
-      pManager.AddIntegerParameter("Length of location history", "N", "The length of location history", GH_ParamAccess.item, 1);
+      pManager.AddIntegerParameter("Length of position history", "N", "The length of position history", GH_ParamAccess.item, 1);
     }
 
     /// <summary>
