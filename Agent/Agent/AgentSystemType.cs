@@ -15,6 +15,7 @@ namespace Agent
     private AgentType[] agentsSettings;
     private EmitterType[] emitters;
     private ForceType[] forces;
+    private EnvironmentType environment;
     private int timestep;
     private int nextIndex;
 
@@ -24,16 +25,18 @@ namespace Agent
       this.agentsSettings = new AgentType[] { new AgentType() };
       this.emitters = new EmitterType[] { new EmitterPtType() };
       this.forces = new ForceType[] { };
+      this.environment = new WorldBoxEnvironmentType();
       this.timestep = 0;
       this.nextIndex = 0;
     }
 
-    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters, ForceType[] forces)
+    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters, ForceType[] forces, EnvironmentType environment)
     {
       this.agents = new List<AgentType>();
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.forces = forces;
+      this.environment = environment;
     }
 
     public AgentSystemType(AgentSystemType system)
@@ -42,6 +45,7 @@ namespace Agent
       this.agentsSettings = system.agentsSettings;
       this.emitters = system.emitters;
       this.forces = system.forces;
+      this.environment = system.environment;
     }
 
     public List<AgentType> Agents
@@ -85,6 +89,18 @@ namespace Agent
       set // ToDo remove this
       {
         this.forces = value;
+      }
+    }
+
+    public EnvironmentType Environment
+    {
+      get
+      {
+        return this.environment;
+      }
+      set // ToDo remove this
+      {
+        this.environment = value;
       }
     }
 
@@ -154,8 +170,9 @@ namespace Agent
       }
 
       // Return true if the fields match:
-      return (this.Emitters.Equals(s.Emitters)) && 
-             (this.AgentsSettings.Equals(s.AgentsSettings));
+      return (this.emitters.Equals(s.emitters)) && 
+             (this.agentsSettings.Equals(s.agentsSettings)) &&
+             (this.environment.Equals(s.environment));
     }
 
     public bool Equals(AgentSystemType s)
@@ -167,14 +184,24 @@ namespace Agent
       }
 
       // Return true if the fields match:
-      return (this.Emitters.Equals(s.Emitters)) &&
-             (this.Agents.Equals(s.Agents) ||
-             this.AgentsSettings.Equals(s.Agents));
+      return (this.emitters.Equals(s.emitters)) && 
+             (this.agentsSettings.Equals(s.agents)) &&
+             (this.environment.Equals(s.environment));
     }
 
     public override int GetHashCode()
     {
-      return this.AgentsSettings.Length ^ this.Emitters.Length;
+      int agentHash = 1;
+      int emitterHash = 1;
+      foreach (AgentType agent in this.agentsSettings)
+      {
+        agentHash *= agent.GetHashCode();
+      }
+      foreach (EmitterType emitter in this.emitters)
+      {
+        emitterHash *= emitter.GetHashCode();
+      }
+      return agentHash ^ emitterHash ^ this.environment.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -186,21 +213,7 @@ namespace Agent
     {
       get
       {
-        foreach (AgentType agent in this.agents)
-        {
-          if (!agent.IsValid)
-          {
-            return false;
-          }
-        }
-        foreach (EmitterType emitter in this.emitters)
-        {
-          if (emitter == null || !emitter.IsValid)
-          {
-            return false;
-          }
-        }
-        return true;
+        return (this.timestep >= 0) && (this.nextIndex >= 0);
       }
     }
 
@@ -208,7 +221,8 @@ namespace Agent
     {
       string agents = "Agents: " + this.agentsSettings.Length.ToString() + "\n";
       string emitters = "Emitters: " + this.emitters.Length.ToString() + "\n";
-      return agents + emitters;
+      string environment = "Environment: " + this.environment.ToString() + "\n";
+      return agents + emitters + environment;
     }
 
     public override string TypeDescription
