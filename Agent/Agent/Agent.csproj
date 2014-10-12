@@ -69,6 +69,8 @@
     <Compile Include="AgentSystemType.cs" />
     <Compile Include="AgentType.cs" />
     <Compile Include="Environment\EnvironmentType.cs" />
+    <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
+    <Compile Include="Environment\SurfaceEnvironmentType.cs" />
     <Compile Include="Forces\AlignForceComponent.cs" />
     <Compile Include="Forces\CoheseForceComponent.cs" />
     <Compile Include="Forces\AlignForceType.cs" />

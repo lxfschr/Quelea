@@ -71,6 +71,8 @@ namespace Agent
       get { return "Environment"; }
     }
 
-    abstract public Point3d closestPoint(Point3d emittionPt);
+    abstract public Point3d closestPoint(Point3d pt);
+
+    abstract public Point3d closestRefPoint(Point3d pt);
   }
 }
