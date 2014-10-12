@@ -178,6 +178,10 @@ namespace Agent
       {
         return this.position;
       }
+      set
+      {
+        this.position = value;
+      }
     }
 
     public Vector3d Velocity

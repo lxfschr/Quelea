@@ -116,5 +116,12 @@ namespace Agent
       srf.ClosestPoint(pt, out u, out v);
       return refSrf.PointAt(u, v);
     }
+
+    public override Point3d closestRefPointOnRef(Point3d pt)
+    {
+      double u, v;
+      refSrf.ClosestPoint(pt, out u, out v);
+      return refSrf.PointAt(u, v);
+    }
   }
 }

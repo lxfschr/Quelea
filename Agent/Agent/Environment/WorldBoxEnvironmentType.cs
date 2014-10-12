@@ -96,5 +96,10 @@ namespace Agent
     public override Point3d closestRefPoint(Point3d pt) {
       return this.box.ClosestPoint(pt);
     }
+
+    public override Point3d closestRefPointOnRef(Point3d pt)
+    {
+      return this.box.ClosestPoint(pt);
+    }
   }
 }
