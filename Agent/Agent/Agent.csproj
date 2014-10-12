@@ -68,6 +68,7 @@
     <Compile Include="AgentSystemParameter.cs" />
     <Compile Include="AgentSystemType.cs" />
     <Compile Include="AgentType.cs" />
+    <Compile Include="Environment\EnvironmentType.cs" />
     <Compile Include="Forces\AlignForceComponent.cs" />
     <Compile Include="Forces\CoheseForceComponent.cs" />
     <Compile Include="Forces\AlignForceType.cs" />
@@ -96,6 +97,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Random.cs" />
+    <Compile Include="Environment\WorldBoxEnvironmentType.cs" />
+    <Compile Include="Environment\WorldBoxEnvironmentComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

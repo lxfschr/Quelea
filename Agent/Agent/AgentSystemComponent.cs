@@ -30,7 +30,10 @@ namespace Agent
                                     GH_ParamAccess.list);
       pManager.AddGenericParameter("Forces", "F", "Forces",
                                    GH_ParamAccess.list);
+      pManager.AddGenericParameter("Environment", "En", "Environment",
+                                   GH_ParamAccess.item);
       pManager[2].Optional = true;
+      pManager[3].Optional = true;
 
     }
 
@@ -56,6 +59,7 @@ namespace Agent
       List<AgentType> agents = new List<AgentType>();
       List<EmitterType> emitters = new List<EmitterType>();
       List<ForceType> forces = new List<ForceType>();
+      EnvironmentType environment = new WorldBoxEnvironmentType();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this
@@ -63,6 +67,7 @@ namespace Agent
       if (!DA.GetDataList(0, agents)) return;
       if (!DA.GetDataList(1, emitters)) return;
       DA.GetDataList(2, forces);
+      DA.GetData(3, ref environment);
       //if (!DA.GetDataList(2, forces)) return;
 
       // We should now validate the data and warn the user if invalid data is 
@@ -82,7 +87,7 @@ namespace Agent
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      AgentSystemType system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), forces.ToArray());
+      AgentSystemType system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), forces.ToArray(), environment);
 
       // Finally assign the spiral to the output parameter.
       DA.SetData(0, system);
