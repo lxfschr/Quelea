@@ -22,7 +22,7 @@ namespace Agent
       this.numAgents = 0;
     }
 
-    abstract public Vector3d emit();
+    abstract public Point3d emit();
 
     public int CreationRate
     {

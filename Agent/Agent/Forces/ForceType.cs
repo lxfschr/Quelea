@@ -36,11 +36,43 @@ namespace Agent
 
     public abstract Vector3d calcForce(AgentType agent, List<AgentType> agents);
 
+  
+
+    protected Vector3d calcSum(AgentType agent, List<AgentType> agents, out int count)
+    {
+      Vector3d sum = new Vector3d();
+      count = 0;
+      foreach (AgentType other in agents)
+      {
+        double d = agent.Position.DistanceTo(other.Position);
+        //double d = Vector3d.Subtract(agent.Position, other.Position).Length;
+        //if we are not comparing the seeker to iteself and it is at least
+        //desired separation away:
+        if ((d > 0) && (d < agent.VisionRadius * this.visionRadiusMultiplier))
+        {
+          Vector3d diff = Point3d.Subtract(agent.Position, other.Position);
+          diff.Unitize();
+
+          //Weight the magnitude by distance to other
+          diff = Vector3d.Divide(diff, d);
+
+          sum = Vector3d.Add(sum, diff);
+
+          //For an average, we need to keep track of how many boids
+          //are in our vision.
+          count++;
+        }
+      }
+      return sum;
+    }
+
     protected Vector3d seek(AgentType agent, Vector3d target)
     {
-      Vector3d desired = Vector3d.Subtract(target, agent.Position);
+      Vector3d desired = Vector3d.Subtract(target, new Vector3d(agent.Position));
       desired.Unitize();
       desired = Vector3d.Multiply(desired, agent.MaxSpeed);
+
+      //Seek the average position of our neighbors.
       Vector3d steer = Vector3d.Subtract(desired, agent.Velocity);
 
       if (steer.Length > agent.MaxForce)
@@ -48,6 +80,9 @@ namespace Agent
         steer.Unitize();
         steer = Vector3d.Multiply(steer, agent.MaxForce);
       }
+
+      //Multiply the resultant vector by weight
+      steer = Vector3d.Multiply(this.weight, steer);
       return steer;
     }
 

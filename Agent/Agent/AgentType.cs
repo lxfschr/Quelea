@@ -19,9 +19,11 @@ namespace Agent
     private double visionRadius;
     private int historyLength;
 
-    private Vector3d position;
+    private Point3d position;
     private Vector3d velocity;
     private Vector3d acceleration;
+
+    private Point3d position3d;
 
     public AgentType()
     {
@@ -33,7 +35,7 @@ namespace Agent
       this.visionAngle = 15.0;
       this.visionRadius = 5.0;
       this.historyLength = 0;
-      this.position = Vector3d.Zero;
+      this.position = Point3d.Origin;
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
@@ -51,14 +53,14 @@ namespace Agent
       this.visionRadius = visionRadius;
       this.historyLength = historyLength;
 
-      this.position = Vector3d.Zero;
+      this.position = Point3d.Origin;
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
 
     public AgentType(int lifespan, double mass, double bodySize,
                      double maxSpeed, double maxForce, double visionAngle,
-                     double visionRadius, int historyLength, Vector3d position)
+                     double visionRadius, int historyLength, Point3d position)
     {
       this.lifespan = lifespan;
       this.mass = mass;
@@ -90,7 +92,7 @@ namespace Agent
       this.acceleration = agent.acceleration;
     }
 
-    public AgentType(AgentType agent, Vector3d position)
+    public AgentType(AgentType agent, Point3d position)
     {
       this.lifespan = agent.lifespan;
       this.mass = agent.mass;
@@ -170,7 +172,7 @@ namespace Agent
       }
     }
 
-    public Vector3d Position 
+    public Point3d Position 
     {
       get
       {
@@ -194,10 +196,23 @@ namespace Agent
       }
     }
 
+    public Point3d Position3d
+    {
+      get
+      {
+        return this.position3d;
+      }
+      set
+      {
+        this.position3d = value;
+      }
+    }
+
     public void update()
     {
       velocity = Vector3d.Add(velocity, acceleration);
-      position = Vector3d.Add(position, velocity);
+      position.Transform(Transform.Translation(velocity));
+      //position = Vector3d.Add(position, velocity);
       acceleration = Vector3d.Multiply(acceleration, 0);
       lifespan -= 1;
 

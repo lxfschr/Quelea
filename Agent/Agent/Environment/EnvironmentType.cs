@@ -70,5 +70,7 @@ namespace Agent
     {
       get { return "Environment"; }
     }
+
+    abstract public Point3d closestPoint(Point3d emittionPt);
   }
 }
