@@ -25,7 +25,7 @@ namespace Agent
       this.agentsSettings = new AgentType[] { new AgentType() };
       this.emitters = new EmitterType[] { new EmitterPtType() };
       this.forces = new ForceType[] { };
-      this.environment = new WorldBoxEnvironmentType();
+      this.environment = null;
       this.timestep = 0;
       this.nextIndex = 0;
     }
@@ -113,18 +113,16 @@ namespace Agent
       }
     }
 
-    public void applyForce(Vector3d f)
-    {
-      foreach (AgentType a in this.agents)
-      {
-        a.applyForce(f);
-      }
-    }
-
     public void addAgent(EmitterType emitter)
     {
-      Vector3d emittionPt = emitter.emit();
-      agents.Add(new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt));
+      Point3d emittionPt = emitter.emit();
+      if (environment != null)
+      {
+        emittionPt = environment.closestPoint(emittionPt);
+      }
+      AgentType agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt);
+      agent.Position3d = emittionPt;
+      agents.Add(agent);
       nextIndex++;
     }
 
@@ -146,6 +144,15 @@ namespace Agent
         AgentType a = agents[i];
         applyForces(a);
         a.run();
+        if (environment != null)
+        {
+          a.Position3d = environment.closestPoint(a.Position);
+        }
+        else
+        {
+          a.Position3d = a.Position;
+        }
+        
         if (a.isDead())
         {
           agents.Remove(a);

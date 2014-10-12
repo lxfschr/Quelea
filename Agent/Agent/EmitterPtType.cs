@@ -70,9 +70,9 @@ namespace Agent
       return new EmitterPtType(this);
     }
 
-    public override Vector3d emit()
+    public override Point3d emit()
     {
-      return new Vector3d(this.pt);
+      return this.pt;
     }
 
     public override bool IsValid

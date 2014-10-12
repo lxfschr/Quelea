@@ -59,7 +59,7 @@ namespace Agent
       List<AgentType> agents = new List<AgentType>();
       List<EmitterType> emitters = new List<EmitterType>();
       List<ForceType> forces = new List<ForceType>();
-      EnvironmentType environment = new WorldBoxEnvironmentType();
+      EnvironmentType environment = null;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this

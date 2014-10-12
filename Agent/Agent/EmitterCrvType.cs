@@ -72,12 +72,12 @@ namespace Agent
       return new EmitterCrvType(this);
     }
 
-    public override Vector3d emit()
+    public override Point3d emit()
     {
 
       double min = 0;
       double max = 1;
-      return new Vector3d(this.crv.PointAtNormalizedLength((Util.Random.RandomDouble(min, max))));
+      return this.crv.PointAtNormalizedLength((Util.Random.RandomDouble(min, max)));
 
     }
 

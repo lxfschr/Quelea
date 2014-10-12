@@ -83,8 +83,6 @@
     <Compile Include="Forces\SeparateForceComponent.cs" />
     <Compile Include="Forces\SeparateForceType.cs" />
     <Compile Include="Forces\ForceType.cs" />
-    <Compile Include="ParticleSystem.cs" />
-    <Compile Include="Particle.cs" />
     <Compile Include="EmitterPtParameter.cs" />
     <Compile Include="EmitterPtType.cs" />
     <Compile Include="EngineComponent.cs" />

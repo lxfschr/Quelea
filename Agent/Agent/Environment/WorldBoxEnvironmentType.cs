@@ -86,5 +86,10 @@ namespace Agent
       get { return "World Box Environment"; }
     }
 
+
+    public override Point3d closestPoint(Point3d emittionPt)
+    {
+      return this.box.ClosestPoint(emittionPt);
+    }
   }
 }
