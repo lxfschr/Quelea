@@ -16,6 +16,7 @@ namespace Agent
     {
       Interval interval = new Interval(-100.0, 100.0);
       this.box = new Box(Plane.WorldXY, interval, interval, interval);
+      this.wrap = false;
     }
 
     // Constructor with initial values.
@@ -87,9 +88,13 @@ namespace Agent
     }
 
 
-    public override Point3d closestPoint(Point3d emittionPt)
+    public override Point3d closestPoint(Point3d pt)
     {
-      return this.box.ClosestPoint(emittionPt);
+      return this.box.ClosestPoint(pt);
+    }
+
+    public override Point3d closestRefPoint(Point3d pt) {
+      return this.box.ClosestPoint(pt);
     }
   }
 }

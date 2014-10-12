@@ -118,10 +118,10 @@ namespace Agent
       Point3d emittionPt = emitter.emit();
       if (environment != null)
       {
-        emittionPt = environment.closestPoint(emittionPt);
+        emittionPt = environment.closestRefPoint(emittionPt);
       }
       AgentType agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt);
-      agent.Position3d = emittionPt;
+      agent.Position3d = environment.closestPoint(emittionPt);
       agents.Add(agent);
       nextIndex++;
     }

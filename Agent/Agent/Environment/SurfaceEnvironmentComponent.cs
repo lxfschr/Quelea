@@ -6,14 +6,14 @@ using Rhino.Geometry;
 
 namespace Agent
 {
-  public class WorldBoxEnvironmentComponent : GH_Component
+  public class SurfaceEnvironmentComponent : GH_Component
   {
     /// <summary>
     /// Initializes a new instance of the WorldBoxEnvironmentComponent class.
     /// </summary>
-    public WorldBoxEnvironmentComponent()
-      : base("WorldBoxEnvironment", "WBoxEnv",
-          "A World Box Environment",
+    public SurfaceEnvironmentComponent()
+      : base("SurfaceEnvironment", "SrfEnv",
+          "A Surface Environment",
           "Agent", "Environments")
     {
     }
@@ -23,7 +23,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
-      pManager.AddBoxParameter("Box", "B", "A Box aligned to World Axes.", GH_ParamAccess.item);
+      pManager.AddSurfaceParameter("Surface", "S", "An untrimmed Surface", GH_ParamAccess.item);
       pManager.AddBooleanParameter("Wrap", "W", "If true, agents that hit the edge"
                                + "of the environment will be wrapped aound to"
                                + "the other side. If false, agents will bounce"
@@ -36,7 +36,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter("World Box Environment", "En", "World Box Environment", GH_ParamAccess.item);
+      pManager.AddGenericParameter("Surface Environment", "En", "Surface Environment", GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -47,25 +47,22 @@ namespace Agent
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
-      Interval interval = new Interval(-100.0, 100.0);
-      Box box = new Box(Plane.WorldXY, interval, interval, interval);
+      Point3d pt1 = new Point3d(0, 0, 0);
+      Point3d pt2 = new Point3d(100, 0, 0);
+      Point3d pt3 = new Point3d(0, 100, 0);
+      Surface srf = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
       bool wrap = false;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!DA.GetData(0, ref box)) return;
+      if (!DA.GetData(0, ref srf)) return;
       DA.GetData(1, ref wrap);
 
       // We should now validate the data and warn the user if invalid data is supplied.
-      if (!box.Plane.Equals(Plane.WorldXY))
-      {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Box must be aligned to WorldXY.");
-        return;
-      }
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      EnvironmentType environment = new WorldBoxEnvironmentType(box, wrap);
+      EnvironmentType environment = new SurfaceEnvironmentType(srf, wrap);
 
       // Finally assign the spiral to the output parameter.
       DA.SetData(0, environment);
@@ -89,7 +86,7 @@ namespace Agent
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{132d89e3-3614-4c54-b15b-9087ff50c412}"); }
+      get { return new Guid("{6366359a-7e08-440a-8cab-78403729c8e2}"); }
     }
   }
 }
