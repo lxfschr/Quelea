@@ -24,19 +24,19 @@ namespace Agent
       this.agents = new List<AgentType>();
       this.agentsSettings = new AgentType[] { new AgentType() };
       this.emitters = new EmitterType[] { new EmitterPtType() };
-      this.forces = new ForceType[] { };
       this.environment = null;
+      this.forces = new ForceType[] { };
       this.timestep = 0;
       this.nextIndex = 0;
     }
 
-    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters, ForceType[] forces, EnvironmentType environment)
+    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters, EnvironmentType environment, ForceType[] forces)
     {
       this.agents = new List<AgentType>();
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
-      this.forces = forces;
       this.environment = environment;
+      this.forces = forces;
     }
 
     public AgentSystemType(AgentSystemType system)
@@ -44,8 +44,8 @@ namespace Agent
       this.agents = new List<AgentType>(system.agents);
       this.agentsSettings = system.agentsSettings;
       this.emitters = system.emitters;
-      this.forces = system.forces;
       this.environment = system.environment;
+      this.forces = system.forces;
     }
 
     public List<AgentType> Agents
