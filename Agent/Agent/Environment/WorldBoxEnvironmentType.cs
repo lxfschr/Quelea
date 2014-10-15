@@ -64,7 +64,9 @@ namespace Agent
     {
       get
       {
-        return (this.box.IsValid) && box.Plane.Equals(Plane.WorldXY);
+        return (this.box.IsValid) && 
+          box.Plane.XAxis.Equals(Plane.WorldXY.XAxis) &&
+          box.Plane.YAxis.Equals(Plane.WorldXY.YAxis);
       }
 
     }
