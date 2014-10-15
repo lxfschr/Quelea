@@ -35,10 +35,7 @@ namespace Agent
       this.wrap = wrap;
       Interval u = srf.Domain(0);
       Interval v = srf.Domain(1);
-      Point3d pt1 = new Point3d(u.Min, v.Min, 0);
-      Point3d pt2 = new Point3d(u.Max, v.Min, 0);
-      Point3d pt3 = new Point3d(u.Min, v.Max, 0);
-      this.refSrf = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
+      this.refSrf = new PlaneSurface(Plane.WorldXY, u, v);
     }
 
     // Copy Constructor
