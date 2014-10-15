@@ -23,7 +23,7 @@ namespace Agent
     private Vector3d velocity;
     private Vector3d acceleration;
 
-    private Point3d position3d;
+    private Point3d refPosition;
 
     public AgentType()
     {
@@ -36,6 +36,7 @@ namespace Agent
       this.visionRadius = 5.0;
       this.historyLength = 0;
       this.position = Point3d.Origin;
+      this.refPosition = Point3d.Origin;
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
@@ -54,6 +55,7 @@ namespace Agent
       this.historyLength = historyLength;
 
       this.position = Point3d.Origin;
+      this.refPosition = Point3d.Origin;
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
@@ -72,6 +74,7 @@ namespace Agent
       this.historyLength = historyLength;
 
       this.position = position;
+      this.refPosition = position;
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
@@ -88,6 +91,7 @@ namespace Agent
       this.historyLength = agent.historyLength;
 
       this.position = agent.position;
+      this.refPosition = agent.refPosition;
       this.velocity = agent.velocity;
       this.acceleration = agent.acceleration;
     }
@@ -103,7 +107,25 @@ namespace Agent
       this.visionRadius = agent.visionRadius;
       this.historyLength = agent.historyLength;
 
+      this.refPosition = position;
       this.position = position;
+      this.velocity = this.velocity = Util.Random.RandomVector(-0.1, 0.1);
+      this.acceleration = agent.acceleration;
+    }
+
+    public AgentType(AgentType agent, Point3d position, Point3d refPosition)
+    {
+      this.lifespan = agent.lifespan;
+      this.mass = agent.mass;
+      this.bodySize = agent.bodySize;
+      this.maxSpeed = agent.maxSpeed;
+      this.maxForce = agent.maxForce;
+      this.visionAngle = agent.visionAngle;
+      this.visionRadius = agent.visionRadius;
+      this.historyLength = agent.historyLength;
+
+      this.position = position;
+      this.refPosition = refPosition;
       this.velocity = this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = agent.acceleration;
     }
@@ -200,23 +222,23 @@ namespace Agent
       }
     }
 
-    public Point3d Position3d
+    public Point3d RefPosition
     {
       get
       {
-        return this.position3d;
+        return this.refPosition;
       }
       set
       {
-        this.position3d = value;
+        this.refPosition = value;
       }
     }
 
     public void update()
     {
       velocity = Vector3d.Add(velocity, acceleration);
-      position.Transform(Transform.Translation(velocity));
-      //position = Vector3d.Add(position, velocity);
+      refPosition.Transform(Transform.Translation(velocity));
+      position.Transform(Transform.Translation(velocity)); //So disconnecting the environment allows the agent to continue from its current position.
       acceleration = Vector3d.Multiply(acceleration, 0);
       lifespan -= 1;
 

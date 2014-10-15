@@ -119,8 +119,8 @@ namespace Agent
       AgentType agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt);
       if (environment != null)
       {
-        emittionPt = environment.closestRefPoint(emittionPt);
-        agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt);
+        Point3d refEmittionPt = environment.closestRefPoint(emittionPt);
+        agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt, refEmittionPt);
       }
       agents.Add(agent);
       nextIndex++;
@@ -146,14 +146,14 @@ namespace Agent
         a.run();
         if (environment != null)
         {
-          a.Position = environment.closestRefPointOnRef(a.Position);
-          a.Position3d = environment.closestPoint(a.Position);
+          a.RefPosition = environment.closestRefPointOnRef(a.RefPosition);
+          a.Position = environment.closestPoint(a.RefPosition);
         }
         else
         {
-          a.Position3d = a.Position;
+          a.RefPosition = a.Position;
+          a.Position = a.RefPosition;
         }
-        
         if (a.isDead())
         {
           agents.Remove(a);

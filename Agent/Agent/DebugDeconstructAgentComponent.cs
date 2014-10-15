@@ -6,14 +6,14 @@ using Rhino.Geometry;
 
 namespace Agent
 {
-  public class DeconstructAgentComponent : GH_Component
+  public class DebugDeconstructAgentComponent : GH_Component
   {
     /// <summary>
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
-    public DeconstructAgentComponent()
-      : base("DeconstructAgent", "DeconstructAgent",
-          "DeconstructAgent",
+    public DebugDeconstructAgentComponent()
+      : base("DebugDeconstructAgent", "DebugDeconstructAgent",
+          "DebugDeconstructAgent",
           "Agent", "Agent")
     {
     }
@@ -35,6 +35,7 @@ namespace Agent
       pManager.AddVectorParameter("Velocity", "V", "Velocity", GH_ParamAccess.item);
       pManager.AddVectorParameter("Acceleration", "A", "Acceleration", GH_ParamAccess.item);
       pManager.AddIntegerParameter("Lifespan", "L", "Lifespan", GH_ParamAccess.item);
+      pManager.AddPointParameter("Ref Position", "RP", "Ref Position", GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -61,6 +62,7 @@ namespace Agent
       DA.SetData(1, agent.Velocity);
       DA.SetData(2, agent.Acceleration);
       DA.SetData(3, agent.Lifespan);
+      DA.SetData(4, agent.RefPosition);
     }
 
     /// <summary>
@@ -81,7 +83,7 @@ namespace Agent
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b}"); }
+      get { return new Guid("{74820305-a37d-4a7f-976a-aef3d8841fde}"); }
     }
   }
 }

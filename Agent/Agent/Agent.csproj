@@ -68,6 +68,7 @@
     <Compile Include="AgentSystemParameter.cs" />
     <Compile Include="AgentSystemType.cs" />
     <Compile Include="AgentType.cs" />
+    <Compile Include="DebugDeconstructAgentComponent.cs" />
     <Compile Include="Environment\EnvironmentType.cs" />
     <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
     <Compile Include="Environment\SurfaceEnvironmentType.cs" />
