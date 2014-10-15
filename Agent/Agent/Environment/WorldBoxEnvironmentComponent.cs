@@ -57,7 +57,7 @@ namespace Agent
       DA.GetData(1, ref wrap);
 
       // We should now validate the data and warn the user if invalid data is supplied.
-      if (!box.Plane.Equals(Plane.WorldXY))
+      if (!(box.Plane.XAxis.Equals(Plane.WorldXY.XAxis) && box.Plane.YAxis.Equals(Plane.WorldXY.YAxis)))
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Box must be aligned to WorldXY.");
         return;
