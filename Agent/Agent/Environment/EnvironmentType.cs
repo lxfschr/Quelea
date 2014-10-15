@@ -76,5 +76,7 @@ namespace Agent
     abstract public Point3d closestRefPoint(Point3d pt);
 
     abstract public Point3d closestRefPointOnRef(Point3d pt);
+
+    abstract public Point3d closestPointOnRef(Point3d pt);
   }
 }
