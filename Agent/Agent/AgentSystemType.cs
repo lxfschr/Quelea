@@ -146,8 +146,8 @@ namespace Agent
         a.run();
         if (environment != null)
         {
-          a.RefPosition = environment.closestRefPointOnRef(a.RefPosition);
-          a.Position = environment.closestPoint(a.RefPosition);
+          a.Position = environment.closestPoint(a.Position);
+          a.RefPosition = environment.closestRefPoint(a.Position);
         }
         else
         {
