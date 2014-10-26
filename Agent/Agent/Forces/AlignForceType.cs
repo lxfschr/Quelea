@@ -41,11 +41,11 @@ namespace Agent
       {
         //Add up all the velocities and divide by the total to calculate
         //the average velocity.
-        double d = agent.Position.DistanceTo(other.Position);
+        double d = agent.RefPosition.DistanceTo(other.RefPosition);
         if ((d > 0) && (d < agent.VisionRadius * this.visionRadiusMultiplier))
         {
           //Adding up all the others' location
-          sum = Vector3d.Add(sum, new Vector3d(other.Position));
+          sum = Vector3d.Add(sum, new Vector3d(other.RefPosition));
           //For an average, we need to keep track of how many boids
           //are in our vision.
           count++;
