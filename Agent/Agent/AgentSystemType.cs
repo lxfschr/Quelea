@@ -116,11 +116,15 @@ namespace Agent
     public void addAgent(EmitterType emitter)
     {
       Point3d emittionPt = emitter.emit();
-      AgentType agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt);
+      AgentType agent;
       if (environment != null)
       {
         Point3d refEmittionPt = environment.closestRefPoint(emittionPt);
         agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt, refEmittionPt);
+      }
+      else
+      {
+        agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt);
       }
       agents.Add(agent);
       nextIndex++;

@@ -78,5 +78,7 @@ namespace Agent
     abstract public Point3d closestRefPointOnRef(Point3d pt);
 
     abstract public Point3d closestPointOnRef(Point3d pt);
+
+    abstract public Vector3d avoidEdges(AgentType agent, double distance);
   }
 }
