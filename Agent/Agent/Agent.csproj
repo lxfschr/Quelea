@@ -73,6 +73,8 @@
     <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
     <Compile Include="Environment\SurfaceEnvironmentType.cs" />
     <Compile Include="Forces\AlignForceComponent.cs" />
+    <Compile Include="Forces\AvoidEdgesForceComponent.cs" />
+    <Compile Include="Forces\AvoidEdgesForceType.cs" />
     <Compile Include="Forces\CoheseForceComponent.cs" />
     <Compile Include="Forces\AlignForceType.cs" />
     <Compile Include="Forces\CoheseForceType.cs" />

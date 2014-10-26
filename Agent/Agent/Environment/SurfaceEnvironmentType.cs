@@ -7,8 +7,8 @@ namespace Agent
   public class SurfaceEnvironmentType : EnvironmentType
   {
 
-    private Surface srf;
-    private Surface refSrf;
+    private Surface environment;
+    private Surface refEnvironment;
     private bool wrap;
 
     // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
@@ -18,30 +18,30 @@ namespace Agent
       Point3d pt1 = new Point3d(0, 0, 0);
       Point3d pt2 = new Point3d(100, 0, 0);
       Point3d pt3 = new Point3d(0, 100, 0);
-      this.srf = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
-      Interval u = srf.Domain(0);
-      Interval v = srf.Domain(1);
+      this.environment = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
+      Interval u = environment.Domain(0);
+      Interval v = environment.Domain(1);
       pt1 = new Point3d(u.Min, v.Min, 0);
       pt2 = new Point3d(u.Max, v.Min, 0);
       pt3 = new Point3d(u.Min, v.Max, 0);
-      this.refSrf = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
+      this.refEnvironment = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
       this.wrap = false;
     }
 
     // Constructor with initial values.
     public SurfaceEnvironmentType(Surface srf, bool wrap)
     {
-      this.srf = srf;
+      this.environment = srf;
       this.wrap = wrap;
       Interval u = srf.Domain(0);
       Interval v = srf.Domain(1);
-      this.refSrf = new PlaneSurface(Plane.WorldXY, u, v);
+      this.refEnvironment = new PlaneSurface(Plane.WorldXY, u, v);
     }
 
     // Copy Constructor
     public SurfaceEnvironmentType(SurfaceEnvironmentType environment)
     {
-      this.srf = environment.srf;
+      this.environment = environment.environment;
       this.wrap = environment.wrap;
     }
 
@@ -54,17 +54,17 @@ namespace Agent
         return false;
       }
 
-      return base.Equals(obj) && this.srf.Equals(p.srf) && this.wrap.Equals(p.wrap);
+      return base.Equals(obj) && this.environment.Equals(p.environment) && this.wrap.Equals(p.wrap);
     }
 
     public bool Equals(SurfaceEnvironmentType p)
     {
-      return base.Equals((SurfaceEnvironmentType)p) && this.srf.Equals(p.srf) && this.wrap.Equals(p.wrap);
+      return base.Equals((SurfaceEnvironmentType)p) && this.environment.Equals(p.environment) && this.wrap.Equals(p.wrap);
     }
 
     public override int GetHashCode()
     {
-      return this.srf.GetHashCode() ^ this.wrap.GetHashCode();
+      return this.environment.GetHashCode() ^ this.wrap.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -76,7 +76,7 @@ namespace Agent
     {
       get
       {
-        return (this.srf.IsValid);
+        return (this.environment.IsValid);
       }
 
     }
@@ -84,7 +84,7 @@ namespace Agent
     public override string ToString()
     {
 
-      string box = "Surface: " + this.srf.ToString() + "\n";
+      string box = "Surface: " + this.environment.ToString() + "\n";
       string wrap = "Wrap: " + this.wrap.ToString() + "\n";
       return box + wrap;
     }
@@ -103,29 +103,75 @@ namespace Agent
     public override Point3d closestPoint(Point3d pt)
     {
       double u, v;
-      srf.ClosestPoint(pt, out u, out v);
-      return srf.PointAt(u, v);
+      environment.ClosestPoint(pt, out u, out v);
+      return environment.PointAt(u, v);
     }
 
     public override Point3d closestRefPoint(Point3d pt)
     {
       double u, v;
-      srf.ClosestPoint(pt, out u, out v);
-      return refSrf.PointAt(u, v);
+      environment.ClosestPoint(pt, out u, out v);
+      return refEnvironment.PointAt(u, v);
     }
 
     public override Point3d closestRefPointOnRef(Point3d pt)
     {
       double u, v;
-      refSrf.ClosestPoint(pt, out u, out v);
-      return refSrf.PointAt(u, v);
+      refEnvironment.ClosestPoint(pt, out u, out v);
+      return refEnvironment.PointAt(u, v);
     }
 
     public override Point3d closestPointOnRef(Point3d pt)
     {
       double u, v;
-      refSrf.ClosestPoint(pt, out u, out v);
-      return srf.PointAt(u, v);
+      refEnvironment.ClosestPoint(pt, out u, out v);
+      return environment.PointAt(u, v);
+    }
+
+    public override Vector3d avoidEdges(AgentType agent, double distance)
+    {
+      Vector3d steer = new Vector3d();
+
+      Interval uDom = refEnvironment.Domain(0);
+      Interval vDom = refEnvironment.Domain(1);
+
+      double minX = uDom.Min;
+      double maxX = uDom.Max;
+      double minY = vDom.Min;
+      double maxY = vDom.Max;
+
+      Point3d refPosition = agent.RefPosition;
+      double maxSpeed = agent.MaxSpeed;
+      Vector3d velocity = agent.Velocity;
+
+      Vector3d desired = new Vector3d(0, 0, 0);
+
+      if (refPosition.X < minX + distance)
+      {
+        desired = new Vector3d(maxSpeed, velocity.Y, velocity.Z);
+      }
+      else if (refPosition.X > maxX - distance)
+      {
+        desired = new Vector3d(-maxSpeed, velocity.Y, velocity.Z);
+      }
+
+      if (refPosition.Y < minY + distance)
+      {
+        desired = new Vector3d(velocity.X, maxSpeed, velocity.Z);
+      }
+      else if (refPosition.Y > maxY - distance)
+      {
+        desired = new Vector3d(velocity.X, -maxSpeed, velocity.Z);
+      }
+
+      if (!desired.IsZero)
+      {
+        desired.Unitize();
+        desired = Vector3d.Multiply(desired, maxSpeed);
+        steer = Vector3d.Subtract(desired, velocity);
+        steer = ForceType.limit(steer, agent.MaxForce);
+      }
+      return steer;
     }
   }
 }

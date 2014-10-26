@@ -36,8 +36,6 @@ namespace Agent
 
     public abstract Vector3d calcForce(AgentType agent, List<AgentType> agents);
 
-  
-
     protected Vector3d calcSum(AgentType agent, List<AgentType> agents, out int count)
     {
       Vector3d sum = new Vector3d();
@@ -86,7 +84,7 @@ namespace Agent
       return steer;
     }
 
-    protected Vector3d limit(Vector3d vec, double max)
+    public static Vector3d limit(Vector3d vec, double max)
     {
       if (vec.Length > max)
       {
