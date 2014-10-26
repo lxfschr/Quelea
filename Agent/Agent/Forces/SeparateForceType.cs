@@ -38,13 +38,13 @@ namespace Agent
       int count = 0;
       foreach (AgentType other in agents)
       {
-        double d = agent.Position.DistanceTo(other.Position);
-        //double d = Vector3d.Subtract(agent.Position, other.Position).Length;
+        double d = agent.RefPosition.DistanceTo(other.RefPosition);
+        //double d = Vector3d.Subtract(agent.RefPosition, other.RefPosition).Length;
         //if we are not comparing the seeker to iteself and it is at least
         //desired separation away:
         if ((d > 0) && (d < agent.VisionRadius * this.visionRadiusMultiplier))
         {
-          Vector3d diff = Point3d.Subtract(agent.Position, other.Position);
+          Vector3d diff = Point3d.Subtract(agent.RefPosition, other.RefPosition);
           diff.Unitize();
 
           //Weight the magnitude by distance to other
