@@ -8,7 +8,6 @@ namespace Agent
   {
 
     private Box environment;
-    private bool wrap;
 
     // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
     public WorldBoxEnvironmentType()
@@ -16,21 +15,18 @@ namespace Agent
     {
       Interval interval = new Interval(-100.0, 100.0);
       this.environment = new Box(Plane.WorldXY, interval, interval, interval);
-      this.wrap = false;
     }
 
     // Constructor with initial values.
-    public WorldBoxEnvironmentType(Box box, bool wrap)
+    public WorldBoxEnvironmentType(Box box)
     {
       this.environment = box;
-      this.wrap = wrap;
     }
 
     // Copy Constructor
     public WorldBoxEnvironmentType(WorldBoxEnvironmentType environment)
     {
       this.environment = environment.environment;
-      this.wrap = environment.wrap;
     }
 
     public override bool Equals(object obj)
@@ -42,17 +38,17 @@ namespace Agent
         return false;
       }
 
-      return base.Equals(obj) && this.environment.Equals(p.environment) && this.wrap.Equals(p.wrap);
+      return base.Equals(obj) && this.environment.Equals(p.environment);
     }
 
     public bool Equals(WorldBoxEnvironmentType p)
     {
-      return base.Equals((WorldBoxEnvironmentType)p) && this.environment.Equals(p.environment) && this.wrap.Equals(p.wrap);
+      return base.Equals((WorldBoxEnvironmentType)p) && this.environment.Equals(p.environment);
     }
 
     public override int GetHashCode()
     {
-      return this.environment.GetHashCode() ^ this.wrap.GetHashCode();
+      return this.environment.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -74,9 +70,8 @@ namespace Agent
     public override string ToString()
     {
 
-      string box = "Box: " + this.environment.ToString() + "\n";
-      string wrap = "Wrap: " + this.wrap.ToString() + "\n";
-      return box + wrap;
+      string environment = "Box: " + this.environment.ToString() + "\n";
+      return environment;
     }
 
     public override string TypeDescription
@@ -111,7 +106,6 @@ namespace Agent
 
     public override Vector3d avoidEdges(AgentType agent, double distance)
     {
-      Vector3d steer = new Vector3d();
       double minX = environment.BoundingBox.Corner(true, false, false).X;
       double maxX = environment.BoundingBox.Corner(false, false, false).X;
       double minY = environment.BoundingBox.Corner(false, true, false).Y;
@@ -152,14 +146,7 @@ namespace Agent
         desired = new Vector3d(velocity.X, velocity.Y, -maxSpeed);
       }
 
-      if (!desired.IsZero)
-      {
-        desired.Unitize();
-        desired = Vector3d.Multiply(desired, maxSpeed);
-        steer = Vector3d.Subtract(desired, velocity);
-        steer = ForceType.limit(steer, agent.MaxForce);
-      }
-      return steer;
+      return desired;
     }
   }
 }

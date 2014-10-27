@@ -38,8 +38,15 @@ namespace Agent
       if (environment != null)
       {
         steer = environment.avoidEdges(agent, agent.VisionRadius * this.visionRadiusMultiplier);
-        //Multiply the resultant vector by weight.
-        steer = Vector3d.Multiply(this.weight, steer);
+        if (!steer.IsZero)
+        {
+          steer.Unitize();
+          steer = Vector3d.Multiply(steer, agent.MaxSpeed);
+          steer = Vector3d.Subtract(steer, agent.Velocity);
+          steer = limit(steer, agent.MaxForce);
+          //Multiply the resultant vector by weight.
+          steer = Vector3d.Multiply(this.weight, steer);
+        }
       }
       return steer;
     }
