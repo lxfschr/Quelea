@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Rhino.Geometry;
 
-namespace Agent.Environment
+namespace Agent
 {
   class BrepEnvironmentType : EnvironmentType
   {
@@ -103,7 +103,7 @@ namespace Agent.Environment
       probeVec = Vector3d.Multiply(probeVec, distance);
       Curve crv = new Line(agent.Position, probeVec).ToNurbsCurve();
       double tol = 0.01;
-      
+
       Curve[] overlapCrvs;
       Point3d[] intersectPts;
       foreach (BrepFace face in environment.Faces)
@@ -125,5 +125,6 @@ namespace Agent.Environment
 
       return steer;
     }
+
   }
 }
