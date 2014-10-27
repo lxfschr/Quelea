@@ -24,11 +24,6 @@ namespace Agent
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
       pManager.AddBoxParameter("Box", "B", "A Box aligned to World Axes.", GH_ParamAccess.item);
-      pManager.AddBooleanParameter("Wrap", "W", "If true, agents that hit the edge"
-                               + "of the environment will be wrapped aound to"
-                               + "the other side. If false, agents will bounce"
-                               + " off the edges.", GH_ParamAccess.item);
-      pManager[1].Optional = true;
     }
 
     /// <summary>
@@ -49,12 +44,10 @@ namespace Agent
       // We'll start by declaring variables and assigning them starting values.
       Interval interval = new Interval(-100.0, 100.0);
       Box box = new Box(Plane.WorldXY, interval, interval, interval);
-      bool wrap = false;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!DA.GetData(0, ref box)) return;
-      DA.GetData(1, ref wrap);
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (!(box.Plane.XAxis.Equals(Plane.WorldXY.XAxis) && box.Plane.YAxis.Equals(Plane.WorldXY.YAxis)))
@@ -65,7 +58,7 @@ namespace Agent
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      EnvironmentType environment = new WorldBoxEnvironmentType(box, wrap);
+      EnvironmentType environment = new WorldBoxEnvironmentType(box);
 
       // Finally assign the spiral to the output parameter.
       DA.SetData(0, environment);

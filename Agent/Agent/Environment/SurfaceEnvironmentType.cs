@@ -9,9 +9,8 @@ namespace Agent
 
     private Surface environment;
     private Surface refEnvironment;
-    private bool wrap;
 
-    // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
+    // Default Constructor.
     public SurfaceEnvironmentType()
       : base()
     {
@@ -25,14 +24,12 @@ namespace Agent
       pt2 = new Point3d(u.Max, v.Min, 0);
       pt3 = new Point3d(u.Min, v.Max, 0);
       this.refEnvironment = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
-      this.wrap = false;
     }
 
     // Constructor with initial values.
-    public SurfaceEnvironmentType(Surface srf, bool wrap)
+    public SurfaceEnvironmentType(Surface srf)
     {
       this.environment = srf;
-      this.wrap = wrap;
       Interval u = srf.Domain(0);
       Interval v = srf.Domain(1);
       this.refEnvironment = new PlaneSurface(Plane.WorldXY, u, v);
@@ -42,7 +39,6 @@ namespace Agent
     public SurfaceEnvironmentType(SurfaceEnvironmentType environment)
     {
       this.environment = environment.environment;
-      this.wrap = environment.wrap;
     }
 
     public override bool Equals(object obj)
@@ -54,17 +50,17 @@ namespace Agent
         return false;
       }
 
-      return base.Equals(obj) && this.environment.Equals(p.environment) && this.wrap.Equals(p.wrap);
+      return base.Equals(obj) && this.environment.Equals(p.environment);
     }
 
     public bool Equals(SurfaceEnvironmentType p)
     {
-      return base.Equals((SurfaceEnvironmentType)p) && this.environment.Equals(p.environment) && this.wrap.Equals(p.wrap);
+      return base.Equals((SurfaceEnvironmentType)p) && this.environment.Equals(p.environment);
     }
 
     public override int GetHashCode()
     {
-      return this.environment.GetHashCode() ^ this.wrap.GetHashCode();
+      return this.environment.GetHashCode() ^ this.refEnvironment.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -84,9 +80,8 @@ namespace Agent
     public override string ToString()
     {
 
-      string box = "Surface: " + this.environment.ToString() + "\n";
-      string wrap = "Wrap: " + this.wrap.ToString() + "\n";
-      return box + wrap;
+      string environment = "Surface: " + this.environment.ToString() + "\n";
+      return environment;
     }
 
     public override string TypeDescription
@@ -130,8 +125,6 @@ namespace Agent
 
     public override Vector3d avoidEdges(AgentType agent, double distance)
     {
-      Vector3d steer = new Vector3d();
-
       Interval uDom = refEnvironment.Domain(0);
       Interval vDom = refEnvironment.Domain(1);
 
@@ -144,7 +137,7 @@ namespace Agent
       double maxSpeed = agent.MaxSpeed;
       Vector3d velocity = agent.Velocity;
 
-      Vector3d desired = new Vector3d(0, 0, 0);
+      Vector3d desired = new Vector3d();
 
       if (refPosition.X < minX + distance)
       {
@@ -164,14 +157,7 @@ namespace Agent
         desired = new Vector3d(velocity.X, -maxSpeed, velocity.Z);
       }
 
-      if (!desired.IsZero)
-      {
-        desired.Unitize();
-        desired = Vector3d.Multiply(desired, maxSpeed);
-        steer = Vector3d.Subtract(desired, velocity);
-        steer = ForceType.limit(steer, agent.MaxForce);
-      }
-      return steer;
+      return desired;
     }
   }
 }
