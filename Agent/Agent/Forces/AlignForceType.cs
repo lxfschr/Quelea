@@ -45,7 +45,7 @@ namespace Agent
         if ((d > 0) && (d < agent.VisionRadius * this.visionRadiusMultiplier))
         {
           //Adding up all the others' location
-          sum = Vector3d.Add(sum, new Vector3d(other.RefPosition));
+          sum = Vector3d.Add(sum, new Vector3d(other.Velocity));
           //For an average, we need to keep track of how many boids
           //are in our vision.
           count++;

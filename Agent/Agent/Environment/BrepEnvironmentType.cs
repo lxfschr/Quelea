@@ -116,9 +116,7 @@ namespace Agent
           face.ClosestPoint(testPt, out u, out v);
           Vector3d normal = face.NormalAt(u, v);
           normal.Reverse();
-          double scalar = Util.Vector.dotProduct(normal, velocity) / (velocity.Length * velocity.Length);
-          Vector3d parallelVec = Vector3d.Multiply(velocity, scalar);
-          steer = Vector3d.Subtract(normal, parallelVec);
+          steer = Util.Vector.getPerpendicularComponent(normal, velocity);
           break;
         }
       }
