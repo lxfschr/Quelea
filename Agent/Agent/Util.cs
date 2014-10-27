@@ -14,6 +14,13 @@ namespace Agent
       {
         return a.Length * b.Length * Math.Cos(Vector3d.VectorAngle(a, b));
       }
+
+      public static Vector3d getPerpendicularComponent(Vector3d of, Vector3d to)
+      {
+        double scalar = Util.Vector.dotProduct(of, to) / (to.Length * to.Length);
+        Vector3d parallelVec = Vector3d.Multiply(to, scalar);
+        return Vector3d.Subtract(of, parallelVec);
+      }
     }
     class Random
     {
