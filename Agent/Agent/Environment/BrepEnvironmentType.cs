@@ -94,31 +94,94 @@ namespace Agent
       return closestPoint(pt);
     }
 
+    //visionAngle in radians
+    private Curve getFeelerCrv(Vector3d feelerVec, Point3d position, double bodySize, double visionAngle, Vector3d rotAxis)
+    {
+      feelerVec.Rotate(visionAngle, rotAxis);
+      Vector3d.Multiply(feelerVec, bodySize);
+      return new Line(position, feelerVec).ToNurbsCurve();
+    }
+
+    private Curve[] getFeelerCrvs(AgentType agent, double visionDistance, bool accurate)
+    {
+      Curve[] feelers;
+      if (accurate)
+      {
+        feelers = new Curve[5];
+      }
+      else
+      {
+        feelers = new Curve[1];
+      }
+      
+      double feelerAngle = Math.PI/2;
+      //Calculate straight ahead feeler with length visionDistance
+      Vector3d feelerVec = agent.Velocity;
+      feelerVec.Unitize();
+      feelerVec = Vector3d.Multiply(feelerVec, visionDistance);
+      feelers[0] = new Line(agent.Position, feelerVec).ToNurbsCurve();
+
+      if (!accurate)
+      {
+        return feelers;
+      }
+
+      //Calculate tertiary feelers with length bodySize
+      feelerVec = agent.Velocity;
+      feelerVec.Unitize();
+      Plane rotPln = new Plane(agent.Position, agent.Velocity);
+      Vector3d rotAxis = rotPln.XAxis;
+      feelers[1] = getFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, feelerAngle, rotAxis);
+      feelers[2] = getFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, -feelerAngle, rotAxis);
+      rotAxis = rotPln.YAxis;
+      feelers[3] = getFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, feelerAngle, rotAxis);
+      feelers[4] = getFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, -feelerAngle, rotAxis);
+
+      return feelers;
+    }
+
     public override Vector3d avoidEdges(AgentType agent, double distance)
     {
       Vector3d steer = new Vector3d();
+      Vector3d avoidVec;
+      
       Vector3d velocity = agent.Velocity;
-      Vector3d probeVec = velocity;
-      probeVec.Unitize();
-      probeVec = Vector3d.Multiply(probeVec, distance);
-      Curve crv = new Line(agent.Position, probeVec).ToNurbsCurve();
+      Point3d position = agent.Position;
+      
       double tol = 0.01;
 
       Curve[] overlapCrvs;
       Point3d[] intersectPts;
-      foreach (BrepFace face in environment.Faces)
+
+      Curve[] feelers = getFeelerCrvs(agent, distance, true);
+      int count = 0;
+
+      foreach (Curve feeler in feelers)
       {
-        Rhino.Geometry.Intersect.Intersection.CurveBrepFace(crv, face, tol, out overlapCrvs, out intersectPts);
-        if (intersectPts.Length > 0)
+        //Check feeler intersection with each brep face
+        foreach (BrepFace face in environment.Faces)
         {
-          Point3d testPt = crv.PointAtEnd;
-          double u, v;
-          face.ClosestPoint(testPt, out u, out v);
-          Vector3d normal = face.NormalAt(u, v);
-          normal.Reverse();
-          steer = Util.Vector.getPerpendicularComponent(normal, velocity);
-          break;
+          Rhino.Geometry.Intersect.Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+          if (intersectPts.Length > 0)
+          {
+            Point3d testPt = feeler.PointAtEnd;
+            double u, v;
+            face.ClosestPoint(testPt, out u, out v);
+            Vector3d normal = face.NormalAt(u, v);
+            normal.Reverse();
+            avoidVec = Util.Vector.getPerpendicularComponent(normal, velocity);
+            avoidVec.Unitize();
+            //weight by distance
+            avoidVec = Vector3d.Divide(avoidVec, position.DistanceTo(intersectPts[0]));
+            steer = Vector3d.Add(steer, avoidVec);
+            count++;
+            break; //Break when we hit a face
+          }
         }
+      }
+      if (count > 0)
+      {
+        steer = Vector3d.Divide(steer, count);
       }
 
       return steer;
