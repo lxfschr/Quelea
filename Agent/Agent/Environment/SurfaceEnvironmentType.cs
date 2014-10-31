@@ -11,6 +11,11 @@ namespace Agent
     private Surface environment;
     private Surface refEnvironment;
 
+    private double minX;
+    private double maxX;
+    private double minY;
+    private double maxY;
+
     // Default Constructor.
     public SurfaceEnvironmentType()
       : base()
@@ -25,6 +30,14 @@ namespace Agent
       pt2 = new Point3d(u.Max, v.Min, 0);
       pt3 = new Point3d(u.Min, v.Max, 0);
       this.refEnvironment = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
+
+      Interval uDom = refEnvironment.Domain(0);
+      Interval vDom = refEnvironment.Domain(1);
+
+      this.minX = uDom.Min;
+      this.maxX = uDom.Max;
+      this.minY = vDom.Min;
+      this.maxY = vDom.Max;
     }
 
     // Constructor with initial values.
@@ -34,12 +47,28 @@ namespace Agent
       Interval u = srf.Domain(0);
       Interval v = srf.Domain(1);
       this.refEnvironment = new PlaneSurface(Plane.WorldXY, u, v);
+
+      Interval uDom = refEnvironment.Domain(0);
+      Interval vDom = refEnvironment.Domain(1);
+
+      this.minX = uDom.Min;
+      this.maxX = uDom.Max;
+      this.minY = vDom.Min;
+      this.maxY = vDom.Max;
     }
 
     // Copy Constructor
     public SurfaceEnvironmentType(SurfaceEnvironmentType environment)
     {
       this.environment = environment.environment;
+
+      Interval uDom = environment.refEnvironment.Domain(0);
+      Interval vDom = environment.refEnvironment.Domain(1);
+
+      this.minX = uDom.Min;
+      this.maxX = uDom.Max;
+      this.minY = vDom.Min;
+      this.maxY = vDom.Max;
     }
 
     public override bool Equals(object obj)
@@ -126,14 +155,6 @@ namespace Agent
 
     public override Vector3d avoidEdges(AgentType agent, double distance)
     {
-      Interval uDom = refEnvironment.Domain(0);
-      Interval vDom = refEnvironment.Domain(1);
-
-      double minX = uDom.Min;
-      double maxX = uDom.Max;
-      double minY = vDom.Min;
-      double maxY = vDom.Max;
-
       Point3d refPosition = agent.RefPosition;
       double maxSpeed = agent.MaxSpeed;
       Vector3d velocity = agent.Velocity;
@@ -163,6 +184,37 @@ namespace Agent
 
     public override bool bounceContain(AgentType agent)
     {
+      Point3d position = agent.RefPosition;
+      Vector3d velocity = agent.Velocity;
+      if (position.X >= maxX)
+      {
+        position.X = maxX;
+        velocity.X *= -1;
+        //system.environment.closestPt handles setting refPosition
+        agent.Velocity = velocity;
+        return true;
+      }
+      else if (position.X <= minX)
+      {
+        position.X = minX;
+        velocity.X *= -1;
+        agent.Velocity = velocity;
+        return true;
+      }
+      if (position.Y >= maxY)
+      {
+        position.Y = maxY;
+        velocity.Y *= -1;
+        agent.Velocity = velocity;
+        return true;
+      }
+      else if (position.Y <= minY)
+      {
+        position.Y = minY;
+        velocity.Y *= -1;
+        agent.Velocity = velocity;
+        return true;
+      }
       return false;
     }
   }
