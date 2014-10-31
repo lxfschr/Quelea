@@ -171,55 +171,53 @@ namespace Agent
 
     public override bool bounceContain(AgentType agent)
     {
-      Point3d position = agent.Position;
+      Point3d position = agent.RefPosition;
       Vector3d velocity = agent.Velocity;
-      position = agent.RefPosition;
-      velocity = agent.Velocity;
-      if (position.X > maxX)
+      if (position.X >= maxX)
       {
         position.X = maxX;
         velocity.X *= -1;
-        agent.Position = position;
+        agent.RefPosition = position;
         agent.Velocity = velocity;
         return true;
       }
-      else if (position.X < minX)
+      else if (position.X <= minX)
       {
         position.X = minX;
         velocity.X *= -1;
-        agent.Position = position;
+        agent.RefPosition = position;
         agent.Velocity = velocity;
         return true;
       }
-      if (position.Y > maxY)
+      if (position.Y >= maxY)
       {
         position.Y = maxY;
         velocity.Y *= -1;
-        agent.Position = position;
+        agent.RefPosition = position;
         agent.Velocity = velocity;
         return true;
       }
-      else if (position.Y < minY)
+      else if (position.Y <= minY)
       {
         position.Y = minY;
         velocity.Y *= -1;
-        agent.Position = position;
+        agent.RefPosition = position;
         agent.Velocity = velocity;
         return true;
       }
-      if (position.Z > maxZ)
+      if (position.Z >= maxZ)
       {
         position.Z = maxZ;
         velocity.Z *= -1;
-        agent.Position = position;
+        agent.RefPosition = position;
         agent.Velocity = velocity;
         return true;
       }
-      else if (position.Z < minZ)
+      else if (position.Z <= minZ)
       {
         position.Z = minZ;
         velocity.Z *= -1;
-        agent.Position = position;
+        agent.RefPosition = position;
         agent.Velocity = velocity;
         return true;
       }
