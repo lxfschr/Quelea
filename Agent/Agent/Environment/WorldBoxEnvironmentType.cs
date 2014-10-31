@@ -1,11 +1,18 @@
 ﻿using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
+using System.Collections.Generic;
 
 namespace Agent
 {
   public class WorldBoxEnvironmentType : EnvironmentType
   {
+    private double minX;
+    private double maxX;
+    private double minY;
+    private double maxY;
+    private double minZ;
+    private double maxZ;
 
     private Box environment;
 
@@ -15,18 +22,38 @@ namespace Agent
     {
       Interval interval = new Interval(-100.0, 100.0);
       this.environment = new Box(Plane.WorldXY, interval, interval, interval);
+      BoundingBox boundingBox = environment.BoundingBox;
+      this.minX = boundingBox.Corner(true, false, false).X;
+      this.maxX = boundingBox.Corner(false, false, false).X;
+      this.minY = boundingBox.Corner(false, true, false).Y;
+      this.maxY = boundingBox.Corner(false, false, false).Y;
+      this.minZ = boundingBox.Corner(false, false, true).Z;
+      this.maxZ = boundingBox.Corner(false, false, false).Z;
     }
 
     // Constructor with initial values.
     public WorldBoxEnvironmentType(Box box)
     {
       this.environment = box;
+      BoundingBox boundingBox = environment.BoundingBox;
+      this.minX = boundingBox.Corner(true, false, false).X;
+      this.maxX = boundingBox.Corner(false, false, false).X;
+      this.minY = boundingBox.Corner(false, true, false).Y;
+      this.maxY = boundingBox.Corner(false, false, false).Y;
+      this.minZ = boundingBox.Corner(false, false, true).Z;
+      this.maxZ = boundingBox.Corner(false, false, false).Z;
     }
 
     // Copy Constructor
     public WorldBoxEnvironmentType(WorldBoxEnvironmentType environment)
     {
       this.environment = environment.environment;
+      this.minX = environment.minX;
+      this.maxX = environment.maxX;
+      this.minY = environment.minY;
+      this.maxY = environment.maxY;
+      this.minZ = environment.minZ;
+      this.maxZ = environment.maxZ;
     }
 
     public override bool Equals(object obj)
@@ -106,18 +133,11 @@ namespace Agent
 
     public override Vector3d avoidEdges(AgentType agent, double distance)
     {
-      double minX = environment.BoundingBox.Corner(true, false, false).X;
-      double maxX = environment.BoundingBox.Corner(false, false, false).X;
-      double minY = environment.BoundingBox.Corner(false, true, false).Y;
-      double maxY = environment.BoundingBox.Corner(false, false, false).Y;
-      double minZ = environment.BoundingBox.Corner(false, false, true).Z;
-      double maxZ = environment.BoundingBox.Corner(false, false, false).Z;
-
       Point3d refPosition = agent.RefPosition;
       double maxSpeed = agent.MaxSpeed;
       Vector3d velocity = agent.Velocity;
 
-      Vector3d desired = new Vector3d(0, 0, 0);
+      Vector3d desired = new Vector3d();
 
       if (refPosition.X < minX + distance)
       {
@@ -147,6 +167,63 @@ namespace Agent
       }
 
       return desired;
+    }
+
+    public override bool bounceContain(AgentType agent)
+    {
+      Point3d position = agent.Position;
+      Vector3d velocity = agent.Velocity;
+      position = agent.RefPosition;
+      velocity = agent.Velocity;
+      if (position.X > maxX)
+      {
+        position.X = maxX;
+        velocity.X *= -1;
+        agent.Position = position;
+        agent.Velocity = velocity;
+        return true;
+      }
+      else if (position.X < minX)
+      {
+        position.X = minX;
+        velocity.X *= -1;
+        agent.Position = position;
+        agent.Velocity = velocity;
+        return true;
+      }
+      if (position.Y > maxY)
+      {
+        position.Y = maxY;
+        velocity.Y *= -1;
+        agent.Position = position;
+        agent.Velocity = velocity;
+        return true;
+      }
+      else if (position.Y < minY)
+      {
+        position.Y = minY;
+        velocity.Y *= -1;
+        agent.Position = position;
+        agent.Velocity = velocity;
+        return true;
+      }
+      if (position.Z > maxZ)
+      {
+        position.Z = maxZ;
+        velocity.Z *= -1;
+        agent.Position = position;
+        agent.Velocity = velocity;
+        return true;
+      }
+      else if (position.Z < minZ)
+      {
+        position.Z = minZ;
+        velocity.Z *= -1;
+        agent.Position = position;
+        agent.Velocity = velocity;
+        return true;
+      }
+      return false;
     }
   }
 }

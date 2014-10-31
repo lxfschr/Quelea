@@ -1,6 +1,7 @@
 ﻿using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
+using System.Collections.Generic;
 
 namespace Agent
 {
@@ -158,6 +159,11 @@ namespace Agent
       }
 
       return desired;
+    }
+
+    public override bool bounceContain(AgentType agent)
+    {
+      return false;
     }
   }
 }

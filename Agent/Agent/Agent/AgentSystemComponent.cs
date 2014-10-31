@@ -32,9 +32,11 @@ namespace Agent
                                    GH_ParamAccess.item);
       pManager.AddGenericParameter("Forces", "F", "Forces",
                                    GH_ParamAccess.list);
+      pManager.AddGenericParameter("Behaviors", "B", "Behaviors",
+                                   GH_ParamAccess.list);
       pManager[2].Optional = true;
       pManager[3].Optional = true;
-
+      pManager[4].Optional = true;
     }
 
     /// <summary>
@@ -60,6 +62,7 @@ namespace Agent
       List<EmitterType> emitters = new List<EmitterType>();
       EnvironmentType environment = null;
       List<ForceType> forces = new List<ForceType>();
+      List<BehaviorType> behaviors = new List<BehaviorType>();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this
@@ -68,6 +71,7 @@ namespace Agent
       if (!DA.GetDataList(1, emitters)) return;
       DA.GetData(2, ref environment);
       DA.GetDataList(3, forces);
+      DA.GetDataList(4, behaviors);
       
       //if (!DA.GetDataList(2, forces)) return;
 
@@ -88,7 +92,7 @@ namespace Agent
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      AgentSystemType system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, forces.ToArray());
+      AgentSystemType system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, forces.ToArray(), behaviors.ToArray());
 
       // Finally assign the spiral to the output parameter.
       DA.SetData(0, system);

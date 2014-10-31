@@ -68,7 +68,10 @@
     <Compile Include="Agent\AgentSystemParameter.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
+    <Compile Include="Behaviors\BehaviorType.cs" />
     <Compile Include="Agent\DebugDeconstructAgentComponent.cs" />
+    <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />
+    <Compile Include="Behaviors\BounceContainBehaviorType.cs" />
     <Compile Include="Environment\BrepEnvironmentComponent.cs" />
     <Compile Include="Environment\BrepEnvironmentType.cs" />
     <Compile Include="Environment\EnvironmentType.cs" />

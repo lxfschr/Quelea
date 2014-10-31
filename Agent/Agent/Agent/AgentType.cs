@@ -212,6 +212,10 @@ namespace Agent
       {
         return this.velocity;
       }
+      set
+      {
+        this.velocity = value;
+      }
     }
 
     public Vector3d Acceleration
