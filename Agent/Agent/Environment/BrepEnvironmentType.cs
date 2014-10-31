@@ -143,7 +143,7 @@ namespace Agent
     public override Vector3d avoidEdges(AgentType agent, double distance)
     {
       Vector3d steer = new Vector3d();
-      Vector3d avoidVec;
+      Vector3d avoidVec, parVec;
       
       Vector3d velocity = agent.Velocity;
       Point3d position = agent.Position;
@@ -169,7 +169,7 @@ namespace Agent
             face.ClosestPoint(testPt, out u, out v);
             Vector3d normal = face.NormalAt(u, v);
             normal.Reverse();
-            avoidVec = Util.Vector.getPerpendicularComponent(normal, velocity);
+            Util.Vector.getProjectionComponents(normal, velocity, out parVec, out avoidVec);
             avoidVec.Unitize();
             //weight by distance
             avoidVec = Vector3d.Divide(avoidVec, position.DistanceTo(intersectPts[0]));
@@ -189,6 +189,36 @@ namespace Agent
 
     public override bool bounceContain(AgentType agent)
     {
+      Vector3d velocity = agent.Velocity;
+      double velMag = velocity.Length;
+      Point3d position = agent.Position;
+      
+      double tol = 0.01;
+
+      Curve[] overlapCrvs;
+      Point3d[] intersectPts;
+
+      Curve[] feelers = getFeelerCrvs(agent, agent.BodySize, false);
+
+      foreach (Curve feeler in feelers)
+      {
+        //Check feeler intersection with each brep face
+        foreach (BrepFace face in environment.Faces)
+        {
+          Rhino.Geometry.Intersect.Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+          if (intersectPts.Length > 0)
+          {
+            Point3d testPt = intersectPts[0];
+            double u, v;
+            face.ClosestPoint(testPt, out u, out v);
+            Vector3d normal = face.NormalAt(u, v);
+            normal.Reverse();
+            velocity = Util.Vector.reflect(velocity, normal);
+            agent.Velocity = velocity;
+            return true;
+          }
+        }
+      }
       return false;
     }
   }
