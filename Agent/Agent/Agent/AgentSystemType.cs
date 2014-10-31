@@ -9,12 +9,13 @@ using Rhino.Geometry;
 
 namespace Agent
 {
-  class AgentSystemType : GH_Goo<Object>
+  public class AgentSystemType : GH_Goo<Object>
   {
     private List<AgentType> agents;
     private AgentType[] agentsSettings;
     private EmitterType[] emitters;
     private ForceType[] forces;
+    private BehaviorType[] behaviors;
     private EnvironmentType environment;
     private int timestep;
     private int nextIndex;
@@ -26,17 +27,21 @@ namespace Agent
       this.emitters = new EmitterType[] { new EmitterPtType() };
       this.environment = null;
       this.forces = new ForceType[] { };
+      this.behaviors = new BehaviorType[] { };
       this.timestep = 0;
       this.nextIndex = 0;
     }
 
-    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters, EnvironmentType environment, ForceType[] forces)
+    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters, 
+                           EnvironmentType environment, ForceType[] forces,
+                           BehaviorType[] behaviors)
     {
       this.agents = new List<AgentType>();
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
       this.forces = forces;
+      this.behaviors = behaviors;
     }
 
     public AgentSystemType(AgentSystemType system)
@@ -46,6 +51,7 @@ namespace Agent
       this.emitters = system.emitters;
       this.environment = system.environment;
       this.forces = system.forces;
+      this.behaviors = system.behaviors;
     }
 
     public List<AgentType> Agents
@@ -92,6 +98,17 @@ namespace Agent
       }
     }
 
+    public BehaviorType[] Behaviors
+    {
+      get
+      {
+        return this.behaviors;
+      }
+      set
+      {
+        this.behaviors = value;
+      }
+    }
     public EnvironmentType Environment
     {
       get
@@ -111,6 +128,19 @@ namespace Agent
         Vector3d forceVec = force.calcForce(a, this.agents);
         a.applyForce(forceVec);
       }
+    }
+
+    public bool applyBehaviors(AgentType a)
+    {
+      bool behaviorsApplied = false;
+      foreach (BehaviorType behavior in this.behaviors)
+      {
+        if (behavior.applyBehavior(a, this))
+        {
+          behaviorsApplied = true;
+        }
+      }
+      return behaviorsApplied;
     }
 
     public void addAgent(EmitterType emitter)
@@ -146,7 +176,11 @@ namespace Agent
       for (int i = agents.Count - 1; i >= 0; i--)
       {
         AgentType a = agents[i];
-        applyForces(a);
+        
+        if (!applyBehaviors(a))
+        {
+          applyForces(a);
+        }
         a.run();
         if (environment != null)
         {
@@ -166,7 +200,7 @@ namespace Agent
       timestep++;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object obj) //ToDo fix bugs in equals
     {
       // If parameter is null return false.
       if (obj == null)
@@ -187,7 +221,7 @@ namespace Agent
              (this.environment.Equals(s.environment));
     }
 
-    public bool Equals(AgentSystemType s)
+    public bool Equals(AgentSystemType s) //ToDo fix bugs in equals
     {
       // If parameter is null return false:
       if ((object)s == null)
@@ -201,7 +235,7 @@ namespace Agent
              (this.environment.Equals(s.environment));
     }
 
-    public override int GetHashCode()
+    public override int GetHashCode() //ToDo fix bugs in equals
     {
       int agentHash = 1;
       int emitterHash = 1;
@@ -229,7 +263,7 @@ namespace Agent
       }
     }
 
-    public override string ToString()
+    public override string ToString() //ToDo
     {
       string agents = "Agents: " + this.agentsSettings.Length.ToString() + "\n";
       string emitters = "Emitters: " + this.emitters.Length.ToString() + "\n";

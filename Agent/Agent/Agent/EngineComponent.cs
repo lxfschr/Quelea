@@ -124,6 +124,7 @@ namespace Agent
             agentSystems[index].AgentsSettings = systems[index].AgentsSettings;
             agentSystems[index].Forces = systems[index].Forces;
             agentSystems[index].Environment = systems[index].Environment;
+            agentSystems[index].Behaviors = systems[index].Behaviors;
             index++;
           }
         }

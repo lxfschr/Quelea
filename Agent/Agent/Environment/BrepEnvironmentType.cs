@@ -187,5 +187,9 @@ namespace Agent
       return steer;
     }
 
+    public override bool bounceContain(AgentType agent)
+    {
+      return false;
+    }
   }
 }
