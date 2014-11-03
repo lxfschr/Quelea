@@ -64,8 +64,6 @@
   <ItemGroup>
     <Compile Include="Agent\AgentComponent.cs" />
     <Compile Include="Agent\AgentSystemComponent.cs" />
-    <Compile Include="Agent\AgentSystemDescription.cs" />
-    <Compile Include="Agent\AgentSystemParameter.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
     <Compile Include="Behaviors\BehaviorType.cs" />
@@ -85,15 +83,12 @@
     <Compile Include="Forces\CoheseForceType.cs" />
     <Compile Include="Agent\DeconstructAgentComponent.cs" />
     <Compile Include="DescriptionBase.cs" />
-    <Compile Include="Emitters\EmitterDescription.cs" />
-    <Compile Include="Emitters\EmitterParameter.cs" />
     <Compile Include="Emitters\EmitterCrvComponent.cs" />
     <Compile Include="Emitters\EmitterCrvType.cs" />
     <Compile Include="Emitters\EmitterType.cs" />
     <Compile Include="Forces\SeparateForceComponent.cs" />
     <Compile Include="Forces\SeparateForceType.cs" />
     <Compile Include="Forces\ForceType.cs" />
-    <Compile Include="Emitters\EmitterPtParameter.cs" />
     <Compile Include="Emitters\EmitterPtType.cs" />
     <Compile Include="Agent\EngineComponent.cs" />
     <Compile Include="Emitters\EmitterPtComponent.cs" />
@@ -169,5 +164,7 @@ copy /Y "$(TargetDir)$(ProjectName).gha" "C:\Users\Administrator\AppData\Roaming
     <StartArguments>
     </StartArguments>
     <StartAction>Program</StartAction>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 </Project>

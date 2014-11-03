@@ -32,7 +32,7 @@ namespace Agent
       this.environment = force.environment;
     }
 
-    public override Rhino.Geometry.Vector3d calcForce(AgentType agent, List<AgentType> agents)
+    public override Rhino.Geometry.Vector3d calcForce(AgentType agent, IList<AgentType> agents)
     {
       Vector3d steer = new Vector3d();
       if (environment != null)

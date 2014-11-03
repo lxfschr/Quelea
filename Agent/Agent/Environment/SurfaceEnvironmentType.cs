@@ -85,7 +85,7 @@ namespace Agent
 
     public bool Equals(SurfaceEnvironmentType p)
     {
-      return base.Equals((SurfaceEnvironmentType)p) && this.environment.Equals(p.environment);
+      return base.Equals((EnvironmentType)p) && this.environment.Equals(p.environment);
     }
 
     public override int GetHashCode()

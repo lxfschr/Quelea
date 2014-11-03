@@ -34,9 +34,9 @@ namespace Agent
       this.visionRadiusMultiplier = force.visionRadiusMultiplier;
     }
 
-    public abstract Vector3d calcForce(AgentType agent, List<AgentType> agents);
+    public abstract Vector3d calcForce(AgentType agent, IList<AgentType> agents);
 
-    protected Vector3d calcSum(AgentType agent, List<AgentType> agents, out int count)
+    protected Vector3d calcSum(AgentType agent, IList<AgentType> agents, out int count)
     {
       Vector3d sum = new Vector3d();
       count = 0;
