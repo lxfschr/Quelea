@@ -1,0 +1,1489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="c:\program files (x86)\microsoft visual studio 12.0\team tools\static analysis tools\fxcop\Xml\CodeAnalysisReport.xsl"?>
+<FxCopReport Version="12.0">
+ <Namespaces>
+  <Namespace Name="Agent.Behaviors">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Agent.Behaviors' with another namespace.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="Agent.Environment">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Agent.Environment' with another namespace.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="Agent.Forces">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Agent.Forces' with another namespace.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+ </Namespaces>
+ <Targets>
+  <Target Name="E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\bin\Agent.dll">
+   <Modules>
+    <Module Name="agent.dll">
+     <Messages>
+      <Message TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+       <Issue Name="NoStrongName" Certainty="95" Level="CriticalError">Sign 'Agent.dll' with a strong name key.</Issue>
+      </Message>
+      <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+       <Issue Certainty="95" Level="Error">Mark 'Agent.dll' with CLSCompliant(true) because it exposes externally visible types.</Issue>
+      </Message>
+     </Messages>
+     <Namespaces>
+      <Namespace Name="Agent">
+       <Types>
+        <Type Name="AgentComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentComponent.cs" Line="26">In externally visible method 'AgentComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentComponent.cs" Line="41">In externally visible method 'AgentComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Grasshopper.Kernel.GH_ActiveObject.AddRuntimeMessage(Grasshopper.Kernel.GH_RuntimeMessageLevel,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentComponent.cs" Line="86">Method 'AgentComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Body Size must be greater than or equal to 0.".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentComponent.cs" Line="76">Method 'AgentComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Lifespan must be greater than 0.".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentComponent.cs" Line="81">Method 'AgentComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Mass must be greater than 0.".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentComponent.cs" Line="96">Method 'AgentComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Maximum Force must be greater than or equal to 0.".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentComponent.cs" Line="91">Method 'AgentComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Maximum Speed must be greater than or equal to 0.".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentComponent.cs" Line="101">Method 'AgentComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Vision Angle must be greater than or equal to 0.".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentComponent.cs" Line="106">Method 'AgentComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Vision Radius must be greater than or equal to 0.".</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentComponent.cs" Line="64">In externally visible method 'AgentComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="AgentSystemComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemComponent.cs" Line="27">In externally visible method 'AgentSystemComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemComponent.cs" Line="48">In externally visible method 'AgentSystemComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Grasshopper.Kernel.GH_ActiveObject.AddRuntimeMessage(Grasshopper.Kernel.GH_RuntimeMessageLevel,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemComponent.cs" Line="82">Method 'AgentSystemComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "There must be at least 1 Agent.".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemComponent.cs" Line="88">Method 'AgentSystemComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "There must be at least 1 Emitter.".</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemComponent.cs" Line="70">In externally visible method 'AgentSystemComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="AgentSystemType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(Agent.AgentSystemType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="50">In externally visible method 'AgentSystemType.AgentSystemType(AgentSystemType)', validate parameter 'system' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#addAgent(Agent.EmitterType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="add" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="148">Correct the casing of 'add' in member name 'AgentSystemType.addAgent(EmitterType)' by changing it to 'Add'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="149">In externally visible method 'AgentSystemType.addAgent(EmitterType)', validate parameter 'emitter' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#applyBehaviors(Agent.AgentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="apply" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="135">Correct the casing of 'apply' in member name 'AgentSystemType.applyBehaviors(AgentType)' by changing it to 'Apply'.</Issue>
+            </Message>
+            <Message Id="a" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="135">In method 'AgentSystemType.applyBehaviors(AgentType)', consider providing a more meaningful name than parameter name 'a'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#applyForces(Agent.AgentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="apply" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="126">Correct the casing of 'apply' in member name 'AgentSystemType.applyForces(AgentType)' by changing it to 'Apply'.</Issue>
+            </Message>
+            <Message Id="a" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="126">In method 'AgentSystemType.applyForces(AgentType)', consider providing a more meaningful name than parameter name 'a'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="130">In externally visible method 'AgentSystemType.applyForces(AgentType)', validate parameter 'a' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.AgentSystemType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="s" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="226">In method 'AgentSystemType.Equals(AgentSystemType)', consider providing a more meaningful name than parameter name 's'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#run()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="run" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="165">Correct the casing of 'run' in member name 'AgentSystemType.run()' by changing it to 'Run'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToString()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="269">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'AgentSystemType.ToString()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="270">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'AgentSystemType.ToString()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="agents" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="268">'agents', a variable declared in 'AgentSystemType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="emitters" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="268">'emitters', a variable declared in 'AgentSystemType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="environment" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentSystemType.cs" Line="268">'environment', a variable declared in 'AgentSystemType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="AgentType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(Agent.AgentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning">In externally visible method 'AgentType.AgentType(AgentType)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#.ctor(Agent.AgentType,Rhino.Geometry.Point3d)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning">In externally visible method 'AgentType.AgentType(AgentType, Point3d)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#.ctor(Agent.AgentType,Rhino.Geometry.Point3d,Rhino.Geometry.Point3d)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning">In externally visible method 'AgentType.AgentType(AgentType, Point3d, Point3d)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#applyForce(Rhino.Geometry.Vector3d)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="apply" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="252">Correct the casing of 'apply' in member name 'AgentType.applyForce(Vector3d)' by changing it to 'Apply'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.AgentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="p" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="298">In method 'AgentType.Equals(AgentType)', consider providing a more meaningful name than parameter name 'p'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#isDead()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="is" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="259">Correct the casing of 'is' in member name 'AgentType.isDead()' by changing it to 'Is'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#run()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="run" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="264">Correct the casing of 'run' in member name 'AgentType.run()' by changing it to 'Run'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToString()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Double.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="353">Because the behavior of 'double.ToString()' could vary based on the current user's locale settings, replace this call in 'AgentType.ToString()' with a call to 'double.ToString(IFormatProvider)'. If the result of 'double.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="354">Because the behavior of 'double.ToString()' could vary based on the current user's locale settings, replace this call in 'AgentType.ToString()' with a call to 'double.ToString(IFormatProvider)'. If the result of 'double.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="355">Because the behavior of 'double.ToString()' could vary based on the current user's locale settings, replace this call in 'AgentType.ToString()' with a call to 'double.ToString(IFormatProvider)'. If the result of 'double.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="356">Because the behavior of 'double.ToString()' could vary based on the current user's locale settings, replace this call in 'AgentType.ToString()' with a call to 'double.ToString(IFormatProvider)'. If the result of 'double.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="357">Because the behavior of 'double.ToString()' could vary based on the current user's locale settings, replace this call in 'AgentType.ToString()' with a call to 'double.ToString(IFormatProvider)'. If the result of 'double.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="359">Because the behavior of 'double.ToString()' could vary based on the current user's locale settings, replace this call in 'AgentType.ToString()' with a call to 'double.ToString(IFormatProvider)'. If the result of 'double.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="352">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'AgentType.ToString()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="361">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'AgentType.ToString()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="bodySize" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="351">'bodySize', a variable declared in 'AgentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="historyLength" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="351">'historyLength', a variable declared in 'AgentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="lifespan" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="351">'lifespan', a variable declared in 'AgentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="mass" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="351">'mass', a variable declared in 'AgentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="maxForce" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="351">'maxForce', a variable declared in 'AgentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="maxSpeed" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="351">'maxSpeed', a variable declared in 'AgentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="visionAngle" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="351">'visionAngle', a variable declared in 'AgentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="visionRadius" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="351">'visionRadius', a variable declared in 'AgentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#update()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="update" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="AgentType.cs" Line="242">Correct the casing of 'update' in member name 'AgentType.update()' by changing it to 'Update'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="AlignForceComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="AlignForceComponent.cs" Line="29">In externally visible method 'AlignForceComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="AlignForceComponent.cs" Line="44">In externally visible method 'AlignForceComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Grasshopper.Kernel.GH_ActiveObject.AddRuntimeMessage(Grasshopper.Kernel.GH_RuntimeMessageLevel,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="AlignForceComponent.cs" Line="70">Method 'AlignForceComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Vision Multiplier must be between 0.0 and 1.0".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="AlignForceComponent.cs" Line="75">Method 'AlignForceComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Weight must be between -1.0 and 1.0".</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="AlignForceComponent.cs" Line="64">In externally visible method 'AlignForceComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="AlignForceType" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#calcForce(Agent.AgentType,System.Collections.Generic.IList`1&lt;Agent.AgentType&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="AlignForceType.cs" Line="44">In externally visible method 'AlignForceType.calcForce(AgentType, IList&lt;AgentType&gt;)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="AlignForceType.cs" Line="40">In externally visible method 'AlignForceType.calcForce(AgentType, IList&lt;AgentType&gt;)', validate parameter 'agents' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="BehaviorType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#applyBehavior(Agent.AgentType,Agent.AgentSystemType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="apply" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Correct the casing of 'apply' in member name 'BehaviorType.applyBehavior(AgentType, AgentSystemType)' by changing it to 'Apply'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.BehaviorType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="p" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Behaviors" File="BehaviorType.cs" Line="56">In method 'BehaviorType.Equals(BehaviorType)', consider providing a more meaningful name than parameter name 'p'.</Issue>
+            </Message>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Behaviors" File="BehaviorType.cs" Line="56">The 'this' parameter (or 'Me' in Visual Basic) of 'BehaviorType.Equals(BehaviorType)' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="BounceContainBehaviorType" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#Equals(Agent.BounceContainBehaviorType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Behaviors" File="BounceContainBehaviorType.cs" Line="73">'BounceContainBehaviorType.Equals(BounceContainBehaviorType)' appears to have no upstream public or protected callers.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="BrepEnvironmentType" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#avoidEdges(Agent.AgentType,System.Double)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentType.cs" Line="155">In externally visible method 'BrepEnvironmentType.avoidEdges(AgentType, double)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#bounceContain(Agent.AgentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentType.cs" Line="199">In externally visible method 'BrepEnvironmentType.bounceContain(AgentType)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Duplicate()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentType.cs" Line="58">In method 'BrepEnvironmentType.Duplicate()', call System.IDisposable.Dispose on object 'new BrepEnvironmentType(this)' before all references to it are out of scope.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.BrepEnvironmentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentType.cs" Line="47">'BrepEnvironmentType.Equals(BrepEnvironmentType)' appears to have no upstream public or protected callers.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToString()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message Id="environment" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentType.cs" Line="71">'environment', a variable declared in 'BrepEnvironmentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CoheseForceComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Cohese" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Cohese' in type name 'CoheseForceComponent'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="CoheseForceComponent.cs" Line="30">In externally visible method 'CoheseForceComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="CoheseForceComponent.cs" Line="45">In externally visible method 'CoheseForceComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Grasshopper.Kernel.GH_ActiveObject.AddRuntimeMessage(Grasshopper.Kernel.GH_RuntimeMessageLevel,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="CoheseForceComponent.cs" Line="71">Method 'CoheseForceComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Vision Multiplier must be between 0.0 and 1.0".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="CoheseForceComponent.cs" Line="76">Method 'CoheseForceComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Weight must be between -1.0 and 1.0".</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="CoheseForceComponent.cs" Line="65">In externally visible method 'CoheseForceComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="CoheseForceType" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#calcForce(Agent.AgentType,System.Collections.Generic.IList`1&lt;Agent.AgentType&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="CoheseForceType.cs" Line="44">In externally visible method 'CoheseForceType.calcForce(AgentType, IList&lt;AgentType&gt;)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="CoheseForceType.cs" Line="40">In externally visible method 'CoheseForceType.calcForce(AgentType, IList&lt;AgentType&gt;)', validate parameter 'agents' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ContainForceType" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#calcForce(Agent.AgentType,System.Collections.Generic.IList`1&lt;Agent.AgentType&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ContainForceType.cs" Line="40">In externally visible method 'ContainForceType.calcForce(AgentType, IList&lt;AgentType&gt;)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="DebugDeconstructAgentComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="DebugDeconstructAgentComponent.cs" Line="26">In externally visible method 'DebugDeconstructAgentComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="DebugDeconstructAgentComponent.cs" Line="34">In externally visible method 'DebugDeconstructAgentComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="DebugDeconstructAgentComponent.cs" Line="53">In externally visible method 'DebugDeconstructAgentComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="DeconstructAgentComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="DeconstructAgentComponent.cs" Line="26">In externally visible method 'DeconstructAgentComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="DeconstructAgentComponent.cs" Line="34">In externally visible method 'DeconstructAgentComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="DeconstructAgentComponent.cs" Line="52">In externally visible method 'DeconstructAgentComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="DescriptionBase" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AbstractTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1012" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+           <Issue Certainty="95" Level="CriticalWarning">Change the accessibility of all public constructors in 'DescriptionBase' to protected.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="EmitterCrvComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Crv" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Crv' in type name 'EmitterCrvComponent'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvComponent.cs" Line="34">In externally visible method 'EmitterCrvComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvComponent.cs" Line="53">In externally visible method 'EmitterCrvComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Grasshopper.Kernel.GH_ActiveObject.AddRuntimeMessage(Grasshopper.Kernel.GH_RuntimeMessageLevel,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvComponent.cs" Line="85">Method 'EmitterCrvComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Creation rate must be greater than 0.".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvComponent.cs" Line="90">Method 'EmitterCrvComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Number of Agents must be greater than or equal to 0.".</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvComponent.cs" Line="77">In externally visible method 'EmitterCrvComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="EmitterCrvType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Crv" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Crv' in type name 'EmitterCrvType'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(Agent.EmitterCrvType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Crv" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvType.cs" Line="40">In method 'EmitterCrvType.EmitterCrvType(EmitterCrvType)', correct the spelling of 'Crv' in parameter name 'emitCrvType' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning">In externally visible method 'EmitterCrvType.EmitterCrvType(EmitterCrvType)', validate parameter 'emitCrvType' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#.ctor(Rhino.Geometry.Curve)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="crv" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvType.cs" Line="31">In method 'EmitterCrvType.EmitterCrvType(Curve)', correct the spelling of 'crv' in parameter name 'crv' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#.ctor(Rhino.Geometry.Curve,System.Boolean,System.Int32,System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="crv" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvType.cs" Line="22">In method 'EmitterCrvType.EmitterCrvType(Curve, bool, int, int)', correct the spelling of 'crv' in parameter name 'crv' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="num" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvType.cs" Line="22">In method 'EmitterCrvType.EmitterCrvType(Curve, bool, int, int)', correct the spelling of 'num' in parameter name 'numAgents' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.EmitterCrvType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="p" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvType.cs" Line="61">In method 'EmitterCrvType.Equals(EmitterCrvType)', consider providing a more meaningful name than parameter name 'p'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvType.cs" Line="62">In externally visible method 'EmitterCrvType.Equals(EmitterCrvType)', validate parameter 'p' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToString()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvType.cs" Line="98">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'EmitterCrvType.ToString()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterCrvType.cs" Line="99">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'EmitterCrvType.ToString()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="EmitterPtComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Pt" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="85" Level="Error">Correct the casing of 'Pt' in type name 'EmitterPtComponent' by changing it to 'PT'.</Issue>
+          </Message>
+          <Message Id="Pt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Pt' in type name 'EmitterPtComponent'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtComponent.cs" Line="34">In externally visible method 'EmitterPtComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtComponent.cs" Line="53">In externally visible method 'EmitterPtComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Grasshopper.Kernel.GH_ActiveObject.AddRuntimeMessage(Grasshopper.Kernel.GH_RuntimeMessageLevel,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtComponent.cs" Line="85">Method 'EmitterPtComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Creation rate must be greater than 0.".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtComponent.cs" Line="90">Method 'EmitterPtComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Number of Agents must be greater than or equal to 0.".</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtComponent.cs" Line="77">In externally visible method 'EmitterPtComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="EmitterPtType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Pt" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="85" Level="Error">Correct the casing of 'Pt' in type name 'EmitterPtType' by changing it to 'PT'.</Issue>
+          </Message>
+          <Message Id="Pt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Pt' in type name 'EmitterPtType'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(Agent.EmitterPtType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="pt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtType.cs" Line="38">In method 'EmitterPtType.EmitterPtType(EmitterPtType)', correct the spelling of 'pt' in parameter name 'ptEmitType' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning">In externally visible method 'EmitterPtType.EmitterPtType(EmitterPtType)', validate parameter 'ptEmitType' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#.ctor(Rhino.Geometry.Point3d)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="pt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtType.cs" Line="29">In method 'EmitterPtType.EmitterPtType(Point3d)', correct the spelling of 'pt' in parameter name 'pt' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#.ctor(Rhino.Geometry.Point3d,System.Boolean,System.Int32,System.Int32)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="num" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtType.cs" Line="20">In method 'EmitterPtType.EmitterPtType(Point3d, bool, int, int)', correct the spelling of 'num' in parameter name 'numAgents' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="pt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtType.cs" Line="20">In method 'EmitterPtType.EmitterPtType(Point3d, bool, int, int)', correct the spelling of 'pt' in parameter name 'pt' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.EmitterPtType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="p" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtType.cs" Line="59">In method 'EmitterPtType.Equals(EmitterPtType)', consider providing a more meaningful name than parameter name 'p'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtType.cs" Line="60">In externally visible method 'EmitterPtType.Equals(EmitterPtType)', validate parameter 'p' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToString()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtType.cs" Line="92">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'EmitterPtType.ToString()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterPtType.cs" Line="93">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'EmitterPtType.ToString()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="EmitterType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AbstractTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1012" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+           <Issue Certainty="95" Level="CriticalWarning">Change the accessibility of all public constructors in 'EmitterType' to protected.</Issue>
+          </Message>
+          <Message TypeName="IdentifiersShouldDifferByMoreThanCase" Category="Microsoft.Naming" CheckId="CA1708" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+           <Issue Name="Member" Certainty="95" Level="Error">Change member names 'ContinuousFlow' and 'continuousFlow' so that they differ by more than case.</Issue>
+           <Issue Name="Member" Certainty="95" Level="Error">Change member names 'CreationRate' and 'creationRate' so that they differ by more than case.</Issue>
+           <Issue Name="Member" Certainty="95" Level="Error">Change member names 'NumAgents' and 'numAgents' so that they differ by more than case.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#continuousFlow" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Certainty="90" Level="Error">Because field 'EmitterType.continuousFlow' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#creationRate" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Certainty="90" Level="Error">Because field 'EmitterType.creationRate' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#emit()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="emit" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Correct the casing of 'emit' in member name 'EmitterType.emit()' by changing it to 'Emit'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.EmitterType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="p" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterType.cs" Line="73">In method 'EmitterType.Equals(EmitterType)', consider providing a more meaningful name than parameter name 'p'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#numAgents" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Certainty="90" Level="Error">Because field 'EmitterType.numAgents' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
+            </Message>
+            <Message Id="num" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'num' in member name 'EmitterType.numAgents' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#NumAgents" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Num" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterType.cs" Line="46">Correct the spelling of 'Num' in member name 'EmitterType.NumAgents' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToString()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Int32.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterType.cs" Line="104">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'EmitterType.ToString()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterType.cs" Line="105">Because the behavior of 'int.ToString()' could vary based on the current user's locale settings, replace this call in 'EmitterType.ToString()' with a call to 'int.ToString(IFormatProvider)'. If the result of 'int.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="continuousFlow" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterType.cs" Line="102">'continuousFlow', a variable declared in 'EmitterType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="creationRate" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterType.cs" Line="102">'creationRate', a variable declared in 'EmitterType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="numAgents" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Emitters" File="EmitterType.cs" Line="102">'numAgents', a variable declared in 'EmitterType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="EngineComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="EngineComponent.cs" Line="28">In externally visible method 'EngineComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="EngineComponent.cs" Line="38">In externally visible method 'EngineComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Agent" File="EngineComponent.cs" Line="55">In externally visible method 'EngineComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="EnvironmentType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AbstractTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1012" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+           <Issue Certainty="95" Level="CriticalWarning">Change the accessibility of all public constructors in 'EnvironmentType' to protected.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#avoidEdges(Agent.AgentType,System.Double)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="avoid" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Correct the casing of 'avoid' in member name 'EnvironmentType.avoidEdges(AgentType, double)' by changing it to 'Avoid'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#bounceContain(Agent.AgentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="bounce" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Correct the casing of 'bounce' in member name 'EnvironmentType.bounceContain(AgentType)' by changing it to 'Bounce'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#closestPoint(Rhino.Geometry.Point3d)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="closest" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Correct the casing of 'closest' in member name 'EnvironmentType.closestPoint(Point3d)' by changing it to 'Closest'.</Issue>
+            </Message>
+            <Message Id="pt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning">In method 'EnvironmentType.closestPoint(Point3d)', correct the spelling of 'pt' in parameter name 'pt' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#closestPointOnRef(Rhino.Geometry.Point3d)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="closest" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Correct the casing of 'closest' in member name 'EnvironmentType.closestPointOnRef(Point3d)' by changing it to 'Closest'.</Issue>
+            </Message>
+            <Message Id="pt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning">In method 'EnvironmentType.closestPointOnRef(Point3d)', correct the spelling of 'pt' in parameter name 'pt' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#closestRefPoint(Rhino.Geometry.Point3d)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="closest" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Correct the casing of 'closest' in member name 'EnvironmentType.closestRefPoint(Point3d)' by changing it to 'Closest'.</Issue>
+            </Message>
+            <Message Id="pt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning">In method 'EnvironmentType.closestRefPoint(Point3d)', correct the spelling of 'pt' in parameter name 'pt' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#closestRefPointOnRef(Rhino.Geometry.Point3d)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="closest" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Correct the casing of 'closest' in member name 'EnvironmentType.closestRefPointOnRef(Point3d)' by changing it to 'Closest'.</Issue>
+            </Message>
+            <Message Id="pt" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning">In method 'EnvironmentType.closestRefPointOnRef(Point3d)', correct the spelling of 'pt' in parameter name 'pt' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.EnvironmentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="p" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="EnvironmentType.cs" Line="39">In method 'EnvironmentType.Equals(EnvironmentType)', consider providing a more meaningful name than parameter name 'p'.</Issue>
+            </Message>
+            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="95" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="EnvironmentType.cs" Line="39">The 'this' parameter (or 'Me' in Visual Basic) of 'EnvironmentType.Equals(EnvironmentType)' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ForceType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AbstractTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1012" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+           <Issue Certainty="95" Level="CriticalWarning">Change the accessibility of all public constructors in 'ForceType' to protected.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(Agent.ForceType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning">In externally visible method 'ForceType.ForceType(ForceType)', validate parameter 'force' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#calcForce(Agent.AgentType,System.Collections.Generic.IList`1&lt;Agent.AgentType&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="calc" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error">Correct the casing of 'calc' in member name 'ForceType.calcForce(AgentType, IList&lt;AgentType&gt;)' by changing it to 'Calc'.</Issue>
+            </Message>
+            <Message Id="calc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning">Correct the spelling of 'calc' in member name 'ForceType.calcForce(AgentType, IList&lt;AgentType&gt;)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#calcSum(Agent.AgentType,System.Collections.Generic.IList`1&lt;Agent.AgentType&gt;,System.Int32&amp;)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="2#" TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="40">Consider a design that does not require that 'count' be an out parameter.</Issue>
+            </Message>
+            <Message Id="calc" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="40">Correct the casing of 'calc' in member name 'ForceType.calcSum(AgentType, IList&lt;AgentType&gt;, out int)' by changing it to 'Calc'.</Issue>
+            </Message>
+            <Message Id="calc" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="40">Correct the spelling of 'calc' in member name 'ForceType.calcSum(AgentType, IList&lt;AgentType&gt;, out int)' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="45">In externally visible method 'ForceType.calcSum(AgentType, IList&lt;AgentType&gt;, out int)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="43">In externally visible method 'ForceType.calcSum(AgentType, IList&lt;AgentType&gt;, out int)', validate parameter 'agents' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.ForceType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="p" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="118">In method 'ForceType.Equals(ForceType)', consider providing a more meaningful name than parameter name 'p'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#limit(Rhino.Geometry.Vector3d,System.Double)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="limit" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="88">Correct the casing of 'limit' in member name 'ForceType.limit(Vector3d, double)' by changing it to 'Limit'.</Issue>
+            </Message>
+            <Message Id="vec" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="88">In method 'ForceType.limit(Vector3d, double)', correct the spelling of 'vec' in parameter name 'vec' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#seek(Agent.AgentType,Rhino.Geometry.Vector3d)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="seek" TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="Member" Certainty="85" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="68">Correct the casing of 'seek' in member name 'ForceType.seek(AgentType, Vector3d)' by changing it to 'Seek'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="69">In externally visible method 'ForceType.seek(AgentType, Vector3d)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToString()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="System.Double.ToString" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="148">Because the behavior of 'double.ToString()' could vary based on the current user's locale settings, replace this call in 'ForceType.ToString()' with a call to 'double.ToString(IFormatProvider)'. If the result of 'double.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+             <Issue Name="IFormatProviderAlternateString" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="149">Because the behavior of 'double.ToString()' could vary based on the current user's locale settings, replace this call in 'ForceType.ToString()' with a call to 'double.ToString(IFormatProvider)'. If the result of 'double.ToString(IFormatProvider)' will be displayed to the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+            <Message Id="visionRadiusMultiplier" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="147">'visionRadiusMultiplier', a variable declared in 'ForceType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+            <Message Id="weight" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ForceType.cs" Line="147">'weight', a variable declared in 'ForceType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#visionRadiusMultiplier" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Certainty="90" Level="Error">Because field 'ForceType.visionRadiusMultiplier' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#weight" Kind="Field" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Certainty="90" Level="Error">Because field 'ForceType.weight' is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="SeparateForceComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="SeparateForceComponent.cs" Line="29">In externally visible method 'SeparateForceComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="SeparateForceComponent.cs" Line="44">In externally visible method 'SeparateForceComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Grasshopper.Kernel.GH_ActiveObject.AddRuntimeMessage(Grasshopper.Kernel.GH_RuntimeMessageLevel,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="SeparateForceComponent.cs" Line="70">Method 'SeparateForceComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Vision Multiplier must be between 0.0 and 1.0".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="SeparateForceComponent.cs" Line="75">Method 'SeparateForceComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Weight must be between -1.0 and 1.0".</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="SeparateForceComponent.cs" Line="64">In externally visible method 'SeparateForceComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="SeparateForceType" Kind="Class" Accessibility="Assembly" ExternallyVisible="False">
+         <Members>
+          <Member Name="#calcForce(Agent.AgentType,System.Collections.Generic.IList`1&lt;Agent.AgentType&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="False">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="SeparateForceType.cs" Line="41">In externally visible method 'SeparateForceType.calcForce(AgentType, IList&lt;AgentType&gt;)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="SeparateForceType.cs" Line="39">In externally visible method 'SeparateForceType.calcForce(AgentType, IList&lt;AgentType&gt;)', validate parameter 'agents' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="SurfaceEnvironmentComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentComponent.cs" Line="26">In externally visible method 'SurfaceEnvironmentComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentComponent.cs" Line="34">In externally visible method 'SurfaceEnvironmentComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentComponent.cs" Line="48">In method 'SurfaceEnvironmentComponent.SolveInstance(IGH_DataAccess)', call System.IDisposable.Dispose on object 'srf' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentComponent.cs" Line="52">In externally visible method 'SurfaceEnvironmentComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="SurfaceEnvironmentType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+           <Issue Name="DependsOnFix" Certainty="95" Level="CriticalError">Implement IDisposable on 'SurfaceEnvironmentType' because it creates members of the following IDisposable types: 'PlaneSurface'. If 'SurfaceEnvironmentType' has previously shipped, adding new members that implement IDisposable to this type is considered a breaking change to existing consumers.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#.ctor(Agent.SurfaceEnvironmentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentType.cs" Line="63">In externally visible method 'SurfaceEnvironmentType.SurfaceEnvironmentType(SurfaceEnvironmentType)', validate parameter 'environment' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#.ctor(Rhino.Geometry.Surface)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="srf" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameter" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentType.cs" Line="44">In method 'SurfaceEnvironmentType.SurfaceEnvironmentType(Surface)', correct the spelling of 'srf' in parameter name 'srf' or remove it entirely if it represents any sort of Hungarian notation.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentType.cs" Line="47">In externally visible method 'SurfaceEnvironmentType.SurfaceEnvironmentType(Surface)', validate parameter 'srf' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#avoidEdges(Agent.AgentType,System.Double)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentType.cs" Line="158">In externally visible method 'SurfaceEnvironmentType.avoidEdges(AgentType, double)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#bounceContain(Agent.AgentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentType.cs" Line="187">In externally visible method 'SurfaceEnvironmentType.bounceContain(AgentType)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.SurfaceEnvironmentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="p" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentType.cs" Line="87">In method 'SurfaceEnvironmentType.Equals(SurfaceEnvironmentType)', consider providing a more meaningful name than parameter name 'p'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentType.cs" Line="88">In externally visible method 'SurfaceEnvironmentType.Equals(SurfaceEnvironmentType)', validate parameter 'p' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToString()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="environment" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="SurfaceEnvironmentType.cs" Line="111">'environment', a variable declared in 'SurfaceEnvironmentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="WorldBoxEnvironmentComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="WorldBoxEnvironmentComponent.cs" Line="26">In externally visible method 'WorldBoxEnvironmentComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="WorldBoxEnvironmentComponent.cs" Line="34">In externally visible method 'WorldBoxEnvironmentComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Grasshopper.Kernel.GH_ActiveObject.AddRuntimeMessage(Grasshopper.Kernel.GH_RuntimeMessageLevel,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="WorldBoxEnvironmentComponent.cs" Line="55">Method 'WorldBoxEnvironmentComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Box must be aligned to WorldXY.".</Issue>
+            </Message>
+            <Message Id="WorldXY" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="WorldBoxEnvironmentComponent.cs" Line="55">Correct the spelling of the unrecognized token 'WorldXY' in the literal '"Box must be aligned to WorldXY."'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="WorldBoxEnvironmentComponent.cs" Line="50">In externally visible method 'WorldBoxEnvironmentComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="WorldBoxEnvironmentType" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(Agent.WorldBoxEnvironmentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning">In externally visible method 'WorldBoxEnvironmentType.WorldBoxEnvironmentType(WorldBoxEnvironmentType)', validate parameter 'environment' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#avoidEdges(Agent.AgentType,System.Double)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="WorldBoxEnvironmentType.cs" Line="136">In externally visible method 'WorldBoxEnvironmentType.avoidEdges(AgentType, double)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#bounceContain(Agent.AgentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="WorldBoxEnvironmentType.cs" Line="174">In externally visible method 'WorldBoxEnvironmentType.bounceContain(AgentType)', validate parameter 'agent' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Equals(Agent.WorldBoxEnvironmentType)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="p" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+             <Issue Name="MemberParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="WorldBoxEnvironmentType.cs" Line="72">In method 'WorldBoxEnvironmentType.Equals(WorldBoxEnvironmentType)', consider providing a more meaningful name than parameter name 'p'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="WorldBoxEnvironmentType.cs" Line="73">In externally visible method 'WorldBoxEnvironmentType.Equals(WorldBoxEnvironmentType)', validate parameter 'p' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#ToString()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="environment" TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="NonBreaking">
+             <Issue Name="Local" Certainty="95" Level="Error" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="WorldBoxEnvironmentType.cs" Line="98">'environment', a variable declared in 'WorldBoxEnvironmentType.ToString()', has the same name as an instance field on the type. Change the name of one of these items.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Agent.Behaviors">
+       <Types>
+        <Type Name="BounceContainBehaviorComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Behaviors" File="BounceContainBehaviorComponent.cs" Line="30">In externally visible method 'BounceContainBehaviorComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Behaviors" File="BounceContainBehaviorComponent.cs" Line="44">In externally visible method 'BounceContainBehaviorComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Behaviors" File="BounceContainBehaviorComponent.cs" Line="63">In externally visible method 'BounceContainBehaviorComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Agent.Environment">
+       <Types>
+        <Type Name="BrepEnvironmentComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="Brep" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="Breaking">
+           <Issue Name="Type" Certainty="75" Level="CriticalWarning">Correct the spelling of 'Brep' in type name 'BrepEnvironmentComponent'.</Issue>
+          </Message>
+         </Messages>
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentComponent.cs" Line="26">In externally visible method 'BrepEnvironmentComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentComponent.cs" Line="34">In externally visible method 'BrepEnvironmentComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="NonExceptionEdge" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentComponent.cs" Line="63">In method 'BrepEnvironmentComponent.SolveInstance(IGH_DataAccess)', call System.IDisposable.Dispose on object 'environment' before all references to it are out of scope.</Issue>
+            </Message>
+            <Message Id="Grasshopper.Kernel.GH_ActiveObject.AddRuntimeMessage(Grasshopper.Kernel.GH_RuntimeMessageLevel,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentComponent.cs" Line="57">Method 'BrepEnvironmentComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Brep must be closed.".</Issue>
+            </Message>
+            <Message Id="Brep" TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentComponent.cs" Line="57">Correct the spelling of the unrecognized token 'Brep' in the literal '"Brep must be closed."'.</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Environment" File="BrepEnvironmentComponent.cs" Line="52">In externally visible method 'BrepEnvironmentComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Agent.Forces">
+       <Types>
+        <Type Name="ContainForceComponent" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#RegisterInputParams(Grasshopper.Kernel.GH_Component+GH_InputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ContainForceComponent.cs" Line="26">In externally visible method 'ContainForceComponent.RegisterInputParams(GH_Component.GH_InputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#RegisterOutputParams(Grasshopper.Kernel.GH_Component+GH_OutputParamManager)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ContainForceComponent.cs" Line="36">In externally visible method 'ContainForceComponent.RegisterOutputParams(GH_Component.GH_OutputParamManager)', validate parameter 'pManager' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#SolveInstance(Grasshopper.Kernel.IGH_DataAccess)" Kind="Method" Static="False" Accessibility="Family" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Grasshopper.Kernel.GH_ActiveObject.AddRuntimeMessage(Grasshopper.Kernel.GH_RuntimeMessageLevel,System.String)" TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ContainForceComponent.cs" Line="60">Method 'ContainForceComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Vision Multiplier must be between 0.0 and 1.0".</Issue>
+             <Issue Name="KnownValue" Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ContainForceComponent.cs" Line="65">Method 'ContainForceComponent.SolveInstance(IGH_DataAccess)' passes a literal string as parameter 'message' of a call to 'GH_ActiveObject.AddRuntimeMessage(GH_RuntimeMessageLevel, string)'. Retrieve the following string(s) from a resource table instead: "Weight must be between -1.0 and 1.0".</Issue>
+            </Message>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2014-11-03 06:37:49Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="e:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\Forces" File="ContainForceComponent.cs" Line="53">In externally visible method 'ContainForceComponent.SolveInstance(IGH_DataAccess)', validate parameter 'DA' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
+ <Rules>
+  <Rule TypeName="AbstractTypesShouldNotHaveConstructors" Category="Microsoft.Design" CheckId="CA1012">
+   <Name>Abstract types should not have constructors</Name>
+   <Description>Public constructors for abstract types do not make sense because you cannot create instances of abstract types.</Description>
+   <Resolution Name="Default">Change the accessibility of all public constructors in {0} to protected.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182126.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalWarning</MessageLevel>
+   <File Name="designrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="AssembliesShouldHaveValidStrongNames" Category="Microsoft.Design" CheckId="CA2210">
+   <Name>Assemblies should have valid strong names</Name>
+   <Description>Either the assembly has no strong name, an invalid one, or the strong name is valid only because of the computer configuration. The assembly should not be deployed in this state. The most common causes of this are: 1) The assembly's contents were modified after it was signed. 2) The signing process failed. 3) The assembly was delay-signed. 4) A registry key existed that allowed the check to pass (where it would not have otherwise).</Description>
+   <Resolution Name="NoStrongName">Sign {0} with a strong name key.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182127.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
+   <Name>Avoid namespaces with few types</Name>
+   <Description>A namespace should generally have more than five types.</Description>
+   <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182130.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidOutParameters" Category="Microsoft.Design" CheckId="CA1021">
+   <Name>Avoid out parameters</Name>
+   <Description>Using out parameters might indicate a design flaw. Although there are legitimate times to use out parameters, their use frequently indicates a design that does not conform to the design guidelines for managed code.</Description>
+   <Resolution Name="Default">Consider a design that does not require that {0} be an out parameter.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182131.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+   <Name>Avoid uncalled private code</Name>
+   <Description>There is uncalled code that is not externally visible and is not a known runtime entry point. If this violation fires in error, please send a problem report to the Visual Studio Code Analysis team.</Description>
+   <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182264.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000">
+   <Name>Dispose objects before losing scope</Name>
+   <Description>If a disposable object is not explicitly disposed before all references to it are out of scope, the object will be disposed at some indeterminate time when the garbage collector runs the finalizer of the object. Because an exceptional event might occur that will prevent the finalizer of the object from running, the object should be explicitly disposed instead.</Description>
+   <Resolution Name="NonExceptionEdge">In method {0}, call System.IDisposable.Dispose on object {1} before all references to it are out of scope.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182289.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="Do not pass literals as localized parameters" Category="Microsoft.Globalization" CheckId="CA1303">
+   <Name>Do not pass literals as localized parameters</Name>
+   <Description>Literal strings that are embedded in source code are difficult to localize. Avoid passing literal strings as arguments in circumstances where a localized string is generally expected.</Description>
+   <Resolution Name="KnownValue">Method {0} passes a literal string as parameter '{1}' of a call to {2}. Retrieve the following string(s) from a resource table instead: {3}.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182187.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotDeclareVisibleInstanceFields" Category="Microsoft.Design" CheckId="CA1051">
+   <Name>Do not declare visible instance fields</Name>
+   <Description>Instance fields that are visible outside of the type that declares them, limit your ability to change the implementation details for those data items. Use properties instead. They do not compromise usability or performance and they do provide flexibility in that they conceal the implementation details of the underlying data.</Description>
+   <Resolution Name="Default">Because field {0} is visible outside of its declaring type, change its accessibility to private and add a property, with the same accessibility as the field has currently, to provide access to it.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182141.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Error</MessageLevel>
+   <File Name="designrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeCasedCorrectly" Category="Microsoft.Naming" CheckId="CA1709">
+   <Name>Identifiers should be cased correctly</Name>
+   <Description>Type, namespace, and member identifiers are Pascal-cased. Parameter identifiers are camel-cased. Two letter acronyms within these identifiers should be upper-cased, for example, use System.IO instead of System.Io. Acronyms of three or more letters should be Pascal-cased, for example, use System.Xml instead of System.XML. The pascal-casing convention capitalizes the first letter of each word, as in BackColor. The camel-casing convention formats the first letter of the first word in lowercase and capitalizes the first letter of all subsequent words, as in backgroundColor. Although it may be common practice for some two letter acronyms to not be fully capitalized, violations of this rule should not be excluded for this reason. For example, 'DbConnection', is common but incorrect; use DBConnection. A violation of this rule might be required for compatibility with existing, non-managed symbol schemes. In general, however, these symbols should not be visible outside the assembly that uses them.</Description>
+   <Resolution Name="Member">Correct the casing of '{0}' in member name {1} by changing it to '{2}'.</Resolution>
+   <Resolution Name="Type">Correct the casing of '{0}' in type name {1} by changing it to '{2}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182240.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="85">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+   <Name>Identifiers should be spelled correctly</Name>
+   <Description>The individual words that make up an identifier should not be abbreviated and should be spelled correctly. If this rule generates a false positive on a term that should be recognized, add the word to the FxCop custom dictionary.</Description>
+   <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Resolution Name="MemberParameter">In method {0}, correct the spelling of '{1}' in parameter name {2} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Resolution Name="MemberParameterMoreMeaningfulName">In method {0}, consider providing a more meaningful name than parameter name {1}.</Resolution>
+   <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264492.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
+   <File Name="namingrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="IdentifiersShouldDifferByMoreThanCase" Category="Microsoft.Naming" CheckId="CA1708">
+   <Name>Identifiers should differ by more than case</Name>
+   <Description>Do not use names that require case sensitivity for uniqueness. Components must be fully usable from both case-sensitive and case-insensitive languages. Since case-insensitive languages cannot distinguish between two names within the same context that differ only by case, components must avoid this situation.</Description>
+   <Resolution Name="Member">Change member names {0} and '{1}' so that they differ by more than case.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182242.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="Literals should be spelled correctly" Category="Microsoft.Naming" CheckId="CA2204">
+   <Name>Literals should be spelled correctly</Name>
+   <Description>This rule parses the literal string into words, tokenizing compound words, and checks the spelling of each word/token.</Description>
+   <Resolution Name="Default">Correct the spelling of the unrecognized token '{0}' in the literal '{1}'.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/bb264488.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
+   <Name>Mark assemblies with CLSCompliantAttribute</Name>
+   <Description>Assemblies should explicitly state their CLS compliance using the CLSCompliant attribute. An assembly without this attribute is not CLS-compliant. Assemblies, modules, and types can be CLS-compliant even if some parts of the assembly, module, or type are not CLS-compliant. The following rules apply: 1) If the element is marked CLSCompliant, any noncompliant members must have the CLSCompliant attribute present with its argument set to false. 2) A comparable CLS-compliant alternative member must be supplied for each member that is not CLS-compliant.</Description>
+   <Resolution Name="Default">Mark {0} with CLSCompliant(true) because it exposes externally visible types.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182156.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="designrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
+   <Name>Mark members as static</Name>
+   <Description>Methods which do not access instance data or call instance methods can be marked as static (Shared in Visual Basic). After doing so, the compiler will emit non-virtual call sites to these members which will prevent a check at runtime for each call that ensures the current object pointer is non-null. This can result in a measurable performance gain for performance-sensitive code. In some cases, the failure to access the current object instance represents a correctness issue.</Description>
+   <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms245046.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+   <Name>Specify IFormatProvider</Name>
+   <Description>If an overload exists that takes an IFormatProvider argument, it should always be called in favor of an overload that does not. Some methods in the runtime convert a value to or from a string representation and take a string parameter that contains one or more characters, called format specifiers, which indicate how the value is to be converted. If the meaning of the format specifier varies by culture, a formatting object supplies the actual characters used in the string representation. In scenarios where sorting and comparison behavior should never change between cultures, specify CultureInfo.InvariantCulture, otherwise, specify CultureInfo.CurrentCulture.</Description>
+   <Resolution Name="IFormatProviderAlternateString">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be displayed to the user, specify {3} as the 'IFormatProvider' parameter. Otherwise, if the result will be stored and accessed by software, such as when it is persisted to disk or to a database, specify {4}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182190.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="TypesThatOwnDisposableFieldsShouldBeDisposable" Category="Microsoft.Design" CheckId="CA1001">
+   <Name>Types that own disposable fields should be disposable</Name>
+   <Description>Types that declare disposable members should also implement IDisposable. If the type does not own any unmanaged resources, do not implement a finalizer on it.</Description>
+   <Resolution Name="DependsOnFix">Implement IDisposable on {0} because it creates members of the following IDisposable types: {1}. If {0} has previously shipped, adding new members that implement IDisposable to this type is considered a breaking change to existing consumers.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182172.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
+   <File Name="designrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062">
+   <Name>Validate arguments of public methods</Name>
+   <Description>All reference arguments passed to externally visible methods should be checked against null (Nothing in VB). If appropriate, throw a System.ArgumentNullException when the argument is null.</Description>
+   <Resolution Name="Default">In externally visible method {0}, validate parameter '{1}' before using it.</Resolution>
+   <Owner>RuleOwner</Owner>
+   <Url>http://msdn.microsoft.com/library/ms182182.aspx</Url>
+   <Email />
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="dataflowrules.dll" Version="12.0.0.0" />
+  </Rule>
+  <Rule TypeName="VariableNamesShouldNotMatchFieldNames" Category="Microsoft.Maintainability" CheckId="CA1500">
+   <Name>Variable names should not match field names</Name>
+   <Description>Instance field and variable names should not be identical within the same scope.</Description>
+   <Resolution Name="Local">{0}, a variable declared in {1}, has the same name as an instance field on the type. Change the name of one of these items.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182216.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="maintainabilityrules.dll" Version="12.0.0.0" />
+  </Rule>
+ </Rules>
+ <Localized>
+  <String Key="Category">Category</String>
+  <String Key="Certainty">Certainty</String>
+  <String Key="CollapseAll">Collapse All</String>
+  <String Key="CheckId">Check Id</String>
+  <String Key="Error">Error</String>
+  <String Key="Errors">error(s)</String>
+  <String Key="ExpandAll">Expand All</String>
+  <String Key="Help">Help</String>
+  <String Key="Line">Line</String>
+  <String Key="Messages">message(s)</String>
+  <String Key="LocationNotStoredInPdb">[Location not stored in Pdb]</String>
+  <String Key="Project">Project</String>
+  <String Key="Resolution">Resolution</String>
+  <String Key="Rule">Rule</String>
+  <String Key="RuleFile">Rule File</String>
+  <String Key="RuleDescription">Rule Description</String>
+  <String Key="Source">Source</String>
+  <String Key="Status">Status</String>
+  <String Key="Target">Target</String>
+  <String Key="Warning">Warning</String>
+  <String Key="Warnings">warning(s)</String>
+  <String Key="ReportTitle">Code Analysis Report</String>
+ </Localized>
+</FxCopReport>

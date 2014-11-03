@@ -6,9 +6,13 @@ using Rhino.Geometry;
 
 namespace Agent
 {
-  class BrepEnvironmentType : EnvironmentType
+  class BrepEnvironmentType : EnvironmentType, IDisposable
   {
     private Brep environment;
+
+    public void Dispose() {
+      this.environment.Dispose();
+    }
 
     // Default Constructor.
     public BrepEnvironmentType()
@@ -41,7 +45,7 @@ namespace Agent
 
     public bool Equals(BrepEnvironmentType p)
     {
-      return base.Equals((BrepEnvironmentType)p) && this.environment.Equals(p.environment);
+      return base.Equals((EnvironmentType)p) && this.environment.Equals(p.environment);
     }
 
     public override int GetHashCode()
@@ -95,14 +99,17 @@ namespace Agent
     }
 
     //visionAngle in radians
-    private Curve getFeelerCrv(Vector3d feelerVec, Point3d position, double bodySize, double visionAngle, Vector3d rotAxis)
+    private static Curve getFeelerCrv(Vector3d feelerVec, Point3d position, 
+                                      double bodySize, double visionAngle, 
+                                      Vector3d rotAxis)
     {
       feelerVec.Rotate(visionAngle, rotAxis);
       Vector3d.Multiply(feelerVec, bodySize);
       return new Line(position, feelerVec).ToNurbsCurve();
     }
 
-    private Curve[] getFeelerCrvs(AgentType agent, double visionDistance, bool accurate)
+    private static Curve[] getFeelerCrvs(AgentType agent, double visionDistance, 
+                                  bool accurate)
     {
       Curve[] feelers;
       if (accurate)
@@ -190,8 +197,6 @@ namespace Agent
     public override bool bounceContain(AgentType agent)
     {
       Vector3d velocity = agent.Velocity;
-      double velMag = velocity.Length;
-      Point3d position = agent.Position;
       
       double tol = 0.01;
 

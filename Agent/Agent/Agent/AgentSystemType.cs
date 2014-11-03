@@ -6,12 +6,13 @@ using System.Text;
 using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
+using System.Collections.ObjectModel;
 
 namespace Agent
 {
   public class AgentSystemType : GH_Goo<Object>
   {
-    private List<AgentType> agents;
+    private IList<AgentType> agents;
     private AgentType[] agentsSettings;
     private EmitterType[] emitters;
     private ForceType[] forces;
@@ -54,7 +55,7 @@ namespace Agent
       this.behaviors = system.behaviors;
     }
 
-    public List<AgentType> Agents
+    public IList<AgentType> Agents
     {
       get
       {
@@ -62,7 +63,7 @@ namespace Agent
       }
     }
 
-    public AgentType[] AgentsSettings
+    public IEnumerable<AgentType> AgentsSettings
     {
       get
       {
@@ -70,11 +71,11 @@ namespace Agent
       }
       set
       {
-        this.agentsSettings = value;
+        this.agentsSettings = (AgentType[]) value;
       }
     }
 
-    public EmitterType[] Emitters
+    public IEnumerable<EmitterType> Emitters
     {
       get
       {
@@ -82,11 +83,11 @@ namespace Agent
       }
       set // ToDo remove this
       {
-        this.emitters = value;
+        this.emitters = (EmitterType[]) value;
       }
     }
 
-    public ForceType[] Forces
+    public IEnumerable<ForceType> Forces
     {
       get
       {
@@ -94,11 +95,11 @@ namespace Agent
       }
       set // ToDo remove this
       {
-        this.forces = value;
+        this.forces = (ForceType[]) value;
       }
     }
 
-    public BehaviorType[] Behaviors
+    public IEnumerable<BehaviorType> Behaviors
     {
       get
       {
@@ -106,7 +107,7 @@ namespace Agent
       }
       set
       {
-        this.behaviors = value;
+        this.behaviors = (BehaviorType[]) value;
       }
     }
     public EnvironmentType Environment

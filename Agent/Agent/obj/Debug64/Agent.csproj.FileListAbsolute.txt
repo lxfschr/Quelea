@@ -7,8 +7,9 @@ C:\Users\Administrator\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Age
 C:\Users\Administrator\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\obj\Debug64\Agent.csproj.GenerateResource.Cache
 E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\bin\Agent.dll
 E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\bin\Agent.pdb
-E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\obj\Debug64\Agent.csprojResolveAssemblyReference.cache
 E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\obj\Debug64\Agent.Properties.Resources.resources
 E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\obj\Debug64\Agent.csproj.GenerateResource.Cache
 E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\obj\Debug64\Agent.dll
 E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\obj\Debug64\Agent.pdb
+E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\bin\Agent.dll.CodeAnalysisLog.xml
+E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Agent\Agent\bin\Agent.dll.lastcodeanalysissucceeded

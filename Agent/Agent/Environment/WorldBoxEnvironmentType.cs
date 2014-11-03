@@ -70,7 +70,7 @@ namespace Agent
 
     public bool Equals(WorldBoxEnvironmentType p)
     {
-      return base.Equals((WorldBoxEnvironmentType)p) && this.environment.Equals(p.environment);
+      return base.Equals((EnvironmentType)p) && this.environment.Equals(p.environment);
     }
 
     public override int GetHashCode()

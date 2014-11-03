@@ -71,14 +71,7 @@ namespace Agent
 
     public bool Equals(BounceContainBehaviorType p)
     {
-      // If parameter is null return false:
-      if ((object)p == null)
-      {
-        return false;
-      }
-
-      // Return true if the fields match:
-      return true;
+      return base.Equals((BehaviorType)p);
     }
 
     public override int GetHashCode()

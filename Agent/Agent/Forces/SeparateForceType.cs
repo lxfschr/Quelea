@@ -31,7 +31,7 @@ namespace Agent
     }
 
 
-    public override Vector3d calcForce(AgentType agent, List<AgentType> agents)
+    public override Vector3d calcForce(AgentType agent, IList<AgentType> agents)
     {
       Vector3d steer = new Vector3d();
       Vector3d sum = new Vector3d();
