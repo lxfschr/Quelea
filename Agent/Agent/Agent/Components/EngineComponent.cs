@@ -5,15 +5,16 @@ using Grasshopper.Kernel;
 using Rhino.Geometry;
 using Grasshopper;
 using Grasshopper.Kernel.Data;
+using T = Agent.Types;
 
 namespace Agent
 {
-  public class EngineComponent : GH_Component
+  public class Engine : GH_Component
   {
     /// <summary>
     /// Initializes a new instance of the Engine class.
     /// </summary>
-    public EngineComponent()
+    public Engine()
       : base("Engine", "Engine",
           "Engine that runs the simulation.",
           "Agent", "Agent")
@@ -48,7 +49,7 @@ namespace Agent
       // We'll start by declaring variables and assigning them starting values.
       Boolean reset = true;
       bool liveUpdate = true;
-      List<AgentSystemType> systems = new List<AgentSystemType>();
+      List<T.AgentSystem> systems = new List<T.AgentSystem>();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
@@ -66,18 +67,18 @@ namespace Agent
       // Finally assign the spiral to the output parameter.
       DA.SetDataTree(0, agents);
     }
-
-    // Declare systems outide loop so they do not reset each time.
-    List<AgentSystemType> agentSystems = new List<AgentSystemType>();
-    private DataTree<AgentType> run(Boolean reset, bool liveUpdate, List<AgentSystemType> systems)
+    List<T.AgentSystem> agentSystems = new List<T.AgentSystem>();
+    List<Point3d> pts = new List<Point3d>();
+    private DataTree<AgentType> run(Boolean reset, bool liveUpdate, List<T.AgentSystem> systems)
     {
       int index = 0;
+      pts.Clear();
       if (reset)
       {
         agentSystems.Clear();
-        foreach (AgentSystemType system in systems)
+        foreach (T.AgentSystem system in systems)
         {
-          agentSystems.Add(new AgentSystemType(system));
+          agentSystems.Add(new T.AgentSystem(system));
           foreach (EmitterType emitter in system.Emitters)
           {
             if (!emitter.ContinuousFlow)
@@ -97,20 +98,20 @@ namespace Agent
       {
         if (liveUpdate)
         {
-          if (systems.Count > agentSystems.Count) //Todo use enine and runCounter in system
+          if (systems.Count > agentSystems.Count)
           {
             //Find the system that is not in agentSystems and add it.
-            foreach (AgentSystemType system in systems)
+            foreach (T.AgentSystem system in systems)
             {
               if (!agentSystems.Contains(system))
               {
-                agentSystems.Add(new AgentSystemType(system));
+                agentSystems.Add(new T.AgentSystem(system));
               }
             }
           }
           else if (systems.Count < agentSystems.Count)
           {
-            foreach (AgentSystemType agentSystem in agentSystems)
+            foreach (T.AgentSystem agentSystem in agentSystems)
             {
               if (!systems.Contains(agentSystem))
               {
@@ -118,7 +119,7 @@ namespace Agent
               }
             }
           }
-          foreach (AgentSystemType system in systems) //Todo use for i
+          foreach (T.AgentSystem system in systems)
           {
             agentSystems[index].Emitters = systems[index].Emitters;
             agentSystems[index].AgentsSettings = systems[index].AgentsSettings;
@@ -128,7 +129,7 @@ namespace Agent
             index++;
           }
         }
-        foreach (AgentSystemType system in agentSystems)
+        foreach (T.AgentSystem system in agentSystems)
         {
           system.run();
         }
@@ -136,7 +137,7 @@ namespace Agent
 
       DataTree<AgentType> tree = new DataTree<AgentType>();
       int counter = 0;
-      foreach (AgentSystemType system in agentSystems)
+      foreach (T.AgentSystem system in agentSystems)
       {
         foreach (AgentType agent in system.Agents)
         {
