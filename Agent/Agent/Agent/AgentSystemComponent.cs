@@ -8,6 +8,7 @@ namespace Agent
 {
   public class AgentSystemComponent : GH_Component
   {
+    AgentSystemType system = null;
     /// <summary>
     /// Initializes a new instance of the AgentSystemComponent class.
     /// </summary>
@@ -92,7 +93,15 @@ namespace Agent
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      AgentSystemType system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, forces.ToArray(), behaviors.ToArray());
+      if (system == null)
+      {
+        system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, forces.ToArray(), behaviors.ToArray());
+      }
+      else
+      {
+        system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, forces.ToArray(), behaviors.ToArray(), system);
+      }
+      //AgentSystemType system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, forces.ToArray(), behaviors.ToArray());
 
       // Finally assign the spiral to the output parameter.
       DA.SetData(0, system);

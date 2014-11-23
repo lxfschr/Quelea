@@ -66,6 +66,7 @@
     <Compile Include="Agent\AgentSystemComponent.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
+    <Compile Include="Agent\EngineComponent2.cs" />
     <Compile Include="Behaviors\BehaviorType.cs" />
     <Compile Include="Agent\DebugDeconstructAgentComponent.cs" />
     <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />

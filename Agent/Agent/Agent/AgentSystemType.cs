@@ -37,7 +37,22 @@ namespace Agent
                            EnvironmentType environment, ForceType[] forces,
                            BehaviorType[] behaviors)
     {
-      this.agents = new List<AgentType>();
+      if (this.agents == null)
+      {
+        this.agents = new List<AgentType>();
+      }
+      this.agentsSettings = agentsSettings;
+      this.emitters = emitters;
+      this.environment = environment;
+      this.forces = forces;
+      this.behaviors = behaviors;
+    }
+
+    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters,
+                           EnvironmentType environment, ForceType[] forces,
+                           BehaviorType[] behaviors, AgentSystemType system)
+    {
+      this.agents = system.agents;
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
