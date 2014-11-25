@@ -67,6 +67,9 @@
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
     <Compile Include="Agent\EngineComponent2.cs" />
+    <Compile Include="ALGLIB\alglibinternal.cs" />
+    <Compile Include="ALGLIB\alglibmisc.cs" />
+    <Compile Include="ALGLIB\ap.cs" />
     <Compile Include="Behaviors\BehaviorType.cs" />
     <Compile Include="Agent\DebugDeconstructAgentComponent.cs" />
     <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />
@@ -94,6 +97,32 @@
     <Compile Include="Agent\EngineComponent.cs" />
     <Compile Include="Emitters\EmitterPtComponent.cs" />
     <Compile Include="Agent\AgentInfo.cs" />
+    <Compile Include="KdTreeLib\HyperRect.cs" />
+    <Compile Include="KdTreeLib\IKdTree.cs" />
+    <Compile Include="KdTreeLib\IPriorityQueue.cs" />
+    <Compile Include="KdTreeLib\KdTree.cs" />
+    <Compile Include="KdTreeLib\KdTreeNode.cs" />
+    <Compile Include="KdTreeLib\Math\FloatMath.cs" />
+    <Compile Include="KdTreeLib\Math\ITypeMath.cs" />
+    <Compile Include="KdTreeLib\Math\TypeMath.cs" />
+    <Compile Include="KdTreeLib\NearestNeighbourList.cs" />
+    <Compile Include="KdTreeLib\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="KdTreeLib\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="KdTreeLib\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="KdTreeLib\PriorityQueue.cs" />
+    <Compile Include="KdTreeLib\PriorityQueue2.cs" />
+    <Compile Include="Octree\FastSerialization.cs" />
+    <Compile Include="Octree\IOctree.cs" />
+    <Compile Include="Octree\Octree.cs" />
+    <Compile Include="Octree\OctreeBox.cs" />
+    <Compile Include="Octree\OctreeDistance.cs" />
+    <Compile Include="Octree\OctreeLeaf.cs" />
+    <Compile Include="Octree\OctreeNode.cs" />
+    <Compile Include="Octree\Point3d.cs" />
+    <Compile Include="Octree\Point3f.cs" />
+    <Compile Include="Octree\Vector3d.cs" />
+    <Compile Include="Octree\Vector3f.cs" />
+    <Compile Include="OctTree\OctTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -111,6 +140,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="KdTreeLib\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="KdTreeLib\obj\Debug\KdTreeLib.csprojResolveAssemblyReference.cache" />
+    <None Include="Octree\OctreeSearch.suo" />
     <None Include="Resources\icon_agent.png" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +168,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_system.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KdTreeLib\bin\Debug\KdTreeLib.dll" />
+    <Content Include="KdTreeLib\bin\Debug\KdTreeLib.pdb" />
+    <Content Include="KdTreeLib\KdTreeLib.csproj" />
+    <Content Include="KdTreeLib\obj\Debug\KdTreeLib.csproj.FileListAbsolute.txt" />
+    <Content Include="KdTreeLib\obj\Debug\KdTreeLib.dll" />
+    <Content Include="KdTreeLib\obj\Debug\KdTreeLib.pdb" />
+    <Content Include="Octree\OctreeSearch.csproj" />
+    <Content Include="Octree\OctreeSearch.sln" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="KdTreeLib\obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

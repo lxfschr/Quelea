@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using Rhino.Geometry;
+using System.Collections;
 
 namespace Agent
 {
@@ -28,6 +29,41 @@ namespace Agent
       : base(force)
     {
 
+    }
+
+    public override Vector3d calcForceWithOctree(AgentType agent, IList<AgentType> agents, OctTree agentsOctree)
+    {
+      Vector3d sum = new Vector3d();
+      int count = 0;
+      Vector3d steer = new Vector3d();
+
+      List<Object> neighbors = agentsOctree.getNeighborsInRadius(agent.RefPosition.X, agent.RefPosition.Y, agent.RefPosition.Z, agent.VisionRadius * this.visionRadiusMultiplier);
+      foreach (Object neighbor in neighbors)
+      {
+        AgentType other = (AgentType)neighbor;
+        //Add up all the velocities and divide by the total to calculate
+        //the average velocity.
+        double d = agent.RefPosition.DistanceTo(other.RefPosition);
+        if ((d > 0) && (d < agent.VisionRadius * this.visionRadiusMultiplier))
+        {
+          //Adding up all the others' location
+          sum = Vector3d.Add(sum, new Vector3d(other.RefPosition));
+          //For an average, we need to keep track of how many boids
+          //are in our vision.
+          count++;
+        }
+      }
+
+      if (count > 0)
+      {
+        //We desire to go in that direction at maximum speed.
+        sum = Vector3d.Divide(sum, count);
+        steer = this.seek(agent, sum);
+        //Multiply the resultant vector by weight.
+        steer = Vector3d.Multiply(this.weight, steer);
+      }
+      //Seek the average location of our neighbors.
+      return steer;
     }
 
 
@@ -67,6 +103,41 @@ namespace Agent
     public override Grasshopper.Kernel.Types.IGH_Goo Duplicate()
     {
       return new CoheseForceType(this);
+    }
+
+    public override Vector3d calcForceWithKdTree(AgentType agent, IList<AgentType> list, KdTree.IKdTree<float, AgentType> kdTree)
+    {
+      Vector3d sum = new Vector3d();
+      int count = 0;
+      Vector3d steer = new Vector3d();
+      float[] position = { (float)agent.RefPosition.X, (float)agent.RefPosition.Y, (float)agent.RefPosition.Z };
+      KdTree.KdTreeNode<float, AgentType>[] neighbors = kdTree.RadialSearch(position, (float) (agent.VisionRadius * this.visionRadiusMultiplier), 10);
+      foreach (KdTree.KdTreeNode<float, AgentType> neighbor in neighbors)
+      {
+        AgentType other = neighbor.Value;
+        //Add up all the velocities and divide by the total to calculate
+        //the average velocity.
+        double d = agent.RefPosition.DistanceTo(other.RefPosition);
+        if ((d > 0) && (d < agent.VisionRadius * this.visionRadiusMultiplier))
+        {
+          //Adding up all the others' location
+          sum = Vector3d.Add(sum, new Vector3d(other.RefPosition));
+          //For an average, we need to keep track of how many boids
+          //are in our vision.
+          count++;
+        }
+      }
+
+      if (count > 0)
+      {
+        //We desire to go in that direction at maximum speed.
+        sum = Vector3d.Divide(sum, count);
+        steer = this.seek(agent, sum);
+        //Multiply the resultant vector by weight.
+        steer = Vector3d.Multiply(this.weight, steer);
+      }
+      //Seek the average location of our neighbors.
+      return steer;
     }
   }
 }
