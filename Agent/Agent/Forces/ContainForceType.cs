@@ -32,6 +32,11 @@ namespace Agent
       this.environment = force.environment;
     }
 
+    public override Vector3d calcForceWithOctree(AgentType agent, IList<AgentType> agents, OctTree agentsOctree)
+    {
+      throw new NotImplementedException();
+    }
+
     public override Rhino.Geometry.Vector3d calcForce(AgentType agent, IList<AgentType> agents)
     {
       Vector3d steer = new Vector3d();
@@ -54,6 +59,11 @@ namespace Agent
     public override Grasshopper.Kernel.Types.IGH_Goo Duplicate()
     {
       return new ContainForceType(this);
+    }
+
+    public override Vector3d calcForceWithKdTree(AgentType a, IList<AgentType> list, KdTree.IKdTree<float, AgentType> kdTree)
+    {
+      throw new NotImplementedException();
     }
   }
 }

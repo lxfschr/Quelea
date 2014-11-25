@@ -8,6 +8,9 @@ using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using System.Collections.ObjectModel;
 
+using OctreeSearch;
+using KdTree;
+
 namespace Agent
 {
   public class AgentSystemType : GH_Goo<Object>
@@ -37,10 +40,7 @@ namespace Agent
                            EnvironmentType environment, ForceType[] forces,
                            BehaviorType[] behaviors)
     {
-      if (this.agents == null)
-      {
-        this.agents = new List<AgentType>();
-      }
+      this.agents = new List<AgentType>(); 
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
@@ -139,6 +139,39 @@ namespace Agent
 
     public void applyForces(AgentType a)
     {
+      applyForcesWithoutSpatialOptimizations(a);
+    }
+
+    public void applyForces(AgentType a, OctTree agentsOctree)
+    {
+      applyForcesWithOctree(a, agentsOctree);
+    }
+
+    public void applyForces(AgentType a, IKdTree<float, AgentType> kdTree)
+    {
+      applyForcesWithKdTree(a, kdTree);
+    }
+
+    public void applyForcesWithKdTree(AgentType a, IKdTree<float, AgentType> kdTree)
+    {
+      foreach (ForceType force in this.forces)
+      {
+        Vector3d forceVec = force.calcForceWithKdTree(a, this.agents, kdTree);
+        a.applyForce(forceVec);
+      }
+    }
+
+    public void applyForcesWithOctree(AgentType a, OctTree agentsOctree)
+    {
+      foreach (ForceType force in this.forces)
+      {
+        Vector3d forceVec = force.calcForceWithOctree(a, this.agents, agentsOctree);
+        a.applyForce(forceVec);
+      }
+    }
+
+    public void applyForcesWithoutSpatialOptimizations(AgentType a)
+    {
       foreach (ForceType force in this.forces)
       {
         Vector3d forceVec = force.calcForce(a, this.agents);
@@ -189,13 +222,28 @@ namespace Agent
         }
       }
 
+
+      //OctTree agentsOctree = new OctTree();
+      //foreach (AgentType agent in this.agents)
+      //{
+      //  agentsOctree.addPoint(agent.RefPosition.X, agent.RefPosition.Y, agent.RefPosition.Z, agent);
+      //}
+
+      IKdTree<float, AgentType> kdTree = new KdTree<float, AgentType>(3, new KdTree.Math.FloatMath());
+      foreach (AgentType agent in this.agents)
+      {
+        float[] position = { (float)agent.RefPosition.X, (float)agent.RefPosition.Y, (float)agent.RefPosition.Z };
+        kdTree.Add(position, agent);
+      }
+
       for (int i = agents.Count - 1; i >= 0; i--)
       {
         AgentType a = agents[i];
         
         if (!applyBehaviors(a))
         {
-          applyForces(a);
+          //applyForces(a, agentsOctree);
+          applyForces(a, kdTree);
         }
         a.run();
         if (environment != null)

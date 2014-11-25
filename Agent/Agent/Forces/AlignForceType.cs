@@ -30,6 +30,11 @@ namespace Agent
 
     }
 
+    public override Vector3d calcForceWithOctree(AgentType agent, IList<AgentType> agents, OctTree agentsOctree)
+    {
+      throw new NotImplementedException();
+    }
+
 
     public override Vector3d calcForce(AgentType agent, IList<AgentType> agents)
     {
@@ -69,6 +74,11 @@ namespace Agent
     public override Grasshopper.Kernel.Types.IGH_Goo Duplicate()
     {
       return new AlignForceType(this);
+    }
+
+    public override Vector3d calcForceWithKdTree(AgentType a, IList<AgentType> list, KdTree.IKdTree<float, AgentType> kdTree)
+    {
+      throw new NotImplementedException();
     }
   }
 }
