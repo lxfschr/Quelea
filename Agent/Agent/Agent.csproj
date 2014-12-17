@@ -67,6 +67,9 @@
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
     <Compile Include="Agent\EngineComponent2.cs" />
+    <Compile Include="Agent\IPosition.cs" />
+    <Compile Include="Agent\ISpatialCollection.cs" />
+    <Compile Include="Agent\SpatialCollectionAsList.cs" />
     <Compile Include="ALGLIB\alglibinternal.cs" />
     <Compile Include="ALGLIB\alglibmisc.cs" />
     <Compile Include="ALGLIB\ap.cs" />

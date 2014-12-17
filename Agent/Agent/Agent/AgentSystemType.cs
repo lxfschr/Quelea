@@ -152,12 +152,20 @@ namespace Agent
       applyForcesWithKdTree(a, kdTree);
     }
 
-    public void applyForcesWithKdTree(AgentType a, IKdTree<float, AgentType> kdTree)
+    public void applyForcesWithKdTree(AgentType agent, IKdTree<float, AgentType> kdTree)
     {
+      float[] position = { (float)agent.RefPosition.X, (float)agent.RefPosition.Y, (float)agent.RefPosition.Z };
+      KdTree.KdTreeNode<float, AgentType>[] nodes = kdTree.RadialSearch(position, (float) (agent.VisionRadius), 10);
+      List<AgentType> neighbors = new List<AgentType>();
+      foreach (KdTree.KdTreeNode<float, AgentType> node in nodes)
+      {
+        neighbors.Add(node.Value);
+      }
+
       foreach (ForceType force in this.forces)
       {
-        Vector3d forceVec = force.calcForceWithKdTree(a, this.agents, kdTree);
-        a.applyForce(forceVec);
+        Vector3d forceVec = force.calcForce(agent, neighbors);
+        agent.applyForce(forceVec);
       }
     }
 
@@ -243,7 +251,8 @@ namespace Agent
         if (!applyBehaviors(a))
         {
           //applyForces(a, agentsOctree);
-          applyForces(a, kdTree);
+          //applyForces(a, kdTree);
+          applyForces(a);
         }
         a.run();
         if (environment != null)

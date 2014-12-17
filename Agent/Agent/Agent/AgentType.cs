@@ -286,6 +286,7 @@ namespace Agent
              this.historyLength.Equals(p.historyLength) &&
              this.lifespan.Equals(p.lifespan) &&
              this.position.Equals(p.position) &&
+             this.refPosition.Equals(p.refPosition) &&
              this.mass.Equals(p.mass) &&
              this.maxForce.Equals(p.maxForce) &&
              this.maxSpeed.Equals(p.maxSpeed) &&
@@ -308,6 +309,7 @@ namespace Agent
              this.historyLength.Equals(p.historyLength) &&
              this.lifespan.Equals(p.lifespan) &&
              this.position.Equals(p.position) &&
+             this.refPosition.Equals(p.refPosition) &&
              this.mass.Equals(p.mass) &&
              this.maxForce.Equals(p.maxForce) &&
              this.maxSpeed.Equals(p.maxSpeed) &&
