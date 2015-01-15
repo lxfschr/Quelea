@@ -8,7 +8,7 @@ using Rhino.Geometry;
 
 namespace Agent
 {
-  public class AgentType : GH_Goo<Object>
+  public class AgentType : GH_Goo<Object>, IPosition
   {
     private int lifespan;
     private double mass;
@@ -376,6 +376,9 @@ namespace Agent
       get { return "Agent"; }
     }
 
-    
+    public Point3d getPoint3d()
+    {
+      return this.refPosition;
+    }
   }
 }

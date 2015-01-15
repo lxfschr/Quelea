@@ -30,31 +30,25 @@ namespace Agent
 
     }
 
-    public override Vector3d calcForceWithOctree(AgentType agent, IList<AgentType> agents, OctTree agentsOctree)
-    {
-      throw new NotImplementedException();
-    }
-
-
-    public override Vector3d calcForce(AgentType agent, IList<AgentType> agents)
+    public override Vector3d calcForce(AgentType agent, ISpatialCollection<AgentType> neighbors)
     {
       Vector3d sum = new Vector3d();
       int count = 0;
       Vector3d steer = new Vector3d();
 
-      foreach (AgentType other in agents)
+      if (this.visionRadiusMultiplier != 0)
+      {
+        neighbors = neighbors.getNeighborsInSphere(agent, agent.VisionRadius * this.visionRadiusMultiplier);
+      }
+
+      foreach (AgentType other in neighbors)
       {
         //Add up all the velocities and divide by the total to calculate
         //the average velocity.
-        double d = agent.RefPosition.DistanceTo(other.RefPosition);
-        if ((d > 0) && (d < agent.VisionRadius * this.visionRadiusMultiplier))
-        {
-          //Adding up all the others' location
-          sum = Vector3d.Add(sum, new Vector3d(other.Velocity));
-          //For an average, we need to keep track of how many boids
-          //are in our vision.
-          count++;
-        }
+        sum = Vector3d.Add(sum, new Vector3d(other.Velocity));
+        //For an average, we need to keep track of how many boids
+        //are in our vision.
+        count++;
       }
 
       if (count > 0)
@@ -74,11 +68,6 @@ namespace Agent
     public override Grasshopper.Kernel.Types.IGH_Goo Duplicate()
     {
       return new AlignForceType(this);
-    }
-
-    public override Vector3d calcForceWithKdTree(AgentType a, IList<AgentType> list, KdTree.IKdTree<float, AgentType> kdTree)
-    {
-      throw new NotImplementedException();
     }
   }
 }

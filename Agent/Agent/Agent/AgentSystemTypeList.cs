@@ -13,7 +13,7 @@ using KdTree;
 
 namespace Agent
 {
-  public class AgentSystemType : GH_Goo<Object>
+  public class AgentSystemTypeList : GH_Goo<Object>
   {
     private ISpatialCollection<AgentType> agents;
     private AgentType[] agentsSettings;
@@ -24,9 +24,9 @@ namespace Agent
     private int timestep;
     private int nextIndex;
 
-    public AgentSystemType()
+    public AgentSystemTypeList()
     {
-      this.agents = new SpatialCollectionAsOctTree<AgentType>();
+      this.agents = new SpatialCollectionAsList<AgentType>();
       this.agentsSettings = new AgentType[] { new AgentType() };
       this.emitters = new EmitterType[] { new PtEmitterType() };
       this.environment = null;
@@ -36,11 +36,11 @@ namespace Agent
       this.nextIndex = 0;
     }
 
-    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters, 
+    public AgentSystemTypeList(AgentType[] agentsSettings, EmitterType[] emitters, 
                            EnvironmentType environment, ForceType[] forces,
                            BehaviorType[] behaviors)
     {
-      this.agents = new SpatialCollectionAsOctTree<AgentType>(); 
+      this.agents = new SpatialCollectionAsList<AgentType>(); 
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
@@ -48,11 +48,11 @@ namespace Agent
       this.behaviors = behaviors;
     }
 
-    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters,
+    public AgentSystemTypeList(AgentType[] agentsSettings, EmitterType[] emitters,
                            EnvironmentType environment, ForceType[] forces,
-                           BehaviorType[] behaviors, AgentSystemType system)
+                           BehaviorType[] behaviors, AgentSystemTypeList system)
     {
-      this.agents = new SpatialCollectionAsOctTree<AgentType>(system.agents);
+      this.agents = new SpatialCollectionAsList<AgentType>(system.agents);
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
@@ -60,10 +60,10 @@ namespace Agent
       this.behaviors = behaviors;
     }
 
-    public AgentSystemType(AgentSystemType system)
+    public AgentSystemTypeList(AgentSystemTypeList system)
     {
       // private ISpatialCollection<AgentType> agents;
-      this.agents = new SpatialCollectionAsOctTree<AgentType>(system.agents);
+      this.agents = new SpatialCollectionAsList<AgentType>(system.agents);
       this.agentsSettings = system.agentsSettings;
       this.emitters = system.emitters;
       this.environment = system.environment;
@@ -153,10 +153,10 @@ namespace Agent
       bool behaviorsApplied = false;
       foreach (BehaviorType behavior in this.behaviors)
       {
-        if (behavior.applyBehavior(a, this))
-        {
-          behaviorsApplied = true;
-        }
+        //if (behavior.applyBehavior(a, this))
+        //{
+        //  behaviorsApplied = true;
+        //}
       }
       return behaviorsApplied;
     }
@@ -232,7 +232,7 @@ namespace Agent
       }
 
       // If parameter cannot be cast to Point return false.
-      AgentSystemType s = obj as AgentSystemType;
+      AgentSystemTypeList s = obj as AgentSystemTypeList;
       if ((System.Object)s == null)
       {
         return false;
@@ -244,7 +244,7 @@ namespace Agent
              (this.environment.Equals(s.environment));
     }
 
-    public bool Equals(AgentSystemType s) //ToDo fix bugs in equals
+    public bool Equals(AgentSystemTypeList s) //ToDo fix bugs in equals
     {
       // If parameter is null return false:
       if ((object)s == null)
@@ -275,7 +275,7 @@ namespace Agent
 
     public override IGH_Goo Duplicate()
     {
-      return new AgentSystemType(this);
+      return new AgentSystemTypeList(this);
     }
 
     public override bool IsValid

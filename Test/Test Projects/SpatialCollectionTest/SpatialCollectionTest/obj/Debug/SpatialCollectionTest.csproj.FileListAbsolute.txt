@@ -1,0 +1,12 @@
+C:\Users\Administrator\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.exe.config
+C:\Users\Administrator\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\obj\Debug\SpatialCollectionTest.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.exe
+C:\Users\Administrator\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.pdb
+C:\Users\Administrator\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\obj\Debug\SpatialCollectionTest.exe
+C:\Users\Administrator\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\obj\Debug\SpatialCollectionTest.pdb
+\\andrew.ad.cmu.edu\users\users14\koz\Desktop\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.exe.config
+\\andrew.ad.cmu.edu\users\users14\koz\Desktop\SpatialCollectionTest\SpatialCollectionTest\obj\Debug\SpatialCollectionTest.exe
+\\andrew.ad.cmu.edu\users\users14\koz\Desktop\SpatialCollectionTest\SpatialCollectionTest\obj\Debug\SpatialCollectionTest.pdb
+\\andrew.ad.cmu.edu\users\users14\koz\Desktop\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.exe
+\\andrew.ad.cmu.edu\users\users14\koz\Desktop\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.pdb
+\\andrew.ad.cmu.edu\users\users14\koz\Desktop\SpatialCollectionTest\SpatialCollectionTest\obj\Debug\SpatialCollectionTest.csprojResolveAssemblyReference.cache
