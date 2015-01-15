@@ -63,13 +63,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agent\AgentComponent.cs" />
+    <Compile Include="Agent\AgentSystemComponentList.cs" />
     <Compile Include="Agent\AgentSystemComponent.cs" />
+    <Compile Include="Agent\AgentSystemTypeList.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
-    <Compile Include="Agent\EngineComponent2.cs" />
+    <Compile Include="Agent\EngineComponent.cs" />
     <Compile Include="Agent\IPosition.cs" />
     <Compile Include="Agent\ISpatialCollection.cs" />
+    <Compile Include="Agent\PointOctree.cs" />
+    <Compile Include="Agent\PointOctreeNode.cs" />
+    <Compile Include="Agent\SpatialCollectionAsLinkedList.cs" />
     <Compile Include="Agent\SpatialCollectionAsList.cs" />
+    <Compile Include="Agent\SpatialCollectionAsOctTree.cs" />
+    <Compile Include="Agent\Vector3.cs" />
     <Compile Include="ALGLIB\alglibinternal.cs" />
     <Compile Include="ALGLIB\alglibmisc.cs" />
     <Compile Include="ALGLIB\ap.cs" />
@@ -77,7 +84,10 @@
     <Compile Include="Agent\DebugDeconstructAgentComponent.cs" />
     <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />
     <Compile Include="Behaviors\BounceContainBehaviorType.cs" />
+    <Compile Include="Emitters\BoxEmitterType.cs" />
+    <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Environment\BrepEnvironmentComponent.cs" />
+    <Compile Include="Environment\PolysurfaceEnvironmentType.cs" />
     <Compile Include="Environment\BrepEnvironmentType.cs" />
     <Compile Include="Environment\EnvironmentType.cs" />
     <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
@@ -90,15 +100,14 @@
     <Compile Include="Forces\CoheseForceType.cs" />
     <Compile Include="Agent\DeconstructAgentComponent.cs" />
     <Compile Include="DescriptionBase.cs" />
-    <Compile Include="Emitters\EmitterCrvComponent.cs" />
-    <Compile Include="Emitters\EmitterCrvType.cs" />
+    <Compile Include="Emitters\CrvEmitterComponent.cs" />
+    <Compile Include="Emitters\CrvEmitterType.cs" />
     <Compile Include="Emitters\EmitterType.cs" />
     <Compile Include="Forces\SeparateForceComponent.cs" />
     <Compile Include="Forces\SeparateForceType.cs" />
     <Compile Include="Forces\ForceType.cs" />
-    <Compile Include="Emitters\EmitterPtType.cs" />
-    <Compile Include="Agent\EngineComponent.cs" />
-    <Compile Include="Emitters\EmitterPtComponent.cs" />
+    <Compile Include="Emitters\PtEmitterType.cs" />
+    <Compile Include="Emitters\PtEmitterComponent.cs" />
     <Compile Include="Agent\AgentInfo.cs" />
     <Compile Include="KdTreeLib\HyperRect.cs" />
     <Compile Include="KdTreeLib\IKdTree.cs" />

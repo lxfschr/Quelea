@@ -36,9 +36,7 @@ namespace Agent
       this.visionRadiusMultiplier = force.visionRadiusMultiplier;
     }
 
-    public abstract Vector3d calcForce(AgentType agent, IList<AgentType> agents);
-
-    public abstract Vector3d calcForceWithOctree(AgentType agent, IList<AgentType> agents, OctTree agentsOctree);
+    public abstract Vector3d calcForce(AgentType agent, ISpatialCollection<AgentType> neighbors);
 
     protected Vector3d calcSum(AgentType agent, IList<AgentType> agents, out int count)
     {
@@ -163,7 +161,5 @@ namespace Agent
     {
       get { return "Force"; }
     }
-
-    public abstract Vector3d calcForceWithKdTree(AgentType a, IList<AgentType> list, KdTree.IKdTree<float, AgentType> kdTree);
   }
 }
