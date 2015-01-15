@@ -58,6 +58,13 @@ namespace Agent
       return Math.Sqrt(Math.Pow(this.x + pt.x, 2) + Math.Pow(this.y + pt.y, 2) + Math.Pow(this.z + pt.z, 2));
     }
 
+    public double DistanceSquared(Point3d pt)
+    {
+      return (Math.Pow(this.X - pt.X, 2) +
+                               Math.Pow(this.Y - pt.Y, 2) +
+                               Math.Pow(this.Z - pt.Z, 2));
+    }
+
     public static Point3d Origin
     {
       get

@@ -37,11 +37,14 @@ namespace Agent
 
   class Program
   {
-    private static int NUM_AGENTS = 2000;
+    private static int NUM_AGENTS = 4000;
+    private static Point3d min = new Point3d(-50, -50, -50);
+    private static Point3d max = new Point3d(50, 50, 50);
+    private static double visionRadius = 5;
     static void Main(string[] args)
     {
       //ISpatialCollection<AgentType> testingAgents = new SpatialCollectionAsList<AgentType>();
-      ISpatialCollection<AgentType> testingAgents = new SpatialCollectionAsLinkedList<AgentType>();
+      ISpatialCollection<AgentType> testingAgents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int) visionRadius);
       testSpatialCollection(testingAgents);
       Console.WriteLine("Done!");
       Console.ReadLine();
@@ -53,7 +56,7 @@ namespace Agent
       ISpatialCollection<AgentType> baseAgents = new SpatialCollectionAsList<AgentType>();
       List<AgentType> agents = new List<AgentType>();
       Console.WriteLine("Creating Agents.");
-      for (int i = 0; i < NUM_AGENTS; i++) agents.Add(new AgentType(Random.RandomPoint(-5, 5)));
+      for (int i = 0; i < NUM_AGENTS; i++) agents.Add(new AgentType(Random.RandomPoint(-50, 50)));
       // DK: For testing/debugging, was using just these 2 points:
       // agents.Add(new AgentType(new Point3d(1, 1, 1)));
       // agents.Add(new AgentType(new Point3d(1, 1, 1.01)));
@@ -67,22 +70,22 @@ namespace Agent
           Console.WriteLine("Checking neighbors match.");
           foreach (AgentType agent in agents)
           {
-              ISpatialCollection<AgentType> neighbors1 = testingAgents.getNeighborsInSphere(agent, 5);
-              ISpatialCollection<AgentType> neighbors2 = baseAgents.getNeighborsInSphere(agent, 5);
-              foreach (AgentType neighbor in neighbors1)
+              ISpatialCollection<AgentType> testingNeighbors = testingAgents.getNeighborsInSphere(agent, 5);
+              ISpatialCollection<AgentType> baseNeighbors = baseAgents.getNeighborsInSphere(agent, 5);
+              foreach (AgentType neighbor in testingNeighbors)
               {
-                  if (!listContainsByReferenceEquals(neighbor, neighbors2))
+                  if (!listContainsByReferenceEquals(neighbor, baseNeighbors))
                   {
-                      Console.WriteLine("Mismatch1! Neighbors1 size: " + neighbors1.Count + " Neighbors2 size: " + neighbors2.Count);
+                    Console.WriteLine("Mismatch1! testingNeighbors size: " + testingNeighbors.Count + " baseNeighbors size: " + baseNeighbors.Count);
                       Console.ReadLine();
                       //throw new Exception();
                   }
               }
-              foreach (AgentType neighbor in neighbors2)
+              foreach (AgentType neighbor in baseNeighbors)
               {
-                  if (!listContainsByReferenceEquals(neighbor, neighbors1))
+                  if (!listContainsByReferenceEquals(neighbor, testingNeighbors))
                   {
-                      Console.WriteLine("Mismatch2! Neighbors1 size: " + neighbors1.Count + " Neighbors2 size: " + neighbors2.Count);
+                    Console.WriteLine("Mismatch2! testingNeighbors size: " + testingNeighbors.Count + " baseNeighbors size: " + baseNeighbors.Count);
                       Console.ReadLine();
                       //throw new Exception();
                   }

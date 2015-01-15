@@ -13,7 +13,7 @@ namespace Agent
     /// Initializes a new instance of the AgentSystemComponentList class.
     /// </summary>
     public AgentSystemComponentList()
-      : base("AgentSystem", "System",
+      : base("AgentSystemList", "SystemAsList",
           "Represents a self-contained Agent System of Agents and Emitters.",
           "Agent", "Agent")
     {
