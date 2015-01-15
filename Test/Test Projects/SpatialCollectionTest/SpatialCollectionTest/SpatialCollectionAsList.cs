@@ -47,10 +47,7 @@ namespace Agent
         if (!Object.ReferenceEquals(item, other)) {
             Point3d p1 = position.getPoint3d();
             Point3d p2 = ((IPosition)other).getPoint3d();
-            double dSquared = (Math.Pow(p1.X - p2.X, 2) +
-                               Math.Pow(p1.Y - p2.Y, 2) + 
-                               Math.Pow(p1.Z - p2.Z, 2));
-            if (dSquared < r*r)
+            if (p1.DistanceSquared(p2) < r*r)
             {
               neighbors.Add(other);
             }

@@ -15,14 +15,14 @@ namespace Agent
 {
   public class AgentSystemType : GH_Goo<Object>
   {
-    private ISpatialCollection<AgentType> agents;
-    private AgentType[] agentsSettings;
-    private EmitterType[] emitters;
-    private ForceType[] forces;
-    private BehaviorType[] behaviors;
-    private EnvironmentType environment;
-    private int timestep;
-    private int nextIndex;
+    protected ISpatialCollection<AgentType> agents;
+    protected AgentType[] agentsSettings;
+    protected EmitterType[] emitters;
+    protected ForceType[] forces;
+    protected BehaviorType[] behaviors;
+    protected EnvironmentType environment;
+    protected int timestep;
+    protected int nextIndex;
 
     public AgentSystemType()
     {

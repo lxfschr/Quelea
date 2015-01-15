@@ -10,3 +10,9 @@ C:\Users\Administrator\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Tes
 \\andrew.ad.cmu.edu\users\users14\koz\Desktop\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.exe
 \\andrew.ad.cmu.edu\users\users14\koz\Desktop\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.pdb
 \\andrew.ad.cmu.edu\users\users14\koz\Desktop\SpatialCollectionTest\SpatialCollectionTest\obj\Debug\SpatialCollectionTest.csprojResolveAssemblyReference.cache
+E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.exe.config
+E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\obj\Debug\SpatialCollectionTest.exe
+E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\obj\Debug\SpatialCollectionTest.pdb
+E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.exe
+E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\bin\Debug\SpatialCollectionTest.pdb
+E:\OneDrive\Documents\cmu\11-Fall_2014\Thesis\VS Project\Test\Test Projects\SpatialCollectionTest\SpatialCollectionTest\obj\Debug\SpatialCollectionTest.csprojResolveAssemblyReference.cache
