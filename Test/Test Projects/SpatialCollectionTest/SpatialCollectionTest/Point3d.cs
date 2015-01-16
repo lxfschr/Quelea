@@ -35,6 +35,10 @@ namespace Agent
       {
         return this.x;
       }
+      set
+      {
+        this.x = value;
+      }
     }
 
     public double Y
@@ -43,6 +47,10 @@ namespace Agent
       {
         return this.y;
       }
+      set
+      {
+        this.y = value;
+      }
     }
 
     public double Z
@@ -50,6 +58,10 @@ namespace Agent
       get
       {
         return this.z;
+      }
+      set
+      {
+        this.z = value;
       }
     }
 
@@ -61,8 +73,8 @@ namespace Agent
     public double DistanceSquared(Point3d pt)
     {
       return (Math.Pow(this.X - pt.X, 2) +
-                               Math.Pow(this.Y - pt.Y, 2) +
-                               Math.Pow(this.Z - pt.Z, 2));
+              Math.Pow(this.Y - pt.Y, 2) +
+              Math.Pow(this.Z - pt.Z, 2));
     }
 
     public static Point3d Origin

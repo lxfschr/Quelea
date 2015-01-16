@@ -63,6 +63,5 @@ namespace Agent
       this.behaviors = system.behaviors;
     }
 
-    
   }
 }

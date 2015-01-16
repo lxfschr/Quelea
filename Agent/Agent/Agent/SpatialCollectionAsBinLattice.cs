@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Rhino.Geometry;
 
 namespace Agent
 {
@@ -19,19 +20,9 @@ namespace Agent
     {
       this.spatialObjects = new List<T>();
       this.binSize = 5;
-      this.cols = this.rows = this.layers = 100 / binSize;
-
-      //Initialize lattice as 3D array of empty LinkedLists
-      this.lattice = new LinkedList<T>[cols][][];
-      for(int i = 0; i < cols; i ++) {
-        this.lattice[i] = new LinkedList<T>[rows][];
-        for(int j = 0; j < rows; j++) {
-          this.lattice[i][j] = new LinkedList<T>[layers];
-          for(int k = 0; k < layers; k++) {
-            lattice[i][j][k] = new LinkedList<T>();
-          }
-        }
-      }
+      this.min = new Point3d(-50,-50,-50);
+      this.max = new Point3d(50, 50, 50); ;
+      populateLattice();
     }
 
     public SpatialCollectionAsBinLattice(Point3d min, Point3d max, int binSize)
@@ -73,7 +64,9 @@ namespace Agent
     public SpatialCollectionAsBinLattice(SpatialCollectionAsBinLattice<T> collection)
     {
       this.spatialObjects = collection.spatialObjects;
-      this.lattice = collection.lattice;
+      this.min = collection.min;
+      this.max = collection.max;
+      populateLattice();
     }
 
     public SpatialCollectionAsBinLattice(ISpatialCollection<T> spatialCollection)
@@ -81,10 +74,10 @@ namespace Agent
       // TODO: Complete member initialization
       SpatialCollectionAsBinLattice<T> sC = ((SpatialCollectionAsBinLattice<T>)spatialCollection);
       this.spatialObjects = sC.spatialObjects;
-      this.lattice = sC.lattice;
       this.binSize = sC.binSize;
       this.min = sC.min;
       this.max = sC.max;
+      populateLattice();
     }
 
     public ISpatialCollection<T> getNeighborsInSphere(T item, double r)
@@ -107,7 +100,7 @@ namespace Agent
         {
           Point3d p1 = position.getPoint3d();
           Point3d p2 = ((IPosition)other).getPoint3d();
-          if (Point.DistanceSquared(p1,p2) < r * r)
+          if (Util.Point.DistanceSquared(p1,p2) < r * r)
           {
             neighbors.Add(other);
           }
@@ -150,7 +143,7 @@ namespace Agent
       while (p.Y <= min.Y)
       {
         sizeY = max.Y - min.Y;
-        max.Y -= sizeY;
+        min.Y -= sizeY;
         beyondMax = true;
       }
       while (p.Z >= max.Z)
@@ -162,7 +155,7 @@ namespace Agent
       while (p.Z <= min.Z)
       {
         sizeZ = max.Z - min.Z;
-        max.Z -= sizeZ;
+        min.Z -= sizeZ;
         beyondMax = true;
       }
 

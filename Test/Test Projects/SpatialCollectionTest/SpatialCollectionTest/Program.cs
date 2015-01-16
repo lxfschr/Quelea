@@ -8,6 +8,17 @@ using System.Diagnostics;
 
 namespace Agent
 {
+  class Point
+  {
+    private Point() { }
+
+    public static double DistanceSquared(Point3d p1, Point3d p2)
+    {
+      return (Math.Pow(p1.X - p2.X, 2) +
+                               Math.Pow(p1.Y - p2.Y, 2) +
+                               Math.Pow(p1.Z - p2.Z, 2));
+    }
+  }
 
   class Random
   {
@@ -65,6 +76,8 @@ namespace Agent
           testingAgents.Add(agent);
           baseAgents.Add(agent);
       }
+      testingAgents.Add(new AgentType(new Point3d(min.X - 100, 0, 0)));
+      baseAgents.Add(new AgentType(new Point3d(min.X - 100, 0, 0)));
       if (true) // DK: added so we can easily turn on and off this expensive check
       {
           Console.WriteLine("Checking neighbors match.");

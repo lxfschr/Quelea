@@ -73,6 +73,7 @@
     <Compile Include="Agent\ISpatialCollection.cs" />
     <Compile Include="Agent\PointOctree.cs" />
     <Compile Include="Agent\PointOctreeNode.cs" />
+    <Compile Include="Agent\SpatialCollectionAsBinLattice.cs" />
     <Compile Include="Agent\SpatialCollectionAsLinkedList.cs" />
     <Compile Include="Agent\SpatialCollectionAsList.cs" />
     <Compile Include="Agent\SpatialCollectionAsOctTree.cs" />
