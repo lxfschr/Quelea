@@ -26,7 +26,7 @@ namespace Agent
 
     public AgentSystemType()
     {
-      this.agents = new SpatialCollectionAsOctTree<AgentType>();
+      this.agents = new SpatialCollectionAsBinLattice<AgentType>();
       this.agentsSettings = new AgentType[] { new AgentType() };
       this.emitters = new EmitterType[] { new PtEmitterType() };
       this.environment = null;
@@ -40,7 +40,7 @@ namespace Agent
                            EnvironmentType environment, ForceType[] forces,
                            BehaviorType[] behaviors)
     {
-      this.agents = new SpatialCollectionAsOctTree<AgentType>(); 
+      this.agents = new SpatialCollectionAsBinLattice<AgentType>(); 
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
@@ -52,7 +52,7 @@ namespace Agent
                            EnvironmentType environment, ForceType[] forces,
                            BehaviorType[] behaviors, AgentSystemType system)
     {
-      this.agents = new SpatialCollectionAsOctTree<AgentType>(system.agents);
+      this.agents = new SpatialCollectionAsBinLattice<AgentType>(system.agents);
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
@@ -63,7 +63,7 @@ namespace Agent
     public AgentSystemType(AgentSystemType system)
     {
       // private ISpatialCollection<AgentType> agents;
-      this.agents = new SpatialCollectionAsOctTree<AgentType>(system.agents);
+      this.agents = new SpatialCollectionAsBinLattice<AgentType>(system.agents);
       this.agentsSettings = system.agentsSettings;
       this.emitters = system.emitters;
       this.environment = system.environment;
@@ -180,6 +180,7 @@ namespace Agent
 
     public void run()
     {
+      this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.agents);
       foreach (EmitterType emitter in emitters)
       {
         if (emitter.ContinuousFlow && (timestep % emitter.CreationRate == 0))

@@ -8,6 +8,17 @@ namespace Agent
 {
   namespace Util
   {
+    class Point
+    {
+      private Point() { }
+
+      public static double DistanceSquared(Point3d p1, Point3d p2)
+      {
+        return (Math.Pow(p1.X - p2.X, 2) +
+                                 Math.Pow(p1.Y - p2.Y, 2) +
+                                 Math.Pow(p1.Z - p2.Z, 2));
+      }
+    }
     class Vector
     {
       private Vector() { }
