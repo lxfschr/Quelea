@@ -46,30 +46,10 @@ namespace Agent
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
-      BoundingBox bounds;
-      if (environment != null)
-      {
-        bounds = environment.getBoundingBox();
-        this.agents = new SpatialCollectionAsBinLattice<AgentType>(bounds.Min, bounds.Max, (int) agentsSettings[0].VisionRadius);
-        this.min = bounds.Min;
-        this.max = bounds.Max;
-      }
-      else
-      {
-        IList<Point3d> boundingPts = new List<Point3d>();
-        foreach (EmitterType emitter in emitters)
-        {
-          bounds = emitter.getBoundingBox();
-          boundingPts.Add(bounds.Min);
-          boundingPts.Add(bounds.Max);
-        }
-        bounds = new BoundingBox(boundingPts);
-        this.agents = new SpatialCollectionAsBinLattice<AgentType>(bounds.Min, bounds.Max, (int)agentsSettings[0].VisionRadius);
-      }
-      this.min = bounds.Min;
-      this.max = bounds.Max;
       this.forces = forces;
       this.behaviors = behaviors;
+      updateBounds();
+      this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.min, this.max, (int)agentsSettings[0].VisionRadius);
     }
 
     public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters,
@@ -81,26 +61,8 @@ namespace Agent
       this.environment = environment;
       this.forces = forces;
       this.behaviors = behaviors;
-      BoundingBox bounds;
-      if (environment != null)
-      {
-        bounds = environment.getBoundingBox();
-        this.agents = new SpatialCollectionAsBinLattice<AgentType>(bounds.Min, bounds.Max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>) system.Agents.SpatialObjects);
-      }
-      else
-      {
-        IList<Point3d> boundingPts = new List<Point3d>();
-        foreach (EmitterType emitter in emitters)
-        {
-          bounds = emitter.getBoundingBox();
-          boundingPts.Add(bounds.Min);
-          boundingPts.Add(bounds.Max);
-        }
-        bounds = new BoundingBox(boundingPts);
-        this.agents = new SpatialCollectionAsBinLattice<AgentType>(bounds.Min, bounds.Max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)system.Agents.SpatialObjects);
-      }
-      this.min = bounds.Min;
-      this.max = bounds.Max;
+      updateBounds();
+      this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.min, this.max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)system.Agents.SpatialObjects);
     }
 
     public AgentSystemType(AgentSystemType system)
@@ -111,26 +73,8 @@ namespace Agent
       this.environment = system.environment;
       this.forces = system.forces;
       this.behaviors = system.behaviors;
-      BoundingBox bounds;
-      if (environment != null)
-      {
-        bounds = environment.getBoundingBox();
-        this.agents = new SpatialCollectionAsBinLattice<AgentType>(bounds.Min, bounds.Max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)system.Agents.SpatialObjects);
-      }
-      else
-      {
-        IList<Point3d> boundingPts = new List<Point3d>();
-        foreach (EmitterType emitter in emitters)
-        {
-          bounds = emitter.getBoundingBox();
-          boundingPts.Add(bounds.Min);
-          boundingPts.Add(bounds.Max);
-        }
-        bounds = new BoundingBox(boundingPts);
-        this.agents = new SpatialCollectionAsBinLattice<AgentType>(bounds.Min, bounds.Max, (int)agentsSettings[0].VisionRadius);
-      }
-      this.min = bounds.Min;
-      this.max = bounds.Max;
+      updateBounds();
+      this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.min, this.max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)system.Agents.SpatialObjects);
     }
 
     public ISpatialCollection<AgentType> Agents
@@ -242,7 +186,6 @@ namespace Agent
 
     public void run()
     {
-      //this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.agents);
       updateBounds();
       agents.updateDatastructure(min, max, (int)this.agentsSettings[0].VisionRadius, (IList<AgentType>) this.Agents.SpatialObjects);
       foreach (EmitterType emitter in emitters)
@@ -293,8 +236,9 @@ namespace Agent
       if (this.environment != null)
       {
         bounds = this.environment.getBoundingBox();
-        boundingPts.Add(bounds.Min);
-        boundingPts.Add(bounds.Max);
+        this.min = bounds.Min;
+        this.max = bounds.Max;
+        return;
       }
       else
       {
@@ -303,18 +247,20 @@ namespace Agent
           if (emitter.ContinuousFlow)
           {
             bounds = emitter.getBoundingBox();
-            boundingPts.Add(bounds.Min);
-            boundingPts.Add(bounds.Max);
+            this.min = bounds.Min;
+            this.max = bounds.Max;
           }
         }
         foreach (AgentType agent in this.agents)
         {
-          boundingPts.Add(agent.Position);
+          this.min.X = agent.RefPosition.X < this.min.X ? agent.RefPosition.X : this.min.X;
+          this.min.Y = agent.RefPosition.Y < this.min.Y ? agent.RefPosition.Y : this.min.Y;
+          this.min.Z = agent.RefPosition.Z < this.min.Z ? agent.RefPosition.Z : this.min.Z;
+          this.max.X = agent.RefPosition.X > this.max.X ? agent.RefPosition.X : this.max.X;
+          this.max.Y = agent.RefPosition.Y > this.max.Y ? agent.RefPosition.Y : this.max.Y;
+          this.max.Z = agent.RefPosition.Z > this.max.Z ? agent.RefPosition.Z : this.max.Z;
         }
       }
-      bounds = new BoundingBox(boundingPts);
-      this.min = bounds.Min;
-      this.max = bounds.Max;
     }
 
     public override bool Equals(object obj) //ToDo fix bugs in equals
