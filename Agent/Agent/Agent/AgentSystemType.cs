@@ -60,6 +60,8 @@ namespace Agent
         foreach (EmitterType emitter in emitters)
         {
           bounds = emitter.getBoundingBox();
+          boundingPts.Add(bounds.Min);
+          boundingPts.Add(bounds.Max);
         }
         bounds = new BoundingBox(boundingPts);
         this.agents = new SpatialCollectionAsBinLattice<AgentType>(bounds.Min, bounds.Max, (int)agentsSettings[0].VisionRadius);
@@ -82,7 +84,7 @@ namespace Agent
       BoundingBox bounds;
       if (environment != null)
       {
-         bounds = environment.getBoundingBox();
+        bounds = environment.getBoundingBox();
         this.agents = new SpatialCollectionAsBinLattice<AgentType>(bounds.Min, bounds.Max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>) system.Agents.SpatialObjects);
       }
       else
@@ -241,6 +243,7 @@ namespace Agent
     public void run()
     {
       //this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.agents);
+      updateBounds();
       agents.updateDatastructure(min, max, (int)this.agentsSettings[0].VisionRadius, (IList<AgentType>) this.Agents.SpatialObjects);
       foreach (EmitterType emitter in emitters)
       {
@@ -255,7 +258,6 @@ namespace Agent
 
       IList<AgentType> toRemove = new List<AgentType>();
       foreach (AgentType agent in this.agents) {
-        updateBounds(agent);
         if (!applyBehaviors(agent))
         {
           applyForces(agent);
@@ -284,25 +286,32 @@ namespace Agent
       timestep++;
     }
 
-    private void updateBounds(AgentType agent)
+    private void updateBounds()
     {
       IList<Point3d> boundingPts = new List<Point3d>();
       BoundingBox bounds;
-      foreach(EmitterType emitter in this.emitters) {
-        if(emitter.ContinuousFlow) 
-        {
-          bounds = emitter.getBoundingBox();
-          boundingPts.Add(bounds.Min);
-          boundingPts.Add(bounds.Max);
-        }
-      }
       if (this.environment != null)
       {
         bounds = this.environment.getBoundingBox();
         boundingPts.Add(bounds.Min);
         boundingPts.Add(bounds.Max);
       }
-      boundingPts.Add(agent.Position);
+      else
+      {
+        foreach (EmitterType emitter in this.emitters)
+        {
+          if (emitter.ContinuousFlow)
+          {
+            bounds = emitter.getBoundingBox();
+            boundingPts.Add(bounds.Min);
+            boundingPts.Add(bounds.Max);
+          }
+        }
+        foreach (AgentType agent in this.agents)
+        {
+          boundingPts.Add(agent.Position);
+        }
+      }
       bounds = new BoundingBox(boundingPts);
       this.min = bounds.Min;
       this.max = bounds.Max;
