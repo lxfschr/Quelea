@@ -115,5 +115,10 @@ namespace Agent
       get { return "BoxEmitter"; }
     }
 
+
+    public override BoundingBox getBoundingBox()
+    {
+      return this.box.BoundingBox;
+    }
   }
 }

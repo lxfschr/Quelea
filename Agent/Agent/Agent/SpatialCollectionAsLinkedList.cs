@@ -111,5 +111,11 @@ namespace Agent
     {
       get { return this.spatialObjects; }
     }
+
+
+    public void updateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
+    {
+      return;
+    }
   }
 }

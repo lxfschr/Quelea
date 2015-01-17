@@ -82,5 +82,7 @@ namespace Agent
     abstract public Vector3d avoidEdges(AgentType agent, double distance);
 
     abstract public bool bounceContain(AgentType agent);
+
+    abstract public BoundingBox getBoundingBox();
   }
 }

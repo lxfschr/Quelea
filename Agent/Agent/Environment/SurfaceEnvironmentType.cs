@@ -217,5 +217,10 @@ namespace Agent
       }
       return false;
     }
+
+    public override BoundingBox getBoundingBox()
+    {
+      return this.environment.GetBoundingBox(false);
+    }
   }
 }

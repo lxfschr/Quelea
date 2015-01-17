@@ -115,5 +115,7 @@ namespace Agent
     {
       get { return "EmitterType"; }
     }
+
+    public abstract BoundingBox getBoundingBox();
   }
 }

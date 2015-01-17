@@ -104,5 +104,10 @@ namespace Agent
       get { return "PointEmitterType"; }
     }
 
+
+    public override BoundingBox getBoundingBox()
+    {
+      return new BoundingBox(this.pt, this.pt);
+    }
   }
 }
