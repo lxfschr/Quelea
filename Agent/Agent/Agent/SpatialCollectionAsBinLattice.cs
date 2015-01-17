@@ -291,11 +291,13 @@ namespace Agent
         this.min = new Point3d(min.X - 50, min.Y - 50, min.Z - 50);
         this.max = new Point3d(max.X + 50, max.Y + 50, max.Z + 50);
       }
-      else
-      {
-        this.min = new Point3d(min.X - Math.Abs(max.X - min.X), min.Y - Math.Abs(max.Y - min.Y), min.Z - Math.Abs(max.Z - min.Z));
-        this.max = new Point3d(max.X + Math.Abs(max.X - min.X), max.Y + Math.Abs(max.Y - min.Y), max.Z + Math.Abs(max.Z - min.Z));
-      }
+      //else
+      //{
+      //  this.min = new Point3d(min.X - Math.Abs(max.X - min.X)/2, min.Y - Math.Abs(max.Y - min.Y)/2, min.Z - Math.Abs(max.Z - min.Z)/2);
+      //  this.max = new Point3d(max.X + Math.Abs(max.X - min.X)/2, max.Y + Math.Abs(max.Y - min.Y)/2, max.Z + Math.Abs(max.Z - min.Z)/2);
+      //}
+      this.min = min;
+      this.max = max;
       populateLattice();
     }
   }
