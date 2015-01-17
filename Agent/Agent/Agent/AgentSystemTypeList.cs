@@ -54,7 +54,6 @@ namespace Agent
 
     public AgentSystemTypeList(AgentSystemTypeList system)
     {
-      // private ISpatialCollection<AgentType> agents;
       this.agents = new SpatialCollectionAsList<AgentType>(system.agents);
       this.agentsSettings = system.agentsSettings;
       this.emitters = system.emitters;
