@@ -29,8 +29,33 @@ namespace Agent
     {
       this.spatialObjects = new List<T>();
       this.binSize = binSize;
-      this.min = min;
-      this.max = max;
+      if (min.Equals(max))
+      {
+        this.min = new Point3d(min.X - 50, min.Y - 50, min.Z - 50);
+        this.max = new Point3d(max.X + 50, max.Y + 50, max.Z + 50);
+      }
+      else
+      {
+        this.min = min;
+        this.max = max;
+      }
+      populateLattice();
+    }
+
+    public SpatialCollectionAsBinLattice(Point3d min, Point3d max, int binSize, IList<T> items)
+    {
+      this.spatialObjects = items;
+      this.binSize = binSize;
+      if (min.Equals(max))
+      {
+        this.min = new Point3d(min.X - 50, min.Y - 50, min.Z - 50);
+        this.max = new Point3d(max.X + 50, max.Y + 50, max.Z + 50);
+      }
+      else
+      {
+        this.min = min;
+        this.max = max;
+      }
       populateLattice();
     }
 
@@ -122,37 +147,37 @@ namespace Agent
     {
       bool beyondMax = false;
       double sizeX, sizeY, sizeZ;
-      while (p.X >= max.X)
+      while (p.X > max.X)
       {
         sizeX = max.X - min.X;
         max.X += sizeX;
         beyondMax = true;
       }
-      while (p.X <= min.X)
+      while (p.X < min.X)
       {
         sizeX = max.X - min.X;
         min.X -= sizeX;
         beyondMax = true;
       }
-      while (p.Y >= max.Y)
+      while (p.Y > max.Y)
       {
         sizeY = max.Y - min.Y;
         max.Y += sizeY;
         beyondMax = true;
       }
-      while (p.Y <= min.Y)
+      while (p.Y < min.Y)
       {
         sizeY = max.Y - min.Y;
         min.Y -= sizeY;
         beyondMax = true;
       }
-      while (p.Z >= max.Z)
+      while (p.Z > max.Z)
       {
         sizeZ = max.Z - min.Z;
         max.Z += sizeZ;
         beyondMax = true;
       }
-      while (p.Z <= min.Z)
+      while (p.Z < min.Z)
       {
         sizeZ = max.Z - min.Z;
         min.Z -= sizeZ;
@@ -255,6 +280,23 @@ namespace Agent
     public IEnumerable<T> SpatialObjects
     {
       get { return this.spatialObjects; }
+    }
+
+    public void updateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
+    {
+      this.spatialObjects = spatialObjects;
+      this.binSize = minNodeSize;
+      if (min.Equals(max))
+      {
+        this.min = new Point3d(min.X - 50, min.Y - 50, min.Z - 50);
+        this.max = new Point3d(max.X + 50, max.Y + 50, max.Z + 50);
+      }
+      else
+      {
+        this.min = new Point3d(min.X - Math.Abs(max.X - min.X), min.Y - Math.Abs(max.Y - min.Y), min.Z - Math.Abs(max.Z - min.Z));
+        this.max = new Point3d(max.X + Math.Abs(max.X - min.X), max.Y + Math.Abs(max.Y - min.Y), max.Z + Math.Abs(max.Z - min.Z));
+      }
+      populateLattice();
     }
   }
 }

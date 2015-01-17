@@ -110,5 +110,10 @@ namespace Agent
       get { return "PointEmitterType"; }
     }
 
+
+    public override BoundingBox getBoundingBox()
+    {
+      return this.crv.GetBoundingBox(false);
+    }
   }
 }

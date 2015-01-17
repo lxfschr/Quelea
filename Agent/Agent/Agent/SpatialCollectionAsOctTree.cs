@@ -25,6 +25,12 @@ namespace Agent
       this.octTree = new PointOctree<T>(initialWorldSize, initialWorldPos, minNodeSize); // DK: these values matter!
     }
 
+    public SpatialCollectionAsOctTree(Point3d min, Point3d max, int minNodeSize)
+    {
+      this.spatialObjects = new List<T>();
+      updateDatastructure(min, max, minNodeSize, new List<T>());
+    }
+
     public SpatialCollectionAsOctTree(SpatialCollectionAsOctTree<T> collection)
     {
       this.spatialObjects = collection.spatialObjects;
@@ -85,7 +91,7 @@ namespace Agent
 
     public bool Remove(T item)
     {
-      return this.spatialObjects.Remove(item);
+      return this.spatialObjects.Remove(item) && this.octTree.Remove(item);
     }
 
     public IEnumerator<T> GetEnumerator()
@@ -102,6 +108,18 @@ namespace Agent
     public IEnumerable<T> SpatialObjects
     {
       get { return this.spatialObjects; }
+    }
+
+
+    public void updateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
+    {
+      float initialWorldSize = (float)min.DistanceTo(max);
+      BoundingBox box = new BoundingBox(min, max);
+      float x = (float)box.Center.X;
+      float y = (float)box.Center.Y;
+      float z = (float)box.Center.Z;
+      Vector3 initialWorldPos = new Vector3(x, y, z);
+      this.octTree = new PointOctree<T>(initialWorldSize, initialWorldPos, minNodeSize); // DK: these values matter!
     }
   }
 }
