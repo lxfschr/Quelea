@@ -21,7 +21,7 @@ namespace Agent
       this.spatialObjects = new List<T>();
       this.binSize = 5;
       this.min = new Point3d(-50,-50,-50);
-      this.max = new Point3d(50, 50, 50); ;
+      this.max = new Point3d(50, 50, 50);
       populateLattice();
     }
 
@@ -107,6 +107,7 @@ namespace Agent
 
     public ISpatialCollection<T> getNeighborsInSphere(T item, double r)
     {
+      double rSquared = r * r;
       // ISpatialCollection<T> neighbors = new SpatialCollectionAsBinLattice<T>();
       IPosition position = (IPosition)item;
       LinkedList<T> possibleNeighbors = getBin(item);
@@ -125,7 +126,7 @@ namespace Agent
         {
           Point3d p1 = position.getPoint3d();
           Point3d p2 = ((IPosition)other).getPoint3d();
-          if (Util.Point.DistanceSquared(p1,p2) < r * r)
+          if (Util.Point.DistanceSquared(p1, p2) < rSquared)
           {
             neighbors.Add(other);
           }

@@ -49,6 +49,7 @@
     <Compile Include="PointOctreeNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpatialCollectionAsBinLattice2.cs" />
     <Compile Include="SpatialCollectionAsBinLattice.cs" />
     <Compile Include="SpatialCollectionAsLinkedList.cs" />
     <Compile Include="SpatialCollectionAsOctTree.cs" />
