@@ -101,5 +101,15 @@ namespace Agent
     {
       return this.spatialObjects.GetEnumerator();
     }
+
+    public IEnumerable<T> SpatialObjects
+    {
+      get { return this.spatialObjects; }
+    }
+
+    public void updateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
+    {
+      return;
+    }
   }
 }

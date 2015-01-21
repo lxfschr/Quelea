@@ -87,5 +87,20 @@ namespace Agent
     {
       return this.spatialObjects.GetEnumerator();
     }
+
+    public IEnumerable<T> SpatialObjects
+    {
+      get { return this.spatialObjects; }
+    }
+
+    public void updateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
+    {
+      float initialWorldSize = (float)min.DistanceTo(max);
+      float x = (float)(min.X + max.X) / 2;
+      float y = (float)(min.Y + max.Y) / 2;
+      float z = (float)(min.Z + max.Z) / 2;
+      Vector3 initialWorldPos = new Vector3(x, y, z);
+      this.octTree = new PointOctree<T>(initialWorldSize, initialWorldPos, minNodeSize); // DK: these values matter!
+    }
   }
 }
