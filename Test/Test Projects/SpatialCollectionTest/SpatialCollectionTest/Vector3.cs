@@ -35,6 +35,47 @@ namespace Agent
                          v1.z * v2.x - v1.x * v2.z,
                          v1.x * v2.y - v1.y * v2.x);
     }
+
+    public double DistanceTo(Vector3 v)
+    {
+      return Math.Sqrt(Math.Pow(this.x + v.x, 2) + Math.Pow(this.y + v.y, 2) + Math.Pow(this.z + v.z, 2));
+    }
+
+    public float X
+    {
+      get
+      {
+        return this.x;
+      }
+      set
+      {
+        this.x = value;
+      }
+    }
+
+    public float Y
+    {
+      get
+      {
+        return this.y;
+      }
+      set
+      {
+        this.y = value;
+      }
+    }
+
+    public float Z
+    {
+      get
+      {
+        return this.z;
+      }
+      set
+      {
+        this.z = value;
+      }
+    }
   }
 
   public class Bounds
@@ -48,6 +89,16 @@ namespace Agent
       this.r = new Vector3(sideLength.x / 2, sideLength.y / 2, sideLength.z / 2);
       this.lb = this.center - this.r;
       this.rt = this.center + this.r;
+    }
+
+    public Bounds(Point3d min, Point3d max)
+    {
+      Vector3 lb = new Vector3((float)min.X, (float)min.Y, (float)min.Z);
+      Vector3 rt = new Vector3((float)max.X, (float)max.Y, (float)max.Z);
+      this.center = new Vector3((lb.X + rt.X) / 2, (lb.Y + rt.Y) / 2, (lb.Z + rt.Z) / 2);
+      this.r = new Vector3(rt.X - center.X, rt.Y - center.Y, rt.Z - center.Z);
+      this.lb = lb;
+      this.rt = rt;
     }
 
     public bool Contains(Vector3 p)
