@@ -7,7 +7,7 @@ using System.Text;
 namespace Agent
 {
 
-  public class SpatialCollectionAsBinLattice2<T> : ISpatialCollection<T> where T : class
+  public class SpatialCollectionAsBinLattice3<T> : ISpatialCollection<T> where T : class
   {
     private IList<T> spatialObjects; //List of all the spatial objects
     private LinkedList<T>[][][] lattice; // Lattice of DoublyLinkedLists for intersection test
@@ -15,7 +15,7 @@ namespace Agent
     private int binSize;
     private Point3d min, max;
 
-    public SpatialCollectionAsBinLattice2()
+    public SpatialCollectionAsBinLattice3()
     {
       this.spatialObjects = new List<T>();
       this.binSize = 5;
@@ -24,7 +24,7 @@ namespace Agent
       populateLattice();
     }
 
-    public SpatialCollectionAsBinLattice2(Point3d min, Point3d max, int binSize)
+    public SpatialCollectionAsBinLattice3(Point3d min, Point3d max, int binSize)
     {
       this.spatialObjects = new List<T>();
       this.binSize = binSize;
@@ -41,7 +41,7 @@ namespace Agent
       populateLattice();
     }
 
-    public SpatialCollectionAsBinLattice2(Point3d min, Point3d max, int binSize, IList<T> items)
+    public SpatialCollectionAsBinLattice3(Point3d min, Point3d max, int binSize, IList<T> items)
     {
       this.spatialObjects = items;
       this.binSize = binSize;
@@ -85,7 +85,7 @@ namespace Agent
       }
     }
 
-    public SpatialCollectionAsBinLattice2(SpatialCollectionAsBinLattice2<T> collection)
+    public SpatialCollectionAsBinLattice3(SpatialCollectionAsBinLattice3<T> collection)
     {
       this.spatialObjects = collection.spatialObjects;
       this.min = collection.min;
@@ -93,10 +93,10 @@ namespace Agent
       populateLattice();
     }
 
-    public SpatialCollectionAsBinLattice2(ISpatialCollection<T> spatialCollection)
+    public SpatialCollectionAsBinLattice3(ISpatialCollection<T> spatialCollection)
     {
       // TODO: Complete member initialization
-      SpatialCollectionAsBinLattice2<T> sC = ((SpatialCollectionAsBinLattice2<T>)spatialCollection);
+      SpatialCollectionAsBinLattice3<T> sC = ((SpatialCollectionAsBinLattice3<T>)spatialCollection);
       this.spatialObjects = sC.spatialObjects;
       this.binSize = sC.binSize;
       this.min = sC.min;
@@ -107,7 +107,7 @@ namespace Agent
     public ISpatialCollection<T> getNeighborsInSphere(T item, double r)
     {
       double rSquared = r * r;
-      // ISpatialCollection<T> neighbors = new SpatialCollectionAsBinLattice2<T>();
+      // ISpatialCollection<T> neighbors = new SpatialCollectionAsBinLattice3<T>();
       IPosition position = (IPosition)item;
       //LinkedList<T> possibleNeighbors = getBin(item);
       List<T> possibleNeighbors = getBins(item, r);
@@ -138,20 +138,46 @@ namespace Agent
       return this.lattice[col][row][layer];
     }
 
+    private double check(double pn, double bmin, double bmax)
+    {
+      double result = 0;
+      double v = pn;
+      if (v < bmin)
+      {
+        double val = (bmin - v);
+        result += val * val;
+      }
+      if (v > bmax)
+      {
+        double val = (v - bmax);
+        result += val * val;
+      }
+      return result;
+    }
+
+    double SquaredDistPointAABB(Point3d p, Point3d lb, Point3d rt)
+    {
+      // Squared distance
+      double sq = 0.0;
+      sq += check(p.X - this.min.X, lb.X, rt.X);
+      sq += check(p.Y - this.min.Y, lb.Y, rt.Y);
+      sq += check(p.Z - this.min.Z, lb.Z, rt.Z);
+      return sq;
+    }
+
+
+    public bool IntersectSphere(Point3d center, double radius, Point3d min, Point3d max)
+    {
+      // True if the Sphere and AABB intersects
+      double squaredDistance = SquaredDistPointAABB(center, min, max);
+      return squaredDistance <= (radius * radius);
+    }
+
     private List<T> getBins(T item, double radius)
     {
       List<T> possibleNeighbors = new List<T>();
       Point3d p = ((IPosition)item).getPoint3d();
-      //int col = (int)(p.X - min.X) / this.binSize;
-      //int row = (int)(p.Y - min.Y) / this.binSize;
-      //int layer = (int)(p.Z - min.Z) / this.binSize;
 
-      //int firstCol = (int)(col * this.binSize - radius) / this.binSize;
-      //int firstRow = (int)(row * this.binSize - radius) / this.binSize;
-      //int firstLayer = (int)(layer * this.binSize - radius) / this.binSize;
-      //int lastCol = (int)(col * this.binSize + radius) / this.binSize;
-      //int lastRow = (int)(row * this.binSize + radius) / this.binSize;
-      //int lastLayer = (int)(layer * this.binSize + radius) / this.binSize;
       double offsetX = p.X - min.X;
       double offsetY = p.Y - min.Y;
       double offsetZ = p.Z - min.Z;
@@ -176,7 +202,12 @@ namespace Agent
         {
           for (int l = firstLayer; l <= lastLayer; l++)
           {
-            possibleNeighbors.AddRange(this.lattice[c][r][l]);
+            Point3d lb = new Point3d(c * this.binSize, r*this.binSize, l*this.binSize);
+            Point3d rt = new Point3d((c+1) * this.binSize, (r+1)*this.binSize, (l+1)*this.binSize);
+            if (this.IntersectSphere(p, radius, lb, rt))
+            {
+              possibleNeighbors.AddRange(this.lattice[c][r][l]);
+            }
           }
         }
       }

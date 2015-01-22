@@ -44,6 +44,14 @@ namespace Agent
       double z = Random.RandomDouble(min, max);
       return new Point3d(x, y, z);
     }
+
+    internal static Point3d RandomPoint(Point3d min, Point3d max)
+    {
+      double x = Random.RandomDouble(min.X, max.X);
+      double y = Random.RandomDouble(min.Y, max.Y);
+      double z = Random.RandomDouble(min.Z, max.Z);
+      return new Point3d(x, y, z);
+    }
   }
 
   class Program
@@ -52,10 +60,12 @@ namespace Agent
     private static Point3d min = new Point3d(-50, -50, -50);
     private static Point3d max = new Point3d(50, 50, 50);
     private static double visionRadius = 5;
+    private static int binSize = 5;
+    private static bool CHECKMATCH = false;
     static void Main(string[] args)
     {
       //ISpatialCollection<AgentType> testingAgents = new SpatialCollectionAsList<AgentType>();
-      ISpatialCollection<AgentType> testingAgents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int) visionRadius);
+      ISpatialCollection<AgentType> testingAgents = new SpatialCollectionAsBinLattice3<AgentType>(min, max, (int)binSize);
       testSpatialCollection(testingAgents);
       Console.WriteLine("Done!");
       Console.ReadLine();
@@ -67,24 +77,45 @@ namespace Agent
       ISpatialCollection<AgentType> baseAgents = new SpatialCollectionAsList<AgentType>();
       List<AgentType> agents = new List<AgentType>();
       Console.WriteLine("Creating Agents.");
-      for (int i = 0; i < NUM_AGENTS; i++) agents.Add(new AgentType(Random.RandomPoint(-50, 50)));
+      for (int i = 0; i < NUM_AGENTS; i++) agents.Add(new AgentType(Random.RandomPoint(min, max)));
       // DK: For testing/debugging, was using just these 2 points:
       // agents.Add(new AgentType(new Point3d(1, 1, 1)));
       // agents.Add(new AgentType(new Point3d(1, 1, 1.01)));
+
+      Stopwatch stopwatchBase = new Stopwatch();
+      Stopwatch stopwatchTesting = new Stopwatch();
+      Console.WriteLine("Getting add time data.");
+
+      stopwatchBase.Start();
       foreach (AgentType agent in agents)
       {
-          testingAgents.Add(agent);
           baseAgents.Add(agent);
       }
-      testingAgents.Add(new AgentType(new Point3d(min.X - 100, 0, 0)));
-      baseAgents.Add(new AgentType(new Point3d(min.X - 100, 0, 0)));
-      if (true) // DK: added so we can easily turn on and off this expensive check
+      //baseAgents.Add(new AgentType(new Point3d(min.X - 100, 0, 0)));
+      stopwatchBase.Stop();
+
+      stopwatchTesting.Start();
+      foreach (AgentType agent in agents)
+      {
+        testingAgents.Add(agent);
+      }
+      //testingAgents.Add(new AgentType(new Point3d(min.X - 100, 0, 0)));
+      stopwatchTesting.Stop();
+
+      TimeSpan baseAddTime = stopwatchBase.Elapsed;
+      TimeSpan testAddTime = stopwatchTesting.Elapsed;
+      Console.WriteLine("Base time elapsed: {0}", baseAddTime);
+      Console.WriteLine("Testing time elapsed: {0}", testAddTime);
+
+      Console.WriteLine("Elapsed time ratio: {0}", 1.0 * stopwatchTesting.ElapsedTicks / stopwatchBase.ElapsedTicks);
+
+      if (CHECKMATCH) // DK: added so we can easily turn on and off this expensive check
       {
           Console.WriteLine("Checking neighbors match.");
           foreach (AgentType agent in agents)
           {
-              ISpatialCollection<AgentType> testingNeighbors = testingAgents.getNeighborsInSphere(agent, 5);
-              ISpatialCollection<AgentType> baseNeighbors = baseAgents.getNeighborsInSphere(agent, 5);
+              ISpatialCollection<AgentType> testingNeighbors = testingAgents.getNeighborsInSphere(agent, visionRadius);
+              ISpatialCollection<AgentType> baseNeighbors = baseAgents.getNeighborsInSphere(agent, visionRadius);
               foreach (AgentType neighbor in testingNeighbors)
               {
                   if (!listContainsByReferenceEquals(neighbor, baseNeighbors))
@@ -105,26 +136,33 @@ namespace Agent
               }
           }
       }
-      Console.WriteLine("Getting timing data.");
-      Stopwatch stopwatchBase = new Stopwatch();
-      stopwatchBase.Start();
+      Console.WriteLine("Getting getNeighbors timing data.");
+      stopwatchBase.Restart();
       foreach (AgentType agent in agents)
       {
-        ISpatialCollection<AgentType> neighbors = baseAgents.getNeighborsInSphere(agent, 5);
+        ISpatialCollection<AgentType> neighbors = baseAgents.getNeighborsInSphere(agent, visionRadius);
       }
       stopwatchBase.Stop();
-      Console.WriteLine("Base time elapsed: {0}", stopwatchBase.Elapsed);
+      TimeSpan baseNeighborsTime = stopwatchBase.Elapsed;
+      Console.WriteLine("Base time elapsed: {0}", baseNeighborsTime);
 
-      Stopwatch stopwatchTesting = new Stopwatch();
-      stopwatchTesting.Start();
+      
+      stopwatchTesting.Restart();
       foreach (AgentType agent in agents)
       {
-        ISpatialCollection<AgentType> neighbors = testingAgents.getNeighborsInSphere(agent, 5);
+        ISpatialCollection<AgentType> neighbors = testingAgents.getNeighborsInSphere(agent, visionRadius);
       }
       stopwatchTesting.Stop();
-      Console.WriteLine("Testing time elapsed: {0}", stopwatchTesting.Elapsed);
+      TimeSpan testNeighborsTime = stopwatchTesting.Elapsed;
+      Console.WriteLine("Testing time elapsed: {0}", testNeighborsTime);
 
       Console.WriteLine("Elapsed time ratio: {0}", 1.0 * stopwatchTesting.ElapsedMilliseconds / stopwatchBase.ElapsedMilliseconds);
+
+      TimeSpan totalBaseTime = baseAddTime.Add(baseNeighborsTime);
+      Console.WriteLine("Total base time: {0}", totalBaseTime);
+      TimeSpan totalTestTime = testAddTime.Add(testNeighborsTime);
+      Console.WriteLine("Total test time: {0}", totalTestTime);
+      Console.WriteLine("Total elapsed time ratio: {0}", 1.0 * totalTestTime.TotalMilliseconds / totalBaseTime.TotalMilliseconds);
     }
 
     private static bool listContainsByReferenceEquals(AgentType agent, ISpatialCollection<AgentType> neighbors)
