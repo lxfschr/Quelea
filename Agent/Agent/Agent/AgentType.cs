@@ -18,7 +18,6 @@ namespace Agent
     private double visionAngle;
     private double visionRadius;
     private int historyLength;
-    private int age;
     private CircularArray<Point3d> positionHistory;
 
     private Point3d position;
@@ -36,11 +35,11 @@ namespace Agent
       this.maxForce = 0.1;
       this.visionAngle = 15.0;
       this.visionRadius = 5.0;
-      this.historyLength = 0;
-      this.age = 0;
+      this.historyLength = 1;
       this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = Point3d.Origin;
       this.refPosition = Point3d.Origin;
+      this.positionHistory.Add(refPosition);
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
@@ -57,10 +56,10 @@ namespace Agent
       this.visionAngle = visionAngle;
       this.visionRadius = visionRadius;
       this.historyLength = historyLength;
-      this.age = 0;
       this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = Point3d.Origin;
       this.refPosition = Point3d.Origin;
+      this.positionHistory.Add(refPosition);
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
@@ -77,10 +76,10 @@ namespace Agent
       this.visionAngle = visionAngle;
       this.visionRadius = visionRadius;
       this.historyLength = historyLength;
-      this.age = 0;
       this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = position;
       this.refPosition = position;
+      this.positionHistory.Add(refPosition);
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = Vector3d.Zero;
     }
@@ -95,10 +94,10 @@ namespace Agent
       this.visionAngle = agent.visionAngle;
       this.visionRadius = agent.visionRadius;
       this.historyLength = agent.historyLength;
-      this.age = agent.age;
       this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = agent.position;
       this.refPosition = agent.refPosition;
+      this.positionHistory.Add(refPosition);
       this.velocity = agent.velocity;
       this.acceleration = agent.acceleration;
     }
@@ -113,10 +112,10 @@ namespace Agent
       this.visionAngle = agent.visionAngle;
       this.visionRadius = agent.visionRadius;
       this.historyLength = agent.historyLength;
-      this.age = agent.age;
       this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.refPosition = position;
       this.position = position;
+      this.positionHistory.Add(refPosition);
       this.velocity = this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = agent.acceleration;
     }
@@ -131,10 +130,10 @@ namespace Agent
       this.visionAngle = agent.visionAngle;
       this.visionRadius = agent.visionRadius;
       this.historyLength = agent.historyLength;
-      this.age = agent.age;
       this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = position;
       this.refPosition = refPosition;
+      this.positionHistory.Add(refPosition);
       this.velocity = this.velocity = Util.Random.RandomVector(-0.1, 0.1);
       this.acceleration = agent.acceleration;
     }
@@ -211,6 +210,11 @@ namespace Agent
       }
     }
 
+    public List<Point3d> getPositionHistoryList()
+    {
+      return this.positionHistory.ToList();
+    }
+
     public Point3d Position 
     {
       get
@@ -258,8 +262,8 @@ namespace Agent
     public void update()
     {
       velocity = Vector3d.Add(velocity, acceleration);
-      this.positionHistory.Add(refPosition);
       refPosition.Transform(Transform.Translation(velocity));
+      this.positionHistory.Add(refPosition);
       position.Transform(Transform.Translation(velocity)); //So disconnecting the environment allows the agent to continue from its current position.
       acceleration = Vector3d.Multiply(acceleration, 0);
       lifespan -= 1;
@@ -363,7 +367,7 @@ namespace Agent
       {
         return (lifespan > 0 && mass > 0 && bodySize >= 0 && maxForce >= 0 &&
                 maxSpeed >= 0 && visionAngle >= 0 && visionRadius >= 0 &&
-                historyLength >= 0);
+                historyLength >= 1);
       }
     }
 
