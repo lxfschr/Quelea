@@ -251,14 +251,17 @@ namespace Agent
             this.max = bounds.Max;
           }
         }
-        foreach (AgentType agent in this.agents)
+        if (this.agents != null)
         {
-          this.min.X = agent.RefPosition.X < this.min.X ? agent.RefPosition.X : this.min.X;
-          this.min.Y = agent.RefPosition.Y < this.min.Y ? agent.RefPosition.Y : this.min.Y;
-          this.min.Z = agent.RefPosition.Z < this.min.Z ? agent.RefPosition.Z : this.min.Z;
-          this.max.X = agent.RefPosition.X > this.max.X ? agent.RefPosition.X : this.max.X;
-          this.max.Y = agent.RefPosition.Y > this.max.Y ? agent.RefPosition.Y : this.max.Y;
-          this.max.Z = agent.RefPosition.Z > this.max.Z ? agent.RefPosition.Z : this.max.Z;
+          foreach (AgentType agent in this.agents)
+          {
+            this.min.X = agent.RefPosition.X < this.min.X ? agent.RefPosition.X : this.min.X;
+            this.min.Y = agent.RefPosition.Y < this.min.Y ? agent.RefPosition.Y : this.min.Y;
+            this.min.Z = agent.RefPosition.Z < this.min.Z ? agent.RefPosition.Z : this.min.Z;
+            this.max.X = agent.RefPosition.X > this.max.X ? agent.RefPosition.X : this.max.X;
+            this.max.Y = agent.RefPosition.Y > this.max.Y ? agent.RefPosition.Y : this.max.Y;
+            this.max.Z = agent.RefPosition.Z > this.max.Z ? agent.RefPosition.Z : this.max.Z;
+          }
         }
       }
     }
@@ -330,7 +333,11 @@ namespace Agent
     {
       string agents = "Agents: " + this.agentsSettings.Length.ToString() + "\n";
       string emitters = "Emitters: " + this.emitters.Length.ToString() + "\n";
-      string environment = "Environment: " + this.environment.ToString() + "\n";
+      string environment = "Environment: None\n";
+      if (this.environment != null)
+      {
+        environment = "Environment: " + this.environment.ToString() + "\n";
+      }
       return agents + emitters + environment;
     }
 
