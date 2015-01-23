@@ -19,7 +19,7 @@ namespace Agent
     private double visionRadius;
     private int historyLength;
     private int age;
-    private Point3d[] positionHistory;
+    private CircularArray<Point3d> positionHistory;
 
     private Point3d position;
     private Vector3d velocity;
@@ -38,7 +38,7 @@ namespace Agent
       this.visionRadius = 5.0;
       this.historyLength = 0;
       this.age = 0;
-      this.positionHistory = new Point3d[historyLength];
+      this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = Point3d.Origin;
       this.refPosition = Point3d.Origin;
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
@@ -58,7 +58,7 @@ namespace Agent
       this.visionRadius = visionRadius;
       this.historyLength = historyLength;
       this.age = 0;
-      this.positionHistory = new Point3d[historyLength];
+      this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = Point3d.Origin;
       this.refPosition = Point3d.Origin;
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
@@ -78,7 +78,7 @@ namespace Agent
       this.visionRadius = visionRadius;
       this.historyLength = historyLength;
       this.age = 0;
-      this.positionHistory = new Point3d[historyLength];
+      this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = position;
       this.refPosition = position;
       this.velocity = Util.Random.RandomVector(-0.1, 0.1);
@@ -96,7 +96,7 @@ namespace Agent
       this.visionRadius = agent.visionRadius;
       this.historyLength = agent.historyLength;
       this.age = agent.age;
-      this.positionHistory = new Point3d[historyLength];
+      this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = agent.position;
       this.refPosition = agent.refPosition;
       this.velocity = agent.velocity;
@@ -114,7 +114,7 @@ namespace Agent
       this.visionRadius = agent.visionRadius;
       this.historyLength = agent.historyLength;
       this.age = agent.age;
-      this.positionHistory = new Point3d[historyLength];
+      this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.refPosition = position;
       this.position = position;
       this.velocity = this.velocity = Util.Random.RandomVector(-0.1, 0.1);
@@ -132,7 +132,7 @@ namespace Agent
       this.visionRadius = agent.visionRadius;
       this.historyLength = agent.historyLength;
       this.age = agent.age;
-      this.positionHistory = new Point3d[historyLength];
+      this.positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = position;
       this.refPosition = refPosition;
       this.velocity = this.velocity = Util.Random.RandomVector(-0.1, 0.1);
@@ -203,7 +203,7 @@ namespace Agent
       }
     }
 
-    public new Point3d[] PositionHistory
+    public CircularArray<Point3d> PositionHistory
     {
       get
       {
@@ -258,7 +258,7 @@ namespace Agent
     public void update()
     {
       velocity = Vector3d.Add(velocity, acceleration);
-      this.positionHistory[this.age % this.historyLength] = refPosition;
+      this.positionHistory.Add(refPosition);
       refPosition.Transform(Transform.Translation(velocity));
       position.Transform(Transform.Translation(velocity)); //So disconnecting the environment allows the agent to continue from its current position.
       acceleration = Vector3d.Multiply(acceleration, 0);

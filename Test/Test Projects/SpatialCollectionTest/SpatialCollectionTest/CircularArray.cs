@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Agent
 {
-  public class CircularArray<T>
+  class CircularArray<T>
   {
     private int size, count;
     private int head, tail;

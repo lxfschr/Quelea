@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AgentType.cs" />
+    <Compile Include="CircularArray.cs" />
     <Compile Include="IPosition.cs" />
     <Compile Include="ISpatialCollection.cs" />
     <Compile Include="Point3d.cs" />
