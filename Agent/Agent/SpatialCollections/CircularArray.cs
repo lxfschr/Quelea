@@ -34,6 +34,11 @@ namespace Agent
       }
     }
 
+    public T get(int i)
+    {
+      return this.array[(head + i) % this.size];
+    }
+
     public T[] ToArray()
     {
       T[] orderedArray = new T[count];
@@ -52,6 +57,23 @@ namespace Agent
         }
       }
       return orderedArray;
+    }
+
+    public List<T> ToList()
+    {
+      List<T> orderedList = new List<T>();
+      for (int i = head; i < this.count; i++)
+      {
+        orderedList.Add(this.array[i]);
+      }
+      if (this.count == this.size)
+      {
+        for (int i = 0; i < this.tail; i++)
+        {
+          orderedList.Add(this.array[i]);
+        }
+      }
+      return orderedList;
     }
 
     public override String ToString()

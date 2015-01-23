@@ -35,6 +35,7 @@ namespace Agent
       pManager.AddVectorParameter("Velocity", "V", "Velocity", GH_ParamAccess.item);
       pManager.AddVectorParameter("Acceleration", "A", "Acceleration", GH_ParamAccess.item);
       pManager.AddIntegerParameter("Lifespan", "L", "Lifespan", GH_ParamAccess.item);
+      pManager.AddPointParameter("PositionHistory", "H", "Position History", GH_ParamAccess.list);
     }
 
     /// <summary>
@@ -61,6 +62,7 @@ namespace Agent
       DA.SetData(1, agent.Velocity);
       DA.SetData(2, agent.Acceleration);
       DA.SetData(3, agent.Lifespan);
+      DA.SetDataList(4, agent.getPositionHistoryList());
     }
 
     /// <summary>
