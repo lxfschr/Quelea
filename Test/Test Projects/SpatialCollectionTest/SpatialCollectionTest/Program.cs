@@ -64,11 +64,27 @@ namespace Agent
     private static bool CHECKMATCH = false;
     static void Main(string[] args)
     {
-      //ISpatialCollection<AgentType> testingAgents = new SpatialCollectionAsList<AgentType>();
-      ISpatialCollection<AgentType> testingAgents = new SpatialCollectionAsBinLattice3<AgentType>(min, max, (int)binSize);
-      testSpatialCollection(testingAgents);
+      //ISpatialCollection<AgentType> testingAgents = new SpatialCollectionAsBinLattice3<AgentType>(min, max, (int)binSize);
+      //testSpatialCollection(testingAgents);
+      testCircularArray();
       Console.WriteLine("Done!");
       Console.ReadLine();
+      
+    }
+
+    public static void testCircularArray()
+    {
+      CircularArray<String> cArray = new CircularArray<String>(0);
+      cArray.Add("A");
+      cArray.Add("B");
+      cArray.Add("C");
+      cArray.Add("D");
+      cArray.Add("E");
+      cArray.Add("F");
+      cArray.Add("G");
+      cArray.Add("H");
+      cArray.Add("I");
+      Console.WriteLine(cArray.ToString());
     }
 
     public static void testSpatialCollection(ISpatialCollection<AgentType> testingAgents)
