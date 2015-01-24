@@ -240,7 +240,7 @@ namespace Agent
       while (p.Y <= min.Y)
       {
         sizeY = max.Y - min.Y;
-        max.Y -= sizeY;
+        min.Y -= sizeY;
         beyondMax = true;
       }
       while (p.Z >= max.Z)
@@ -252,7 +252,7 @@ namespace Agent
       while (p.Z <= min.Z)
       {
         sizeZ = max.Z - min.Z;
-        max.Z -= sizeZ;
+        min.Z -= sizeZ;
         beyondMax = true;
       }
 

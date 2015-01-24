@@ -20,7 +20,7 @@ namespace Agent
     {
       this.spatialObjects = new List<T>();
       this.binSize = 5;
-      this.min = new Point3d(-50,-50,-50);
+      this.min = new Point3d(-50, -50, -50);
       this.max = new Point3d(50, 50, 50);
       populateLattice();
     }
@@ -61,9 +61,9 @@ namespace Agent
 
     private void populateLattice()
     {
-      this.cols = (int)((this.max.X - this.min.X) / this.binSize) + 1;
-      this.rows = (int)((this.max.Y - this.min.Y) / this.binSize) + 1;
-      this.layers = (int)((this.max.Z - this.min.Z) / this.binSize) + 1;
+      this.cols = (int)(this.max.X - this.min.X) / this.binSize + 1;
+      this.rows = (int)(this.max.Y - this.min.Y) / this.binSize + 1;
+      this.layers = (int)(this.max.Z - this.min.Z) / this.binSize + 1;
 
       //Initialize lattice as 3D array of empty LinkedLists
       this.lattice = new LinkedList<T>[cols][][];
@@ -110,18 +110,12 @@ namespace Agent
       double rSquared = r * r;
       // ISpatialCollection<T> neighbors = new SpatialCollectionAsBinLattice<T>();
       IPosition position = (IPosition)item;
-      LinkedList<T> possibleNeighbors = getBin(item);
+      //LinkedList<T> possibleNeighbors = getBin(item);
+      List<T> possibleNeighbors = getBins(item, r);
       ISpatialCollection<T> neighbors = new SpatialCollectionAsList<T>();
+
       foreach (T other in possibleNeighbors)
       {
-        // DK: changed this:
-        // IPosition otherPosition = (IPosition)other;
-        // double d = position.getPoint3d().DistanceTo(otherPosition.getPoint3d());
-        // if (d < r && !Object.ReferenceEquals(item, other))
-        // {
-        //   neighbors.Add(other);
-        // }
-        // to this:
         if (!Object.ReferenceEquals(item, other))
         {
           Point3d p1 = position.getPoint3d();
@@ -132,6 +126,7 @@ namespace Agent
           }
         }
       }
+
       return neighbors;
     }
 
@@ -141,19 +136,53 @@ namespace Agent
       int col = (int)(p.X - min.X) / this.binSize;
       int row = (int)(p.Y - min.Y) / this.binSize;
       int layer = (int)(p.Z - min.Z) / this.binSize;
-      if (col < 0 || col >= this.cols)
-      {
-        throw new IndexOutOfRangeException();
-      }
-      if (row < 0 || row >= this.rows)
-      {
-        throw new IndexOutOfRangeException();
-      }
-      if (layer < 0 || layer >= this.layers)
-      {
-        throw new IndexOutOfRangeException();
-      }
       return this.lattice[col][row][layer];
+    }
+
+    private List<T> getBins(T item, double radius)
+    {
+      List<T> possibleNeighbors = new List<T>();
+      Point3d p = ((IPosition)item).getPoint3d();
+      //int col = (int)(p.X - min.X) / this.binSize;
+      //int row = (int)(p.Y - min.Y) / this.binSize;
+      //int layer = (int)(p.Z - min.Z) / this.binSize;
+
+      //int firstCol = (int)(col * this.binSize - radius) / this.binSize;
+      //int firstRow = (int)(row * this.binSize - radius) / this.binSize;
+      //int firstLayer = (int)(layer * this.binSize - radius) / this.binSize;
+      //int lastCol = (int)(col * this.binSize + radius) / this.binSize;
+      //int lastRow = (int)(row * this.binSize + radius) / this.binSize;
+      //int lastLayer = (int)(layer * this.binSize + radius) / this.binSize;
+      double offsetX = p.X - min.X;
+      double offsetY = p.Y - min.Y;
+      double offsetZ = p.Z - min.Z;
+      int firstCol = (int)(offsetX - radius) / this.binSize;
+      int firstRow = (int)(offsetY - radius) / this.binSize;
+      int firstLayer = (int)(offsetZ - radius) / this.binSize;
+      int lastCol = (int)(offsetX + radius) / this.binSize;
+      int lastRow = (int)(offsetY + radius) / this.binSize;
+      int lastLayer = (int)(offsetZ + radius) / this.binSize;
+
+      if (firstCol < 0) firstCol = 0;
+      if (firstRow < 0) firstRow = 0;
+      if (firstLayer < 0) firstLayer = 0;
+      if (lastCol >= this.cols) lastCol = this.cols - 1;
+      if (lastRow >= this.rows) lastRow = this.rows - 1;
+      if (lastLayer >= this.layers) lastLayer = this.layers - 1;
+
+
+      for (int c = firstCol; c <= lastCol; c++)
+      {
+        for (int r = firstRow; r <= lastRow; r++)
+        {
+          for (int l = firstLayer; l <= lastLayer; l++)
+          {
+            possibleNeighbors.AddRange(this.lattice[c][r][l]);
+          }
+        }
+      }
+
+      return possibleNeighbors;
     }
 
     private bool checkBounds(Point3d p)
@@ -222,21 +251,22 @@ namespace Agent
       int layer = (int)(p.Z - min.Z) / this.binSize;
       // It goes in 27 cells, i.e. every Thing is tested against other Things in its cell
       // as well as its 26 neighbors 
-      for (int dCol = -1; dCol <= 1; dCol++)
-      {
-        for (int dRow = -1; dRow <= 1; dRow++)
-        {
-          for (int dLayer = -1; dLayer <= 1; dLayer++)
-          {
-            if (col + dCol >= 0 && col + dCol < this.cols &&
-                row + dRow >= 0 && row + dRow < this.rows &&
-                layer + dLayer >= 0 && layer + dLayer < this.layers)
-            {
-              lattice[col + dCol][row + dRow][layer + dLayer].AddLast(item);
-            }
-          }
-        }
-      }
+      //for (int dCol = -1; dCol <= 1; dCol++)
+      //{
+      //  for (int dRow = -1; dRow <= 1; dRow++)
+      //  {
+      //    for (int dLayer = -1; dLayer <= 1; dLayer++)
+      //    {
+      //      if (col + dCol >= 0 && col + dCol < this.cols &&
+      //          row + dRow >= 0 && row + dRow < this.rows &&
+      //          layer + dLayer >= 0 && layer + dLayer < this.layers)
+      //      {
+      //        lattice[col + dCol][row + dRow][layer + dLayer].AddLast(item);
+      //      }
+      //    }
+      //  }
+      //}
+      lattice[col][row][layer].AddLast(item);
     }
 
     public void Clear()
