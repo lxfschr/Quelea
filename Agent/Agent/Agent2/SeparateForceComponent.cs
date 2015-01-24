@@ -28,12 +28,13 @@ namespace Agent.Agent2
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddGenericParameter("System 1", "S1", "The System to affect.", GH_ParamAccess.item);
       pManager.AddGenericParameter("System 2", "S2", "The System to react to.", GH_ParamAccess.item);
-      pManager.AddNumberParameter("Vision Angle", "A", "The angle around which the Agent will see other Agents.", GH_ParamAccess.item, 360.0);
-      pManager.AddNumberParameter("Vision Radius Multiplier", "R", "The radius around which the Agent will see other Agents.", GH_ParamAccess.item, 5.0);
+      pManager.AddNumberParameter("Vision Angle", "A", "The angle around which the Agent will see other Agents.", GH_ParamAccess.item, Constants.VisionAngle);
+      pManager.AddNumberParameter("Vision Radius Multiplier", "R", "The radius around which the Agent will see other Agents.", GH_ParamAccess.item, 1.0/3.0);
 
       // If you want to change properties of certain parameters, 
       // you can use the pManager instance to access them by index:
-      //pManager[0].Optional = true;
+      pManager[2].Optional = true;
+      pManager[3].Optional = true;
     }
 
     /// <summary>
@@ -60,15 +61,15 @@ namespace Agent.Agent2
       // We'll start by declaring variables and assigning them starting values.
       AgentSystemType system1 = new AgentSystemType();
       AgentSystemType system2 = new AgentSystemType();
-      double visionAngle = 360.0;
+      double visionAngle = Constants.VisionAngle;
       double visionRadiusMultiplier = 1.0/3.0;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!DA.GetData(0, ref system1)) return;
       if (!DA.GetData(1, ref system2)) return;
-      if (!DA.GetData(2, ref visionAngle)) return;
-      if (!DA.GetData(3, ref visionRadiusMultiplier)) return;
+      DA.GetData(2, ref visionAngle);
+      DA.GetData(3, ref visionRadiusMultiplier);
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (!(0.0 <= visionAngle && visionAngle <= 360.0))
@@ -106,7 +107,6 @@ namespace Agent.Agent2
 
     private Vector3d calcForce(AgentType agent, ISpatialCollection<AgentType> neighbors)
     {
-      Vector3d steer = new Vector3d();
       Vector3d sum = new Vector3d();
       Vector3d diff;
       int count = 0;
@@ -138,11 +138,11 @@ namespace Agent.Agent2
         sum = Vector3d.Divide(sum, count);
         sum.Unitize();
         sum = Vector3d.Multiply(sum, agent.MaxSpeed);
-        steer = Vector3d.Subtract(sum, agent.Velocity);
-        steer = Util.Vector.limit(steer, agent.MaxForce);
+        sum = Vector3d.Subtract(sum, agent.Velocity);
+        sum = Util.Vector.limit(sum, agent.MaxForce);
       }
       //Seek the average position of our neighbors.
-      return steer;
+      return sum;
     }
 
     /// <summary>

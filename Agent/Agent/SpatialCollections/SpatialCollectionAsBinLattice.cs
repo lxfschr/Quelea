@@ -61,9 +61,9 @@ namespace Agent
 
     private void populateLattice()
     {
-      this.cols = (int)(this.max.X - this.min.X) / this.binSize + 1;
-      this.rows = (int)(this.max.Y - this.min.Y) / this.binSize + 1;
-      this.layers = (int)(this.max.Z - this.min.Z) / this.binSize + 1;
+      this.cols = (int)((this.max.X - this.min.X) / this.binSize) + 1;
+      this.rows = (int)((this.max.Y - this.min.Y) / this.binSize) + 1;
+      this.layers = (int)((this.max.Z - this.min.Z) / this.binSize) + 1;
 
       //Initialize lattice as 3D array of empty LinkedLists
       this.lattice = new LinkedList<T>[cols][][];
@@ -141,6 +141,18 @@ namespace Agent
       int col = (int)(p.X - min.X) / this.binSize;
       int row = (int)(p.Y - min.Y) / this.binSize;
       int layer = (int)(p.Z - min.Z) / this.binSize;
+      if (col < 0 || col >= this.cols)
+      {
+        throw new IndexOutOfRangeException();
+      }
+      if (row < 0 || row >= this.rows)
+      {
+        throw new IndexOutOfRangeException();
+      }
+      if (layer < 0 || layer >= this.layers)
+      {
+        throw new IndexOutOfRangeException();
+      }
       return this.lattice[col][row][layer];
     }
 

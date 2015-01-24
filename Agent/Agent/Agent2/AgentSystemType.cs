@@ -37,6 +37,7 @@ namespace Agent.Agent2
       
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
+      this.min.X = Double.MaxValue;
       updateBounds();
       this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.min, this.max, (int)agentsSettings[0].VisionRadius);
     }
@@ -45,6 +46,7 @@ namespace Agent.Agent2
     {
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
+      this.min.X = Double.MaxValue;
       updateBounds();
       this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.min, this.max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)system.Agents.SpatialObjects);
     }
@@ -54,6 +56,7 @@ namespace Agent.Agent2
       // private ISpatialCollection<AgentType> agents;
       this.agentsSettings = system.agentsSettings;
       this.emitters = system.emitters;
+      this.min.X = Double.MaxValue;
       updateBounds();
       this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.min, this.max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)system.Agents.SpatialObjects);
     }
@@ -98,26 +101,50 @@ namespace Agent.Agent2
       nextIndex++;
     }
 
-    public void run(List<Vector3d> forces, List<BehaviorType> behaviors)
+    public void run(List<Vector3d> forces, List<bool> behaviors)
     {
+      updateBounds();
+      agents.updateDatastructure(min, max, (int)this.agentsSettings[0].VisionRadius, (IList<AgentType>)this.Agents.SpatialObjects);
       int index = 0;
       IList<AgentType> toRemove = new List<AgentType>();
-      
+      if (forces.Count > 0 && behaviors.Count > 0)
+      {
         foreach (AgentType agent in this.agents)
         {
-          if (forces.Count > 0)
-          {
-            agent.applyForce(forces[index]);
-            index++;
-          }
+          if (!behaviors[index]) agent.applyForce(forces[index]);
+          index++;
           agent.run();
           if (agent.isDead())
           {
             toRemove.Add(agent);
           }
+        }
       }
-      updateBounds();
-      agents.updateDatastructure(min, max, (int)this.agentsSettings[0].VisionRadius, (IList<AgentType>) this.Agents.SpatialObjects);
+      else if (forces.Count > 0)
+      {
+        foreach (AgentType agent in this.agents)
+        {
+          agent.applyForce(forces[index]);
+          index++;
+          agent.run();
+          if (agent.isDead())
+          {
+            toRemove.Add(agent);
+          }
+        }
+      }
+      else
+      {
+        foreach (AgentType agent in this.agents)
+        {
+          agent.run();
+          if (agent.isDead())
+          {
+            toRemove.Add(agent);
+          }
+        }
+      }
+      
       foreach (EmitterType emitter in emitters)
       {
         if (emitter.ContinuousFlow && (timestep % emitter.CreationRate == 0))
@@ -138,6 +165,8 @@ namespace Agent.Agent2
 
     private void updateBounds()
     {
+      this.min.X = this.min.Y = this.min.Z = Double.MaxValue;
+      this.max.X = this.max.Y = this.max.Z = Double.MinValue;
       IList<Point3d> boundingPts = new List<Point3d>();
       BoundingBox bounds;
       foreach (EmitterType emitter in this.emitters)
