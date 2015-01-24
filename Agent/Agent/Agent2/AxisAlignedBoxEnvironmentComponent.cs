@@ -31,7 +31,7 @@ namespace Agent.Agent2
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter("World Box Environment", "En", "World Box Environment", GH_ParamAccess.item);
+      pManager.AddGenericParameter("Axis Aligned Box Environment", "En", "An Axis Aligned Box Environment.", GH_ParamAccess.item);
     }
 
     /// <summary>

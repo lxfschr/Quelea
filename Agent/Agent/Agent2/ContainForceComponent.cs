@@ -26,7 +26,10 @@ namespace Agent.Agent2
       pManager.AddGenericParameter("System", "S", "The System to affect.", GH_ParamAccess.item);
       pManager.AddGenericParameter("Environment", "En", "The Environment to react to.", GH_ParamAccess.item);
       pManager.AddNumberParameter("Vision Angle", "A", "The angle around which the Agent will see other Agents.", GH_ParamAccess.item, Constants.VisionAngle);
-      pManager.AddNumberParameter("Vision Radius Mutliplier", "R", "The radius around which the Agent will see other Agents.", GH_ParamAccess.item, Constants.VisionRadius);
+      pManager.AddNumberParameter("Vision Radius Mutliplier", "R", "The radius around which the Agent will see other Agents.", GH_ParamAccess.item, Constants.VisionRadiusMultiplier);
+
+      pManager[2].Optional = true;
+      pManager[3].Optional = true;
     }
 
     /// <summary>
@@ -54,8 +57,8 @@ namespace Agent.Agent2
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!DA.GetData(0, ref system1)) return;
       if (!DA.GetData(1, ref environment)) return;
-      if (!DA.GetData(2, ref visionAngle)) return;
-      if (!DA.GetData(3, ref visionRadiusMultiplier)) return;
+      DA.GetData(2, ref visionAngle);
+      DA.GetData(3, ref visionRadiusMultiplier);
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (!(0.0 <= visionAngle && visionAngle <= 360.0))

@@ -28,7 +28,7 @@ namespace Agent.Agent2
       pManager.AddBooleanParameter("Reset", "R", "Reset the scene?", GH_ParamAccess.item, true);
       pManager.AddGenericParameter("System", "S", "System in scene.", GH_ParamAccess.item);
       pManager.AddVectorParameter("Forces", "F", "Forces in scene.", GH_ParamAccess.list);
-      pManager.AddGenericParameter("Behaviors", "B", "Behaviors in scene.", GH_ParamAccess.list);
+      pManager.AddBooleanParameter("Behaviors", "B", "Behaviors in scene.", GH_ParamAccess.list);
       pManager[2].Optional = true;
       pManager[3].Optional = true;
       
@@ -52,7 +52,7 @@ namespace Agent.Agent2
       Boolean reset = true;
       AgentSystemType system = new AgentSystemType();
       List<Vector3d> forces = new List<Vector3d>();
-      List<BehaviorType> behaviors = new List<BehaviorType>();
+      List<bool> behaviors = new List<bool>();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
@@ -70,7 +70,7 @@ namespace Agent.Agent2
 
     private void run(Boolean reset, AgentSystemType system,
                                     List<Vector3d> forces,
-                                    List<BehaviorType> behaviors)
+                                    List<bool> behaviors)
     {
       int index = 0;
       if (reset)
