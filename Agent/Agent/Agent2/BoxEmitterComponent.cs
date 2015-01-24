@@ -50,7 +50,7 @@ namespace Agent
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter("Box Emitter", "B", "Box Emitter", GH_ParamAccess.item);
+      pManager.AddGenericParameter("Box Emitter", "E", "Box Emitter", GH_ParamAccess.item);
       //pManager.AddPointParameter("Point Emitter Location", "P", "Point Emitter Location", GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.

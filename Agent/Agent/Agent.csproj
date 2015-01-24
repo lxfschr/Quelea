@@ -70,11 +70,11 @@
     <Compile Include="Agent2\BoxEmitterComponent.cs" />
     <Compile Include="Agent2\BoxEmitterType.cs" />
     <Compile Include="Agent2\CoheseForceComponent.cs" />
-    <Compile Include="Agent2\CoheseForceType.cs" />
     <Compile Include="Agent2\DeconstructAgentComponent.cs" />
     <Compile Include="Agent2\DeconstructSystemComponent.cs" />
     <Compile Include="Agent2\EmitterType.cs" />
     <Compile Include="Agent2\ForceType.cs" />
+    <Compile Include="Agent2\SeparateForceComponent.cs" />
     <Compile Include="Agent2\Util.cs" />
     <Compile Include="Agent\AgentComponent.cs" />
     <Compile Include="Agent\AgentSystemComponentList.cs" />
