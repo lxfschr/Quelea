@@ -4,17 +4,17 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace Agent.Agent2
+namespace Agent
 {
-  public class DeconstructAgentComponent : GH_Component
+  public class DeconstructSystemComponent : GH_Component
   {
     /// <summary>
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
-    public DeconstructAgentComponent()
-      : base("DeconstructAgent", "DeconstructAgent",
-          "DeconstructAgent",
-          "Agent", "Agent2")
+    public DeconstructSystemComponent()
+      : base("DeconstructSystem", "DeconstructSystem",
+          "DeconstructSystem",
+          "Agent", "Agent")
     {
     }
 
@@ -23,7 +23,7 @@ namespace Agent.Agent2
     /// </summary>
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter("Agent", "A", "Agent", GH_ParamAccess.item);
+      pManager.AddGenericParameter("System", "S", "System", GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -31,11 +31,7 @@ namespace Agent.Agent2
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
-      pManager.AddPointParameter("Position", "P", "Position", GH_ParamAccess.item);
-      pManager.AddVectorParameter("Velocity", "V", "Velocity", GH_ParamAccess.item);
-      pManager.AddVectorParameter("Acceleration", "A", "Acceleration", GH_ParamAccess.item);
-      pManager.AddIntegerParameter("Lifespan", "L", "Lifespan", GH_ParamAccess.item);
-      pManager.AddPointParameter("PositionHistory", "H", "Position History", GH_ParamAccess.list);
+      pManager.AddPointParameter("Agents", "A", "Agents", GH_ParamAccess.list);
     }
 
     /// <summary>
@@ -46,11 +42,11 @@ namespace Agent.Agent2
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
-      AgentType agent = new AgentType();
+      AgentSystemType system = new AgentSystemType();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!DA.GetData(0, ref agent)) return;
+      if (!DA.GetData(0, ref system)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
 
@@ -58,11 +54,12 @@ namespace Agent.Agent2
       // The actual functionality will be in a different method:
 
       // Finally assign the spiral to the output parameter.
-      DA.SetData(0, agent.Position);
-      DA.SetData(1, agent.Velocity);
-      DA.SetData(2, agent.Acceleration);
-      DA.SetData(3, agent.Lifespan);
-      DA.SetDataList(4, agent.getPositionHistoryList());
+      List<Point3d> agentPositions = new List<Point3d>();
+      foreach (AgentType a in system.Agents)
+      {
+        agentPositions.Add(a.Position);
+      }
+      DA.SetDataList(0, agentPositions);
     }
 
     /// <summary>
@@ -83,7 +80,7 @@ namespace Agent.Agent2
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{8bc37b6e-6729-4d81-a8c8-a374e2f28e0c}"); }
+      get { return new Guid("{525078b6-0eb9-4d7f-9824-45f0861c19ea}"); }
     }
   }
 }

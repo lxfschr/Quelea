@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace Agent.Agent2
+namespace Agent
 {
   public class BoxEmitterComponent : GH_Component
   {
@@ -18,7 +18,7 @@ namespace Agent.Agent2
     public BoxEmitterComponent()
       : base("Box Emitter", "boxEmit",
           "Emit agents from a box.",
-          "Agent", "Agent2")
+          "Agent", "Emitters")
     {
     }
 
@@ -132,7 +132,7 @@ namespace Agent.Agent2
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{16c6e8af-9afa-4337-becc-dd2e4a6bbbd9}"); }
+      get { return new Guid("{6a21f2fd-ff8b-41c8-837d-fce5a6ffa2f7}"); }
     }
   }
 }

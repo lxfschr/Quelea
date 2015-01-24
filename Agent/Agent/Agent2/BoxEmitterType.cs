@@ -2,7 +2,7 @@
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using System;
-namespace Agent.Agent2
+namespace Agent
 {
   public class BoxEmitterType : EmitterType
   {

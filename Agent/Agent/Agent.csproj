@@ -62,12 +62,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Agent2\AgentComponent.cs" />
+    <Compile Include="Agent2\AgentSystemComponent.cs" />
+    <Compile Include="Agent2\AgentSystemType.cs" />
+    <Compile Include="Agent2\AgentType.cs" />
+    <Compile Include="Agent2\BehaviorType.cs" />
+    <Compile Include="Agent2\BoxEmitterComponent.cs" />
+    <Compile Include="Agent2\BoxEmitterType.cs" />
+    <Compile Include="Agent2\CoheseForceComponent.cs" />
+    <Compile Include="Agent2\CoheseForceType.cs" />
+    <Compile Include="Agent2\DeconstructAgentComponent.cs" />
+    <Compile Include="Agent2\DeconstructSystemComponent.cs" />
+    <Compile Include="Agent2\EmitterType.cs" />
+    <Compile Include="Agent2\ForceType.cs" />
+    <Compile Include="Agent2\Util.cs" />
     <Compile Include="Agent\AgentComponent.cs" />
     <Compile Include="Agent\AgentSystemComponentList.cs" />
     <Compile Include="Agent\AgentSystemComponent.cs" />
     <Compile Include="Agent\AgentSystemTypeList.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
+    <Compile Include="Agent\DeconstructSystemComponent.cs" />
+    <Compile Include="Agent2\EngineComponent.cs" />
     <Compile Include="Agent\EngineComponent.cs" />
     <Compile Include="SpatialCollections\CircularArray.cs" />
     <Compile Include="SpatialCollections\IPosition.cs" />
