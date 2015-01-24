@@ -3,19 +3,17 @@ using System.Collections.Generic;
 
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-using Grasshopper;
-using Grasshopper.Kernel.Data;
 
 namespace Agent.Agent2
 {
-  public class EngineComponent : GH_Component
+  public class AxisAlignedBoxEnvironmentComponent : GH_Component
   {
     /// <summary>
-    /// Initializes a new instance of the Engine class.
+    /// Initializes a new instance of the AxisAlignedBoxEnvironmentComponent class.
     /// </summary>
-    public EngineComponent()
-      : base("Engine", "Engine",
-          "Engine that runs the simulation.",
+    public AxisAlignedBoxEnvironmentComponent()
+      : base("AxisAlignedBoxEnvironment", "AABoxEnv",
+          "An Axis Aligned Box Environment.",
           "Agent", "Agent2")
     {
     }
@@ -25,13 +23,7 @@ namespace Agent.Agent2
     /// </summary>
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
-      pManager.AddBooleanParameter("Reset", "R", "Reset the scene?", GH_ParamAccess.item, true);
-      pManager.AddGenericParameter("System", "S", "System in scene.", GH_ParamAccess.item);
-      pManager.AddVectorParameter("Forces", "F", "Forces in scene.", GH_ParamAccess.list);
-      pManager.AddGenericParameter("Behaviors", "B", "Behaviors in scene.", GH_ParamAccess.list);
-      pManager[2].Optional = true;
-      pManager[3].Optional = true;
-      
+      pManager.AddBoxParameter("Box", "B", "A Box aligned to World Axes.", GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -39,6 +31,7 @@ namespace Agent.Agent2
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
+      pManager.AddGenericParameter("World Box Environment", "En", "World Box Environment", GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -49,55 +42,26 @@ namespace Agent.Agent2
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
-      Boolean reset = true;
-      AgentSystemType system = new AgentSystemType();
-      List<Vector3d> forces = new List<Vector3d>();
-      List<BehaviorType> behaviors = new List<BehaviorType>();
+      Interval interval = new Interval(-100.0, 100.0);
+      Box box = new Box(Plane.WorldXY, interval, interval, interval);
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!DA.GetData(0, ref reset)) return;
-      if (!DA.GetData(1, ref system)) return;
-      DA.GetDataList(2, forces);
-      DA.GetDataList(3, behaviors);
+      if (!DA.GetData(0, ref box)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
+      if (!(box.Plane.XAxis.Equals(Plane.WorldXY.XAxis) && box.Plane.YAxis.Equals(Plane.WorldXY.YAxis)))
+      {
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Box must be aligned to WorldXY.");
+        return;
+      }
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      run(reset, system, forces, behaviors);
-    }
+      EnvironmentType environment = new AxisAlignedBoxEnvironmentType(box);
 
-    private void run(Boolean reset, AgentSystemType system,
-                                    List<Vector3d> forces,
-                                    List<BehaviorType> behaviors)
-    {
-      int index = 0;
-      if (reset)
-      {
-        system.Agents.Clear();
-        forces.Clear();
-        behaviors.Clear();
-        foreach (EmitterType emitter in system.Emitters)
-        {
-          if (!emitter.ContinuousFlow)
-          {
-            for (int i = 0; i < emitter.NumAgents; i++)
-            {
-              system.addAgent(emitter);
-            }
-          }
-        }
-        index++;
-
-
-      }
-      else
-      {
-        system.run(forces, behaviors);
-      }
-
-      return;
+      // Finally assign the spiral to the output parameter.
+      DA.SetData(0, environment);
     }
 
     /// <summary>
@@ -109,7 +73,7 @@ namespace Agent.Agent2
       {
         //You can add image files to your project resources and access them like this:
         // return Resources.IconForThisComponent;
-        return Properties.Resources.icon_engine;
+        return null;
       }
     }
 
@@ -118,7 +82,7 @@ namespace Agent.Agent2
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{b0f076cb-8558-46a1-bf94-20a97a1b4d08}"); }
+      get { return new Guid("{3703308d-1d46-469a-bdf7-bdeec8359171}"); }
     }
   }
 }
