@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 using Grasshopper.Kernel;
@@ -6,7 +6,7 @@ using Rhino.Geometry;
 using Grasshopper;
 using Grasshopper.Kernel.Data;
 
-namespace Agent
+namespace Agent.Agent2
 {
   public class EngineComponent : GH_Component
   {
@@ -16,7 +16,7 @@ namespace Agent
     public EngineComponent()
       : base("Engine", "Engine",
           "Engine that runs the simulation.",
-          "Agent", "Agent")
+          "Agent", "Agent2")
     {
     }
 
@@ -26,7 +26,12 @@ namespace Agent
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
       pManager.AddBooleanParameter("Reset", "R", "Reset the scene?", GH_ParamAccess.item, true);
-      pManager.AddGenericParameter("Systems", "S", "Systems in scene.", GH_ParamAccess.list);
+      pManager.AddGenericParameter("System", "S", "System in scene.", GH_ParamAccess.item);
+      pManager.AddVectorParameter("Forces", "F", "Forces in scene.", GH_ParamAccess.list);
+      pManager.AddGenericParameter("Behaviors", "B", "Behaviors in scene.", GH_ParamAccess.list);
+      pManager[2].Optional = true;
+      pManager[3].Optional = true;
+      
     }
 
     /// <summary>
@@ -46,70 +51,64 @@ namespace Agent
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
       Boolean reset = true;
-      List<AgentSystemType> systems = new List<AgentSystemType>();
+      AgentSystemType system = new AgentSystemType();
+      List<Vector3d> forces = new List<Vector3d>();
+      List<BehaviorType> behaviors = new List<BehaviorType>();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!DA.GetData(0, ref reset)) return;
-      if (!DA.GetDataList(1, systems)) return;
+      if (!DA.GetData(1, ref system)) return;
+      DA.GetDataList(2, forces);
+      DA.GetDataList(3, behaviors);
 
       // We should now validate the data and warn the user if invalid data is supplied.
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      DataTree<AgentType> agents = run(reset, systems);
+      DataTree<AgentType> agents = run(reset, system, forces, behaviors);
       //List<Point3d> agents = new List<Point3d>();
 
       // Finally assign the spiral to the output parameter.
       DA.SetDataTree(0, agents);
     }
 
-    // Declare systems outide loop so they do not reset each time.
-    //List<AgentSystemType> agentSystems = new List<AgentSystemType>();
-    private DataTree<AgentType> run(Boolean reset, List<AgentSystemType> systems)
+    private DataTree<AgentType> run(Boolean reset, AgentSystemType system,
+                                    List<Vector3d> forces,
+                                    List<BehaviorType> behaviors)
     {
       int index = 0;
       if (reset)
       {
-        foreach (AgentSystemType system in systems)
+        system.Agents.Clear();
+        forces.Clear();
+        behaviors.Clear();
+        foreach (EmitterType emitter in system.Emitters)
         {
-          system.Agents.Clear();
-        }
-        foreach (AgentSystemType system in systems)
-        {
-          foreach (EmitterType emitter in system.Emitters)
+          if (!emitter.ContinuousFlow)
           {
-            if (!emitter.ContinuousFlow)
+            for (int i = 0; i < emitter.NumAgents; i++)
             {
-              for (int i = 0; i < emitter.NumAgents; i++)
-              {
-                system.addAgent(emitter);
-              }
+              system.addAgent(emitter);
             }
           }
-          index++;
         }
+        index++;
 
 
       }
       else
       {
-        foreach (AgentSystemType system in systems)
-        {
-          system.run();
-        }
+        system.run(forces, behaviors);
       }
 
       DataTree<AgentType> tree = new DataTree<AgentType>();
       int counter = 0;
-      foreach (AgentSystemType system in systems)
+      foreach (AgentType agent in system.Agents)
       {
-        foreach (AgentType agent in system.Agents)
-        {
-          tree.Add(agent, new GH_Path(counter));
-        }
-        counter++;
+        tree.Add(agent, new GH_Path(counter));
       }
+      counter++;
 
       return tree;
     }
@@ -132,7 +131,7 @@ namespace Agent
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{95e8bf8a-8551-4fea-8561-0d2b0225029e}"); }
+      get { return new Guid("{b0f076cb-8558-46a1-bf94-20a97a1b4d08}"); }
     }
   }
 }
