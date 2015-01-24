@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
 namespace Agent.Agent2
 {
-  public class CoheseForceComponent : GH_Component
+  public class SeparateForceComponent : GH_Component
   {
     /// <summary>
-    /// Initializes a new instance of the CoheseForceComponent class.
+    /// Initializes a new instance of the SeparateForceComponent class.
     /// </summary>
-    public CoheseForceComponent()
-      : base("Cohese Force", "Cohese",
+    public SeparateForceComponent()
+      : base("Separate Force", "Separate",
           "Cohesion",
           "Agent", "Agent2")
     {
@@ -30,7 +29,7 @@ namespace Agent.Agent2
       pManager.AddGenericParameter("System 1", "S1", "The System to affect.", GH_ParamAccess.item);
       pManager.AddGenericParameter("System 2", "S2", "The System to react to.", GH_ParamAccess.item);
       pManager.AddNumberParameter("Vision Angle", "A", "The angle around which the Agent will see other Agents.", GH_ParamAccess.item, 360.0);
-      pManager.AddNumberParameter("Vision Radius Mutliplier", "R", "The radius around which the Agent will see other Agents.", GH_ParamAccess.item, 5.0);
+      pManager.AddNumberParameter("Vision Radius Multiplier", "R", "The radius around which the Agent will see other Agents.", GH_ParamAccess.item, 5.0);
 
       // If you want to change properties of certain parameters, 
       // you can use the pManager instance to access them by index:
@@ -44,7 +43,7 @@ namespace Agent.Agent2
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter("Cohesion Force", "F", "Cohesion Force", GH_ParamAccess.item);
+      pManager.AddGenericParameter("Separation Force", "F", "Separation Force.", GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
@@ -62,7 +61,7 @@ namespace Agent.Agent2
       AgentSystemType system1 = new AgentSystemType();
       AgentSystemType system2 = new AgentSystemType();
       double visionAngle = 360.0;
-      double visionRadiusMultiplier = 1.0;
+      double visionRadiusMultiplier = 1.0/3.0;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
@@ -77,7 +76,7 @@ namespace Agent.Agent2
       }
       if (!(0.0 <= visionRadiusMultiplier && visionRadiusMultiplier <= 1.0))
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Vision Radius must be between 0 and 1.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Vision Radius Multiplier must be between 0 and 1.");
         return;
       }
 
@@ -91,8 +90,7 @@ namespace Agent.Agent2
       DA.SetDataList(0, forces);
     }
 
-    private List<Vector3d> run(AgentSystemType system1, AgentSystemType system2, 
-                               double visionAngle, double visionRadiusMultiplier)
+    private List<Vector3d> run(AgentSystemType system1, AgentSystemType system2, double visionAngle, double visionRadiusMultiplier)
     {
       List<Vector3d> forces = new List<Vector3d>();
       foreach (AgentType agent in system1.Agents)
@@ -106,26 +104,42 @@ namespace Agent.Agent2
 
     private Vector3d calcForce(AgentType agent, ISpatialCollection<AgentType> neighbors)
     {
-      Vector3d sum = new Vector3d();
-      int count = 0;
       Vector3d steer = new Vector3d();
+      Vector3d sum = new Vector3d();
+      Vector3d diff;
+      int count = 0;
 
       foreach (AgentType other in neighbors)
       {
-        //Adding up all the others' location
-        sum = Vector3d.Add(sum, new Vector3d(other.RefPosition));
-        //For an average, we need to keep track of how many boids
-        //are in our vision.
-        count++;
+        double d = agent.RefPosition.DistanceTo(other.RefPosition);
+        if (d > 0)
+        {
+          //double d = Vector3d.Subtract(agent.RefPosition, other.RefPosition).Length;
+          //if we are not comparing the seeker to iteself and it is at least
+          //desired separation away:
+          diff = Point3d.Subtract(agent.RefPosition, other.RefPosition);
+          diff.Unitize();
+
+          //Weight the magnitude by distance to other
+          diff = Vector3d.Divide(diff, d);
+
+          sum = Vector3d.Add(sum, diff);
+
+          //For an average, we need to keep track of how many boids
+          //are in our vision.
+          count++;
+        }
       }
 
       if (count > 0)
       {
-        //We desire to go in that direction at maximum speed.
         sum = Vector3d.Divide(sum, count);
-        steer = Util.Agent.seek(agent, sum);
+        sum.Unitize();
+        sum = Vector3d.Multiply(sum, agent.MaxSpeed);
+        steer = Vector3d.Subtract(sum, agent.Velocity);
+        steer = Util.Agent.limit(steer, agent.MaxForce);
       }
-      //Seek the average location of our neighbors.
+      //Seek the average position of our neighbors.
       return steer;
     }
 
@@ -138,16 +152,12 @@ namespace Agent.Agent2
       {
         //You can add image files to your project resources and access them like this:
         // return Resources.IconForThisComponent;
-        return Properties.Resources.icon_coheseForce;
+        return Properties.Resources.icon_separateForce;
       }
     }
-
-    /// <summary>
-    /// Gets the unique ID for this component. Do not change this ID after release.
-    /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{571a8945-b7b9-4123-8725-474e04fa7e4b}"); }
+      get { return new Guid("{585732e0-b647-4ad0-a4a7-133e2b3fdce3}"); }
     }
   }
 }
