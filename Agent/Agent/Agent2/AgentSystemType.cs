@@ -37,7 +37,6 @@ namespace Agent.Agent2
       
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
-      this.min.X = Double.MaxValue;
       updateBounds();
       this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.min, this.max, (int)agentsSettings[0].VisionRadius);
     }
@@ -46,7 +45,6 @@ namespace Agent.Agent2
     {
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
-      this.min.X = Double.MaxValue;
       updateBounds();
       this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.min, this.max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)system.Agents.SpatialObjects);
     }
@@ -56,7 +54,6 @@ namespace Agent.Agent2
       // private ISpatialCollection<AgentType> agents;
       this.agentsSettings = system.agentsSettings;
       this.emitters = system.emitters;
-      this.min.X = Double.MaxValue;
       updateBounds();
       this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.min, this.max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)system.Agents.SpatialObjects);
     }
