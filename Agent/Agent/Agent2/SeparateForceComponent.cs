@@ -67,6 +67,8 @@ namespace Agent.Agent2
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!DA.GetData(0, ref system1)) return;
       if (!DA.GetData(1, ref system2)) return;
+      if (!DA.GetData(2, ref visionAngle)) return;
+      if (!DA.GetData(3, ref visionRadiusMultiplier)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (!(0.0 <= visionAngle && visionAngle <= 360.0))
@@ -137,7 +139,7 @@ namespace Agent.Agent2
         sum.Unitize();
         sum = Vector3d.Multiply(sum, agent.MaxSpeed);
         steer = Vector3d.Subtract(sum, agent.Velocity);
-        steer = Util.Agent.limit(steer, agent.MaxForce);
+        steer = Util.Vector.limit(steer, agent.MaxForce);
       }
       //Seek the average position of our neighbors.
       return steer;

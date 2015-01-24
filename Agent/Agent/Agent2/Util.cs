@@ -56,16 +56,6 @@ namespace Agent.Agent2
         }
         return steer;
       }
-
-      public static Vector3d limit(Vector3d vec, double max)
-      {
-        if (vec.Length > max)
-        {
-          vec.Unitize();
-          vec = Vector3d.Multiply(vec, max);
-        }
-        return vec;
-      }
     }
     class Point
     {
@@ -97,6 +87,16 @@ namespace Agent.Agent2
         double scalar = Util.Vector.dotProduct(of, to) / (to.Length * to.Length);
         parVec = Vector3d.Multiply(to, scalar);
         perpVec = Vector3d.Subtract(of, parVec);
+      }
+
+      public static Vector3d limit(Vector3d vec, double max)
+      {
+        if (vec.Length > max)
+        {
+          vec.Unitize();
+          vec = Vector3d.Multiply(vec, max);
+        }
+        return vec;
       }
     }
     class Random

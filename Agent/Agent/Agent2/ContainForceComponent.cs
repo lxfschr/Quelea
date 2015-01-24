@@ -6,14 +6,14 @@ using Rhino.Geometry;
 
 namespace Agent.Agent2
 {
-  public class CoheseForceComponent : GH_Component
+  public class ContainForceComponent : GH_Component
   {
     /// <summary>
-    /// Initializes a new instance of the CoheseForceComponent class.
+    /// Initializes a new instance of the ContainForceComponent class.
     /// </summary>
-    public CoheseForceComponent()
-      : base("Cohese Force", "Cohese",
-          "Cohesion",
+    public ContainForceComponent()
+      : base("ContainForce", "Contain",
+          "Contain Force",
           "Agent", "Agent2")
     {
     }
@@ -23,18 +23,10 @@ namespace Agent.Agent2
     /// </summary>
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
-      // Use the pManager object to register your input parameters.
-      // You can often supply default values when creating parameters.
-      // All parameters must have the correct access type. If you want 
-      // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddGenericParameter("System 1", "S1", "The System to affect.", GH_ParamAccess.item);
-      pManager.AddGenericParameter("System 2", "S2", "The System to react to.", GH_ParamAccess.item);
-      pManager.AddNumberParameter("Vision Angle", "A", "The angle around which the Agent will see other Agents.", GH_ParamAccess.item, 360.0);
-      pManager.AddNumberParameter("Vision Radius Mutliplier", "R", "The radius around which the Agent will see other Agents.", GH_ParamAccess.item, 5.0);
-
-      // If you want to change properties of certain parameters, 
-      // you can use the pManager instance to access them by index:
-      //pManager[0].Optional = true;
+      pManager.AddGenericParameter("System", "S", "The System to affect.", GH_ParamAccess.item);
+      pManager.AddGenericParameter("Environment", "En", "The Environment to react to.", GH_ParamAccess.item);
+      pManager.AddNumberParameter("Vision Angle", "A", "The angle around which the Agent will see other Agents.", GH_ParamAccess.item, Constants.VisionAngle);
+      pManager.AddNumberParameter("Vision Radius Mutliplier", "R", "The radius around which the Agent will see other Agents.", GH_ParamAccess.item, Constants.VisionRadius);
     }
 
     /// <summary>
@@ -42,13 +34,7 @@ namespace Agent.Agent2
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
-      // Use the pManager object to register your output parameters.
-      // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter("Cohesion Force", "F", "Cohesion Force", GH_ParamAccess.item);
-
-      // Sometimes you want to hide a specific parameter from the Rhino preview.
-      // You can use the HideParameter() method as a quick way:
-      //pManager.HideParameter(1);
+      pManager.AddGenericParameter("Contain Force", "F", "Contain Force", GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -60,14 +46,14 @@ namespace Agent.Agent2
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
       AgentSystemType system1 = new AgentSystemType();
-      AgentSystemType system2 = new AgentSystemType();
-      double visionAngle = 360.0;
-      double visionRadiusMultiplier = 1.0;
+      EnvironmentType environment = new AxisAlignedBoxEnvironmentType();
+      double visionAngle = Constants.VisionAngle;
+      double visionRadiusMultiplier = Constants.VisionRadiusMultiplier;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!DA.GetData(0, ref system1)) return;
-      if (!DA.GetData(1, ref system2)) return;
+      if (!DA.GetData(1, ref environment)) return;
       if (!DA.GetData(2, ref visionAngle)) return;
       if (!DA.GetData(3, ref visionRadiusMultiplier)) return;
 
@@ -87,47 +73,39 @@ namespace Agent.Agent2
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
 
-      List<Vector3d> forces = run(system1, system2, visionAngle, visionRadiusMultiplier);
+      List<Vector3d> forces = run(system1, environment, visionAngle, visionRadiusMultiplier);
 
       // Finally assign the output parameter.
       DA.SetDataList(0, forces);
     }
 
-    private List<Vector3d> run(AgentSystemType system1, AgentSystemType system2, 
+    private List<Vector3d> run(AgentSystemType system1, EnvironmentType environment,
                                double visionAngle, double visionRadiusMultiplier)
     {
       List<Vector3d> forces = new List<Vector3d>();
       foreach (AgentType agent in system1.Agents)
       {
-        ISpatialCollection<AgentType> neighbors = system2.Agents.getNeighborsInSphere(agent, agent.VisionRadius * visionRadiusMultiplier);
-        forces.Add(calcForce(agent, neighbors));
+        forces.Add(calcForce(agent, environment, visionRadiusMultiplier));
       }
 
       return forces;
     }
 
-    private Vector3d calcForce(AgentType agent, ISpatialCollection<AgentType> neighbors)
+    private Vector3d calcForce(AgentType agent, EnvironmentType environment, 
+                               double visionRadiusMultiplier)
     {
-      Vector3d sum = new Vector3d();
-      int count = 0;
       Vector3d steer = new Vector3d();
-
-      foreach (AgentType other in neighbors)
+      if (environment != null)
       {
-        //Adding up all the others' location
-        sum = Vector3d.Add(sum, new Vector3d(other.RefPosition));
-        //For an average, we need to keep track of how many boids
-        //are in our vision.
-        count++;
+        steer = environment.avoidEdges(agent, agent.VisionRadius * visionRadiusMultiplier);
+        if (!steer.IsZero)
+        {
+          steer.Unitize();
+          steer = Vector3d.Multiply(steer, agent.MaxSpeed);
+          steer = Vector3d.Subtract(steer, agent.Velocity);
+          steer = Util.Vector.limit(steer, agent.MaxForce);
+        }
       }
-
-      if (count > 0)
-      {
-        //We desire to go in that direction at maximum speed.
-        sum = Vector3d.Divide(sum, count);
-        steer = Util.Agent.seek(agent, sum);
-      }
-      //Seek the average location of our neighbors.
       return steer;
     }
 
@@ -140,7 +118,7 @@ namespace Agent.Agent2
       {
         //You can add image files to your project resources and access them like this:
         // return Resources.IconForThisComponent;
-        return Properties.Resources.icon_coheseForce;
+        return null;
       }
     }
 
@@ -149,7 +127,7 @@ namespace Agent.Agent2
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{571a8945-b7b9-4123-8725-474e04fa7e4b}"); }
+      get { return new Guid("{5a6a85be-31d7-47de-bc3b-99a0caf5bcff}"); }
     }
   }
 }
