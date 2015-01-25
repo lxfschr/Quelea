@@ -29,7 +29,7 @@ namespace Agent
     {
       this.spatialObjects = new List<T>();
       this.binSize = binSize;
-      double binRadius = binSize / 2;
+      double binRadius = binSize / 2.0;
       if (min.Equals(max))
       {
         this.min = new Point3d(min.X - binRadius, min.Y - binRadius, min.Z - binRadius);
@@ -47,7 +47,7 @@ namespace Agent
     {
       this.spatialObjects = items;
       this.binSize = binSize;
-      double binRadius = binSize / 2;
+      double binRadius = binSize / 2.0;
       if (min.Equals(max))
       {
         this.min = new Point3d(min.X - binRadius, min.Y - binRadius, min.Z - binRadius);
@@ -331,18 +331,18 @@ namespace Agent
     {
       this.spatialObjects = spatialObjects;
       this.binSize = minNodeSize;
+      double binRadius = binSize / 2.0;
       if (min.Equals(max))
       {
-        this.min = new Point3d(min.X - 50, min.Y - 50, min.Z - 50);
-        this.max = new Point3d(max.X + 50, max.Y + 50, max.Z + 50);
+        this.min = new Point3d(min.X - binRadius, min.Y - binRadius, min.Z - binRadius);
+        this.max = new Point3d(max.X + binRadius, max.Y + binRadius, max.Z + binRadius);
       }
-      //else
-      //{
-      //  this.min = new Point3d(min.X - Math.Abs(max.X - min.X)/2, min.Y - Math.Abs(max.Y - min.Y)/2, min.Z - Math.Abs(max.Z - min.Z)/2);
-      //  this.max = new Point3d(max.X + Math.Abs(max.X - min.X)/2, max.Y + Math.Abs(max.Y - min.Y)/2, max.Z + Math.Abs(max.Z - min.Z)/2);
-      //}
-      this.min = min;
-      this.max = max;
+      else
+      {
+        this.min = min;
+        this.max = max;
+      }
+      
       populateLattice();
     }
   }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace Agent
+namespace Agent.Agent2
 {
   public class DeconstructAgentComponent : GH_Component
   {
@@ -14,7 +14,7 @@ namespace Agent
     public DeconstructAgentComponent()
       : base("DeconstructAgent", "DeconstructAgent",
           "DeconstructAgent",
-          "Agent", "Agent")
+          "Agent", "Agent2")
     {
     }
 

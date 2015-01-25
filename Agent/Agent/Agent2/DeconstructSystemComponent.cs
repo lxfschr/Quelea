@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 
 using Grasshopper.Kernel;
-using Rhino.Geometry;
 
-namespace Agent
+namespace Agent.Agent2
 {
   public class DeconstructSystemComponent : GH_Component
   {
@@ -14,7 +13,7 @@ namespace Agent
     public DeconstructSystemComponent()
       : base("DeconstructSystem", "DeconstructSystem",
           "DeconstructSystem",
-          "Agent", "Agent")
+          "Agent", "Agent2")
     {
     }
 
@@ -31,7 +30,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
-      pManager.AddPointParameter("Agents", "A", "Agents", GH_ParamAccess.list);
+      pManager.AddGenericParameter("Agents", "A", "Agents", GH_ParamAccess.list);
     }
 
     /// <summary>
@@ -54,12 +53,7 @@ namespace Agent
       // The actual functionality will be in a different method:
 
       // Finally assign the spiral to the output parameter.
-      List<Point3d> agentPositions = new List<Point3d>();
-      foreach (AgentType a in system.Agents)
-      {
-        agentPositions.Add(a.Position);
-      }
-      DA.SetDataList(0, agentPositions);
+      DA.SetDataList(0, (List<AgentType>) system.Agents.SpatialObjects);
     }
 
     /// <summary>
