@@ -28,10 +28,11 @@ namespace Agent
     {
       this.spatialObjects = new List<T>();
       this.binSize = binSize;
+      double binRadius = binSize / 2;
       if (min.Equals(max))
       {
-        this.min = new Point3d(min.X - 50, min.Y - 50, min.Z - 50);
-        this.max = new Point3d(max.X + 50, max.Y + 50, max.Z + 50);
+        this.min = new Point3d(min.X - binRadius, min.Y - binRadius, min.Z - binRadius);
+        this.max = new Point3d(max.X + binRadius, max.Y + binRadius, max.Z + binRadius);
       }
       else
       {
@@ -45,10 +46,11 @@ namespace Agent
     {
       this.spatialObjects = items;
       this.binSize = binSize;
+      double binRadius = binSize / 2;
       if (min.Equals(max))
       {
-        this.min = new Point3d(min.X - 50, min.Y - 50, min.Z - 50);
-        this.max = new Point3d(max.X + 50, max.Y + 50, max.Z + 50);
+        this.min = new Point3d(min.X - binRadius, min.Y - binRadius, min.Z - binRadius);
+        this.max = new Point3d(max.X + binRadius, max.Y + binRadius, max.Z + binRadius);
       }
       else
       {
@@ -219,37 +221,37 @@ namespace Agent
     {
       bool beyondMax = false;
       double sizeX, sizeY, sizeZ;
-      while (p.X >= max.X)
+      while (p.X > max.X)
       {
         sizeX = max.X - min.X;
         max.X += sizeX;
         beyondMax = true;
       }
-      while (p.X <= min.X)
+      while (p.X < min.X)
       {
         sizeX = max.X - min.X;
         min.X -= sizeX;
         beyondMax = true;
       }
-      while (p.Y >= max.Y)
+      while (p.Y > max.Y)
       {
         sizeY = max.Y - min.Y;
         max.Y += sizeY;
         beyondMax = true;
       }
-      while (p.Y <= min.Y)
+      while (p.Y < min.Y)
       {
         sizeY = max.Y - min.Y;
         min.Y -= sizeY;
         beyondMax = true;
       }
-      while (p.Z >= max.Z)
+      while (p.Z > max.Z)
       {
         sizeZ = max.Z - min.Z;
         max.Z += sizeZ;
         beyondMax = true;
       }
-      while (p.Z <= min.Z)
+      while (p.Z < min.Z)
       {
         sizeZ = max.Z - min.Z;
         min.Z -= sizeZ;

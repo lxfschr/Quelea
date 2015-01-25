@@ -164,19 +164,24 @@ namespace Agent.Agent2
     {
       this.min.X = this.min.Y = this.min.Z = Double.MaxValue;
       this.max.X = this.max.Y = this.max.Z = Double.MinValue;
-      IList<Point3d> boundingPts = new List<Point3d>();
-      BoundingBox bounds;
-      foreach (EmitterType emitter in this.emitters)
+      //IList<Point3d> boundingPts = new List<Point3d>();
+      //BoundingBox bounds;
+      //foreach (EmitterType emitter in this.emitters)
+      //{
+      //  bounds = emitter.getBoundingBox();
+      //  this.min.X = bounds.Min.X < this.min.X ? bounds.Min.X : this.min.X;
+      //  this.min.Y = bounds.Min.Y < this.min.Y ? bounds.Min.Y : this.min.Y;
+      //  this.min.Z = bounds.Min.Z < this.min.Z ? bounds.Min.Z : this.min.Z;
+      //  this.max.X = bounds.Max.X > this.max.X ? bounds.Max.X : this.max.X;
+      //  this.max.Y = bounds.Max.Y > this.max.Y ? bounds.Max.Y : this.max.Y;
+      //  this.max.Z = bounds.Max.Z > this.max.Z ? bounds.Max.Z : this.max.Z;
+      //}
+      if (this.agents == null || this.agents.Count == 0)
       {
-        bounds = emitter.getBoundingBox();
-        this.min.X = bounds.Min.X < this.min.X ? bounds.Min.X : this.min.X;
-        this.min.Y = bounds.Min.Y < this.min.Y ? bounds.Min.Y : this.min.Y;
-        this.min.Z = bounds.Min.Z < this.min.Z ? bounds.Min.Z : this.min.Z;
-        this.max.X = bounds.Max.X > this.max.X ? bounds.Max.X : this.max.X;
-        this.max.Y = bounds.Max.Y > this.max.Y ? bounds.Max.Y : this.max.Y;
-        this.max.Z = bounds.Max.Z > this.max.Z ? bounds.Max.Z : this.max.Z;
+        this.min.X = this.min.Y = this.min.Z = 0;
+        this.max.X = this.max.Y = this.max.Z = 0;
       }
-      if (this.agents != null)
+      else
       {
         foreach (AgentType agent in this.agents)
         {
