@@ -28,10 +28,11 @@ namespace Agent
     {
       this.spatialObjects = new List<T>();
       this.binSize = binSize;
+      double binRadius = binSize / 2;
       if (min.Equals(max))
       {
-        this.min = new Point3d(min.X - 50, min.Y - 50, min.Z - 50);
-        this.max = new Point3d(max.X + 50, max.Y + 50, max.Z + 50);
+        this.min = new Point3d(min.X - binRadius, min.Y - binRadius, min.Z - binRadius);
+        this.max = new Point3d(max.X + binRadius, max.Y + binRadius, max.Z + binRadius);
       }
       else
       {
@@ -45,10 +46,11 @@ namespace Agent
     {
       this.spatialObjects = items;
       this.binSize = binSize;
+      double binRadius = binSize / 2;
       if (min.Equals(max))
       {
-        this.min = new Point3d(min.X - 50, min.Y - 50, min.Z - 50);
-        this.max = new Point3d(max.X + 50, max.Y + 50, max.Z + 50);
+        this.min = new Point3d(min.X - binRadius, min.Y - binRadius, min.Z - binRadius);
+        this.max = new Point3d(max.X + binRadius, max.Y + binRadius, max.Z + binRadius);
       }
       else
       {
