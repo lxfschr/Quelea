@@ -25,7 +25,7 @@ namespace Agent.Agent2
 
     public AgentSystemType()
     {
-      this.agents = new SpatialCollectionAsBinLattice<AgentType>();
+      this.agents = new SpatialCollectionAsBinLattice<AgentType>(this.min, this.max, 5);
       this.agentsSettings = new AgentType[] { new AgentType() };
       this.emitters = new EmitterType[] { new BoxEmitterType() };
       this.timestep = 0;
