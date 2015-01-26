@@ -71,6 +71,7 @@
     <Compile Include="Agent2\BoxEmitterComponent.cs" />
     <Compile Include="Agent2\BoxEmitterType.cs" />
     <Compile Include="Agent2\CoheseForceComponent2.cs" />
+    <Compile Include="Agent2\NeighborsComponent2.cs" />
     <Compile Include="Agent2\NeighborsComponent.cs" />
     <Compile Include="Agent2\CoheseForceComponent.cs" />
     <Compile Include="Agent2\Constants.cs" />

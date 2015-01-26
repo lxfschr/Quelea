@@ -236,6 +236,48 @@ namespace Agent
       return beyondMax;
     }
 
+    private bool checkBounds2(Point3d p)
+    {
+      bool beyondMax = false;
+      if (p.X > max.X)
+      {
+        max.X =p.X;
+        beyondMax = true;
+      }
+      if (p.X < min.X)
+      {
+        min.X = p.X;
+        beyondMax = true;
+      }
+      if (p.Y > max.Y)
+      {
+        max.Y = p.Y;
+        beyondMax = true;
+      }
+      if (p.Y < min.Y)
+      {
+        min.Y = p.Y;
+        beyondMax = true;
+      }
+      if (p.Z > max.Z)
+      {
+        max.Z = p.Z;
+        beyondMax = true;
+      }
+      if (p.Z < min.Z)
+      {
+        min.Z = p.Z;
+        beyondMax = true;
+      }
+
+      if (beyondMax)
+      {
+        this.populateLattice();
+      }
+
+      return beyondMax;
+    }
+
     public void Add(T item)
     {
       this.spatialObjects.Add(item);

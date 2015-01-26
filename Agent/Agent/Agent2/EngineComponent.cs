@@ -72,25 +72,12 @@ namespace Agent.Agent2
                                     List<Vector3d> forces,
                                     List<bool> behaviors)
     {
-      int index = 0;
       if (reset)
       {
         system.Agents.Clear();
         forces.Clear();
         behaviors.Clear();
-        foreach (EmitterType emitter in system.Emitters)
-        {
-          if (!emitter.ContinuousFlow)
-          {
-            for (int i = 0; i < emitter.NumAgents; i++)
-            {
-              system.addAgent(emitter);
-            }
-          }
-        }
-        index++;
-
-
+        populate(system);
       }
       else
       {
@@ -98,6 +85,20 @@ namespace Agent.Agent2
       }
 
       return;
+    }
+
+    private void populate(AgentSystemType system)
+    {
+      foreach (EmitterType emitter in system.Emitters)
+      {
+        if (!emitter.ContinuousFlow)
+        {
+          for (int i = 0; i < emitter.NumAgents; i++)
+          {
+            system.addAgent(emitter);
+          }
+        }
+      }
     }
 
     /// <summary>

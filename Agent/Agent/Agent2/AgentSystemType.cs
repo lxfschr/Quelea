@@ -30,8 +30,8 @@ namespace Agent.Agent2
       this.emitters = new EmitterType[] { new BoxEmitterType() };
       this.timestep = 0;
       this.nextIndex = 0;
+      
     }
-
     public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters)
     {
       
