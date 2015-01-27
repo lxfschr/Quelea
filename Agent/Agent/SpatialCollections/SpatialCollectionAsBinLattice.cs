@@ -13,15 +13,16 @@ namespace Agent
     private IList<T> spatialObjects; //List of all the spatial objects
     private LinkedList<T>[][][] lattice; // Lattice of DoublyLinkedLists for intersection test
     private int cols, rows, layers;
-    private int binSize;
+    private double binSize;
     private Point3d min, max;
 
     public SpatialCollectionAsBinLattice()
     {
       this.spatialObjects = new List<T>();
       this.binSize = 5;
-      this.min = new Point3d(-50, -50, -50);
-      this.max = new Point3d(50, 50, 50);
+      double binRadius = binSize / 2.0;
+      this.min = new Point3d(-binRadius, -binRadius, -binRadius);
+      this.max = new Point3d(binRadius, binRadius, binRadius);
       populateLattice();
     }
 
@@ -63,9 +64,9 @@ namespace Agent
 
     private void populateLattice()
     {
-      this.cols = (int)(this.max.X - this.min.X) / this.binSize + 1;
-      this.rows = (int)(this.max.Y - this.min.Y) / this.binSize + 1;
-      this.layers = (int)(this.max.Z - this.min.Z) / this.binSize + 1;
+      this.cols = (int)Math.Ceiling((this.max.X - this.min.X) / this.binSize);
+      this.rows = (int)Math.Ceiling((this.max.Y - this.min.Y) / this.binSize);
+      this.layers = (int)Math.Ceiling((this.max.Z - this.min.Z) / this.binSize);
 
       //Initialize lattice as 3D array of empty LinkedLists
       this.lattice = new LinkedList<T>[cols][][];
@@ -99,12 +100,45 @@ namespace Agent
     public SpatialCollectionAsBinLattice(ISpatialCollection<T> spatialCollection)
     {
       // TODO: Complete member initialization
-      SpatialCollectionAsBinLattice<T> sC = ((SpatialCollectionAsBinLattice<T>)spatialCollection);
-      this.spatialObjects = sC.spatialObjects;
-      this.binSize = sC.binSize;
-      this.min = sC.min;
-      this.max = sC.max;
+      this.spatialObjects = (IList<T>)spatialCollection.SpatialObjects;
+      if(spatialCollection is SpatialCollectionAsBinLattice<T>) {
+        SpatialCollectionAsBinLattice<T> sC = ((SpatialCollectionAsBinLattice<T>)spatialCollection);
+        this.binSize = sC.binSize;
+        this.min = sC.min;
+        this.max = sC.max;
+        this.lattice = sC.lattice;
+      }
+      else
+      {
+        updateBounds();
+        this.binSize = (this.max.X - this.min.X) / 10;
+      }
+      
       populateLattice();
+    }
+
+    private void updateBounds()
+    {
+      this.min.X = min.Y = min.Z = Double.MaxValue;
+      this.max.X = max.Y = max.Z = Double.MinValue;
+      IPosition position;
+      Point3d p;
+      foreach (T item in this.spatialObjects)
+      {
+         position= (IPosition)item;
+         p = position.getPoint3d();
+         updateBounds(p);
+      }
+    }
+
+    private void updateBounds(Point3d p)
+    {
+      if (p.X > max.X) max.X = p.X;
+      if (p.Y > max.Y) max.Y = p.Y;
+      if (p.Z > max.Z) max.Z = p.Z;
+      if (p.X < min.X) min.X = p.X;
+      if (p.Y < min.Y) min.Y = p.Y;
+      if (p.Z < min.Z) min.Z = p.Z;
     }
 
     public ISpatialCollection<T> getNeighborsInSphere(T item, double r)
@@ -135,9 +169,9 @@ namespace Agent
     private LinkedList<T> getBin(T item)
     {
       Point3d p = ((IPosition)item).getPoint3d();
-      int col = (int)(p.X - min.X) / this.binSize;
-      int row = (int)(p.Y - min.Y) / this.binSize;
-      int layer = (int)(p.Z - min.Z) / this.binSize;
+      int col = (int)((p.X - min.X) / this.binSize);
+      int row = (int)((p.Y - min.Y) / this.binSize);
+      int layer = (int)((p.Z - min.Z) / this.binSize);
       return this.lattice[col][row][layer];
     }
 
@@ -158,12 +192,12 @@ namespace Agent
       double offsetX = p.X - min.X;
       double offsetY = p.Y - min.Y;
       double offsetZ = p.Z - min.Z;
-      int firstCol = (int)(offsetX - radius) / this.binSize;
-      int firstRow = (int)(offsetY - radius) / this.binSize;
-      int firstLayer = (int)(offsetZ - radius) / this.binSize;
-      int lastCol = (int)(offsetX + radius) / this.binSize;
-      int lastRow = (int)(offsetY + radius) / this.binSize;
-      int lastLayer = (int)(offsetZ + radius) / this.binSize;
+      int firstCol = (int)((offsetX - radius) / this.binSize);
+      int firstRow = (int)((offsetY - radius) / this.binSize);
+      int firstLayer = (int)((offsetZ - radius) / this.binSize);
+      int lastCol = (int)((offsetX + radius) / this.binSize);
+      int lastRow = (int)((offsetY + radius) / this.binSize);
+      int lastLayer = (int)((offsetZ + radius) / this.binSize);
 
       if (firstCol < 0) firstCol = 0;
       if (firstRow < 0) firstRow = 0;
@@ -290,9 +324,9 @@ namespace Agent
 
       checkBounds(p);
 
-      int col = (int)(p.X - min.X) / this.binSize;
-      int row = (int)(p.Y - min.Y) / this.binSize;
-      int layer = (int)(p.Z - min.Z) / this.binSize;
+      int col = (int)((p.X - min.X) / this.binSize);
+      int row = (int)((p.Y - min.Y) / this.binSize);
+      int layer = (int)((p.Z - min.Z) / this.binSize);
       // It goes in 27 cells, i.e. every Thing is tested against other Things in its cell
       // as well as its 26 neighbors 
       //for (int dCol = -1; dCol <= 1; dCol++)

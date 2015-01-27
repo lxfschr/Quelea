@@ -1,18 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 
 using Grasshopper.Kernel;
+using System.Collections.Generic;
 
 namespace Agent.Agent2
 {
-  public class DeconstructSystemComponent : GH_Component
+  public class DeconstructAgentCollectionComponent : GH_Component
   {
     /// <summary>
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
-    public DeconstructSystemComponent()
-      : base("DeconstructSystem", "DeconstructSystem",
-          "DeconstructSystem",
+    public DeconstructAgentCollectionComponent()
+      : base("DeconstructAgentCollection", "DeconstructAC",
+          "Deconstructs an AgentCollection",
           "Agent", "Agent2")
     {
     }
@@ -22,7 +22,7 @@ namespace Agent.Agent2
     /// </summary>
     protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter("System", "S", "System", GH_ParamAccess.item);
+      pManager.AddGenericParameter("AgentCollection", "AC", "AgentCollection", GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -31,7 +31,6 @@ namespace Agent.Agent2
     protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
     {
       pManager.AddGenericParameter("Agents", "A", "Agents", GH_ParamAccess.list);
-      pManager.AddGenericParameter("Agent System", "AS", "Agent System", GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -42,11 +41,11 @@ namespace Agent.Agent2
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
-      AgentSystemType system = new AgentSystemType();
+      SpatialCollectionType agentCollection = new SpatialCollectionType();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!DA.GetData(0, ref system)) return;
+      if (!DA.GetData(0, ref agentCollection)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
 
@@ -54,8 +53,7 @@ namespace Agent.Agent2
       // The actual functionality will be in a different method:
 
       // Finally assign the spiral to the output parameter.
-      DA.SetDataList(0, (List<AgentType>) system.Agents.SpatialObjects);
-      DA.SetData(1, new SpatialCollectionType(system.Agents));
+      DA.SetDataList(0, (List<AgentType>) agentCollection.Agents.SpatialObjects);
     }
 
     /// <summary>
@@ -76,7 +74,7 @@ namespace Agent.Agent2
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{525078b6-0eb9-4d7f-9824-45f0861c19ea}"); }
+      get { return new Guid("{ef3ec326-e61f-430a-98b9-c11ad27680a2}"); }
     }
   }
 }
