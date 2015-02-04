@@ -6,17 +6,17 @@ using Rhino.Geometry;
 
 namespace Agent.Agent2
 {
-  public class CoheseForceComponent4 : BoidForceComponent
+  public class SeparateForceComponent4 : BoidForceComponent
   {
     /// <summary>
     /// Initializes a new instance of the CoheseForceComponent class.
     /// </summary>
-    public CoheseForceComponent4()
-      : base("Cohese Force", "Cohese4",
-          "Cohesion",
+    public SeparateForceComponent4()
+      : base("Separate Force", "Separate4",
+          "Separation Force",
           "Agent", "Agent2")
     {
-      this.visionRadiusMultiplier = 1.0;
+      this.visionRadiusMultiplier = 1.0 / 3.0;
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ namespace Agent.Agent2
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter("Cohesion Force", "F", "Cohesion Force", GH_ParamAccess.item);
+      pManager.AddGenericParameter("Separation Force", "F", "Separation Force", GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
@@ -36,24 +36,40 @@ namespace Agent.Agent2
     protected override Vector3d calcForce(AgentType agent, List<AgentType> neighbors)
     {
       Vector3d sum = new Vector3d();
+      Vector3d diff;
       int count = 0;
 
-      foreach (AgentType neighbor in neighbors)
+      foreach (AgentType other in neighbors)
       {
-        //Adding up all the others' location
-        sum = Vector3d.Add(sum, new Vector3d(neighbor.RefPosition));
-        //For an average, we need to keep track of how many boids
-        //are in our vision.
-        count++;
+        double d = agent.RefPosition.DistanceTo(other.RefPosition);
+        if (d > 0)
+        {
+          //double d = Vector3d.Subtract(agent.RefPosition, other.RefPosition).Length;
+          //if we are not comparing the seeker to iteself and it is at least
+          //desired separation away:
+          diff = Point3d.Subtract(agent.RefPosition, other.RefPosition);
+          diff.Unitize();
+
+          //Weight the magnitude by distance to other
+          diff = Vector3d.Divide(diff, d);
+
+          sum = Vector3d.Add(sum, diff);
+
+          //For an average, we need to keep track of how many boids
+          //are in our vision.
+          count++;
+        }
       }
 
       if (count > 0)
       {
-        //We desire to go in that direction at maximum speed.
         sum = Vector3d.Divide(sum, count);
-        sum = Util.Agent.seek(agent, sum);
+        sum.Unitize();
+        sum = Vector3d.Multiply(sum, agent.MaxSpeed);
+        sum = Vector3d.Subtract(sum, agent.Velocity);
+        sum = Util.Vector.limit(sum, agent.MaxForce);
       }
-      //Seek the average location of our neighbors.
+      //Seek the average position of our neighbors.
       return sum;
     }
 
@@ -66,7 +82,7 @@ namespace Agent.Agent2
       {
         //You can add image files to your project resources and access them like this:
         // return Resources.IconForThisComponent;
-        return Properties.Resources.icon_coheseForce;
+        return Properties.Resources.icon_separateForce;
       }
     }
 
@@ -75,7 +91,7 @@ namespace Agent.Agent2
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{c8fd8532-661e-47f1-99c1-b8552bb83b73}"); }
+      get { return new Guid("{1ba32976-9427-425e-aa14-fe86ee64a50a}"); }
     }
   }
 }

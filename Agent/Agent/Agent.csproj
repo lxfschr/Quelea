@@ -70,6 +70,8 @@
     <Compile Include="Agent2\BounceContainBehaviorComponent.cs" />
     <Compile Include="Agent2\BoxEmitterComponent.cs" />
     <Compile Include="Agent2\BoxEmitterType.cs" />
+    <Compile Include="Agent2\BoidForceComponent.cs" />
+    <Compile Include="Agent2\SeparateForceComponent4.cs" />
     <Compile Include="Agent2\CoheseForceComponent4.cs" />
     <Compile Include="Agent2\CoheseForceComponent3.cs" />
     <Compile Include="Agent2\CoheseForceComponent2.cs" />
