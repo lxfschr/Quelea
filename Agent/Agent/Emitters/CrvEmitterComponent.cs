@@ -61,9 +61,9 @@ namespace Agent
     /// <summary>
     /// This is the method that actually does the work.
     /// </summary>
-    /// <param name="DA">The DA object can be used to retrieve data from input parameters and 
+    /// <param name="da">The DA object can be used to retrieve data from input parameters and 
     /// to store data in output parameters.</param>
-    protected override void SolveInstance(IGH_DataAccess DA)
+    protected override void SolveInstance(IGH_DataAccess da)
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
@@ -74,10 +74,10 @@ namespace Agent
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!DA.GetData(0, ref crv)) return;
-      if (!DA.GetData(1, ref continuousFlow)) return;
-      if (!DA.GetData(2, ref creationRate)) return;
-      if (!DA.GetData(3, ref numAgents)) return;
+      if (!da.GetData(0, ref crv)) return;
+      if (!da.GetData(1, ref continuousFlow)) return;
+      if (!da.GetData(2, ref creationRate)) return;
+      if (!da.GetData(3, ref numAgents)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (creationRate <= 0)
@@ -96,7 +96,7 @@ namespace Agent
       CrvEmitterType emitter = new CrvEmitterType(crv, continuousFlow, creationRate, numAgents);
 
       // Finally assign the spiral to the output parameter.
-      DA.SetData(0, emitter);
+      da.SetData(0, emitter);
     }
 
     /// <summary>

@@ -23,12 +23,12 @@ public class PointOctreeNode<T> where T : class {
 	Bounds[] childBounds;
 	// If there are already numObjectsAllowed in a node, we split it into children
 	// A generally good number seems to be something around 8-15
-	const int numObjectsAllowed = 8;
+	const int NumObjectsAllowed = 8;
 
 	// An object in the octree
 	class OctreeObject {
-		public T Obj;
-		public Vector3 Pos;
+		public T obj;
+		public Vector3 pos;
 	}
 
 	/// <summary>
@@ -66,7 +66,7 @@ public class PointOctreeNode<T> where T : class {
 		bool removed = false;
 
 		for(int i = 0; i < objects.Count; i++) {
-			if (objects[i].Obj.Equals(obj)) {
+			if (objects[i].obj.Equals(obj)) {
 				removed = objects.Remove(objects[i]);
 				break;
 			}
@@ -105,8 +105,8 @@ public class PointOctreeNode<T> where T : class {
 
 		// Check against any objects in this node
 		for (int i = 0; i < objects.Count; i++) {
-			if (DistanceToRay(ray, objects[i].Pos) <= maxDistance) {
-				collidingWith.Add(objects[i].Obj);
+			if (DistanceToRay(ray, objects[i].pos) <= maxDistance) {
+				collidingWith.Add(objects[i].obj);
 			}
 		}
 
@@ -126,7 +126,7 @@ public class PointOctreeNode<T> where T : class {
   ///   http://studiofreya.com/3d-math-and-physics/sphere-vs-aabb-collision-detection-test/
 
 
-  private double check(double pn, double bmin, double bmax)
+  private double Check(double pn, double bmin, double bmax)
   {
         double result = 0;
         double v = pn; 
@@ -143,13 +143,13 @@ public class PointOctreeNode<T> where T : class {
         return result;
   }
 
-  double SquaredDistPointAABB(Vector3 p, Bounds aabb )
+  double SquaredDistPointAabb(Vector3 p, Bounds aabb )
   { 
     // Squared distance
     double sq = 0.0;
-    sq += check( p.x, aabb.lb.x, aabb.rt.x );
-    sq += check( p.y, aabb.lb.y, aabb.rt.y );
-    sq += check( p.z, aabb.lb.z, aabb.rt.z ); 
+    sq += Check( p.x, aabb.lb.x, aabb.rt.x );
+    sq += Check( p.y, aabb.lb.y, aabb.rt.y );
+    sq += Check( p.z, aabb.lb.z, aabb.rt.z ); 
     return sq;
   }
 
@@ -157,11 +157,11 @@ public class PointOctreeNode<T> where T : class {
   public bool IntersectSphere(Vector3 center, float radius)
   {
     // True if the Sphere and AABB intersects
-    double squaredDistance = SquaredDistPointAABB(center, bounds);
+    double squaredDistance = SquaredDistPointAabb(center, bounds);
     return squaredDistance <= (radius * radius);
   }
 
-  public T[] getNeighborsInSphere(T item, Vector3 center, float radius) // DK: added "item" parameter
+  public T[] GetNeighborsInSphere(T item, Vector3 center, float radius) // DK: added "item" parameter
   {
     // Does the ray hit this node at all?
     if (!IntersectSphere(center, radius))
@@ -175,7 +175,7 @@ public class PointOctreeNode<T> where T : class {
     double rSquared = Math.Pow(radius, 2);
     for (int i = 0; i < objects.Count; i++)
     {
-      Vector3 p1 = objects[i].Pos, p2 = center;
+      Vector3 p1 = objects[i].pos, p2 = center;
       double dSquared = (Math.Pow(p1.x - p2.x, 2) +
                          Math.Pow(p1.y - p2.y, 2) +
                          Math.Pow(p1.z - p2.z, 2));
@@ -184,7 +184,7 @@ public class PointOctreeNode<T> where T : class {
         // DK: changed:
         // collidingWith.Add(objects[i].Obj);
         // to:
-        T other = objects[i].Obj;
+        T other = objects[i].obj;
         if (!Object.ReferenceEquals(item, other)) collidingWith.Add(other);
       }
     }
@@ -194,7 +194,7 @@ public class PointOctreeNode<T> where T : class {
     {
       for (int i = 0; i < 8; i++)
       {
-        T[] childColliding = children[i].getNeighborsInSphere(item, center, radius); // DK: added "item"
+        T[] childColliding = children[i].GetNeighborsInSphere(item, center, radius); // DK: added "item"
         if (childColliding != null) collidingWith.AddRange(childColliding);
       }
     }
@@ -279,7 +279,7 @@ public class PointOctreeNode<T> where T : class {
 		int bestFit = -1;
 		for (int i = 0; i < objects.Count; i++) {
 			OctreeObject curObj = objects[i];
-			int newBestFit = BestFitChild(curObj.Pos);
+			int newBestFit = BestFitChild(curObj.pos);
 			if (i == 0 || newBestFit == bestFit) {
 				if (bestFit < 0) {
 					bestFit = newBestFit;
@@ -375,8 +375,8 @@ public class PointOctreeNode<T> where T : class {
 	void SubAdd(T obj, Vector3 objPos) {
 		// We know it fits at this level if we've got this far
 		// Just add if few objects are here, or children would be below min size
-		if (objects.Count < numObjectsAllowed || (SideLength / 2) < minSize) {
-			OctreeObject newObj = new OctreeObject { Obj = obj, Pos = objPos };
+		if (objects.Count < NumObjectsAllowed || (SideLength / 2) < minSize) {
+			OctreeObject newObj = new OctreeObject { obj = obj, pos = objPos };
 			//Console.WriteLine("ADD " + obj.name + " to depth " + depth);
 			objects.Add(newObj);
 		}
@@ -395,8 +395,8 @@ public class PointOctreeNode<T> where T : class {
 					OctreeObject existingObj = objects[i];
 					// Find which child the object is closest to based on where the
 					// object's center is located in relation to the octree's center.
-					bestFitChild = BestFitChild(existingObj.Pos);
-					children[bestFitChild].SubAdd(existingObj.Obj, existingObj.Pos); // Go a level deeper					
+					bestFitChild = BestFitChild(existingObj.pos);
+					children[bestFitChild].SubAdd(existingObj.obj, existingObj.pos); // Go a level deeper					
 					objects.Remove(existingObj); // Remove from here
 				}
 			}
@@ -478,7 +478,7 @@ public class PointOctreeNode<T> where T : class {
 				totalObjects += child.objects.Count;
 			}
 		}
-		return totalObjects <= numObjectsAllowed;
+		return totalObjects <= NumObjectsAllowed;
 	}
 
 	// Returns true if this node or any of its children, grandchildren etc have something in them

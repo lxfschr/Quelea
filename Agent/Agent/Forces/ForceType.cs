@@ -36,9 +36,9 @@ namespace Agent
       this.visionRadiusMultiplier = force.visionRadiusMultiplier;
     }
 
-    public abstract Vector3d calcForce(AgentType agent, ISpatialCollection<AgentType> neighbors);
+    public abstract Vector3d CalcForce(AgentType agent, ISpatialCollection<AgentType> neighbors);
 
-    protected Vector3d calcSum(AgentType agent, IList<AgentType> agents, out int count)
+    protected Vector3d CalcSum(AgentType agent, IList<AgentType> agents, out int count)
     {
       Vector3d sum = new Vector3d();
       count = 0;
@@ -66,7 +66,7 @@ namespace Agent
       return sum;
     }
 
-    protected Vector3d seek(AgentType agent, Vector3d target)
+    protected Vector3d Seek(AgentType agent, Vector3d target)
     {
       Vector3d desired = Vector3d.Subtract(target, new Vector3d(agent.Position));
       desired.Unitize();
@@ -86,7 +86,7 @@ namespace Agent
       return steer;
     }
 
-    public static Vector3d limit(Vector3d vec, double max)
+    public static Vector3d Limit(Vector3d vec, double max)
     {
       if (vec.Length > max)
       {

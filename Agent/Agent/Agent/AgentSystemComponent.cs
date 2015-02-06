@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Drawing;
 using Grasshopper.Kernel;
-using Rhino.Geometry;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
   public class AgentSystemComponent : GH_Component
   {
-    AgentSystemType system = null;
+    private AgentSystemType system;
     /// <summary>
     /// Initializes a new instance of the AgentSystemComponent class.
     /// </summary>
     public AgentSystemComponent()
-      : base("AgentSystem", "System",
-          "Represents a self-contained Agent System of Agents and Emitters.",
-          "Agent", "Agent")
+      : base(RS.systemName, RS.systemComponentNickName,
+          RS.systemDescription,
+          RS.pluginCategoryName, RS.pluginSubCategoryName)
     {
     }
 
@@ -23,56 +23,41 @@ namespace Agent
     /// Registers all the input parameters for this component.
     /// </summary>
     protected override void RegisterInputParams
-      (GH_Component.GH_InputParamManager pManager)
+      (GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter("Agents", "A", "Agents", 
+      pManager.AddGenericParameter(RS.agentsName, RS.agentNickName, RS.agentDescription, 
                                     GH_ParamAccess.list);
-      pManager.AddGenericParameter("Emitters", "E", "Emitters",
+      pManager.AddGenericParameter(RS.emittersName, RS.emitterNickName, RS.emittersDescription,
                                     GH_ParamAccess.list);
-      pManager.AddGenericParameter("Environment", "En", "Environment",
-                                   GH_ParamAccess.item);
-      pManager.AddGenericParameter("Forces", "F", "Forces",
-                                   GH_ParamAccess.list);
-      pManager.AddGenericParameter("Behaviors", "B", "Behaviors",
-                                   GH_ParamAccess.list);
-      pManager[2].Optional = true;
-      pManager[3].Optional = true;
-      pManager[4].Optional = true;
     }
 
     /// <summary>
     /// Registers all the output parameters for this component.
     /// </summary>
     protected override void RegisterOutputParams
-      (GH_Component.GH_OutputParamManager pManager)
+      (GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter("Agent System", "S", "Agent System", 
+      pManager.AddGenericParameter(RS.systemName, RS.systemNickName, RS.systemDescription, 
                                    GH_ParamAccess.item);
     }
 
     /// <summary>
     /// This is the method that actually does the work.
     /// </summary>
-    /// <param name="DA">The DA object is used to retrieve from inputs and 
+    /// <param name="da">The DA object is used to retrieve from inputs and 
     /// store in outputs.</param>
-    protected override void SolveInstance(IGH_DataAccess DA)
+    protected override void SolveInstance(IGH_DataAccess da)
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
       List<AgentType> agents = new List<AgentType>();
       List<EmitterType> emitters = new List<EmitterType>();
-      EnvironmentType environment = null;
-      List<ForceType> forces = new List<ForceType>();
-      List<BehaviorType> behaviors = new List<BehaviorType>();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this
       // method.
-      if (!DA.GetDataList(0, agents)) return;
-      if (!DA.GetDataList(1, emitters)) return;
-      DA.GetData(2, ref environment);
-      DA.GetDataList(3, forces);
-      DA.GetDataList(4, behaviors);
+      if (!da.GetDataList(0, agents)) return;
+      if (!da.GetDataList(1, emitters)) return;
       
       //if (!DA.GetDataList(2, forces)) return;
 
@@ -80,14 +65,12 @@ namespace Agent
       // supplied.
       if (agents.Count <= 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "There must be at " + 
-          "least 1 Agent.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.agentsCountErrorMessage);
         return;
       }
       if (emitters.Count <= 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "There must be at " +
-          "least 1 Emitter.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.emittersCountErrorMessage);
         return;
       }
 
@@ -95,28 +78,27 @@ namespace Agent
       // The actual functionality will be in a different method:
       if (system == null)
       {
-        system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, forces.ToArray(), behaviors.ToArray());
+        system = new AgentSystemType(agents.ToArray(), emitters.ToArray());
       }
       else
       {
-        system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, forces.ToArray(), behaviors.ToArray(), system);
+        system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), system);
       }
-      //AgentSystemType system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, forces.ToArray(), behaviors.ToArray());
 
-      // Finally assign the spiral to the output parameter.
-      DA.SetData(0, system);
+      // Finally assign the system to the output parameter.
+      da.SetData(0, system);
     }
 
     /// <summary>
     /// Provides an Icon for the component.
     /// </summary>
-    protected override System.Drawing.Bitmap Icon
+    protected override Bitmap Icon
     {
       get
       {
         //You can add image files to your project resources and access them like this:
-        // return Resources.IconForThisComponent;
-        return Properties.Resources.icon_system;
+        // return RS.IconForThisComponent;
+        return RS.icon_system;
       }
     }
 
@@ -125,7 +107,7 @@ namespace Agent
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{3865e673-4756-465e-ae00-04d8af6d3811}"); }
+      get { return new Guid(RS.systemComponentGUID); }
     }
   }
 }

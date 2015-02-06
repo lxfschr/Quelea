@@ -17,27 +17,27 @@ namespace Tools
     // Enum for the standard types handled by Read/WriteObject()
     internal enum ObjType : byte
     {
-        nullType,
-        boolType,
-        byteType,
-        uint16Type,
-        uint32Type,
-        uint64Type,
-        sbyteType,
-        int16Type,
-        int32Type,
-        int64Type,
-        charType,
-        stringType,
-        singleType,
-        doubleType,
-        decimalType,
-        dateTimeType,
-        byteArrayType,
-        charArrayType,
-        vector3dType,
-        vector3fType,
-        otherType
+        NullType,
+        BoolType,
+        ByteType,
+        Uint16Type,
+        Uint32Type,
+        Uint64Type,
+        SbyteType,
+        Int16Type,
+        Int32Type,
+        Int64Type,
+        CharType,
+        StringType,
+        SingleType,
+        DoubleType,
+        DecimalType,
+        DateTimeType,
+        ByteArrayType,
+        CharArrayType,
+        Vector3DType,
+        Vector3FType,
+        OtherType
     }
 
     /// <summary> SerializationWriter.  Extends BinaryWriter to add additional data types,
@@ -60,11 +60,11 @@ namespace Tools
         {
             if (str == null)
             {
-                Write((byte)ObjType.nullType);
+                Write((byte)ObjType.NullType);
             }
             else
             {
-                Write((byte)ObjType.stringType);
+                Write((byte)ObjType.StringType);
                 base.Write(str);
             }
         }
@@ -124,7 +124,7 @@ namespace Tools
 
         /// <summary> Writes a generic IDictionary to the buffer. </summary>
 
-        public void Write<T, U>(IDictionary<T, U> dictionary)
+        public void Write<T, TU>(IDictionary<T, TU> dictionary)
         {
             if (dictionary == null)
             {
@@ -133,7 +133,7 @@ namespace Tools
             else
             {
                 Write(dictionary.Count);
-                foreach (KeyValuePair<T, U> kvp in dictionary)
+                foreach (KeyValuePair<T, TU> kvp in dictionary)
                 {
                     WriteObject(kvp.Key);
                     WriteObject(kvp.Value);
@@ -141,61 +141,49 @@ namespace Tools
             }
         }
 
-        public void Write(uint[] UInt32Array)
+        public void Write(uint[] uInt32Array)
         {
-            if (UInt32Array == null)
+            if (uInt32Array == null)
             {
                 Write(-1);
             }
             else
             {
-                base.Write(UInt32Array.Length);
-                for (int i = 0; i < UInt32Array.Length; i++)
-                    base.Write(UInt32Array[i]);
+                base.Write(uInt32Array.Length);
+                for (int i = 0; i < uInt32Array.Length; i++)
+                    base.Write(uInt32Array[i]);
             }
         }
 
-        public void Write(int[] Int32Array)
+        public void Write(int[] int32Array)
         {
-            if (Int32Array == null)
+            if (int32Array == null)
             {
                 Write(-1);
             }
             else
             {
-                base.Write(Int32Array.Length);
-                for (int i = 0; i < Int32Array.Length; i++)
-                    base.Write(Int32Array[i]);
+                base.Write(int32Array.Length);
+                for (int i = 0; i < int32Array.Length; i++)
+                    base.Write(int32Array[i]);
             }
         }
 
-        public void Write(double[] DoubleArray)
+        public void Write(double[] doubleArray)
         {
-            if (DoubleArray == null)
+            if (doubleArray == null)
             {
                 Write(-1);
             }
             else
             {
-                base.Write(DoubleArray.Length);
-                for (int i = 0; i < DoubleArray.Length; i++)
-                    base.Write(DoubleArray[i]);
+                base.Write(doubleArray.Length);
+                for (int i = 0; i < doubleArray.Length; i++)
+                    base.Write(doubleArray[i]);
             }
         }
 
-        public void Write(Vector3f vector)
-        {
-            if (vector == null)
-            {
-                Write(-1);
-            }
-            else
-            {
-                Write(vector.ToArray());
-            }
-        }
-
-        public void Write(Vector3d vector)
+        public void Write(Vector3F vector)
         {
             if (vector == null)
             {
@@ -207,7 +195,19 @@ namespace Tools
             }
         }
 
-        public void Write(Point3d point)
+        public void Write(Vector3D vector)
+        {
+            if (vector == null)
+            {
+                Write(-1);
+            }
+            else
+            {
+                Write(vector.ToArray());
+            }
+        }
+
+        public void Write(Point3D point)
         {
             if (point == null)
             {
@@ -215,7 +215,7 @@ namespace Tools
             }
             else
             {
-                Write(point.getxyz());
+                Write(point.Getxyz());
             }
         }
 
@@ -225,99 +225,99 @@ namespace Tools
         {
             if (obj == null)
             {
-                Write((byte)ObjType.nullType);
+                Write((byte)ObjType.NullType);
             }
             else
             {
                 switch (obj.GetType().Name)
                 {
                     case "Boolean":
-                        Write((byte)ObjType.boolType);
+                        Write((byte)ObjType.BoolType);
                         Write((bool)obj);
                         break;
 
                     case "Byte":
-                        Write((byte)ObjType.byteType);
+                        Write((byte)ObjType.ByteType);
                         Write((byte)obj);
                         break;
 
                     case "UInt16":
-                        Write((byte)ObjType.uint16Type);
+                        Write((byte)ObjType.Uint16Type);
                         Write((ushort)obj);
                         break;
 
                     case "UInt32":
-                        Write((byte)ObjType.uint32Type);
+                        Write((byte)ObjType.Uint32Type);
                         Write((uint)obj);
                         break;
 
                     case "UInt64":
-                        Write((byte)ObjType.uint64Type);
+                        Write((byte)ObjType.Uint64Type);
                         Write((ulong)obj);
                         break;
 
                     case "SByte":
-                        Write((byte)ObjType.sbyteType);
+                        Write((byte)ObjType.SbyteType);
                         Write((sbyte)obj);
                         break;
 
                     case "Int16":
-                        Write((byte)ObjType.int16Type);
+                        Write((byte)ObjType.Int16Type);
                         Write((short)obj);
                         break;
 
                     case "Int32":
-                        Write((byte)ObjType.int32Type);
+                        Write((byte)ObjType.Int32Type);
                         Write((int)obj);
                         break;
 
                     case "Int64":
-                        Write((byte)ObjType.int64Type);
+                        Write((byte)ObjType.Int64Type);
                         Write((long)obj);
                         break;
 
                     case "Char":
-                        Write((byte)ObjType.charType);
+                        Write((byte)ObjType.CharType);
                         base.Write((char)obj);
                         break;
 
                     case "String":
-                        Write((byte)ObjType.stringType);
+                        Write((byte)ObjType.StringType);
                         base.Write((string)obj);
                         break;
 
                     case "Single":
-                        Write((byte)ObjType.singleType);
+                        Write((byte)ObjType.SingleType);
                         Write((float)obj);
                         break;
 
                     case "Double":
-                        Write((byte)ObjType.doubleType);
+                        Write((byte)ObjType.DoubleType);
                         Write((double)obj);
                         break;
 
                     case "Decimal":
-                        Write((byte)ObjType.decimalType);
+                        Write((byte)ObjType.DecimalType);
                         Write((decimal)obj);
                         break;
 
                     case "DateTime":
-                        Write((byte)ObjType.dateTimeType);
+                        Write((byte)ObjType.DateTimeType);
                         Write((DateTime)obj);
                         break;
 
                     case "Byte[]":
-                        Write((byte)ObjType.byteArrayType);
+                        Write((byte)ObjType.ByteArrayType);
                         base.Write((byte[])obj);
                         break;
 
                     case "Char[]":
-                        Write((byte)ObjType.charArrayType);
+                        Write((byte)ObjType.CharArrayType);
                         base.Write((char[])obj);
                         break;
 
                     default:
-                        Write((byte)ObjType.otherType);
+                        Write((byte)ObjType.OtherType);
                         new BinaryFormatter().Serialize(BaseStream, obj);
                         break;
                 } // switch
@@ -354,7 +354,7 @@ namespace Tools
         public override string ReadString()
         {
             ObjType t = (ObjType)ReadByte();
-            if (t == ObjType.stringType) return base.ReadString();
+            if (t == ObjType.StringType) return base.ReadString();
             return null;
         }
 
@@ -394,13 +394,13 @@ namespace Tools
         }
 
         /// <summary> Reads a generic Dictionary from the buffer. </summary>
-        public IDictionary<T, U> ReadDictionary<T, U>()
+        public IDictionary<T, TU> ReadDictionary<T, TU>()
         {
             int count = ReadInt32();
             if (count < 0) return null;
-            IDictionary<T, U> d = new Dictionary<T, U>();
+            IDictionary<T, TU> d = new Dictionary<T, TU>();
             for (int i = 0; i < count; i++) 
-                d[(T)ReadObject()] = (U)ReadObject();
+                d[(T)ReadObject()] = (TU)ReadObject();
             return d;
         }
 
@@ -472,27 +472,27 @@ namespace Tools
         /// Read Vector3f
         /// </summary>
         /// <returns></returns>
-        public Vector3f ReadVector3f()
+        public Vector3F ReadVector3F()
         {
-            return new Vector3f(ReadFloatArray());
+            return new Vector3F(ReadFloatArray());
         }
 
         /// <summary>
         /// Read Vector3d
         /// </summary>
         /// <returns></returns>
-        public Vector3d ReadVector3d()
+        public Vector3D ReadVector3D()
         {
-            return new Vector3d(ReadDoubleArray());
+            return new Vector3D(ReadDoubleArray());
         }
 
         /// <summary>
         /// Read Point3d
         /// </summary>
         /// <returns></returns>
-        public Point3d ReadPoint3d()
+        public Point3D ReadPoint3D()
         {
-            return new Point3d(ReadDoubleArray());
+            return new Point3D(ReadDoubleArray());
         }
         /// <summary> Reads an object which was added to the buffer by WriteObject. </summary>
         public object ReadObject()
@@ -500,45 +500,45 @@ namespace Tools
             ObjType t = (ObjType)ReadByte();
             switch (t)
             {
-                case ObjType.boolType:
+                case ObjType.BoolType:
                     return ReadBoolean();
-                case ObjType.byteType:
+                case ObjType.ByteType:
                     return ReadByte();
-                case ObjType.uint16Type:
+                case ObjType.Uint16Type:
                     return ReadUInt16();
-                case ObjType.uint32Type:
+                case ObjType.Uint32Type:
                     return ReadUInt32();
-                case ObjType.uint64Type:
+                case ObjType.Uint64Type:
                     return ReadUInt64();
-                case ObjType.sbyteType:
+                case ObjType.SbyteType:
                     return ReadSByte();
-                case ObjType.int16Type:
+                case ObjType.Int16Type:
                     return ReadInt16();
-                case ObjType.int32Type:
+                case ObjType.Int32Type:
                     return ReadInt32();
-                case ObjType.int64Type:
+                case ObjType.Int64Type:
                     return ReadInt64();
-                case ObjType.charType:
+                case ObjType.CharType:
                     return ReadChar();
-                case ObjType.stringType:
+                case ObjType.StringType:
                     return base.ReadString();
-                case ObjType.singleType:
+                case ObjType.SingleType:
                     return ReadSingle();
-                case ObjType.doubleType:
+                case ObjType.DoubleType:
                     return ReadDouble();
-                case ObjType.decimalType:
+                case ObjType.DecimalType:
                     return ReadDecimal();
-                case ObjType.dateTimeType:
+                case ObjType.DateTimeType:
                     return ReadDateTime();
-                case ObjType.byteArrayType:
+                case ObjType.ByteArrayType:
                     return ReadByteArray();
-                case ObjType.charArrayType:
+                case ObjType.CharArrayType:
                     return ReadCharArray();
-                case ObjType.vector3dType:
-                    return ReadVector3d();
-                case ObjType.vector3fType:
-                    return ReadVector3f();
-                case ObjType.otherType:
+                case ObjType.Vector3DType:
+                    return ReadVector3D();
+                case ObjType.Vector3FType:
+                    return ReadVector3F();
+                case ObjType.OtherType:
                     return new BinaryFormatter().Deserialize(BaseStream);
                 default:
                     return null;

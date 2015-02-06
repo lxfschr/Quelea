@@ -34,7 +34,7 @@ namespace Agent
       }
     }
 
-    public T get(int i)
+    public T Get(int i)
     {
       return this.array[(head + i) % this.size];
     }

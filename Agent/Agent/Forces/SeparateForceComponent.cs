@@ -1,106 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
+using Agent.Util;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class SeparateForceComponent : GH_Component
+  public class SeparateForceComponent : BoidForceComponent
   {
     /// <summary>
-    /// Initializes a new instance of the SeparateForceComponent class.
+    /// Initializes a new instance of the CoheseForceComponent class.
     /// </summary>
     public SeparateForceComponent()
-      : base("Separate Force", "Separate",
-          "Cohesion",
-          "Agent", "Forces")
+      : base(RS.separateForceName, RS.separateForceNickName,
+          RS.separateForceDescription,
+          RS.pluginCategoryName, RS.boidForcesSubCategoryName)
     {
-    }
-
-    /// <summary>
-    /// Registers all the input parameters for this component.
-    /// </summary>
-    protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
-    {
-      // Use the pManager object to register your input parameters.
-      // You can often supply default values when creating parameters.
-      // All parameters must have the correct access type. If you want 
-      // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddNumberParameter("Weight", "W", "Weight multiplier.", GH_ParamAccess.item, 1.0);
-      pManager.AddNumberParameter("Vision Multiplier", "V", "Vision multiplier.", GH_ParamAccess.item, 1.0/3.0);
-
-      // If you want to change properties of certain parameters, 
-      // you can use the pManager instance to access them by index:
-      //pManager[0].Optional = true;
+      visionRadiusMultiplier = 1.0 / 3.0;
+      icon = RS.icon_separateForce;
+      componentGuid = new Guid(RS.separateForceGUID);
     }
 
     /// <summary>
     /// Registers all the output parameters for this component.
     /// </summary>
-    protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter("Cohesion Force", "F", "Cohesion Force", GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.separateForceName, RS.forceNickName, 
+                                   RS.separateForceDescription, 
+                                   GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
       //pManager.HideParameter(1);
     }
 
-    /// <summary>
-    /// This is the method that actually does the work.
-    /// </summary>
-    /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override void SolveInstance(IGH_DataAccess DA)
+    protected override Vector3d CalcForce(AgentType agent, List<AgentType> neighbors)
     {
-      // First, we need to retrieve all data from the input parameters.
-      // We'll start by declaring variables and assigning them starting values.
-      double weight = 1.0;
-      double visionRadiusMultiplier = 1.0/3.0;
+      Vector3d sum = new Vector3d();
+      Vector3d diff;
+      int count = 0;
 
-      // Then we need to access the input parameters individually. 
-      // When data cannot be extracted from a parameter, we should abort this method.
-      if (!DA.GetData(0, ref weight)) return;
-      if (!DA.GetData(1, ref visionRadiusMultiplier)) return;
-
-      // We should now validate the data and warn the user if invalid data is supplied.
-      if (!(0.0 <= visionRadiusMultiplier && visionRadiusMultiplier <= 1.0))
+      foreach (AgentType other in neighbors)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Vision Multiplier must be between 0.0 and 1.0");
-        return;
+        double d = agent.RefPosition.DistanceTo(other.RefPosition);
+        if (d > 0)
+        {
+          //double d = Vector3d.Subtract(agent.RefPosition, other.RefPosition).Length;
+          //if we are not comparing the seeker to iteself and it is at least
+          //desired separation away:
+          diff = Point3d.Subtract(agent.RefPosition, other.RefPosition);
+          diff.Unitize();
+
+          //Weight the magnitude by distance to other
+          diff = Vector3d.Divide(diff, d);
+
+          sum = Vector3d.Add(sum, diff);
+
+          //For an average, we need to keep track of how many boids
+          //are in our vision.
+          count++;
+        }
       }
-      if (!(-1.0 <= weight && weight <= 1.0))
+
+      if (count > 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Weight must be between -1.0 and 1.0");
-        return;
+        sum = Vector3d.Divide(sum, count);
+        sum.Unitize();
+        sum = Vector3d.Multiply(sum, agent.MaxSpeed);
+        sum = Vector3d.Subtract(sum, agent.Velocity);
+        sum = Vector.Limit(sum, agent.MaxForce);
       }
-
-
-      // We're set to create the output now. To keep the size of the SolveInstance() method small, 
-      // The actual functionality will be in a different method:
-      SeparateForceType force = new SeparateForceType(weight, visionRadiusMultiplier);
-
-      // Finally assign the spiral to the output parameter.
-      DA.SetData(0, force);
-      //DA.SetData(1, pt);
-    }
-
-    /// <summary>
-    /// Provides an Icon for the component.
-    /// </summary>
-    protected override System.Drawing.Bitmap Icon
-    {
-      get
-      {
-        //You can add image files to your project resources and access them like this:
-        // return Resources.IconForThisComponent;
-        return Properties.Resources.icon_separateForce;
-      }
-    }
-    public override Guid ComponentGuid
-    {
-      get { return new Guid("{3564d19e-ae80-47de-9c5d-4f4221422bd4}"); }
+      //Seek the average position of our neighbors.
+      return sum;
     }
   }
 }

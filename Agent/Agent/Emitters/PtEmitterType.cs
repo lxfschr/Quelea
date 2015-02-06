@@ -18,29 +18,23 @@ namespace Agent
 
     // Constructor with initial values.
     public PtEmitterType(Point3d pt, bool continuousFlow, int creationRate, int numAgents)
+      :base(continuousFlow, creationRate, numAgents)
     {
       this.pt = pt;
-      this.continuousFlow = continuousFlow;
-      this.creationRate = creationRate;
-      this.numAgents = numAgents;
     }
 
     // Constructor with initial values.
     public PtEmitterType(Point3d pt)
+      :base()
     {
       this.pt = pt;
-      this.continuousFlow = true;
-      this.creationRate = 1;
-      this.numAgents = 0;
     }
 
     // Copy Constructor
     public PtEmitterType(PtEmitterType ptEmitType)
+      : base(ptEmitType.continuousFlow, ptEmitType.creationRate, ptEmitType.numAgents)
     {
       this.pt = ptEmitType.pt;
-      this.continuousFlow = ptEmitType.continuousFlow;
-      this.creationRate = ptEmitType.creationRate;
-      this.numAgents = ptEmitType.numAgents;
     }
 
     public override bool Equals(object obj)
@@ -70,7 +64,7 @@ namespace Agent
       return new PtEmitterType(this);
     }
 
-    public override Point3d emit()
+    public override Point3d Emit()
     {
       return this.pt;
     }
@@ -105,7 +99,7 @@ namespace Agent
     }
 
 
-    public override BoundingBox getBoundingBox()
+    public override BoundingBox GetBoundingBox()
     {
       return new BoundingBox(this.pt, this.pt);
     }

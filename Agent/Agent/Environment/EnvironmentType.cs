@@ -1,50 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Grasshopper.Kernel;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
   public abstract class EnvironmentType : GH_Goo<Object>
   {
-
-    public EnvironmentType()
-    {
-    }
-
     public override bool Equals(object obj)
     {
       // If parameter is null return false.
-      if (obj == null)
-      {
-        return false;
-      }
 
       // If parameter cannot be cast to Point return false.
       EnvironmentType p = obj as EnvironmentType;
-      if ((System.Object)p == null)
-      {
-        return false;
-      }
+      return p != null;
 
       // Return true if the fields match:
-      return true;
     }
 
     public bool Equals(EnvironmentType p)
     {
       // If parameter is null return false:
-      if ((object)p == null)
-      {
-        return false;
-      }
+      return p != null;
 
       // Return true if the fields match:
-      return true;
     }
 
     abstract public override int GetHashCode();
@@ -63,26 +42,26 @@ namespace Agent
 
     public override string TypeDescription
     {
-      get { return "An Environment"; }
+      get { return RS.environmentDescription; }
     }
 
     public override string TypeName
     {
-      get { return "Environment"; }
+      get { return RS.environmentName; }
     }
 
-    abstract public Point3d closestPoint(Point3d pt);
+    abstract public Point3d ClosestPoint(Point3d pt);
 
-    abstract public Point3d closestRefPoint(Point3d pt);
+    abstract public Point3d ClosestRefPoint(Point3d pt);
 
-    abstract public Point3d closestRefPointOnRef(Point3d pt);
+    abstract public Point3d ClosestRefPointOnRef(Point3d pt);
 
-    abstract public Point3d closestPointOnRef(Point3d pt);
+    abstract public Point3d ClosestPointOnRef(Point3d pt);
 
-    abstract public Vector3d avoidEdges(AgentType agent, double distance);
+    abstract public Vector3d AvoidEdges(AgentType agent, double distance);
 
-    abstract public bool bounceContain(AgentType agent);
+    abstract public bool BounceContain(AgentType agent);
 
-    abstract public BoundingBox getBoundingBox();
+    abstract public BoundingBox GetBoundingBox();
   }
 }

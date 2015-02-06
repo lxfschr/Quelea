@@ -24,14 +24,14 @@ namespace OctreeSearch
         bool AddNode(float x, float y, float z, double obj);
         bool AddNode(float x, float y, float z, bool obj);
 
-        bool AddNode(Vector3f vector, object obj);
-        bool AddNode(Vector3f vector, int obj);
-        bool AddNode(Vector3f vector, uint obj);
-        bool AddNode(Vector3f vector, short obj);
-        bool AddNode(Vector3f vector, long obj);
-        bool AddNode(Vector3f vector, float obj);
-        bool AddNode(Vector3f vector, double obj);
-        bool AddNode(Vector3f vector, bool obj);
+        bool AddNode(Vector3F vector, object obj);
+        bool AddNode(Vector3F vector, int obj);
+        bool AddNode(Vector3F vector, uint obj);
+        bool AddNode(Vector3F vector, short obj);
+        bool AddNode(Vector3F vector, long obj);
+        bool AddNode(Vector3F vector, float obj);
+        bool AddNode(Vector3F vector, double obj);
+        bool AddNode(Vector3F vector, bool obj);
 
         bool AddNode(double x, double y, double z, object obj);
         bool AddNode(double x, double y, double z, int obj);
@@ -42,14 +42,14 @@ namespace OctreeSearch
         bool AddNode(double x, double y, double z, double obj);
         bool AddNode(double x, double y, double z, bool obj);
 
-        bool AddNode(Vector3d vector, object obj);
-        bool AddNode(Vector3d vector, int obj);
-        bool AddNode(Vector3d vector, uint obj);
-        bool AddNode(Vector3d vector, short obj);
-        bool AddNode(Vector3d vector, long obj);
-        bool AddNode(Vector3d vector, float obj);
-        bool AddNode(Vector3d vector, double obj);
-        bool AddNode(Vector3d vector, bool obj);
+        bool AddNode(Vector3D vector, object obj);
+        bool AddNode(Vector3D vector, int obj);
+        bool AddNode(Vector3D vector, uint obj);
+        bool AddNode(Vector3D vector, short obj);
+        bool AddNode(Vector3D vector, long obj);
+        bool AddNode(Vector3D vector, float obj);
+        bool AddNode(Vector3D vector, double obj);
+        bool AddNode(Vector3D vector, bool obj);
 
         /// <summary> Remove a object out of the organizer at a location.</summary>
         /// <param name="x">up-down location (x, y)</param>
@@ -64,14 +64,14 @@ namespace OctreeSearch
         object RemoveNode(float x, float y, float z, double obj);
         object RemoveNode(float x, float y, float z, bool obj);
 
-        object RemoveNode(Vector3f vector, object obj);
-        object RemoveNode(Vector3f vector, int obj);
-        object RemoveNode(Vector3f vector, uint obj);
-        object RemoveNode(Vector3f vector, short obj);
-        object RemoveNode(Vector3f vector, long obj);
-        object RemoveNode(Vector3f vector, float obj);
-        object RemoveNode(Vector3f vector, double obj);
-        object RemoveNode(Vector3f vector, bool obj);
+        object RemoveNode(Vector3F vector, object obj);
+        object RemoveNode(Vector3F vector, int obj);
+        object RemoveNode(Vector3F vector, uint obj);
+        object RemoveNode(Vector3F vector, short obj);
+        object RemoveNode(Vector3F vector, long obj);
+        object RemoveNode(Vector3F vector, float obj);
+        object RemoveNode(Vector3F vector, double obj);
+        object RemoveNode(Vector3F vector, bool obj);
 
         object RemoveNode(double x, double y, double z, object obj);
         object RemoveNode(double x, double y, double z, int obj);
@@ -82,14 +82,14 @@ namespace OctreeSearch
         object RemoveNode(double x, double y, double z, double obj);
         object RemoveNode(double x, double y, double z, bool obj);
 
-        object RemoveNode(Vector3d vector, object obj);
-        object RemoveNode(Vector3d vector, int obj);
-        object RemoveNode(Vector3d vector, uint obj);
-        object RemoveNode(Vector3d vector, short obj);
-        object RemoveNode(Vector3d vector, long obj);
-        object RemoveNode(Vector3d vector, float obj);
-        object RemoveNode(Vector3d vector, double obj);
-        object RemoveNode(Vector3d vector, bool obj);
+        object RemoveNode(Vector3D vector, object obj);
+        object RemoveNode(Vector3D vector, int obj);
+        object RemoveNode(Vector3D vector, uint obj);
+        object RemoveNode(Vector3D vector, short obj);
+        object RemoveNode(Vector3D vector, long obj);
+        object RemoveNode(Vector3D vector, float obj);
+        object RemoveNode(Vector3D vector, double obj);
+        object RemoveNode(Vector3D vector, bool obj);
 
         /// <summary>Clear the octree.</summary>
         void Clear();
@@ -100,20 +100,20 @@ namespace OctreeSearch
         /// <param name="z">front-back location in Octree grid</param>
         /// <returns> the object that is closest to point x/y/z.</returns>
         object GetNode(float x, float y, float z);
-        object GetNode(Vector3f vector);
+        object GetNode(Vector3F vector);
         object GetNode(double x, double y, double z);
-        object GetNode(Vector3d vector);
+        object GetNode(Vector3D vector);
 
         /// <summary> Find an object closest to point x/y/z within a distance.</summary>
         /// <param name="x">up-down location in Octree grid</param>
         /// <param name="y">left-right location in Octree grid</param>
         /// <param name="z">front-back location in Octree grid</param>
-        /// <param name="withinDistance">maximum distance to have a hit.</param>
+        /// <param name="shortestDistance">maximum distance to have a hit.</param>
         /// <returns> the object that is closest to the x/y/z, within the given distance.</returns>
-        object GetNode(float x, float y, float z, double withinDistance);
-        object GetNode(Vector3f vector, double withinDistance);
-        object GetNode(double x, double y, double z, double withinDistance);
-        object GetNode(Vector3d vector, double withinDistance);
+        object GetNode(float x, float y, float z, double shortestDistance);
+        object GetNode(Vector3F vector, double shortestDistance);
+        object GetNode(double x, double y, double z, double shortestDistance);
+        object GetNode(Vector3D vector, double shortestDistance);
 
         /// <summary> Find an set of objects closest to point x/y/z within a given radius.</summary>
         /// <param name="x">up-down location in Octree grid</param>
@@ -122,14 +122,14 @@ namespace OctreeSearch
         /// <param name="radius">search radius</param>
         /// <returns> the object that is closest to point x/y/z, within the given distance.</returns>
         ArrayList GetNodes(float x, float y, float z, double radius);
-        ArrayList GetNodes(Vector3f vector, double radius);
+        ArrayList GetNodes(Vector3F vector, double radius);
         ArrayList GetNodes(double x, double y, double z, double radius);
-        ArrayList GetNodes(Vector3d vector, double radius);
+        ArrayList GetNodes(Vector3D vector, double radius);
 
-        ArrayList GetNodes(float x, float y, float z, double MinRadius, double MaxRadius);
-        ArrayList GetNodes(Vector3f vector, double MinRadius, double MaxRadius);
-        ArrayList GetNodes(double x, double y, double z, double MinRadius, double MaxRadius);
-        ArrayList GetNodes(Vector3d vector, double MinRadius, double MaxRadius);
+        ArrayList GetNodes(float x, float y, float z, double minRadius, double maxRadius);
+        ArrayList GetNodes(Vector3F vector, double minRadius, double maxRadius);
+        ArrayList GetNodes(double x, double y, double z, double minRadius, double maxRadius);
+        ArrayList GetNodes(Vector3D vector, double minRadius, double maxRadius);
 
         // <summary> Find an object closest to point x/y/z, within a cube.</summary>
         ArrayList GetNode(float xMax, float xMin, float yMax, float yMin, float zMax, float zMin);

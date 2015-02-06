@@ -41,8 +41,8 @@ namespace Agent
     /// <summary>
     /// This is the method that actually does the work.
     /// </summary>
-    /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override void SolveInstance(IGH_DataAccess DA)
+    /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
+    protected override void SolveInstance(IGH_DataAccess da)
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
@@ -50,7 +50,7 @@ namespace Agent
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!DA.GetData(0, ref agent)) return;
+      if (!da.GetData(0, ref agent)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
 
@@ -58,11 +58,11 @@ namespace Agent
       // The actual functionality will be in a different method:
 
       // Finally assign the spiral to the output parameter.
-      DA.SetData(0, agent.Position);
-      DA.SetData(1, agent.Velocity);
-      DA.SetData(2, agent.Acceleration);
-      DA.SetData(3, agent.Lifespan);
-      DA.SetData(4, agent.RefPosition);
+      da.SetData(0, agent.Position);
+      da.SetData(1, agent.Velocity);
+      da.SetData(2, agent.Acceleration);
+      da.SetData(3, agent.Lifespan);
+      da.SetData(4, agent.RefPosition);
     }
 
     /// <summary>

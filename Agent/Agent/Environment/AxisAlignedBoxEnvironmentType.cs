@@ -1,93 +1,91 @@
-﻿using Grasshopper.Kernel;
-using Grasshopper.Kernel.Types;
+﻿using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
-using System.Collections.Generic;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class WorldBoxEnvironmentType : EnvironmentType
+  public class AxisAlignedBoxEnvironmentType : EnvironmentType
   {
-    private double minX;
-    private double maxX;
-    private double minY;
-    private double maxY;
-    private double minZ;
-    private double maxZ;
+    private readonly double minX;
+    private readonly double maxX;
+    private readonly double minY;
+    private readonly double maxY;
+    private readonly double minZ;
+    private readonly double maxZ;
 
     private Box environment;
 
     // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
-    public WorldBoxEnvironmentType()
-      : base()
+    public AxisAlignedBoxEnvironmentType()
     {
-      Interval interval = new Interval(-100.0, 100.0);
-      this.environment = new Box(Plane.WorldXY, interval, interval, interval);
+      Interval interval = new Interval(-RS.boxBoundsDefault, RS.boxBoundsDefault);
+      environment = new Box(Plane.WorldXY, interval, interval, interval);
       BoundingBox boundingBox = environment.BoundingBox;
-      this.minX = boundingBox.Corner(true, false, false).X;
-      this.maxX = boundingBox.Corner(false, false, false).X;
-      this.minY = boundingBox.Corner(false, true, false).Y;
-      this.maxY = boundingBox.Corner(false, false, false).Y;
-      this.minZ = boundingBox.Corner(false, false, true).Z;
-      this.maxZ = boundingBox.Corner(false, false, false).Z;
+      minX = boundingBox.Corner(true, false, false).X;
+      maxX = boundingBox.Corner(false, false, false).X;
+      minY = boundingBox.Corner(false, true, false).Y;
+      maxY = boundingBox.Corner(false, false, false).Y;
+      minZ = boundingBox.Corner(false, false, true).Z;
+      maxZ = boundingBox.Corner(false, false, false).Z;
     }
 
     // Constructor with initial values.
-    public WorldBoxEnvironmentType(Box box)
+    public AxisAlignedBoxEnvironmentType(Box box)
     {
-      this.environment = box;
+      environment = box;
       BoundingBox boundingBox = environment.BoundingBox;
-      this.minX = boundingBox.Corner(true, false, false).X;
-      this.maxX = boundingBox.Corner(false, false, false).X;
-      this.minY = boundingBox.Corner(false, true, false).Y;
-      this.maxY = boundingBox.Corner(false, false, false).Y;
-      this.minZ = boundingBox.Corner(false, false, true).Z;
-      this.maxZ = boundingBox.Corner(false, false, false).Z;
+      minX = boundingBox.Corner(true, false, false).X;
+      maxX = boundingBox.Corner(false, false, false).X;
+      minY = boundingBox.Corner(false, true, false).Y;
+      maxY = boundingBox.Corner(false, false, false).Y;
+      minZ = boundingBox.Corner(false, false, true).Z;
+      maxZ = boundingBox.Corner(false, false, false).Z;
     }
 
     // Copy Constructor
-    public WorldBoxEnvironmentType(WorldBoxEnvironmentType environment)
+    public AxisAlignedBoxEnvironmentType(AxisAlignedBoxEnvironmentType environment)
     {
       this.environment = environment.environment;
-      this.minX = environment.minX;
-      this.maxX = environment.maxX;
-      this.minY = environment.minY;
-      this.maxY = environment.maxY;
-      this.minZ = environment.minZ;
-      this.maxZ = environment.maxZ;
+      minX = environment.minX;
+      maxX = environment.maxX;
+      minY = environment.minY;
+      maxY = environment.maxY;
+      minZ = environment.minZ;
+      maxZ = environment.maxZ;
     }
 
     public override bool Equals(object obj)
     {
       // If parameter cannot be cast to ThreeDPoint return false:
-      WorldBoxEnvironmentType p = obj as WorldBoxEnvironmentType;
-      if ((object)p == null)
+      AxisAlignedBoxEnvironmentType p = obj as AxisAlignedBoxEnvironmentType;
+      if (p == null)
       {
         return false;
       }
 
-      return base.Equals(obj) && this.environment.Equals(p.environment);
+      return base.Equals(obj) && environment.Equals(p.environment);
     }
 
-    public bool Equals(WorldBoxEnvironmentType p)
+    public bool Equals(AxisAlignedBoxEnvironmentType p)
     {
-      return base.Equals((EnvironmentType)p) && this.environment.Equals(p.environment);
+      return base.Equals(p) && environment.Equals(p.environment);
     }
 
     public override int GetHashCode()
     {
-      return this.environment.GetHashCode();
+      return (int) (minX * minY * minZ * maxX * maxY * maxZ);
     }
 
     public override IGH_Goo Duplicate()
     {
-      return new WorldBoxEnvironmentType(this);
+      return new AxisAlignedBoxEnvironmentType(this);
     }
 
     public override bool IsValid
     {
       get
       {
-        return (this.environment.IsValid) && 
+        return (environment.IsValid) && 
           environment.Plane.XAxis.Equals(Plane.WorldXY.XAxis) &&
           environment.Plane.YAxis.Equals(Plane.WorldXY.YAxis);
       }
@@ -97,41 +95,41 @@ namespace Agent
     public override string ToString()
     {
 
-      string environment = "Box: " + this.environment.ToString() + "\n";
-      return environment;
+      string environmentStr = RS.AABoxEnvName + ": " + environment + "\n";
+      return environmentStr;
     }
 
     public override string TypeDescription
     {
-      get { return "A World Box Environment"; }
+      get { return RS.AABoxEnvDescription; }
     }
 
     public override string TypeName
     {
-      get { return "World Box Environment"; }
+      get { return RS.AABoxEnvName; }
     }
 
 
-    public override Point3d closestPoint(Point3d pt)
+    public override Point3d ClosestPoint(Point3d pt)
     {
-      return this.environment.ClosestPoint(pt);
+      return environment.ClosestPoint(pt);
     }
 
-    public override Point3d closestRefPoint(Point3d pt) {
-      return this.environment.ClosestPoint(pt);
+    public override Point3d ClosestRefPoint(Point3d pt) {
+      return environment.ClosestPoint(pt);
     }
 
-    public override Point3d closestRefPointOnRef(Point3d pt)
+    public override Point3d ClosestRefPointOnRef(Point3d pt)
     {
-      return this.environment.ClosestPoint(pt);
+      return environment.ClosestPoint(pt);
     }
 
-    public override Point3d closestPointOnRef(Point3d pt)
+    public override Point3d ClosestPointOnRef(Point3d pt)
     {
-      return this.environment.ClosestPoint(pt);
+      return environment.ClosestPoint(pt);
     }
 
-    public override Vector3d avoidEdges(AgentType agent, double distance)
+    public override Vector3d AvoidEdges(AgentType agent, double distance)
     {
       Point3d refPosition = agent.RefPosition;
       double maxSpeed = agent.MaxSpeed;
@@ -169,7 +167,7 @@ namespace Agent
       return desired;
     }
 
-    public override bool bounceContain(AgentType agent)
+    public override bool BounceContain(AgentType agent)
     {
       Point3d position = agent.RefPosition;
       Vector3d velocity = agent.Velocity;
@@ -181,7 +179,7 @@ namespace Agent
         agent.Velocity = velocity;
         return true;
       }
-      else if (position.X <= minX)
+      if (position.X <= minX)
       {
         position.X = minX;
         velocity.X *= -1;
@@ -197,7 +195,7 @@ namespace Agent
         agent.Velocity = velocity;
         return true;
       }
-      else if (position.Y <= minY)
+      if (position.Y <= minY)
       {
         position.Y = minY;
         velocity.Y *= -1;
@@ -213,7 +211,7 @@ namespace Agent
         agent.Velocity = velocity;
         return true;
       }
-      else if (position.Z <= minZ)
+      if (position.Z <= minZ)
       {
         position.Z = minZ;
         velocity.Z *= -1;
@@ -224,9 +222,9 @@ namespace Agent
       return false;
     }
 
-    public override BoundingBox getBoundingBox()
+    public override BoundingBox GetBoundingBox()
     {
-      return this.environment.BoundingBox;
+      return environment.BoundingBox;
     }
   }
 }

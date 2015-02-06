@@ -32,7 +32,7 @@ namespace Agent
       this.spatialObjects = ((SpatialCollectionAsLinkedList<T>)spatialCollection).spatialObjects;
     }
     
-    public ISpatialCollection<T> getNeighborsInSphere(T item, double r)
+    public ISpatialCollection<T> GetNeighborsInSphere(T item, double r)
     {
       ISpatialCollection<T> neighbors = new SpatialCollectionAsLinkedList<T>();
       IPosition position = (IPosition)item;
@@ -46,8 +46,8 @@ namespace Agent
         // }
         // to this:
         if (!Object.ReferenceEquals(item, other)) {
-            Point3d p1 = position.getPoint3d();
-            Point3d p2 = ((IPosition)other).getPoint3d();
+            Point3d p1 = position.GetPoint3D();
+            Point3d p2 = ((IPosition)other).GetPoint3D();
             double dSquared = (Math.Pow(p1.X - p2.X, 2) +
                                Math.Pow(p1.Y - p2.Y, 2) + 
                                Math.Pow(p1.Z - p2.Z, 2));
@@ -113,7 +113,7 @@ namespace Agent
     }
 
 
-    public void updateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
+    public void UpdateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
     {
       return;
     }

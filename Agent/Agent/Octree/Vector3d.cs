@@ -16,14 +16,14 @@ namespace Tools.Vector
     ///3D Vector (double)
     ///</summary>
     [Serializable]
-    public class Vector3d : 
-        IComparable<Vector3d>, 
+    public class Vector3D : 
+        IComparable<Vector3D>, 
         ICloneable, 
         ISerializable
     {
         #region Fileds
 
-        protected double[] nXYZ = new double[3];
+        protected double[] nXyz = new double[3];
 
         #endregion Fileds
 
@@ -32,11 +32,11 @@ namespace Tools.Vector
         /// <summary>
         /// Constructor
         /// </summary>
-        public Vector3d()
+        public Vector3D()
         {
-            nXYZ[0] = 0.0;
-            nXYZ[1] = 0.0;
-            nXYZ[2] = 0.0;
+            nXyz[0] = 0.0;
+            nXyz[1] = 0.0;
+            nXyz[2] = 0.0;
         }
 
         /// <summary>
@@ -45,27 +45,27 @@ namespace Tools.Vector
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <param name="Z"></param>
-        public Vector3d(double x, double y, double z)
+        public Vector3D(double x, double y, double z)
         {
-            nXYZ[0] = x;
-            nXYZ[1] = y;
-            nXYZ[2] = z;
+            nXyz[0] = x;
+            nXyz[1] = y;
+            nXyz[2] = z;
         }
 
-        public Vector3d(Point3d point)
+        public Vector3D(Point3D point)
         {
-            nXYZ[0] = point.x;
-            nXYZ[1] = point.y;
-            nXYZ[2] = point.z;
+            nXyz[0] = point.X;
+            nXyz[1] = point.Y;
+            nXyz[2] = point.Z;
         }
 
         /// <summary>
         /// Constructor - overload 2
         /// </summary>
         /// <param name="XYZ">A double array for coordinates</param>
-        public Vector3d(double[] xyz)
+        public Vector3D(double[] xyz)
         {
-            nXYZ = (double[])xyz.Clone();
+            nXyz = (double[])xyz.Clone();
         }
         #endregion
 
@@ -79,13 +79,13 @@ namespace Tools.Vector
             get 
             {
                 if (i < 3)
-                    return nXYZ[i];
+                    return nXyz[i];
                 return Double.NaN;
             }
             set 
             {
                 if (i < 3)
-                    nXYZ[i] = value;
+                    nXyz[i] = value;
             }
 
         }
@@ -118,17 +118,17 @@ namespace Tools.Vector
         #region ISerializable
 
         //Deserialization constructor
-        public Vector3d(SerializationInfo info, StreamingContext ctxt)
+        public Vector3D(SerializationInfo info, StreamingContext ctxt)
         {
             SerializationReader sr = SerializationReader.GetReader(info);
-            nXYZ = sr.ReadDoubleArray();
+            nXyz = sr.ReadDoubleArray();
         }
 
         //Serialization function.
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             SerializationWriter sw = SerializationWriter.GetWriter();
-            sw.Write(nXYZ);
+            sw.Write(nXyz);
             sw.AddToInfo(info);
         }
 
@@ -214,7 +214,7 @@ namespace Tools.Vector
         /// <returns></returns>
         public object Clone()
         {
-            return new Vector3d((double[])nXYZ.Clone());
+            return new Vector3D((double[])nXyz.Clone());
         }
 
         #endregion
@@ -226,12 +226,12 @@ namespace Tools.Vector
         /// </summary>
         /// <param name="v">Vector3d</param>
         /// <returns>a Vector3d representing the cross product of the current vector and vector v</returns>
-        public Vector3d CrossProduct(Vector3d v)
+        public Vector3D CrossProduct(Vector3D v)
         {
-            return new Vector3d(
-                (this.y * v.z) - (this.z * v.y),
-                (this.z * v.x) - (this.x * v.z),
-                (this.x * v.y) - (this.y * v.x));
+            return new Vector3D(
+                (this.Y * v.Z) - (this.Z * v.Y),
+                (this.Z * v.X) - (this.X * v.Z),
+                (this.X * v.Y) - (this.Y * v.X));
         }
 
         /// <summary>
@@ -239,14 +239,14 @@ namespace Tools.Vector
         /// </summary>
         /// <param name="v">Vector3d</param>
         /// <returns>a float representing the dot product of the current vector and vector v</returns>
-        public double DotProduct(Vector3d v)
+        public double DotProduct(Vector3D v)
         {
-            return this.x * v.x + this.y * v.y + this.z * v.z;
+            return this.X * v.X + this.Y * v.Y + this.Z * v.Z;
         }
 
-        public Vector3f ToVector3f()
+        public Vector3F ToVector3F()
         {
-            return new Vector3f(nXYZ);
+            return new Vector3F(nXyz);
         }
 
         /// <summary>
@@ -254,9 +254,9 @@ namespace Tools.Vector
         /// </summary>
         public double[] SortedList()
         {
-            double[] xyz_s = (double[])nXYZ.Clone();
-            Array.Sort(xyz_s);
-            return xyz_s;
+            double[] xyzS = (double[])nXyz.Clone();
+            Array.Sort(xyzS);
+            return xyzS;
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace Tools.Vector
         private bool IsNan()
         {
             for (int i = 0; i < 3; i++)
-                if (Double.IsNaN(nXYZ[i]) || Double.IsInfinity(nXYZ[i]))
+                if (Double.IsNaN(nXyz[i]) || Double.IsInfinity(nXyz[i]))
                     return true;
 
             return false;
@@ -277,7 +277,7 @@ namespace Tools.Vector
         /// </summary>
         public double Max()
         {
-            return Math.Max(nXYZ[0], Math.Max(nXYZ[1], nXYZ[2]));
+            return Math.Max(nXyz[0], Math.Max(nXyz[1], nXyz[2]));
         }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace Tools.Vector
         /// </summary>
         public double Min()
         {
-            return Math.Min(nXYZ[0], Math.Min(nXYZ[1], nXYZ[2]));
+            return Math.Min(nXyz[0], Math.Min(nXyz[1], nXyz[2]));
         }
 
         /// <summary>
@@ -293,7 +293,7 @@ namespace Tools.Vector
         /// </summary>
         public double Length()
         {
-            return Math.Sqrt(x * x + y * y + z * z);
+            return Math.Sqrt(X * X + Y * Y + Z * Z);
         }
 
         /// <summary>
@@ -301,15 +301,15 @@ namespace Tools.Vector
         /// </summary>
         public double[] ToArray()
         {
-            return nXYZ;
+            return nXyz;
         }
 
         /// <summary>
         /// Converts coordinates to a Point3d
         /// </summary>
-        public Point3d ToPoint3d()
+        public Point3D ToPoint3D()
         {
-            return new Point3d(this.x, this.y, this.z);
+            return new Point3D(this.X, this.Y, this.Z);
         }
        
         #endregion
@@ -324,11 +324,11 @@ namespace Tools.Vector
         /// </summary>
         /// <param name="other">Vector3d</param>
         /// <returns></returns>
-        public int CompareTo(Vector3d other)
+        public int CompareTo(Vector3D other)
         {
             int result = 0;
             for (int i = 0; i < 3; i++)
-                result += nXYZ[i].CompareTo(other.nXYZ[i]);
+                result += nXyz[i].CompareTo(other.nXyz[i]);
 
             switch (result)
             {
@@ -353,7 +353,7 @@ namespace Tools.Vector
         /// <returns></returns>
         public override string ToString()
         {
-            return this.x + " " + this.y + " " + this.z;
+            return this.X + " " + this.Y + " " + this.Z;
         }
 
         #endregion
@@ -366,9 +366,9 @@ namespace Tools.Vector
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns></returns>
-        public static Vector3d operator +(Vector3d v1, Vector3d v2)
+        public static Vector3D operator +(Vector3D v1, Vector3D v2)
         {
-            return new Vector3d(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+            return new Vector3D(v1.X + v2.X, v1.Y + v2.Y, v1.Z + v2.Z);
         }
         /// <summary>
         /// 
@@ -376,9 +376,9 @@ namespace Tools.Vector
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns></returns>
-        public static Vector3d operator +(Vector3d v1, Point3d v2)
+        public static Vector3D operator +(Vector3D v1, Point3D v2)
         {
-            return new Vector3d(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+            return new Vector3D(v1.X + v2.X, v1.Y + v2.Y, v1.Z + v2.Z);
         }
         /// <summary>
         /// 
@@ -386,9 +386,9 @@ namespace Tools.Vector
         /// <param name="v2"></param>
         /// <param name="v1"></param>
         /// <returns></returns>
-        public static Vector3d operator -(Vector3d v1, Vector3d v2)
+        public static Vector3D operator -(Vector3D v1, Vector3D v2)
         {
-            return new Vector3d(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+            return new Vector3D(v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
         }
         /// <summary>
         /// 
@@ -396,9 +396,9 @@ namespace Tools.Vector
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns></returns>
-        public static Vector3d operator -(Vector3d v1, Point3d v2)
+        public static Vector3D operator -(Vector3D v1, Point3D v2)
         {
-            return new Vector3d(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+            return new Vector3D(v1.X - v2.X, v1.Y - v2.Y, v1.Z - v2.Z);
         }
         /// <summary>
         /// Scalar Product
@@ -406,15 +406,15 @@ namespace Tools.Vector
         /// <param name="v"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static Vector3d operator *(Vector3d v, double s)
+        public static Vector3D operator *(Vector3D v, double s)
         {
-            return new Vector3d(s * v.x, s * v.y, s * v.z);
+            return new Vector3D(s * v.X, s * v.Y, s * v.Z);
         }
-        public static Vector3d operator *(double s, Vector3d v)
+        public static Vector3D operator *(double s, Vector3D v)
         {
             return v * s;
         }
-        public static Vector3d operator /(Vector3d v, double s)
+        public static Vector3D operator /(Vector3D v, double s)
         {
             return v * (1 / s);
         }
@@ -425,9 +425,9 @@ namespace Tools.Vector
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns></returns>
-        public static double operator *(Vector3d v1, Vector3d v2)
+        public static double operator *(Vector3D v1, Vector3D v2)
         {
-            return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+            return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
         }
 
         //public static bool operator ==(Vector3d v1, Vector3d v2)
@@ -454,7 +454,7 @@ namespace Tools.Vector
         //{
         //    return (this.CompareTo((Vector3d)v) == 0 ? true : false);
         //}
-        public bool Equals(Vector3d v)
+        public bool Equals(Vector3D v)
         {
             return (this.CompareTo(v) == 0 ? true : false);
         }
@@ -471,28 +471,28 @@ namespace Tools.Vector
         /// <summary>
         /// get/set x coordinate
         /// </summary>
-        public double x
+        public double X
         {
-            get { return nXYZ[0]; }
-            set { nXYZ[0] = value; }
+            get { return nXyz[0]; }
+            set { nXyz[0] = value; }
         }
 
         /// <summary>
         /// get/set y coordinate
         /// </summary>
-        public double y
+        public double Y
         {
-            get { return nXYZ[1]; }
-            set { nXYZ[1] = value; }
+            get { return nXyz[1]; }
+            set { nXyz[1] = value; }
         }
 
         /// <summary>
         /// get/set z coordinate
         /// </summary>
-        public double z
+        public double Z
         {
-            get { return nXYZ[2]; }
-            set { nXYZ[2] = value; }
+            get { return nXyz[2]; }
+            set { nXyz[2] = value; }
         }
 
         #endregion

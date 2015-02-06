@@ -61,11 +61,1072 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Agent.
         /// </summary>
         internal static string a {
             get {
                 return ResourceManager.GetString("a", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Box aligned to World Axes..
+        /// </summary>
+        internal static string AABoxDescription {
+            get {
+                return ResourceManager.GetString("AABoxDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A world Axis Aligned Box Environment..
+        /// </summary>
+        internal static string AABoxEnvDescription {
+            get {
+                return ResourceManager.GetString("AABoxEnvDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {3703308d-1d46-469a-bdf7-bdeec8359171}.
+        /// </summary>
+        internal static string AABoxEnvGUID {
+            get {
+                return ResourceManager.GetString("AABoxEnvGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Axis Aligned Box Environment.
+        /// </summary>
+        internal static string AABoxEnvName {
+            get {
+                return ResourceManager.GetString("AABoxEnvName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AABoxEnv.
+        /// </summary>
+        internal static string AABoxEnvNickName {
+            get {
+                return ResourceManager.GetString("AABoxEnvNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Box must be aligned to WorldXY..
+        /// </summary>
+        internal static string AABoxError {
+            get {
+                return ResourceManager.GetString("AABoxError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vector of the Agent&apos;s acceleration..
+        /// </summary>
+        internal static string accelerationDescription {
+            get {
+                return ResourceManager.GetString("accelerationDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Acceleration.
+        /// </summary>
+        internal static string accelerationName {
+            get {
+                return ResourceManager.GetString("accelerationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A.
+        /// </summary>
+        internal static string accelerationNickName {
+            get {
+                return ResourceManager.GetString("accelerationNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A container object of Agents to provide for fast lookup of neighbors..
+        /// </summary>
+        internal static string agentCollectionDescription {
+            get {
+                return ResourceManager.GetString("agentCollectionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AgentCollection.
+        /// </summary>
+        internal static string agentCollectionName {
+            get {
+                return ResourceManager.GetString("agentCollectionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AC.
+        /// </summary>
+        internal static string agentCollectionNickName {
+            get {
+                return ResourceManager.GetString("agentCollectionNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The AgentCollection to search through..
+        /// </summary>
+        internal static string agentCollectionToSearch {
+            get {
+                return ResourceManager.GetString("agentCollectionToSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An autonomous agent that can percieve its surroundings..
+        /// </summary>
+        internal static string agentDescription {
+            get {
+                return ResourceManager.GetString("agentDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        internal static string agentName {
+            get {
+                return ResourceManager.GetString("agentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A.
+        /// </summary>
+        internal static string agentNickName {
+            get {
+                return ResourceManager.GetString("agentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There must be at least 1 Agent..
+        /// </summary>
+        internal static string agentsCountErrorMessage {
+            get {
+                return ResourceManager.GetString("agentsCountErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agents.
+        /// </summary>
+        internal static string agentsName {
+            get {
+                return ResourceManager.GetString("agentsName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent System.
+        /// </summary>
+        internal static string agentSystemName {
+            get {
+                return ResourceManager.GetString("agentSystemName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An Agent System controls the adding, removing, and updating of agents..
+        /// </summary>
+        internal static string AgentSystemType_TypeDescription_An_Agent_System_controls_the_adding__removing__and_updating_of_agents_ {
+            get {
+                return ResourceManager.GetString("AgentSystemType_TypeDescription_An_Agent_System_controls_the_adding__removing__an" +
+                        "d_updating_of_agents_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Agent to affect..
+        /// </summary>
+        internal static string agentToAffect {
+            get {
+                return ResourceManager.GetString("agentToAffect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Agent to get neighbors for..
+        /// </summary>
+        internal static string agentToGetNeighborsFor {
+            get {
+                return ResourceManager.GetString("agentToGetNeighborsFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steer towards the average heading of neighbors..
+        /// </summary>
+        internal static string alignForceDescription {
+            get {
+                return ResourceManager.GetString("alignForceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {2734fde9-1c90-4ecd-bcf8-c58dafc5e161}.
+        /// </summary>
+        internal static string alignForceGUID {
+            get {
+                return ResourceManager.GetString("alignForceGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Align Force.
+        /// </summary>
+        internal static string alignForceName {
+            get {
+                return ResourceManager.GetString("alignForceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Align.
+        /// </summary>
+        internal static string alignForceNickName {
+            get {
+                return ResourceManager.GetString("alignForceNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply Behaviors to each Agent?..
+        /// </summary>
+        internal static string applyBehaviorsDescription {
+            get {
+                return ResourceManager.GetString("applyBehaviorsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behavior Applied.
+        /// </summary>
+        internal static string behaviorApplied {
+            get {
+                return ResourceManager.GetString("behaviorApplied", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to True iff the behavior was applied to the agent..
+        /// </summary>
+        internal static string behaviorAppliedDescription {
+            get {
+                return ResourceManager.GetString("behaviorAppliedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Behavior alters the state of the agent..
+        /// </summary>
+        internal static string behaviorDescription {
+            get {
+                return ResourceManager.GetString("behaviorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behavior.
+        /// </summary>
+        internal static string behaviorName {
+            get {
+                return ResourceManager.GetString("behaviorName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        internal static string behaviorNickName {
+            get {
+                return ResourceManager.GetString("behaviorNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behaviors.
+        /// </summary>
+        internal static string behaviorsName {
+            get {
+                return ResourceManager.GetString("behaviorsName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behaviors.
+        /// </summary>
+        internal static string behaviorsSubCategoryName {
+            get {
+                return ResourceManager.GetString("behaviorsSubCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 5.
+        /// </summary>
+        internal static int binSizeDefault {
+            get {
+                object obj = ResourceManager.GetObject("binSizeDefault", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 1.
+        /// </summary>
+        internal static double bodySizeDefault {
+            get {
+                object obj = ResourceManager.GetObject("bodySizeDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The diameter of the extent of the agent&apos;s bounds..
+        /// </summary>
+        internal static string bodySizeDescription {
+            get {
+                return ResourceManager.GetString("bodySizeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Body Size must be greater than or equal to 0..
+        /// </summary>
+        internal static string bodySizeErrorMessage {
+            get {
+                return ResourceManager.GetString("bodySizeErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Body Size.
+        /// </summary>
+        internal static string bodySizeName {
+            get {
+                return ResourceManager.GetString("bodySizeName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        internal static string bodySizeNickName {
+            get {
+                return ResourceManager.GetString("bodySizeNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Boid Forces.
+        /// </summary>
+        internal static string boidForcesSubCategoryName {
+            get {
+                return ResourceManager.GetString("boidForcesSubCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Causes agents to bounce off Environment boundaries..
+        /// </summary>
+        internal static string bounceContainBehDescription {
+            get {
+                return ResourceManager.GetString("bounceContainBehDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The environment which to bounce off of..
+        /// </summary>
+        internal static string bounceContainBehEnvDescription {
+            get {
+                return ResourceManager.GetString("bounceContainBehEnvDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {a266091b-aa80-4323-8239-53d9fc4666be}.
+        /// </summary>
+        internal static string bounceContainBehGUID {
+            get {
+                return ResourceManager.GetString("bounceContainBehGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bounce Contain Behavior.
+        /// </summary>
+        internal static string bounceContainBehName {
+            get {
+                return ResourceManager.GetString("bounceContainBehName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BounceContain.
+        /// </summary>
+        internal static string bounceContainBehNickName {
+            get {
+                return ResourceManager.GetString("bounceContainBehNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The environment which to bounce off of..
+        /// </summary>
+        internal static string bounceContainEnvBehDescription {
+            get {
+                return ResourceManager.GetString("bounceContainEnvBehDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The environment which to bounce off of..
+        /// </summary>
+        internal static string bounceContainEnvDescription {
+            get {
+                return ResourceManager.GetString("bounceContainEnvDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 100.
+        /// </summary>
+        internal static double boxBoundsDefault {
+            get {
+                object obj = ResourceManager.GetObject("boxBoundsDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emit agents from a box..
+        /// </summary>
+        internal static string boxEmitDescription {
+            get {
+                return ResourceManager.GetString("boxEmitDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {6a21f2fd-ff8b-41c8-837d-fce5a6ffa2f7}.
+        /// </summary>
+        internal static string boxEmitGUID {
+            get {
+                return ResourceManager.GetString("boxEmitGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Box Emitter.
+        /// </summary>
+        internal static string boxEmitName {
+            get {
+                return ResourceManager.GetString("boxEmitName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BoxEmit.
+        /// </summary>
+        internal static string boxEmitNickName {
+            get {
+                return ResourceManager.GetString("boxEmitNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Box for emitter.
+        /// </summary>
+        internal static string boxForEmitterDescription {
+            get {
+                return ResourceManager.GetString("boxForEmitterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Box.
+        /// </summary>
+        internal static string boxName {
+            get {
+                return ResourceManager.GetString("boxName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        internal static string boxNickName {
+            get {
+                return ResourceManager.GetString("boxNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steer to move toward the average position of neighbors.
+        /// </summary>
+        internal static string coheseForceDescription {
+            get {
+                return ResourceManager.GetString("coheseForceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {c8fd8532-661e-47f1-99c1-b8552bb83b73}.
+        /// </summary>
+        internal static string coheseForceGUID {
+            get {
+                return ResourceManager.GetString("coheseForceGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cohese Force.
+        /// </summary>
+        internal static string coheseForceName {
+            get {
+                return ResourceManager.GetString("coheseForceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cohese.
+        /// </summary>
+        internal static string coheseForceNickName {
+            get {
+                return ResourceManager.GetString("coheseForceNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {cb8d83ac-eca9-4378-9048-15b37879df2e}.
+        /// </summary>
+        internal static string constructAgentComponentGUID {
+            get {
+                return ResourceManager.GetString("constructAgentComponentGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Constructs the settings for an agent..
+        /// </summary>
+        internal static string constructAgentDescription {
+            get {
+                return ResourceManager.GetString("constructAgentDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Construct Agent.
+        /// </summary>
+        internal static string constructAgentName {
+            get {
+                return ResourceManager.GetString("constructAgentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        internal static string constructAgentNickName {
+            get {
+                return ResourceManager.GetString("constructAgentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applies a force to keep agents away from Environment boundaries..
+        /// </summary>
+        internal static string containForceDescription {
+            get {
+                return ResourceManager.GetString("containForceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {5a6a85be-31d7-47de-bc3b-99a0caf5bcff}.
+        /// </summary>
+        internal static string containForceGUID {
+            get {
+                return ResourceManager.GetString("containForceGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contain Force.
+        /// </summary>
+        internal static string containForceName {
+            get {
+                return ResourceManager.GetString("containForceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contain.
+        /// </summary>
+        internal static string containForceNickName {
+            get {
+                return ResourceManager.GetString("containForceNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        internal static bool continuousFlowDefault {
+            get {
+                object obj = ResourceManager.GetObject("continuousFlowDefault", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If true, Agents will be emitted every Rth timestep.
+        /// If false, N Agents will be emitted once..
+        /// </summary>
+        internal static string continuousFlowDescription {
+            get {
+                return ResourceManager.GetString("continuousFlowDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continuous Flow.
+        /// </summary>
+        internal static string continuousFlowName {
+            get {
+                return ResourceManager.GetString("continuousFlowName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C.
+        /// </summary>
+        internal static string continuousFlowNickName {
+            get {
+                return ResourceManager.GetString("continuousFlowNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 1.
+        /// </summary>
+        internal static int creationRateDefault {
+            get {
+                object obj = ResourceManager.GetObject("creationRateDefault", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate at which new Agents are created. Every Rth timestep..
+        /// </summary>
+        internal static string creationRateDescription {
+            get {
+                return ResourceManager.GetString("creationRateDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creation rate must be greater than 0..
+        /// </summary>
+        internal static string creationRateErrorMessage {
+            get {
+                return ResourceManager.GetString("creationRateErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creation Rate.
+        /// </summary>
+        internal static string creationRateName {
+            get {
+                return ResourceManager.GetString("creationRateName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R.
+        /// </summary>
+        internal static string creationRateNickName {
+            get {
+                return ResourceManager.GetString("creationRateNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve.
+        /// </summary>
+        internal static string curveName {
+            get {
+                return ResourceManager.GetString("curveName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deconstructs an AgentCollection into its Agents..
+        /// </summary>
+        internal static string deconstructACDescription {
+            get {
+                return ResourceManager.GetString("deconstructACDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deconstruct AgentCollection.
+        /// </summary>
+        internal static string deconstructACName {
+            get {
+                return ResourceManager.GetString("deconstructACName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeconstructAC.
+        /// </summary>
+        internal static string deconstructACNickName {
+            get {
+                return ResourceManager.GetString("deconstructACNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deconstructs an Agent to expose its position, velocity, and lifespan..
+        /// </summary>
+        internal static string deconstructAgentDescription {
+            get {
+                return ResourceManager.GetString("deconstructAgentDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b}.
+        /// </summary>
+        internal static string deconstructAgentGUID {
+            get {
+                return ResourceManager.GetString("deconstructAgentGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deconstruct Agent.
+        /// </summary>
+        internal static string deconstructAgentName {
+            get {
+                return ResourceManager.GetString("deconstructAgentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeconstructAgent.
+        /// </summary>
+        internal static string deconstructAgentNickName {
+            get {
+                return ResourceManager.GetString("deconstructAgentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deconstructs a System to expose its Agents and AgentCollection..
+        /// </summary>
+        internal static string deconstructSystemDescription {
+            get {
+                return ResourceManager.GetString("deconstructSystemDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {525078b6-0eb9-4d7f-9824-45f0861c19ea}.
+        /// </summary>
+        internal static string deconstructSystemGUID {
+            get {
+                return ResourceManager.GetString("deconstructSystemGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deconstruct System.
+        /// </summary>
+        internal static string deconstructSystemName {
+            get {
+                return ResourceManager.GetString("deconstructSystemName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DeconstructSystem.
+        /// </summary>
+        internal static string deconstructSystemNickName {
+            get {
+                return ResourceManager.GetString("deconstructSystemNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {ef3ec326-e61f-430a-98b9-c11ad27680a2}.
+        /// </summary>
+        internal static string desconstructACGUID {
+            get {
+                return ResourceManager.GetString("desconstructACGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The object where the Agents will be spawned..
+        /// </summary>
+        internal static string emitterDescription {
+            get {
+                return ResourceManager.GetString("emitterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emitter.
+        /// </summary>
+        internal static string emitterName {
+            get {
+                return ResourceManager.GetString("emitterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to E.
+        /// </summary>
+        internal static string emitterNickName {
+            get {
+                return ResourceManager.GetString("emitterNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There must be at least 1 Emitter..
+        /// </summary>
+        internal static string emittersCountErrorMessage {
+            get {
+                return ResourceManager.GetString("emittersCountErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emitters from which the agents will be spawned from..
+        /// </summary>
+        internal static string emittersDescription {
+            get {
+                return ResourceManager.GetString("emittersDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emitters.
+        /// </summary>
+        internal static string emittersName {
+            get {
+                return ResourceManager.GetString("emittersName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Emitters.
+        /// </summary>
+        internal static string emittersSubCategoryName {
+            get {
+                return ResourceManager.GetString("emittersSubCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine that runs the simulation..
+        /// </summary>
+        internal static string engineDescription {
+            get {
+                return ResourceManager.GetString("engineDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {b0f076cb-8558-46a1-bf94-20a97a1b4d08}.
+        /// </summary>
+        internal static string engineGUID {
+            get {
+                return ResourceManager.GetString("engineGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine.
+        /// </summary>
+        internal static string engineName {
+            get {
+                return ResourceManager.GetString("engineName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Engine.
+        /// </summary>
+        internal static string engineNickName {
+            get {
+                return ResourceManager.GetString("engineNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An object representing the environment the Agents will interact with..
+        /// </summary>
+        internal static string environmentDescription {
+            get {
+                return ResourceManager.GetString("environmentDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment Forces.
+        /// </summary>
+        internal static string environmentForcesSubCategory {
+            get {
+                return ResourceManager.GetString("environmentForcesSubCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment.
+        /// </summary>
+        internal static string environmentName {
+            get {
+                return ResourceManager.GetString("environmentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to En.
+        /// </summary>
+        internal static string environmentNickName {
+            get {
+                return ResourceManager.GetString("environmentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environments.
+        /// </summary>
+        internal static string environmentsSubCategoryName {
+            get {
+                return ResourceManager.GetString("environmentsSubCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Environment to react to..
+        /// </summary>
+        internal static string environmentToReactTo {
+            get {
+                return ResourceManager.GetString("environmentToReactTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F.
+        /// </summary>
+        internal static string forceNickName {
+            get {
+                return ResourceManager.GetString("forceNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Force vectors to apply to each Agent..
+        /// </summary>
+        internal static string forcesDescription {
+            get {
+                return ResourceManager.GetString("forcesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forces.
+        /// </summary>
+        internal static string forcesName {
+            get {
+                return ResourceManager.GetString("forcesName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gets the Neighbors of an Agent within a specified radius..
+        /// </summary>
+        internal static string getNeighborsInRadiusDescription {
+            get {
+                return ResourceManager.GetString("getNeighborsInRadiusDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Neighbors in Radius.
+        /// </summary>
+        internal static string getNeighborsInRadiusName {
+            get {
+                return ResourceManager.GetString("getNeighborsInRadiusName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Neighbors.
+        /// </summary>
+        internal static string getNeighborsInRadiusNickName {
+            get {
+                return ResourceManager.GetString("getNeighborsInRadiusNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 1.
+        /// </summary>
+        internal static int historyLenDefault {
+            get {
+                object obj = ResourceManager.GetObject("historyLenDefault", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of past positions to remember for each agent..
+        /// </summary>
+        internal static string historyLenDescription {
+            get {
+                return ResourceManager.GetString("historyLenDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History Length.
+        /// </summary>
+        internal static string historyLenName {
+            get {
+                return ResourceManager.GetString("historyLenName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N.
+        /// </summary>
+        internal static string historyLenNickName {
+            get {
+                return ResourceManager.GetString("historyLenNickName", resourceCulture);
             }
         }
         
@@ -156,6 +1217,646 @@ namespace Agent.Properties {
             get {
                 object obj = ResourceManager.GetObject("icon_system", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 30.
+        /// </summary>
+        internal static int lifespanDefault {
+            get {
+                object obj = ResourceManager.GetObject("lifespanDefault", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of timesteps that the agent will be alive for..
+        /// </summary>
+        internal static string lifespanDescription {
+            get {
+                return ResourceManager.GetString("lifespanDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lifespan must be greater than 0..
+        /// </summary>
+        internal static string lifespanErrorMessage {
+            get {
+                return ResourceManager.GetString("lifespanErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lifespan.
+        /// </summary>
+        internal static string lifespanName {
+            get {
+                return ResourceManager.GetString("lifespanName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to L.
+        /// </summary>
+        internal static string lifespanNickName {
+            get {
+                return ResourceManager.GetString("lifespanNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 1.
+        /// </summary>
+        internal static double massDefault {
+            get {
+                object obj = ResourceManager.GetObject("massDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Affects how strongly the agent reacts to forces. Larger masses will lead to more cumbersome movement..
+        /// </summary>
+        internal static string massDescription {
+            get {
+                return ResourceManager.GetString("massDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mass must be greater than 0..
+        /// </summary>
+        internal static string massErrorMessage {
+            get {
+                return ResourceManager.GetString("massErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mass.
+        /// </summary>
+        internal static string massName {
+            get {
+                return ResourceManager.GetString("massName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to M.
+        /// </summary>
+        internal static string massNickName {
+            get {
+                return ResourceManager.GetString("massNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 0.1.
+        /// </summary>
+        internal static double maxForceDefault {
+            get {
+                object obj = ResourceManager.GetObject("maxForceDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steering ability can be controlled by limiting the magnitude of the steering force..
+        /// </summary>
+        internal static string maxForceDescription {
+            get {
+                return ResourceManager.GetString("maxForceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum Force must be greater than or equal to 0..
+        /// </summary>
+        internal static string maxForceErrorMessage {
+            get {
+                return ResourceManager.GetString("maxForceErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Force.
+        /// </summary>
+        internal static string maxForceName {
+            get {
+                return ResourceManager.GetString("maxForceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to F.
+        /// </summary>
+        internal static string maxForceNickName {
+            get {
+                return ResourceManager.GetString("maxForceNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 0.5.
+        /// </summary>
+        internal static double maxSpeedDefault {
+            get {
+                object obj = ResourceManager.GetObject("maxSpeedDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rather than teleporting, the agent will move incrementally by this speed towards targets that it seeks..
+        /// </summary>
+        internal static string maxSpeedDescription {
+            get {
+                return ResourceManager.GetString("maxSpeedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum Speed must be greater than or equal to 0..
+        /// </summary>
+        internal static string maxSpeedErrorMessage {
+            get {
+                return ResourceManager.GetString("maxSpeedErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max Speed.
+        /// </summary>
+        internal static string maxSpeedName {
+            get {
+                return ResourceManager.GetString("maxSpeedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        internal static string maxSpeedNickName {
+            get {
+                return ResourceManager.GetString("maxSpeedNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The neighbors of the Agent..
+        /// </summary>
+        internal static string neighborsDescription {
+            get {
+                return ResourceManager.GetString("neighborsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {2477a136-9479-4e3e-b60a-1570ee1ab896}.
+        /// </summary>
+        internal static string neighborsGUID {
+            get {
+                return ResourceManager.GetString("neighborsGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Get Neighbors in Radius.
+        /// </summary>
+        internal static string neighborsName {
+            get {
+                return ResourceManager.GetString("neighborsName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The neighbors to react to..
+        /// </summary>
+        internal static string neighborsToReactTo {
+            get {
+                return ResourceManager.GetString("neighborsToReactTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to 0.
+        /// </summary>
+        internal static int numAgentsDefault {
+            get {
+                object obj = ResourceManager.GetObject("numAgentsDefault", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of Agents that are allowed to be alive in the system at once..
+        /// </summary>
+        internal static string numAgentsDescription {
+            get {
+                return ResourceManager.GetString("numAgentsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of Agents must be greater than or equal to 0..
+        /// </summary>
+        internal static string numAgentsErrorMessage {
+            get {
+                return ResourceManager.GetString("numAgentsErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of Agents.
+        /// </summary>
+        internal static string numAgentsName {
+            get {
+                return ResourceManager.GetString("numAgentsName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N.
+        /// </summary>
+        internal static string numAgentsNickName {
+            get {
+                return ResourceManager.GetString("numAgentsNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        internal static string pluginCategoryName {
+            get {
+                return ResourceManager.GetString("pluginCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Agent.
+        /// </summary>
+        internal static string pluginSubCategoryName {
+            get {
+                return ResourceManager.GetString("pluginSubCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Point3d Position of the Agent..
+        /// </summary>
+        internal static string positionDescription {
+            get {
+                return ResourceManager.GetString("positionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The past positions of the agent..
+        /// </summary>
+        internal static string positionHistoryDescription {
+            get {
+                return ResourceManager.GetString("positionHistoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position History.
+        /// </summary>
+        internal static string positionHistoryName {
+            get {
+                return ResourceManager.GetString("positionHistoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to H.
+        /// </summary>
+        internal static string positionHistoryNickName {
+            get {
+                return ResourceManager.GetString("positionHistoryNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position.
+        /// </summary>
+        internal static string positionName {
+            get {
+                return ResourceManager.GetString("positionName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to P.
+        /// </summary>
+        internal static string positionNickName {
+            get {
+                return ResourceManager.GetString("positionNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        internal static bool resetDefault {
+            get {
+                object obj = ResourceManager.GetObject("resetDefault", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset the scene?.
+        /// </summary>
+        internal static string resetDescription {
+            get {
+                return ResourceManager.GetString("resetDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset.
+        /// </summary>
+        internal static string resetName {
+            get {
+                return ResourceManager.GetString("resetName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R.
+        /// </summary>
+        internal static string resetNickName {
+            get {
+                return ResourceManager.GetString("resetNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steer to avoid neighbors..
+        /// </summary>
+        internal static string separateForceDescription {
+            get {
+                return ResourceManager.GetString("separateForceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {1ba32976-9427-425e-aa14-fe86ee64a50a}.
+        /// </summary>
+        internal static string separateForceGUID {
+            get {
+                return ResourceManager.GetString("separateForceGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Separate Force.
+        /// </summary>
+        internal static string separateForceName {
+            get {
+                return ResourceManager.GetString("separateForceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Separate.
+        /// </summary>
+        internal static string separateForceNickName {
+            get {
+                return ResourceManager.GetString("separateForceNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {9024180f-7500-456d-a79c-75b7c2d308ea}.
+        /// </summary>
+        internal static string systemComponentGUID {
+            get {
+                return ResourceManager.GetString("systemComponentGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        internal static string systemComponentNickName {
+            get {
+                return ResourceManager.GetString("systemComponentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Represents a self-contained System of Agents and Emitters..
+        /// </summary>
+        internal static string systemDescription {
+            get {
+                return ResourceManager.GetString("systemDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        internal static string systemName {
+            get {
+                return ResourceManager.GetString("systemName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        internal static string systemNickName {
+            get {
+                return ResourceManager.GetString("systemNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 0.1.
+        /// </summary>
+        internal static double velocityDefault {
+            get {
+                object obj = ResourceManager.GetObject("velocityDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The direction and magnitude of the Agent&apos;s movement..
+        /// </summary>
+        internal static string velocityDescription {
+            get {
+                return ResourceManager.GetString("velocityDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Velocity.
+        /// </summary>
+        internal static string velocityName {
+            get {
+                return ResourceManager.GetString("velocityName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to V.
+        /// </summary>
+        internal static string velocityNickName {
+            get {
+                return ResourceManager.GetString("velocityNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 15.
+        /// </summary>
+        internal static double visionAngleDefault {
+            get {
+                object obj = ResourceManager.GetObject("visionAngleDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The maximum angle, taken from the velocity vector,  that the agent can see around it..
+        /// </summary>
+        internal static string visionAngleDescription {
+            get {
+                return ResourceManager.GetString("visionAngleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision Angle must be greater than or equal to 0..
+        /// </summary>
+        internal static string visionAngleErrorMessage {
+            get {
+                return ResourceManager.GetString("visionAngleErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision Angle.
+        /// </summary>
+        internal static string visionAngleName {
+            get {
+                return ResourceManager.GetString("visionAngleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A.
+        /// </summary>
+        internal static string visionAngleNickName {
+            get {
+                return ResourceManager.GetString("visionAngleNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 5.
+        /// </summary>
+        internal static double visionRadiusDefault {
+            get {
+                object obj = ResourceManager.GetObject("visionRadiusDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The maximum radius around the agent that it can see..
+        /// </summary>
+        internal static string visionRadiusDescription {
+            get {
+                return ResourceManager.GetString("visionRadiusDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision Radius must be greater than or equal to 0..
+        /// </summary>
+        internal static string visionRadiusErrorMessage {
+            get {
+                return ResourceManager.GetString("visionRadiusErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision Radius Mutliplier.
+        /// </summary>
+        internal static string visionRadiusMultiplier {
+            get {
+                return ResourceManager.GetString("visionRadiusMultiplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 1.
+        /// </summary>
+        internal static double visionRadiusMultiplierDefault {
+            get {
+                object obj = ResourceManager.GetObject("visionRadiusMultiplierDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The factor by which the Agent&apos;s Vision Radius will be multiplied by around which the Agent will see other Agents..
+        /// </summary>
+        internal static string visionRadiusMultiplierDescription {
+            get {
+                return ResourceManager.GetString("visionRadiusMultiplierDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision Radius Multiplier must be between 0 and 1..
+        /// </summary>
+        internal static string visionRadiusMultiplierErrorMessage {
+            get {
+                return ResourceManager.GetString("visionRadiusMultiplierErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision Radius Mutliplier.
+        /// </summary>
+        internal static string visionRadiusMultiplierName {
+            get {
+                return ResourceManager.GetString("visionRadiusMultiplierName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R.
+        /// </summary>
+        internal static string visionRadiusMultiplierNickName {
+            get {
+                return ResourceManager.GetString("visionRadiusMultiplierNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision Radius.
+        /// </summary>
+        internal static string visionRadiusName {
+            get {
+                return ResourceManager.GetString("visionRadiusName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R.
+        /// </summary>
+        internal static string visionRadiusNickName {
+            get {
+                return ResourceManager.GetString("visionRadiusNickName", resourceCulture);
             }
         }
     }

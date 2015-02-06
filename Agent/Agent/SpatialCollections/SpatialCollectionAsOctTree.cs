@@ -28,7 +28,7 @@ namespace Agent
     public SpatialCollectionAsOctTree(Point3d min, Point3d max, int minNodeSize)
     {
       this.spatialObjects = new List<T>();
-      updateDatastructure(min, max, minNodeSize, new List<T>());
+      UpdateDatastructure(min, max, minNodeSize, new List<T>());
     }
 
     public SpatialCollectionAsOctTree(SpatialCollectionAsOctTree<T> collection)
@@ -44,20 +44,20 @@ namespace Agent
       this.octTree = ((SpatialCollectionAsOctTree<T>)spatialCollection).octTree;
     }
 
-    public ISpatialCollection<T> getNeighborsInSphere(T item, double r)
+    public ISpatialCollection<T> GetNeighborsInSphere(T item, double r)
     {
       // ISpatialCollection<T> neighbors = new SpatialCollectionAsOctTree<T>();
       IPosition position = (IPosition)item;
-      Point3d p3d = position.getPoint3d();
-      Vector3 positionVec = new Vector3((float)p3d.X, (float)p3d.Y, (float)p3d.Z);
-      T[] neighborsArray = this.octTree.getNeighborsInSphere(item, positionVec, (float)r); // DK: added "item" parameter
+      Point3d p3D = position.GetPoint3D();
+      Vector3 positionVec = new Vector3((float)p3D.X, (float)p3D.Y, (float)p3D.Z);
+      T[] neighborsArray = this.octTree.GetNeighborsInSphere(item, positionVec, (float)r); // DK: added "item" parameter
       return new SpatialCollectionAsList<T>(neighborsArray);
     }
 
     public void Add(T item)
     {
       this.spatialObjects.Add(item);
-      Point3d p = ((IPosition)item).getPoint3d();
+      Point3d p = ((IPosition)item).GetPoint3D();
       this.octTree.Add(item, new Vector3((float)p.X, (float)p.Y, (float)p.Z)); // DK: added
     }
 
@@ -111,7 +111,7 @@ namespace Agent
     }
 
 
-    public void updateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
+    public void UpdateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
     {
       float initialWorldSize = (float)min.DistanceTo(max);
       BoundingBox box = new BoundingBox(min, max);
