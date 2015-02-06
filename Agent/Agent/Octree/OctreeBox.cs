@@ -34,9 +34,9 @@ namespace OctreeSearch
 
         }
 
-        public bool within(OctreeBox Box)
+        public bool within(OctreeBox box)
         {
-            return within(Box.Top, Box.Left, Box.Bottom, Box.Right, Box.Front, Box.Back);
+            return within(box.Top, box.Left, box.Bottom, box.Right, box.Front, box.Back);
         }
         public bool within(float xMax, float xMin, float yMax, float yMin, float zMax, float zMin)
         {

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Grasshopper.Kernel.Types;
+using RS = Agent.Properties.Resources;
 
-namespace Agent.Agent2
+namespace Agent
 {
   public class SpatialCollectionType : GH_Goo<Object>
   {
@@ -14,7 +10,7 @@ namespace Agent.Agent2
 
     public SpatialCollectionType()
     {
-      this.agents = new SpatialCollectionAsBinLattice<AgentType>();
+      agents = new SpatialCollectionAsBinLattice<AgentType>();
     }
 
     public SpatialCollectionType(ISpatialCollection<AgentType> agents)
@@ -24,14 +20,14 @@ namespace Agent.Agent2
 
     public SpatialCollectionType(SpatialCollectionType spatialCollection)
     {
-      this.agents = new SpatialCollectionAsBinLattice<AgentType>(spatialCollection.agents);
+      agents = new SpatialCollectionAsBinLattice<AgentType>(spatialCollection.agents);
     }
 
     public ISpatialCollection<AgentType> Agents
     {
       get
       {
-        return this.agents;
+        return agents;
       }
     }
 
@@ -47,17 +43,17 @@ namespace Agent.Agent2
 
     public override string ToString()
     {
-      return this.agents.ToString();
+      return agents.ToString();
     }
 
     public override string TypeDescription
     {
-      get { return "A collection of Agents."; }
+      get { return RS.agentCollectionDescription; }
     }
 
     public override string TypeName
     {
-      get { return "Agent System"; }
+      get { return RS.agentCollectionName; }
     }
   }
 }

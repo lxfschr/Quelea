@@ -51,8 +51,8 @@ namespace Agent
     /// <summary>
     /// This is the method that actually does the work.
     /// </summary>
-    /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override void SolveInstance(IGH_DataAccess DA)
+    /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
+    protected override void SolveInstance(IGH_DataAccess da)
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
@@ -61,8 +61,8 @@ namespace Agent
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!DA.GetData(0, ref weight)) return;
-      if (!DA.GetData(1, ref visionRadiusMultiplier)) return;
+      if (!da.GetData(0, ref weight)) return;
+      if (!da.GetData(1, ref visionRadiusMultiplier)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (!(0.0 <= visionRadiusMultiplier && visionRadiusMultiplier <= 1.0))
@@ -82,7 +82,7 @@ namespace Agent
       AlignForceType force = new AlignForceType(weight, visionRadiusMultiplier);
 
       // Finally assign the spiral to the output parameter.
-      DA.SetData(0, force);
+      da.SetData(0, force);
       //DA.SetData(1, pt);
     }
 

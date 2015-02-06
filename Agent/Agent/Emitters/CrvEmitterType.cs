@@ -1,48 +1,41 @@
-﻿using Grasshopper.Kernel;
+﻿using RS = Agent.Properties.Resources;
+using Agent.Util;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
-using System;
+
 namespace Agent
 {
   public class CrvEmitterType : EmitterType
   {
 
-    private Curve crv;
+    private readonly Curve crv;
 
     // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
     public CrvEmitterType()
+      :base()
     {
-      this.crv = new Line().ToNurbsCurve();
-      this.continuousFlow = true;
-      this.creationRate = 1;
-      this.numAgents = 0;
+      crv = new Line().ToNurbsCurve();
     }
 
     // Constructor with initial values.
     public CrvEmitterType(Curve crv, bool continuousFlow, int creationRate, int numAgents)
+      :base(continuousFlow, creationRate, numAgents)
     {
       this.crv = crv;
-      this.continuousFlow = continuousFlow;
-      this.creationRate = creationRate;
-      this.numAgents = numAgents;
     }
 
     // Constructor with initial values.
     public CrvEmitterType(Curve crv)
+      :base()
     {
       this.crv = crv;
-      this.continuousFlow = true;
-      this.creationRate = 1;
-      this.numAgents = 0;
     }
 
     // Copy Constructor
     public CrvEmitterType(CrvEmitterType emitCrvType)
+      : base(emitCrvType.continuousFlow, emitCrvType.creationRate, emitCrvType.numAgents)
     {
       this.crv = emitCrvType.crv;
-      this.continuousFlow = emitCrvType.continuousFlow;
-      this.creationRate = emitCrvType.creationRate;
-      this.numAgents = emitCrvType.numAgents;
     }
 
     public override bool Equals(object obj)
@@ -72,12 +65,12 @@ namespace Agent
       return new CrvEmitterType(this);
     }
 
-    public override Point3d emit()
+    public override Point3d Emit()
     {
 
-      double min = 0;
-      double max = 1;
-      return this.crv.PointAtNormalizedLength((Util.Random.RandomDouble(min, max)));
+      const double min = 0;
+      const double max = 1;
+      return this.crv.PointAtNormalizedLength((Random.RandomDouble(min, max)));
 
     }
 
@@ -93,11 +86,11 @@ namespace Agent
     public override string ToString()
     {
 
-      string origin = "Origin Curve: " + crv.ToString() + "\n";
-      string continuousFlow = "ContinuousFlow: " + this.continuousFlow.ToString() + "\n";
-      string creationRate = "Creation Rate: " + this.creationRate.ToString() + "\n";
-      string numAgents = "Number of Agents: " + this.numAgents.ToString() + "\n";
-      return origin + continuousFlow + creationRate + numAgents;
+      string origin = Util.String.ToString(RS.curveName, crv);
+      string continuousFlowStr = Util.String.ToString(RS.continuousFlowName, continuousFlow);
+      string creationRateStr = Util.String.ToString(RS.creationRateName, creationRate);
+      string numAgentsStr = Util.String.ToString(RS.numAgentsName, numAgents);
+      return origin + continuousFlowStr + creationRateStr + numAgentsStr;
     }
 
     public override string TypeDescription
@@ -111,7 +104,7 @@ namespace Agent
     }
 
 
-    public override BoundingBox getBoundingBox()
+    public override BoundingBox GetBoundingBox()
     {
       return this.crv.GetBoundingBox(false);
     }

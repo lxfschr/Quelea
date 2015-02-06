@@ -62,43 +62,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Agent2\AgentComponent.cs" />
-    <Compile Include="Agent2\AgentSystemComponent.cs" />
-    <Compile Include="Agent2\AgentSystemType.cs" />
-    <Compile Include="Agent2\AgentType.cs" />
-    <Compile Include="Agent2\BehaviorType.cs" />
-    <Compile Include="Agent2\BounceContainBehaviorComponent.cs" />
-    <Compile Include="Agent2\BoxEmitterComponent.cs" />
-    <Compile Include="Agent2\BoxEmitterType.cs" />
-    <Compile Include="Agent2\BoidForceComponent.cs" />
-    <Compile Include="Agent2\SeparateForceComponent4.cs" />
-    <Compile Include="Agent2\CoheseForceComponent4.cs" />
-    <Compile Include="Agent2\CoheseForceComponent3.cs" />
-    <Compile Include="Agent2\CoheseForceComponent2.cs" />
-    <Compile Include="Agent2\DeconstructAgentCollectionComponent.cs" />
-    <Compile Include="Agent2\NeighborsComponent3.cs" />
-    <Compile Include="Agent2\SpatialCollectionType.cs" />
-    <Compile Include="Agent2\NeighborsComponent2.cs" />
-    <Compile Include="Agent2\NeighborsComponent.cs" />
-    <Compile Include="Agent2\CoheseForceComponent.cs" />
-    <Compile Include="Agent2\Constants.cs" />
-    <Compile Include="Agent2\ContainForceComponent.cs" />
-    <Compile Include="Agent2\DeconstructAgentComponent.cs" />
-    <Compile Include="Agent2\DeconstructSystemComponent.cs" />
-    <Compile Include="Agent2\EmitterType.cs" />
-    <Compile Include="Agent2\EnvironmentType.cs" />
-    <Compile Include="Agent2\SeparateForceComponent.cs" />
-    <Compile Include="Agent2\Util.cs" />
-    <Compile Include="Agent2\AxisAlignedBoxEnvironmentComponent.cs" />
-    <Compile Include="Agent2\AxisAlignedBoxEnvironmentType.cs" />
     <Compile Include="Agent\AgentComponent.cs" />
-    <Compile Include="Agent\AgentSystemComponentList.cs" />
     <Compile Include="Agent\AgentSystemComponent.cs" />
-    <Compile Include="Agent\AgentSystemTypeList.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
+    <Compile Include="Behaviors\BehaviorType.cs" />
+    <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />
+    <Compile Include="Emitters\BoxEmitterComponent.cs" />
+    <Compile Include="Emitters\BoxEmitterType.cs" />
+    <Compile Include="Forces\BoidForceComponent.cs" />
+    <Compile Include="Forces\SeparateForceComponent.cs" />
+    <Compile Include="Forces\CoheseForceComponent.cs" />
+    <Compile Include="Agent\DeconstructAgentCollectionComponent.cs" />
+    <Compile Include="Agent\NeighborsComponent.cs" />
+    <Compile Include="SpatialCollections\SpatialCollectionType.cs" />
+    <Compile Include="Forces\ContainForceComponent.cs" />
+    <Compile Include="Agent\DeconstructAgentComponent.cs" />
     <Compile Include="Agent\DeconstructSystemComponent.cs" />
-    <Compile Include="Agent2\EngineComponent.cs" />
+    <Compile Include="Emitters\EmitterType.cs" />
+    <Compile Include="Environment\EnvironmentType.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="Environment\AxisAlignedBoxEnvironmentComponent.cs" />
+    <Compile Include="Environment\AxisAlignedBoxEnvironmentType.cs" />
     <Compile Include="Agent\EngineComponent.cs" />
     <Compile Include="Forces\ContainForceType.cs" />
     <Compile Include="SpatialCollections\CircularArray.cs" />
@@ -114,29 +99,19 @@
     <Compile Include="ALGLIB\alglibinternal.cs" />
     <Compile Include="ALGLIB\alglibmisc.cs" />
     <Compile Include="ALGLIB\ap.cs" />
-    <Compile Include="Behaviors\BehaviorType.cs" />
     <Compile Include="Agent\DebugDeconstructAgentComponent.cs" />
-    <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />
     <Compile Include="Behaviors\BounceContainBehaviorType.cs" />
-    <Compile Include="Emitters\BoxEmitterType.cs" />
-    <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Environment\BrepEnvironmentComponent.cs" />
     <Compile Include="Environment\PolysurfaceEnvironmentType.cs" />
     <Compile Include="Environment\BrepEnvironmentType.cs" />
-    <Compile Include="Environment\EnvironmentType.cs" />
     <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
     <Compile Include="Environment\SurfaceEnvironmentType.cs" />
     <Compile Include="Forces\AlignForceComponent.cs" />
-    <Compile Include="Forces\ContainForceComponent.cs" />
-    <Compile Include="Forces\CoheseForceComponent.cs" />
     <Compile Include="Forces\AlignForceType.cs" />
     <Compile Include="Forces\CoheseForceType.cs" />
-    <Compile Include="Agent\DeconstructAgentComponent.cs" />
     <Compile Include="DescriptionBase.cs" />
     <Compile Include="Emitters\CrvEmitterComponent.cs" />
     <Compile Include="Emitters\CrvEmitterType.cs" />
-    <Compile Include="Emitters\EmitterType.cs" />
-    <Compile Include="Forces\SeparateForceComponent.cs" />
     <Compile Include="Forces\SeparateForceType.cs" />
     <Compile Include="Forces\ForceType.cs" />
     <Compile Include="Emitters\PtEmitterType.cs" />
@@ -174,9 +149,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Util.cs" />
-    <Compile Include="Environment\WorldBoxEnvironmentType.cs" />
-    <Compile Include="Environment\WorldBoxEnvironmentComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -225,6 +197,7 @@
     <Content Include="Octree\OctreeSearch.sln" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Agent2\" />
     <Folder Include="KdTreeLib\obj\Debug\TempPE\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

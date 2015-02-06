@@ -650,15 +650,15 @@ public partial class alglib
             lock(rndobject){ r = rndobject.NextDouble(); }
             return r;
         }
-        public static int randominteger(int N)
+        public static int randominteger(int n)
         {
             int r = 0;
-            lock(rndobject){ r = rndobject.Next(N); }
+            lock(rndobject){ r = rndobject.Next(n); }
             return r;
         }
-        public static double sqr(double X)
+        public static double sqr(double x)
         {
-            return X*X;
+            return x*x;
         }        
         public static double abscomplex(complex z)
         {
@@ -935,12 +935,12 @@ public partial class alglib
         dst         array for ints
         dst_offs    offset of four-ints chunk
         ************************************************************************/
-        private static void threebytes2foursixbits(byte[] src, int src_offs, int[] dst, int dst_offs)
+        private static void threebytes2foursixbits(byte[] src, int srcOffs, int[] dst, int dstOffs)
         {
-            dst[dst_offs+0] =  src[src_offs+0] & 0x3F;
-            dst[dst_offs+1] = (src[src_offs+0]>>6) | ((src[src_offs+1]&0x0F)<<2);
-            dst[dst_offs+2] = (src[src_offs+1]>>4) | ((src[src_offs+2]&0x03)<<4);
-            dst[dst_offs+3] =  src[src_offs+2]>>2;
+            dst[dstOffs+0] =  src[srcOffs+0] & 0x3F;
+            dst[dstOffs+1] = (src[srcOffs+0]>>6) | ((src[srcOffs+1]&0x0F)<<2);
+            dst[dstOffs+2] = (src[srcOffs+1]>>4) | ((src[srcOffs+2]&0x03)<<4);
+            dst[dstOffs+3] =  src[srcOffs+2]>>2;
         }
 
         /************************************************************************
@@ -952,11 +952,11 @@ public partial class alglib
         dst         pointer to three bytes
         dst_offs    offset of the chunk
         ************************************************************************/
-        private static void foursixbits2threebytes(int[] src, int src_offs, byte[] dst, int dst_offs)
+        private static void foursixbits2threebytes(int[] src, int srcOffs, byte[] dst, int dstOffs)
         {
-            dst[dst_offs+0] =      (byte)(src[src_offs+0] | ((src[src_offs+1]&0x03)<<6));
-            dst[dst_offs+1] = (byte)((src[src_offs+1]>>2) | ((src[src_offs+2]&0x0F)<<4));
-            dst[dst_offs+2] = (byte)((src[src_offs+2]>>4) |  (src[src_offs+3]<<2));
+            dst[dstOffs+0] =      (byte)(src[srcOffs+0] | ((src[srcOffs+1]&0x03)<<6));
+            dst[dstOffs+1] = (byte)((src[srcOffs+1]>>2) | ((src[srcOffs+2]&0x0F)<<4));
+            dst[dstOffs+2] = (byte)((src[srcOffs+2]>>4) |  (src[srcOffs+3]<<2));
         }
 
         /************************************************************************

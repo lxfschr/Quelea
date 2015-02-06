@@ -90,8 +90,8 @@ public class PointOctree<T> where T : class {
 		return rootNode.GetNearby(ray, maxDistance);
 	}
 
-  public T[] getNeighborsInSphere(T item, Vector3 center, float radius) { // DK: added "item" parameter
-		T[] result = rootNode.getNeighborsInSphere(item, center, radius); // DK: ditto
+  public T[] GetNeighborsInSphere(T item, Vector3 center, float radius) { // DK: added "item" parameter
+		T[] result = rootNode.GetNeighborsInSphere(item, center, radius); // DK: ditto
     return result != null ? result : new T[0];
 	}
 

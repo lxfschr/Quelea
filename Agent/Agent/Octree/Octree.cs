@@ -16,17 +16,17 @@ namespace OctreeSearch
         protected internal OctreeNode top;
 
         public Octree()
-            : this(1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 20, OctreeNode.NO_MIN_SIZE)
+            : this(1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 20, OctreeNode.NoMinSize)
         {
         }
 
         public Octree(float xMax, float xMin, float yMax, float yMin, float zMax, float zMin, int maxItems)
-            : this(xMax, xMin, yMax, yMin, zMax, zMin, maxItems, OctreeNode.NO_MIN_SIZE)
+            : this(xMax, xMin, yMax, yMin, zMax, zMin, maxItems, OctreeNode.NoMinSize)
         {
         }
 
-        public Octree(int up, int left, int down, int right, int Front, int Back, int maxItems)
-            : this((float)up, (float)left, (float)down, (float)right, (float)Front, (float)Back, maxItems, OctreeNode.DEFAULT_MIN_SIZE)
+        public Octree(int up, int left, int down, int right, int front, int back, int maxItems)
+            : this((float)up, (float)left, (float)down, (float)right, (float)front, (float)back, maxItems, OctreeNode.DefaultMinSize)
         {
         }
 
@@ -76,37 +76,37 @@ namespace OctreeSearch
             return top.AddNode(x, y, z, obj);
         }
 
-        public bool AddNode(Vector3f vector, object obj)
+        public bool AddNode(Vector3F vector, object obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3f vector, int obj)
+        public bool AddNode(Vector3F vector, int obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3f vector, uint obj)
+        public bool AddNode(Vector3F vector, uint obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3f vector, short obj)
+        public bool AddNode(Vector3F vector, short obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3f vector, long obj)
+        public bool AddNode(Vector3F vector, long obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3f vector, float obj)
+        public bool AddNode(Vector3F vector, float obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3f vector, double obj)
+        public bool AddNode(Vector3F vector, double obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3f vector, bool obj)
+        public bool AddNode(Vector3F vector, bool obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
 
 
@@ -143,37 +143,37 @@ namespace OctreeSearch
             return top.AddNode(x, y, z, obj);
         }
 
-        public bool AddNode(Vector3d vector, object obj)
+        public bool AddNode(Vector3D vector, object obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3d vector, int obj)
+        public bool AddNode(Vector3D vector, int obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3d vector, uint obj)
+        public bool AddNode(Vector3D vector, uint obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3d vector, short obj)
+        public bool AddNode(Vector3D vector, short obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3d vector, long obj)
+        public bool AddNode(Vector3D vector, long obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3d vector, float obj)
+        public bool AddNode(Vector3D vector, float obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3d vector, double obj)
+        public bool AddNode(Vector3D vector, double obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public bool AddNode(Vector3d vector, bool obj)
+        public bool AddNode(Vector3D vector, bool obj)
         {
-            return top.AddNode(vector.x, vector.y, vector.z, obj);
+            return top.AddNode(vector.X, vector.Y, vector.Z, obj);
         }
 
         #endregion
@@ -217,37 +217,37 @@ namespace OctreeSearch
             return top.RemoveNode(x, y, z, obj);
         }
 
-        public object RemoveNode(Vector3f vector, object obj)
+        public object RemoveNode(Vector3F vector, object obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3f vector, int obj)
+        public object RemoveNode(Vector3F vector, int obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3f vector, uint obj)
+        public object RemoveNode(Vector3F vector, uint obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3f vector, short obj)
+        public object RemoveNode(Vector3F vector, short obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3f vector, long obj)
+        public object RemoveNode(Vector3F vector, long obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3f vector, float obj)
+        public object RemoveNode(Vector3F vector, float obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3f vector, double obj)
+        public object RemoveNode(Vector3F vector, double obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3f vector, bool obj)
+        public object RemoveNode(Vector3F vector, bool obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
 
         public object RemoveNode(double x, double y, double z, object obj)
@@ -283,37 +283,37 @@ namespace OctreeSearch
             return top.RemoveNode(x, y, z, obj);
         }
 
-        public object RemoveNode(Vector3d vector, object obj)
+        public object RemoveNode(Vector3D vector, object obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3d vector, int obj)
+        public object RemoveNode(Vector3D vector, int obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3d vector, uint obj)
+        public object RemoveNode(Vector3D vector, uint obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3d vector, short obj)
+        public object RemoveNode(Vector3D vector, short obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3d vector, long obj)
+        public object RemoveNode(Vector3D vector, long obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3d vector, float obj)
+        public object RemoveNode(Vector3D vector, float obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3d vector, double obj)
+        public object RemoveNode(Vector3D vector, double obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
-        public object RemoveNode(Vector3d vector, bool obj)
+        public object RemoveNode(Vector3D vector, bool obj)
         {
-            return top.RemoveNode(vector.x, vector.y, vector.z, obj);
+            return top.RemoveNode(vector.X, vector.Y, vector.Z, obj);
         }
         #endregion
 
@@ -327,17 +327,17 @@ namespace OctreeSearch
         {
             return top.GetNode(x, y, z);
         }
-        public object GetNode(Vector3f vector)
+        public object GetNode(Vector3F vector)
         {
-            return top.GetNode(vector.x, vector.y, vector.z);
+            return top.GetNode(vector.X, vector.Y, vector.Z);
         }
         public object GetNode(double x, double y, double z)
         {
             return top.GetNode(x, y, z);
         }
-        public object GetNode(Vector3d vector)
+        public object GetNode(Vector3D vector)
         {
-            return top.GetNode(vector.x, vector.y, vector.z);
+            return top.GetNode(vector.X, vector.Y, vector.Z);
         }
 
         /// <summary> Get an object closest to a x/y, within a maximum distance.
@@ -347,27 +347,27 @@ namespace OctreeSearch
         /// </param>
         /// <param name="y">left-right location in Octree Grid (y, x)
         /// </param>
-        /// <param name="withinDistance">the maximum distance to get a hit, in
+        /// <param name="shortestDistance">the maximum distance to get a hit, in
         /// decimal degrees.
         /// </param>
         /// <returns> the object that was found, null if nothing is within
         /// the maximum distance.
         /// </returns>
-        public object GetNode(float x, float y, float z, double withinDistance)
+        public object GetNode(float x, float y, float z, double shortestDistance)
         {
-            return top.GetNode(x, y, z, withinDistance);
+            return top.GetNode(x, y, z, shortestDistance);
         }
-        public object GetNode(Vector3f vector, double withinDistance)
+        public object GetNode(Vector3F vector, double shortestDistance)
         {
-            return top.GetNode(vector.x, vector.y, vector.z, withinDistance);
+            return top.GetNode(vector.X, vector.Y, vector.Z, shortestDistance);
         }
-        public object GetNode(double x, double y, double z, double withinDistance)
+        public object GetNode(double x, double y, double z, double shortestDistance)
         {
-            return top.GetNode(x, y, z, withinDistance);
+            return top.GetNode(x, y, z, shortestDistance);
         }
-        public object GetNode(Vector3d vector, double withinDistance)
+        public object GetNode(Vector3D vector, double shortestDistance)
         {
-            return top.GetNode(vector.x, vector.y, vector.z, withinDistance);
+            return top.GetNode(vector.X, vector.Y, vector.Z, shortestDistance);
         }
 
         /// <summary> Get all the objects within a bounding box.
@@ -459,17 +459,17 @@ namespace OctreeSearch
         {
             return top.GetNodes(x, y, z, radius);
         }
-        public ArrayList GetNodes(Vector3f vector, double radius)
+        public ArrayList GetNodes(Vector3F vector, double radius)
         {
-            return top.GetNodes(vector.x, vector.y, vector.z, radius);
+            return top.GetNodes(vector.X, vector.Y, vector.Z, radius);
         }
         public ArrayList GetNodes(double x, double y, double z, double radius)
         {
             return top.GetNodes(x, y, z, radius);
         }
-        public ArrayList GetNodes(Vector3d vector, double radius)
+        public ArrayList GetNodes(Vector3D vector, double radius)
         {
-            return top.GetNodes(vector.x, vector.y, vector.z, radius);
+            return top.GetNodes(vector.X, vector.Y, vector.Z, radius);
         }
 
         /// <summary> Get an object closest to a x/y, within a maximum distance./// </summary>
@@ -478,21 +478,21 @@ namespace OctreeSearch
         /// <param name="withinDistance">the maximum distance to get a hit, in
         /// decimal degrees.</param>
         /// <returns> the objects that were found  within the maximum radius.</returns>
-        public ArrayList GetNodes(float x, float y, float z, double MinRadius, double MaxRadius)
+        public ArrayList GetNodes(float x, float y, float z, double minRadius, double maxRadius)
         {
-            return top.GetNodes(x, y, z, MinRadius, MaxRadius);
+            return top.GetNodes(x, y, z, minRadius, maxRadius);
         }
-        public ArrayList GetNodes(Vector3f vector, double MinRadius, double MaxRadius)
+        public ArrayList GetNodes(Vector3F vector, double minRadius, double maxRadius)
         {
-            return top.GetNodes(vector.x, vector.y, vector.z, MinRadius, MaxRadius);
+            return top.GetNodes(vector.X, vector.Y, vector.Z, minRadius, maxRadius);
         }
-        public ArrayList GetNodes(double x, double y, double z, double MinRadius, double MaxRadius)
+        public ArrayList GetNodes(double x, double y, double z, double minRadius, double maxRadius)
         {
-            return top.GetNodes(x, y, z, MinRadius, MaxRadius);
+            return top.GetNodes(x, y, z, minRadius, maxRadius);
         }
-        public ArrayList GetNodes(Vector3d vector, double MinRadius, double MaxRadius)
+        public ArrayList GetNodes(Vector3D vector, double minRadius, double maxRadius)
         {
-            return top.GetNodes(vector.x, vector.y, vector.z, MinRadius, MaxRadius);
+            return top.GetNodes(vector.X, vector.Y, vector.Z, minRadius, maxRadius);
         }
 
         #endregion

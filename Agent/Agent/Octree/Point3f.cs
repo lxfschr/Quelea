@@ -16,8 +16,8 @@ namespace Tools.Point
     /// 3D float point
     /// </summary>
     [Serializable]
-    public class Point3f :
-        IEquatable<Point3f>,
+    public class Point3F :
+        IEquatable<Point3F>,
         ISerializable
     {
         private float[] nxyz = new float[3];
@@ -27,7 +27,7 @@ namespace Tools.Point
         /// <summary>
         /// Constructor
         /// </summary>
-        public Point3f()
+        public Point3F()
         {
         }
 
@@ -37,7 +37,7 @@ namespace Tools.Point
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <param name="Z"></param>
-        public Point3f(float x, float y, float z)
+        public Point3F(float x, float y, float z)
         {
             nxyz[0] = x;
             nxyz[1] = y;
@@ -48,7 +48,7 @@ namespace Tools.Point
         /// Constructor - overload 2
         /// </summary>
         /// <param name="XYZ">A float array for coordinates</param>
-        public Point3f(float[] xyz)
+        public Point3F(float[] xyz)
         {
             nxyz = (float[])xyz.Clone();
         }
@@ -57,7 +57,7 @@ namespace Tools.Point
         /// Constructor - overload 3
         /// </summary>
         /// <param name="XYZ">A vector for coordinates</param>
-        public Point3f(Vector3f vector)
+        public Point3F(Vector3F vector)
         {
             nxyz = vector.ToArray();
         }
@@ -67,7 +67,7 @@ namespace Tools.Point
         #region ISerializable
 
         //Deserialization constructor
-        public Point3f(SerializationInfo info, StreamingContext ctxt)
+        public Point3F(SerializationInfo info, StreamingContext ctxt)
         {
             SerializationReader sr = SerializationReader.GetReader(info);
             nxyz = sr.ReadFloatArray();
@@ -133,7 +133,7 @@ namespace Tools.Point
         /// <summary>
         /// get xyz coordinates
         /// </summary>
-        public float[] getxyz()
+        public float[] Getxyz()
         {
             return nxyz;
         }
@@ -160,7 +160,7 @@ namespace Tools.Point
         /// <returns></returns>
         public string WriteCoordinate()
         {
-            return new Vector3f(nxyz).ToString();
+            return new Vector3F(nxyz).ToString();
         }
         /// <summary>
         /// Write one coordinate
@@ -188,18 +188,18 @@ namespace Tools.Point
         {
             return WriteCoordinate((byte)index);
         }
-        public bool AlmostEquals(Point3f p2, float Error)
+        public bool AlmostEquals(Point3F p2, float error)
         {
-            return Math.Abs(this.x - p2.x) <= Error &&
-                   Math.Abs(this.y - p2.y) <= Error &&
-                   Math.Abs(this.z - p2.z) <= Error;
+            return Math.Abs(this.X - p2.X) <= error &&
+                   Math.Abs(this.Y - p2.Y) <= error &&
+                   Math.Abs(this.Z - p2.Z) <= error;
         }
-        public bool Equals(Point3f p2)
+        public bool Equals(Point3F p2)
         {
-            return this.x == p2.x && this.y == p2.y && this.z == p2.z;
+            return this.X == p2.X && this.Y == p2.Y && this.Z == p2.Z;
         }
         
-        public static float Area2(Point3f p0, Point3f p1, Point3f p2)
+        public static float Area2(Point3F p0, Point3F p1, Point3F p2)
         {
             return 0; // p0.x * (p1.y - p2.y) + p1.x * (p2.y - p0.y) + p2.x * (p0.y - p1.y);
         }
@@ -209,7 +209,7 @@ namespace Tools.Point
         /// <summary>
         /// get/set x coordinate
         /// </summary>
-        public float x
+        public float X
         {
             get { return nxyz[0]; }
             set { nxyz[0] = value; }
@@ -218,7 +218,7 @@ namespace Tools.Point
         /// <summary>
         /// get/set y coordinate
         /// </summary>
-        public float y
+        public float Y
         {
             get { return nxyz[1]; }
             set { nxyz[1] = value; }
@@ -227,7 +227,7 @@ namespace Tools.Point
         /// <summary>
         /// get/set z coordinate
         /// </summary>
-        public float z
+        public float Z
         {
             get { return nxyz[2]; }
             set { nxyz[2] = value; }
@@ -242,7 +242,7 @@ namespace Tools.Point
         /// <returns></returns>
         public override string ToString()
         {
-            return this.x + " " + this.y + " " + this.z;
+            return this.X + " " + this.Y + " " + this.Z;
         }
 
         #endregion

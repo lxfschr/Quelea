@@ -10,7 +10,7 @@ namespace Agent
 {
   class BounceContainBehaviorType : BehaviorType
   {
-    private EnvironmentType environment;
+    private readonly EnvironmentType environment;
 
     public BounceContainBehaviorType()
     {
@@ -76,12 +76,12 @@ namespace Agent
 
     public override int GetHashCode()
     {
-      return base.GetHashCode();
+      return environment.GetHashCode();
     }
 
-    public override bool applyBehavior(AgentType agent, AgentSystemType system)
+    public override bool ApplyBehavior(AgentType agent, AgentSystemType system)
     {
-      return environment.bounceContain(agent);
+      return environment.BounceContain(agent);
     }
   }
 }

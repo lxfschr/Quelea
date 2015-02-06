@@ -82,9 +82,9 @@ namespace Agent
       }
     }
 
-    public void NewInstanceGuid(Guid UUID)
+    public void NewInstanceGuid(Guid uuid)
     {
-      this.guid = UUID;
+      this.guid = uuid;
     }
 
     public void NewInstanceGuid()

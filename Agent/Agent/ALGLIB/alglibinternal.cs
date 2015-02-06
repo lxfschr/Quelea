@@ -8587,10 +8587,10 @@ public partial class alglib
             ref double b,
             ref double c,
             ref double d,
-            ref double rt1r,
-            ref double rt1i,
-            ref double rt2r,
-            ref double rt2i,
+            ref double rt1R,
+            ref double rt1I,
+            ref double rt2R,
+            ref double rt2I,
             ref double cs,
             ref double sn)
         {
@@ -8613,10 +8613,10 @@ public partial class alglib
             double temp = 0;
             double z = 0;
 
-            rt1r = 0;
-            rt1i = 0;
-            rt2r = 0;
-            rt2i = 0;
+            rt1R = 0;
+            rt1I = 0;
+            rt2R = 0;
+            rt2I = 0;
             cs = 0;
             sn = 0;
 
@@ -8756,17 +8756,17 @@ public partial class alglib
             //
             // Store eigenvalues in (RT1R,RT1I) and (RT2R,RT2I).
             //
-            rt1r = a;
-            rt2r = d;
+            rt1R = a;
+            rt2R = d;
             if( (double)(c)==(double)(0) )
             {
-                rt1i = 0;
-                rt2i = 0;
+                rt1I = 0;
+                rt2I = 0;
             }
             else
             {
-                rt1i = Math.Sqrt(Math.Abs(b))*Math.Sqrt(Math.Abs(c));
-                rt2i = -rt1i;
+                rt1I = Math.Sqrt(Math.Abs(b))*Math.Sqrt(Math.Abs(c));
+                rt2I = -rt1I;
             }
         }
 
@@ -10703,7 +10703,7 @@ public partial class alglib
             double[,] xy,
             int cstart,
             int csize,
-            double[] batch4buf,
+            double[] batch4Buf,
             double[] hpcbuf,
             ref double e,
             bool naturalerrorfunc)
@@ -10726,7 +10726,7 @@ public partial class alglib
             double[,] xy,
             int cstart,
             int csize,
-            double[] batch4buf,
+            double[] batch4Buf,
             double[] hpcbuf)
         {
             bool result = new bool();

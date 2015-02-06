@@ -15,13 +15,13 @@ namespace Agent
       this.root = new OctTreeNode();
       makeChildNodesDepth = 0;
     }
-    public void addPoint(double x, double y, double z, Object obj)
+    public void AddPoint(double x, double y, double z, Object obj)
     {
-      this.root.addPoint(new Point(x, y, z, obj));
+      this.root.AddPoint(new Point(x, y, z, obj));
     }
 
-    public List<Object> getNeighborsInRadius(double x, double y, double z, double r) {
-        return this.root.getNeighborsInRadius(x, y, z, r);
+    public List<Object> GetNeighborsInRadius(double x, double y, double z, double r) {
+        return this.root.GetNeighborsInRadius(x, y, z, r);
     }
 
     class OctTreeNode
@@ -40,7 +40,7 @@ namespace Agent
         this.useChildNodes = false;
       }
 
-      public void findAxes()
+      public void FindAxes()
       {
         double xSum = 0;
         double ySum = 0;
@@ -60,10 +60,10 @@ namespace Agent
         this.zAxis = zAvg;
       }
 
-      public void makeChildNodes() {
-        assert(makeChildNodesDepth == 0);
+      public void MakeChildNodes() {
+        Assert(makeChildNodesDepth == 0);
         makeChildNodesDepth++;
-        this.findAxes();
+        this.FindAxes();
         for (int i = 0; i < 8; i++)
         {
           this.childNodes[i] = new OctTreeNode();
@@ -73,13 +73,13 @@ namespace Agent
         this.useChildNodes = true;
         foreach (Point point in points)
         {
-          this.addPointToChildren(point);
+          this.AddPointToChildren(point);
         }
         makeChildNodesDepth--;
-        assert(makeChildNodesDepth == 0);
+        Assert(makeChildNodesDepth == 0);
       }
 
-      public int getChildIndex(Point point)
+      public int GetChildIndex(Point point)
       {
         int xDir = (point.X < this.xAxis) ? 1 : 0;
         int yDir = (point.Y < this.yAxis) ? 1 : 0;
@@ -87,9 +87,9 @@ namespace Agent
         return 4 * zDir + 2 * yDir + xDir;
       }
 
-      public void addPoint(Point point)
+      public void AddPoint(Point point)
       {
-        int MAXPOINTS = 1;
+        int maxpoints = 1;
         if (this.maxPoint == null)
         {
           this.maxPoint = new Point(point);
@@ -109,18 +109,18 @@ namespace Agent
         if (this.useChildNodes == false)
         {
           this.points.Add(point);
-          if (this.points.Count() > MAXPOINTS)
+          if (this.points.Count() > maxpoints)
           {
-            this.makeChildNodes();
+            this.MakeChildNodes();
           }
         }
         else
         {
-          this.addPointToChildren(point);
+          this.AddPointToChildren(point);
         }
       }
 
-      public static void assert(Boolean b)
+      public static void Assert(Boolean b)
       {
         if (b == false)
         {
@@ -128,21 +128,21 @@ namespace Agent
         }
       }
 
-      public void addPointToChildren(Point point)
+      public void AddPointToChildren(Point point)
       {
-          assert(this.useChildNodes == true);
-          int childIndex = this.getChildIndex(point);
-          this.childNodes[childIndex].addPoint(point);
+          Assert(this.useChildNodes == true);
+          int childIndex = this.GetChildIndex(point);
+          this.childNodes[childIndex].AddPoint(point);
       }
 
-      public List<Object> getNeighborsInRadius(double x, double y, double z, double r)
+      public List<Object> GetNeighborsInRadius(double x, double y, double z, double r)
       {
         List<Object> neighbors = new List<Object>();
         if (this.maxPoint == null)
         {
           return neighbors;
         }
-        if (!this.doesCubeIntersectSphere(this.minPoint, this.maxPoint, x, y, z, r))
+        if (!this.DoesCubeIntersectSphere(this.minPoint, this.maxPoint, x, y, z, r))
         {
           return neighbors;
         }
@@ -162,13 +162,13 @@ namespace Agent
         {
           foreach (OctTreeNode childNode in this.childNodes)
           {
-            neighbors.AddRange(childNode.getNeighborsInRadius(x, y, z, r));
+            neighbors.AddRange(childNode.GetNeighborsInRadius(x, y, z, r));
           }
         }
         return neighbors;
       }
 
-      private Boolean doesCubeIntersectSphere(Point minPoint, Point maxPoint, double x, double y, double z, double r)
+      private Boolean DoesCubeIntersectSphere(Point minPoint, Point maxPoint, double x, double y, double z, double r)
       {
         double rSquared = r * r;
         if (x < minPoint.X) rSquared -= Math.Pow(x - minPoint.Z, 2);

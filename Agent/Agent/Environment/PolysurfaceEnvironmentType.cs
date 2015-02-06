@@ -25,7 +25,7 @@ namespace Agent
 
     }
 
-    public override Point3d closestPoint(Point3d pt)
+    public override Point3d ClosestPoint(Point3d pt)
     {
       Rhino.Geometry.Collections.BrepFaceList faces = environment.Faces;
       double u, v;
@@ -46,23 +46,23 @@ namespace Agent
       return faces[index].PointAt(u,v);
     }
 
-    public override Point3d closestRefPoint(Point3d pt)
+    public override Point3d ClosestRefPoint(Point3d pt)
     {
-      return closestPoint(pt);
+      return ClosestPoint(pt);
     }
 
-    public override Point3d closestRefPointOnRef(Point3d pt)
+    public override Point3d ClosestRefPointOnRef(Point3d pt)
     {
-      return closestPoint(pt);
+      return ClosestPoint(pt);
     }
 
-    public override Point3d closestPointOnRef(Point3d pt)
+    public override Point3d ClosestPointOnRef(Point3d pt)
     {
-      return closestPoint(pt);
+      return ClosestPoint(pt);
     }
 
     //visionAngle in radians
-    private static Curve getFeelerCrv(Vector3d feelerVec, Point3d position, 
+    private static Curve GetFeelerCrv(Vector3d feelerVec, Point3d position, 
                                       double bodySize, double visionAngle, 
                                       Vector3d rotAxis)
     {
@@ -71,7 +71,7 @@ namespace Agent
       return new Line(position, feelerVec).ToNurbsCurve();
     }
 
-    private static Curve[] getFeelerCrvs(AgentType agent, double visionDistance, 
+    private static Curve[] GetFeelerCrvs(AgentType agent, double visionDistance, 
                                   bool accurate)
     {
       Curve[] feelers;
@@ -101,16 +101,16 @@ namespace Agent
       feelerVec.Unitize();
       Plane rotPln = new Plane(agent.Position, agent.Velocity);
       Vector3d rotAxis = rotPln.XAxis;
-      feelers[1] = getFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, feelerAngle, rotAxis);
-      feelers[2] = getFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, -feelerAngle, rotAxis);
+      feelers[1] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, feelerAngle, rotAxis);
+      feelers[2] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, -feelerAngle, rotAxis);
       rotAxis = rotPln.YAxis;
-      feelers[3] = getFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, feelerAngle, rotAxis);
-      feelers[4] = getFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, -feelerAngle, rotAxis);
+      feelers[3] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, feelerAngle, rotAxis);
+      feelers[4] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, -feelerAngle, rotAxis);
 
       return feelers;
     }
 
-    public override Vector3d avoidEdges(AgentType agent, double distance)
+    public override Vector3d AvoidEdges(AgentType agent, double distance)
     {
       Vector3d steer = new Vector3d();
       Vector3d avoidVec, parVec;
@@ -123,7 +123,7 @@ namespace Agent
       Curve[] overlapCrvs;
       Point3d[] intersectPts;
 
-      Curve[] feelers = getFeelerCrvs(agent, distance, true);
+      Curve[] feelers = GetFeelerCrvs(agent, distance, true);
       int count = 0;
 
       Curve[] nakedEdges = this.environment.DuplicateEdgeCurves(true);
@@ -132,7 +132,7 @@ namespace Agent
       return steer;
     }
 
-    public override bool bounceContain(AgentType agent)
+    public override bool BounceContain(AgentType agent)
     {
       Vector3d velocity = agent.Velocity;
       
@@ -141,7 +141,7 @@ namespace Agent
       Curve[] overlapCrvs;
       Point3d[] intersectPts;
 
-      Curve[] feelers = getFeelerCrvs(agent, agent.BodySize, false);
+      Curve[] feelers = GetFeelerCrvs(agent, agent.BodySize, false);
 
       foreach (Curve feeler in feelers)
       {
@@ -156,7 +156,7 @@ namespace Agent
             face.ClosestPoint(testPt, out u, out v);
             Vector3d normal = face.NormalAt(u, v);
             normal.Reverse();
-            velocity = Util.Vector.reflect(velocity, normal);
+            velocity = Util.Vector.Reflect(velocity, normal);
             agent.Velocity = velocity;
             return true;
           }

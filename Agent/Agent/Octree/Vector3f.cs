@@ -16,14 +16,14 @@ namespace Tools.Vector
     /// 3D Vector (float)
     /// </summary>
     [Serializable]
-    public class Vector3f : 
-        IComparable<Vector3f>, 
+    public class Vector3F : 
+        IComparable<Vector3F>, 
         ICloneable, 
         ISerializable
     {
         #region Fileds
 
-        private float[] nXYZ = new float[3];
+        private float[] nXyz = new float[3];
 
         #endregion Fileds
 
@@ -32,11 +32,11 @@ namespace Tools.Vector
         /// <summary>
         /// Constructor
         /// </summary>
-        public Vector3f()
+        public Vector3F()
         {
-            nXYZ[0] = 0;
-            nXYZ[1] = 0;
-            nXYZ[2] = 0;
+            nXyz[0] = 0;
+            nXyz[1] = 0;
+            nXyz[2] = 0;
         }
 
         /// <summary>
@@ -45,30 +45,30 @@ namespace Tools.Vector
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="z"></param>
-        public Vector3f(float x, float y, float z)
+        public Vector3F(float x, float y, float z)
         {
-            nXYZ[0] = x;
-            nXYZ[1] = y;
-            nXYZ[2] = z;
+            nXyz[0] = x;
+            nXyz[1] = y;
+            nXyz[2] = z;
         }
 
         /// <summary>
         /// Constructor - overload 2
         /// </summary>
         /// <param name="xyz">A float array for coordinates</param>
-        public Vector3f(float[] xyz)
+        public Vector3F(float[] xyz)
         {
-            nXYZ = (float[])xyz.Clone();
+            nXyz = (float[])xyz.Clone();
         }
 
         /// <summary>
         /// Constructor - overload 2
         /// </summary>
         /// <param name="xyz">A float array for coordinates</param>
-        public Vector3f(double[] xyz)
+        public Vector3F(double[] xyz)
         {
             for (int i = 0; i < 3; i++)
-                nXYZ[i] = (float)xyz[i];
+                nXyz[i] = (float)xyz[i];
         }
 
         #endregion
@@ -82,14 +82,14 @@ namespace Tools.Vector
         {
             get
             {
-                if (i < nXYZ.Length)
-                    return nXYZ[i];
+                if (i < nXyz.Length)
+                    return nXyz[i];
                 return float.NaN;
             }
             set
             {
-                if (i < nXYZ.Length)
-                    nXYZ[i] = value;
+                if (i < nXyz.Length)
+                    nXyz[i] = value;
             }
 
         }
@@ -122,17 +122,17 @@ namespace Tools.Vector
         #region ISerializable
 
         //Deserialization constructor
-        public Vector3f(SerializationInfo info, StreamingContext ctxt)
+        public Vector3F(SerializationInfo info, StreamingContext ctxt)
         {
             SerializationReader sr = SerializationReader.GetReader(info);
-            nXYZ = sr.ReadFloatArray();
+            nXyz = sr.ReadFloatArray();
         }
 
         //Serialization function.
         public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
         {
             SerializationWriter sw = SerializationWriter.GetWriter();
-            sw.Write(nXYZ);
+            sw.Write(nXyz);
             sw.AddToInfo(info);
         }
 
@@ -218,7 +218,7 @@ namespace Tools.Vector
         /// <returns></returns>
         public object Clone()
         {
-            return new Vector3f((double[])nXYZ.Clone());
+            return new Vector3F((double[])nXyz.Clone());
         }
 
         #endregion
@@ -230,12 +230,12 @@ namespace Tools.Vector
         /// </summary>
         /// <param name="v">Vector3f</param>
         /// <returns>a Vector3f representing the cross product of the current vector and vector v</returns>
-        public Vector3f CrossProduct(Vector3f v)
+        public Vector3F CrossProduct(Vector3F v)
         {
-            return new Vector3f(
-                (this.y * v.z) - (this.z * v.y),
-                (this.z * v.x) - (this.x * v.z),
-                (this.x * v.y) - (this.y * v.x));
+            return new Vector3F(
+                (this.Y * v.Z) - (this.Z * v.Y),
+                (this.Z * v.X) - (this.X * v.Z),
+                (this.X * v.Y) - (this.Y * v.X));
         }
 
         /// <summary>
@@ -243,9 +243,9 @@ namespace Tools.Vector
         /// </summary>
         /// <param name="v">Vector3f</param>
         /// <returns>a float representing the dot product of the current vector and vector v</returns>
-        public float DotProduct(Vector3f v)
+        public float DotProduct(Vector3F v)
         {
-            return this.x * v.x + this.y * v.y + this.z * v.z;
+            return this.X * v.X + this.Y * v.Y + this.Z * v.Z;
         }
 
         /// <summary>
@@ -253,9 +253,9 @@ namespace Tools.Vector
         /// </summary>
         public float[] SortedList()
         {
-            float[] xyz_s = (float[])nXYZ.Clone();
-            Array.Sort(xyz_s);
-            return xyz_s;
+            float[] xyzS = (float[])nXyz.Clone();
+            Array.Sort(xyzS);
+            return xyzS;
         }
 
         /// <summary>
@@ -265,7 +265,7 @@ namespace Tools.Vector
         private bool IsNan()
         {
             for (int i = 0; i < 3; i++)
-                if (float.IsNaN(nXYZ[i]) || float.IsInfinity(nXYZ[i]))
+                if (float.IsNaN(nXyz[i]) || float.IsInfinity(nXyz[i]))
                     return true;
 
             return false;
@@ -276,7 +276,7 @@ namespace Tools.Vector
         /// </summary>
         public float Max()
         {
-            return (float)Math.Max(nXYZ[0], Math.Max(nXYZ[1], nXYZ[2]));
+            return (float)Math.Max(nXyz[0], Math.Max(nXyz[1], nXyz[2]));
         }
 
         /// <summary>
@@ -284,7 +284,7 @@ namespace Tools.Vector
         /// </summary>
         public float Min()
         {
-            return (float)Math.Min(nXYZ[0], Math.Min(nXYZ[1], nXYZ[2]));
+            return (float)Math.Min(nXyz[0], Math.Min(nXyz[1], nXyz[2]));
         }
 
         /// <summary>
@@ -292,7 +292,7 @@ namespace Tools.Vector
         /// </summary>
         public float Length()
         {
-            return (float)Math.Sqrt(x * x + y * y + z * z);
+            return (float)Math.Sqrt(X * X + Y * Y + Z * Z);
         }
 
         /// <summary>
@@ -300,7 +300,7 @@ namespace Tools.Vector
         /// </summary>
         public float[] ToArray()
         {
-            return nXYZ;
+            return nXyz;
         }
 
         #endregion
@@ -315,11 +315,11 @@ namespace Tools.Vector
         /// </summary>
         /// <param name="other">Vector3f</param>
         /// <returns></returns>
-        public int CompareTo(Vector3f other)
+        public int CompareTo(Vector3F other)
         {
             int result = 0;
             for (int i = 0; i < 3; i++)
-                result += nXYZ[i].CompareTo(other.nXYZ[i]);
+                result += nXyz[i].CompareTo(other.nXyz[i]);
 
             switch (result)
             {
@@ -344,7 +344,7 @@ namespace Tools.Vector
         /// <returns></returns>
         public override string ToString()
         {
-            return (float)x + ", " + (float)y + ", " + (float)z;
+            return (float)X + ", " + (float)Y + ", " + (float)Z;
         }
 
         #endregion
@@ -356,9 +356,9 @@ namespace Tools.Vector
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns></returns>
-        public static Vector3f operator +(Vector3f v1, Vector3f v2)
+        public static Vector3F operator +(Vector3F v1, Vector3F v2)
         {
-            return new Vector3f(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+            return new Vector3F(v1.X + v2.X, v1.Y + v2.Y, v1.Z + v2.Z);
         }
         /// <summary>
         /// 
@@ -366,9 +366,9 @@ namespace Tools.Vector
         /// <param name="v2"></param>
         /// <param name="v1"></param>
         /// <returns></returns>
-        public static Vector3f operator -(Vector3f v2, Vector3f v1)
+        public static Vector3F operator -(Vector3F v2, Vector3F v1)
         {
-            return new Vector3f(v2.x - v1.x, v2.y - v1.y, v2.z - v1.z);
+            return new Vector3F(v2.X - v1.X, v2.Y - v1.Y, v2.Z - v1.Z);
         }
 
         /// <summary>
@@ -377,16 +377,16 @@ namespace Tools.Vector
         /// <param name="v"></param>
         /// <param name="s"></param>
         /// <returns></returns>
-        public static Vector3f operator *(Vector3f v, float s)
+        public static Vector3F operator *(Vector3F v, float s)
         {
-            return new Vector3f(s * v.x, s * v.y, s * v.z);
+            return new Vector3F(s * v.X, s * v.Y, s * v.Z);
         }
 
-        public static Vector3f operator *(float s, Vector3f v)
+        public static Vector3F operator *(float s, Vector3F v)
         {
             return v * s;
         }
-        public static Vector3f operator /(Vector3f v, float s)
+        public static Vector3F operator /(Vector3F v, float s)
         {
             return v * (1 / s);
         }
@@ -397,9 +397,9 @@ namespace Tools.Vector
         /// <param name="v1"></param>
         /// <param name="v2"></param>
         /// <returns></returns>
-        public static float operator *(Vector3f v1, Vector3f v2)
+        public static float operator *(Vector3F v1, Vector3F v2)
         {
-            return v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+            return v1.X * v2.X + v1.Y * v2.Y + v1.Z * v2.Z;
         }
 
         //public static bool operator ==(Vector3f v1, Vector3f v2)
@@ -434,28 +434,28 @@ namespace Tools.Vector
         /// <summary>
         /// get/set x coordinate
         /// </summary>
-        public float x
+        public float X
         {
-            get { return nXYZ[0]; }
-            set { nXYZ[0] = value; }
+            get { return nXyz[0]; }
+            set { nXyz[0] = value; }
         }
 
         /// <summary>
         /// get/set y coordinate
         /// </summary>
-        public float y
+        public float Y
         {
-            get { return nXYZ[1]; }
-            set { nXYZ[1] = value; }
+            get { return nXyz[1]; }
+            set { nXyz[1] = value; }
         }
 
         /// <summary>
         /// get/set z coordinate
         /// </summary>
-        public float z
+        public float Z
         {
-            get { return nXYZ[2]; }
-            set { nXYZ[2] = value; }
+            get { return nXyz[2]; }
+            set { nXyz[2] = value; }
         }
 
         #endregion

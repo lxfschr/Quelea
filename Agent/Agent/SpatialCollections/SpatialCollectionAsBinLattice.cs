@@ -23,7 +23,7 @@ namespace Agent
       double binRadius = binSize / 2.0;
       this.min = new Point3d(-binRadius, -binRadius, -binRadius);
       this.max = new Point3d(binRadius, binRadius, binRadius);
-      populateLattice();
+      PopulateLattice();
     }
 
     public SpatialCollectionAsBinLattice(Point3d min, Point3d max, int binSize)
@@ -41,7 +41,7 @@ namespace Agent
         this.min = min;
         this.max = max;
       }
-      populateLattice();
+      PopulateLattice();
     }
 
     public SpatialCollectionAsBinLattice(Point3d min, Point3d max, int binSize, IList<T> items)
@@ -59,10 +59,10 @@ namespace Agent
         this.min = min;
         this.max = max;
       }
-      populateLattice();
+      PopulateLattice();
     }
 
-    private void populateLattice()
+    private void PopulateLattice()
     {
       this.cols = (int)Math.Ceiling((this.max.X - this.min.X) / this.binSize);
       this.rows = (int)Math.Ceiling((this.max.Y - this.min.Y) / this.binSize);
@@ -85,7 +85,7 @@ namespace Agent
 
       foreach (T item in this.spatialObjects)
       {
-        this.addToLattice(item);
+        this.AddToLattice(item);
       }
     }
 
@@ -94,7 +94,7 @@ namespace Agent
       this.spatialObjects = collection.spatialObjects;
       this.min = collection.min;
       this.max = collection.max;
-      populateLattice();
+      PopulateLattice();
     }
 
     public SpatialCollectionAsBinLattice(ISpatialCollection<T> spatialCollection)
@@ -114,7 +114,7 @@ namespace Agent
         this.binSize = (this.max.X - this.min.X) / 10;
       }
       
-      populateLattice();
+      PopulateLattice();
     }
 
     private void updateBounds()
@@ -126,7 +126,7 @@ namespace Agent
       foreach (T item in this.spatialObjects)
       {
          position= (IPosition)item;
-         p = position.getPoint3d();
+         p = position.GetPoint3D();
          updateBounds(p);
       }
     }
@@ -141,21 +141,21 @@ namespace Agent
       if (p.Z < min.Z) min.Z = p.Z;
     }
 
-    public ISpatialCollection<T> getNeighborsInSphere(T item, double r)
+    public ISpatialCollection<T> GetNeighborsInSphere(T item, double r)
     {
       double rSquared = r * r;
       // ISpatialCollection<T> neighbors = new SpatialCollectionAsBinLattice<T>();
       IPosition position = (IPosition)item;
       //LinkedList<T> possibleNeighbors = getBin(item);
-      List<T> possibleNeighbors = getBins(item, r);
+      List<T> possibleNeighbors = GetBins(item, r);
       ISpatialCollection<T> neighbors = new SpatialCollectionAsList<T>();
 
       foreach (T other in possibleNeighbors)
       {
         if (!Object.ReferenceEquals(item, other))
         {
-          Point3d p1 = position.getPoint3d();
-          Point3d p2 = ((IPosition)other).getPoint3d();
+          Point3d p1 = position.GetPoint3D();
+          Point3d p2 = ((IPosition)other).GetPoint3D();
           if (Util.Point.DistanceSquared(p1, p2) < rSquared)
           {
             neighbors.Add(other);
@@ -166,19 +166,19 @@ namespace Agent
       return neighbors;
     }
 
-    private LinkedList<T> getBin(T item)
+    private LinkedList<T> GetBin(T item)
     {
-      Point3d p = ((IPosition)item).getPoint3d();
+      Point3d p = ((IPosition)item).GetPoint3D();
       int col = (int)((p.X - min.X) / this.binSize);
       int row = (int)((p.Y - min.Y) / this.binSize);
       int layer = (int)((p.Z - min.Z) / this.binSize);
       return this.lattice[col][row][layer];
     }
 
-    private List<T> getBins(T item, double radius)
+    private List<T> GetBins(T item, double radius)
     {
       List<T> possibleNeighbors = new List<T>();
-      Point3d p = ((IPosition)item).getPoint3d();
+      Point3d p = ((IPosition)item).GetPoint3D();
       //int col = (int)(p.X - min.X) / this.binSize;
       //int row = (int)(p.Y - min.Y) / this.binSize;
       //int layer = (int)(p.Z - min.Z) / this.binSize;
@@ -221,7 +221,7 @@ namespace Agent
       return possibleNeighbors;
     }
 
-    private bool checkBounds(Point3d p)
+    private bool CheckBounds(Point3d p)
     {
       bool beyondMax = false;
       double sizeX, sizeY, sizeZ;
@@ -264,13 +264,13 @@ namespace Agent
 
       if (beyondMax)
       {
-        this.populateLattice();
+        this.PopulateLattice();
       }
 
       return beyondMax;
     }
 
-    private bool checkBounds2(Point3d p)
+    private bool CheckBounds2(Point3d p)
     {
       bool beyondMax = false;
       if (p.X > max.X)
@@ -306,7 +306,7 @@ namespace Agent
 
       if (beyondMax)
       {
-        this.populateLattice();
+        this.PopulateLattice();
       }
 
       return beyondMax;
@@ -315,14 +315,14 @@ namespace Agent
     public void Add(T item)
     {
       this.spatialObjects.Add(item);
-      addToLattice(item);
+      AddToLattice(item);
     }
 
-    private void addToLattice(T item)
+    private void AddToLattice(T item)
     {
-      Point3d p = ((IPosition)item).getPoint3d();
+      Point3d p = ((IPosition)item).GetPoint3D();
 
-      checkBounds(p);
+      CheckBounds(p);
 
       int col = (int)((p.X - min.X) / this.binSize);
       int row = (int)((p.Y - min.Y) / this.binSize);
@@ -384,7 +384,7 @@ namespace Agent
 
     public bool Remove(T item)
     {
-      LinkedList<T> bin = getBin(item);
+      LinkedList<T> bin = GetBin(item);
       return this.spatialObjects.Remove(item) && bin.Remove(item);
     }
 
@@ -403,7 +403,7 @@ namespace Agent
       get { return this.spatialObjects; }
     }
 
-    public void updateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
+    public void UpdateDatastructure(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
     {
       this.spatialObjects = spatialObjects;
       this.binSize = minNodeSize;
@@ -419,7 +419,7 @@ namespace Agent
         this.max = max;
       }
       
-      populateLattice();
+      PopulateLattice();
     }
   }
 }

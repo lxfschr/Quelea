@@ -8,6 +8,6 @@ namespace Agent
 {
   public interface IPosition
   {
-    Point3d getPoint3d();
+    Point3d GetPoint3D();
   }
 }

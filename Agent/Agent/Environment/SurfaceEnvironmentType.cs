@@ -125,35 +125,35 @@ namespace Agent
     }
 
 
-    public override Point3d closestPoint(Point3d pt)
+    public override Point3d ClosestPoint(Point3d pt)
     {
       double u, v;
       environment.ClosestPoint(pt, out u, out v);
       return environment.PointAt(u, v);
     }
 
-    public override Point3d closestRefPoint(Point3d pt)
+    public override Point3d ClosestRefPoint(Point3d pt)
     {
       double u, v;
       environment.ClosestPoint(pt, out u, out v);
       return refEnvironment.PointAt(u, v);
     }
 
-    public override Point3d closestRefPointOnRef(Point3d pt)
+    public override Point3d ClosestRefPointOnRef(Point3d pt)
     {
       double u, v;
       refEnvironment.ClosestPoint(pt, out u, out v);
       return refEnvironment.PointAt(u, v);
     }
 
-    public override Point3d closestPointOnRef(Point3d pt)
+    public override Point3d ClosestPointOnRef(Point3d pt)
     {
       double u, v;
       refEnvironment.ClosestPoint(pt, out u, out v);
       return environment.PointAt(u, v);
     }
 
-    public override Vector3d avoidEdges(AgentType agent, double distance)
+    public override Vector3d AvoidEdges(AgentType agent, double distance)
     {
       Point3d refPosition = agent.RefPosition;
       double maxSpeed = agent.MaxSpeed;
@@ -182,7 +182,7 @@ namespace Agent
       return desired;
     }
 
-    public override bool bounceContain(AgentType agent)
+    public override bool BounceContain(AgentType agent)
     {
       Point3d position = agent.RefPosition;
       Vector3d velocity = agent.Velocity;
@@ -218,7 +218,7 @@ namespace Agent
       return false;
     }
 
-    public override BoundingBox getBoundingBox()
+    public override BoundingBox GetBoundingBox()
     {
       return this.environment.GetBoundingBox(false);
     }

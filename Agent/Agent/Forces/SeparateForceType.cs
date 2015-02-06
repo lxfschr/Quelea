@@ -31,7 +31,7 @@ namespace Agent
 
     }
 
-    public override Vector3d calcForce(AgentType agent, ISpatialCollection<AgentType> neighbors)
+    public override Vector3d CalcForce(AgentType agent, ISpatialCollection<AgentType> neighbors)
     {
       Vector3d steer = new Vector3d();
       Vector3d sum = new Vector3d();
@@ -39,7 +39,7 @@ namespace Agent
 
       if (this.visionRadiusMultiplier != 0)
       {
-        neighbors = neighbors.getNeighborsInSphere(agent, agent.VisionRadius * this.visionRadiusMultiplier);
+        neighbors = neighbors.GetNeighborsInSphere(agent, agent.VisionRadius * this.visionRadiusMultiplier);
       }
 
       foreach (AgentType other in neighbors)
@@ -70,7 +70,7 @@ namespace Agent
         sum.Unitize();
         sum = Vector3d.Multiply(sum, agent.MaxSpeed);
         steer = Vector3d.Subtract(sum, agent.Velocity);
-        steer = limit(steer, agent.MaxForce);
+        steer = Limit(steer, agent.MaxForce);
         //Multiply the resultant vector by weight.
         steer = Vector3d.Multiply(this.weight, steer);
       }

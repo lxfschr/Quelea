@@ -1,16 +1,12 @@
-﻿using Grasshopper.Kernel.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Rhino.Geometry;
+﻿using System;
+using Agent.Properties;
+using Grasshopper.Kernel.Types;
 
 namespace Agent
 {
   public abstract class BehaviorType : GH_Goo<Object>
   {
-    public abstract bool applyBehavior(AgentType agent, AgentSystemType system);
+    public abstract bool ApplyBehavior(AgentType agent, AgentSystemType system);
     public abstract override IGH_Goo Duplicate();
 
     public override bool IsValid
@@ -25,25 +21,21 @@ namespace Agent
 
     public override string TypeDescription
     {
-      get { return "A Behavior"; }
+      get { return Resources.behaviorDescription; }
     }
 
     public override string TypeName
     {
-      get { return "Behavior"; }
+      get { return Resources.behaviorName; }
     }
 
     public override bool Equals(object obj)
     {
       // If parameter is null return false.
-      if (obj == null)
-      {
-        return false;
-      }
 
       // If parameter cannot be cast to Point return false.
       BehaviorType p = obj as BehaviorType;
-      if ((System.Object)p == null)
+      if (p == null)
       {
         return false;
       }
@@ -55,18 +47,11 @@ namespace Agent
     public bool Equals(BehaviorType p)
     {
       // If parameter is null return false:
-      if ((object)p == null)
-      {
-        return false;
-      }
+      return p != null;
 
       // Return true if the fields match:
-      return true;
     }
 
-    public override int GetHashCode()
-    {
-      return base.GetHashCode();
-    }
+    public abstract override int GetHashCode();
   }
 }

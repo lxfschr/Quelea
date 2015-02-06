@@ -288,7 +288,7 @@ public partial class alglib
       serialize  it  in  C# version of ALGLIB and unserialize in C++ one, 
       and vice versa.
     *************************************************************************/
-    public static void kdtreeserialize(kdtree obj, out string s_out)
+    public static void kdtreeserialize(kdtree obj, out string sOut)
     {
         alglib.serializer s = new alglib.serializer();
         s.alloc_start();
@@ -296,18 +296,18 @@ public partial class alglib
         s.sstart_str();
         nearestneighbor.kdtreeserialize(s, obj.innerobj);
         s.stop();
-        s_out = s.get_string();
+        sOut = s.get_string();
     }
 
 
     /*************************************************************************
     This function unserializes data structure from string.
     *************************************************************************/
-    public static void kdtreeunserialize(string s_in, out kdtree obj)
+    public static void kdtreeunserialize(string sIn, out kdtree obj)
     {
         alglib.serializer s = new alglib.serializer();
         obj = new kdtree();
-        s.ustart_str(s_in);
+        s.ustart_str(sIn);
         nearestneighbor.kdtreeunserialize(s, obj.innerobj);
         s.stop();
     }

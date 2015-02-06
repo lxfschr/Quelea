@@ -1,72 +1,65 @@
-﻿using Grasshopper.Kernel;
+﻿using Agent.Util;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
-using System;
-namespace Agent.Agent2
+using RS = Agent.Properties.Resources;
+
+namespace Agent
 {
   public class BoxEmitterType : EmitterType
   {
 
-    private Box box;
+    private readonly Box box;
 
     // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
     public BoxEmitterType()
+      : base()
     {
       Plane pln = new Plane();
-      Interval size  = new Interval(0, 10);
-      this.box = new Box(pln, size, size, size);
-      this.continuousFlow = true;
-      this.creationRate = 1;
-      this.numAgents = 0;
+      Interval size = new Interval(-RS.boxBoundsDefault, RS.boxBoundsDefault);
+      box = new Box(pln, size, size, size);
     }
 
     // Constructor with initial values.
     public BoxEmitterType(Box box, bool continuousFlow, int creationRate, int numAgents)
+      :base(continuousFlow, creationRate, numAgents)
     {
       this.box = box;
-      this.continuousFlow = continuousFlow;
-      this.creationRate = creationRate;
-      this.numAgents = numAgents;
     }
 
     // Constructor with initial values.
     public BoxEmitterType(Box box)
+      :base()
     {
       this.box = box;
-      this.continuousFlow = true;
-      this.creationRate = 1;
-      this.numAgents = 0;
     }
 
     // Copy Constructor
     public BoxEmitterType(BoxEmitterType boxEmitter)
+      :base()
     {
-      this.box = boxEmitter.box;
-      this.continuousFlow = boxEmitter.continuousFlow;
-      this.creationRate = boxEmitter.creationRate;
-      this.numAgents = boxEmitter.numAgents;
+      box = boxEmitter.box;
     }
 
     public override bool Equals(object obj)
     {
       // If parameter cannot be cast to ThreeDPoint return false:
         BoxEmitterType p = obj as BoxEmitterType;
-        if ((object)p == null)
+        if (p == null)
         {
             return false;
         }
 
-      return base.Equals(obj) && this.box.Equals(p.box);
+      return base.Equals(obj) && box.Equals(p.box);
     }
 
     public bool Equals(BoxEmitterType p)
     {
-      return base.Equals((BoxEmitterType)p) && this.box.Equals(p.box);
+      return base.Equals(p) && box.Equals(p.box);
     }
 
     public override int GetHashCode()
     {
-      return base.GetHashCode() ^ this.box.GetHashCode();
+      return base.GetHashCode() ^ box.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -74,23 +67,21 @@ namespace Agent.Agent2
       return new BoxEmitterType(this);
     }
 
-    public override Point3d emit()
+    public override Point3d Emit()
     {
-
-      double min = 0;
-      double max = 1;
-      double x = Util.Random.RandomDouble(min, max);
-      double y = Util.Random.RandomDouble(min, max);
-      double z = Util.Random.RandomDouble(min, max);
-      return box.PointAt(x, y, z); ;
-
+      const double min = 0;
+      const double max = 1;
+      double x = Random.RandomDouble(min, max);
+      double y = Random.RandomDouble(min, max);
+      double z = Random.RandomDouble(min, max);
+      return box.PointAt(x, y, z);
     }
 
     public override bool IsValid
     {
       get
       {
-        return (this.box.IsValid && this.creationRate > 0 && this.numAgents >= 0);
+        return (box.IsValid && creationRate > 0 && numAgents >= 0);
       }
 
     }
@@ -98,27 +89,27 @@ namespace Agent.Agent2
     public override string ToString()
     {
 
-      string origin = "Box: " + box.ToString() + "\n";
-      string continuousFlow = "ContinuousFlow: " + this.continuousFlow.ToString() + "\n";
-      string creationRate = "Creation Rate: " + this.creationRate.ToString() + "\n";
-      string numAgents = "Number of Agents: " + this.numAgents.ToString() + "\n";
-      return origin + continuousFlow + creationRate + numAgents;
+      string origin = RS.boxName + ": " + box + "\n";
+      string continuousFlowStr = RS.continuousFlowName + ": " + continuousFlow + "\n";
+      string creationRateStr = RS.creationRateName + ": " + creationRate + "\n";
+      string numAgentsStr = RS.numAgentsName + ": " + numAgents + "\n";
+      return origin + continuousFlowStr + creationRateStr + numAgentsStr;
     }
 
     public override string TypeDescription
     {
-      get { return "A Box Emitter"; }
+      get { return RS.boxEmitDescription; }
     }
 
     public override string TypeName
     {
-      get { return "BoxEmitter"; }
+      get { return RS.boxEmitName; }
     }
 
 
-    public override BoundingBox getBoundingBox()
+    public override BoundingBox GetBoundingBox()
     {
-      return this.box.BoundingBox;
+      return box.BoundingBox;
     }
   }
 }

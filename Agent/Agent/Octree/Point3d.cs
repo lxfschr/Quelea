@@ -15,13 +15,13 @@ namespace Tools.Point
     /// 3D double point
     /// </summary>
     [Serializable]
-    public class Point3d : 
-        IEquatable<Point3d>, 
+    public class Point3D : 
+        IEquatable<Point3D>, 
         ISerializable
     {
         private double[] nxyz = new double[3];
 
-        public static readonly Point3d NullPoint = new Point3d(
+        public static readonly Point3D NullPoint = new Point3D(
                                                                 double.NegativeInfinity,
                                                                 double.NegativeInfinity,
                                                                 double.NegativeInfinity);
@@ -31,7 +31,7 @@ namespace Tools.Point
         /// <summary>
         /// Constructor
         /// </summary>
-        public Point3d()
+        public Point3D()
         {
         }
 
@@ -41,7 +41,7 @@ namespace Tools.Point
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <param name="Z"></param>
-        public Point3d(double x, double y, double z)
+        public Point3D(double x, double y, double z)
         {
             nxyz[0] = x;
             nxyz[1] = y;
@@ -52,7 +52,7 @@ namespace Tools.Point
         /// Constructor - overload 2
         /// </summary>
         /// <param name="XYZ">A double array for coordinates</param>
-        public Point3d(double[] xyz)
+        public Point3D(double[] xyz)
         {
             nxyz = (double[])xyz.Clone();
         }
@@ -61,7 +61,7 @@ namespace Tools.Point
         /// Constructor - overload 3
         /// </summary>
         /// <param name="XYZ">A vector for coordinates</param>
-        public Point3d(Vector3d vector)
+        public Point3D(Vector3D vector)
         {
             nxyz = vector.ToArray();
         }
@@ -71,7 +71,7 @@ namespace Tools.Point
         #region ISerializable
 
         //Deserialization constructor
-        public Point3d(SerializationInfo info, StreamingContext ctxt)
+        public Point3D(SerializationInfo info, StreamingContext ctxt)
         {
             SerializationReader sr = SerializationReader.GetReader(info);
             nxyz = sr.ReadDoubleArray();
@@ -137,7 +137,7 @@ namespace Tools.Point
         /// <summary>
         /// get xyz coordinates
         /// </summary>
-        public double[] getxyz()
+        public double[] Getxyz()
         {
             return nxyz;
         }
@@ -164,7 +164,7 @@ namespace Tools.Point
         /// <returns></returns>
         public string WriteCoordinate()
         {
-            return new Vector3d(nxyz).ToString();
+            return new Vector3D(nxyz).ToString();
         }
         /// <summary>
         /// Write one coordinate
@@ -192,15 +192,15 @@ namespace Tools.Point
         {
             return WriteCoordinate((byte)index);
         }
-        public bool AlmostEquals(Point3d p2, double Error)
+        public bool AlmostEquals(Point3D p2, double error)
         {
-            return Math.Abs(this.x - p2.x) <= Error &&
-                   Math.Abs(this.y - p2.y) <= Error &&
-                   Math.Abs(this.z - p2.z) <= Error;
+            return Math.Abs(this.X - p2.X) <= error &&
+                   Math.Abs(this.Y - p2.Y) <= error &&
+                   Math.Abs(this.Z - p2.Z) <= error;
         }
-        public bool Equals(Point3d p2)
+        public bool Equals(Point3D p2)
         {
-            return this.x == p2.x && this.y == p2.y && this.z == p2.z;
+            return this.X == p2.X && this.Y == p2.Y && this.Z == p2.Z;
         }
         #endregion
 
@@ -208,7 +208,7 @@ namespace Tools.Point
         /// <summary>
         /// get/set x coordinate
         /// </summary>
-        public double x
+        public double X
         {
             get { return nxyz[0]; }
             set { nxyz[0] = value; }
@@ -217,7 +217,7 @@ namespace Tools.Point
         /// <summary>
         /// get/set y coordinate
         /// </summary>
-        public double y
+        public double Y
         {
             get { return nxyz[1]; }
             set { nxyz[1] = value; }
@@ -226,7 +226,7 @@ namespace Tools.Point
         /// <summary>
         /// get/set z coordinate
         /// </summary>
-        public double z
+        public double Z
         {
             get { return nxyz[2]; }
             set { nxyz[2] = value; }
@@ -241,7 +241,7 @@ namespace Tools.Point
         /// <returns></returns>
         public override string ToString()
         {
-            return this.x + " " + this.y + " " + this.z;
+            return this.X + " " + this.Y + " " + this.Z;
         }
         #endregion
 

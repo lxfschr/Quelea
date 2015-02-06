@@ -31,7 +31,7 @@ namespace Agent
 
     }
 
-    public override Vector3d calcForce(AgentType agent, ISpatialCollection<AgentType> neighbors)
+    public override Vector3d CalcForce(AgentType agent, ISpatialCollection<AgentType> neighbors)
     {
       Vector3d sum = new Vector3d();
       int count = 0;
@@ -39,7 +39,7 @@ namespace Agent
 
       if (this.visionRadiusMultiplier != 1.0)
       {
-        neighbors = neighbors.getNeighborsInSphere(agent, agent.VisionRadius * this.visionRadiusMultiplier);
+        neighbors = neighbors.GetNeighborsInSphere(agent, agent.VisionRadius * this.visionRadiusMultiplier);
       }
 
       foreach (AgentType other in neighbors)
@@ -55,7 +55,7 @@ namespace Agent
       {
         //We desire to go in that direction at maximum speed.
         sum = Vector3d.Divide(sum, count);
-        steer = this.seek(agent, sum);
+        steer = this.Seek(agent, sum);
         //Multiply the resultant vector by weight.
         steer = Vector3d.Multiply(this.weight, steer);
       }

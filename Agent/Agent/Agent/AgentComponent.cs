@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-
+using System.Drawing;
 using Grasshopper.Kernel;
-using Rhino.Geometry;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
@@ -12,51 +11,52 @@ namespace Agent
     /// Initializes a new instance of the AgentComponent class.
     /// </summary>
     public AgentComponent()
-      : base("Agent", "Agent",
-          "Defines parameters for an Agent",
-          "Agent", "Agent")
+      : base(RS.constructAgentName, RS.constructAgentNickName,
+          RS.constructAgentDescription,
+          RS.pluginCategoryName, RS.pluginSubCategoryName)
     {
     }
 
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddIntegerParameter("Lifespan", "L", "Timesteps the agent will be alive for.", GH_ParamAccess.item, 30);
-      pManager.AddNumberParameter("Mass", "M", "The mass of the agent.", GH_ParamAccess.item, 1.0);
-      pManager.AddNumberParameter("Body Size", "B", "The diameter of the extent of the agent's size.", GH_ParamAccess.item, 1.0);
-      pManager.AddNumberParameter("Maximum Speed", "S", "The maximum speed of the agent.", GH_ParamAccess.item, 0.5);
-      pManager.AddNumberParameter("Maximum Force", "F", "The maximum force of the agent.", GH_ParamAccess.item, 0.1);
-      pManager.AddNumberParameter("Vision Angle", "A", "The maximum angle, taken from the velocity vector,  that the agent can see around it.", GH_ParamAccess.item, 15.0);
-      pManager.AddNumberParameter("Vision Radius", "R", "The maximum radius around the agent that it can see.", GH_ParamAccess.item, 5.0);
-      pManager.AddIntegerParameter("Length of position history", "N", "The length of position history", GH_ParamAccess.item, 1);
+      pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickName, RS.lifespanDescription, GH_ParamAccess.item, RS.lifespanDefault);
+      pManager.AddNumberParameter(RS.massName, RS.massNickName, RS.massDescription, GH_ParamAccess.item, RS.massDefault);
+      pManager.AddNumberParameter(RS.bodySizeName, RS.bodySizeNickName, RS.bodySizeDescription, GH_ParamAccess.item, RS.bodySizeDefault);
+      pManager.AddNumberParameter(RS.maxSpeedName, RS.maxSpeedNickName, RS.maxSpeedDescription, GH_ParamAccess.item, RS.maxSpeedDefault);
+      pManager.AddNumberParameter(RS.maxForceName, RS.maxForceNickName, RS.maxForceDescription, GH_ParamAccess.item, RS.maxForceDefault);
+      pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickName, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
+      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
+      pManager.AddIntegerParameter(RS.historyLenName, RS.historyLenNickName, RS.historyLenDescription, GH_ParamAccess.item, RS.historyLenDefault);
     }
 
     /// <summary>
     /// Registers all the output parameters for this component.
     /// </summary>
-    protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter("Agent", "A", "Agent", GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.item);
     }
 
     /// <summary>
     /// This is the method that actually does the work.
     /// </summary>
     /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
+    // ReSharper disable once InconsistentNaming
     protected override void SolveInstance(IGH_DataAccess DA)
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
-      int lifespan = 0;
-      double mass = 1.0;
-      double bodySize = 1.0;
-      double maxSpeed = 0.5;
-      double maxForce = 0.1;
-      double visionAngle = 15.0;
-      double visionRadius = 5.0;
-      int historyLength = 0;
+      int lifespan = RS.lifespanDefault;
+      double mass =RS.massDefault;
+      double bodySize = RS.bodySizeDefault;
+      double maxSpeed = RS.maxSpeedDefault;
+      double maxForce = RS.maxForceDefault;
+      double visionAngle = RS.visionAngleDefault;
+      double visionRadius = RS.visionRadiusDefault;
+      int historyLength = RS.historyLenDefault;
 
 
       // Then we need to access the input parameters individually. 
@@ -73,37 +73,37 @@ namespace Agent
       // We should now validate the data and warn the user if invalid data is supplied.
       if (lifespan <= 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Lifespan must be greater than 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.lifespanErrorMessage);
         return;
       }
       if (mass <= 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Mass must be greater than 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.massErrorMessage);
         return;
       }
       if (bodySize < 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Body Size must be greater than or equal to 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.bodySizeErrorMessage);
         return;
       }
       if (maxSpeed < 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Maximum Speed must be greater than or equal to 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.maxSpeedErrorMessage);
         return;
       }
       if (maxForce < 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Maximum Force must be greater than or equal to 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.maxForceErrorMessage);
         return;
       }
       if (visionAngle < 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Vision Angle must be greater than or equal to 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionAngleErrorMessage);
         return;
       }
       if (visionRadius < 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Vision Radius must be greater than or equal to 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionRadiusErrorMessage);
         return;
       }
 
@@ -121,13 +121,13 @@ namespace Agent
     /// <summary>
     /// Provides an Icon for the component.
     /// </summary>
-    protected override System.Drawing.Bitmap Icon
+    protected override Bitmap Icon
     {
       get
       {
         //You can add image files to your project resources and access them like this:
         // return Resources.IconForThisComponent;
-        return Properties.Resources.icon_agent;
+        return RS.icon_agent;
       }
     }
 
@@ -136,7 +136,7 @@ namespace Agent
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{beb5cf41-ab3c-4bbf-b8d0-0cbe63c67b14}"); }
+      get { return new Guid(RS.constructAgentComponentGUID); }
     }
   }
 }

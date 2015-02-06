@@ -32,18 +32,18 @@ namespace Agent
       this.environment = force.environment;
     }
 
-    public override Vector3d calcForce(AgentType agent, ISpatialCollection<AgentType> neighbors)
+    public override Vector3d CalcForce(AgentType agent, ISpatialCollection<AgentType> neighbors)
     {
       Vector3d steer = new Vector3d();
       if (environment != null)
       {
-        steer = environment.avoidEdges(agent, agent.VisionRadius * this.visionRadiusMultiplier);
+        steer = environment.AvoidEdges(agent, agent.VisionRadius * this.visionRadiusMultiplier);
         if (!steer.IsZero)
         {
           steer.Unitize();
           steer = Vector3d.Multiply(steer, agent.MaxSpeed);
           steer = Vector3d.Subtract(steer, agent.Velocity);
-          steer = limit(steer, agent.MaxForce);
+          steer = Limit(steer, agent.MaxForce);
           //Multiply the resultant vector by weight.
           steer = Vector3d.Multiply(this.weight, steer);
         }

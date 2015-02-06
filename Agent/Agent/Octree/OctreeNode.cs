@@ -15,8 +15,8 @@ namespace OctreeSearch
     public class OctreeNode : IOctree
     {
  
-        public const float NO_MIN_SIZE = -1;
-        public const float DEFAULT_MIN_SIZE = 5;
+        public const float NoMinSize = -1;
+        public const float DefaultMinSize = 5;
 
         protected internal ArrayList items;
         protected internal OctreeNode[] branch;
@@ -41,7 +41,7 @@ namespace OctreeSearch
         /// splitting itself into four branch and redispensing the
         /// items into them.</param>
         public OctreeNode(float xMax, float xMin, float yMax, float yMin, float zMax, float zMin, int maximumItems)
-            : this(xMax, xMin, yMax, yMin, zMax, zMin, maximumItems, NO_MIN_SIZE)
+            : this(xMax, xMin, yMax, yMin, zMax, zMin, maximumItems, NoMinSize)
         {
         }
 
@@ -64,7 +64,7 @@ namespace OctreeSearch
         }
 
         /// <summary>Return true if the node has branch. </summary>
-        public bool hasChildren()
+        public bool HasChildren()
         {
             if (branch != null)
                 return true;
@@ -78,10 +78,10 @@ namespace OctreeSearch
         /// we care). The items in this node are cleared after they are put
         /// into the branch.
         /// </summary>
-        protected internal void split()
+        protected internal void Split()
         {
             // Make sure we're bigger than the minimum, if we care,
-            if (minSize != NO_MIN_SIZE)
+            if (minSize != NoMinSize)
                 if (Math.Abs(bounds.Top - bounds.Bottom) < minSize &&
                     Math.Abs(bounds.Right - bounds.Left) < minSize &&
                     Math.Abs(bounds.Front - bounds.Back) < minSize)
@@ -117,7 +117,7 @@ namespace OctreeSearch
         /// <param name="y">left-right location in Octree Grid (y, x)</param>
         /// <returns> node if child covers the point, null if the point is
         /// out of range.</returns>
-        protected internal OctreeNode getChild(float x, float y, float z)
+        protected internal OctreeNode GetChild(float x, float y, float z)
         {
             if (bounds.pointWithinBounds(x, y, z))
             {
@@ -125,7 +125,7 @@ namespace OctreeSearch
                 {
                     for (int i = 0; i < branch.Length; i++)
                         if (branch[i].bounds.pointWithinBounds(x, y, z))
-                            return branch[i].getChild(x, y, z);
+                            return branch[i].GetChild(x, y, z);
 
                 }
                 else
@@ -174,37 +174,37 @@ namespace OctreeSearch
             return AddNode(new OctreeLeaf(x, y, z, obj));
         }
 
-        public bool AddNode(Vector3f vector, object obj)
+        public bool AddNode(Vector3F vector, object obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3f vector, int obj)
+        public bool AddNode(Vector3F vector, int obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3f vector, uint obj)
+        public bool AddNode(Vector3F vector, uint obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3f vector, short obj)
+        public bool AddNode(Vector3F vector, short obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3f vector, long obj)
+        public bool AddNode(Vector3F vector, long obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3f vector, float obj)
+        public bool AddNode(Vector3F vector, float obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3f vector, double obj)
+        public bool AddNode(Vector3F vector, double obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3f vector, bool obj)
+        public bool AddNode(Vector3F vector, bool obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
 
         public bool AddNode(double x, double y, double z, object obj)
@@ -240,37 +240,37 @@ namespace OctreeSearch
             return AddNode(new OctreeLeaf(x, y, z, obj));
         }
 
-        public bool AddNode(Vector3d vector, object obj)
+        public bool AddNode(Vector3D vector, object obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3d vector, int obj)
+        public bool AddNode(Vector3D vector, int obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3d vector, uint obj)
+        public bool AddNode(Vector3D vector, uint obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3d vector, short obj)
+        public bool AddNode(Vector3D vector, short obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3d vector, long obj)
+        public bool AddNode(Vector3D vector, long obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3d vector, float obj)
+        public bool AddNode(Vector3D vector, float obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3d vector, double obj)
+        public bool AddNode(Vector3D vector, double obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public bool AddNode(Vector3d vector, bool obj)
+        public bool AddNode(Vector3D vector, bool obj)
         {
-            return AddNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return AddNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
 
         /// <summary> Add a OctreeLeaf into the tree at a location.</summary>
@@ -297,12 +297,12 @@ namespace OctreeSearch
                 }
 
                 if (this.items.Count > maxItems && !this.allTheSamePoint)
-                    split();
+                    Split();
                 return true;
             }
             else
             {
-                OctreeNode node = getChild(leaf.X, leaf.Y, leaf.Z);
+                OctreeNode node = GetChild(leaf.X, leaf.Y, leaf.Z);
                 if (node != null)
                 {
                     return node.AddNode(leaf);
@@ -357,37 +357,37 @@ namespace OctreeSearch
             return RemoveNode(new OctreeLeaf(x, y, z, obj));
         }
 
-        public object RemoveNode(Vector3f vector, object obj)
+        public object RemoveNode(Vector3F vector, object obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3f vector, int obj)
+        public object RemoveNode(Vector3F vector, int obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3f vector, uint obj)
+        public object RemoveNode(Vector3F vector, uint obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3f vector, short obj)
+        public object RemoveNode(Vector3F vector, short obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3f vector, long obj)
+        public object RemoveNode(Vector3F vector, long obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3f vector, float obj)
+        public object RemoveNode(Vector3F vector, float obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3f vector, double obj)
+        public object RemoveNode(Vector3F vector, double obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3f vector, bool obj)
+        public object RemoveNode(Vector3F vector, bool obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
 
         public object RemoveNode(double x, double y, double z, object obj)
@@ -423,37 +423,37 @@ namespace OctreeSearch
             return RemoveNode(new OctreeLeaf(x, y, z, obj));
         }
 
-        public object RemoveNode(Vector3d vector, object obj)
+        public object RemoveNode(Vector3D vector, object obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3d vector, int obj)
+        public object RemoveNode(Vector3D vector, int obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3d vector, uint obj)
+        public object RemoveNode(Vector3D vector, uint obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3d vector, short obj)
+        public object RemoveNode(Vector3D vector, short obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3d vector, long obj)
+        public object RemoveNode(Vector3D vector, long obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3d vector, float obj)
+        public object RemoveNode(Vector3D vector, float obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3d vector, double obj)
+        public object RemoveNode(Vector3D vector, double obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
-        public object RemoveNode(Vector3d vector, bool obj)
+        public object RemoveNode(Vector3D vector, bool obj)
         {
-            return RemoveNode(new OctreeLeaf(vector.x, vector.y, vector.z, obj));
+            return RemoveNode(new OctreeLeaf(vector.X, vector.Y, vector.Z, obj));
         }
 
         /// <summary> Remove a OctreeLeaf out of the tree at a location.
@@ -480,7 +480,7 @@ namespace OctreeSearch
             }
             else
             {
-                OctreeNode node = getChild(leaf.X, leaf.Y, leaf.Z);
+                OctreeNode node = GetChild(leaf.X, leaf.Y, leaf.Z);
                 if (node != null)
                 {
                     return node.RemoveNode(leaf);
@@ -501,17 +501,17 @@ namespace OctreeSearch
         {
             return GetNode(x, y, z, Double.PositiveInfinity);
         }
-        public object GetNode(Vector3f vector)
+        public object GetNode(Vector3F vector)
         {
-            return GetNode(vector.x, vector.y, vector.z, Double.PositiveInfinity);
+            return GetNode(vector.X, vector.Y, vector.Z, Double.PositiveInfinity);
         }
         public object GetNode(double x, double y, double z)
         {
             return GetNode(x, y, z, Double.PositiveInfinity);
         }
-        public object GetNode(Vector3d vector)
+        public object GetNode(Vector3D vector)
         {
-            return GetNode(vector.x, vector.y, vector.z, Double.PositiveInfinity);
+            return GetNode(vector.X, vector.Y, vector.Z, Double.PositiveInfinity);
         }
 
         /// <summary> Get an object closest to a x/y/z. If there are branches at
@@ -524,7 +524,7 @@ namespace OctreeSearch
         /// <param name="z">front-nack location in Octree Grid</param>
         /// <param name="bestDistance">the closest distance of the object found so far.</param>
         /// <returns> the object that matches the best distance, null if no closer objects were found.</returns>
-        public object GetNode(float x, float y, float z, double ShortestDistance)
+        public object GetNode(float x, float y, float z, double shortestDistance)
         {
             double distance;
             object closest = null;
@@ -537,9 +537,9 @@ namespace OctreeSearch
                                 Math.Pow(y - leaf.Y, 2.0) +
                                 Math.Pow(z - leaf.Z, 2.0));
 
-                    if (distance < ShortestDistance)
+                    if (distance < shortestDistance)
                     {
-                        ShortestDistance = distance;
+                        shortestDistance = distance;
                         closest = leaf.LeafObject;
                     }
                 }
@@ -554,9 +554,9 @@ namespace OctreeSearch
                 for (int i = 0; i < branch.Length; i++)
                 {
                     double childDistance = branch[i].bounds.borderDistance(x, y, z);
-                    if (childDistance < ShortestDistance)
+                    if (childDistance < shortestDistance)
                     {
-                        object test = branch[i].GetNode(x, y, z, ShortestDistance);
+                        object test = branch[i].GetNode(x, y, z, shortestDistance);
                         if (test != null)
                             closest = test;
                     }
@@ -568,11 +568,11 @@ namespace OctreeSearch
         /// 
         /// </summary>
         /// <param name="vector"></param>
-        /// <param name="ShortestDistance"></param>
+        /// <param name="shortestDistance"></param>
         /// <returns></returns>
-        public object GetNode(Vector3f vector, double ShortestDistance)
+        public object GetNode(Vector3F vector, double shortestDistance)
         {
-            return GetNode(vector.x, vector.y, vector.z, ShortestDistance);
+            return GetNode(vector.X, vector.Y, vector.Z, shortestDistance);
         }
         /// <summary>
         /// 
@@ -580,9 +580,9 @@ namespace OctreeSearch
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="z"></param>
-        /// <param name="ShortestDistance"></param>
+        /// <param name="shortestDistance"></param>
         /// <returns></returns>
-        public object GetNode(double x, double y, double z, double ShortestDistance)
+        public object GetNode(double x, double y, double z, double shortestDistance)
         {
             object closest = null;
             double distance;
@@ -595,9 +595,9 @@ namespace OctreeSearch
                                 Math.Pow(y - leaf.Y, 2.0) +
                                 Math.Pow(z - leaf.Z, 2.0));
 
-                    if (distance < ShortestDistance)
+                    if (distance < shortestDistance)
                     {
-                        ShortestDistance = distance;
+                        shortestDistance = distance;
                         closest = leaf.LeafObject;
                     }
                 }
@@ -612,9 +612,9 @@ namespace OctreeSearch
                 for (int i = 0; i < branch.Length; i++)
                 {
                     double childDistance = branch[i].bounds.borderDistance(x, y, z);
-                    if (childDistance < ShortestDistance)
+                    if (childDistance < shortestDistance)
                     {
-                        object test = branch[i].GetNode(x, y, z, ShortestDistance);
+                        object test = branch[i].GetNode(x, y, z, shortestDistance);
                         if (test != null)
                             closest = test;
                     }
@@ -626,11 +626,11 @@ namespace OctreeSearch
         /// 
         /// </summary>
         /// <param name="vector"></param>
-        /// <param name="ShortestDistance"></param>
+        /// <param name="shortestDistance"></param>
         /// <returns></returns>
-        public object GetNode(Vector3d vector, double ShortestDistance)
+        public object GetNode(Vector3D vector, double shortestDistance)
         {
-            return GetNode(vector.x, vector.y, vector.z, ShortestDistance);
+            return GetNode(vector.X, vector.Y, vector.Z, shortestDistance);
         }
 
         /// <summary> Get all the objects within a bounding box.</summary>
@@ -724,7 +724,7 @@ namespace OctreeSearch
         /// <returns></returns>
         public ArrayList GetNodes(float x, float y, float z, double radius)
         {
-            ArrayList Nodes = new ArrayList();
+            ArrayList nodes = new ArrayList();
             double distance;
             if (branch == null)
             {
@@ -736,10 +736,10 @@ namespace OctreeSearch
                                 Math.Pow(z - leaf.Z, 2.0));
 
                     if (distance < radius)
-                        Nodes.Add(leaf.LeafObject);
+                        nodes.Add(leaf.LeafObject);
 
                 }
-                return Nodes;
+                return nodes;
             }
             else
             {
@@ -755,12 +755,12 @@ namespace OctreeSearch
                     {
                         object test = branch[i].GetNode(x, y, z, radius);
                         if (test != null)
-                            Nodes.Add(test);
+                            nodes.Add(test);
                     }
 
                 }
             }
-            return Nodes;
+            return nodes;
         }
         /// <summary>
         /// 
@@ -768,9 +768,9 @@ namespace OctreeSearch
         /// <param name="vector"></param>
         /// <param name="radius"></param>
         /// <returns></returns>
-        public ArrayList GetNodes(Vector3f vector, double radius)
+        public ArrayList GetNodes(Vector3F vector, double radius)
         {
-            return GetNodes(vector.x, vector.y, vector.z, radius);
+            return GetNodes(vector.X, vector.Y, vector.Z, radius);
         }
         /// <summary>
         /// 
@@ -782,7 +782,7 @@ namespace OctreeSearch
         /// <returns></returns>
         public ArrayList GetNodes(double x, double y, double z, double radius)
         {
-            ArrayList Nodes = new ArrayList();
+            ArrayList nodes = new ArrayList();
             double distance;
             if (branch == null)
             {
@@ -794,10 +794,10 @@ namespace OctreeSearch
                                 Math.Pow(z - leaf.Z, 2.0));
 
                     if (distance < radius)
-                        Nodes.Add(leaf.LeafObject);
+                        nodes.Add(leaf.LeafObject);
 
                 }
-                return Nodes;
+                return nodes;
             }
             else
             {
@@ -813,12 +813,12 @@ namespace OctreeSearch
                     {
                         object test = branch[i].GetNode(x, y, z, radius);
                         if (test != null)
-                            Nodes.Add(test);
+                            nodes.Add(test);
                     }
 
                 }
             }
-            return Nodes;
+            return nodes;
         }
         /// <summary>
         /// 
@@ -826,9 +826,9 @@ namespace OctreeSearch
         /// <param name="vector"></param>
         /// <param name="radius"></param>
         /// <returns></returns>
-        public ArrayList GetNodes(Vector3d vector, double radius)
+        public ArrayList GetNodes(Vector3D vector, double radius)
         {
-            return GetNodes(vector.x, vector.y, vector.z, radius);
+            return GetNodes(vector.X, vector.Y, vector.Z, radius);
         }
         /// <summary>
         /// 
@@ -836,12 +836,12 @@ namespace OctreeSearch
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="z"></param>
-        /// <param name="MinRadius"></param>
-        /// <param name="MaxRadius"></param>
+        /// <param name="minRadius"></param>
+        /// <param name="maxRadius"></param>
         /// <returns></returns>
-        public ArrayList GetNodes(float x, float y, float z, double MinRadius, double MaxRadius)
+        public ArrayList GetNodes(float x, float y, float z, double minRadius, double maxRadius)
         {
-            ArrayList Nodes = new ArrayList();
+            ArrayList nodes = new ArrayList();
             // double distance, minDistance = 1e32;  // AF: minDistance never used
             double distance;
             if (branch == null)
@@ -853,7 +853,7 @@ namespace OctreeSearch
                                 Math.Pow(y - leaf.Y, 2.0) +
                                 Math.Pow(z - leaf.Z, 2.0));
 
-                    if (distance >= MinRadius && distance < MaxRadius)
+                    if (distance >= minRadius && distance < maxRadius)
                     {
                         //if (distance <= minDistance) //closest object first
                         //{
@@ -861,11 +861,11 @@ namespace OctreeSearch
                        //     minDistance = Math.Min(minDistance, distance);
                        // }
                        // else
-                            Nodes.Add(leaf.LeafObject);
+                            nodes.Add(leaf.LeafObject);
                     }
 
                 }
-                return Nodes;
+                return nodes;
             }
             else
             {
@@ -877,27 +877,27 @@ namespace OctreeSearch
                 {
                     double childDistance = branch[i].bounds.borderDistance(x, y, z);
 
-                    if (childDistance > MinRadius && childDistance <= MaxRadius)
+                    if (childDistance > minRadius && childDistance <= maxRadius)
                     {
-                        object test = branch[i].GetNode(x, y, z, MinRadius);
+                        object test = branch[i].GetNode(x, y, z, minRadius);
                         if (test != null)
-                            Nodes.Add(test);
+                            nodes.Add(test);
                     }
 
                 }
             }
-            return Nodes;
+            return nodes;
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="vector"></param>
-        /// <param name="MinRadius"></param>
-        /// <param name="MaxRadius"></param>
+        /// <param name="minRadius"></param>
+        /// <param name="maxRadius"></param>
         /// <returns></returns>
-        public ArrayList GetNodes(Vector3f vector, double MinRadius, double MaxRadius)
+        public ArrayList GetNodes(Vector3F vector, double minRadius, double maxRadius)
         {
-            return GetNodes(vector.x, vector.y, vector.z, MinRadius, MaxRadius);
+            return GetNodes(vector.X, vector.Y, vector.Z, minRadius, maxRadius);
         }
         /// <summary>
         /// 
@@ -905,12 +905,12 @@ namespace OctreeSearch
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="z"></param>
-        /// <param name="MinRadius"></param>
-        /// <param name="MaxRadius"></param>
+        /// <param name="minRadius"></param>
+        /// <param name="maxRadius"></param>
         /// <returns></returns>
-        public ArrayList GetNodes(double x, double y, double z, double MinRadius, double MaxRadius)
+        public ArrayList GetNodes(double x, double y, double z, double minRadius, double maxRadius)
         {
-            ArrayList Nodes = new ArrayList();
+            ArrayList nodes = new ArrayList();
             //double distance, minDistance = 1e32; AF: minDistance never used
             double distance;
             if (branch == null)
@@ -922,7 +922,7 @@ namespace OctreeSearch
                                 Math.Pow(y - leaf.Y, 2.0) +
                                 Math.Pow(z - leaf.Z, 2.0));
 
-                    if (distance >= MinRadius && distance < MaxRadius)
+                    if (distance >= minRadius && distance < maxRadius)
                     {
                        // if (distance <= minDistance) //closest object first
                        // {
@@ -930,11 +930,11 @@ namespace OctreeSearch
                        //     minDistance = Math.Min(minDistance, distance);
                        // }
                        // else
-                            Nodes.Add(leaf.LeafObject);
+                            nodes.Add(leaf.LeafObject);
                     }
                     
                 }
-                return Nodes;
+                return nodes;
             }
             else
             {
@@ -946,29 +946,29 @@ namespace OctreeSearch
                 {
                     double childDistance = branch[i].bounds.borderDistance(x, y, z);
 
-                    if (childDistance >= MinRadius && childDistance < MaxRadius)
+                    if (childDistance >= minRadius && childDistance < maxRadius)
                     {
-                        object test = branch[i].GetNode(x, y, z, MaxRadius);
+                        object test = branch[i].GetNode(x, y, z, maxRadius);
                         if (test != null)
                         {
-                            Nodes.Add(test);
+                            nodes.Add(test);
                         }
                     }
 
                 }
             }
-            return Nodes;
+            return nodes;
         }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="vector"></param>
-        /// <param name="MinRadius"></param>
-        /// <param name="MaxRadius"></param>
+        /// <param name="minRadius"></param>
+        /// <param name="maxRadius"></param>
         /// <returns></returns>
-        public ArrayList GetNodes(Vector3d vector, double MinRadius, double MaxRadius)
+        public ArrayList GetNodes(Vector3D vector, double minRadius, double maxRadius)
         {
-            return GetNodes(vector.x, vector.y, vector.z, MinRadius, MaxRadius);
+            return GetNodes(vector.X, vector.Y, vector.Z, minRadius, maxRadius);
         }
 
         #endregion

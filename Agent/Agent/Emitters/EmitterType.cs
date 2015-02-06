@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Grasshopper.Kernel;
+using RS = Agent.Properties.Resources;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 
@@ -12,23 +8,30 @@ namespace Agent
   public abstract class EmitterType : GH_Goo<Object>
   {
     protected bool continuousFlow;
-    protected int creationRate;
-    protected int numAgents;
+    protected readonly int creationRate;
+    protected readonly int numAgents;
 
-    public EmitterType()
+    protected EmitterType()
     {
-      this.continuousFlow = true;
-      this.creationRate = 1;
-      this.numAgents = 0;
+      continuousFlow = RS.continuousFlowDefault;
+      creationRate = RS.creationRateDefault;
+      numAgents = RS.numAgentsDefault;
     }
 
-    abstract public Point3d emit();
+    protected EmitterType(bool continuousFlow, int creationRate, int numAgents)
+    {
+      this.continuousFlow = continuousFlow;
+      this.creationRate = creationRate;
+      this.numAgents = numAgents;
+    }
+
+    abstract public Point3d Emit();
 
     public int CreationRate
     {
       get
       {
-        return this.creationRate;
+        return creationRate;
       }
     }
 
@@ -36,7 +39,7 @@ namespace Agent
     {
       get
       {
-        return this.continuousFlow;
+        return continuousFlow;
       }
     }
 
@@ -44,48 +47,44 @@ namespace Agent
     {
       get
       {
-        return this.numAgents;
+        return numAgents;
       }
     }
 
     public override bool Equals(object obj)
     {
       // If parameter is null return false.
-      if (obj == null)
-      {
-        return false;
-      }
 
       // If parameter cannot be cast to Point return false.
       EmitterType p = obj as EmitterType;
-      if ((System.Object)p == null)
+      if (p == null)
       {
         return false;
       }
 
       // Return true if the fields match:
-      return this.continuousFlow.Equals(p.continuousFlow) && 
-             this.creationRate.Equals(p.creationRate) && 
-             this.numAgents.Equals(p.numAgents);
+      return continuousFlow.Equals(p.continuousFlow) && 
+             creationRate.Equals(p.creationRate) && 
+             numAgents.Equals(p.numAgents);
     }
 
     public bool Equals(EmitterType p)
     {
       // If parameter is null return false:
-      if ((object)p == null)
+      if (p == null)
       {
         return false;
       }
 
       // Return true if the fields match:
-      return this.continuousFlow.Equals(p.continuousFlow) &&
-             this.creationRate.Equals(p.creationRate) &&
-             this.numAgents.Equals(p.numAgents);
+      return continuousFlow.Equals(p.continuousFlow) &&
+             creationRate.Equals(p.creationRate) &&
+             numAgents.Equals(p.numAgents);
     }
 
     public override int GetHashCode()
     {
-      return this.creationRate ^ this.numAgents;
+      return creationRate.GetHashCode() ^ numAgents.GetHashCode();
     }
 
     abstract public override IGH_Goo Duplicate();
@@ -94,28 +93,28 @@ namespace Agent
     {
       get
       {
-        return (this.creationRate > 0 && this.numAgents >= 0);
+        return (creationRate > 0 && numAgents >= 0);
       }
     }
 
     public override string ToString()
     {
-      string continuousFlow = "ContinuousFlow: " + this.continuousFlow.ToString() + "\n";
-      string creationRate = "Creation Rate: " + this.creationRate.ToString() + "\n";
-      string numAgents = "Number of Agents: " + this.numAgents.ToString() + "\n";
-      return continuousFlow + creationRate + numAgents;
+      string continuousFlowStr = RS.continuousFlowName + ": " + continuousFlow + "\n";
+      string creationRateStr = RS.creationRateName + ": " + creationRate + "\n";
+      string numAgentsStr = RS.numAgentsName + ": " + numAgents + "\n";
+      return continuousFlowStr + creationRateStr + numAgentsStr;
     }
 
     public override string TypeDescription
     {
-      get { return "An Emitter"; }
+      get { return RS.emitterDescription; }
     }
 
     public override string TypeName
     {
-      get { return "EmitterType"; }
+      get { return RS.emitterName; }
     }
 
-    public abstract BoundingBox getBoundingBox();
+    public abstract BoundingBox GetBoundingBox();
   }
 }

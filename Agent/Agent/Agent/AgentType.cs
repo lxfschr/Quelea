@@ -1,24 +1,23 @@
-﻿using Grasshopper.Kernel.Types;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
+using Random = Agent.Util.Random;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
   public class AgentType : GH_Goo<Object>, IPosition
   {
     private int lifespan;
-    private double mass;
-    private double bodySize;
-    private double maxSpeed;
-    private double maxForce;
-    private double visionAngle;
-    private double visionRadius;
-    private int historyLength;
-    private CircularArray<Point3d> positionHistory;
+    private readonly double mass;
+    private readonly double bodySize;
+    private readonly double maxSpeed;
+    private readonly double maxForce;
+    private readonly double visionAngle;
+    private readonly double visionRadius;
+    private readonly int historyLength;
+    private readonly CircularArray<Point3d> positionHistory;
 
     private Point3d position;
     private Vector3d velocity;
@@ -28,20 +27,20 @@ namespace Agent
 
     public AgentType()
     {
-      this.lifespan = 30;
-      this.mass = 1.0;
-      this.bodySize = 1.0;
-      this.maxSpeed = 0.5;
-      this.maxForce = 0.1;
-      this.visionAngle = 15.0;
-      this.visionRadius = 5.0;
-      this.historyLength = 1;
-      this.positionHistory = new CircularArray<Point3d>(historyLength);
-      this.position = Point3d.Origin;
-      this.refPosition = Point3d.Origin;
-      this.positionHistory.Add(refPosition);
-      this.velocity = Util.Random.RandomVector(-0.1, 0.1);
-      this.acceleration = Vector3d.Zero;
+      lifespan = RS.lifespanDefault;
+      mass = RS.massDefault;
+      bodySize = RS.bodySizeDefault;
+      maxSpeed = RS.maxSpeedDefault;
+      maxForce = RS.maxForceDefault;
+      visionAngle = RS.visionAngleDefault;
+      visionRadius = RS.visionRadiusDefault;
+      historyLength = RS.historyLenDefault;
+      positionHistory = new CircularArray<Point3d>(historyLength);
+      position = Point3d.Origin;
+      refPosition = Point3d.Origin;
+      positionHistory.Add(refPosition);
+      velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
+      acceleration = Vector3d.Zero;
     }
 
     public AgentType(int lifespan, double mass, double bodySize,
@@ -56,12 +55,12 @@ namespace Agent
       this.visionAngle = visionAngle;
       this.visionRadius = visionRadius;
       this.historyLength = historyLength;
-      this.positionHistory = new CircularArray<Point3d>(historyLength);
-      this.position = Point3d.Origin;
-      this.refPosition = Point3d.Origin;
-      this.positionHistory.Add(refPosition);
-      this.velocity = Util.Random.RandomVector(-0.1, 0.1);
-      this.acceleration = Vector3d.Zero;
+      positionHistory = new CircularArray<Point3d>(historyLength);
+      position = Point3d.Origin;
+      refPosition = Point3d.Origin;
+      positionHistory.Add(refPosition);
+      velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
+      acceleration = Vector3d.Zero;
     }
 
     public AgentType(int lifespan, double mass, double bodySize,
@@ -76,73 +75,73 @@ namespace Agent
       this.visionAngle = visionAngle;
       this.visionRadius = visionRadius;
       this.historyLength = historyLength;
-      this.positionHistory = new CircularArray<Point3d>(historyLength);
+      positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = position;
-      this.refPosition = position;
-      this.positionHistory.Add(refPosition);
-      this.velocity = Util.Random.RandomVector(-0.1, 0.1);
-      this.acceleration = Vector3d.Zero;
+      refPosition = position;
+      positionHistory.Add(refPosition);
+      velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
+      acceleration = Vector3d.Zero;
     }
 
     public AgentType(AgentType agent)
     {
-      this.lifespan = agent.lifespan;
-      this.mass = agent.mass;
-      this.bodySize = agent.bodySize;
-      this.maxSpeed = agent.maxSpeed;
-      this.maxForce = agent.maxForce;
-      this.visionAngle = agent.visionAngle;
-      this.visionRadius = agent.visionRadius;
-      this.historyLength = agent.historyLength;
-      this.positionHistory = new CircularArray<Point3d>(historyLength);
-      this.position = agent.position;
-      this.refPosition = agent.refPosition;
-      this.positionHistory.Add(refPosition);
-      this.velocity = agent.velocity;
-      this.acceleration = agent.acceleration;
+      lifespan = agent.lifespan;
+      mass = agent.mass;
+      bodySize = agent.bodySize;
+      maxSpeed = agent.maxSpeed;
+      maxForce = agent.maxForce;
+      visionAngle = agent.visionAngle;
+      visionRadius = agent.visionRadius;
+      historyLength = agent.historyLength;
+      positionHistory = new CircularArray<Point3d>(historyLength);
+      position = agent.position;
+      refPosition = agent.refPosition;
+      positionHistory.Add(refPosition);
+      velocity = agent.velocity;
+      acceleration = agent.acceleration;
     }
 
     public AgentType(AgentType agent, Point3d position)
     {
-      this.lifespan = agent.lifespan;
-      this.mass = agent.mass;
-      this.bodySize = agent.bodySize;
-      this.maxSpeed = agent.maxSpeed;
-      this.maxForce = agent.maxForce;
-      this.visionAngle = agent.visionAngle;
-      this.visionRadius = agent.visionRadius;
-      this.historyLength = agent.historyLength;
-      this.positionHistory = new CircularArray<Point3d>(historyLength);
-      this.refPosition = position;
+      lifespan = agent.lifespan;
+      mass = agent.mass;
+      bodySize = agent.bodySize;
+      maxSpeed = agent.maxSpeed;
+      maxForce = agent.maxForce;
+      visionAngle = agent.visionAngle;
+      visionRadius = agent.visionRadius;
+      historyLength = agent.historyLength;
+      positionHistory = new CircularArray<Point3d>(historyLength);
+      refPosition = position;
       this.position = position;
-      this.positionHistory.Add(refPosition);
-      this.velocity = this.velocity = Util.Random.RandomVector(-0.1, 0.1);
-      this.acceleration = agent.acceleration;
+      positionHistory.Add(refPosition);
+      velocity = velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
+      acceleration = agent.acceleration;
     }
 
     public AgentType(AgentType agent, Point3d position, Point3d refPosition)
     {
-      this.lifespan = agent.lifespan;
-      this.mass = agent.mass;
-      this.bodySize = agent.bodySize;
-      this.maxSpeed = agent.maxSpeed;
-      this.maxForce = agent.maxForce;
-      this.visionAngle = agent.visionAngle;
-      this.visionRadius = agent.visionRadius;
-      this.historyLength = agent.historyLength;
-      this.positionHistory = new CircularArray<Point3d>(historyLength);
+      lifespan = agent.lifespan;
+      mass = agent.mass;
+      bodySize = agent.bodySize;
+      maxSpeed = agent.maxSpeed;
+      maxForce = agent.maxForce;
+      visionAngle = agent.visionAngle;
+      visionRadius = agent.visionRadius;
+      historyLength = agent.historyLength;
+      positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = position;
       this.refPosition = refPosition;
-      this.positionHistory.Add(refPosition);
-      this.velocity = this.velocity = Util.Random.RandomVector(-0.1, 0.1);
-      this.acceleration = agent.acceleration;
+      positionHistory.Add(refPosition);
+      velocity = velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
+      acceleration = agent.acceleration;
     }
 
     public int Lifespan
     {
       get
       {
-        return this.lifespan;
+        return lifespan;
       }
     }
 
@@ -150,7 +149,7 @@ namespace Agent
     {
       get
       {
-        return this.mass;
+        return mass;
       }
     }
 
@@ -158,7 +157,7 @@ namespace Agent
     {
       get
       {
-        return this.bodySize;
+        return bodySize;
       }
     }
 
@@ -166,7 +165,7 @@ namespace Agent
     {
       get
       {
-        return this.maxSpeed;
+        return maxSpeed;
       }
     }
 
@@ -174,7 +173,7 @@ namespace Agent
     {
       get
       {
-        return this.maxForce;
+        return maxForce;
       }
     }
 
@@ -182,7 +181,7 @@ namespace Agent
     {
       get
       {
-        return this.visionAngle;
+        return visionAngle;
       }
     }
 
@@ -190,7 +189,7 @@ namespace Agent
     {
       get
       {
-        return this.visionRadius;
+        return visionRadius;
       }
     }
 
@@ -198,7 +197,7 @@ namespace Agent
     {
       get
       {
-        return this.historyLength;
+        return historyLength;
       }
     }
 
@@ -206,24 +205,24 @@ namespace Agent
     {
       get
       {
-        return this.positionHistory;
+        return positionHistory;
       }
     }
 
-    public List<Point3d> getPositionHistoryList()
+    public List<Point3d> GetPositionHistoryList()
     {
-      return this.positionHistory.ToList();
+      return positionHistory.ToList();
     }
 
     public Point3d Position 
     {
       get
       {
-        return this.position;
+        return position;
       }
       set
       {
-        this.position = value;
+        position = value;
       }
     }
 
@@ -231,11 +230,11 @@ namespace Agent
     {
       get
       {
-        return this.velocity;
+        return velocity;
       }
       set
       {
-        this.velocity = value;
+        velocity = value;
       }
     }
 
@@ -243,7 +242,7 @@ namespace Agent
     {
       get
       {
-        return this.acceleration;
+        return acceleration;
       }
     }
 
@@ -251,109 +250,100 @@ namespace Agent
     {
       get
       {
-        return this.refPosition;
+        return refPosition;
       }
       set
       {
-        this.refPosition = value;
+        refPosition = value;
       }
     }
 
-    public void update()
+    public void Update()
     {
       velocity = Vector3d.Add(velocity, acceleration);
       refPosition.Transform(Transform.Translation(velocity));
-      this.positionHistory.Add(refPosition);
+      positionHistory.Add(refPosition);
       position.Transform(Transform.Translation(velocity)); //So disconnecting the environment allows the agent to continue from its current position.
       acceleration = Vector3d.Multiply(acceleration, 0);
       lifespan -= 1;
 
     }
 
-    public void applyForce(Vector3d force)
+    public void ApplyForce(Vector3d force)
     {
-      Vector3d f = force;
-      f = Vector3d.Divide(f, mass);
-      acceleration = Vector3d.Add(acceleration, f);
+      force = Vector3d.Divide(force, mass);
+      acceleration = Vector3d.Add(acceleration, force);
     }
 
-    public Boolean isDead()
+    public Boolean IsDead()
     {
       return (lifespan <= 0.0);
     }
 
-    public void run()
+    public void Run()
     {
-      update();
+      Update();
     }
 
-    public override bool Equals(System.Object obj)
+    public override bool Equals(Object obj)
     {
       // If parameter is null return false.
-      if (obj == null)
-      {
-        return false;
-      }
 
       // If parameter cannot be cast to Point return false.
       AgentType p = obj as AgentType;
-      if ((System.Object)p == null)
+      if (p == null)
       {
         return false;
       }
 
       // Return true if the fields match:
-      return this.acceleration.Equals(p.acceleration) &&
-             this.bodySize.Equals(p.bodySize) &&
-             this.historyLength.Equals(p.historyLength) &&
-             this.lifespan.Equals(p.lifespan) &&
-             this.position.Equals(p.position) &&
-             this.refPosition.Equals(p.refPosition) &&
-             this.mass.Equals(p.mass) &&
-             this.maxForce.Equals(p.maxForce) &&
-             this.maxSpeed.Equals(p.maxSpeed) &&
-             this.velocity.Equals(p.velocity) &&
-             this.visionAngle.Equals(p.visionAngle) &&
-             this.visionRadius.Equals(p.visionRadius);
+      return acceleration.Equals(p.acceleration) &&
+             bodySize.Equals(p.bodySize) &&
+             historyLength.Equals(p.historyLength) &&
+             lifespan.Equals(p.lifespan) &&
+             position.Equals(p.position) &&
+             refPosition.Equals(p.refPosition) &&
+             mass.Equals(p.mass) &&
+             maxForce.Equals(p.maxForce) &&
+             maxSpeed.Equals(p.maxSpeed) &&
+             velocity.Equals(p.velocity) &&
+             visionAngle.Equals(p.visionAngle) &&
+             visionRadius.Equals(p.visionRadius);
     }
 
     public bool Equals(AgentType p)
     {
       // If parameter is null return false:
-      if ((object)p == null)
+      if (p == null)
       {
         return false;
       }
 
       // Return true if the fields match:
-      return this.acceleration.Equals(p.acceleration) &&
-             this.bodySize.Equals(p.bodySize) &&
-             this.historyLength.Equals(p.historyLength) &&
-             this.lifespan.Equals(p.lifespan) &&
-             this.position.Equals(p.position) &&
-             this.refPosition.Equals(p.refPosition) &&
-             this.mass.Equals(p.mass) &&
-             this.maxForce.Equals(p.maxForce) &&
-             this.maxSpeed.Equals(p.maxSpeed) &&
-             this.velocity.Equals(p.velocity) &&
-             this.visionAngle.Equals(p.visionAngle) &&
-             this.visionRadius.Equals(p.visionRadius);
+      return acceleration.Equals(p.acceleration) &&
+             bodySize.Equals(p.bodySize) &&
+             historyLength.Equals(p.historyLength) &&
+             lifespan.Equals(p.lifespan) &&
+             position.Equals(p.position) &&
+             refPosition.Equals(p.refPosition) &&
+             mass.Equals(p.mass) &&
+             maxForce.Equals(p.maxForce) &&
+             maxSpeed.Equals(p.maxSpeed) &&
+             velocity.Equals(p.velocity) &&
+             visionAngle.Equals(p.visionAngle) &&
+             visionRadius.Equals(p.visionRadius);
     }
 
     public override int GetHashCode()
     {
       // Return true if the fields match:
-      return this.acceleration.GetHashCode() ^
-             this.bodySize.GetHashCode() ^
-             this.historyLength.GetHashCode() ^
-             this.lifespan.GetHashCode() ^
-             this.position.GetHashCode() ^
-             this.mass.GetHashCode() ^
-             this.maxForce.GetHashCode() ^
-             this.maxSpeed.GetHashCode() ^
-             this.velocity.GetHashCode() ^
-             this.visionAngle.GetHashCode() ^
-             this.visionRadius.GetHashCode();
+      return bodySize.GetHashCode() ^
+             historyLength.GetHashCode() ^
+             mass.GetHashCode() ^
+             maxForce.GetHashCode() ^
+             maxSpeed.GetHashCode() ^
+             visionAngle.GetHashCode() ^
+             visionRadius.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -373,34 +363,31 @@ namespace Agent
 
     public override string ToString()
     {
-      string lifespan = "Lifespan: " + this.lifespan.ToString() + "\n";
-      string mass = "Mass: " + this.mass.ToString() + "\n";
-      string bodySize = "Body Size: " + this.bodySize.ToString() + "\n";
-      string maxForce = "Maximum Force: " + this.maxForce.ToString() + "\n";
-      string maxSpeed = "Maximum Speed: " + this.maxSpeed.ToString() + "\n";
-      string visionAngle = "Vision Angle: " + this.visionAngle.ToString() +
-                           "\n";
-      string visionRadius = "Vision Radius: " + this.visionRadius.ToString() +
-                            "\n";
-      string historyLength = "History Length: " + this.historyLength.ToString()
-                             + "\n";
-      return lifespan + mass + bodySize + maxForce + maxSpeed + visionAngle +
-             visionRadius + historyLength;
+      string lifespanStr = RS.lifespanName + ": " + lifespan + "\n";
+      string massStr = RS.massName + ": " + mass + "\n";
+      string bodySizeStr = RS.bodySizeName + ": " + bodySize + "\n";
+      string maxForceStr = RS.maxForceName+ ": " + maxForce + "\n";
+      string maxSpeedStr = RS.maxSpeedName+ ": " + maxSpeed + "\n";
+      string visionAngleStr = RS.visionAngleName+ ": " + visionAngle + "\n";
+      string visionRadiusStr = RS.visionRadiusName+ ": " + visionRadius + "\n";
+      string historyLengthStr = RS.historyLenName + ": " + historyLength + "\n";
+      return lifespanStr + massStr + bodySizeStr + maxForceStr + maxSpeedStr + 
+             visionAngleStr + visionRadiusStr + historyLengthStr;
     }
 
     public override string TypeDescription
     {
-      get { return "An Agent"; }
+      get { return RS.agentDescription; }
     }
 
     public override string TypeName
     {
-      get { return "Agent"; }
+      get { return RS.agentName; }
     }
 
-    public Point3d getPoint3d()
+    public Point3d GetPoint3D()
     {
-      return this.refPosition;
+      return refPosition;
     }
   }
 }

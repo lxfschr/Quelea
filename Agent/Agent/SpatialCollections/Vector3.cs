@@ -58,12 +58,12 @@ namespace Agent
               (c.z - r.z < p.z) && (c.z + r.z >= p.z));
     }
 
-    public static float min(float f1, float f2)
+    public static float Min(float f1, float f2)
     {
       return (f1 < f2) ? f1 : f2;
     }
 
-    public static float max(float f1, float f2)
+    public static float Max(float f1, float f2)
     {
       return (f1 < f2) ? f2 : f1;
     }
@@ -85,8 +85,8 @@ namespace Agent
       float t5 = (lb.z - ray.origin.z) * dirfrac.z;
       float t6 = (rt.z - ray.origin.z) * dirfrac.z;
 
-      float tmin = max(max(min(t1, t2), min(t3, t4)), min(t5, t6));
-      float tmax = min(min(max(t1, t2), max(t3, t4)), max(t5, t6));
+      float tmin = Max(Max(Min(t1, t2), Min(t3, t4)), Min(t5, t6));
+      float tmax = Min(Min(Max(t1, t2), Max(t3, t4)), Max(t5, t6));
 
       // if tmax < 0, ray (line) is intersecting AABB, but whole AABB is behing us
       float t;

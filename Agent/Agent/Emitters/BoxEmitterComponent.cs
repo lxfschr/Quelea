@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-
+using System.Drawing;
+using Agent.Properties;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace Agent.Agent2
+namespace Agent
 {
   public class BoxEmitterComponent : GH_Component
   {
@@ -16,25 +16,25 @@ namespace Agent.Agent2
     /// new tabs/panels will automatically be created.
     /// </summary>
     public BoxEmitterComponent()
-      : base("Box Emitter", "boxEmit",
-          "Emit agents from a box.",
-          "Agent", "Agent2")
+      : base(Resources.boxEmitName, Resources.boxEmitNickName,
+          Resources.boxEmitDescription,
+          Resources.pluginCategoryName, Resources.emittersSubCategoryName)
     {
     }
 
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       // Use the pManager object to register your input parameters.
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddBoxParameter("Box", "B", "Box for emitter", GH_ParamAccess.item);
-      pManager.AddBooleanParameter("Continuous Flow", "C", "If true, Agents will be emitted every Rth timestep.\n If false, N Agents will be emitted once.", GH_ParamAccess.item, true);
-      pManager.AddIntegerParameter("Creation Rate", "R", "Rate at which new Agents are created. Every Rth timestep.", GH_ParamAccess.item, 1);
-      pManager.AddIntegerParameter("Number of Agents", "N", "The number of Agents", GH_ParamAccess.item, 0);
+      pManager.AddBoxParameter(Resources.boxName, Resources.boxNickName, Resources.boxForEmitterDescription, GH_ParamAccess.item);
+      pManager.AddBooleanParameter(Resources.continuousFlowName, Resources.continuousFlowNickName, Resources.continuousFlowDescription, GH_ParamAccess.item, true);
+      pManager.AddIntegerParameter(Resources.creationRateName, Resources.creationRateNickName, Resources.creationRateDescription, GH_ParamAccess.item, 1);
+      pManager.AddIntegerParameter(Resources.numAgentsName, Resources.numAgentsNickName, Resources.numAgentsDescription, GH_ParamAccess.item, 0);
 
       pManager[2].Optional = true;
       pManager[3].Optional = true;
@@ -46,11 +46,11 @@ namespace Agent.Agent2
     /// <summary>
     /// Registers all the output parameters for this component.
     /// </summary>
-    protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter("Box Emitter", "B", "Box Emitter", GH_ParamAccess.item);
+      pManager.AddGenericParameter(Resources.boxEmitName, Resources.emitterNickName, Resources.boxEmitDescription, GH_ParamAccess.item);
       //pManager.AddPointParameter("Point Emitter Location", "P", "Point Emitter Location", GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
@@ -61,33 +61,33 @@ namespace Agent.Agent2
     /// <summary>
     /// This is the method that actually does the work.
     /// </summary>
-    /// <param name="DA">The DA object can be used to retrieve data from input parameters and 
+    /// <param name="da">The DA object can be used to retrieve data from input parameters and 
     /// to store data in output parameters.</param>
-    protected override void SolveInstance(IGH_DataAccess DA)
+    protected override void SolveInstance(IGH_DataAccess da)
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
       Box box = new Box();
       bool continuousFlow = true;
-      int creationRate = 1;
-      int numAgents = 0;
+      int creationRate = Resources.creationRateDefault;
+      int numAgents = Resources.numAgentsDefault;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!DA.GetData(0, ref box)) return;
-      if (!DA.GetData(1, ref continuousFlow)) return;
-      if (!DA.GetData(2, ref creationRate)) return;
-      if (!DA.GetData(3, ref numAgents)) return;
+      if (!da.GetData(0, ref box)) return;
+      if (!da.GetData(1, ref continuousFlow)) return;
+      if (!da.GetData(2, ref creationRate)) return;
+      if (!da.GetData(3, ref numAgents)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (creationRate <= 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Creation rate must be greater than 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, Resources.creationRateErrorMessage);
         return;
       }
       if (numAgents < 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Number of Agents must be greater than or equal to 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, Resources.numAgentsErrorMessage);
         return;
       }
 
@@ -96,7 +96,7 @@ namespace Agent.Agent2
       BoxEmitterType emitter = new BoxEmitterType(box, continuousFlow, creationRate, numAgents);
 
       // Finally assign the spiral to the output parameter.
-      DA.SetData(0, emitter);
+      da.SetData(0, emitter);
     }
 
     /// <summary>
@@ -114,14 +114,14 @@ namespace Agent.Agent2
     /// Provides an Icon for every component that will be visible in the User Interface.
     /// Icons need to be 24x24 pixels.
     /// </summary>
-    protected override System.Drawing.Bitmap Icon
+    protected override Bitmap Icon
     {
       get
       {
         // You can add image files to your project resources and access them like this:
         //return Resources.IconForThisComponent;
         //return null;
-        return Properties.Resources.icon_crvEmitter;
+        return Resources.icon_crvEmitter;
       }
     }
 
@@ -132,7 +132,7 @@ namespace Agent.Agent2
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{16c6e8af-9afa-4337-becc-dd2e4a6bbbd9}"); }
+      get { return new Guid(Resources.boxEmitGUID); }
     }
   }
 }
