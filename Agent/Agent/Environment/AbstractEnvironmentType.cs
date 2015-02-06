@@ -5,20 +5,20 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class EnvironmentType : GH_Goo<Object>
+  public abstract class AbstractEnvironmentType : GH_Goo<Object>
   {
     public override bool Equals(object obj)
     {
       // If parameter is null return false.
 
       // If parameter cannot be cast to Point return false.
-      EnvironmentType p = obj as EnvironmentType;
+      AbstractEnvironmentType p = obj as AbstractEnvironmentType;
       return p != null;
 
       // Return true if the fields match:
     }
 
-    public bool Equals(EnvironmentType p)
+    public bool Equals(AbstractEnvironmentType p)
     {
       // If parameter is null return false:
       return p != null;

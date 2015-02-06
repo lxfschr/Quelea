@@ -58,7 +58,7 @@ namespace Agent
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      EnvironmentType environment = new AxisAlignedBoxEnvironmentType(box);
+      AbstractEnvironmentType environment = new AxisAlignedBoxEnvironmentType(box);
 
       // Finally assign the spiral to the output parameter.
       da.SetData(0, environment);

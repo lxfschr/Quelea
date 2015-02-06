@@ -1,60 +1,58 @@
-﻿using Grasshopper.Kernel;
-using Grasshopper.Kernel.Types;
+﻿using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
-using System.Collections.Generic;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class SurfaceEnvironmentType : EnvironmentType
+  public class SurfaceEnvironmentType : AbstractEnvironmentType
   {
 
-    private Surface environment;
-    private Surface refEnvironment;
+    private readonly Surface environment;
+    private readonly Surface refEnvironment;
 
-    private double minX;
-    private double maxX;
-    private double minY;
-    private double maxY;
+    private readonly double minX;
+    private readonly double maxX;
+    private readonly double minY;
+    private readonly double maxY;
 
     // Default Constructor.
     public SurfaceEnvironmentType()
-      : base()
     {
       Point3d pt1 = new Point3d(0, 0, 0);
-      Point3d pt2 = new Point3d(100, 0, 0);
-      Point3d pt3 = new Point3d(0, 100, 0);
-      this.environment = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
+      Point3d pt2 = new Point3d(RS.boxBoundsDefault, 0, 0);
+      Point3d pt3 = new Point3d(0, RS.boxBoundsDefault, 0);
+      environment = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
       Interval u = environment.Domain(0);
       Interval v = environment.Domain(1);
       pt1 = new Point3d(u.Min, v.Min, 0);
       pt2 = new Point3d(u.Max, v.Min, 0);
       pt3 = new Point3d(u.Min, v.Max, 0);
-      this.refEnvironment = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
+      refEnvironment = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
 
       Interval uDom = refEnvironment.Domain(0);
       Interval vDom = refEnvironment.Domain(1);
 
-      this.minX = uDom.Min;
-      this.maxX = uDom.Max;
-      this.minY = vDom.Min;
-      this.maxY = vDom.Max;
+      minX = uDom.Min;
+      maxX = uDom.Max;
+      minY = vDom.Min;
+      maxY = vDom.Max;
     }
 
     // Constructor with initial values.
     public SurfaceEnvironmentType(Surface srf)
     {
-      this.environment = srf;
+      environment = srf;
       Interval u = srf.Domain(0);
       Interval v = srf.Domain(1);
-      this.refEnvironment = new PlaneSurface(Plane.WorldXY, u, v);
+      refEnvironment = new PlaneSurface(Plane.WorldXY, u, v);
 
       Interval uDom = refEnvironment.Domain(0);
       Interval vDom = refEnvironment.Domain(1);
 
-      this.minX = uDom.Min;
-      this.maxX = uDom.Max;
-      this.minY = vDom.Min;
-      this.maxY = vDom.Max;
+      minX = uDom.Min;
+      maxX = uDom.Max;
+      minY = vDom.Min;
+      maxY = vDom.Max;
     }
 
     // Copy Constructor
@@ -65,32 +63,32 @@ namespace Agent
       Interval uDom = environment.refEnvironment.Domain(0);
       Interval vDom = environment.refEnvironment.Domain(1);
 
-      this.minX = uDom.Min;
-      this.maxX = uDom.Max;
-      this.minY = vDom.Min;
-      this.maxY = vDom.Max;
+      minX = uDom.Min;
+      maxX = uDom.Max;
+      minY = vDom.Min;
+      maxY = vDom.Max;
     }
 
     public override bool Equals(object obj)
     {
       // If parameter cannot be cast to ThreeDPoint return false:
       SurfaceEnvironmentType p = obj as SurfaceEnvironmentType;
-      if ((object)p == null)
+      if (p == null)
       {
         return false;
       }
 
-      return base.Equals(obj) && this.environment.Equals(p.environment);
+      return base.Equals(obj) && environment.Equals(p.environment);
     }
 
     public bool Equals(SurfaceEnvironmentType p)
     {
-      return base.Equals((EnvironmentType)p) && this.environment.Equals(p.environment);
+      return base.Equals(p) && environment.Equals(p.environment);
     }
 
     public override int GetHashCode()
     {
-      return this.environment.GetHashCode() ^ this.refEnvironment.GetHashCode();
+      return environment.GetHashCode() ^ refEnvironment.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -102,7 +100,7 @@ namespace Agent
     {
       get
       {
-        return (this.environment.IsValid);
+        return (environment.IsValid);
       }
 
     }
@@ -110,18 +108,18 @@ namespace Agent
     public override string ToString()
     {
 
-      string environment = "Surface: " + this.environment.ToString() + "\n";
-      return environment;
+      string environmentStr = Util.String.ToString(RS.srfName, environment);
+      return environmentStr;
     }
 
     public override string TypeDescription
     {
-      get { return "A Surface Environment"; }
+      get { return RS.srfEnvDescription; }
     }
 
     public override string TypeName
     {
-      get { return "Surface Environment"; }
+      get { return RS.srfEnvName; }
     }
 
 
@@ -194,7 +192,7 @@ namespace Agent
         agent.Velocity = velocity;
         return true;
       }
-      else if (position.X <= minX)
+      if (position.X <= minX)
       {
         position.X = minX;
         velocity.X *= -1;
@@ -208,7 +206,7 @@ namespace Agent
         agent.Velocity = velocity;
         return true;
       }
-      else if (position.Y <= minY)
+      if (position.Y <= minY)
       {
         position.Y = minY;
         velocity.Y *= -1;
@@ -220,7 +218,7 @@ namespace Agent
 
     public override BoundingBox GetBoundingBox()
     {
-      return this.environment.GetBoundingBox(false);
+      return environment.GetBoundingBox(false);
     }
   }
 }

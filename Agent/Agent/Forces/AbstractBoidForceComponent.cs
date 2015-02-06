@@ -6,7 +6,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class BoidForceComponent : GH_Component
+  public abstract class AbstractBoidForceComponent : GH_Component
   {
     protected double visionRadiusMultiplier;
     protected System.Drawing.Bitmap icon;
@@ -14,7 +14,7 @@ namespace Agent
     /// <summary>
     /// Initializes a new instance of the CoheseForceComponent class.
     /// </summary>
-    protected BoidForceComponent(string name, string nickname, string description, 
+    protected AbstractBoidForceComponent(string name, string nickname, string description, 
                               string category, string subCategory)
       : base(name, nickname, description, category, subCategory)
     {

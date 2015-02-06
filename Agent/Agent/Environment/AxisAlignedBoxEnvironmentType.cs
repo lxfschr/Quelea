@@ -4,7 +4,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class AxisAlignedBoxEnvironmentType : EnvironmentType
+  public class AxisAlignedBoxEnvironmentType : AbstractEnvironmentType
   {
     private readonly double minX;
     private readonly double maxX;

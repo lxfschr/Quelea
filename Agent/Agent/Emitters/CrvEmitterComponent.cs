@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-
+using System.Drawing;
+using RS = Agent.Properties.Resources;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
@@ -16,25 +16,25 @@ namespace Agent
     /// new tabs/panels will automatically be created.
     /// </summary>
     public CrvEmitterComponent()
-      : base("Curve Emitter", "crvEmit",
-          "Emit agents from a curve.",
-          "Agent", "Emitters")
+      : base(RS.crvEmitName, RS.crvEmitComponentNickName,
+          RS.crvEmitDescription,
+          RS.pluginCategoryName, RS.emittersSubCategoryName)
     {
     }
 
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       // Use the pManager object to register your input parameters.
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddCurveParameter("Curve", "C", "Base curve for emitter", GH_ParamAccess.item);
-      pManager.AddBooleanParameter("Continuous Flow", "C", "If true, Agents will be emitted every Rth timestep.\n If false, N Agents will be emitted once.", GH_ParamAccess.item, true);
-      pManager.AddIntegerParameter("Creation Rate", "R", "Rate at which new Agents are created. Every Rth timestep.", GH_ParamAccess.item, 1);
-      pManager.AddIntegerParameter("Number of Agents", "N", "The number of Agents", GH_ParamAccess.item, 0);
+      pManager.AddCurveParameter(RS.curveName, RS.crvNickName, RS.crvForEmitDescription, GH_ParamAccess.item);
+      pManager.AddBooleanParameter(RS.continuousFlowName, RS.continuousFlowNickName, RS.continuousFlowDescription, GH_ParamAccess.item, RS.continuousFlowDefault);
+      pManager.AddIntegerParameter(RS.creationRateName, RS.creationRateNickName, RS.creationRateDescription, GH_ParamAccess.item, RS.creationRateDefault);
+      pManager.AddIntegerParameter(RS.numAgentsName, RS.numAgentsNickName, RS.numAgentsDescription, GH_ParamAccess.item, 0);
 
       pManager[2].Optional = true;
       pManager[3].Optional = true;
@@ -46,12 +46,11 @@ namespace Agent
     /// <summary>
     /// Registers all the output parameters for this component.
     /// </summary>
-    protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter("Curve Emitter", "E", "Curve Emitter", GH_ParamAccess.item);
-      //pManager.AddPointParameter("Point Emitter Location", "P", "Point Emitter Location", GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.crvEmitName, RS.emitterNickName, RS.crvEmitDescription, GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
@@ -82,12 +81,12 @@ namespace Agent
       // We should now validate the data and warn the user if invalid data is supplied.
       if (creationRate <= 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Creation rate must be greater than 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.creationRateErrorMessage);
         return;
       }
       if (numAgents < 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Number of Agents must be greater than or equal to 0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.numAgentsErrorMessage);
         return;
       }
 
@@ -114,14 +113,14 @@ namespace Agent
     /// Provides an Icon for every component that will be visible in the User Interface.
     /// Icons need to be 24x24 pixels.
     /// </summary>
-    protected override System.Drawing.Bitmap Icon
+    protected override Bitmap Icon
     {
       get
       {
         // You can add image files to your project resources and access them like this:
         //return Resources.IconForThisComponent;
         //return null;
-        return Properties.Resources.icon_crvEmitter;
+        return RS.icon_crvEmitter;
       }
     }
 

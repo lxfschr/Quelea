@@ -11,7 +11,7 @@ namespace Agent
   {
     protected ISpatialCollection<AgentType> agents;
     protected readonly AgentType[] agentsSettings;
-    protected readonly EmitterType[] emitters;
+    protected readonly AbstractEmitterType[] emitters;
     protected int timestep;
     protected int nextIndex;
     protected Point3d min;
@@ -21,12 +21,12 @@ namespace Agent
     {
       agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, RS.binSizeDefault);
       agentsSettings = new[] { new AgentType() };
-      emitters = new EmitterType[] { new BoxEmitterType() };
+      emitters = new AbstractEmitterType[] { new BoxEmitterType() };
       timestep = 0;
       nextIndex = 0;
       
     }
-    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters)
+    public AgentSystemType(AgentType[] agentsSettings, AbstractEmitterType[] emitters)
     {
       
       this.agentsSettings = agentsSettings;
@@ -35,7 +35,7 @@ namespace Agent
       agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)agentsSettings[0].VisionRadius);
     }
 
-    public AgentSystemType(AgentType[] agentsSettings, EmitterType[] emitters, AgentSystemType system)
+    public AgentSystemType(AgentType[] agentsSettings, AbstractEmitterType[] emitters, AgentSystemType system)
     {
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
@@ -68,7 +68,7 @@ namespace Agent
       }
     }
 
-    public IEnumerable<EmitterType> Emitters
+    public IEnumerable<AbstractEmitterType> Emitters
     {
       get
       {
@@ -76,7 +76,7 @@ namespace Agent
       }
     }
 
-    public void AddAgent(EmitterType emitter)
+    public void AddAgent(AbstractEmitterType emitter)
     {
       Point3d emittionPt = emitter.Emit();
       AgentType agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt);
@@ -128,7 +128,7 @@ namespace Agent
         }
       }
       
-      foreach (EmitterType emitter in emitters)
+      foreach (AbstractEmitterType emitter in emitters)
       {
         if (emitter.ContinuousFlow && (timestep % emitter.CreationRate == 0))
         {
@@ -152,7 +152,7 @@ namespace Agent
       max.X = max.Y = max.Z = Double.MinValue;
       //IList<Point3d> boundingPts = new List<Point3d>();
       //BoundingBox bounds;
-      //foreach (EmitterType emitter in this.emitters)
+      //foreach (AbstractEmitterType emitter in this.emitters)
       //{
       //  bounds = emitter.getBoundingBox();
       //  this.min.X = bounds.Min.X < this.min.X ? bounds.Min.X : this.min.X;

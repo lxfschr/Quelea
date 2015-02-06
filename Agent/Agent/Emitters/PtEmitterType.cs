@@ -1,19 +1,19 @@
-﻿using Grasshopper.Kernel;
+﻿using Agent.Util;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class PtEmitterType : EmitterType
+  public class PtEmitterType : AbstractEmitterType
   {
 
-    private Point3d pt;
+    private readonly Point3d pt;
 
     // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
     public PtEmitterType()
-      : base()
     {
-      this.pt = Point3d.Origin;
+      pt = Point3d.Origin;
     }
 
     // Constructor with initial values.
@@ -25,7 +25,6 @@ namespace Agent
 
     // Constructor with initial values.
     public PtEmitterType(Point3d pt)
-      :base()
     {
       this.pt = pt;
     }
@@ -34,29 +33,29 @@ namespace Agent
     public PtEmitterType(PtEmitterType ptEmitType)
       : base(ptEmitType.continuousFlow, ptEmitType.creationRate, ptEmitType.numAgents)
     {
-      this.pt = ptEmitType.pt;
+      pt = ptEmitType.pt;
     }
 
     public override bool Equals(object obj)
     {
       // If parameter cannot be cast to ThreeDPoint return false:
       PtEmitterType p = obj as PtEmitterType;
-      if ((object)p == null)
+      if (p == null)
       {
         return false;
       }
 
-      return base.Equals(obj) && this.pt.Equals(p.pt);
+      return base.Equals(obj) && pt.Equals(p.pt);
     }
 
     public bool Equals(PtEmitterType p)
     {
-      return base.Equals((PtEmitterType)p) && this.pt.Equals(p.pt);
+      return base.Equals(p) && pt.Equals(p.pt);
     }
 
     public override int GetHashCode()
     {
-      return base.GetHashCode() ^ this.pt.GetHashCode();
+      return base.GetHashCode() ^ pt.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -66,14 +65,14 @@ namespace Agent
 
     public override Point3d Emit()
     {
-      return this.pt;
+      return pt;
     }
 
     public override bool IsValid
     {
       get
       {
-        return (this.pt.IsValid && this.creationRate > 0 && this.numAgents >= 0);
+        return (pt.IsValid && creationRate > 0 && numAgents >= 0);
       }
 
     }
@@ -81,27 +80,27 @@ namespace Agent
     public override string ToString()
     {
 
-      string origin = "Origin Point: " + pt.ToString() + "\n";
-      string continuousFlow = "ContinuousFlow: " + this.continuousFlow.ToString() + "\n";
-      string creationRate = "Creation Rate: " + this.creationRate.ToString() + "\n";
-      string numAgents = "Number of Agents: " + this.numAgents.ToString() + "\n";
-      return origin + continuousFlow + creationRate + numAgents;
+      string origin = String.ToString(RS.ptName, pt);
+      string continuousFlowStr = String.ToString(RS.continuousFlowName, continuousFlow);
+      string creationRateStr = String.ToString(RS.creationRateName, creationRate);
+      string numAgentsStr = String.ToString(RS.numAgentsName, numAgents);
+      return origin + continuousFlowStr + creationRateStr + numAgentsStr;
     }
 
     public override string TypeDescription
     {
-      get { return "A Point Emitter"; }
+      get { return RS.ptEmitDescription; }
     }
 
     public override string TypeName
     {
-      get { return "PointEmitterType"; }
+      get { return RS.ptEmitName; }
     }
 
 
     public override BoundingBox GetBoundingBox()
     {
-      return new BoundingBox(this.pt, this.pt);
+      return new BoundingBox(pt, pt);
     }
   }
 }

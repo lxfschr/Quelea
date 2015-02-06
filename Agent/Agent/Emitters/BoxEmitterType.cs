@@ -5,14 +5,13 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class BoxEmitterType : EmitterType
+  public class BoxEmitterType : AbstractEmitterType
   {
 
     private readonly Box box;
 
     // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
     public BoxEmitterType()
-      : base()
     {
       Plane pln = new Plane();
       Interval size = new Interval(-RS.boxBoundsDefault, RS.boxBoundsDefault);
@@ -28,14 +27,12 @@ namespace Agent
 
     // Constructor with initial values.
     public BoxEmitterType(Box box)
-      :base()
     {
       this.box = box;
     }
 
     // Copy Constructor
     public BoxEmitterType(BoxEmitterType boxEmitter)
-      :base()
     {
       box = boxEmitter.box;
     }

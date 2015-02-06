@@ -1,25 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Agent.Util;
+using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
+using Rhino.Geometry.Intersect;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  class BrepEnvironmentType : EnvironmentType, IDisposable
+  class BrepEnvironmentType : AbstractEnvironmentType, IDisposable
   {
-    private Brep environment;
+    private readonly Brep environment;
 
     public void Dispose() {
-      this.environment.Dispose();
+      environment.Dispose();
     }
 
     // Default Constructor.
     public BrepEnvironmentType()
-      : base()
     {
-      Interval interval = new Interval(-100.0, 100.0);
-      this.environment = new Brep();
+      environment = new Brep();
     }
 
     public BrepEnvironmentType(Brep environment)
@@ -35,25 +34,25 @@ namespace Agent
     public override bool Equals(object obj)
     {
       BrepEnvironmentType p = obj as BrepEnvironmentType;
-      if ((object)p == null)
+      if (p == null)
       {
         return false;
       }
 
-      return base.Equals(obj) && this.environment.Equals(p.environment);
+      return base.Equals(obj) && environment.Equals(p.environment);
     }
 
     public bool Equals(BrepEnvironmentType p)
     {
-      return base.Equals((EnvironmentType)p) && this.environment.Equals(p.environment);
+      return base.Equals(p) && environment.Equals(p.environment);
     }
 
     public override int GetHashCode()
     {
-      return this.environment.GetHashCode();
+      return environment.GetHashCode();
     }
 
-    public override Grasshopper.Kernel.Types.IGH_Goo Duplicate()
+    public override IGH_Goo Duplicate()
     {
       return new BrepEnvironmentType(this);
     }
@@ -62,15 +61,15 @@ namespace Agent
     {
       get
       {
-        return (this.environment.IsValid && this.environment.IsSolid);
+        return (environment.IsValid && environment.IsSolid);
       }
 
     }
 
     public override string ToString()
     {
-      string environment = "Brep: " + this.environment.ToString() + "\n";
-      return environment;
+      string environmentStr = Util.String.ToString(RS.brepEnvName, environment);
+      return environmentStr;
     }
 
     public override Point3d ClosestPoint(Point3d pt)
@@ -78,7 +77,7 @@ namespace Agent
       double tol = 0.01;
       if (!environment.IsPointInside(pt, tol, true))
       {
-        return this.environment.ClosestPoint(pt);
+        return environment.ClosestPoint(pt);
       }
       return pt;
     }
@@ -168,7 +167,7 @@ namespace Agent
         //Check feeler intersection with each brep face
         foreach (BrepFace face in environment.Faces)
         {
-          Rhino.Geometry.Intersect.Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+          Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
           if (intersectPts.Length > 0)
           {
             Point3d testPt = feeler.PointAtEnd;
@@ -176,7 +175,7 @@ namespace Agent
             face.ClosestPoint(testPt, out u, out v);
             Vector3d normal = face.NormalAt(u, v);
             normal.Reverse();
-            Util.Vector.GetProjectionComponents(normal, velocity, out parVec, out avoidVec);
+            Vector.GetProjectionComponents(normal, velocity, out parVec, out avoidVec);
             avoidVec.Unitize();
             //weight by distance
             avoidVec = Vector3d.Divide(avoidVec, position.DistanceTo(intersectPts[0]));
@@ -210,7 +209,7 @@ namespace Agent
         //Check feeler intersection with each brep face
         foreach (BrepFace face in environment.Faces)
         {
-          Rhino.Geometry.Intersect.Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+          Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
           if (intersectPts.Length > 0)
           {
             Point3d testPt = intersectPts[0];
@@ -218,7 +217,7 @@ namespace Agent
             face.ClosestPoint(testPt, out u, out v);
             Vector3d normal = face.NormalAt(u, v);
             normal.Reverse();
-            velocity = Util.Vector.Reflect(velocity, normal);
+            velocity = Vector.Reflect(velocity, normal);
             agent.Velocity = velocity;
             return true;
           }
@@ -229,7 +228,7 @@ namespace Agent
 
     public override BoundingBox GetBoundingBox()
     {
-      return this.environment.GetBoundingBox(false);
+      return environment.GetBoundingBox(false);
     }
   }
 }

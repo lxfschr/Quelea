@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-
+using System.Drawing;
+using RS = Agent.Properties.Resources;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
@@ -12,26 +12,26 @@ namespace Agent
     /// Initializes a new instance of the WorldBoxEnvironmentComponent class.
     /// </summary>
     public SurfaceEnvironmentComponent()
-      : base("SurfaceEnvironment", "SrfEnv",
-          "A Surface Environment",
-          "Agent", "Environments")
+      : base(RS.srfEnvName, RS.srfEnvComponentNickName,
+          RS.srfEnvDescription,
+          RS.pluginCategoryName, RS.environmentsSubCategoryName)
     {
     }
 
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddSurfaceParameter("Surface", "S", "An untrimmed Surface", GH_ParamAccess.item);
+      pManager.AddSurfaceParameter(RS.srfName, RS.srfNickName, RS.srfForEnvDescription, GH_ParamAccess.item);
     }
 
     /// <summary>
     /// Registers all the output parameters for this component.
     /// </summary>
-    protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter("Surface Environment", "En", "Surface Environment", GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.srfEnvName, RS.environmentNickName, RS.srfEnvDescription, GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -43,8 +43,8 @@ namespace Agent
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
       Point3d pt1 = new Point3d(0, 0, 0);
-      Point3d pt2 = new Point3d(100, 0, 0);
-      Point3d pt3 = new Point3d(0, 100, 0);
+      Point3d pt2 = new Point3d(RS.boxBoundsDefault, 0, 0);
+      Point3d pt3 = new Point3d(0, RS.boxBoundsDefault, 0);
       Surface srf = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
 
       // Then we need to access the input parameters individually. 
@@ -55,7 +55,7 @@ namespace Agent
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      EnvironmentType environment = new SurfaceEnvironmentType(srf);
+      AbstractEnvironmentType environment = new SurfaceEnvironmentType(srf);
 
       // Finally assign the spiral to the output parameter.
       da.SetData(0, environment);
@@ -64,7 +64,7 @@ namespace Agent
     /// <summary>
     /// Provides an Icon for the component.
     /// </summary>
-    protected override System.Drawing.Bitmap Icon
+    protected override Bitmap Icon
     {
       get
       {
@@ -79,7 +79,7 @@ namespace Agent
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{6366359a-7e08-440a-8cab-78403729c8e2}"); }
+      get { return new Guid(RS.srfEnvGUID); }
     }
   }
 }

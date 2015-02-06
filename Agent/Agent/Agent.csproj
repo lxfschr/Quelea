@@ -66,26 +66,31 @@
     <Compile Include="Agent\AgentSystemComponent.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
-    <Compile Include="Behaviors\BehaviorType.cs" />
     <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />
     <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Emitters\BoxEmitterType.cs" />
-    <Compile Include="Forces\BoidForceComponent.cs" />
+    <Compile Include="Forces\AbstractBoidForceComponent.cs" />
+    <Compile Include="Forces\AlignForceComponent.cs" />
     <Compile Include="Forces\SeparateForceComponent.cs" />
     <Compile Include="Forces\CoheseForceComponent.cs" />
     <Compile Include="Agent\DeconstructAgentCollectionComponent.cs" />
     <Compile Include="Agent\NeighborsComponent.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="Properties\Resources1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SpatialCollections\SpatialCollectionType.cs" />
     <Compile Include="Forces\ContainForceComponent.cs" />
     <Compile Include="Agent\DeconstructAgentComponent.cs" />
     <Compile Include="Agent\DeconstructSystemComponent.cs" />
-    <Compile Include="Emitters\EmitterType.cs" />
-    <Compile Include="Environment\EnvironmentType.cs" />
+    <Compile Include="Emitters\AbstractEmitterType.cs" />
+    <Compile Include="Environment\AbstractEnvironmentType.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Environment\AxisAlignedBoxEnvironmentComponent.cs" />
     <Compile Include="Environment\AxisAlignedBoxEnvironmentType.cs" />
     <Compile Include="Agent\EngineComponent.cs" />
-    <Compile Include="Forces\ContainForceType.cs" />
     <Compile Include="SpatialCollections\CircularArray.cs" />
     <Compile Include="SpatialCollections\IPosition.cs" />
     <Compile Include="SpatialCollections\ISpatialCollection.cs" />
@@ -96,70 +101,26 @@
     <Compile Include="SpatialCollections\SpatialCollectionAsList.cs" />
     <Compile Include="SpatialCollections\SpatialCollectionAsOctTree.cs" />
     <Compile Include="SpatialCollections\Vector3.cs" />
-    <Compile Include="ALGLIB\alglibinternal.cs" />
-    <Compile Include="ALGLIB\alglibmisc.cs" />
-    <Compile Include="ALGLIB\ap.cs" />
-    <Compile Include="Agent\DebugDeconstructAgentComponent.cs" />
-    <Compile Include="Behaviors\BounceContainBehaviorType.cs" />
     <Compile Include="Environment\BrepEnvironmentComponent.cs" />
     <Compile Include="Environment\PolysurfaceEnvironmentType.cs" />
     <Compile Include="Environment\BrepEnvironmentType.cs" />
     <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
     <Compile Include="Environment\SurfaceEnvironmentType.cs" />
-    <Compile Include="Forces\AlignForceComponent.cs" />
-    <Compile Include="Forces\AlignForceType.cs" />
-    <Compile Include="Forces\CoheseForceType.cs" />
     <Compile Include="DescriptionBase.cs" />
     <Compile Include="Emitters\CrvEmitterComponent.cs" />
     <Compile Include="Emitters\CrvEmitterType.cs" />
-    <Compile Include="Forces\SeparateForceType.cs" />
-    <Compile Include="Forces\ForceType.cs" />
     <Compile Include="Emitters\PtEmitterType.cs" />
     <Compile Include="Emitters\PtEmitterComponent.cs" />
     <Compile Include="Agent\AgentInfo.cs" />
-    <Compile Include="KdTreeLib\HyperRect.cs" />
-    <Compile Include="KdTreeLib\IKdTree.cs" />
-    <Compile Include="KdTreeLib\IPriorityQueue.cs" />
-    <Compile Include="KdTreeLib\KdTree.cs" />
-    <Compile Include="KdTreeLib\KdTreeNode.cs" />
-    <Compile Include="KdTreeLib\Math\FloatMath.cs" />
-    <Compile Include="KdTreeLib\Math\ITypeMath.cs" />
-    <Compile Include="KdTreeLib\Math\TypeMath.cs" />
-    <Compile Include="KdTreeLib\NearestNeighbourList.cs" />
-    <Compile Include="KdTreeLib\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="KdTreeLib\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="KdTreeLib\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
-    <Compile Include="KdTreeLib\PriorityQueue.cs" />
-    <Compile Include="KdTreeLib\PriorityQueue2.cs" />
-    <Compile Include="Octree\FastSerialization.cs" />
-    <Compile Include="Octree\IOctree.cs" />
-    <Compile Include="Octree\Octree.cs" />
-    <Compile Include="Octree\OctreeBox.cs" />
-    <Compile Include="Octree\OctreeDistance.cs" />
-    <Compile Include="Octree\OctreeLeaf.cs" />
-    <Compile Include="Octree\OctreeNode.cs" />
-    <Compile Include="Octree\Point3d.cs" />
-    <Compile Include="Octree\Point3f.cs" />
-    <Compile Include="Octree\Vector3d.cs" />
-    <Compile Include="Octree\Vector3f.cs" />
-    <Compile Include="OctTree\OctTree.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="KdTreeLib\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
-    <None Include="KdTreeLib\obj\Debug\KdTreeLib.csprojResolveAssemblyReference.cache" />
-    <None Include="Octree\OctreeSearch.suo" />
     <None Include="Resources\icon_agent.png" />
   </ItemGroup>
   <ItemGroup>
@@ -186,20 +147,7 @@
   <ItemGroup>
     <None Include="Resources\icon_system.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="KdTreeLib\bin\Debug\KdTreeLib.dll" />
-    <Content Include="KdTreeLib\bin\Debug\KdTreeLib.pdb" />
-    <Content Include="KdTreeLib\KdTreeLib.csproj" />
-    <Content Include="KdTreeLib\obj\Debug\KdTreeLib.csproj.FileListAbsolute.txt" />
-    <Content Include="KdTreeLib\obj\Debug\KdTreeLib.dll" />
-    <Content Include="KdTreeLib\obj\Debug\KdTreeLib.pdb" />
-    <Content Include="Octree\OctreeSearch.csproj" />
-    <Content Include="Octree\OctreeSearch.sln" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Agent2\" />
-    <Folder Include="KdTreeLib\obj\Debug\TempPE\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

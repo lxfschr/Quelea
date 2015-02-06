@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-
+using RS = Agent.Properties.Resources;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 
-namespace Agent.Environment
+namespace Agent
 {
   public class BrepEnvironmentComponent : GH_Component
   {
@@ -12,26 +11,26 @@ namespace Agent.Environment
     /// Initializes a new instance of the BrepEnvironmentComponent class.
     /// </summary>
     public BrepEnvironmentComponent()
-      : base("Brep Environment", "BrepEnv",
-          "Brep Environment",
-          "Agent", "Environments")
+      : base(RS.brepEnvName, RS.brepEnvComponentNickName,
+          RS.brepEnvDescription,
+          RS.pluginCategoryName, RS.environmentsSubCategoryName)
     {
     }
 
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_Component.GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddBrepParameter("Brep", "B", "A closed Brep with normals facing out.", GH_ParamAccess.item);
+      pManager.AddBrepParameter(RS.brepName, RS.brepNickName, RS.brepForEnvDescription, GH_ParamAccess.item);
     }
 
     /// <summary>
     /// Registers all the output parameters for this component.
     /// </summary>
-    protected override void RegisterOutputParams(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter("Brep Environment", "En", "Brep Environment", GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.brepEnvName, RS.environmentNickName, RS.brepEnvDescription, GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -44,7 +43,7 @@ namespace Agent.Environment
       // We'll start by declaring variables and assigning them starting values.
       //Interval interval = new Interval(-100.0, 100.0);
       //Box box = new Box(Plane.WorldXY, interval, interval, interval);
-      Brep brep = new Cone(Plane.WorldXY, 100, 100).ToBrep(true);
+      Brep brep = new Cone(Plane.WorldXY, RS.boxBoundsDefault, RS.boxBoundsDefault).ToBrep(true);
       //Brep brep = Brep.CreateFromBox(box);
 
       // Then we need to access the input parameters individually. 
@@ -54,13 +53,13 @@ namespace Agent.Environment
       // We should now validate the data and warn the user if invalid data is supplied.
       if (!(brep.IsSolid))
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Brep must be closed.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.brepErrorMessage);
         return;
       }
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      EnvironmentType environment = new BrepEnvironmentType(brep);
+      AbstractEnvironmentType environment = new BrepEnvironmentType(brep);
 
       // Finally assign the spiral to the output parameter.
       da.SetData(0, environment);
@@ -84,7 +83,7 @@ namespace Agent.Environment
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{27402fe3-133b-4ce2-9b3d-bbc081f4db71}"); }
+      get { return new Guid(RS.brepEnvGUID); }
     }
   }
 }
