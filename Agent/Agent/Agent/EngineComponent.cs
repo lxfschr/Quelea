@@ -47,37 +47,29 @@ namespace Agent
       // We'll start by declaring variables and assigning them starting values.
       Boolean reset = RS.resetDefault;
       AgentSystemType system = new AgentSystemType();
-      List<Vector3d> forces = new List<Vector3d>();
-      List<bool> behaviors = new List<bool>();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(0, ref reset)) return;
       if (!da.GetData(1, ref system)) return;
-      da.GetDataList(2, forces);
-      da.GetDataList(3, behaviors);
 
       // We should now validate the data and warn the user if invalid data is supplied.
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      Run(reset, system, forces, behaviors);
+      Run(reset, system);
     }
 
-    private void Run(Boolean reset, AgentSystemType system,
-                                    List<Vector3d> forces,
-                                    List<bool> behaviors)
+    private void Run(Boolean reset, AgentSystemType system)
     {
       if (reset)
       {
         system.Agents.Clear();
-        forces.Clear();
-        behaviors.Clear();
         Populate(system);
       }
       else
       {
-        system.Run(forces, behaviors);
+        system.Run();
       }
     }
 

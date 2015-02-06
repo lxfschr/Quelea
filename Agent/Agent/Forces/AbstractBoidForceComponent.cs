@@ -8,16 +8,17 @@ namespace Agent
 {
   public abstract class AbstractBoidForceComponent : GH_Component
   {
-    protected double visionRadiusMultiplier;
-    protected System.Drawing.Bitmap icon;
-    protected Guid componentGuid;
+    protected readonly System.Drawing.Bitmap icon;
+    protected readonly Guid componentGuid;
     /// <summary>
     /// Initializes a new instance of the CoheseForceComponent class.
     /// </summary>
     protected AbstractBoidForceComponent(string name, string nickname, string description, 
-                              string category, string subCategory)
+                              string category, string subCategory, System.Drawing.Bitmap icon, String componentGuid)
       : base(name, nickname, description, category, subCategory)
     {
+      this.icon = icon;
+      this.componentGuid = new Guid(componentGuid);
     }
 
     /// <summary>
@@ -31,6 +32,8 @@ namespace Agent
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentToAffect, GH_ParamAccess.item);
       pManager.AddGenericParameter(RS.neighborsName, RS.agentCollectionNickName, RS.neighborsToReactTo, GH_ParamAccess.item);
+      pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNIckName, RS.weightMultiplierDescription,
+        GH_ParamAccess.item, RS.weightMultiplierDefault);
     }
 
     /// <summary>
@@ -48,24 +51,27 @@ namespace Agent
       // We'll start by declaring variables and assigning them starting values.
       AgentType agent = new AgentType();
       SpatialCollectionType neighbors = new SpatialCollectionType();
+      double weightMultiplier = RS.weightMultiplierDefault;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(0, ref agent)) return;
       if (!da.GetData(1, ref neighbors)) return;
+      if (!da.GetData(2, ref weightMultiplier)) return;
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
 
-      Vector3d force = Run(agent, neighbors);
+      Vector3d force = Run(agent, neighbors, weightMultiplier);
 
       // Finally assign the output parameter.
       da.SetData(0, force);
     }
 
-    protected Vector3d Run(AgentType agent, SpatialCollectionType neighbors)
+    protected Vector3d Run(AgentType agent, SpatialCollectionType neighbors, double weightMultiplier)
     {
       Vector3d force = CalcForce(agent, (List<AgentType>)neighbors.Agents.SpatialObjects);
+      Vector3d.Multiply(force, weightMultiplier);
       agent.ApplyForce(force);
       return force;
     }

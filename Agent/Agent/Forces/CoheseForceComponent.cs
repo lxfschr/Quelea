@@ -14,11 +14,8 @@ namespace Agent
     public CoheseForceComponent()
       : base(RS.coheseForceName, RS.coheseForceNickName,
           RS.coheseForceDescription,
-          RS.pluginCategoryName, RS.boidForcesSubCategoryName)
+          RS.pluginCategoryName, RS.boidForcesSubCategoryName, RS.icon_coheseForce, RS.coheseForceGUID)
     {
-      visionRadiusMultiplier = 1.0;
-      componentGuid = new Guid(RS.coheseForceGUID);
-      icon = RS.icon_coheseForce;
     }
 
     /// <summary>

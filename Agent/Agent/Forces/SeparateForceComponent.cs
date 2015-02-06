@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Agent.Util;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
@@ -15,11 +14,8 @@ namespace Agent
     public SeparateForceComponent()
       : base(RS.separateForceName, RS.separateForceNickName,
           RS.separateForceDescription,
-          RS.pluginCategoryName, RS.boidForcesSubCategoryName)
+          RS.pluginCategoryName, RS.boidForcesSubCategoryName, RS.icon_separateForce, RS.separateForceGUID)
     {
-      visionRadiusMultiplier = 1.0 / 3.0;
-      icon = RS.icon_separateForce;
-      componentGuid = new Guid(RS.separateForceGUID);
     }
 
     /// <summary>

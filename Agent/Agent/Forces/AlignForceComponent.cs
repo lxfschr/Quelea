@@ -14,11 +14,8 @@ namespace Agent
     public AlignForceComponent()
       : base(RS.alignForceName, RS.alignForceNickName,
           RS.alignForceDescription,
-          RS.pluginCategoryName, RS.boidForcesSubCategoryName)
+          RS.pluginCategoryName, RS.boidForcesSubCategoryName, RS.icon_alignForce, RS.alignForceGUID)
     {
-      visionRadiusMultiplier = RS.visionRadiusMultiplierDefault;
-      componentGuid = new Guid(RS.alignForceGUID);
-      icon = RS.icon_alignForce;
     }
 
     /// <summary>

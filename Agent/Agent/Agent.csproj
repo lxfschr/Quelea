@@ -69,13 +69,14 @@
     <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />
     <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Emitters\BoxEmitterType.cs" />
+    <Compile Include="Forces\AbstractEnvironmentalForceComponent.cs" />
     <Compile Include="Forces\AbstractBoidForceComponent.cs" />
     <Compile Include="Forces\AlignForceComponent.cs" />
     <Compile Include="Forces\SeparateForceComponent.cs" />
     <Compile Include="Forces\CoheseForceComponent.cs" />
     <Compile Include="Agent\DeconstructAgentCollectionComponent.cs" />
     <Compile Include="Agent\NeighborsComponent.cs" />
-    <Compile Include="Properties\Resources1.Designer.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -116,7 +117,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
