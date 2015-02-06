@@ -794,4 +794,16 @@
 	<data name="crvEmitGUID" xml:space="preserve">
     <value>{fdfef03a-611a-4c07-8b59-317ab92ee69a}</value>
   </data>
+	<data name="weightMultiplierName" xml:space="preserve">
+    <value>Weight Multiplier</value>
+  </data>
+	<data name="weightMultiplierNIckName" xml:space="preserve">
+    <value>W</value>
+  </data>
+	<data name="weightMultiplierDescription" xml:space="preserve">
+    <value>The factor by which the force will be multiplied by.</value>
+  </data>
+	<data name="weightMultiplierDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+		<value>1</value>
+	</data>
 </root>
