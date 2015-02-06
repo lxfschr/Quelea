@@ -34,7 +34,7 @@ namespace Agent
       pManager.AddCurveParameter(RS.curveName, RS.crvNickName, RS.crvForEmitDescription, GH_ParamAccess.item);
       pManager.AddBooleanParameter(RS.continuousFlowName, RS.continuousFlowNickName, RS.continuousFlowDescription, GH_ParamAccess.item, RS.continuousFlowDefault);
       pManager.AddIntegerParameter(RS.creationRateName, RS.creationRateNickName, RS.creationRateDescription, GH_ParamAccess.item, RS.creationRateDefault);
-      pManager.AddIntegerParameter(RS.numAgentsName, RS.numAgentsNickName, RS.numAgentsDescription, GH_ParamAccess.item, 0);
+      pManager.AddIntegerParameter(RS.numAgentsName, RS.numAgentsNickName, RS.numAgentsDescription, GH_ParamAccess.item, RS.numAgentsDefault);
 
       pManager[2].Optional = true;
       pManager[3].Optional = true;
@@ -67,9 +67,9 @@ namespace Agent
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
       Curve crv = null;
-      bool continuousFlow = true;
-      int creationRate = 1;
-      int numAgents = 0;
+      bool continuousFlow = RS.continuousFlowDefault;
+      int creationRate = RS.creationRateDefault;
+      int numAgents = RS.numAgentsDefault;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
@@ -131,7 +131,7 @@ namespace Agent
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{fdfef03a-611a-4c07-8b59-317ab92ee69a}"); }
+      get { return new Guid(RS.crvEmitGUID); }
     }
   }
 }

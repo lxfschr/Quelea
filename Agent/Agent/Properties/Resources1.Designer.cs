@@ -860,6 +860,15 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {fdfef03a-611a-4c07-8b59-317ab92ee69a}.
+        /// </summary>
+        internal static string crvEmitGUID {
+            get {
+                return ResourceManager.GetString("crvEmitGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Curve Emitter.
         /// </summary>
         internal static string crvEmitName {

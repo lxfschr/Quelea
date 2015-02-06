@@ -30,35 +30,47 @@ namespace Agent
     {
       this.spatialObjects = new List<T>();
       this.binSize = binSize;
-      double binRadius = binSize / 2.0;
-      if (min.Equals(max))
+      InitBounds(min, max);
+      PopulateLattice();
+    }
+
+    private void InitBounds(Point3d min, Point3d max)
+    {
+      double binRadius = binSize/2.0;
+      if (min.X.Equals(max.X))
       {
-        this.min = new Point3d(min.X - binRadius, min.Y - binRadius, min.Z - binRadius);
-        this.max = new Point3d(max.X + binRadius, max.Y + binRadius, max.Z + binRadius);
+        this.min.X = min.X - binRadius;
+        this.max.X = max.X + binRadius;
       }
       else
       {
-        this.min = min;
-        this.max = max;
+        this.min.X = min.X;
       }
-      PopulateLattice();
+      if (min.Y.Equals(max.Y))
+      {
+        this.min.Y = min.Y - binRadius;
+        this.max.Y = max.Y + binRadius;
+      }
+      else
+      {
+        this.min.Y = min.Y;
+      }
+      if (min.Z.Equals(max.Z))
+      {
+        this.min.Z = min.Z - binRadius;
+        this.max.Z = max.Z + binRadius;
+      }
+      else
+      {
+        this.min.Z = min.Z;
+      }
     }
 
     public SpatialCollectionAsBinLattice(Point3d min, Point3d max, int binSize, IList<T> items)
     {
       this.spatialObjects = items;
       this.binSize = binSize;
-      double binRadius = binSize / 2.0;
-      if (min.Equals(max))
-      {
-        this.min = new Point3d(min.X - binRadius, min.Y - binRadius, min.Z - binRadius);
-        this.max = new Point3d(max.X + binRadius, max.Y + binRadius, max.Z + binRadius);
-      }
-      else
-      {
-        this.min = min;
-        this.max = max;
-      }
+      InitBounds(min, max);
       PopulateLattice();
     }
 
@@ -407,17 +419,7 @@ namespace Agent
     {
       this.spatialObjects = spatialObjects;
       this.binSize = minNodeSize;
-      double binRadius = binSize / 2.0;
-      if (min.Equals(max))
-      {
-        this.min = new Point3d(min.X - binRadius, min.Y - binRadius, min.Z - binRadius);
-        this.max = new Point3d(max.X + binRadius, max.Y + binRadius, max.Z + binRadius);
-      }
-      else
-      {
-        this.min = min;
-        this.max = max;
-      }
+      InitBounds(min, max);
       
       PopulateLattice();
     }
