@@ -58,7 +58,7 @@ namespace Agent
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values
       AgentSystemType system = new AgentSystemType();
-      EnvironmentType environment = new AxisAlignedBoxEnvironmentType();
+      AbstractEnvironmentType environment = new AxisAlignedBoxEnvironmentType();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
@@ -77,7 +77,7 @@ namespace Agent
       da.SetDataList(0, behaviorApplied);
     }
 
-    private static List<bool> Run(AgentSystemType system, EnvironmentType environment)
+    private static List<bool> Run(AgentSystemType system, AbstractEnvironmentType environment)
     {
       List<bool> behaviorApplied = new List<bool>();
       foreach (AgentType agent in system.Agents)

@@ -7,7 +7,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class SeparateForceComponent : BoidForceComponent
+  public class SeparateForceComponent : AbstractBoidForceComponent
   {
     /// <summary>
     /// Initializes a new instance of the CoheseForceComponent class.

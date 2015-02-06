@@ -5,20 +5,20 @@ using Rhino.Geometry;
 
 namespace Agent
 {
-  public abstract class EmitterType : GH_Goo<Object>
+  public abstract class AbstractEmitterType : GH_Goo<Object>
   {
     protected bool continuousFlow;
     protected readonly int creationRate;
     protected readonly int numAgents;
 
-    protected EmitterType()
+    protected AbstractEmitterType()
     {
       continuousFlow = RS.continuousFlowDefault;
       creationRate = RS.creationRateDefault;
       numAgents = RS.numAgentsDefault;
     }
 
-    protected EmitterType(bool continuousFlow, int creationRate, int numAgents)
+    protected AbstractEmitterType(bool continuousFlow, int creationRate, int numAgents)
     {
       this.continuousFlow = continuousFlow;
       this.creationRate = creationRate;
@@ -56,7 +56,7 @@ namespace Agent
       // If parameter is null return false.
 
       // If parameter cannot be cast to Point return false.
-      EmitterType p = obj as EmitterType;
+      AbstractEmitterType p = obj as AbstractEmitterType;
       if (p == null)
       {
         return false;
@@ -68,7 +68,7 @@ namespace Agent
              numAgents.Equals(p.numAgents);
     }
 
-    public bool Equals(EmitterType p)
+    public bool Equals(AbstractEmitterType p)
     {
       // If parameter is null return false:
       if (p == null)

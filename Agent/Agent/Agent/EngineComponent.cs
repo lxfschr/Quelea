@@ -87,7 +87,7 @@ namespace Agent
 
     private void Populate(AgentSystemType system)
     {
-      foreach (EmitterType emitter in system.Emitters)
+      foreach (AbstractEmitterType emitter in system.Emitters)
       {
         if (!emitter.ContinuousFlow)
         {

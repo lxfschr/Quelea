@@ -710,4 +710,85 @@
 	<data name="systemComponentNickName" xml:space="preserve">
     <value>System</value>
   </data>
+	<data name="crvEmitName" xml:space="preserve">
+    <value>Curve Emitter</value>
+  </data>
+	<data name="crvEmitComponentNickName" xml:space="preserve">
+    <value>crvEmit</value>
+  </data>
+	<data name="crvEmitDescription" xml:space="preserve">
+    <value>A curve from which Agents can be emitted.</value>
+  </data>
+	<data name="crvNickName" xml:space="preserve">
+    <value>C</value>
+  </data>
+	<data name="crvForEmitDescription" xml:space="preserve">
+    <value>Base curve for emitter.</value>
+  </data>
+	<data name="ptName" xml:space="preserve">
+    <value>Point</value>
+  </data>
+	<data name="ptNickName" xml:space="preserve">
+    <value>P</value>
+  </data>
+	<data name="ptForEmitDescription" xml:space="preserve">
+    <value>Base point for emitter.</value>
+  </data>
+	<data name="ptEmitName" xml:space="preserve">
+    <value>Point Emitter</value>
+  </data>
+	<data name="ptEmitComponentNickName" xml:space="preserve">
+    <value>ptEmit</value>
+  </data>
+	<data name="ptEmitDescription" xml:space="preserve">
+    <value>A point from which Agents can be emitted.</value>
+  </data>
+	<data name="ptEmitGUID" xml:space="preserve">
+    <value>{7de9eadc-3864-4bb0-9ee0-98b52466323a}</value>
+  </data>
+	<data name="brepEnvName" xml:space="preserve">
+    <value>Brep Environment</value>
+  </data>
+	<data name="brepEnvComponentNickName" xml:space="preserve">
+    <value>BrepEnv</value>
+  </data>
+	<data name="brepEnvDescription" xml:space="preserve">
+    <value>A closed Brep Environment which the Agents will interact with.</value>
+  </data>
+	<data name="brepName" xml:space="preserve">
+    <value>Brep</value>
+  </data>
+	<data name="brepNickName" xml:space="preserve">
+    <value>B</value>
+  </data>
+	<data name="brepForEnvDescription" xml:space="preserve">
+    <value>A closed Brep with normals facing out.</value>
+  </data>
+	<data name="brepErrorMessage" xml:space="preserve">
+    <value>Brep must be closed.</value>
+  </data>
+	<data name="brepEnvGUID" xml:space="preserve">
+    <value>{27402fe3-133b-4ce2-9b3d-bbc081f4db71}</value>
+  </data>
+	<data name="srfEnvName" xml:space="preserve">
+    <value>Surface Environment</value>
+  </data>
+	<data name="srfEnvComponentNickName" xml:space="preserve">
+    <value>SrfEnv</value>
+  </data>
+	<data name="srfEnvDescription" xml:space="preserve">
+    <value>A Surface Environment upon which the Agents will map their position for the calculation of Forces.</value>
+  </data>
+	<data name="srfName" xml:space="preserve">
+    <value>Surface</value>
+  </data>
+	<data name="srfNickName" xml:space="preserve">
+    <value>S</value>
+  </data>
+	<data name="srfForEnvDescription" xml:space="preserve">
+    <value>An untrimmed Surface.</value>
+  </data>
+	<data name="srfEnvGUID" xml:space="preserve">
+    <value>{6366359a-7e08-440a-8cab-78403729c8e2}</value>
+  </data>
 </root>

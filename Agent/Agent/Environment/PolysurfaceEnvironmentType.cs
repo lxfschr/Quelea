@@ -12,7 +12,6 @@ namespace Agent
 
     // Default Constructor.
     public PolysurfaceEnvironmentType()
-      : base()
     {
     }
 

@@ -50,7 +50,7 @@ namespace Agent
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
       AgentSystemType system1 = new AgentSystemType();
-      EnvironmentType environment = new AxisAlignedBoxEnvironmentType();
+      AbstractEnvironmentType environment = new AxisAlignedBoxEnvironmentType();
       double visionAngle = RS.visionAngleDefault;
       double visionRadiusMultiplier = RS.visionRadiusMultiplierDefault;
 
@@ -83,7 +83,7 @@ namespace Agent
       da.SetDataList(0, forces);
     }
 
-    private List<Vector3d> Run(AgentSystemType system1, EnvironmentType environment,
+    private List<Vector3d> Run(AgentSystemType system1, AbstractEnvironmentType environment,
                                double visionAngle, double visionRadiusMultiplier)
     {
       List<Vector3d> forces = new List<Vector3d>();
@@ -95,7 +95,7 @@ namespace Agent
       return forces;
     }
 
-    private Vector3d CalcForce(AgentType agent, EnvironmentType environment, 
+    private Vector3d CalcForce(AgentType agent, AbstractEnvironmentType environment, 
                                double visionRadiusMultiplier)
     {
       Vector3d steer = new Vector3d();

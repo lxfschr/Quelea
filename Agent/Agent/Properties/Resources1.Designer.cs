@@ -578,6 +578,78 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BrepEnv.
+        /// </summary>
+        internal static string brepEnvComponentNickName {
+            get {
+                return ResourceManager.GetString("brepEnvComponentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A closed Brep Environment which the Agents will interact with..
+        /// </summary>
+        internal static string brepEnvDescription {
+            get {
+                return ResourceManager.GetString("brepEnvDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {27402fe3-133b-4ce2-9b3d-bbc081f4db71}.
+        /// </summary>
+        internal static string brepEnvGUID {
+            get {
+                return ResourceManager.GetString("brepEnvGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brep Environment.
+        /// </summary>
+        internal static string brepEnvName {
+            get {
+                return ResourceManager.GetString("brepEnvName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brep must be closed..
+        /// </summary>
+        internal static string brepErrorMessage {
+            get {
+                return ResourceManager.GetString("brepErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A closed Brep with normals facing out..
+        /// </summary>
+        internal static string brepForEnvDescription {
+            get {
+                return ResourceManager.GetString("brepForEnvDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brep.
+        /// </summary>
+        internal static string brepName {
+            get {
+                return ResourceManager.GetString("brepName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        internal static string brepNickName {
+            get {
+                return ResourceManager.GetString("brepNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Steer to move toward the average position of neighbors.
         /// </summary>
         internal static string coheseForceDescription {
@@ -766,6 +838,51 @@ namespace Agent.Properties {
         internal static string creationRateNickName {
             get {
                 return ResourceManager.GetString("creationRateNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to crvEmit.
+        /// </summary>
+        internal static string crvEmitComponentNickName {
+            get {
+                return ResourceManager.GetString("crvEmitComponentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A curve from which Agents can be emitted..
+        /// </summary>
+        internal static string crvEmitDescription {
+            get {
+                return ResourceManager.GetString("crvEmitDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve Emitter.
+        /// </summary>
+        internal static string crvEmitName {
+            get {
+                return ResourceManager.GetString("crvEmitName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base curve for emitter..
+        /// </summary>
+        internal static string crvForEmitDescription {
+            get {
+                return ResourceManager.GetString("crvForEmitDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C.
+        /// </summary>
+        internal static string crvNickName {
+            get {
+                return ResourceManager.GetString("crvNickName", resourceCulture);
             }
         }
         
@@ -1559,6 +1676,69 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ptEmit.
+        /// </summary>
+        internal static string ptEmitComponentNickName {
+            get {
+                return ResourceManager.GetString("ptEmitComponentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A point from which Agents can be emitted..
+        /// </summary>
+        internal static string ptEmitDescription {
+            get {
+                return ResourceManager.GetString("ptEmitDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {7de9eadc-3864-4bb0-9ee0-98b52466323a}.
+        /// </summary>
+        internal static string ptEmitGUID {
+            get {
+                return ResourceManager.GetString("ptEmitGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point Emitter.
+        /// </summary>
+        internal static string ptEmitName {
+            get {
+                return ResourceManager.GetString("ptEmitName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base point for emitter..
+        /// </summary>
+        internal static string ptForEmitDescription {
+            get {
+                return ResourceManager.GetString("ptForEmitDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point.
+        /// </summary>
+        internal static string ptName {
+            get {
+                return ResourceManager.GetString("ptName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to P.
+        /// </summary>
+        internal static string ptNickName {
+            get {
+                return ResourceManager.GetString("ptNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Boolean similar to True.
         /// </summary>
         internal static bool resetDefault {
@@ -1628,6 +1808,69 @@ namespace Agent.Properties {
         internal static string separateForceNickName {
             get {
                 return ResourceManager.GetString("separateForceNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SrfEnv.
+        /// </summary>
+        internal static string srfEnvComponentNickName {
+            get {
+                return ResourceManager.GetString("srfEnvComponentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A Surface Environment upon which the Agents will map their position for the calculation of Forces..
+        /// </summary>
+        internal static string srfEnvDescription {
+            get {
+                return ResourceManager.GetString("srfEnvDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {6366359a-7e08-440a-8cab-78403729c8e2}.
+        /// </summary>
+        internal static string srfEnvGUID {
+            get {
+                return ResourceManager.GetString("srfEnvGUID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surface Environment.
+        /// </summary>
+        internal static string srfEnvName {
+            get {
+                return ResourceManager.GetString("srfEnvName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An untrimmed Surface..
+        /// </summary>
+        internal static string srfForEnvDescription {
+            get {
+                return ResourceManager.GetString("srfForEnvDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Surface.
+        /// </summary>
+        internal static string srfName {
+            get {
+                return ResourceManager.GetString("srfName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        internal static string srfNickName {
+            get {
+                return ResourceManager.GetString("srfNickName", resourceCulture);
             }
         }
         
