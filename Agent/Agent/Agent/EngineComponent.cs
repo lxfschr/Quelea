@@ -25,12 +25,8 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddBooleanParameter(RS.resetName, RS.resetNickName, RS.resetDescription, GH_ParamAccess.item, true);
+      pManager.AddBooleanParameter(RS.resetName, RS.resetNickName, RS.resetDescription, GH_ParamAccess.item, RS.resetDefault);
       pManager.AddGenericParameter(RS.systemName, RS.systemNickName, RS.systemDescription, GH_ParamAccess.item);
-      pManager.AddVectorParameter(RS.forcesName, RS.forceNickName, RS.forcesDescription, GH_ParamAccess.list);
-      pManager.AddBooleanParameter(RS.behaviorsName, RS.behaviorNickName, RS.applyBehaviorsDescription, GH_ParamAccess.list);
-      pManager[2].Optional = true;
-      pManager[3].Optional = true;
       
     }
 
