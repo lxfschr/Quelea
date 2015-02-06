@@ -84,47 +84,17 @@ namespace Agent
       nextIndex++;
     }
 
-    public void Run(List<Vector3d> forces, List<bool> behaviors)
+    public void Run()
     {
       UpdateBounds();
       agents.UpdateDatastructure(min, max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)Agents.SpatialObjects);
-      int index = 0;
       IList<AgentType> toRemove = new List<AgentType>();
-      if (forces.Count > 0 && behaviors.Count > 0)
+      foreach (AgentType agent in agents)
       {
-        foreach (AgentType agent in agents)
+        agent.Run();
+        if (agent.IsDead())
         {
-          if (!behaviors[index]) agent.ApplyForce(forces[index]);
-          index++;
-          agent.Run();
-          if (agent.IsDead())
-          {
-            toRemove.Add(agent);
-          }
-        }
-      }
-      else if (forces.Count > 0)
-      {
-        foreach (AgentType agent in agents)
-        {
-          agent.ApplyForce(forces[index]);
-          index++;
-          agent.Run();
-          if (agent.IsDead())
-          {
-            toRemove.Add(agent);
-          }
-        }
-      }
-      else
-      {
-        foreach (AgentType agent in agents)
-        {
-          agent.Run();
-          if (agent.IsDead())
-          {
-            toRemove.Add(agent);
-          }
+          toRemove.Add(agent);
         }
       }
       
