@@ -11,7 +11,7 @@ namespace Agent
     protected readonly System.Drawing.Bitmap icon;
     protected readonly Guid componentGuid;
     /// <summary>
-    /// Initializes a new instance of the CoheseForceComponent class.
+    /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
     protected AbstractBoidForceComponent(string name, string nickname, string description, 
                               string category, string subCategory, System.Drawing.Bitmap icon, String componentGuid)

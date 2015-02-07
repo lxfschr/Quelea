@@ -2,6 +2,7 @@
 using System.Drawing;
 using RS = Agent.Properties.Resources;
 using Grasshopper.Kernel;
+using Rhino.Geometry;
 
 namespace Agent
 {
@@ -95,7 +96,28 @@ namespace Agent
     private SpatialCollectionType Run(AgentType agent, SpatialCollectionType agentCollection,
                                double visionRadius, double visionAngle)
     {
-      ISpatialCollection<AgentType> neighbors = agentCollection.Agents.GetNeighborsInSphere(agent, visionRadius);
+      ISpatialCollection<AgentType> neighborsInSphere = agentCollection.Agents.GetNeighborsInSphere(agent, visionRadius);
+
+      ISpatialCollection<AgentType> neighbors = new SpatialCollectionAsList<AgentType>();
+
+      Point3d position = agent.RefPosition;
+      Vector3d velocity = agent.Velocity;
+      Plane pl1 = new Plane(position, velocity);
+      pl1.Rotate(-Math.PI / 2, pl1.YAxis);
+      Plane pl2 = pl1;
+      pl2.Rotate(-Math.PI / 2, pl1.XAxis);
+      foreach (AgentType neighbor in neighborsInSphere)
+      {
+        Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.RefPosition), new Vector3d(position));
+        double angle1 = Util.Vector.CalcAngle(velocity, diff, pl1);
+        double angle2 = Util.Vector.CalcAngle(velocity, diff, pl2);
+        if (Util.Number.ApproximatelyEqual(angle1, visionAngle / 2, RS.toleranceDefault) && 
+            Util.Number.ApproximatelyEqual(angle2, visionAngle / 2, RS.toleranceDefault))
+        {
+          neighbors.Add(neighbor);
+        }
+      }
+
       return new SpatialCollectionType(neighbors);
     }
 

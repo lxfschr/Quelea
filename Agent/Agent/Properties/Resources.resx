@@ -806,4 +806,19 @@
 	<data name="weightMultiplierDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
 		<value>1</value>
 	</data>
+	<data name="viewForceName" xml:space="preserve">
+    <value>View Force</value>
+  </data>
+	<data name="viewForceComponentNickName" xml:space="preserve">
+    <value>View</value>
+  </data>
+	<data name="viewForceDescription" xml:space="preserve">
+    <value>Applys a force to move the Agent laterally away from any Agent that blocks its view.</value>
+  </data>
+	<data name="viewForceGuid" xml:space="preserve">
+    <value>{92f9d4d9-6b50-458f-bdfc-bbebae55b8de}</value>
+  </data>
+	<data name="toleranceDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+		<value>0.0001</value>
+	</data>
 </root>

@@ -1,32 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Agent.Util;
 using Rhino.Geometry;
+using Rhino.Geometry.Collections;
+using Rhino.Geometry.Intersect;
 
 namespace Agent
 {
-  class PolysurfaceEnvironmentType : BrepEnvironmentType, IDisposable
+  class PolysurfaceEnvironmentType : BrepEnvironmentType
   {
      private Brep environment;
 
     // Default Constructor.
-    public PolysurfaceEnvironmentType()
-    {
-    }
 
     public override bool IsValid
     {
       get
       {
-        return (this.environment.IsValid);
+        return (environment.IsValid);
       }
 
     }
 
     public override Point3d ClosestPoint(Point3d pt)
     {
-      Rhino.Geometry.Collections.BrepFaceList faces = environment.Faces;
+      BrepFaceList faces = environment.Faces;
       double u, v;
       double minDist = double.MaxValue;
       int index = 0, currIndex = 0;
@@ -125,7 +122,7 @@ namespace Agent
       Curve[] feelers = GetFeelerCrvs(agent, distance, true);
       int count = 0;
 
-      Curve[] nakedEdges = this.environment.DuplicateEdgeCurves(true);
+      Curve[] nakedEdges = environment.DuplicateEdgeCurves(true);
       Curve[] nakedEdgesJoined = Curve.JoinCurves(nakedEdges);
 
       return steer;
@@ -147,7 +144,7 @@ namespace Agent
         //Check feeler intersection with each brep face
         foreach (BrepFace face in environment.Faces)
         {
-          Rhino.Geometry.Intersect.Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+          Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
           if (intersectPts.Length > 0)
           {
             Point3d testPt = intersectPts[0];
@@ -155,7 +152,7 @@ namespace Agent
             face.ClosestPoint(testPt, out u, out v);
             Vector3d normal = face.NormalAt(u, v);
             normal.Reverse();
-            velocity = Util.Vector.Reflect(velocity, normal);
+            velocity = Vector.Reflect(velocity, normal);
             agent.Velocity = velocity;
             return true;
           }
