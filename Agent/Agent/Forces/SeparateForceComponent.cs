@@ -9,7 +9,7 @@ namespace Agent
   public class SeparateForceComponent : AbstractBoidForceComponent
   {
     /// <summary>
-    /// Initializes a new instance of the CoheseForceComponent class.
+    /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
     public SeparateForceComponent()
       : base(RS.separateForceName, RS.separateForceNickName,

@@ -72,6 +72,7 @@
     <Compile Include="Forces\AbstractEnvironmentalForceComponent.cs" />
     <Compile Include="Forces\AbstractBoidForceComponent.cs" />
     <Compile Include="Forces\AlignForceComponent.cs" />
+    <Compile Include="Forces\ViewForceComponent.cs" />
     <Compile Include="Forces\SeparateForceComponent.cs" />
     <Compile Include="Forces\CoheseForceComponent.cs" />
     <Compile Include="Agent\DeconstructAgentCollectionComponent.cs" />

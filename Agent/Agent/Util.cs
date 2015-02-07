@@ -6,6 +6,28 @@ namespace Agent
 {
   namespace Util
   {
+    public static class Number
+    {
+      public static bool ApproximatelyEqual(double a, double b, double epsilon)
+      {
+        return a - b <= ((a < b ? b : a) * epsilon);
+      }
+
+      public static bool EssentiallyEqual(double a, double b, double epsilon)
+      {
+        return a - b <= ((a > b ? b : a) * epsilon);
+      }
+
+      public static bool DefinitelyGreaterThan(double a, double b, double epsilon)
+      {
+        return a - b > ((a < b ? b : a) * epsilon);
+      }
+
+      public static bool DefinitelyLessThan(double a, double b, double epsilon)
+      {
+        return (b - a) > ((a < b ? b : a) * epsilon);
+      }
+    }
     public class Agent
     {
       public static Vector3d CalcSum(AgentType agent, IList<AgentType> agents, out int count)
@@ -68,6 +90,11 @@ namespace Agent
     {
       private Vector() { }
 
+      public static double RadToDeg(double rad)
+      {
+        return rad * (180 / Math.PI);
+      }
+
       public static double DotProduct(Vector3d a, Vector3d b)
       {
         return a.Length * b.Length * Math.Cos(Vector3d.VectorAngle(a, b));
@@ -98,6 +125,14 @@ namespace Agent
           vec = Vector3d.Multiply(vec, max);
         }
         return vec;
+      }
+
+      public static double CalcAngle(Vector3d vec1, Vector3d vec2, Plane pl)
+      {
+        double angle = Vector3d.VectorAngle(vec1, vec2, pl);
+        angle = RadToDeg(angle);
+        if (angle > 180) angle = 360 - angle;
+        return angle;
       }
     }
 
