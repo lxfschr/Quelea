@@ -314,6 +314,42 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attract.
+        /// </summary>
+        internal static string attractForceComponentNickName {
+            get {
+                return ResourceManager.GetString("attractForceComponentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attracts an Agent within the radius of the pt..
+        /// </summary>
+        internal static string attractForceDescription {
+            get {
+                return ResourceManager.GetString("attractForceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {1a428676-8336-4bf6-878a-7366a129140c}.
+        /// </summary>
+        internal static string attractForceGuid {
+            get {
+                return ResourceManager.GetString("attractForceGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attract Force.
+        /// </summary>
+        internal static string attractForceName {
+            get {
+                return ResourceManager.GetString("attractForceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Behavior Applied.
         /// </summary>
         internal static string behaviorApplied {
@@ -1189,6 +1225,15 @@ namespace Agent.Properties {
         internal static string forcesName {
             get {
                 return ResourceManager.GetString("forcesName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forces.
+        /// </summary>
+        internal static string forcesSubCategoryName {
+            get {
+                return ResourceManager.GetString("forcesSubCategoryName", resourceCulture);
             }
         }
         
