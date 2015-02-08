@@ -821,4 +821,19 @@
 	<data name="toleranceDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
 		<value>0.0001</value>
 	</data>
+	<data name="attractForceName" xml:space="preserve">
+    <value>Attract Force</value>
+  </data>
+	<data name="attractForceComponentNickName" xml:space="preserve">
+    <value>Attract</value>
+  </data>
+	<data name="attractForceDescription" xml:space="preserve">
+    <value>Attracts an Agent within the radius of the pt.</value>
+  </data>
+	<data name="forcesSubCategoryName" xml:space="preserve">
+    <value>Forces</value>
+  </data>
+	<data name="attractForceGuid" xml:space="preserve">
+    <value>{1a428676-8336-4bf6-878a-7366a129140c}</value>
+  </data>
 </root>

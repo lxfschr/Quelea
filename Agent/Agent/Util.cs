@@ -8,6 +8,10 @@ namespace Agent
   {
     public static class Number
     {
+      public static double Clamp(double x, double min, double max)
+      {
+        return (x < min) ? min : (x > max) ? max : x;
+      }
       public static bool ApproximatelyEqual(double a, double b, double epsilon)
       {
         return a - b <= ((a < b ? b : a) * epsilon);
