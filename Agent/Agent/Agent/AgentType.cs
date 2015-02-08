@@ -65,7 +65,27 @@ namespace Agent
 
     public AgentType(int lifespan, double mass, double bodySize,
                      double maxSpeed, double maxForce, double visionAngle,
-                     double visionRadius, int historyLength, Point3d position)
+                     double visionRadius, int historyLength, Vector3d initialVelocity)
+    {
+      this.lifespan = lifespan;
+      this.mass = mass;
+      this.bodySize = bodySize;
+      this.maxSpeed = maxSpeed;
+      this.maxForce = maxForce;
+      this.visionAngle = visionAngle;
+      this.visionRadius = visionRadius;
+      this.historyLength = historyLength;
+      positionHistory = new CircularArray<Point3d>(historyLength);
+      position = Point3d.Origin;
+      refPosition = Point3d.Origin;
+      positionHistory.Add(refPosition);
+      velocity = initialVelocity;
+      acceleration = Vector3d.Zero;
+    }
+
+    public AgentType(int lifespan, double mass, double bodySize,
+                     double maxSpeed, double maxForce, double visionAngle,
+                     double visionRadius, int historyLength, Point3d position, Vector3d initialVelocity)
     {
       this.lifespan = lifespan;
       this.mass = mass;
@@ -79,7 +99,7 @@ namespace Agent
       this.position = position;
       refPosition = position;
       positionHistory.Add(refPosition);
-      velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
+      velocity = initialVelocity;
       acceleration = Vector3d.Zero;
     }
 
@@ -115,7 +135,7 @@ namespace Agent
       refPosition = position;
       this.position = position;
       positionHistory.Add(refPosition);
-      velocity = velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
+      velocity = agent.Velocity;
       acceleration = agent.acceleration;
     }
 
@@ -133,7 +153,7 @@ namespace Agent
       this.position = position;
       this.refPosition = refPosition;
       positionHistory.Add(refPosition);
-      velocity = velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
+      velocity = agent.Velocity;
       acceleration = agent.acceleration;
     }
 

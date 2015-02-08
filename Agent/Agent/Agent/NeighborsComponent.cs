@@ -98,6 +98,11 @@ namespace Agent
     {
       ISpatialCollection<AgentType> neighborsInSphere = agentCollection.Agents.GetNeighborsInSphere(agent, visionRadius);
 
+      if (Util.Number.ApproximatelyEqual(visionAngle, 360, RS.toleranceDefault))
+      {
+        return new SpatialCollectionType(neighborsInSphere);
+      }
+
       ISpatialCollection<AgentType> neighbors = new SpatialCollectionAsList<AgentType>();
 
       Point3d position = agent.RefPosition;

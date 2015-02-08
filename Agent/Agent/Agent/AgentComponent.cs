@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using Grasshopper.Kernel;
+using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
 namespace Agent
@@ -30,6 +31,8 @@ namespace Agent
       pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickName, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
       pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
       pManager.AddIntegerParameter(RS.historyLenName, RS.historyLenNickName, RS.historyLenDescription, GH_ParamAccess.item, RS.historyLenDefault);
+      pManager.AddVectorParameter("Initial Velocity", "V",
+        "The direction the Agent will travel in when it is first emitted.", GH_ParamAccess.item, Util.Random.RandomVector(-RS.velocityDefault, RS.velocityDefault));
     }
 
     /// <summary>
@@ -57,7 +60,7 @@ namespace Agent
       double visionAngle = RS.visionAngleDefault;
       double visionRadius = RS.visionRadiusDefault;
       int historyLength = RS.historyLenDefault;
-
+      Vector3d initialVelocity = Util.Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
@@ -69,6 +72,7 @@ namespace Agent
       if (!DA.GetData(5, ref visionAngle)) return;
       if (!DA.GetData(6, ref visionRadius)) return;
       if (!DA.GetData(7, ref historyLength)) return;
+      if (!DA.GetData(8, ref initialVelocity)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (lifespan <= 0)
@@ -112,7 +116,7 @@ namespace Agent
       // The actual functionality will be in a different method:
       AgentType agent = new AgentType(lifespan, mass, bodySize, maxSpeed,
                                       maxForce, visionAngle, visionRadius
-                                      , historyLength);
+                                      , historyLength, initialVelocity);
 
       // Finally assign the spiral to the output parameter.
       DA.SetData(0, agent);
