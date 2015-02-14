@@ -402,5 +402,10 @@ namespace Agent
       get { return initialVelocitySet; }
       set { initialVelocitySet = value; }
     }
+
+    internal void Kill()
+    {
+      lifespan = 0;
+    }
   }
 }

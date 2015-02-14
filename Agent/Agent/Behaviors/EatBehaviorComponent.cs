@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Drawing;
 using Agent.Properties;
 using Grasshopper.Kernel;
+using RS = Agent.Properties.Resources;
 using Rhino.Geometry;
 
 namespace Agent
 {
-  public class InitialVelocityBehaviorComponent : GH_Component
+  public class EatBehaviorComponent : GH_Component
   {
     /// <summary>
-    /// Initializes a new instance of the InitialVelocityBehaviorComponent class.
+    /// Initializes a new instance of the BounceContainBehaviorComponent class.
     /// </summary>
-    public InitialVelocityBehaviorComponent()
-      : base("Initial Velocity", "InitialVel",
-          "Applys a 1 time force to the Agent when it is first emitted.",
+    public EatBehaviorComponent()
+      : base("Eat Behavior", "Eat",
+          "Kills Agents.",
           Resources.pluginCategoryName, Resources.behaviorsSubCategoryName)
     {
     }
@@ -28,8 +29,8 @@ namespace Agent
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddGenericParameter(Resources.agentName, Resources.agentNickName, Resources.agentDescription, GH_ParamAccess.item);
-      pManager.AddVectorParameter("Initial Direction", "V", "The direction to travel in initially.", GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.neighborsName, RS.agentCollectionNickName, RS.neighborsToReactTo, GH_ParamAccess.item);
 
       // If you want to change properties of certain parameters, 
       // you can use the pManager instance to access them by index:
@@ -59,12 +60,12 @@ namespace Agent
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values
       AgentType agent = new AgentType();
-      Vector3d initialVelocity = new Vector3d();
+      SpatialCollectionType neighbors = new SpatialCollectionType();
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(0, ref agent)) return;
-      if (!da.GetData(1, ref initialVelocity)) return;
+      if (!da.GetData(1, ref neighbors)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
 
@@ -72,21 +73,21 @@ namespace Agent
       // The actual functionality will be in a different method:
 
 
-      bool behaviorApplied = Run(agent, initialVelocity);
+      bool behaviorApplied = Run(agent, neighbors);
 
       // Finally assign the spiral to the output parameter.
       da.SetData(0, behaviorApplied);
     }
 
-    private static bool Run(AgentType agent, Vector3d initialVelocity)
+    protected bool Run(AgentType agent, SpatialCollectionType neighbors)
     {
-      if (!agent.InitialVelocitySet)
+      bool ate = false;
+      foreach (AgentType neighbor in (List<AgentType>)neighbors.Agents.SpatialObjects)
       {
-        agent.Velocity = initialVelocity;
-        agent.InitialVelocitySet = true;
-        return true;
+        neighbor.Kill();
+        ate = true;
       }
-      return false;
+      return ate;
     }
 
     /// <summary>
@@ -107,7 +108,7 @@ namespace Agent
     /// </summary>
     public override Guid ComponentGuid
     {
-      get { return new Guid("{e8da8a7b-9d58-4583-ab88-b4c9c8bd7fca}"); }
+      get { return new Guid("{1453af23-ec0e-42d9-b108-d74b00ad4594}"); }
     }
   }
 }

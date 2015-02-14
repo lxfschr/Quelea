@@ -9,7 +9,7 @@ namespace Agent
   public class BounceContainBehaviorComponent : GH_Component
   {
     /// <summary>
-    /// Initializes a new instance of the BounceContainBehaviorComponent class.
+    /// Initializes a new instance of the EatBehaviorComponent class.
     /// </summary>
     public BounceContainBehaviorComponent()
       : base(Resources.bounceContainBehName, Resources.bounceContainBehNickName,
@@ -42,7 +42,7 @@ namespace Agent
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddBooleanParameter(Resources.behaviorApplied, Resources.behaviorNickName, Resources.behaviorAppliedDescription, GH_ParamAccess.list);
+      pManager.AddBooleanParameter(Resources.behaviorAppliedName, Resources.behaviorNickName, Resources.behaviorAppliedDescription, GH_ParamAccess.list);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
