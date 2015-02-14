@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using Agent.Properties;
 using Grasshopper.Kernel;
 using RS = Agent.Properties.Resources;
-using Rhino.Geometry;
 
 namespace Agent
 {
@@ -15,8 +13,8 @@ namespace Agent
     /// </summary>
     public EatBehaviorComponent()
       : base("Eat Behavior", "Eat",
-          "Kills Agents.",
-          Resources.pluginCategoryName, Resources.behaviorsSubCategoryName)
+          "Kills Agents that are within its neighborhood. Try setting the neighborhood radius to the Predator's Body Size and the angle to be low, mimicing a mouth on the front of the Predator.",
+          RS.pluginCategoryName, RS.behaviorsSubCategoryName)
     {
     }
 
@@ -44,7 +42,7 @@ namespace Agent
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddBooleanParameter(Resources.behaviorAppliedName, Resources.behaviorNickName, Resources.behaviorAppliedDescription, GH_ParamAccess.list);
+      pManager.AddBooleanParameter(RS.behaviorAppliedName, RS.behaviorNickName, RS.behaviorAppliedDescription, GH_ParamAccess.list);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
@@ -99,7 +97,7 @@ namespace Agent
       {
         //You can add image files to your project resources and access them like this:
         // return Resources.IconForThisComponent;
-        return null;
+        return RS.icon_EatBehavior;
       }
     }
 
