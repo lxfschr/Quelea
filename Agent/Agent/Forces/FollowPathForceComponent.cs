@@ -15,7 +15,7 @@ namespace Agent
           RS.followPathForceDescription,
           RS.pluginCategoryName, RS.forcesSubCategoryName)
     {
-      this.icon = RS.icon_coheseForce;
+      this.icon = RS.icon_FollowPathForce;
       this.componentGuid = new Guid(RS.followPathForceGuid);
     }
 
@@ -97,6 +97,16 @@ namespace Agent
         steer = Util.Agent.Seek(agent, offset);
       }
       return steer;
+    }
+
+    protected override Bitmap Icon
+    {
+      get
+      {
+        //You can add image files to your project resources and access them like this:
+        // return Resources.IconForThisComponent;
+        return icon;
+      }
     }
 
     public override Guid ComponentGuid

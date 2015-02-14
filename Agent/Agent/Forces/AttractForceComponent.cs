@@ -9,7 +9,7 @@ namespace Agent
     public AttractForceComponent()
       : base(RS.attractForceName, RS.attractForceComponentNickName,
           RS.attractForceDescription,
-          RS.pluginCategoryName, RS.forcesSubCategoryName, RS.icon_coheseForce, RS.attractForceGuid)
+          RS.pluginCategoryName, RS.forcesSubCategoryName, RS.icon_AttractForce, RS.attractForceGuid)
     {
     }
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)

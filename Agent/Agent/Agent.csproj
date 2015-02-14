@@ -83,7 +83,7 @@
     <Compile Include="Forces\CoheseForceComponent.cs" />
     <Compile Include="Agent\DeconstructAgentCollectionComponent.cs" />
     <Compile Include="Agent\NeighborsComponent.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Properties\Resources1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -124,7 +124,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +169,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_viewForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_AABoxEnvironment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_ArriveForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_AttractForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_bounceContainHebavior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_BrepEnvironment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_containForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_EatBehavior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_FollowPathFollow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_InitialVelocity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_SurfaceEnvironment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_FollowPathForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_bounceContainBehavior.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

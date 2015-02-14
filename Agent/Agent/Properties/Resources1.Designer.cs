@@ -1359,6 +1359,16 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_AABoxEnvironment {
+            get {
+                object obj = ResourceManager.GetObject("icon_AABoxEnvironment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_agent {
             get {
                 object obj = ResourceManager.GetObject("icon_agent", resourceCulture);
@@ -1379,6 +1389,36 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_ArriveForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_ArriveForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_AttractForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_AttractForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_bounceContainBehavior {
+            get {
+                object obj = ResourceManager.GetObject("icon_bounceContainBehavior", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_boxEmitter {
             get {
                 object obj = ResourceManager.GetObject("icon_boxEmitter", resourceCulture);
@@ -1389,9 +1429,29 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_BrepEnvironment {
+            get {
+                object obj = ResourceManager.GetObject("icon_BrepEnvironment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_coheseForce {
             get {
                 object obj = ResourceManager.GetObject("icon_coheseForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_containForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_containForce", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1439,9 +1499,39 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_EatBehavior {
+            get {
+                object obj = ResourceManager.GetObject("icon_EatBehavior", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_engine {
             get {
                 object obj = ResourceManager.GetObject("icon_engine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_FollowPathForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_FollowPathForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_InitialVelocity {
+            get {
+                object obj = ResourceManager.GetObject("icon_InitialVelocity", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1472,6 +1562,16 @@ namespace Agent.Properties {
         internal static System.Drawing.Bitmap icon_separateForce {
             get {
                 object obj = ResourceManager.GetObject("icon_separateForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_SurfaceEnvironment {
+            get {
+                object obj = ResourceManager.GetObject("icon_SurfaceEnvironment", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
