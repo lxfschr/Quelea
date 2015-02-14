@@ -324,7 +324,7 @@
     <value>0.1</value>
   </data>
   <data name="visionAngleDefault" type="System.Double, mscorlib">
-    <value>15</value>
+    <value>360</value>
   </data>
   <data name="visionRadiusDefault" type="System.Double, mscorlib">
     <value>5</value>
