@@ -350,6 +350,16 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Int32 similar to -1.
+        /// </summary>
+        internal static int attractionRadiusDefault {
+            get {
+                object obj = ResourceManager.GetObject("attractionRadiusDefault", resourceCulture);
+                return ((int)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Behavior Applied.
         /// </summary>
         internal static string behaviorApplied {
@@ -923,11 +933,11 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to C.
+        ///   Looks up a localized string similar to A curve representing the spine of the Path to follow..
         /// </summary>
-        internal static string crvNickName {
+        internal static string curveForFollowPathDescription {
             get {
-                return ResourceManager.GetString("crvNickName", resourceCulture);
+                return ResourceManager.GetString("curveForFollowPathDescription", resourceCulture);
             }
         }
         
@@ -937,6 +947,15 @@ namespace Agent.Properties {
         internal static string curveName {
             get {
                 return ResourceManager.GetString("curveName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to C.
+        /// </summary>
+        internal static string curveNickName {
+            get {
+                return ResourceManager.GetString("curveNickName", resourceCulture);
             }
         }
         
@@ -1202,6 +1221,42 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FollowPath.
+        /// </summary>
+        internal static string followPathForceComponentNickName {
+            get {
+                return ResourceManager.GetString("followPathForceComponentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applies a Force to an Agent to move along and stay within a specified radius of a curve..
+        /// </summary>
+        internal static string followPathForceDescription {
+            get {
+                return ResourceManager.GetString("followPathForceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {9d56197a-8880-4564-b280-0022a75d73c7}.
+        /// </summary>
+        internal static string followPathForceGuid {
+            get {
+                return ResourceManager.GetString("followPathForceGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Follow Path Force.
+        /// </summary>
+        internal static string followPathForceName {
+            get {
+                return ResourceManager.GetString("followPathForceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to F.
         /// </summary>
         internal static string forceNickName {
@@ -1324,6 +1379,16 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_boxEmitter {
+            get {
+                object obj = ResourceManager.GetObject("icon_boxEmitter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_coheseForce {
             get {
                 object obj = ResourceManager.GetObject("icon_coheseForce", resourceCulture);
@@ -1344,6 +1409,16 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_deconstructAC {
+            get {
+                object obj = ResourceManager.GetObject("icon_deconstructAC", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_deconstructAgent {
             get {
                 object obj = ResourceManager.GetObject("icon_deconstructAgent", resourceCulture);
@@ -1354,9 +1429,29 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_deconstructSystem {
+            get {
+                object obj = ResourceManager.GetObject("icon_deconstructSystem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_engine {
             get {
                 object obj = ResourceManager.GetObject("icon_engine", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_neighborsInRadius {
+            get {
+                object obj = ResourceManager.GetObject("icon_neighborsInRadius", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1387,6 +1482,16 @@ namespace Agent.Properties {
         internal static System.Drawing.Bitmap icon_system {
             get {
                 object obj = ResourceManager.GetObject("icon_system", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_viewForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_viewForce", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1658,6 +1763,61 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 5.
+        /// </summary>
+        internal static double pathRadiusDefault {
+            get {
+                object obj = ResourceManager.GetObject("pathRadiusDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The radius around which the Agents will try to stay within the Path..
+        /// </summary>
+        internal static string pathRadiusDescription {
+            get {
+                return ResourceManager.GetString("pathRadiusDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path Radius.
+        /// </summary>
+        internal static string pathRadiusName {
+            get {
+                return ResourceManager.GetString("pathRadiusName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The distance along the path that the Agent will steer towards if determines corrective force needs to be applied..
+        /// </summary>
+        internal static string pathTargetDistanceDescription {
+            get {
+                return ResourceManager.GetString("pathTargetDistanceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Path Target Distance.
+        /// </summary>
+        internal static string pathTargetDistanceName {
+            get {
+                return ResourceManager.GetString("pathTargetDistanceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TD.
+        /// </summary>
+        internal static string pathTargetDistanceNickName {
+            get {
+                return ResourceManager.GetString("pathTargetDistanceNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
         internal static string pluginCategoryName {
@@ -1730,6 +1890,43 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 5.
+        /// </summary>
+        internal static double predictionDistanceDefault {
+            get {
+                object obj = ResourceManager.GetObject("predictionDistanceDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The distance the Agent will predict its future location at to determine if corrective steering should be applied..
+        /// </summary>
+        internal static string predictionDistanceDescription {
+            get {
+                return ResourceManager.GetString("predictionDistanceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prediction Distance.
+        /// </summary>
+        internal static string predictionDistanceName {
+            get {
+                return ResourceManager.GetString("predictionDistanceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PD.
+        /// </summary>
+        internal static string predictionDistanceNickName {
+            get {
+                return ResourceManager.GetString("predictionDistanceNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ptEmit.
         /// </summary>
         internal static string ptEmitComponentNickName {
@@ -1789,6 +1986,15 @@ namespace Agent.Properties {
         internal static string ptNickName {
             get {
                 return ResourceManager.GetString("ptNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R.
+        /// </summary>
+        internal static string radiusNickName {
+            get {
+                return ResourceManager.GetString("radiusNickName", resourceCulture);
             }
         }
         
@@ -2234,9 +2440,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to W.
         /// </summary>
-        internal static string weightMultiplierNIckName {
+        internal static string weightMultiplierNickName {
             get {
-                return ResourceManager.GetString("weightMultiplierNIckName", resourceCulture);
+                return ResourceManager.GetString("weightMultiplierNickName", resourceCulture);
             }
         }
     }

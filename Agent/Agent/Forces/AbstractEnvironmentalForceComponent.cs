@@ -32,7 +32,7 @@ namespace Agent
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentToAffect, GH_ParamAccess.item);
       pManager.AddGenericParameter(RS.environmentName, RS.environmentNickName, RS.environmentDescription, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNIckName, RS.weightMultiplierDescription,
+      pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickName, RS.weightMultiplierDescription,
         GH_ParamAccess.item, RS.weightMultiplierDefault);
       pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionAngleDescription,
         GH_ParamAccess.item, RS.visionRadiusDefault);

@@ -283,557 +283,624 @@
   <data name="separateForceNickName" xml:space="preserve">
     <value>Separate</value>
   </data>
-	<data name="lifespanErrorMessage" xml:space="preserve">
+  <data name="lifespanErrorMessage" xml:space="preserve">
     <value>Lifespan must be greater than 0.</value>
   </data>
-	<data name="massErrorMessage" xml:space="preserve">
+  <data name="massErrorMessage" xml:space="preserve">
     <value>Mass must be greater than 0.</value>
   </data>
-	<data name="bodySizeErrorMessage" xml:space="preserve">
+  <data name="bodySizeErrorMessage" xml:space="preserve">
     <value>Body Size must be greater than or equal to 0.</value>
   </data>
-	<data name="maxSpeedErrorMessage" xml:space="preserve">
+  <data name="maxSpeedErrorMessage" xml:space="preserve">
     <value>Maximum Speed must be greater than or equal to 0.</value>
   </data>
-	<data name="maxForceErrorMessage" xml:space="preserve">
+  <data name="maxForceErrorMessage" xml:space="preserve">
     <value>Maximum Force must be greater than or equal to 0.</value>
   </data>
-	<data name="visionAngleErrorMessage" xml:space="preserve">
+  <data name="visionAngleErrorMessage" xml:space="preserve">
     <value>Vision Angle must be greater than or equal to 0.</value>
   </data>
-	<data name="visionRadiusErrorMessage" xml:space="preserve">
+  <data name="visionRadiusErrorMessage" xml:space="preserve">
     <value>Vision Radius must be greater than or equal to 0.</value>
   </data>
-	<data name="constructAgentComponentGUID" xml:space="preserve">
+  <data name="constructAgentComponentGUID" xml:space="preserve">
     <value>{cb8d83ac-eca9-4378-9048-15b37879df2e}</value>
   </data>
-	<data name="lifespanDefault" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>30</value>
-	</data>
-	<data name="massDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>1</value>
-	</data>
-	<data name="bodySizeDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>1</value>
-	</data>
-	<data name="maxSpeedDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>0.5</value>
-	</data>
-	<data name="maxForceDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>0.1</value>
-	</data>
-	<data name="visionAngleDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>15</value>
-	</data>
-	<data name="visionRadiusDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>5</value>
-	</data>
-	<data name="historyLenDefault" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>1</value>
-	</data>
-	<data name="agentSystemName" xml:space="preserve">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="lifespanDefault" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="massDefault" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="bodySizeDefault" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="maxSpeedDefault" type="System.Double, mscorlib">
+    <value>0.5</value>
+  </data>
+  <data name="maxForceDefault" type="System.Double, mscorlib">
+    <value>0.1</value>
+  </data>
+  <data name="visionAngleDefault" type="System.Double, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="visionRadiusDefault" type="System.Double, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="historyLenDefault" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="agentSystemName" xml:space="preserve">
     <value>Agent System</value>
   </data>
-	<data name="systemName" xml:space="preserve">
+  <data name="systemName" xml:space="preserve">
     <value>System</value>
   </data>
-	<data name="systemNickName" xml:space="preserve">
+  <data name="systemNickName" xml:space="preserve">
     <value>S</value>
   </data>
-	<data name="systemDescription" xml:space="preserve">
+  <data name="systemDescription" xml:space="preserve">
     <value>Represents a self-contained System of Agents and Emitters.</value>
   </data>
-	<data name="agentsName" xml:space="preserve">
+  <data name="agentsName" xml:space="preserve">
     <value>Agents</value>
   </data>
-	<data name="emittersName" xml:space="preserve">
+  <data name="emittersName" xml:space="preserve">
     <value>Emitters</value>
   </data>
-	<data name="emitterNickName" xml:space="preserve">
+  <data name="emitterNickName" xml:space="preserve">
     <value>E</value>
   </data>
-	<data name="emittersDescription" xml:space="preserve">
+  <data name="emittersDescription" xml:space="preserve">
     <value>Emitters from which the agents will be spawned from.</value>
   </data>
-	<data name="agentsCountErrorMessage" xml:space="preserve">
+  <data name="agentsCountErrorMessage" xml:space="preserve">
     <value>There must be at least 1 Agent.</value>
   </data>
-	<data name="emittersCountErrorMessage" xml:space="preserve">
+  <data name="emittersCountErrorMessage" xml:space="preserve">
     <value>There must be at least 1 Emitter.</value>
   </data>
-	<data name="systemComponentGUID" xml:space="preserve">
+  <data name="systemComponentGUID" xml:space="preserve">
     <value>{9024180f-7500-456d-a79c-75b7c2d308ea}</value>
   </data>
-	<data name="velocityDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>0.1</value>
-	</data>
-	<data name="binSizeDefault" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>5</value>
-	</data>
-	<data name="AgentSystemType_TypeDescription_An_Agent_System_controls_the_adding__removing__and_updating_of_agents_" xml:space="preserve">
+  <data name="velocityDefault" type="System.Double, mscorlib">
+    <value>0.1</value>
+  </data>
+  <data name="binSizeDefault" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="AgentSystemType_TypeDescription_An_Agent_System_controls_the_adding__removing__and_updating_of_agents_" xml:space="preserve">
     <value>An Agent System controls the adding, removing, and updating of agents.</value>
   </data>
-	<data name="AABoxEnvName" xml:space="preserve">
+  <data name="AABoxEnvName" xml:space="preserve">
     <value>Axis Aligned Box Environment</value>
   </data>
-	<data name="AABoxEnvNickName" xml:space="preserve">
+  <data name="AABoxEnvNickName" xml:space="preserve">
     <value>AABoxEnv</value>
   </data>
-	<data name="AABoxEnvDescription" xml:space="preserve">
+  <data name="AABoxEnvDescription" xml:space="preserve">
     <value>A world Axis Aligned Box Environment.</value>
   </data>
-	<data name="environmentsSubCategoryName" xml:space="preserve">
+  <data name="environmentsSubCategoryName" xml:space="preserve">
     <value>Environments</value>
   </data>
-	<data name="environmentNickName" xml:space="preserve">
+  <data name="environmentNickName" xml:space="preserve">
     <value>En</value>
   </data>
-	<data name="boxName" xml:space="preserve">
+  <data name="boxName" xml:space="preserve">
     <value>Box</value>
   </data>
-	<data name="boxNickName" xml:space="preserve">
+  <data name="boxNickName" xml:space="preserve">
     <value>B</value>
   </data>
-	<data name="AABoxDescription" xml:space="preserve">
+  <data name="AABoxDescription" xml:space="preserve">
     <value>A Box aligned to World Axes.</value>
   </data>
-	<data name="boxBoundsDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>100</value>
-	</data>
-	<data name="AABoxError" xml:space="preserve">
+  <data name="boxBoundsDefault" type="System.Double, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="AABoxError" xml:space="preserve">
     <value>Box must be aligned to WorldXY.</value>
   </data>
-	<data name="AABoxEnvGUID" xml:space="preserve">
+  <data name="AABoxEnvGUID" xml:space="preserve">
     <value>{3703308d-1d46-469a-bdf7-bdeec8359171}</value>
   </data>
-	<data name="behaviorDescription" xml:space="preserve">
+  <data name="behaviorDescription" xml:space="preserve">
     <value>A Behavior alters the state of the agent.</value>
   </data>
-	<data name="behaviorName" xml:space="preserve">
+  <data name="behaviorName" xml:space="preserve">
     <value>Behavior</value>
   </data>
-	<data name="agentToAffect" xml:space="preserve">
+  <data name="agentToAffect" xml:space="preserve">
     <value>The Agent to affect.</value>
   </data>
-	<data name="agentCollectionNickName" xml:space="preserve">
+  <data name="agentCollectionNickName" xml:space="preserve">
     <value>AC</value>
   </data>
-	<data name="neighborsToReactTo" xml:space="preserve">
+  <data name="neighborsToReactTo" xml:space="preserve">
     <value>The neighbors to react to.</value>
   </data>
-	<data name="bounceContainBehName" xml:space="preserve">
+  <data name="bounceContainBehName" xml:space="preserve">
     <value>Bounce Contain Behavior</value>
   </data>
-	<data name="bounceContainBehNickName" xml:space="preserve">
+  <data name="bounceContainBehNickName" xml:space="preserve">
     <value>BounceContain</value>
   </data>
-	<data name="bounceContainBehDescription" xml:space="preserve">
+  <data name="bounceContainBehDescription" xml:space="preserve">
     <value>Causes agents to bounce off Environment boundaries.</value>
   </data>
-	<data name="behaviorsSubCategoryName" xml:space="preserve">
+  <data name="behaviorsSubCategoryName" xml:space="preserve">
     <value>Behaviors</value>
   </data>
-	<data name="environmentName" xml:space="preserve">
+  <data name="environmentName" xml:space="preserve">
     <value>Environment</value>
   </data>
-	<data name="bounceContainEnvDescription" xml:space="preserve">
+  <data name="bounceContainEnvDescription" xml:space="preserve">
     <value>The environment which to bounce off of.</value>
   </data>
-	<data name="bounceContainEnvBehDescription" xml:space="preserve">
+  <data name="bounceContainEnvBehDescription" xml:space="preserve">
     <value>The environment which to bounce off of.</value>
   </data>
-	<data name="bounceContainBehEnvDescription" xml:space="preserve">
+  <data name="bounceContainBehEnvDescription" xml:space="preserve">
     <value>The environment which to bounce off of.</value>
   </data>
-	<data name="behaviorApplied" xml:space="preserve">
+  <data name="behaviorApplied" xml:space="preserve">
     <value>Behavior Applied</value>
   </data>
-	<data name="behaviorNickName" xml:space="preserve">
+  <data name="behaviorNickName" xml:space="preserve">
     <value>B</value>
   </data>
-	<data name="behaviorAppliedDescription" xml:space="preserve">
+  <data name="behaviorAppliedDescription" xml:space="preserve">
     <value>True iff the behavior was applied to the agent.</value>
   </data>
-	<data name="bounceContainBehGUID" xml:space="preserve">
+  <data name="bounceContainBehGUID" xml:space="preserve">
     <value>{a266091b-aa80-4323-8239-53d9fc4666be}</value>
   </data>
-	<data name="boxEmitName" xml:space="preserve">
+  <data name="boxEmitName" xml:space="preserve">
     <value>Box Emitter</value>
   </data>
-	<data name="boxEmitNickName" xml:space="preserve">
+  <data name="boxEmitNickName" xml:space="preserve">
     <value>BoxEmit</value>
   </data>
-	<data name="boxEmitDescription" xml:space="preserve">
+  <data name="boxEmitDescription" xml:space="preserve">
     <value>Emit agents from a box.</value>
   </data>
-	<data name="emittersSubCategoryName" xml:space="preserve">
+  <data name="emittersSubCategoryName" xml:space="preserve">
     <value>Emitters</value>
   </data>
-	<data name="boxForEmitterDescription" xml:space="preserve">
+  <data name="boxForEmitterDescription" xml:space="preserve">
     <value>Box for emitter</value>
   </data>
-	<data name="continuousFlowName" xml:space="preserve">
+  <data name="continuousFlowName" xml:space="preserve">
     <value>Continuous Flow</value>
   </data>
-	<data name="continuousFlowNickName" xml:space="preserve">
+  <data name="continuousFlowNickName" xml:space="preserve">
     <value>C</value>
   </data>
-	<data name="continuousFlowDescription" xml:space="preserve">
+  <data name="continuousFlowDescription" xml:space="preserve">
     <value>If true, Agents will be emitted every Rth timestep.
  If false, N Agents will be emitted once.</value>
   </data>
-	<data name="creationRateName" xml:space="preserve">
+  <data name="creationRateName" xml:space="preserve">
     <value>Creation Rate</value>
   </data>
-	<data name="creationRateNickName" xml:space="preserve">
+  <data name="creationRateNickName" xml:space="preserve">
     <value>R</value>
   </data>
-	<data name="creationRateDescription" xml:space="preserve">
+  <data name="creationRateDescription" xml:space="preserve">
     <value>Rate at which new Agents are created. Every Rth timestep.</value>
   </data>
-	<data name="numAgentsName" xml:space="preserve">
+  <data name="numAgentsName" xml:space="preserve">
     <value>Number of Agents</value>
   </data>
-	<data name="numAgentsNickName" xml:space="preserve">
+  <data name="numAgentsNickName" xml:space="preserve">
     <value>N</value>
   </data>
-	<data name="numAgentsDescription" xml:space="preserve">
+  <data name="numAgentsDescription" xml:space="preserve">
     <value>The number of Agents that are allowed to be alive in the system at once.</value>
   </data>
-	<data name="creationRateDefault" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>1</value>
-	</data>
-	<data name="numAgentsDefault" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>0</value>
-	</data>
-	<data name="creationRateErrorMessage" xml:space="preserve">
+  <data name="creationRateDefault" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="numAgentsDefault" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="creationRateErrorMessage" xml:space="preserve">
     <value>Creation rate must be greater than 0.</value>
   </data>
-	<data name="numAgentsErrorMessage" xml:space="preserve">
+  <data name="numAgentsErrorMessage" xml:space="preserve">
     <value>Number of Agents must be greater than or equal to 0.</value>
   </data>
-	<data name="boxEmitGUID" xml:space="preserve">
+  <data name="boxEmitGUID" xml:space="preserve">
     <value>{6a21f2fd-ff8b-41c8-837d-fce5a6ffa2f7}</value>
   </data>
-	<data name="containForceName" xml:space="preserve">
+  <data name="containForceName" xml:space="preserve">
     <value>Contain Force</value>
   </data>
-	<data name="containForceNickName" xml:space="preserve">
+  <data name="containForceNickName" xml:space="preserve">
     <value>Contain</value>
   </data>
-	<data name="containForceDescription" xml:space="preserve">
+  <data name="containForceDescription" xml:space="preserve">
     <value>Applies a force to keep agents away from Environment boundaries.</value>
   </data>
-	<data name="environmentForcesSubCategory" xml:space="preserve">
+  <data name="environmentForcesSubCategory" xml:space="preserve">
     <value>Environment Forces</value>
   </data>
-	<data name="environmentToReactTo" xml:space="preserve">
+  <data name="environmentToReactTo" xml:space="preserve">
     <value>The Environment to react to.</value>
   </data>
-	<data name="visionRadiusMultiplier" xml:space="preserve">
+  <data name="visionRadiusMultiplier" xml:space="preserve">
     <value>Vision Radius Mutliplier</value>
   </data>
-	<data name="visionRadiusMultiplierName" xml:space="preserve">
+  <data name="visionRadiusMultiplierName" xml:space="preserve">
     <value>Vision Radius Mutliplier</value>
   </data>
-	<data name="visionRadiusMultiplierNickName" xml:space="preserve">
+  <data name="visionRadiusMultiplierNickName" xml:space="preserve">
     <value>R</value>
   </data>
-	<data name="visionRadiusMultiplierDescription" xml:space="preserve">
+  <data name="visionRadiusMultiplierDescription" xml:space="preserve">
     <value>The factor by which the Agent's Vision Radius will be multiplied by around which the Agent will see other Agents.</value>
   </data>
-	<data name="visionRadiusMultiplierDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>1</value>
-	</data>
-	<data name="visionRadiusMultiplierErrorMessage" xml:space="preserve">
+  <data name="visionRadiusMultiplierDefault" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="visionRadiusMultiplierErrorMessage" xml:space="preserve">
     <value>Vision Radius Multiplier must be between 0 and 1.</value>
   </data>
-	<data name="containForceGUID" xml:space="preserve">
+  <data name="containForceGUID" xml:space="preserve">
     <value>{5a6a85be-31d7-47de-bc3b-99a0caf5bcff}</value>
   </data>
-	<data name="deconstructACName" xml:space="preserve">
+  <data name="deconstructACName" xml:space="preserve">
     <value>Deconstruct AgentCollection</value>
   </data>
-	<data name="deconstructACNickName" xml:space="preserve">
+  <data name="deconstructACNickName" xml:space="preserve">
     <value>DeconstructAC</value>
   </data>
-	<data name="deconstructACDescription" xml:space="preserve">
+  <data name="deconstructACDescription" xml:space="preserve">
     <value>Deconstructs an AgentCollection into its Agents.</value>
   </data>
-	<data name="agentCollectionName" xml:space="preserve">
+  <data name="agentCollectionName" xml:space="preserve">
     <value>AgentCollection</value>
   </data>
-	<data name="agentCollectionDescription" xml:space="preserve">
+  <data name="agentCollectionDescription" xml:space="preserve">
     <value>A container object of Agents to provide for fast lookup of neighbors.</value>
   </data>
-	<data name="desconstructACGUID" xml:space="preserve">
+  <data name="desconstructACGUID" xml:space="preserve">
     <value>{ef3ec326-e61f-430a-98b9-c11ad27680a2}</value>
   </data>
-	<data name="deconstructAgentName" xml:space="preserve">
+  <data name="deconstructAgentName" xml:space="preserve">
     <value>Deconstruct Agent</value>
   </data>
-	<data name="deconstructAgentNickName" xml:space="preserve">
+  <data name="deconstructAgentNickName" xml:space="preserve">
     <value>DeconstructAgent</value>
   </data>
-	<data name="deconstructAgentDescription" xml:space="preserve">
+  <data name="deconstructAgentDescription" xml:space="preserve">
     <value>Deconstructs an Agent to expose its position, velocity, and lifespan.</value>
   </data>
-	<data name="positionName" xml:space="preserve">
+  <data name="positionName" xml:space="preserve">
     <value>Position</value>
   </data>
-	<data name="velocityName" xml:space="preserve">
+  <data name="velocityName" xml:space="preserve">
     <value>Velocity</value>
   </data>
-	<data name="accelerationName" xml:space="preserve">
+  <data name="accelerationName" xml:space="preserve">
     <value>Acceleration</value>
   </data>
-	<data name="positionHistoryName" xml:space="preserve">
+  <data name="positionHistoryName" xml:space="preserve">
     <value>Position History</value>
   </data>
-	<data name="positionHistoryNickName" xml:space="preserve">
+  <data name="positionHistoryNickName" xml:space="preserve">
     <value>H</value>
   </data>
-	<data name="accelerationNickName" xml:space="preserve">
+  <data name="accelerationNickName" xml:space="preserve">
     <value>A</value>
   </data>
-	<data name="velocityNickName" xml:space="preserve">
+  <data name="velocityNickName" xml:space="preserve">
     <value>V</value>
   </data>
-	<data name="positionNickName" xml:space="preserve">
+  <data name="positionNickName" xml:space="preserve">
     <value>P</value>
   </data>
-	<data name="positionDescription" xml:space="preserve">
+  <data name="positionDescription" xml:space="preserve">
     <value>The Point3d Position of the Agent.</value>
   </data>
-	<data name="velocityDescription" xml:space="preserve">
+  <data name="velocityDescription" xml:space="preserve">
     <value>The direction and magnitude of the Agent's movement.</value>
   </data>
-	<data name="accelerationDescription" xml:space="preserve">
+  <data name="accelerationDescription" xml:space="preserve">
     <value>The vector of the Agent's acceleration.</value>
   </data>
-	<data name="positionHistoryDescription" xml:space="preserve">
+  <data name="positionHistoryDescription" xml:space="preserve">
     <value>The past positions of the agent.</value>
   </data>
-	<data name="deconstructAgentGUID" xml:space="preserve">
+  <data name="deconstructAgentGUID" xml:space="preserve">
     <value>{2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b}</value>
   </data>
-	<data name="deconstructSystemName" xml:space="preserve">
+  <data name="deconstructSystemName" xml:space="preserve">
     <value>Deconstruct System</value>
   </data>
-	<data name="deconstructSystemNickName" xml:space="preserve">
+  <data name="deconstructSystemNickName" xml:space="preserve">
     <value>DeconstructSystem</value>
   </data>
-	<data name="deconstructSystemDescription" xml:space="preserve">
+  <data name="deconstructSystemDescription" xml:space="preserve">
     <value>Deconstructs a System to expose its Agents and AgentCollection.</value>
   </data>
-	<data name="a" xml:space="preserve">
+  <data name="a" xml:space="preserve">
     <value>Agent</value>
   </data>
-	<data name="deconstructSystemGUID" xml:space="preserve">
+  <data name="deconstructSystemGUID" xml:space="preserve">
     <value>{525078b6-0eb9-4d7f-9824-45f0861c19ea}</value>
   </data>
-	<data name="continuousFlowDefault" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>True</value>
-	</data>
-	<data name="emitterName" xml:space="preserve">
+  <data name="continuousFlowDefault" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="emitterName" xml:space="preserve">
     <value>Emitter</value>
   </data>
-	<data name="emitterDescription" xml:space="preserve">
+  <data name="emitterDescription" xml:space="preserve">
     <value>The object where the Agents will be spawned.</value>
   </data>
-	<data name="engineName" xml:space="preserve">
+  <data name="engineName" xml:space="preserve">
     <value>Engine</value>
   </data>
-	<data name="engineNickName" xml:space="preserve">
+  <data name="engineNickName" xml:space="preserve">
     <value>Engine</value>
   </data>
-	<data name="engineDescription" xml:space="preserve">
+  <data name="engineDescription" xml:space="preserve">
     <value>Engine that runs the simulation.</value>
   </data>
-	<data name="resetName" xml:space="preserve">
+  <data name="resetName" xml:space="preserve">
     <value>Reset</value>
   </data>
-	<data name="resetNickName" xml:space="preserve">
+  <data name="resetNickName" xml:space="preserve">
     <value>R</value>
   </data>
-	<data name="resetDescription" xml:space="preserve">
+  <data name="resetDescription" xml:space="preserve">
     <value>Reset the scene?</value>
   </data>
-	<data name="forcesName" xml:space="preserve">
+  <data name="forcesName" xml:space="preserve">
     <value>Forces</value>
   </data>
-	<data name="forcesDescription" xml:space="preserve">
+  <data name="forcesDescription" xml:space="preserve">
     <value>Force vectors to apply to each Agent.</value>
   </data>
-	<data name="behaviorsName" xml:space="preserve">
+  <data name="behaviorsName" xml:space="preserve">
     <value>Behaviors</value>
   </data>
-	<data name="applyBehaviorsDescription" xml:space="preserve">
+  <data name="applyBehaviorsDescription" xml:space="preserve">
     <value>Apply Behaviors to each Agent?.</value>
   </data>
-	<data name="resetDefault" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>True</value>
-	</data>
-	<data name="engineGUID" xml:space="preserve">
+  <data name="resetDefault" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="engineGUID" xml:space="preserve">
     <value>{b0f076cb-8558-46a1-bf94-20a97a1b4d08}</value>
   </data>
-	<data name="environmentDescription" xml:space="preserve">
+  <data name="environmentDescription" xml:space="preserve">
     <value>An object representing the environment the Agents will interact with.</value>
   </data>
-	<data name="neighborsName" xml:space="preserve">
+  <data name="neighborsName" xml:space="preserve">
     <value>Get Neighbors in Radius</value>
   </data>
-	<data name="getNeighborsInRadiusName" xml:space="preserve">
+  <data name="getNeighborsInRadiusName" xml:space="preserve">
     <value>Get Neighbors in Radius</value>
   </data>
-	<data name="getNeighborsInRadiusNickName" xml:space="preserve">
+  <data name="getNeighborsInRadiusNickName" xml:space="preserve">
     <value>Neighbors</value>
   </data>
-	<data name="getNeighborsInRadiusDescription" xml:space="preserve">
+  <data name="getNeighborsInRadiusDescription" xml:space="preserve">
     <value>Gets the Neighbors of an Agent within a specified radius.</value>
   </data>
-	<data name="agentToGetNeighborsFor" xml:space="preserve">
+  <data name="agentToGetNeighborsFor" xml:space="preserve">
     <value>The Agent to get neighbors for.</value>
   </data>
-	<data name="agentCollectionToSearch" xml:space="preserve">
+  <data name="agentCollectionToSearch" xml:space="preserve">
     <value>The AgentCollection to search through.</value>
   </data>
-	<data name="neighborsDescription" xml:space="preserve">
+  <data name="neighborsDescription" xml:space="preserve">
     <value>The neighbors of the Agent.</value>
   </data>
-	<data name="neighborsGUID" xml:space="preserve">
+  <data name="neighborsGUID" xml:space="preserve">
     <value>{2477a136-9479-4e3e-b60a-1570ee1ab896}</value>
   </data>
-	<data name="curveName" xml:space="preserve">
+  <data name="curveName" xml:space="preserve">
     <value>Curve</value>
   </data>
-	<data name="systemComponentNickName" xml:space="preserve">
+  <data name="systemComponentNickName" xml:space="preserve">
     <value>System</value>
   </data>
-	<data name="crvEmitName" xml:space="preserve">
+  <data name="crvEmitName" xml:space="preserve">
     <value>Curve Emitter</value>
   </data>
-	<data name="crvEmitComponentNickName" xml:space="preserve">
+  <data name="crvEmitComponentNickName" xml:space="preserve">
     <value>crvEmit</value>
   </data>
-	<data name="crvEmitDescription" xml:space="preserve">
+  <data name="crvEmitDescription" xml:space="preserve">
     <value>A curve from which Agents can be emitted.</value>
   </data>
-	<data name="crvNickName" xml:space="preserve">
+  <data name="curveNickName" xml:space="preserve">
     <value>C</value>
   </data>
-	<data name="crvForEmitDescription" xml:space="preserve">
+  <data name="crvForEmitDescription" xml:space="preserve">
     <value>Base curve for emitter.</value>
   </data>
-	<data name="ptName" xml:space="preserve">
+  <data name="ptName" xml:space="preserve">
     <value>Point</value>
   </data>
-	<data name="ptNickName" xml:space="preserve">
+  <data name="ptNickName" xml:space="preserve">
     <value>P</value>
   </data>
-	<data name="ptForEmitDescription" xml:space="preserve">
+  <data name="ptForEmitDescription" xml:space="preserve">
     <value>Base point for emitter.</value>
   </data>
-	<data name="ptEmitName" xml:space="preserve">
+  <data name="ptEmitName" xml:space="preserve">
     <value>Point Emitter</value>
   </data>
-	<data name="ptEmitComponentNickName" xml:space="preserve">
+  <data name="ptEmitComponentNickName" xml:space="preserve">
     <value>ptEmit</value>
   </data>
-	<data name="ptEmitDescription" xml:space="preserve">
+  <data name="ptEmitDescription" xml:space="preserve">
     <value>A point from which Agents can be emitted.</value>
   </data>
-	<data name="ptEmitGUID" xml:space="preserve">
+  <data name="ptEmitGUID" xml:space="preserve">
     <value>{7de9eadc-3864-4bb0-9ee0-98b52466323a}</value>
   </data>
-	<data name="brepEnvName" xml:space="preserve">
+  <data name="brepEnvName" xml:space="preserve">
     <value>Brep Environment</value>
   </data>
-	<data name="brepEnvComponentNickName" xml:space="preserve">
+  <data name="brepEnvComponentNickName" xml:space="preserve">
     <value>BrepEnv</value>
   </data>
-	<data name="brepEnvDescription" xml:space="preserve">
+  <data name="brepEnvDescription" xml:space="preserve">
     <value>A closed Brep Environment which the Agents will interact with.</value>
   </data>
-	<data name="brepName" xml:space="preserve">
+  <data name="brepName" xml:space="preserve">
     <value>Brep</value>
   </data>
-	<data name="brepNickName" xml:space="preserve">
+  <data name="brepNickName" xml:space="preserve">
     <value>B</value>
   </data>
-	<data name="brepForEnvDescription" xml:space="preserve">
+  <data name="brepForEnvDescription" xml:space="preserve">
     <value>A closed Brep with normals facing out.</value>
   </data>
-	<data name="brepErrorMessage" xml:space="preserve">
+  <data name="brepErrorMessage" xml:space="preserve">
     <value>Brep must be closed.</value>
   </data>
-	<data name="brepEnvGUID" xml:space="preserve">
+  <data name="brepEnvGUID" xml:space="preserve">
     <value>{27402fe3-133b-4ce2-9b3d-bbc081f4db71}</value>
   </data>
-	<data name="srfEnvName" xml:space="preserve">
+  <data name="srfEnvName" xml:space="preserve">
     <value>Surface Environment</value>
   </data>
-	<data name="srfEnvComponentNickName" xml:space="preserve">
+  <data name="srfEnvComponentNickName" xml:space="preserve">
     <value>SrfEnv</value>
   </data>
-	<data name="srfEnvDescription" xml:space="preserve">
+  <data name="srfEnvDescription" xml:space="preserve">
     <value>A Surface Environment upon which the Agents will map their position for the calculation of Forces.</value>
   </data>
-	<data name="srfName" xml:space="preserve">
+  <data name="srfName" xml:space="preserve">
     <value>Surface</value>
   </data>
-	<data name="srfNickName" xml:space="preserve">
+  <data name="srfNickName" xml:space="preserve">
     <value>S</value>
   </data>
-	<data name="srfForEnvDescription" xml:space="preserve">
+  <data name="srfForEnvDescription" xml:space="preserve">
     <value>An untrimmed Surface.</value>
   </data>
-	<data name="srfEnvGUID" xml:space="preserve">
+  <data name="srfEnvGUID" xml:space="preserve">
     <value>{6366359a-7e08-440a-8cab-78403729c8e2}</value>
   </data>
-	<data name="crvEmitGUID" xml:space="preserve">
+  <data name="crvEmitGUID" xml:space="preserve">
     <value>{fdfef03a-611a-4c07-8b59-317ab92ee69a}</value>
   </data>
-	<data name="weightMultiplierName" xml:space="preserve">
+  <data name="weightMultiplierName" xml:space="preserve">
     <value>Weight Multiplier</value>
   </data>
-	<data name="weightMultiplierNIckName" xml:space="preserve">
+  <data name="weightMultiplierNickName" xml:space="preserve">
     <value>W</value>
   </data>
-	<data name="weightMultiplierDescription" xml:space="preserve">
+  <data name="weightMultiplierDescription" xml:space="preserve">
     <value>The factor by which the force will be multiplied by.</value>
   </data>
-	<data name="weightMultiplierDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>1</value>
-	</data>
-	<data name="viewForceName" xml:space="preserve">
+  <data name="weightMultiplierDefault" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="viewForceName" xml:space="preserve">
     <value>View Force</value>
   </data>
-	<data name="viewForceComponentNickName" xml:space="preserve">
+  <data name="viewForceComponentNickName" xml:space="preserve">
     <value>View</value>
   </data>
-	<data name="viewForceDescription" xml:space="preserve">
+  <data name="viewForceDescription" xml:space="preserve">
     <value>Applys a force to move the Agent laterally away from any Agent that blocks its view.</value>
   </data>
-	<data name="viewForceGuid" xml:space="preserve">
+  <data name="viewForceGuid" xml:space="preserve">
     <value>{92f9d4d9-6b50-458f-bdfc-bbebae55b8de}</value>
   </data>
-	<data name="toleranceDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>0.0001</value>
-	</data>
-	<data name="attractForceName" xml:space="preserve">
+  <data name="toleranceDefault" type="System.Double, mscorlib">
+    <value>0.0001</value>
+  </data>
+  <data name="attractForceName" xml:space="preserve">
     <value>Attract Force</value>
   </data>
-	<data name="attractForceComponentNickName" xml:space="preserve">
+  <data name="attractForceComponentNickName" xml:space="preserve">
     <value>Attract</value>
   </data>
-	<data name="attractForceDescription" xml:space="preserve">
+  <data name="attractForceDescription" xml:space="preserve">
     <value>Attracts an Agent within the radius of the pt.</value>
   </data>
-	<data name="forcesSubCategoryName" xml:space="preserve">
+  <data name="forcesSubCategoryName" xml:space="preserve">
     <value>Forces</value>
   </data>
-	<data name="attractForceGuid" xml:space="preserve">
+  <data name="attractForceGuid" xml:space="preserve">
     <value>{1a428676-8336-4bf6-878a-7366a129140c}</value>
+  </data>
+  <data name="followPathForceName" xml:space="preserve">
+    <value>Follow Path Force</value>
+  </data>
+  <data name="followPathForceComponentNickName" xml:space="preserve">
+    <value>FollowPath</value>
+  </data>
+  <data name="followPathForceDescription" xml:space="preserve">
+    <value>Applies a Force to an Agent to move along and stay within a specified radius of a curve.</value>
+  </data>
+  <data name="followPathForceGuid" xml:space="preserve">
+    <value>{9d56197a-8880-4564-b280-0022a75d73c7}</value>
+  </data>
+  <data name="curveForFollowPathDescription" xml:space="preserve">
+    <value>A curve representing the spine of the Path to follow.</value>
+  </data>
+  <data name="pathRadiusName" xml:space="preserve">
+    <value>Path Radius</value>
+  </data>
+  <data name="radiusNickName" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="pathRadiusDescription" xml:space="preserve">
+    <value>The radius around which the Agents will try to stay within the Path.</value>
+  </data>
+  <data name="pathRadiusDefault" type="System.Double, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="predictionDistanceDescription" xml:space="preserve">
+    <value>The distance the Agent will predict its future location at to determine if corrective steering should be applied.</value>
+  </data>
+  <data name="predictionDistanceDefault" type="System.Double, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="predictionDistanceName" xml:space="preserve">
+    <value>Prediction Distance</value>
+  </data>
+  <data name="predictionDistanceNickName" xml:space="preserve">
+    <value>PD</value>
+  </data>
+  <data name="pathTargetDistanceName" xml:space="preserve">
+    <value>Path Target Distance</value>
+  </data>
+  <data name="pathTargetDistanceNickName" xml:space="preserve">
+    <value>TD</value>
+  </data>
+  <data name="pathTargetDistanceDescription" xml:space="preserve">
+    <value>The distance along the path that the Agent will steer towards if determines corrective force needs to be applied.</value>
+  </data>
+  <data name="attractionRadiusDefault" type="System.Int32, mscorlib">
+    <value>-1</value>
+  </data>
+  <data name="icon_boxEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_boxEmitter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_deconstructAC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_deconstructAC.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_deconstructSystem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_deconstructSystem.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_neighborsInRadius" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_neighborsInRadius.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_viewForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_viewForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -31,7 +31,7 @@ namespace Agent
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddCurveParameter(RS.curveName, RS.crvNickName, RS.crvForEmitDescription, GH_ParamAccess.item);
+      pManager.AddCurveParameter(RS.curveName, RS.curveNickName, RS.crvForEmitDescription, GH_ParamAccess.item);
       pManager.AddBooleanParameter(RS.continuousFlowName, RS.continuousFlowNickName, RS.continuousFlowDescription, GH_ParamAccess.item, RS.continuousFlowDefault);
       pManager.AddIntegerParameter(RS.creationRateName, RS.creationRateNickName, RS.creationRateDescription, GH_ParamAccess.item, RS.creationRateDefault);
       pManager.AddIntegerParameter(RS.numAgentsName, RS.numAgentsNickName, RS.numAgentsDescription, GH_ParamAccess.item, RS.numAgentsDefault);
