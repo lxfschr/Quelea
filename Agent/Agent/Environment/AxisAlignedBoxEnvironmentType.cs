@@ -169,6 +169,7 @@ namespace Agent
 
     public override bool BounceContain(AgentType agent)
     {
+      bool bounced = false;
       Point3d position = agent.RefPosition;
       Vector3d velocity = agent.Velocity;
       if (position.X >= maxX)
@@ -177,15 +178,15 @@ namespace Agent
         velocity.X *= -1;
         agent.RefPosition = position;
         agent.Velocity = velocity;
-        return true;
+        bounced = true;
       }
-      if (position.X <= minX)
+      else if (position.X <= minX)
       {
         position.X = minX;
         velocity.X *= -1;
         agent.RefPosition = position;
         agent.Velocity = velocity;
-        return true;
+        bounced = true;
       }
       if (position.Y >= maxY)
       {
@@ -193,15 +194,15 @@ namespace Agent
         velocity.Y *= -1;
         agent.RefPosition = position;
         agent.Velocity = velocity;
-        return true;
+        bounced = true;
       }
-      if (position.Y <= minY)
+      else if (position.Y <= minY)
       {
         position.Y = minY;
         velocity.Y *= -1;
         agent.RefPosition = position;
         agent.Velocity = velocity;
-        return true;
+        bounced = true;
       }
       if (position.Z >= maxZ)
       {
@@ -209,17 +210,17 @@ namespace Agent
         velocity.Z *= -1;
         agent.RefPosition = position;
         agent.Velocity = velocity;
-        return true;
+        bounced = true;
       }
-      if (position.Z <= minZ)
+      else if (position.Z <= minZ)
       {
         position.Z = minZ;
         velocity.Z *= -1;
         agent.RefPosition = position;
         agent.Velocity = velocity;
-        return true;
+        bounced = true;
       }
-      return false;
+      return bounced;
     }
 
     public override BoundingBox GetBoundingBox()

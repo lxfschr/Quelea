@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using Agent.Util;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
@@ -15,7 +15,7 @@ namespace Agent
     public ViewForceComponent()
       : base(RS.viewForceName, RS.viewForceComponentNickName,
           RS.viewForceDescription,
-          RS.pluginCategoryName, RS.boidForcesSubCategoryName, RS.icon_coheseForce, RS.viewForceGuid)
+          RS.pluginCategoryName, RS.boidForcesSubCategoryName, RS.icon_viewForce, RS.viewForceGuid)
     {
     }
 
@@ -47,7 +47,7 @@ namespace Agent
       {
         Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.Position), new Vector3d(position));
         angle = Vector3d.VectorAngle(velocity, diff, pl);
-        angle = Util.Vector.RadToDeg(angle);
+        angle = Vector.RadToDeg(angle);
         if (angle > 180) angle = angle - 360;
         sum = Vector3d.Add(sum, new Vector3d(neighbor.Position));
         //For an average, we need to keep track of how many boids
@@ -64,7 +64,7 @@ namespace Agent
         else sum.Rotate(-Math.PI / 2, nrml.YAxis);
         //sum.PerpendicularTo(sum);
         steer = Vector3d.Subtract(sum, velocity);
-        steer = Util.Vector.Limit(steer, agent.MaxForce);
+        steer = Vector.Limit(steer, agent.MaxForce);
       }
       //Seek the average location of our neighbors.
       return steer;

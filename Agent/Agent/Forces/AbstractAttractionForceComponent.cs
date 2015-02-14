@@ -32,10 +32,12 @@ namespace Agent
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentToAffect, GH_ParamAccess.item);
       pManager.AddGenericParameter("Point", "P", "Point to be attracted to.", GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNIckName, RS.weightMultiplierDescription,
+      pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickName, RS.weightMultiplierDescription,
         GH_ParamAccess.item, RS.weightMultiplierDefault);
-      pManager.AddNumberParameter("Attraction Radius", "R", "The radius within which Agents will be affected by the attractor.",
-        GH_ParamAccess.item, 5);
+      pManager.AddNumberParameter(RS.massName, RS.massNickName, "More massive attractors will exert a stronger attraction force than smaller ones.",
+        GH_ParamAccess.item, RS.massDefault);
+      pManager.AddNumberParameter("Attraction Radius", "R", "The radius within which Agents will be affected by the attractor. If negative, the radius will be assumed to be infinite.",
+        GH_ParamAccess.item, RS.attractionRadiusDefault);
     }
 
     /// <summary>
@@ -54,33 +56,42 @@ namespace Agent
       AgentType agent = new AgentType();
       Point3d pt = new Point3d();
       double weightMultiplier = RS.weightMultiplierDefault;
-      double radius = 5.0;
+      double mass = RS.weightMultiplierDefault;
+      double radius = RS.attractionRadiusDefault;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(0, ref agent)) return;
       if (!da.GetData(1, ref pt)) return;
       if (!da.GetData(2, ref weightMultiplier)) return;
-      if (!da.GetData(3, ref radius)) return;
+      if (!da.GetData(3, ref mass)) return;
+      if (!da.GetData(4, ref radius)) return;
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
 
-      Vector3d force = Run(agent, pt, weightMultiplier, radius);
+      if (mass <= 0)
+      {
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.massErrorMessage);
+        return;
+      }
+
+      Vector3d force = Run(agent, pt, weightMultiplier, mass, radius);
 
       // Finally assign the output parameter.
       da.SetData(0, force);
     }
 
-    protected Vector3d Run(AgentType agent, Point3d pt, double weightMultiplier, double radius)
+    protected Vector3d Run(AgentType agent, Point3d pt, double weightMultiplier, 
+                           double mass, double radius)
     {
-      Vector3d force = CalcForce(agent, pt, weightMultiplier, radius);
-      //Vector3d.Multiply(force, weightMultiplier);
+      Vector3d force = CalcForce(agent, pt, weightMultiplier, mass, radius);
       agent.ApplyForce(force);
       return force;
     }
 
-    protected abstract Vector3d CalcForce(AgentType agent, Point3d pt, double weightMultiplier, double radius);
+    protected abstract Vector3d CalcForce(AgentType agent, Point3d pt, double weightMultiplier,
+                           double mass, double radius);
 
     /// <summary>
     /// Provides an Icon for the component.

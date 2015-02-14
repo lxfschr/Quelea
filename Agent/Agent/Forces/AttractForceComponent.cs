@@ -17,20 +17,28 @@ namespace Agent
       pManager.AddVectorParameter(RS.attractForceName, RS.forceNickName, RS.attractForceName, GH_ParamAccess.item);
     }
 
-    protected override Vector3d CalcForce(AgentType agent, Point3d pt, double weightMultiplier, double radius)
+    protected override Vector3d CalcForce(AgentType agent, Point3d pt, 
+                                          double weightMultiplier, 
+                                          double mass, double radius)
     {
-      Vector3d dir = Vector3d.Subtract(new Vector3d(agent.RefPosition), new Vector3d(pt));
-      double d = dir.Length;
-      if (d > radius && radius >= 0)
+      Vector3d force = Vector3d.Subtract(new Vector3d(pt), new Vector3d(agent.RefPosition));
+      double distance = force.Length;
+      // If the distance is greater than the radius of the attractor,
+      // and the radius is positive, do not apply the force.
+      // Negative radius causes all Agents to be affected, regardless of distance.
+      if (distance > radius && radius >= 0)
       {
         return new Vector3d();
       }
-      d = Util.Number.Clamp(d, 5, 100);
-      dir.Unitize();
-      double force = weightMultiplier/(d*d);
-      dir = Vector3d.Multiply(dir, force);
-      dir = Util.Vector.Limit(dir, agent.MaxForce);
-      return dir;
+      // Clamp the distance so the force lies within a reasonable value.
+      distance = Util.Number.Clamp(distance, 5, 100);
+      force.Unitize();
+      // Divide by distance squared so the farther away the Attractor is,
+      // the weaker the force.
+      double strength = (weightMultiplier * mass * agent.Mass) / (distance * distance);
+      force = Vector3d.Multiply(force, strength);
+      force = Util.Vector.Limit(force, agent.MaxForce);
+      return force;
     }
   }
 }

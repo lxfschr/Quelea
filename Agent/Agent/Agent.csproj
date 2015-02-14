@@ -66,13 +66,16 @@
     <Compile Include="Agent\AgentSystemComponent.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
+    <Compile Include="Behaviors\InitialVelocityBehaviorComponent.cs" />
     <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />
     <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Emitters\BoxEmitterType.cs" />
     <Compile Include="Forces\AbstractAttractionForceComponent.cs" />
+    <Compile Include="Forces\AbstractForceComponent.cs" />
     <Compile Include="Forces\AbstractEnvironmentalForceComponent.cs" />
     <Compile Include="Forces\AbstractBoidForceComponent.cs" />
     <Compile Include="Forces\AlignForceComponent.cs" />
+    <Compile Include="Forces\FollowPathForceComponent.cs" />
     <Compile Include="Forces\AttractForceComponent.cs" />
     <Compile Include="Forces\ViewForceComponent.cs" />
     <Compile Include="Forces\SeparateForceComponent.cs" />
@@ -150,7 +153,21 @@
   <ItemGroup>
     <None Include="Resources\icon_system.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\icon_boxEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructAC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructSystem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_neighborsInRadius.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_viewForce.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
