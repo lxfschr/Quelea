@@ -360,20 +360,20 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Behavior Applied.
-        /// </summary>
-        internal static string behaviorApplied {
-            get {
-                return ResourceManager.GetString("behaviorApplied", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to True iff the behavior was applied to the agent..
         /// </summary>
         internal static string behaviorAppliedDescription {
             get {
                 return ResourceManager.GetString("behaviorAppliedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Behavior Applied.
+        /// </summary>
+        internal static string behaviorAppliedName {
+            get {
+                return ResourceManager.GetString("behaviorAppliedName", resourceCulture);
             }
         }
         

@@ -446,7 +446,7 @@
   <data name="bounceContainBehEnvDescription" xml:space="preserve">
     <value>The environment which to bounce off of.</value>
   </data>
-  <data name="behaviorApplied" xml:space="preserve">
+  <data name="behaviorAppliedName" xml:space="preserve">
     <value>Behavior Applied</value>
   </data>
   <data name="behaviorNickName" xml:space="preserve">
