@@ -75,7 +75,7 @@ namespace Agent
     protected Vector3d Run(AgentType agent, AbstractEnvironmentType environment, double weightMultiplier, double visionRadius)
     {
       Vector3d force = CalcForce(agent, environment, visionRadius);
-      Vector3d.Multiply(force, weightMultiplier);
+      force = Vector3d.Multiply(force, weightMultiplier);
       agent.ApplyForce(force);
       return force;
     }

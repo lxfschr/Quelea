@@ -2263,7 +2263,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Double similar to 15.
+        ///   Looks up a localized resource of type System.Double similar to 360.
         /// </summary>
         internal static double visionAngleDefault {
             get {
