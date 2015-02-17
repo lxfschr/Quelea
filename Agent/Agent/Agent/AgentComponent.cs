@@ -27,8 +27,6 @@ namespace Agent
       pManager.AddNumberParameter(RS.bodySizeName, RS.bodySizeNickName, RS.bodySizeDescription, GH_ParamAccess.item, RS.bodySizeDefault);
       pManager.AddNumberParameter(RS.maxSpeedName, RS.maxSpeedNickName, RS.maxSpeedDescription, GH_ParamAccess.item, RS.maxSpeedDefault);
       pManager.AddNumberParameter(RS.maxForceName, RS.maxForceNickName, RS.maxForceDescription, GH_ParamAccess.item, RS.maxForceDefault);
-      pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickName, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
-      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
       pManager.AddIntegerParameter(RS.historyLenName, RS.historyLenNickName, RS.historyLenDescription, GH_ParamAccess.item, RS.historyLenDefault);
     }
 
@@ -54,8 +52,6 @@ namespace Agent
       double bodySize = RS.bodySizeDefault;
       double maxSpeed = RS.maxSpeedDefault;
       double maxForce = RS.maxForceDefault;
-      double visionAngle = RS.visionAngleDefault;
-      double visionRadius = RS.visionRadiusDefault;
       int historyLength = RS.historyLenDefault;
 
 
@@ -66,9 +62,7 @@ namespace Agent
       if (!DA.GetData(2, ref bodySize)) return;
       if (!DA.GetData(3, ref maxSpeed)) return;
       if (!DA.GetData(4, ref maxForce)) return;
-      if (!DA.GetData(5, ref visionAngle)) return;
-      if (!DA.GetData(6, ref visionRadius)) return;
-      if (!DA.GetData(7, ref historyLength)) return;
+      if (!DA.GetData(5, ref historyLength)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (lifespan <= 0)
@@ -96,23 +90,11 @@ namespace Agent
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.maxForceErrorMessage);
         return;
       }
-      if (visionAngle < 0)
-      {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionAngleErrorMessage);
-        return;
-      }
-      if (visionRadius < 0)
-      {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionRadiusErrorMessage);
-        return;
-      }
-
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
       AgentType agent = new AgentType(lifespan, mass, bodySize, maxSpeed,
-                                      maxForce, visionAngle, visionRadius
-                                      , historyLength);
+                                      maxForce, historyLength);
 
       // Finally assign the spiral to the output parameter.
       DA.SetData(0, agent);

@@ -4,6 +4,7 @@ using System.Linq;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
+using String = Agent.Util.String;
 
 namespace Agent
 {
@@ -12,6 +13,7 @@ namespace Agent
     protected ISpatialCollection<AgentType> agents;
     protected readonly AgentType[] agentsSettings;
     protected readonly AbstractEmitterType[] emitters;
+    protected AbstractEnvironmentType environment;
     protected int timestep;
     protected int nextIndex;
     protected Point3d min;
@@ -22,25 +24,28 @@ namespace Agent
       agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, RS.binSizeDefault);
       agentsSettings = new[] { new AgentType() };
       emitters = new AbstractEmitterType[] { new BoxEmitterType() };
+      environment = null;
       timestep = 0;
       nextIndex = 0;
       
     }
-    public AgentSystemType(AgentType[] agentsSettings, AbstractEmitterType[] emitters)
+    public AgentSystemType(AgentType[] agentsSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment)
     {
       
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
+      this.environment = environment;
       UpdateBounds();
-      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)agentsSettings[0].VisionRadius);
+      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
     }
 
-    public AgentSystemType(AgentType[] agentsSettings, AbstractEmitterType[] emitters, AgentSystemType system)
+    public AgentSystemType(AgentType[] agentsSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment, AgentSystemType system)
     {
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
+      this.environment = environment;
       UpdateBounds();
-      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)system.Agents.SpatialObjects);
+      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)system.Agents.SpatialObjects);
     }
 
     public AgentSystemType(AgentSystemType system)
@@ -48,8 +53,9 @@ namespace Agent
       // private ISpatialCollection<AgentType> agents;
       agentsSettings = system.agentsSettings;
       emitters = system.emitters;
+      environment = system.environment;
       UpdateBounds();
-      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)system.Agents.SpatialObjects);
+      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)system.Agents.SpatialObjects);
     }
 
     public ISpatialCollection<AgentType> Agents
@@ -79,7 +85,16 @@ namespace Agent
     public void AddAgent(AbstractEmitterType emitter)
     {
       Point3d emittionPt = emitter.Emit();
-      AgentType agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt);
+      AgentType agent;
+      if (environment != null)
+      {
+        Point3d refEmittionPt = environment.ClosestRefPoint(emittionPt);
+        agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt, refEmittionPt);
+      }
+      else
+      {
+        agent = new AgentType(agentsSettings[nextIndex % agentsSettings.Length], emittionPt);
+      }
       agents.Add(agent);
       nextIndex++;
     }
@@ -87,11 +102,21 @@ namespace Agent
     public void Run()
     {
       UpdateBounds();
-      agents.UpdateDatastructure(min, max, (int)agentsSettings[0].VisionRadius, (IList<AgentType>)Agents.SpatialObjects);
+      agents.UpdateDatastructure(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)Agents.SpatialObjects);
       IList<AgentType> toRemove = new List<AgentType>();
       foreach (AgentType agent in agents)
       {
         agent.Run();
+        if (environment != null)
+        {
+          agent.RefPosition = environment.ClosestRefPointOnRef(agent.RefPosition);
+          agent.Position = environment.ClosestPointOnRef(agent.RefPosition);
+        }
+        else
+        {
+          agent.RefPosition = agent.Position;
+          agent.Position = agent.RefPosition;
+        }
         if (agent.IsDead())
         {
           toRemove.Add(agent);
@@ -177,14 +202,16 @@ namespace Agent
 
       // Return true if the fields match:
       return (emitters.Equals(s.emitters)) && 
-             (agentsSettings.Equals(s.agents));
+             (agentsSettings.Equals(s.agents)) &&
+             (environment.Equals(s.environment));
     }
 
     public override int GetHashCode()
     {
       int agentHash = agentsSettings.Aggregate(1, (current, agent) => current*agent.GetHashCode());
       int emitterHash = emitters.Aggregate(1, (current, emitter) => current*emitter.GetHashCode());
-      return agentHash ^ emitterHash;
+      int environmentHash = environment.GetHashCode();
+      return agentHash ^ emitterHash * 7 * environmentHash;
     }
 
     public override IGH_Goo Duplicate()
@@ -204,7 +231,12 @@ namespace Agent
     {
       string agentsStr = RS.agentsName + ": " + agentsSettings.Length + "\n";
       string emittersStr = RS.emittersName + ": " + emitters.Length + "\n";
-      return agentsStr + emittersStr;
+      string environmentStr = "Environment: None\n";
+      if (this.environment != null)
+      {
+        environmentStr = "Environment: " + this.environment.ToString() + "\n";
+      }
+      return agentsStr + emittersStr + environmentStr;
     }
 
     public override string TypeDescription

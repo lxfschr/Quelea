@@ -14,8 +14,6 @@ namespace Agent
     private readonly double bodySize;
     private readonly double maxSpeed;
     private readonly double maxForce;
-    private readonly double visionAngle;
-    private readonly double visionRadius;
     private readonly int historyLength;
     private readonly CircularArray<Point3d> positionHistory;
 
@@ -33,55 +31,47 @@ namespace Agent
       bodySize = RS.bodySizeDefault;
       maxSpeed = RS.maxSpeedDefault;
       maxForce = RS.maxForceDefault;
-      visionAngle = RS.visionAngleDefault;
-      visionRadius = RS.visionRadiusDefault;
       historyLength = RS.historyLenDefault;
       positionHistory = new CircularArray<Point3d>(historyLength);
       position = Point3d.Origin;
       refPosition = Point3d.Origin;
-      positionHistory.Add(refPosition);
+      positionHistory.Add(position);
       velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
       acceleration = Vector3d.Zero;
       initialVelocitySet = false;
     }
 
     public AgentType(int lifespan, double mass, double bodySize,
-                     double maxSpeed, double maxForce, double visionAngle,
-                     double visionRadius, int historyLength)
+                     double maxSpeed, double maxForce, int historyLength)
     {
       this.lifespan = lifespan;
       this.mass = mass;
       this.bodySize = bodySize;
       this.maxSpeed = maxSpeed;
       this.maxForce = maxForce;
-      this.visionAngle = visionAngle;
-      this.visionRadius = visionRadius;
       this.historyLength = historyLength;
       positionHistory = new CircularArray<Point3d>(historyLength);
       position = Point3d.Origin;
       refPosition = Point3d.Origin;
-      positionHistory.Add(refPosition);
+      positionHistory.Add(position);
       velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
       acceleration = Vector3d.Zero;
       initialVelocitySet = false;
     }
 
     public AgentType(int lifespan, double mass, double bodySize,
-                     double maxSpeed, double maxForce, double visionAngle,
-                     double visionRadius, int historyLength, Point3d position)
+                     double maxSpeed, double maxForce, int historyLength, Point3d position)
     {
       this.lifespan = lifespan;
       this.mass = mass;
       this.bodySize = bodySize;
       this.maxSpeed = maxSpeed;
       this.maxForce = maxForce;
-      this.visionAngle = visionAngle;
-      this.visionRadius = visionRadius;
       this.historyLength = historyLength;
       positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = position;
       refPosition = position;
-      positionHistory.Add(refPosition);
+      positionHistory.Add(position);
       velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
       acceleration = Vector3d.Zero;
       initialVelocitySet = false;
@@ -94,13 +84,11 @@ namespace Agent
       bodySize = agent.bodySize;
       maxSpeed = agent.maxSpeed;
       maxForce = agent.maxForce;
-      visionAngle = agent.visionAngle;
-      visionRadius = agent.visionRadius;
       historyLength = agent.historyLength;
       positionHistory = new CircularArray<Point3d>(historyLength);
       position = agent.position;
       refPosition = agent.refPosition;
-      positionHistory.Add(refPosition);
+      positionHistory.Add(position);
       velocity = agent.velocity;
       acceleration = agent.acceleration;
       initialVelocitySet = false;
@@ -113,13 +101,11 @@ namespace Agent
       bodySize = agent.bodySize;
       maxSpeed = agent.maxSpeed;
       maxForce = agent.maxForce;
-      visionAngle = agent.visionAngle;
-      visionRadius = agent.visionRadius;
       historyLength = agent.historyLength;
       positionHistory = new CircularArray<Point3d>(historyLength);
       refPosition = position;
       this.position = position;
-      positionHistory.Add(refPosition);
+      positionHistory.Add(position);
       velocity = velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
       acceleration = agent.acceleration;
       initialVelocitySet = false;
@@ -132,13 +118,11 @@ namespace Agent
       bodySize = agent.bodySize;
       maxSpeed = agent.maxSpeed;
       maxForce = agent.maxForce;
-      visionAngle = agent.visionAngle;
-      visionRadius = agent.visionRadius;
       historyLength = agent.historyLength;
       positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = position;
       this.refPosition = refPosition;
-      positionHistory.Add(refPosition);
+      positionHistory.Add(position);
       velocity = velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
       acceleration = agent.acceleration;
       initialVelocitySet = false;
@@ -181,22 +165,6 @@ namespace Agent
       get
       {
         return maxForce;
-      }
-    }
-
-    public double VisionAngle
-    {
-      get
-      {
-        return visionAngle;
-      }
-    }
-
-    public double VisionRadius
-    {
-      get
-      {
-        return visionRadius;
       }
     }
 
@@ -269,7 +237,7 @@ namespace Agent
     {
       velocity = Vector3d.Add(velocity, acceleration);
       refPosition.Transform(Transform.Translation(velocity));
-      positionHistory.Add(refPosition);
+      positionHistory.Add(position);
       position.Transform(Transform.Translation(velocity)); //So disconnecting the environment allows the agent to continue from its current position.
       acceleration = Vector3d.Multiply(acceleration, 0);
       lifespan -= 1;
@@ -313,9 +281,7 @@ namespace Agent
              mass.Equals(p.mass) &&
              maxForce.Equals(p.maxForce) &&
              maxSpeed.Equals(p.maxSpeed) &&
-             velocity.Equals(p.velocity) &&
-             visionAngle.Equals(p.visionAngle) &&
-             visionRadius.Equals(p.visionRadius);
+             velocity.Equals(p.velocity);
     }
 
     public bool Equals(AgentType p)
@@ -336,9 +302,7 @@ namespace Agent
              mass.Equals(p.mass) &&
              maxForce.Equals(p.maxForce) &&
              maxSpeed.Equals(p.maxSpeed) &&
-             velocity.Equals(p.velocity) &&
-             visionAngle.Equals(p.visionAngle) &&
-             visionRadius.Equals(p.visionRadius);
+             velocity.Equals(p.velocity);
     }
 
     public override int GetHashCode()
@@ -348,9 +312,7 @@ namespace Agent
              historyLength.GetHashCode() ^
              mass.GetHashCode() ^
              maxForce.GetHashCode() ^
-             maxSpeed.GetHashCode() ^
-             visionAngle.GetHashCode() ^
-             visionRadius.GetHashCode();
+             maxSpeed.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -363,8 +325,7 @@ namespace Agent
       get
       {
         return (lifespan > 0 && mass > 0 && bodySize >= 0 && maxForce >= 0 &&
-                maxSpeed >= 0 && visionAngle >= 0 && visionRadius >= 0 &&
-                historyLength >= 1);
+                maxSpeed >= 0 && historyLength >= 1);
       }
     }
 
@@ -375,11 +336,9 @@ namespace Agent
       string bodySizeStr = RS.bodySizeName + ": " + bodySize + "\n";
       string maxForceStr = RS.maxForceName + ": " + maxForce + "\n";
       string maxSpeedStr = RS.maxSpeedName + ": " + maxSpeed + "\n";
-      string visionAngleStr = RS.visionAngleName + ": " + visionAngle + "\n";
-      string visionRadiusStr = RS.visionRadiusName + ": " + visionRadius + "\n";
       string historyLengthStr = RS.historyLenName + ": " + historyLength + "\n";
-      return lifespanStr + massStr + bodySizeStr + maxForceStr + maxSpeedStr +
-             visionAngleStr + visionRadiusStr + historyLengthStr;
+      return lifespanStr + massStr + bodySizeStr + maxForceStr + maxSpeedStr
+             + historyLengthStr;
     }
 
     public override string TypeDescription
