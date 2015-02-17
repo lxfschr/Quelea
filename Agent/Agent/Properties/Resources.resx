@@ -599,9 +599,6 @@
   <data name="deconstructSystemDescription" xml:space="preserve">
     <value>Deconstructs a System to expose its Agents and AgentCollection.</value>
   </data>
-  <data name="a" xml:space="preserve">
-    <value>Agent</value>
-  </data>
   <data name="deconstructSystemGUID" xml:space="preserve">
     <value>{525078b6-0eb9-4d7f-9824-45f0861c19ea}</value>
   </data>
@@ -659,7 +656,7 @@
   <data name="getNeighborsInRadiusName" xml:space="preserve">
     <value>Get Neighbors in Radius</value>
   </data>
-  <data name="getNeighborsInRadiusNickName" xml:space="preserve">
+  <data name="getNeighborsInRadiusComponentNickName" xml:space="preserve">
     <value>Neighbors</value>
   </data>
   <data name="getNeighborsInRadiusDescription" xml:space="preserve">

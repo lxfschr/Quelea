@@ -61,15 +61,6 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent.
-        /// </summary>
-        internal static string a {
-            get {
-                return ResourceManager.GetString("a", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to A Box aligned to World Axes..
         /// </summary>
         internal static string AABoxDescription {
@@ -1293,6 +1284,15 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Neighbors.
+        /// </summary>
+        internal static string getNeighborsInRadiusComponentNickName {
+            get {
+                return ResourceManager.GetString("getNeighborsInRadiusComponentNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gets the Neighbors of an Agent within a specified radius..
         /// </summary>
         internal static string getNeighborsInRadiusDescription {
@@ -1307,15 +1307,6 @@ namespace Agent.Properties {
         internal static string getNeighborsInRadiusName {
             get {
                 return ResourceManager.GetString("getNeighborsInRadiusName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Neighbors.
-        /// </summary>
-        internal static string getNeighborsInRadiusNickName {
-            get {
-                return ResourceManager.GetString("getNeighborsInRadiusNickName", resourceCulture);
             }
         }
         

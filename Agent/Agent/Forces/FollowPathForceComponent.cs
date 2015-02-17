@@ -67,7 +67,7 @@ namespace Agent
     protected Vector3d Run(AgentType agent, double weightMultiplier, Curve path, double radius, double predictionDistance, double pathTargetDistance)
     {
       Vector3d force = CalcForce(agent, path, radius, predictionDistance, pathTargetDistance);
-      Vector3d.Multiply(force, weightMultiplier);
+      force = Vector3d.Multiply(force, weightMultiplier);
       agent.ApplyForce(force);
       return force;
     }
