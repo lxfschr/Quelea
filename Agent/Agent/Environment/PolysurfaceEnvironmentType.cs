@@ -63,7 +63,7 @@ namespace Agent
                                       Vector3d rotAxis)
     {
       feelerVec.Rotate(visionAngle, rotAxis);
-      Vector3d.Multiply(feelerVec, bodySize);
+      feelerVec = Vector3d.Multiply(feelerVec, bodySize);
       return new Line(position, feelerVec).ToNurbsCurve();
     }
 

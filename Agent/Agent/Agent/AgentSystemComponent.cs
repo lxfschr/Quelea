@@ -29,6 +29,9 @@ namespace Agent
                                     GH_ParamAccess.list);
       pManager.AddGenericParameter(RS.emittersName, RS.emitterNickName, RS.emittersDescription,
                                     GH_ParamAccess.list);
+      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickName, "Restricts and Agent's postion to be contained within the environment. This is most useful for Surface Environments.",
+                                    GH_ParamAccess.item);
+      pManager[2].Optional = true;
     }
 
     /// <summary>
@@ -52,12 +55,14 @@ namespace Agent
       // We'll start by declaring variables and assigning them starting values.
       List<AgentType> agents = new List<AgentType>();
       List<AbstractEmitterType> emitters = new List<AbstractEmitterType>();
+      AbstractEnvironmentType environment = null;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this
       // method.
       if (!da.GetDataList(0, agents)) return;
       if (!da.GetDataList(1, emitters)) return;
+      da.GetData(2, ref environment);
       
       //if (!DA.GetDataList(2, forces)) return;
 
@@ -78,11 +83,11 @@ namespace Agent
       // The actual functionality will be in a different method:
       if (system == null)
       {
-        system = new AgentSystemType(agents.ToArray(), emitters.ToArray());
+        system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment);
       }
       else
       {
-        system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), system);
+        system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, system);
       }
 
       // Finally assign the system to the output parameter.

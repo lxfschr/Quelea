@@ -12,7 +12,7 @@ namespace Agent
     /// Initializes a new instance of the NeighborsComponent class.
     /// </summary>
     public NeighborsComponent()
-      : base(RS.getNeighborsInRadiusName, RS.getNeighborsInRadiusNickName,
+      : base(RS.getNeighborsInRadiusName, RS.getNeighborsInRadiusComponentNickName,
           RS.getNeighborsInRadiusDescription,
           RS.pluginCategoryName, RS.pluginSubCategoryName)
     {
@@ -44,7 +44,7 @@ namespace Agent
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter(RS.neighborsName, RS.agentCollectionNickName, RS.neighborsDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.getNeighborsInRadiusComponentNickName, RS.agentCollectionNickName, RS.neighborsDescription, GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:

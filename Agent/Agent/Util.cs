@@ -8,6 +8,10 @@ namespace Agent
   {
     public static class Number
     {
+      public static double Map(double v, double from1, double to1, double from2, double to2)
+      {
+        return from2 + (v - from1) * (to2 - from2) / (to1 - from1);
+      }
       public static double Clamp(double x, double min, double max)
       {
         return (x < min) ? min : (x > max) ? max : x;
@@ -64,11 +68,37 @@ namespace Agent
 
       public static Vector3d Seek(AgentType agent, Vector3d target)
       {
-        Vector3d desired = Vector3d.Subtract(target, new Vector3d(agent.Position));
+        Vector3d desired = Vector3d.Subtract(target, new Vector3d(agent.RefPosition));
         desired.Unitize();
         // The agent desires to move towards the target at maximum speed.
         // Instead of teleporting to the target, the agent will move incrementally.
         desired = Vector3d.Multiply(desired, agent.MaxSpeed);
+
+        //Seek the average position of our neighbors.
+        desired /*steer*/ = Vector3d.Subtract(desired, agent.Velocity);
+        // Optimumization so we don't need to create a new Vector3d called steer
+
+        // Steering ability can be controlled by limiting the magnitude of the steering force.
+        desired = Vector.Limit(desired, agent.MaxForce);
+        return desired;
+      }
+
+      public static Vector3d Arrive(AgentType agent, Vector3d target, double arrivalRadius)
+      {
+        Vector3d desired = Vector3d.Subtract(target, new Vector3d(agent.RefPosition));
+        double d = desired.Length;
+        desired.Unitize();
+        // The agent desires to move towards the target at maximum speed.
+        // Instead of teleporting to the target, the agent will move incrementally.
+        if (d < arrivalRadius && arrivalRadius > 0)
+        {
+          double m = Number.Map(d, 0, arrivalRadius, 0, agent.MaxSpeed);
+          desired = Vector3d.Multiply(desired, m);
+        }
+        else
+        {
+          desired = Vector3d.Multiply(desired, agent.MaxSpeed);
+        }
 
         //Seek the average position of our neighbors.
         desired /*steer*/ = Vector3d.Subtract(desired, agent.Velocity);
