@@ -35,7 +35,7 @@ namespace Agent
       pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickName, RS.weightMultiplierDescription,
         GH_ParamAccess.item, RS.weightMultiplierDefault);
       pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionAngleDescription,
-        GH_ParamAccess.item, RS.visionRadiusDefault);
+        GH_ParamAccess.item, RS.bodySizeDefault);
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ namespace Agent
       AgentType agent = new AgentType();
       AbstractEnvironmentType environment = new AxisAlignedBoxEnvironmentType();
       double weightMultiplier = RS.weightMultiplierDefault;
-      double visionRadius = RS.visionRadiusDefault;
+      double visionRadius = RS.bodySizeDefault;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.

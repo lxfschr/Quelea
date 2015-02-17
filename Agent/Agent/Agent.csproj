@@ -76,6 +76,7 @@
     <Compile Include="Forces\AbstractEnvironmentalForceComponent.cs" />
     <Compile Include="Forces\AbstractBoidForceComponent.cs" />
     <Compile Include="Forces\AlignForceComponent.cs" />
+    <Compile Include="Forces\SeekForceComponent.cs" />
     <Compile Include="Forces\FollowPathForceComponent.cs" />
     <Compile Include="Forces\AttractForceComponent.cs" />
     <Compile Include="Forces\ViewForceComponent.cs" />
