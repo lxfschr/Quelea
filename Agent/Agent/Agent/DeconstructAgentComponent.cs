@@ -34,7 +34,8 @@ namespace Agent
       pManager.AddVectorParameter(RS.velocityName, RS.velocityNickName, RS.velocityDescription, GH_ParamAccess.item);
       pManager.AddVectorParameter(RS.accelerationName, RS.accelerationNickName, RS.accelerationDescription, GH_ParamAccess.item);
       pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickName, RS.lifespanDescription, GH_ParamAccess.item);
-      pManager.AddPointParameter(RS.positionHistoryName, RS.positionHistoryNickName, RS.positionHistoryDescription, GH_ParamAccess.list);
+      pManager.AddPointParameter("Reference Position", "RP", "For Agents bound to Surface Environments, the position of the Agent mapped to a 2d plane representing the bounds of the surface ", GH_ParamAccess.item);
+      pManager.HideParameter(4);
     }
 
     /// <summary>
@@ -57,11 +58,18 @@ namespace Agent
       // The actual functionality will be in a different method:
 
       // Finally assign the spiral to the output parameter.
-      da.SetData(0, agent.RefPosition);
+      if (agent.PositionHistory.Count == 1)
+      {
+        da.SetData(0, agent.Position);
+      }
+      else
+      {
+        da.SetDataList(0, agent.GetPositionHistoryList());
+      }
       da.SetData(1, agent.Velocity);
       da.SetData(2, agent.Acceleration);
       da.SetData(3, agent.Lifespan);
-      da.SetDataList(4, agent.GetPositionHistoryList());
+      da.SetData(4, agent.RefPosition);
     }
 
     /// <summary>

@@ -237,8 +237,8 @@ namespace Agent
     {
       velocity = Vector3d.Add(velocity, acceleration);
       refPosition.Transform(Transform.Translation(velocity));
-      positionHistory.Add(position);
       position.Transform(Transform.Translation(velocity)); //So disconnecting the environment allows the agent to continue from its current position.
+      positionHistory.Add(position);
       acceleration = Vector3d.Multiply(acceleration, 0);
       lifespan -= 1;
 

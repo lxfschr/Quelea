@@ -1,85 +1,121 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Agent
 {
   public class CircularArray<T>
   {
-    private int size, count;
+    private readonly int size;
+    private int count;
     private int head, tail;
-    private T[] array;
+    private readonly T[] array;
 
     public CircularArray(int size)
     {
-      this.head = this.tail = 0;
+      head = tail = 0;
       this.size = size;
-      this.array = new T[size];
+      array = new T[size];
+    }
+
+    public int Count
+    {
+      get { return count; }
     }
 
     public void Add(T item)
     {
-      if (this.size > 0)
+      if (size > 0)
       {
-        this.array[this.tail] = item;
-        if (this.head == this.tail && this.count != 0)
+        array[tail] = item;
+        if (head == tail && count != 0)
         {
-          this.head = (this.tail + 1) % this.size;
+          head = (tail + 1) % size;
         }
-        this.tail = (this.tail + 1) % this.size;
+        tail = (tail + 1) % size;
 
-        this.count++;
-        this.count = this.count > this.size ? this.size : this.count;
+        count++;
+        count = count > size ? size : count;
       }
+    }
+
+    public T Head
+    {
+      get { return array[head]; }
+      set { array[head] = value; }
     }
 
     public T Get(int i)
     {
-      return this.array[(head + i) % this.size];
+      return array[(head + i) % size];
     }
 
     public T[] ToArray()
     {
       T[] orderedArray = new T[count];
       int index = 0;
-      for (int i = head; i < this.count; i++)
+      for (int i = head; i < count; i++)
       {
-        orderedArray[index] = this.array[i];
+        orderedArray[index] = array[i];
         index++;
       }
-      if (this.count == this.size)
+      if (count == size)
       {
-        for (int i = 0; i < this.tail; i++)
+        for (int i = 0; i < tail; i++)
         {
-          orderedArray[index] = this.array[i];
+          orderedArray[index] = array[i];
           index++;
         }
       }
       return orderedArray;
     }
 
+    // Custom defined mod because built in % does not loop negatives.
+    private int mod(int x, int m)
+    {
+      int r = x % m;
+      return r < 0 ? r + m : r;
+    }
+
     public List<T> ToList()
     {
       List<T> orderedList = new List<T>();
-      for (int i = head; i < this.count; i++)
+      if (count < size)
       {
-        orderedList.Add(this.array[i]);
-      }
-      if (this.count == this.size)
-      {
-        for (int i = 0; i < this.tail; i++)
+        for (int i = tail - 1; orderedList.Count < count; i--)
         {
-          orderedList.Add(this.array[i]);
+          orderedList.Add(array[i]);
         }
       }
+      else
+      {
+        for (int i = mod(tail - 1, size); orderedList.Count < size; i = mod(i - 1, size))
+        {
+          orderedList.Add(array[i]);
+        }
+      }
+      //for (int i = (tail - 1)%size; i >= head; i = (i -1) % size)
+      //{
+      //  orderedList.Add(array[i]);
+      //}
+
+      //for (int i = head; i < count; i++)
+      //{
+      //  orderedList.Add(array[i]);
+      //}
+      //if (count == size)
+      //{
+      //  for (int i = 0; i < tail; i++)
+      //  {
+      //    orderedList.Add(array[i]);
+      //  }
+      //}
       return orderedList;
     }
 
     public override String ToString()
     {
       String str = "{";
-      T[] orderedArray = this.ToArray();
+      T[] orderedArray = ToArray();
       foreach (T item in orderedArray)
       {
         str += item.ToString();

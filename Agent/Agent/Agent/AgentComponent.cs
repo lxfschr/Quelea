@@ -90,6 +90,11 @@ namespace Agent
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.maxForceErrorMessage);
         return;
       }
+      if (historyLength < 1)
+      {
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "History length must be at least 1.");
+        return;
+      }
 
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
