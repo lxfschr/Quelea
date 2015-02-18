@@ -79,7 +79,7 @@ namespace Agent
       Vector3d predict = agent.Velocity;
       predict.Unitize();
       predict = Vector3d.Multiply(predict, predictionDistance);
-      Point3d predictLoc = Point3d.Add(agent.Position, predict);
+      Point3d predictLoc = Point3d.Add(agent.RefPosition, predict);
 
       //Find the normal point along the path
       double t;

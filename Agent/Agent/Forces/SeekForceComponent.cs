@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using Agent.Util;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
@@ -65,7 +64,7 @@ namespace Agent
       }
       if (d < arrivalRadius)
       {
-        double m = Util.Number.Map(d, 0, arrivalRadius, 0, agent.MaxSpeed);
+        double m = Number.Map(d, 0, arrivalRadius, 0, agent.MaxSpeed);
         desired = Vector3d.Multiply(desired, m);
       }
       else
@@ -78,7 +77,7 @@ namespace Agent
       // Optimumization so we don't need to create a new Vector3d called steer
 
       // Steering ability can be controlled by limiting the magnitude of the steering force.
-      desired = Util.Vector.Limit(desired, agent.MaxForce);
+      desired = Vector.Limit(desired, agent.MaxForce);
       return desired;
     }
   }
