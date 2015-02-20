@@ -1598,7 +1598,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of timesteps that the agent will be alive for..
+        ///   Looks up a localized string similar to Number of timesteps that the agent will be alive for. If negative, lifespan will be infinite..
         /// </summary>
         internal static string lifespanDescription {
             get {

@@ -241,7 +241,6 @@ namespace Agent
       positionHistory.Add(position);
       acceleration = Vector3d.Multiply(acceleration, 0);
       lifespan -= 1;
-
     }
 
     public void ApplyForce(Vector3d force)
@@ -252,7 +251,7 @@ namespace Agent
 
     public Boolean IsDead()
     {
-      return (lifespan <= 0.0);
+      return (lifespan == 0);
     }
 
     public void Run()

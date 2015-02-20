@@ -65,11 +65,11 @@ namespace Agent
       if (!DA.GetData(5, ref historyLength)) return;
 
       // We should now validate the data and warn the user if invalid data is supplied.
-      if (lifespan <= 0)
-      {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.lifespanErrorMessage);
-        return;
-      }
+      //if (lifespan <= 0)
+      //{
+      //  AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.lifespanErrorMessage);
+      //  return;
+      //}
       if (mass <= 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.massErrorMessage);

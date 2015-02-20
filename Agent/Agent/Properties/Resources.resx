@@ -139,7 +139,7 @@
     <value>N</value>
   </data>
   <data name="lifespanDescription" xml:space="preserve">
-    <value>Number of timesteps that the agent will be alive for.</value>
+    <value>Number of timesteps that the agent will be alive for. If negative, lifespan will be infinite.</value>
   </data>
   <data name="lifespanName" xml:space="preserve">
     <value>Lifespan</value>
