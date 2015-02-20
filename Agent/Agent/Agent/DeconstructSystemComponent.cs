@@ -42,7 +42,7 @@ namespace Agent
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
-      AgentSystemType system = new AgentSystemType();
+      AgentSystemType system = null;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.

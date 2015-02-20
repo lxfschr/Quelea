@@ -44,6 +44,7 @@ namespace Agent
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
+      timestep = system.timestep;
       UpdateBounds();
       agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)system.Agents.SpatialObjects);
     }

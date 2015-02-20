@@ -114,7 +114,6 @@
     <Compile Include="Environment\BrepEnvironmentType.cs" />
     <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
     <Compile Include="Environment\SurfaceEnvironmentType.cs" />
-    <Compile Include="DescriptionBase.cs" />
     <Compile Include="Emitters\CrvEmitterComponent.cs" />
     <Compile Include="Emitters\CrvEmitterType.cs" />
     <Compile Include="Emitters\PtEmitterType.cs" />
