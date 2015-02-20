@@ -15,7 +15,7 @@ namespace Agent
 
     public SpatialCollectionType(ISpatialCollection<AgentType> agents)
     {
-      this.agents = new SpatialCollectionAsList<AgentType>(agents);
+      this.agents = agents;
     }
 
     public SpatialCollectionType(SpatialCollectionType spatialCollection)
