@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Runtime.CompilerServices;
-using Grasshopper.Kernel;
+﻿using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
@@ -72,7 +69,7 @@ namespace Agent
       return steer;
     }
 
-    protected override void RegisterOutputParams2(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
     {
     }
   }
