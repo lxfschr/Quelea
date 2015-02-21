@@ -66,7 +66,7 @@ namespace Agent
         return sum;
       }
 
-      public static Vector3d Seek(AgentType agent, Vector3d target)
+      public static Vector3d Seek(IAgent agent, Vector3d target)
       {
         Vector3d desired = Vector3d.Subtract(target, new Vector3d(agent.RefPosition));
         desired.Unitize();

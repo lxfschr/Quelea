@@ -151,7 +151,7 @@ namespace Agent
       return environment.PointAt(u, v);
     }
 
-    public override Vector3d AvoidEdges(AgentType agent, double distance)
+    public override Vector3d AvoidEdges(IAgent agent, double distance)
     {
       Point3d refPosition = agent.RefPosition;
       double maxSpeed = agent.MaxSpeed;
@@ -180,7 +180,7 @@ namespace Agent
       return desired;
     }
 
-    public override bool BounceContain(AgentType agent)
+    public override bool BounceContain(IModifiableAgent agent)
     {
       Point3d position = agent.RefPosition;
       Vector3d velocity = agent.Velocity;

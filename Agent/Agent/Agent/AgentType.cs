@@ -7,7 +7,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class AgentType : GH_Goo<Object>, IPosition
+  public class AgentType : GH_Goo<Object>, IPosition, IModifiableAgent
   {
     private int lifespan;
     private readonly double mass;
@@ -23,7 +23,6 @@ namespace Agent
 
     private Point3d refPosition;
 
-    private bool initialVelocitySet;
     public AgentType()
     {
       lifespan = RS.lifespanDefault;
@@ -38,7 +37,7 @@ namespace Agent
       positionHistory.Add(position);
       velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
       acceleration = Vector3d.Zero;
-      initialVelocitySet = false;
+      InitialVelocitySet = false;
     }
 
     public AgentType(int lifespan, double mass, double bodySize,
@@ -56,7 +55,7 @@ namespace Agent
       positionHistory.Add(position);
       velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
       acceleration = Vector3d.Zero;
-      initialVelocitySet = false;
+      InitialVelocitySet = false;
     }
 
     public AgentType(int lifespan, double mass, double bodySize,
@@ -74,7 +73,7 @@ namespace Agent
       positionHistory.Add(position);
       velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
       acceleration = Vector3d.Zero;
-      initialVelocitySet = false;
+      InitialVelocitySet = false;
     }
 
     public AgentType(AgentType agent)
@@ -91,7 +90,7 @@ namespace Agent
       positionHistory.Add(position);
       velocity = agent.velocity;
       acceleration = agent.acceleration;
-      initialVelocitySet = false;
+      InitialVelocitySet = false;
     }
 
     public AgentType(AgentType agent, Point3d position)
@@ -108,7 +107,7 @@ namespace Agent
       positionHistory.Add(position);
       velocity = velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
       acceleration = agent.acceleration;
-      initialVelocitySet = false;
+      InitialVelocitySet = false;
     }
 
     public AgentType(AgentType agent, Point3d position, Point3d refPosition)
@@ -125,7 +124,7 @@ namespace Agent
       positionHistory.Add(position);
       velocity = velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
       acceleration = agent.acceleration;
-      initialVelocitySet = false;
+      InitialVelocitySet = false;
     }
 
     public int Lifespan
@@ -134,6 +133,7 @@ namespace Agent
       {
         return lifespan;
       }
+      set { lifespan = value; }
     }
 
     public double Mass
@@ -355,15 +355,6 @@ namespace Agent
       return refPosition;
     }
 
-    public bool InitialVelocitySet
-    {
-      get { return initialVelocitySet; }
-      set { initialVelocitySet = value; }
-    }
-
-    internal void Kill()
-    {
-      lifespan = 0;
-    }
+    public bool InitialVelocitySet { get; set; }
   }
 }

@@ -11,7 +11,7 @@ namespace Agent
     private readonly Bitmap icon;
     private readonly Guid componentGuid;
 
-    protected AgentType agent;
+    protected IAgent agent;
     private double weightMultiplier;
     private bool applyForce;
 

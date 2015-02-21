@@ -66,6 +66,8 @@
     <Compile Include="Agent\AgentSystemComponent.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
+    <Compile Include="Agent\IAgent.cs" />
+    <Compile Include="Agent\IModifiableAgent.cs" />
     <Compile Include="Behaviors\EatBehaviorComponent.cs" />
     <Compile Include="Behaviors\InitialVelocityBehaviorComponent.cs" />
     <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />
@@ -79,7 +81,6 @@
     <Compile Include="Forces\SeekForceComponent.cs" />
     <Compile Include="Forces\FollowPathForceComponent.cs" />
     <Compile Include="Forces\AttractForceComponent.cs" />
-    <Compile Include="Forces\Test.cs" />
     <Compile Include="Forces\ViewForceComponent.cs" />
     <Compile Include="Forces\SeparateForceComponent.cs" />
     <Compile Include="Forces\CoheseForceComponent.cs" />

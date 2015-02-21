@@ -57,7 +57,7 @@ namespace Agent
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values
-      AgentType agent = new AgentType();
+      IModifiableAgent agent = new AgentType();
       Vector3d initialVelocity = new Vector3d();
 
       // Then we need to access the input parameters individually. 
@@ -77,7 +77,7 @@ namespace Agent
       da.SetData(0, behaviorApplied);
     }
 
-    private static bool Run(AgentType agent, Vector3d initialVelocity)
+    private static bool Run(IModifiableAgent agent, Vector3d initialVelocity)
     {
       if (!agent.InitialVelocitySet)
       {

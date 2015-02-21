@@ -35,7 +35,7 @@ namespace Agent
       return true;
     }
 
-    protected override void RegisterOutputParams2(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
     {
     }
   }

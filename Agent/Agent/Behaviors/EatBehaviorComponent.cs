@@ -57,7 +57,7 @@ namespace Agent
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values
-      AgentType agent = new AgentType();
+      IModifiableAgent agent = new AgentType();
       SpatialCollectionType neighbors = new SpatialCollectionType();
 
       // Then we need to access the input parameters individually. 
@@ -77,12 +77,12 @@ namespace Agent
       da.SetData(0, behaviorApplied);
     }
 
-    protected bool Run(AgentType agent, SpatialCollectionType neighbors)
+    protected bool Run(IModifiableAgent agent, SpatialCollectionType neighbors)
     {
       bool ate = false;
-      foreach (AgentType neighbor in (List<AgentType>)neighbors.Agents.SpatialObjects)
+      foreach (IModifiableAgent neighbor in (List<AgentType>)neighbors.Agents.SpatialObjects)
       {
-        neighbor.Kill();
+        neighbor.Lifespan = 0;
         ate = true;
       }
       return ate;
