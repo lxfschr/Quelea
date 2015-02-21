@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Grasshopper.Kernel;
+﻿using Agent.Util;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
@@ -18,22 +16,7 @@ namespace Agent
     {
     }
 
-    /// <summary>
-    /// Registers all the output parameters for this component.
-    /// </summary>
-    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
-    {
-      // Use the pManager object to register your output parameters.
-      // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter(RS.alignForceName, RS.forceNickName, 
-                                   RS.alignForceDescription, GH_ParamAccess.item);
-
-      // Sometimes you want to hide a specific parameter from the Rhino preview.
-      // You can use the HideParameter() method as a quick way:
-      //pManager.HideParameter(1);
-    }
-
-    protected override Vector3d CalcForce(AgentType agent, List<AgentType> neighbors)
+    protected override Vector3d CalcForce()
     {
       Vector3d sum = new Vector3d();
       int count = 0;
@@ -55,7 +38,7 @@ namespace Agent
         sum.Unitize();
         sum = Vector3d.Multiply(sum, agent.MaxSpeed);
         steer = Vector3d.Subtract(sum, agent.Velocity);
-        steer = Util.Vector.Limit(steer, agent.MaxForce);
+        steer = Vector.Limit(steer, agent.MaxForce);
       }
       //Seek the average location of our neighbors.
       return steer;

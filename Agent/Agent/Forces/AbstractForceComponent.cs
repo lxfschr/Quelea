@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Drawing;
 using Grasshopper.Kernel;
+using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class AbstractForceComponent : GH_Component
+  public abstract class AbstractForceComponent : GH_Component
   {
-    protected readonly Bitmap icon;
-    protected readonly Guid componentGuid;
+    private readonly Bitmap icon;
+    private readonly Guid componentGuid;
+
     protected AgentType agent;
-    protected double weightMultiplier;
+    private double weightMultiplier;
+    private bool applyForce;
+
     /// <summary>
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
@@ -34,6 +38,8 @@ namespace Agent
       pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentToAffect, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickName, RS.weightMultiplierDescription,
         GH_ParamAccess.item, RS.weightMultiplierDefault);
+      pManager.AddBooleanParameter("Apply Force?", "B", "If false, the Force will not be applied to the Agent. This is useful for having Behaviors override Forces. Can also be used for only applying the force if the Agent is within a certain area.",
+        GH_ParamAccess.item, true);
     }
 
     /// <summary>
@@ -41,7 +47,14 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      
+      // Use the pManager object to register your output parameters.
+      // Output parameters do not have default values, but they too must have the correct access type.
+      pManager.AddGenericParameter("Force", RS.forceNickName,
+                                   "The resulting force vector for debugging purposes.", GH_ParamAccess.item);
+
+      // Sometimes you want to hide a specific parameter from the Rhino preview.
+      // You can use the HideParameter() method as a quick way:
+      //pManager.HideParameter(1);
     }
 
     /// <summary>
@@ -50,16 +63,45 @@ namespace Agent
     /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
     protected override void SolveInstance(IGH_DataAccess da)
     {
-      // First, we need to retrieve all data from the input parameters.
+      if (!GetInputs(da))
+      {
+        da.SetData(0, Vector3d.Zero);
+      }
+
+      
+    }
+
+    protected virtual bool GetInputs(IGH_DataAccess da)
+    {
+// First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
       agent = new AgentType();
       weightMultiplier = RS.weightMultiplierDefault;
+      applyForce = false;
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(0, ref agent)) return;
-      if (!da.GetData(1, ref weightMultiplier)) return;
+      if (!da.GetData(0, ref agent)) return false;
+      if (!da.GetData(1, ref weightMultiplier)) return false;
+      if (!da.GetData(2, ref applyForce)) return false;
+
+      return applyForce;
     }
+
+    protected Vector3d Run()
+    {
+      Vector3d force = CalcForce();
+      return ApplyForce(force);
+    }
+
+    protected Vector3d ApplyForce(Vector3d force)
+    {
+      Vector3d weightedForce = Vector3d.Multiply(force, weightMultiplier);
+      agent.ApplyForce(weightedForce);
+      return weightedForce;
+    }
+
+    protected abstract Vector3d CalcForce();
 
     /// <summary>
     /// Provides an Icon for the component.

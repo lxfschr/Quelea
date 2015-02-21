@@ -7,11 +7,13 @@ namespace Agent
 {
   public class SeekForceComponent : AbstractAttractionForceComponent
   {
+    private double arrivalRadius;
     public SeekForceComponent()
       : base("Seek Force", "Seek",
           "Applies a force to steer the Agent towards the point.",
           RS.pluginCategoryName, RS.forcesSubCategoryName, null, "{c0613c95-7c90-4328-af8c-fcdafe059da9}")
     {
+      arrivalRadius = 0;
     }
 
     protected override void RegisterInputParams(GH_InputParamManager pManager)
@@ -19,39 +21,22 @@ namespace Agent
       base.RegisterInputParams(pManager);
       pManager.AddNumberParameter("Arrival Radius", "AR", "The radius within which Agents will start to slow down to eventually stop at the target point. Set this to 0 if you do not want the Agent to stop at the target point.",
         GH_ParamAccess.item, 0);
-
     }
 
-    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
-      pManager.AddVectorParameter("Seek Force", RS.forceNickName, "", GH_ParamAccess.item);
-    }
+      if (!base.GetInputs(da)) return false;
 
-    protected override void SolveInstance(IGH_DataAccess da)
-    {
-      base.SolveInstance(da);
-      double arrivalRadius = 0;
+      if (!da.GetData(4, ref arrivalRadius)) return false;
 
-      // Then we need to access the input parameters individually. 
-      // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(4, ref arrivalRadius)) return;
-
-
-      Vector3d force = Run(arrivalRadius);
+      Vector3d force = Run();
 
       // Finally assign the output parameter.
       da.SetData(0, force);
+      return true;
     }
 
-    protected Vector3d Run(double arrivalRadius)
-    {
-      Vector3d force = CalcForce(arrivalRadius);
-      force = Vector3d.Multiply(force, weightMultiplier);
-      agent.ApplyForce(force);
-      return force;
-    }
-
-    private Vector3d CalcForce(double arrivalRadius)
+    protected override Vector3d CalcForce()
     {
       Vector3d desired = Vector3d.Subtract((Vector3d)targetPt, new Vector3d(agent.RefPosition));
       double d = desired.Length;

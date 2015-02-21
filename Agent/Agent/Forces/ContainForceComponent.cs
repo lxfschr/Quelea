@@ -25,7 +25,7 @@ namespace Agent
       pManager.AddGenericParameter(RS.containForceName, RS.forceNickName, RS.containForceDescription, GH_ParamAccess.item);
     }
 
-    protected override Vector3d CalcForce(AgentType agent, AbstractEnvironmentType environment, double visionRadius)
+    protected override Vector3d CalcForce()
     {
       Vector3d steer = new Vector3d();
       if (environment != null)

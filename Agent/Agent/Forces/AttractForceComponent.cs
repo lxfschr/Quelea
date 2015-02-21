@@ -6,11 +6,13 @@ namespace Agent
 {
   public class AttractForceComponent : AbstractAttractionForceComponent
   {
+    private double mass;
     public AttractForceComponent()
       : base(RS.attractForceName, RS.attractForceComponentNickName,
           RS.attractForceDescription,
           RS.pluginCategoryName, RS.forcesSubCategoryName, RS.icon_AttractForce, RS.attractForceGuid)
     {
+      mass = RS.weightMultiplierDefault;
     }
 
     protected override void RegisterInputParams(GH_InputParamManager pManager)
@@ -20,38 +22,29 @@ namespace Agent
         GH_ParamAccess.item, RS.massDefault);
     }
 
-    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
-      pManager.AddVectorParameter(RS.attractForceName, RS.forceNickName, RS.attractForceName, GH_ParamAccess.item);
-    }
+      if (!base.GetInputs(da)) return false;
 
-    protected override void SolveInstance(IGH_DataAccess da)
-    {
-      base.SolveInstance(da);
-      double mass = RS.weightMultiplierDefault;
-
-      if (!da.GetData(4, ref mass)) return;
+      if (!da.GetData(4, ref mass)) return false;
 
       if (mass <= 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.massErrorMessage);
-        return;
+        return false;
       }
 
-      Vector3d force = Run(mass);
+      // We're set to create the output now. To keep the size of the SolveInstance() method small, 
+      // The actual functionality will be in a different method:
+      Vector3d force = Run();
 
       // Finally assign the output parameter.
       da.SetData(0, force);
+
+      return true;
     }
 
-    protected Vector3d Run(double mass)
-    {
-      Vector3d force = CalcForce(mass);
-      agent.ApplyForce(force);
-      return force;
-    }
-
-    protected Vector3d CalcForce(double mass)
+    protected override Vector3d CalcForce()
     {
       Vector3d force = Vector3d.Subtract(new Vector3d(targetPt), new Vector3d(agent.RefPosition));
       double distance = force.Length;
@@ -67,7 +60,7 @@ namespace Agent
       force.Unitize();
       // Divide by distance squared so the farther away the Attractor is,
       // the weaker the force.
-      double strength = (weightMultiplier * mass * agent.Mass) / (distance * distance);
+      double strength = (mass * agent.Mass) / (distance * distance);
       force = Vector3d.Multiply(force, strength);
       force = Util.Vector.Limit(force, agent.MaxForce);
       return force;
