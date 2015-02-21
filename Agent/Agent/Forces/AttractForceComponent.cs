@@ -26,20 +26,13 @@ namespace Agent
     {
       if (!base.GetInputs(da)) return false;
 
-      if (!da.GetData(4, ref mass)) return false;
+      if (!da.GetData(nextInputIndex++, ref mass)) return false;
 
       if (mass <= 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.massErrorMessage);
         return false;
       }
-
-      // We're set to create the output now. To keep the size of the SolveInstance() method small, 
-      // The actual functionality will be in a different method:
-      Vector3d force = Run();
-
-      // Finally assign the output parameter.
-      da.SetData(0, force);
 
       return true;
     }

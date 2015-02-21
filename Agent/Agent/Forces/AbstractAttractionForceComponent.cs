@@ -40,10 +40,9 @@ namespace Agent
     {
       if (!base.GetInputs(da)) return false;
 
-      if (!da.GetData(3, ref targetPt)) return false;
-      if (!da.GetData(3, ref radius)) return false;
+      if (!da.GetData(nextInputIndex++, ref targetPt)) return false;
+      if (!da.GetData(nextInputIndex++, ref radius)) return false;
 
-      
       return true;
     }
   }

@@ -15,6 +15,8 @@ namespace Agent
     private double weightMultiplier;
     private bool applyForce;
 
+    protected int nextInputIndex, nextOutputIndex;
+
     /// <summary>
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
@@ -24,6 +26,9 @@ namespace Agent
     {
       this.icon = icon;
       this.componentGuid = new Guid(componentGuid);
+      agent = new AgentType();
+      weightMultiplier = RS.weightMultiplierDefault;
+      applyForce = false;
     }
 
     /// <summary>
@@ -63,29 +68,29 @@ namespace Agent
     /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
     protected override void SolveInstance(IGH_DataAccess da)
     {
-      if (!GetInputs(da))
+      nextInputIndex = nextOutputIndex = 0;
+      if (!GetInputs(da)) return;
+      if (!applyForce)
       {
-        da.SetData(0, Vector3d.Zero);
+        da.SetData(nextOutputIndex++, Vector3d.Zero);
+        return;
       }
 
-      
+      Vector3d force = Run();
+      da.SetData(nextOutputIndex++, force);
     }
 
     protected virtual bool GetInputs(IGH_DataAccess da)
     {
-// First, we need to retrieve all data from the input parameters.
-      // We'll start by declaring variables and assigning them starting values.
-      agent = new AgentType();
-      weightMultiplier = RS.weightMultiplierDefault;
-      applyForce = false;
+      // First, we need to retrieve all data from the input parameters.
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(0, ref agent)) return false;
-      if (!da.GetData(1, ref weightMultiplier)) return false;
-      if (!da.GetData(2, ref applyForce)) return false;
+      if (!da.GetData(nextInputIndex++, ref agent)) return false;
+      if (!da.GetData(nextInputIndex++, ref weightMultiplier)) return false;
+      if (!da.GetData(nextInputIndex++, ref applyForce)) return false;
 
-      return applyForce;
+      return true;
     }
 
     protected Vector3d Run()

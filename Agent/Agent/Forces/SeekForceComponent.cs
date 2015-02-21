@@ -27,12 +27,8 @@ namespace Agent
     {
       if (!base.GetInputs(da)) return false;
 
-      if (!da.GetData(4, ref arrivalRadius)) return false;
+      if (!da.GetData(nextInputIndex++, ref arrivalRadius)) return false;
 
-      Vector3d force = Run();
-
-      // Finally assign the output parameter.
-      da.SetData(0, force);
       return true;
     }
 

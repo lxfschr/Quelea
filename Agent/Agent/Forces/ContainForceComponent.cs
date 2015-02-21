@@ -1,5 +1,4 @@
 ﻿using Agent.Util;
-using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
@@ -15,14 +14,6 @@ namespace Agent
           RS.containForceDescription,
           RS.pluginCategoryName, RS.forcesSubCategoryName, RS.icon_containForce, RS.containForceGUID)
     {
-    }
-
-    /// <summary>
-    /// Registers all the output parameters for this component.
-    /// </summary>
-    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
-    {
-      pManager.AddGenericParameter(RS.containForceName, RS.forceNickName, RS.containForceDescription, GH_ParamAccess.item);
     }
 
     protected override Vector3d CalcForce()

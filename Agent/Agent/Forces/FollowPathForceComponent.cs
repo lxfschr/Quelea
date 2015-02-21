@@ -1,29 +1,32 @@
 ﻿using System;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class FollowPathForceComponent : GH_Component
+  public class FollowPathForceComponent : AbstractForceComponent
   {
-    protected readonly Bitmap icon;
-    protected readonly Guid componentGuid;
+    private Curve path;
+    private double radius;
+    private double predictionDistance;
+    private double pathTargetDistance;
     public FollowPathForceComponent()
       : base(RS.followPathForceName, RS.followPathForceComponentNickName,
           RS.followPathForceDescription,
-          RS.pluginCategoryName, RS.forcesSubCategoryName)
+          RS.pluginCategoryName, RS.forcesSubCategoryName, RS.icon_FollowPathForce, RS.followPathForceGuid)
     {
-      this.icon = RS.icon_FollowPathForce;
-      this.componentGuid = new Guid(RS.followPathForceGuid);
+      path = null;
+      radius = 5.0;
+      predictionDistance = RS.predictionDistanceDefault;
+      pathTargetDistance = RS.visionRadiusDefault;
     }
 
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentToAffect, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickName, RS.weightMultiplierDescription,
-        GH_ParamAccess.item, RS.weightMultiplierDefault);
+      base.RegisterInputParams(pManager);
       pManager.AddCurveParameter(RS.curveName, RS.curveNickName, RS.curveForFollowPathDescription, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.pathRadiusName, RS.radiusNickName,
         RS.pathRadiusDescription, GH_ParamAccess.item, RS.pathRadiusDefault);
@@ -34,45 +37,17 @@ namespace Agent
         GH_ParamAccess.item, RS.visionRadiusDefault);
     }
 
-    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
-      pManager.AddVectorParameter(RS.followPathForceName, RS.forceNickName, RS.followPathForceDescription, GH_ParamAccess.item);
+      if(!base.GetInputs(da)) return false;
+      if (!da.GetData(nextInputIndex++, ref path)) return false;
+      if (!da.GetData(nextInputIndex++, ref radius)) return false;
+      if (!da.GetData(nextInputIndex++, ref predictionDistance)) return false;
+      if (!da.GetData(nextInputIndex++, ref pathTargetDistance)) return false;
+      return true;
     }
 
-    protected override void SolveInstance(IGH_DataAccess da)
-    {
-      AgentType agent = new AgentType();
-      double weightMultiplier = RS.weightMultiplierDefault;
-      Curve path = null;
-      double radius = 5.0;
-      double predictionDistance = RS.predictionDistanceDefault;
-      double pathTargetDistance = RS.visionRadiusDefault;
-
-      // Then we need to access the input parameters individually. 
-      // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(0, ref agent)) return;
-      if (!da.GetData(1, ref weightMultiplier)) return;
-      if (!da.GetData(2, ref path)) return;
-      if (!da.GetData(3, ref radius)) return;
-      if (!da.GetData(4, ref predictionDistance)) return;
-      if (!da.GetData(5, ref pathTargetDistance)) return;
-
-
-      Vector3d force = Run(agent, weightMultiplier, path, radius, predictionDistance, pathTargetDistance);
-
-      // Finally assign the output parameter.
-      da.SetData(0, force);
-    }
-
-    protected Vector3d Run(AgentType agent, double weightMultiplier, Curve path, double radius, double predictionDistance, double pathTargetDistance)
-    {
-      Vector3d force = CalcForce(agent, path, radius, predictionDistance, pathTargetDistance);
-      force = Vector3d.Multiply(force, weightMultiplier);
-      agent.ApplyForce(force);
-      return force;
-    }
-
-    private Vector3d CalcForce(AgentType agent, Curve path, double radius, double predictionDistance, double pathTargetDistance)
+    protected override Vector3d CalcForce()
     {
       Vector3d steer = new Vector3d();
       //Predict the vehicle's future location
@@ -97,21 +72,6 @@ namespace Agent
         steer = Util.Agent.Seek(agent, offset);
       }
       return steer;
-    }
-
-    protected override Bitmap Icon
-    {
-      get
-      {
-        //You can add image files to your project resources and access them like this:
-        // return Resources.IconForThisComponent;
-        return icon;
-      }
-    }
-
-    public override Guid ComponentGuid
-    {
-      get { return this.componentGuid; }
     }
   }
 }

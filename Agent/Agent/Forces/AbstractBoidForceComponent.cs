@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using Grasshopper.Kernel;
-using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
 namespace Agent
@@ -34,15 +33,8 @@ namespace Agent
     {
       if(!base.GetInputs(da)) return false;
 
-      if (!da.GetData(3, ref neighborsCollection)) return false;
+      if (!da.GetData(nextInputIndex++, ref neighborsCollection)) return false;
       neighbors = (List<AgentType>) neighborsCollection.Agents.SpatialObjects;
-
-      // We're set to create the output now. To keep the size of the SolveInstance() method small, 
-      // The actual functionality will be in a different method:
-      Vector3d force = Run();
-
-      // Finally assign the output parameter.
-      da.SetData(0, force);
       return true;
     }
   }
