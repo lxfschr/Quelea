@@ -79,6 +79,7 @@
     <Compile Include="Forces\SeekForceComponent.cs" />
     <Compile Include="Forces\FollowPathForceComponent.cs" />
     <Compile Include="Forces\AttractForceComponent.cs" />
+    <Compile Include="Forces\Test.cs" />
     <Compile Include="Forces\ViewForceComponent.cs" />
     <Compile Include="Forces\SeparateForceComponent.cs" />
     <Compile Include="Forces\CoheseForceComponent.cs" />

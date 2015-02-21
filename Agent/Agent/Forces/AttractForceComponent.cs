@@ -15,17 +15,22 @@ namespace Agent
       mass = RS.weightMultiplierDefault;
     }
 
-    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    protected override void RegisterInputParams2(GH_InputParamManager pManager)
     {
-      base.RegisterInputParams(pManager);
       pManager.AddNumberParameter(RS.massName, RS.massNickName, "More massive attractors will exert a stronger attraction force than smaller ones.",
         GH_ParamAccess.item, RS.massDefault);
     }
 
-    protected override bool GetInputs(IGH_DataAccess da)
+    protected override void RegisterInputParams3(GH_InputParamManager pManager)
     {
-      if (!base.GetInputs(da)) return false;
+    }
 
+    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
+    {
+    }
+
+    protected override bool GetInputs3(IGH_DataAccess da)
+    {
       if (!da.GetData(nextInputIndex++, ref mass)) return false;
 
       if (mass <= 0)

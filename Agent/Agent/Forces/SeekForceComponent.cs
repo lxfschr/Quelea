@@ -16,20 +16,21 @@ namespace Agent
       arrivalRadius = 0;
     }
 
-    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    protected override void RegisterInputParams3(GH_InputParamManager pManager)
     {
-      base.RegisterInputParams(pManager);
       pManager.AddNumberParameter("Arrival Radius", "AR", "The radius within which Agents will start to slow down to eventually stop at the target point. Set this to 0 if you do not want the Agent to stop at the target point.",
         GH_ParamAccess.item, 0);
     }
 
-    protected override bool GetInputs(IGH_DataAccess da)
+    protected override bool GetInputs3(IGH_DataAccess da)
     {
-      if (!base.GetInputs(da)) return false;
-
       if (!da.GetData(nextInputIndex++, ref arrivalRadius)) return false;
 
       return true;
+    }
+
+    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
+    {
     }
 
     protected override Vector3d CalcForce()

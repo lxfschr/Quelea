@@ -24,26 +24,28 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    protected override void RegisterInputParams2(GH_InputParamManager pManager)
     {
-      base.RegisterInputParams(pManager);
       pManager.AddGenericParameter("Target Point", "P", "Point to be attracted to.", GH_ParamAccess.item);
       pManager.AddNumberParameter("Attraction Radius", "R", "The radius within which Agents will be affected by the attractor. If negative, the radius will be assumed to be infinite.",
         GH_ParamAccess.item, RS.attractionRadiusDefault);
+      RegisterInputParams3(pManager);
     }
-    
+
+    protected abstract void RegisterInputParams3(GH_InputParamManager pManager);
+
     /// <summary>
     /// This is the method that actually does the work.
     /// </summary>
     /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override bool GetInputs(IGH_DataAccess da)
+    protected override bool GetInputs2(IGH_DataAccess da)
     {
-      if (!base.GetInputs(da)) return false;
-
       if (!da.GetData(nextInputIndex++, ref targetPt)) return false;
       if (!da.GetData(nextInputIndex++, ref radius)) return false;
 
-      return true;
+      return GetInputs3(da);
     }
+
+    protected abstract bool GetInputs3(IGH_DataAccess da);
   }
 }

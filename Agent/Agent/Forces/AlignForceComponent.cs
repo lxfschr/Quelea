@@ -16,6 +16,10 @@ namespace Agent
     {
     }
 
+    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
+    {
+    }
+
     protected override Vector3d CalcForce()
     {
       Vector3d sum = new Vector3d();

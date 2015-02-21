@@ -45,7 +45,10 @@ namespace Agent
         GH_ParamAccess.item, RS.weightMultiplierDefault);
       pManager.AddBooleanParameter("Apply Force?", "B", "If false, the Force will not be applied to the Agent. This is useful for having Behaviors override Forces. Can also be used for only applying the force if the Agent is within a certain area.",
         GH_ParamAccess.item, true);
+      RegisterInputParams2(pManager);
     }
+
+    protected abstract void RegisterInputParams2(GH_InputParamManager pManager);
 
     /// <summary>
     /// Registers all the output parameters for this component.
@@ -60,7 +63,10 @@ namespace Agent
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
       //pManager.HideParameter(1);
+      RegisterOutputParams2(pManager);
     }
+
+    protected abstract void RegisterOutputParams2(GH_OutputParamManager pManager);
 
     /// <summary>
     /// This is the method that actually does the work.
@@ -90,8 +96,10 @@ namespace Agent
       if (!da.GetData(nextInputIndex++, ref weightMultiplier)) return false;
       if (!da.GetData(nextInputIndex++, ref applyForce)) return false;
 
-      return true;
+      return GetInputs2(da);
     }
+
+    protected abstract bool GetInputs2(IGH_DataAccess da);
 
     protected Vector3d Run()
     {
@@ -99,7 +107,7 @@ namespace Agent
       return ApplyForce(force);
     }
 
-    protected Vector3d ApplyForce(Vector3d force)
+    private Vector3d ApplyForce(Vector3d force)
     {
       Vector3d weightedForce = Vector3d.Multiply(force, weightMultiplier);
       agent.ApplyForce(weightedForce);

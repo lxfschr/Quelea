@@ -23,19 +23,20 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    protected override void RegisterInputParams2(GH_InputParamManager pManager)
     {
-      base.RegisterInputParams(pManager);
       pManager.AddGenericParameter(RS.neighborsName, RS.agentCollectionNickName, RS.neighborsToReactTo, GH_ParamAccess.item);
     }
 
-    protected override bool GetInputs(IGH_DataAccess da)
+    protected override bool GetInputs2(IGH_DataAccess da)
     {
-      if(!base.GetInputs(da)) return false;
-
       if (!da.GetData(nextInputIndex++, ref neighborsCollection)) return false;
       neighbors = (List<AgentType>) neighborsCollection.Agents.SpatialObjects;
       return true;
+    }
+
+    protected override void RegisterOutputParams2(GH_Component.GH_OutputParamManager pManager)
+    {
     }
   }
 }
