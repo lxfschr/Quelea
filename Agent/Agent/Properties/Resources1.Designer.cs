@@ -305,6 +305,34 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to True.
+        /// </summary>
+        internal static bool applyDefault {
+            get {
+                object obj = ResourceManager.GetObject("applyDefault", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If false, the Force will not be applied to the Agent. This is useful for having Behaviors override Forces. Can also be used for only applying the force if the Agent is within a certain area..
+        /// </summary>
+        internal static string applyDescription {
+            get {
+                return ResourceManager.GetString("applyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply?.
+        /// </summary>
+        internal static string applyName {
+            get {
+                return ResourceManager.GetString("applyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attract.
         /// </summary>
         internal static string attractForceComponentNickName {
@@ -475,6 +503,15 @@ namespace Agent.Properties {
         internal static string boidForcesSubCategoryName {
             get {
                 return ResourceManager.GetString("boidForcesSubCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to B.
+        /// </summary>
+        internal static string booleanNickname {
+            get {
+                return ResourceManager.GetString("booleanNickname", resourceCulture);
             }
         }
         

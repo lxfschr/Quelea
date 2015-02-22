@@ -9,9 +9,8 @@ namespace Agent
     /// Initializes a new instance of the CoheseForceComponent class.
     /// </summary>
     public CoheseForceComponent()
-      : base(RS.coheseForceName, RS.coheseForceNickName,
-          RS.coheseForceDescription,
-          RS.pluginCategoryName, RS.boidForcesSubCategoryName, RS.icon_coheseForce, RS.coheseForceGUID)
+      : base(RS.coheseForceName, RS.coheseForceNickName, RS.coheseForceDescription, 
+             RS.boidForcesSubCategoryName, RS.icon_coheseForce, RS.coheseForceGUID)
     {
     }
 

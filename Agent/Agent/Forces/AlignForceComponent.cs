@@ -10,9 +10,8 @@ namespace Agent
     /// Initializes a new instance of the AlignForceComponent class.
     /// </summary>
     public AlignForceComponent()
-      : base(RS.alignForceName, RS.alignForceNickName,
-          RS.alignForceDescription,
-          RS.pluginCategoryName, RS.boidForcesSubCategoryName, RS.icon_alignForce, RS.alignForceGUID)
+      : base(RS.alignForceName, RS.alignForceNickName, RS.alignForceDescription, 
+             RS.boidForcesSubCategoryName, RS.icon_alignForce, RS.alignForceGUID)
     {
     }
 

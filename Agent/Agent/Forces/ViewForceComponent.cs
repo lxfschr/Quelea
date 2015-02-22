@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Agent.Util;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
@@ -13,8 +12,8 @@ namespace Agent
     /// </summary>
     public ViewForceComponent()
       : base(RS.viewForceName, RS.viewForceComponentNickName,
-          RS.viewForceDescription,
-          RS.pluginCategoryName, RS.boidForcesSubCategoryName, RS.icon_viewForce, RS.viewForceGuid)
+          RS.viewForceDescription, RS.boidForcesSubCategoryName, 
+          RS.icon_viewForce, RS.viewForceGuid)
     {
     }
 

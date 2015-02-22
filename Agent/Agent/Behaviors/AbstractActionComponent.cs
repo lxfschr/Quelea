@@ -1,33 +1,31 @@
 ﻿using System;
 using System.Drawing;
 using Grasshopper.Kernel;
-using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class AbstractForceComponent : GH_Component
+  public abstract class AbstractActionComponent : GH_Component
   {
     private readonly Bitmap icon;
     private readonly Guid componentGuid;
 
     protected AgentType agent;
-    private double weightMultiplier;
-    private bool apply;
+    protected bool apply;
 
     protected int nextInputIndex, nextOutputIndex;
 
     /// <summary>
-    /// Initializes a new instance of the ViewForceComponent class.
+    /// Initializes a new instance of the AbstractActionComponent class.
     /// </summary>
-    protected AbstractForceComponent(string name, string nickname, string description,
-                              string subcategory, Bitmap icon, String componentGuid)
+    protected AbstractActionComponent(string name, string nickname, string description, 
+                                     string subcategory, Bitmap icon, string componentGuid)
       : base(name, nickname, description, RS.pluginCategoryName, subcategory)
     {
       this.icon = icon;
       this.componentGuid = new Guid(componentGuid);
+
       agent = new AgentType();
-      weightMultiplier = RS.weightMultiplierDefault;
       apply = true;
     }
 
@@ -40,11 +38,9 @@ namespace Agent
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentToAffect, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickName, RS.weightMultiplierDescription,
-        GH_ParamAccess.item, RS.weightMultiplierDefault);
+      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.item);
       pManager.AddBooleanParameter(RS.applyName, RS.booleanNickname, RS.applyDescription,
-        GH_ParamAccess.item, RS.applyDefault);
+         GH_ParamAccess.item, RS.applyDefault);
       RegisterInputParams2(pManager);
     }
 
@@ -53,20 +49,7 @@ namespace Agent
     /// <summary>
     /// Registers all the output parameters for this component.
     /// </summary>
-    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
-    {
-      // Use the pManager object to register your output parameters.
-      // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter("Force", RS.forceNickName,
-                                   "The resulting force vector for debugging purposes.", GH_ParamAccess.item);
-
-      // Sometimes you want to hide a specific parameter from the Rhino preview.
-      // You can use the HideParameter() method as a quick way:
-      //pManager.HideParameter(1);
-      RegisterOutputParams2(pManager);
-    }
-
-    protected abstract void RegisterOutputParams2(GH_OutputParamManager pManager);
+    protected abstract override void RegisterOutputParams(GH_OutputParamManager pManager);
 
     /// <summary>
     /// This is the method that actually does the work.
@@ -76,15 +59,10 @@ namespace Agent
     {
       nextInputIndex = nextOutputIndex = 0;
       if (!GetInputs(da)) return;
-      if (!apply)
-      {
-        da.SetData(nextOutputIndex++, Vector3d.Zero);
-        return;
-      }
-
-      Vector3d force = Run();
-      da.SetData(nextOutputIndex++, force);
+      SolveInstance2(da);
     }
+
+    protected abstract void SolveInstance2(IGH_DataAccess da);
 
     protected virtual bool GetInputs(IGH_DataAccess da)
     {
@@ -93,28 +71,12 @@ namespace Agent
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(nextInputIndex++, ref agent)) return false;
-      if (!da.GetData(nextInputIndex++, ref weightMultiplier)) return false;
       if (!da.GetData(nextInputIndex++, ref apply)) return false;
 
       return GetInputs2(da);
     }
 
     protected abstract bool GetInputs2(IGH_DataAccess da);
-
-    protected Vector3d Run()
-    {
-      Vector3d force = CalcForce();
-      return ApplyForce(force);
-    }
-
-    private Vector3d ApplyForce(Vector3d force)
-    {
-      Vector3d weightedForce = Vector3d.Multiply(force, weightMultiplier);
-      agent.ApplyForce(weightedForce);
-      return weightedForce;
-    }
-
-    protected abstract Vector3d CalcForce();
 
     /// <summary>
     /// Provides an Icon for the component.

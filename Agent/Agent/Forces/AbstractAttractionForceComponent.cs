@@ -14,8 +14,8 @@ namespace Agent
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
     protected AbstractAttractionForceComponent(string name, string nickname, string description,
-                              string category, string subCategory, Bitmap icon, String componentGuid)
-      : base(name, nickname, description, category, subCategory, icon, componentGuid)
+                                               string subcategory, Bitmap icon, String componentGuid)
+      : base(name, nickname, description, subcategory, icon, componentGuid)
     {
       targetPt = new Point3d();
       radius = RS.attractionRadiusDefault;

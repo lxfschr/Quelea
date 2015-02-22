@@ -9,8 +9,8 @@ namespace Agent
     private double mass;
     public AttractForceComponent()
       : base(RS.attractForceName, RS.attractForceComponentNickName,
-          RS.attractForceDescription,
-          RS.pluginCategoryName, RS.forcesSubCategoryName, RS.icon_AttractForce, RS.attractForceGuid)
+          RS.attractForceDescription, RS.forcesSubCategoryName, 
+          RS.icon_AttractForce, RS.attractForceGuid)
     {
       mass = RS.weightMultiplierDefault;
     }

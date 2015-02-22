@@ -66,6 +66,10 @@
     <Compile Include="Agent\AgentSystemComponent.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
+    <Compile Include="Behaviors\AbstractActionComponent.cs" />
+    <Compile Include="Behaviors\AbstractBehaviorComponent.cs" />
+    <Compile Include="Behaviors\AbstractBoidBehaviorComponent.cs" />
+    <Compile Include="Behaviors\AbstractEnvironmentalBehaviorComponent.cs" />
     <Compile Include="Behaviors\EatBehaviorComponent.cs" />
     <Compile Include="Behaviors\InitialVelocityBehaviorComponent.cs" />
     <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />

@@ -930,4 +930,16 @@
   <data name="icon_FollowPathForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_FollowPathForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+	<data name="applyName" xml:space="preserve">
+    <value>Apply?</value>
+  </data>
+	<data name="booleanNickname" xml:space="preserve">
+    <value>B</value>
+  </data>
+	<data name="applyDescription" xml:space="preserve">
+    <value>If false, the Force will not be applied to the Agent. This is useful for having Behaviors override Forces. Can also be used for only applying the force if the Agent is within a certain area.</value>
+  </data>
+	<data name="applyDefault" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+		<value>True</value>
+	</data>
 </root>

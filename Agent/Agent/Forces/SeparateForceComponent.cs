@@ -12,8 +12,8 @@ namespace Agent
     /// </summary>
     public SeparateForceComponent()
       : base(RS.separateForceName, RS.separateForceNickName,
-          RS.separateForceDescription,
-          RS.pluginCategoryName, RS.boidForcesSubCategoryName, RS.icon_separateForce, RS.separateForceGUID)
+          RS.separateForceDescription, RS.boidForcesSubCategoryName, 
+          RS.icon_separateForce, RS.separateForceGUID)
     {
     }
 

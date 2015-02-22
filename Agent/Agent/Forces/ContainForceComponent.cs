@@ -10,9 +10,8 @@ namespace Agent
     /// Initializes a new instance of the ContainForceComponent class.
     /// </summary>
     public ContainForceComponent()
-      : base(RS.containForceName, RS.containForceNickName,
-          RS.containForceDescription,
-          RS.pluginCategoryName, RS.forcesSubCategoryName, RS.icon_containForce, RS.containForceGUID)
+      : base(RS.containForceName, RS.containForceNickName, RS.containForceDescription,
+             RS.forcesSubCategoryName, RS.icon_containForce, RS.containForceGUID)
     {
     }
 
