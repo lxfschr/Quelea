@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GH_IO.Serialization;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using Random = Agent.Util.Random;
@@ -7,14 +8,14 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class AgentType : GH_Goo<Object>, IPosition, IModifiableAgent
+  public class AgentType : IModifiableAgent
   {
     private int lifespan;
-    private readonly double mass;
-    private readonly double bodySize;
-    private readonly double maxSpeed;
-    private readonly double maxForce;
-    private readonly int historyLength;
+    private double mass;
+    private double bodySize;
+    private double maxSpeed;
+    private double maxForce;
+    private int historyLength;
     private readonly CircularArray<Point3d> positionHistory;
 
     private Point3d position;
@@ -76,6 +77,7 @@ namespace Agent
       InitialVelocitySet = false;
     }
 
+    // Copy constructor
     public AgentType(AgentType agent)
     {
       lifespan = agent.lifespan;
@@ -93,37 +95,37 @@ namespace Agent
       InitialVelocitySet = false;
     }
 
-    public AgentType(AgentType agent, Point3d position)
+    public AgentType(IAgent agent, Point3d position)
     {
-      lifespan = agent.lifespan;
-      mass = agent.mass;
-      bodySize = agent.bodySize;
-      maxSpeed = agent.maxSpeed;
-      maxForce = agent.maxForce;
-      historyLength = agent.historyLength;
+      lifespan = agent.Lifespan;
+      mass = agent.Mass;
+      bodySize = agent.BodySize;
+      maxSpeed = agent.MaxSpeed;
+      maxForce = agent.MaxForce;
+      historyLength = agent.HistoryLength;
       positionHistory = new CircularArray<Point3d>(historyLength);
       refPosition = position;
       this.position = position;
       positionHistory.Add(position);
       velocity = velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
-      acceleration = agent.acceleration;
+      acceleration = agent.Acceleration;
       InitialVelocitySet = false;
     }
 
-    public AgentType(AgentType agent, Point3d position, Point3d refPosition)
+    public AgentType(IAgent agent, Point3d position, Point3d refPosition)
     {
-      lifespan = agent.lifespan;
-      mass = agent.mass;
-      bodySize = agent.bodySize;
-      maxSpeed = agent.maxSpeed;
-      maxForce = agent.maxForce;
-      historyLength = agent.historyLength;
+      lifespan = agent.Lifespan;
+      mass = agent.Mass;
+      bodySize = agent.BodySize;
+      maxSpeed = agent.MaxSpeed;
+      maxForce = agent.MaxForce;
+      historyLength = agent.HistoryLength;
       positionHistory = new CircularArray<Point3d>(historyLength);
       this.position = position;
       this.refPosition = refPosition;
       positionHistory.Add(position);
       velocity = velocity = Random.RandomVector(-RS.velocityDefault, RS.velocityDefault);
-      acceleration = agent.acceleration;
+      acceleration = agent.Acceleration;
       InitialVelocitySet = false;
     }
 
@@ -142,6 +144,7 @@ namespace Agent
       {
         return mass;
       }
+      set { mass = value; }
     }
 
     public double BodySize
@@ -150,6 +153,7 @@ namespace Agent
       {
         return bodySize;
       }
+      set { bodySize = value; }
     }
 
     public double MaxSpeed
@@ -158,6 +162,7 @@ namespace Agent
       {
         return maxSpeed;
       }
+      set { maxSpeed = value; }
     }
 
     public double MaxForce
@@ -166,6 +171,7 @@ namespace Agent
       {
         return maxForce;
       }
+      set { maxForce = value; }
     }
 
     public int HistoryLength
@@ -174,6 +180,7 @@ namespace Agent
       {
         return historyLength;
       }
+      set { historyLength = value; }
     }
 
     public CircularArray<Point3d> PositionHistory
@@ -219,6 +226,7 @@ namespace Agent
       {
         return acceleration;
       }
+      set { acceleration = value; }
     }
 
     public Point3d RefPosition
@@ -314,18 +322,28 @@ namespace Agent
              maxSpeed.GetHashCode();
     }
 
-    public override IGH_Goo Duplicate()
+    public IGH_Goo Duplicate()
     {
       return new AgentType(this);
     }
 
-    public override bool IsValid
+    public object ScriptVariable()
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool IsValid
     {
       get
       {
         return (lifespan > 0 && mass > 0 && bodySize >= 0 && maxForce >= 0 &&
                 maxSpeed >= 0 && historyLength >= 1);
       }
+    }
+
+    public string IsValidWhyNot
+    {
+      get { throw new NotImplementedException(); }
     }
 
     public override string ToString()
@@ -340,12 +358,27 @@ namespace Agent
              + historyLengthStr;
     }
 
-    public override string TypeDescription
+    public IGH_GooProxy EmitProxy()
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool CastFrom(object source)
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool CastTo<T>(out T target)
+    {
+      throw new NotImplementedException();
+    }
+
+    public string TypeDescription
     {
       get { return RS.agentDescription; }
     }
 
-    public override string TypeName
+    public string TypeName
     {
       get { return RS.agentName; }
     }
@@ -356,5 +389,14 @@ namespace Agent
     }
 
     public bool InitialVelocitySet { get; set; }
+    public bool Write(GH_IWriter writer)
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool Read(GH_IReader reader)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

@@ -54,7 +54,7 @@ namespace Agent
       // The actual functionality will be in a different method:
 
       // Finally assign the spiral to the output parameter.
-      da.SetDataList(0, (List<AgentType>) system.Agents.SpatialObjects);
+      da.SetDataList(0, (List<IModifiableAgent>) system.Agents.SpatialObjects);
       da.SetData(1, new SpatialCollectionType(system.Agents));
     }
 

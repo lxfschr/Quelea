@@ -10,8 +10,8 @@ namespace Agent
 {
   public class AgentSystemType : GH_Goo<Object>
   {
-    protected ISpatialCollection<AgentType> agents;
-    protected readonly AgentType[] agentsSettings;
+    protected ISpatialCollection<IModifiableAgent> agents;
+    protected readonly IAgent[] agentsSettings;
     protected readonly AbstractEmitterType[] emitters;
     protected AbstractEnvironmentType environment;
     protected int timestep;
@@ -21,7 +21,7 @@ namespace Agent
 
     public AgentSystemType()
     {
-      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, RS.binSizeDefault);
+      agents = new SpatialCollectionAsBinLattice<IModifiableAgent>(min, max, RS.binSizeDefault);
       agentsSettings = new[] { new AgentType() };
       emitters = new AbstractEmitterType[] { new BoxEmitterType() };
       environment = null;
@@ -29,24 +29,24 @@ namespace Agent
       nextIndex = 0;
       
     }
-    public AgentSystemType(AgentType[] agentsSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment)
+    public AgentSystemType(IAgent[] agentsSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment)
     {
       
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
       UpdateBounds();
-      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
+      agents = new SpatialCollectionAsBinLattice<IModifiableAgent>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
     }
 
-    public AgentSystemType(AgentType[] agentsSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment, AgentSystemType system)
+    public AgentSystemType(IAgent[] agentsSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment, AgentSystemType system)
     {
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
       timestep = system.timestep;
       UpdateBounds();
-      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)system.Agents.SpatialObjects);
+      agents = new SpatialCollectionAsBinLattice<IModifiableAgent>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IModifiableAgent>)system.Agents.SpatialObjects);
     }
 
     public AgentSystemType(AgentSystemType system)
@@ -56,10 +56,10 @@ namespace Agent
       emitters = system.emitters;
       environment = system.environment;
       UpdateBounds();
-      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)system.Agents.SpatialObjects);
+      agents = new SpatialCollectionAsBinLattice<IModifiableAgent>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IModifiableAgent>)system.Agents.SpatialObjects);
     }
 
-    public ISpatialCollection<AgentType> Agents
+    public ISpatialCollection<IModifiableAgent> Agents
     {
       get
       {
@@ -67,7 +67,7 @@ namespace Agent
       }
     }
 
-    public IEnumerable<AgentType> AgentsSettings
+    public IEnumerable<IAgent> AgentsSettings
     {
       get
       {
@@ -86,7 +86,7 @@ namespace Agent
     public void AddAgent(AbstractEmitterType emitter)
     {
       Point3d emittionPt = emitter.Emit();
-      AgentType agent;
+      IModifiableAgent agent;
       if (environment != null)
       {
         Point3d refEmittionPt = environment.ClosestRefPoint(emittionPt);
@@ -103,9 +103,9 @@ namespace Agent
     public void Run()
     {
       UpdateBounds();
-      agents.UpdateDatastructure(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)Agents.SpatialObjects);
-      IList<AgentType> toRemove = new List<AgentType>();
-      foreach (AgentType agent in agents)
+      agents.UpdateDatastructure(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IModifiableAgent>)Agents.SpatialObjects);
+      IList<IModifiableAgent> toRemove = new List<IModifiableAgent>();
+      foreach (IModifiableAgent agent in agents)
       {
         agent.Run();
         if (environment != null)
@@ -135,7 +135,7 @@ namespace Agent
         }
       }
 
-      foreach (AgentType deadAgent in toRemove)
+      foreach (IModifiableAgent deadAgent in toRemove)
       {
         agents.Remove(deadAgent);
       }
@@ -165,7 +165,7 @@ namespace Agent
       }
       else
       {
-        foreach (AgentType agent in agents)
+        foreach (IModifiableAgent agent in agents)
         {
           min.X = agent.RefPosition.X < min.X ? agent.RefPosition.X : min.X;
           min.Y = agent.RefPosition.Y < min.Y ? agent.RefPosition.Y : min.Y;

@@ -6,24 +6,24 @@ namespace Agent
 {
   public class SpatialCollectionType : GH_Goo<Object>
   {
-    private ISpatialCollection<AgentType> agents;
+    private ISpatialCollection<IModifiableAgent> agents;
 
     public SpatialCollectionType()
     {
-      agents = new SpatialCollectionAsBinLattice<AgentType>();
+      agents = new SpatialCollectionAsBinLattice<IModifiableAgent>();
     }
 
-    public SpatialCollectionType(ISpatialCollection<AgentType> agents)
+    public SpatialCollectionType(ISpatialCollection<IModifiableAgent> agents)
     {
       this.agents = agents;
     }
 
     public SpatialCollectionType(SpatialCollectionType spatialCollection)
     {
-      agents = new SpatialCollectionAsBinLattice<AgentType>(spatialCollection.agents);
+      agents = new SpatialCollectionAsBinLattice<IModifiableAgent>(spatialCollection.agents);
     }
 
-    public ISpatialCollection<AgentType> Agents
+    public ISpatialCollection<IModifiableAgent> Agents
     {
       get
       {

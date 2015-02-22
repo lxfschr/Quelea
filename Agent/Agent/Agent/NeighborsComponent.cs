@@ -59,7 +59,7 @@ namespace Agent
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
-      AgentType agent = new AgentType();
+      IModifiableAgent agent = new AgentType();
       SpatialCollectionType agentCollection = new SpatialCollectionType();
       double visionRadius = RS.visionRadiusDefault;
       double visionAngle = RS.visionAngleDefault;
@@ -93,17 +93,17 @@ namespace Agent
       da.SetData(0, neighbors);
     }
 
-    private SpatialCollectionType Run(AgentType agent, SpatialCollectionType agentCollection,
+    private SpatialCollectionType Run(IModifiableAgent agent, SpatialCollectionType agentCollection,
                                double visionRadius, double visionAngle)
     {
-      ISpatialCollection<AgentType> neighborsInSphere = agentCollection.Agents.GetNeighborsInSphere(agent, visionRadius);
+      ISpatialCollection<IModifiableAgent> neighborsInSphere = agentCollection.Agents.GetNeighborsInSphere(agent, visionRadius);
 
       if (Util.Number.ApproximatelyEqual(visionAngle, 360, RS.toleranceDefault))
       {
         return new SpatialCollectionType(neighborsInSphere);
       }
 
-      ISpatialCollection<AgentType> neighbors = new SpatialCollectionAsList<AgentType>();
+      ISpatialCollection<IModifiableAgent> neighbors = new SpatialCollectionAsList<IModifiableAgent>();
 
       Point3d position = agent.RefPosition;
       Vector3d velocity = agent.Velocity;
@@ -111,7 +111,7 @@ namespace Agent
       pl1.Rotate(-Math.PI / 2, pl1.YAxis);
       Plane pl2 = pl1;
       pl2.Rotate(-Math.PI / 2, pl1.XAxis);
-      foreach (AgentType neighbor in neighborsInSphere)
+      foreach (IModifiableAgent neighbor in neighborsInSphere)
       {
         Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.RefPosition), new Vector3d(position));
         double angle1 = Util.Vector.CalcAngle(velocity, diff, pl1);

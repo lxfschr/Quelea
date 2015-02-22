@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public interface IAgent
+  public interface IAgent : IGH_Goo, IPosition
   {
     Point3d Position { get; }
 
@@ -42,7 +43,5 @@ namespace Agent
     bool Equals(Object obj);
 
     int GetHashCode();
-
-    string ToString();
   }
 }
