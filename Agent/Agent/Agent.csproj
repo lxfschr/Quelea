@@ -76,10 +76,10 @@
     <Compile Include="Forces\AbstractEnvironmentalForceComponent.cs" />
     <Compile Include="Forces\AbstractBoidForceComponent.cs" />
     <Compile Include="Forces\AlignForceComponent.cs" />
+    <Compile Include="Forces\ApplyCustomForceComponent.cs" />
     <Compile Include="Forces\SeekForceComponent.cs" />
     <Compile Include="Forces\FollowPathForceComponent.cs" />
     <Compile Include="Forces\AttractForceComponent.cs" />
-    <Compile Include="Forces\Test.cs" />
     <Compile Include="Forces\ViewForceComponent.cs" />
     <Compile Include="Forces\SeparateForceComponent.cs" />
     <Compile Include="Forces\CoheseForceComponent.cs" />
@@ -181,9 +181,6 @@
     <None Include="Resources\icon_AttractForce.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_bounceContainHebavior.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_BrepEnvironment.png" />
   </ItemGroup>
   <ItemGroup>
@@ -191,9 +188,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_EatBehavior.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_FollowPathFollow.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_InitialVelocity.png" />
