@@ -379,6 +379,26 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 5.
+        /// </summary>
+        internal static double attractLowerLimitDefault {
+            get {
+                object obj = ResourceManager.GetObject("attractLowerLimitDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 100.
+        /// </summary>
+        internal static double attractUpperLimitDefault {
+            get {
+                object obj = ResourceManager.GetObject("attractUpperLimitDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to True iff the behavior was applied to the agent..
         /// </summary>
         internal static string behaviorAppliedDescription {

@@ -12,9 +12,9 @@ namespace Agent
       {
         return from2 + (v - from1) * (to2 - from2) / (to1 - from1);
       }
-      public static double Clamp(double x, double min, double max)
+      public static double Clamp(double x, double lower, double upper)
       {
-        return (x < min) ? min : (x > max) ? max : x;
+        return (x < lower) ? lower : (x > upper) ? upper : x;
       }
       public static bool ApproximatelyEqual(double a, double b, double epsilon)
       {

@@ -27,8 +27,6 @@ namespace Agent
     protected override void RegisterInputParams3(GH_InputParamManager pManager)
     {
       pManager.AddGenericParameter("Target Point", "P", "Point to be attracted to.", GH_ParamAccess.item);
-      pManager.AddNumberParameter("Attraction Radius", "R", "The radius within which Agents will be affected by the attractor. If negative, the radius will be assumed to be infinite.",
-        GH_ParamAccess.item, RS.attractionRadiusDefault);
       RegisterInputParams4(pManager);
     }
 
@@ -41,7 +39,6 @@ namespace Agent
     protected override bool GetInputs3(IGH_DataAccess da)
     {
       if (!da.GetData(nextInputIndex++, ref targetPt)) return false;
-      if (!da.GetData(nextInputIndex++, ref radius)) return false;
 
       return GetInputs4(da);
     }
