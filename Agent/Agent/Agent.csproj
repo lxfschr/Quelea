@@ -62,31 +62,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\AbstractActionComponent.cs" />
+    <Compile Include="Actions\Behaviors\AbstractBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\BoidBehaviors\AbstractBoidBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\BoidBehaviors\EatBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\EnvironmentalBehaviors\AbstractEnvironmentalBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\EnvironmentalBehaviors\BounceContainBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\InitialVelocityBehaviorComponent.cs" />
+    <Compile Include="Actions\Forces\AbstractForceComponent.cs" />
+    <Compile Include="Actions\Forces\ApplyCustomForceComponent.cs" />
+    <Compile Include="Actions\Forces\AttractionForces\AbstractAttractionForceComponent.cs" />
+    <Compile Include="Actions\Forces\AttractionForces\AttractForceComponent.cs" />
+    <Compile Include="Actions\Forces\AttractionForces\SeekForceComponent.cs" />
+    <Compile Include="Actions\Forces\BoidForces\AbstractBoidForceComponent.cs" />
+    <Compile Include="Actions\Forces\BoidForces\AlignForceComponent.cs" />
+    <Compile Include="Actions\Forces\BoidForces\CoheseForceComponent.cs" />
+    <Compile Include="Actions\Forces\BoidForces\SeparateForceComponent.cs" />
+    <Compile Include="Actions\Forces\BoidForces\ViewForceComponent.cs" />
+    <Compile Include="Actions\Forces\EnvironmentalForces\AbstractEnvironmentalForceComponent.cs" />
+    <Compile Include="Actions\Forces\EnvironmentalForces\ContainForceComponent.cs" />
+    <Compile Include="Actions\Forces\FollowPathForceComponent.cs" />
     <Compile Include="Agent\AgentComponent.cs" />
     <Compile Include="Agent\AgentSystemComponent.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
-    <Compile Include="Behaviors\AbstractActionComponent.cs" />
-    <Compile Include="Behaviors\AbstractBehaviorComponent.cs" />
-    <Compile Include="Behaviors\AbstractBoidBehaviorComponent.cs" />
-    <Compile Include="Behaviors\AbstractEnvironmentalBehaviorComponent.cs" />
-    <Compile Include="Behaviors\EatBehaviorComponent.cs" />
-    <Compile Include="Behaviors\InitialVelocityBehaviorComponent.cs" />
-    <Compile Include="Behaviors\BounceContainBehaviorComponent.cs" />
     <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Emitters\BoxEmitterType.cs" />
-    <Compile Include="Forces\AbstractAttractionForceComponent.cs" />
-    <Compile Include="Forces\AbstractForceComponent.cs" />
-    <Compile Include="Forces\AbstractEnvironmentalForceComponent.cs" />
-    <Compile Include="Forces\AbstractBoidForceComponent.cs" />
-    <Compile Include="Forces\AlignForceComponent.cs" />
-    <Compile Include="Forces\ApplyCustomForceComponent.cs" />
-    <Compile Include="Forces\SeekForceComponent.cs" />
-    <Compile Include="Forces\FollowPathForceComponent.cs" />
-    <Compile Include="Forces\AttractForceComponent.cs" />
-    <Compile Include="Forces\ViewForceComponent.cs" />
-    <Compile Include="Forces\SeparateForceComponent.cs" />
-    <Compile Include="Forces\CoheseForceComponent.cs" />
     <Compile Include="Agent\DeconstructAgentCollectionComponent.cs" />
     <Compile Include="Agent\NeighborsComponent.cs" />
     <Compile Include="Properties\Resources1.Designer.cs">
@@ -95,7 +96,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SpatialCollections\SpatialCollectionType.cs" />
-    <Compile Include="Forces\ContainForceComponent.cs" />
     <Compile Include="Agent\DeconstructAgentComponent.cs" />
     <Compile Include="Agent\DeconstructSystemComponent.cs" />
     <Compile Include="Emitters\AbstractEmitterType.cs" />
