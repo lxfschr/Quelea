@@ -10,7 +10,7 @@ namespace Agent
     public ApplyCustomForceComponent()
       : base("Apply Custom Force", "ApplyForce",
           "Applied a user specified force vector to the Agent.",
-          RS.forcesSubCategoryName, null, "{a6333370-2246-4fac-afb9-b858a809a414}")
+          RS.forcesSubCategoryName, RS.icon_applyCustomForce, "{a6333370-2246-4fac-afb9-b858a809a414}")
     {
       vec = Vector3d.Zero;
     }

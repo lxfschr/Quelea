@@ -1407,16 +1407,6 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_AABoxEnvironment {
-            get {
-                object obj = ResourceManager.GetObject("icon_AABoxEnvironment", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icon_agent {
             get {
                 object obj = ResourceManager.GetObject("icon_agent", resourceCulture);
@@ -1430,6 +1420,16 @@ namespace Agent.Properties {
         internal static System.Drawing.Bitmap icon_alignForce {
             get {
                 object obj = ResourceManager.GetObject("icon_alignForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_applyCustomForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_applyCustomForce", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1470,6 +1470,26 @@ namespace Agent.Properties {
         internal static System.Drawing.Bitmap icon_boxEmitter {
             get {
                 object obj = ResourceManager.GetObject("icon_boxEmitter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_boxEnvironment {
+            get {
+                object obj = ResourceManager.GetObject("icon_boxEnvironment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_brepEmitter {
+            get {
+                object obj = ResourceManager.GetObject("icon_brepEmitter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1607,6 +1627,16 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_seekForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_seekForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_separateForce {
             get {
                 object obj = ResourceManager.GetObject("icon_separateForce", resourceCulture);
@@ -1617,9 +1647,19 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_SurfaceEnvironment {
+        internal static System.Drawing.Bitmap icon_srfEmitter {
             get {
-                object obj = ResourceManager.GetObject("icon_SurfaceEnvironment", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_srfEmitter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_srfEnvironment {
+            get {
+                object obj = ResourceManager.GetObject("icon_srfEnvironment", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

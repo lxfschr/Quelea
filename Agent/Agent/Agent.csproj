@@ -143,25 +143,16 @@
     <None Include="Resources\icon_coheseForce.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_crvEmitter.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_deconstructAgent.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_engine.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_ptEmitter.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_separateForce.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_system.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_boxEmitter.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_deconstructAC.png" />
@@ -179,22 +170,7 @@
     <None Include="Resources\icon_AABoxEnvironment.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_ArriveForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_AttractForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_BrepEnvironment.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_containForce.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_EatBehavior.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_InitialVelocity.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_SurfaceEnvironment.png" />
@@ -203,7 +179,49 @@
     <None Include="Resources\icon_FollowPathForce.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icon_srfEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_srfEnvironment .png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_attractForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_boxEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_boxEnvironment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_brepEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_brepEnvironment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_crvEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_ptEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_seekForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_arriveForce.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\icon_bounceContainBehavior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_containForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_initialVelocity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_applyCustomForce.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

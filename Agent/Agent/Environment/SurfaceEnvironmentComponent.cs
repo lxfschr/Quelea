@@ -70,7 +70,7 @@ namespace Agent
       {
         //You can add image files to your project resources and access them like this:
         // return Resources.IconForThisComponent;
-        return RS.icon_SurfaceEnvironment;
+        return RS.icon_srfEnvironment;
       }
     }
 
