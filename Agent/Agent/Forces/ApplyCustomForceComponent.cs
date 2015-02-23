@@ -15,12 +15,12 @@ namespace Agent
       vec = Vector3d.Zero;
     }
 
-    protected override void RegisterInputParams2(GH_InputParamManager pManager)
+    protected override void RegisterInputParams3(GH_InputParamManager pManager)
     {
       pManager.AddVectorParameter("Force Vector", "V", "The vector to be applied to the Agent position.", GH_ParamAccess.item);
     }
 
-    protected override bool GetInputs2(IGH_DataAccess da)
+    protected override bool GetInputs3(IGH_DataAccess da)
     {
       if (!da.GetData(nextInputIndex++, ref vec)) return false;
       return true;

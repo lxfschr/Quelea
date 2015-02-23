@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Agent.Util;
+﻿using Agent.Util;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 

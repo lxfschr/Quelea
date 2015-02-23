@@ -1,7 +1,4 @@
-﻿using System;
-using System.Drawing;
-using System.Runtime.CompilerServices;
-using Grasshopper.Kernel;
+﻿using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
@@ -24,7 +21,7 @@ namespace Agent
       pathTargetDistance = RS.visionRadiusDefault;
     }
 
-    protected override void RegisterInputParams2(GH_InputParamManager pManager)
+    protected override void RegisterInputParams3(GH_InputParamManager pManager)
     {
       pManager.AddCurveParameter(RS.curveName, RS.curveNickName, RS.curveForFollowPathDescription, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.pathRadiusName, RS.radiusNickName,
@@ -36,7 +33,7 @@ namespace Agent
         GH_ParamAccess.item, RS.visionRadiusDefault);
     }
 
-    protected override bool GetInputs2(IGH_DataAccess da)
+    protected override bool GetInputs3(IGH_DataAccess da)
     {
       if (!da.GetData(nextInputIndex++, ref path)) return false;
       if (!da.GetData(nextInputIndex++, ref radius)) return false;
@@ -72,7 +69,7 @@ namespace Agent
       return steer;
     }
 
-    protected override void RegisterOutputParams2(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
     {
     }
   }

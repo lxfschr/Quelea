@@ -23,14 +23,14 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams2(GH_InputParamManager pManager)
+    protected override void RegisterInputParams3(GH_InputParamManager pManager)
     {
       pManager.AddGenericParameter(RS.environmentName, RS.environmentNickName, RS.environmentDescription, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionAngleDescription,
         GH_ParamAccess.item, RS.bodySizeDefault);
     }
 
-    protected override bool GetInputs2(IGH_DataAccess da)
+    protected override bool GetInputs3(IGH_DataAccess da)
     {
       if (!da.GetData(nextInputIndex++, ref environment)) return false;
       if (!da.GetData(nextInputIndex++, ref visionRadius)) return false;
@@ -38,7 +38,7 @@ namespace Agent
       return true;
     }
 
-    protected override void RegisterOutputParams2(GH_Component.GH_OutputParamManager pManager)
+    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
     {
     }
   }
