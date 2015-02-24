@@ -58,14 +58,7 @@ namespace Agent
       // The actual functionality will be in a different method:
 
       // Finally assign the spiral to the output parameter.
-      if (agent.PositionHistory.Count == 1)
-      {
-        da.SetData(0, agent.Position);
-      }
-      else
-      {
-        da.SetDataList(0, agent.GetPositionHistoryList());
-      }
+      da.SetDataList(0, agent.GetPositionHistoryList());
       da.SetData(1, agent.Velocity);
       da.SetData(2, agent.Acceleration);
       da.SetData(3, agent.Lifespan);
