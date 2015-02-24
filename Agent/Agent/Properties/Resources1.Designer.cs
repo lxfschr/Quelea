@@ -1437,9 +1437,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_ArriveForce {
+        internal static System.Drawing.Bitmap icon_arriveForce {
             get {
-                object obj = ResourceManager.GetObject("icon_ArriveForce", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_arriveForce", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1447,9 +1447,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_AttractForce {
+        internal static System.Drawing.Bitmap icon_attractForce {
             get {
-                object obj = ResourceManager.GetObject("icon_AttractForce", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_attractForce", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

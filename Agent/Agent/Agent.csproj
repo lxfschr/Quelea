@@ -73,6 +73,7 @@
     <Compile Include="Actions\Forces\ApplyCustomForceComponent.cs" />
     <Compile Include="Actions\Forces\AttractionForces\AbstractAttractionForceComponent.cs" />
     <Compile Include="Actions\Forces\AttractionForces\AttractForceComponent.cs" />
+    <Compile Include="Actions\Forces\AttractionForces\ArriveForceComponent.cs" />
     <Compile Include="Actions\Forces\AttractionForces\SeekForceComponent.cs" />
     <Compile Include="Actions\Forces\BoidForces\AbstractBoidForceComponent.cs" />
     <Compile Include="Actions\Forces\BoidForces\AlignForceComponent.cs" />

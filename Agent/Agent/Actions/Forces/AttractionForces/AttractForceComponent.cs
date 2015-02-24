@@ -12,7 +12,7 @@ namespace Agent
     public AttractForceComponent()
       : base(RS.attractForceName, RS.attractForceComponentNickName,
           RS.attractForceDescription, RS.forcesSubCategoryName, 
-          RS.icon_AttractForce, RS.attractForceGuid)
+          RS.icon_attractForce, RS.attractForceGuid)
     {
       mass = RS.weightMultiplierDefault;
       lowerLimit = RS.attractLowerLimitDefault;
@@ -71,10 +71,6 @@ namespace Agent
       // If the distance is greater than the radius of the attractor,
       // and the radius is positive, do not apply the force.
       // Negative radius causes all Agents to be affected, regardless of distance.
-      if (distance > radius && radius >= 0)
-      {
-        return new Vector3d();
-      }
       // Clamp the distance so the force lies within a reasonable value.
       distance = Util.Number.Clamp(distance, lowerLimit, upperLimit);
       force.Unitize();

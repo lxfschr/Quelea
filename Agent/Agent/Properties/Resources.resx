@@ -864,10 +864,10 @@
   <data name="icon_alignForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_alignForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_ArriveForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="icon_arriveForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_ArriveForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_AttractForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="icon_attractForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_AttractForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_boxEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">

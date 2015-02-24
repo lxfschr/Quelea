@@ -9,7 +9,6 @@ namespace Agent
   public abstract class AbstractAttractionForceComponent : AbstractForceComponent
   {
     protected Point3d targetPt;
-    protected double radius;
     /// <summary>
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
@@ -18,7 +17,6 @@ namespace Agent
       : base(name, nickname, description, subcategory, icon, componentGuid)
     {
       targetPt = new Point3d();
-      radius = RS.attractionRadiusDefault;
     }
 
     /// <summary>
