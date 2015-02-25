@@ -1,0 +1,12 @@
+0.2.0
++ Added Apply Custom Force Component so you can apply whatever vector force you want.
++ Added Arrive Force Component to cause Agent to seek and stop at a point.
++ Added Seek Force Component to cause Agent to steer towards a target point.
++ Added Apply? input to allow you to control if and when a Force or Behavior is applied.
++ Added ability to have Infinite Lifespans by setting lifespan to -1.
++ Improved ease of writing your own force or behavior component.
++ Improved consistency of agent position history list.
++ Updated Icons
+* Fixed Bug that caused Creation Rate not to work.
+* Fixed Bug in Deconstruct System that caused AgentCollections to be output as lists instead of bin-lattices.
+* Fixed Bug in Attract that caused the force to be limited to the Agents MaxForce.
