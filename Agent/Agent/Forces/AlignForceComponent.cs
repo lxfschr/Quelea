@@ -26,7 +26,7 @@ namespace Agent
       int count = 0;
       Vector3d steer = new Vector3d();
 
-      foreach (AgentType other in neighbors)
+      foreach (IAgent other in neighbors)
       {
         //Add up all the velocities and divide by the total to calculate
         //the average velocity.

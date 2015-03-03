@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using RS = Agent.Properties.Resources;
 using Grasshopper.Kernel;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {

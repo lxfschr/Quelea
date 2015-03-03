@@ -9,7 +9,7 @@ namespace Agent
   public abstract class AbstractBoidForceComponent : AbstractForceComponent
   {
     protected SpatialCollectionType neighborsCollection;
-    protected List<IModifiableAgent> neighbors; 
+    protected IEnumerable<IAgent> neighbors; 
     /// <summary>
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
@@ -31,7 +31,7 @@ namespace Agent
     protected override bool GetInputs2(IGH_DataAccess da)
     {
       if (!da.GetData(nextInputIndex++, ref neighborsCollection)) return false;
-      neighbors = (List<IModifiableAgent>) neighborsCollection.Agents.SpatialObjects;
+      neighbors = (IEnumerable<IAgent>)neighborsCollection.Agents.SpatialObjects;
       return true;
     }
 

@@ -8,7 +8,7 @@ using Rhino.Geometry;
 namespace Agent
 {
 
-  public class SpatialCollectionAsList<T> : ISpatialCollection<T>
+  public class SpatialCollectionAsList<T> : ISpatialCollection<T> where T : IAgent
   {
     private IList<T> spatialObjects;
 

@@ -7,7 +7,7 @@ using Rhino.Geometry;
 
 namespace Agent
 {
-  public interface ISpatialCollection<T> : ICollection<T>
+  public interface ISpatialCollection<T> : ICollection<T> where T : IAgent 
   {
     ISpatialCollection<T> GetNeighborsInSphere(T item, double r);
     IEnumerable<T> SpatialObjects { get; }

@@ -80,9 +80,9 @@ namespace Agent
     protected bool Run(IModifiableAgent agent, SpatialCollectionType neighbors)
     {
       bool ate = false;
-      foreach (IModifiableAgent neighbor in (List<AgentType>)neighbors.Agents.SpatialObjects)
+      foreach (IModifiableAgent neighbor in (List<IModifiableAgent>)neighbors.Agents.SpatialObjects)
       {
-        neighbor.Lifespan = 0;
+        neighbor.Kill();
         ate = true;
       }
       return ate;

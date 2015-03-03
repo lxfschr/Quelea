@@ -8,7 +8,7 @@ using Rhino.Geometry;
 namespace Agent
 {
 
-  public class SpatialCollectionAsBinLattice<T> : ISpatialCollection<T> where T : class
+  public class SpatialCollectionAsBinLattice<T> : ISpatialCollection<T> where T : IAgent
   {
     private IList<T> spatialObjects; //List of all the spatial objects
     private LinkedList<T>[][][] lattice; // Lattice of DoublyLinkedLists for intersection test

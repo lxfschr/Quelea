@@ -53,7 +53,7 @@ namespace Agent
     {
       // First, we need to retrieve all data from the input parameters.
       // We'll start by declaring variables and assigning them starting values.
-      List<AgentType> agents = new List<AgentType>();
+      List<IAgent> agents = new List<IAgent>();
       List<AbstractEmitterType> emitters = new List<AbstractEmitterType>();
       AbstractEnvironmentType environment = null;
 

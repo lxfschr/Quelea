@@ -21,5 +21,7 @@ namespace Agent
     new int HistoryLength { get; set; }
 
     bool InitialVelocitySet { get; set; }
+
+    void Kill();
   }
 }

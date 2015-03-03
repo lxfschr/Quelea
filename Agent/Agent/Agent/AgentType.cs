@@ -389,6 +389,11 @@ namespace Agent
     }
 
     public bool InitialVelocitySet { get; set; }
+    public void Kill()
+    {
+      lifespan = 0;
+    }
+
     public bool Write(GH_IWriter writer)
     {
       throw new NotImplementedException();

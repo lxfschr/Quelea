@@ -20,7 +20,7 @@ namespace Agent
       Vector3d sum = new Vector3d();
       int count = 0;
 
-      foreach (AgentType neighbor in neighbors)
+      foreach (IAgent neighbor in neighbors)
       {
         //Adding up all the others' location
         sum = Vector3d.Add(sum, new Vector3d(neighbor.RefPosition));
