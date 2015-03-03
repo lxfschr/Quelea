@@ -108,57 +108,12 @@ namespace Agent
 
     public override Vector3d AvoidEdges(AgentType agent, double distance)
     {
-      Vector3d steer = new Vector3d();
-      Vector3d avoidVec, parVec;
-      
-      Vector3d velocity = agent.Velocity;
-      Point3d position = agent.Position;
-      
-      double tol = 0.01;
-
-      Curve[] overlapCrvs;
-      Point3d[] intersectPts;
-
-      Curve[] feelers = GetFeelerCrvs(agent, distance, true);
-      int count = 0;
-
-      Curve[] nakedEdges = environment.DuplicateEdgeCurves(true);
-      Curve[] nakedEdgesJoined = Curve.JoinCurves(nakedEdges);
-
-      return steer;
+      throw new NotImplementedException();
     }
 
     public override bool BounceContain(AgentType agent)
     {
-      Vector3d velocity = agent.Velocity;
-      
-      double tol = 0.01;
-
-      Curve[] overlapCrvs;
-      Point3d[] intersectPts;
-
-      Curve[] feelers = GetFeelerCrvs(agent, agent.BodySize, false);
-
-      foreach (Curve feeler in feelers)
-      {
-        //Check feeler intersection with each brep face
-        foreach (BrepFace face in environment.Faces)
-        {
-          Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
-          if (intersectPts.Length > 0)
-          {
-            Point3d testPt = intersectPts[0];
-            double u, v;
-            face.ClosestPoint(testPt, out u, out v);
-            Vector3d normal = face.NormalAt(u, v);
-            normal.Reverse();
-            velocity = Vector.Reflect(velocity, normal);
-            agent.Velocity = velocity;
-            return true;
-          }
-        }
-      }
-      return false;
+      throw new NotImplementedException();
     }
   }
 }
