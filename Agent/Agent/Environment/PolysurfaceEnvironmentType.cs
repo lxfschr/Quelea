@@ -1,45 +1,47 @@
 ﻿using System;
 using Agent.Util;
+using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using Rhino.Geometry.Collections;
 using Rhino.Geometry.Intersect;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  class PolysurfaceEnvironmentType : BrepEnvironmentType
+  class PolysurfaceEnvironmentType : AbstractEnvironmentType, IDisposable
   {
-     private Brep environment;
+     private readonly Brep environment;
+
+    public void Dispose() {
+      environment.Dispose();
+    }
 
     // Default Constructor.
-
-    public override bool IsValid
+    public PolysurfaceEnvironmentType()
     {
-      get
-      {
-        return (environment.IsValid);
-      }
+      environment = new Brep();
+    }
 
+    public PolysurfaceEnvironmentType(Brep environment)
+    {
+      this.environment = environment;
+    }
+
+    public PolysurfaceEnvironmentType(PolysurfaceEnvironmentType environment)
+    {
+      this.environment = environment.environment;
     }
 
     public override Point3d ClosestPoint(Point3d pt)
     {
-      BrepFaceList faces = environment.Faces;
-      double u, v;
-      double minDist = double.MaxValue;
-      int index = 0, currIndex = 0;
-      foreach (BrepFace face in faces)
-      {
-        face.ClosestPoint(pt, out u, out v);
-        double dist = pt.DistanceTo(face.PointAt(u, v));
-        if (dist < minDist)
-        {
-          minDist = dist;
-          index = currIndex;
-        }
-        currIndex++;
-      }
-      faces[index].ClosestPoint(pt, out u, out v);
-      return faces[index].PointAt(u,v);
+      Point3d closestPoint;
+      ComponentIndex componentIndex;
+      double s;
+      double t;
+      double maxDist = 10000;
+      Vector3d normal;
+      environment.ClosestPoint(pt, out closestPoint, out componentIndex, out s, out t, maxDist, out normal);
+      return closestPoint;
     }
 
     public override Point3d ClosestRefPoint(Point3d pt)
@@ -114,6 +116,53 @@ namespace Agent
     public override bool BounceContain(AgentType agent)
     {
       throw new NotImplementedException();
+    }
+
+    public override bool Equals(object obj)
+    {
+      PolysurfaceEnvironmentType p = obj as PolysurfaceEnvironmentType;
+      if (p == null)
+      {
+        return false;
+      }
+
+      return base.Equals(obj) && environment.Equals(p.environment);
+    }
+
+    public bool Equals(PolysurfaceEnvironmentType p)
+    {
+      return base.Equals(p) && environment.Equals(p.environment);
+    }
+
+    public override int GetHashCode()
+    {
+      return environment.GetHashCode();
+    }
+
+   
+
+    public override bool IsValid
+    {
+      get
+      {
+        return (environment.IsValid);
+      }
+
+    }
+    public override IGH_Goo Duplicate()
+    {
+      return new PolysurfaceEnvironmentType(this);
+    }
+
+    public override string ToString()
+    {
+      string environmentStr = Util.String.ToString(RS.brepEnvName, environment);
+      return environmentStr;
+    }
+
+    public override BoundingBox GetBoundingBox()
+    {
+      return environment.GetBoundingBox(false);
     }
   }
 }
