@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Agent.Util;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
@@ -10,7 +12,8 @@ namespace Agent
 {
   class PolysurfaceEnvironmentType : AbstractEnvironmentType, IDisposable
   {
-     private readonly Brep environment;
+    private readonly Brep environment;
+    private readonly Curve[] borderCurves;
 
     public void Dispose() {
       environment.Dispose();
@@ -25,11 +28,31 @@ namespace Agent
     public PolysurfaceEnvironmentType(Brep environment)
     {
       this.environment = environment;
+      borderCurves = CalcBorder();
     }
 
     public PolysurfaceEnvironmentType(PolysurfaceEnvironmentType environment)
+      : this(environment.environment)
     {
-      this.environment = environment.environment;
+    }
+
+    private Curve[] CalcBorder()
+    {
+      List<Curve> nakedEdges = new List<Curve>();
+      foreach (BrepEdge edge in environment.Edges)
+      {
+        // Find only the naked edges
+        if (edge.Valence == EdgeAdjacency.Naked)
+        {
+          Curve crv = edge.DuplicateCurve();
+          if (null != crv)
+            nakedEdges.Add(crv);
+        }
+      }
+      Rhino.RhinoDoc doc = Rhino.RhinoDoc.ActiveDoc;
+      double tol = 2.1 * doc.ModelAbsoluteTolerance;
+
+      return Curve.JoinCurves(nakedEdges, tol);
     }
 
     public override Point3d ClosestPoint(Point3d pt)
