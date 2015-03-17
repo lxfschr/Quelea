@@ -118,10 +118,12 @@ namespace Agent
           agent.RefPosition = agent.Position;
           agent.Position = agent.RefPosition;
         }
+        agent.PositionHistory.Add(agent.Position);
         if (agent.IsDead())
         {
           toRemove.Add(agent);
         }
+        
       }
       
       foreach (AbstractEmitterType emitter in emitters)
