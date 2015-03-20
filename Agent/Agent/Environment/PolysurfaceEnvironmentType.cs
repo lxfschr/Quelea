@@ -1,19 +1,22 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
 using Agent.Util;
 using Grasshopper.Kernel.Types;
+using Rhino;
 using Rhino.Geometry;
 using Rhino.Geometry.Collections;
 using Rhino.Geometry.Intersect;
 using RS = Agent.Properties.Resources;
+using String = Agent.Util.String;
 
 namespace Agent
 {
   class PolysurfaceEnvironmentType : AbstractEnvironmentType, IDisposable
   {
     private readonly Brep environment;
-    private readonly Curve[] borderCurves;
+    private readonly Brep[] borderWalls;
 
     public void Dispose() {
       environment.Dispose();
@@ -28,7 +31,12 @@ namespace Agent
     public PolysurfaceEnvironmentType(Brep environment)
     {
       this.environment = environment;
-      borderCurves = CalcBorder();
+      Curve[] borderCrvs = GetNakedEdges();
+      IEnumerable<Point3d> edgePts = DivByAngle(borderCrvs, 1.0);
+      IEnumerable<Vector3d> normals = GetBrepNormals(edgePts);
+      double borderSize = environment.GetBoundingBox(Plane.WorldXY).Diagonal.Length/10;
+      borderWalls = GetBorderWalls(borderCrvs, edgePts, normals, borderSize);
+
     }
 
     public PolysurfaceEnvironmentType(PolysurfaceEnvironmentType environment)
@@ -36,7 +44,7 @@ namespace Agent
     {
     }
 
-    private Curve[] CalcBorder()
+    private Curve[] GetNakedEdges()
     {
       List<Curve> nakedEdges = new List<Curve>();
       foreach (BrepEdge edge in environment.Edges)
@@ -49,10 +57,223 @@ namespace Agent
             nakedEdges.Add(crv);
         }
       }
-      Rhino.RhinoDoc doc = Rhino.RhinoDoc.ActiveDoc;
+      RhinoDoc doc = RhinoDoc.ActiveDoc;
       double tol = 2.1 * doc.ModelAbsoluteTolerance;
 
       return Curve.JoinCurves(nakedEdges, tol);
+    }
+
+    /**
+     * divideCrvsByDeltaTan : Curve[] * double -> LinkedList<Plane>
+     * REQUIRES: theta > 0
+     * ENSURES: divideCrvsByDeltaTan(crvs, theta) returns a linked list of planes
+     *          along the curves s.t. there is a plane at every point along
+     *          the curve where the change in the tangent vector between
+     *          two points is greater than theta.
+    **/
+    private static IList<Point3d> DivByAngle(Curve[] crvs, double angle)
+    {
+
+      //initialize parameters
+      double theta = angle;
+      const double stepSize = 0.5;
+
+      //initialize list
+      IList<Point3d> pts = new List<Point3d>();
+
+      Continuity c = Continuity.C1_continuous;
+
+      foreach(Curve crv in crvs)
+      {
+        //initialize data
+        Interval dom = crv.Domain;
+        double rover = dom.Min; //steps along the curve by stepSize
+
+        //Add plane at start point of curve to list
+        Point3d pt = crv.PointAt(rover);
+        pts.Add(pt);
+
+        //Increment
+        Vector3d prevTan = crv.TangentAt(rover);
+        double oldRover = rover; //stores the previous rover for comparison
+        rover += stepSize;
+
+        while (rover < dom.Max)
+        {
+          Vector3d currTan = crv.TangentAt(rover);
+          //If there is a discontinuity between the oldRover and rover
+          //then place a point at the discontinuity and update prevTan.
+          double discontinuity;
+          bool isDisc = crv.GetNextDiscontinuity(c, oldRover, rover,
+            out discontinuity);
+          if (isDisc)
+          {
+            pt = crv.PointAt(discontinuity);
+            pts.Add(pt);
+            prevTan = crv.TangentAt(discontinuity);
+          }
+
+          //If the change in tangent vector is greater than theta,
+          //then drop a target at the rover and update prevTan.
+          double delta = RhinoMath.ToDegrees(Math.Abs(Vector3d.VectorAngle(prevTan, currTan)));
+          if (delta > theta)
+          {
+            pt = crv.PointAt(rover);
+            pts.Add(pt);
+            prevTan = currTan;
+          }
+          //Increment
+          oldRover = rover;
+          rover += stepSize;
+        }
+
+        //Add target at end point of curve
+        pt = crv.PointAt(dom.Max);
+        pts.Add(pt);
+      }
+      return pts;
+    }
+
+    private IEnumerable<Vector3d> GetBrepNormals(IEnumerable<Point3d> pts)
+    {
+      //Initialize variables
+      List<Surface> brepSrfs = new List<Surface>();
+      List<Vector3d> normals = new List<Vector3d>();
+      const double epsilon = 0.000001; //The minimum distance to determine which surface a pt is touching.
+
+      //Explode brep
+      Rhino.Geometry.Collections.BrepFaceList brepFaces = environment.Faces;
+      foreach (BrepFace face in brepFaces)
+      {
+        Surface srf = face.ToBrep().Surfaces[0];
+        if (face.OrientationIsReversed)
+        {
+          brepSrfs.Add(srf.Reverse(0));
+        }
+        else
+        {
+          brepSrfs.Add(srf);
+        }
+      }
+
+      /*
+      for each point, get the closest point to each surface
+      */
+      foreach (Point3d pt in pts)
+      {
+        List<Plane> framesTemp = new List<Plane>();
+        foreach (Surface srf in brepSrfs)
+        {
+          double u;
+          double v;
+          srf.ClosestPoint(pt, out u, out v);
+          Plane frame;
+          srf.FrameAt(u, v, out frame);
+          if (pt.DistanceTo(frame.Origin) <= epsilon)
+          {
+            framesTemp.Add(frame);
+          }
+        }
+        /*
+        if there is 1 close surface:
+          add the two normal vectors together to get the bisector
+        */
+        Vector3d brepNormal;
+        if (framesTemp.Count == 1)
+        {
+          brepNormal = framesTemp[0].Normal;
+        }
+        /*
+        if there are 2 equally close surfaces:
+          add the two normal vectors together to get the bisector
+        */
+        else
+        {
+          brepNormal = framesTemp[0].Normal;
+          foreach (Plane pln in framesTemp)
+          {
+            brepNormal = Vector3d.Add(brepNormal, pln.Normal);
+          }
+        }
+
+        //Set magnitude to distance.
+        brepNormal.Unitize();
+
+        normals.Add(brepNormal);
+      }
+      return normals;
+    }
+
+    private Brep[] GetBorderWalls(Curve[] borderCrvs, IEnumerable<Point3d> pts, IEnumerable<Vector3d> nrmls, double dist)
+    {
+      List<Point3d> ptsOut = new List<Point3d>();
+      List<Point3d> ptsIn = new List<Point3d>();
+      IEnumerator ptEnum = pts.GetEnumerator();
+      IEnumerator nrmlEnum = nrmls.GetEnumerator();
+      while ((ptEnum.MoveNext()) && (nrmlEnum.MoveNext()))
+      {
+        Point3d pt = (Point3d)ptEnum.Current;
+        Vector3d nrml = (Vector3d)nrmlEnum.Current;
+        Transform mvOut = Transform.Translation(nrml * dist);
+        Transform mvIn = Transform.Translation(nrml * -dist);
+        Point3d ptOut = new Point3d(pt);
+        Point3d ptIn = new Point3d(pt);
+        ptOut.Transform(mvOut);
+        ptIn.Transform(mvIn);
+        ptsOut.Add(ptOut);
+        ptsIn.Add(ptIn);
+      }
+
+      Curve crvOut;
+      Curve crvIn;
+
+      if (borderCrvs[0].IsPolyline())
+      {
+        crvOut = new PolylineCurve(ptsOut);
+        crvIn = new PolylineCurve(ptsIn);
+      }
+      else
+      {
+        crvOut = Curve.CreateInterpolatedCurve(ptsOut, 3);
+        crvIn = Curve.CreateInterpolatedCurve(ptsIn, 3);
+      }
+      List<Curve> crvs = new List<Curve>();
+      crvs.Add(crvOut);
+      crvs.Add(crvIn);
+      Brep[] lofts = Brep.CreateFromLoft(crvs, Point3d.Unset, Point3d.Unset, LoftType.Normal, false);
+
+      double minSoFar = Double.MaxValue;
+      Interval interval = new Interval(0, 1);
+      Point3d loftPt = lofts[0].Faces[0].PointAt(0, 0);
+      BrepFace testFace = environment.Faces[0];
+      Point3d facePt = testFace.PointAt(0.25, 0.25);
+      foreach (BrepFace face in environment.Faces)
+      {
+        double u, v;
+        face.ClosestPoint(loftPt, out u, out v);
+        facePt = face.PointAt(u, v);
+        dist = loftPt.DistanceTo(facePt);
+        if (dist < minSoFar)
+        {
+          minSoFar = dist;
+          testFace = face;
+        }
+      }
+
+      Vector3d loftNrml = lofts[0].Faces[0].NormalAt(0, 0);
+      testFace.SetDomain(0, interval);
+      testFace.SetDomain(1, interval);
+      facePt = testFace.PointAt(0.5, 0.5);
+      Vector3d testVec = Vector3d.Subtract(new Vector3d(facePt), new Vector3d(loftPt));
+      double dotProd = Vector3d.Multiply(loftNrml, testVec) / (loftNrml.Length * testVec.Length);
+      if (dotProd >= 0)
+      {
+        foreach (Brep brep in lofts)
+        {
+          brep.Flip();
+        }
+      }
+      return lofts;
     }
 
     public override Point3d ClosestPoint(Point3d pt)
@@ -61,7 +282,7 @@ namespace Agent
       ComponentIndex componentIndex;
       double s;
       double t;
-      double maxDist = 10000;
+      const double maxDist = 100;
       Vector3d normal;
       environment.ClosestPoint(pt, out closestPoint, out componentIndex, out s, out t, maxDist, out normal);
       return closestPoint;
@@ -133,7 +354,59 @@ namespace Agent
 
     public override Vector3d AvoidEdges(AgentType agent, double distance)
     {
-      throw new NotImplementedException();
+      Vector3d steer = new Vector3d();
+      Vector3d avoidVec, parVec;
+
+      Vector3d velocity = agent.Velocity;
+      Point3d position = agent.Position;
+
+      double tol = 0.01;
+
+      Curve[] overlapCrvs;
+      Point3d[] intersectPts;
+
+      Curve[] feelers = GetFeelerCrvs(agent, distance, true);
+      int count = 0;
+
+      foreach (Curve feeler in feelers)
+      {
+        foreach (Brep brep in borderWalls)
+        {
+          //Check feeler intersection with each brep face
+          foreach (BrepFace face in brep.Faces)
+          {
+            Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+            if (intersectPts.Length > 0)
+            {
+              Point3d testPt = feeler.PointAtEnd;
+              double u, v;
+              face.ClosestPoint(testPt, out u, out v);
+              Vector3d normal = face.NormalAt(u, v);
+              normal.Reverse();
+              Vector.GetProjectionComponents(normal, velocity, out parVec, out avoidVec);
+              avoidVec.Unitize();
+              //weight by distance
+              if (!position.DistanceTo(intersectPts[0]).Equals(0))
+              {
+                avoidVec = Vector3d.Divide(avoidVec, position.DistanceTo(intersectPts[0]));
+              }
+              else
+              {
+                avoidVec = Vector3d.Multiply(avoidVec, 1);
+              }
+              steer = Vector3d.Add(steer, avoidVec);
+              count++;
+              break; //Break when we hit a face
+            }
+          }
+        }
+      }
+      if (count > 0)
+      {
+        steer = Vector3d.Divide(steer, count);
+      }
+
+      return steer;
     }
 
     public override bool BounceContain(AgentType agent)
@@ -179,7 +452,7 @@ namespace Agent
 
     public override string ToString()
     {
-      string environmentStr = Util.String.ToString(RS.brepEnvName, environment);
+      string environmentStr = String.ToString(RS.brepEnvName, environment);
       return environmentStr;
     }
 
