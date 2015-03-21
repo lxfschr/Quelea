@@ -219,8 +219,9 @@ namespace Agent
         */
         if (framesTemp.Count > 1)
         {
-          foreach (Plane pln in framesTemp)
+          for (int j = 1; j < framesTemp.Count; j++)
           {
+            Plane pln = framesTemp[j];
             brepNormal = Vector3d.Add(brepNormal, pln.Normal);
           }
         }
