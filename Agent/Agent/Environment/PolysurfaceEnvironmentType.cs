@@ -17,6 +17,7 @@ namespace Agent
   {
     private readonly Brep environment;
     private readonly Brep[][] borderWallsArray;
+    private readonly Vector3d borderDir;
 
     public void Dispose() {
       environment.Dispose();
@@ -28,9 +29,20 @@ namespace Agent
       environment = new Brep();
     }
 
-    public PolysurfaceEnvironmentType(Brep environment)
+    public PolysurfaceEnvironmentType(Brep environment, Vector3d borderDir)
     {
       this.environment = environment;
+      this.borderDir = borderDir;
+      this.borderWallsArray = CreateBorderWalls();
+    }
+
+    public PolysurfaceEnvironmentType(PolysurfaceEnvironmentType environment)
+      : this(environment.environment, environment.borderDir)
+    {
+    }
+
+    private Brep[][] CreateBorderWalls()
+    {
       Curve[] borderCrvs = GetNakedEdges();
 
       int n = borderCrvs.Length;
@@ -44,22 +56,30 @@ namespace Agent
       Vector3d[][] normalsArray = new Vector3d[n][];
       for (int i = 0; i < n; i++)
       {
-        normalsArray[i] = GetBrepNormals(edgePtsArray[i]).ToArray();
+        if (borderDir.Equals(Vector3d.Zero))
+        {
+          normalsArray[i] = GetBrepNormals(edgePtsArray[i]).ToArray();
+        }
+        else
+        {
+          int m = edgePtsArray[i].Length;
+          normalsArray[i] = new Vector3d[m];
+          for (int j = 0; j < m; j++)
+          {
+            normalsArray[i][j] = borderDir;
+          }
+        }
+        
       }
 
       double borderSize = environment.GetBoundingBox(Plane.WorldXY).Diagonal.Length / 10;
 
-      borderWallsArray = new Brep[n][];
+      Brep[][] borderWallsArray = new Brep[n][];
       for (int i = 0; i < n; i++)
       {
         borderWallsArray[i] = GetBorderWalls(borderCrvs[i], edgePtsArray[i], normalsArray[i], borderSize);
       }
-
-    }
-
-    public PolysurfaceEnvironmentType(PolysurfaceEnvironmentType environment)
-      : this(environment.environment)
-    {
+      return borderWallsArray;
     }
 
     private Curve[] GetNakedEdges()
@@ -363,7 +383,7 @@ namespace Agent
 
     public override Vector3d AvoidEdges(AgentType agent, double distance)
     {
-      Vector3d steer = new Vector3d();
+      Vector3d desired = new Vector3d();
       Vector3d avoidVec, parVec;
       double tol = 0.01;
       Curve[] overlapCrvs;
@@ -396,7 +416,7 @@ namespace Agent
                 {
                   avoidVec = Vector3d.Divide(avoidVec, agent.Position.DistanceTo(intersectPts[0]));
                 }
-                steer = Vector3d.Add(steer, avoidVec);
+                desired = Vector3d.Add(desired, avoidVec);
                 count++;
                 break; //Break when we hit a face
               }
@@ -406,15 +426,53 @@ namespace Agent
       }
       if (count > 0)
       {
-        steer = Vector3d.Divide(steer, count);
+        desired = Vector3d.Divide(desired, count);
       }
 
-      return steer;
+      return desired;
     }
 
     public override bool BounceContain(AgentType agent)
     {
-      throw new NotImplementedException();
+      Vector3d velocity = agent.Velocity;
+
+      double tol = 0.01;
+
+      Curve[] feelers = GetFeelerCrvs(agent, agent.BodySize, false);
+
+      foreach (Brep[] borderWalls in borderWallsArray)
+      {
+        foreach (Brep brep in borderWalls)
+        {
+          foreach (Curve feeler in feelers)
+          {
+            //Check feeler intersection with each brep face
+            foreach (BrepFace face in brep.Faces)
+            {
+              Curve[] overlapCrvs;
+              Point3d[] intersectPts;
+              Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+              if (intersectPts.Length > 0)
+              {
+                Point3d testPt = intersectPts[0];
+                double u, v;
+                face.ClosestPoint(testPt, out u, out v);
+                Vector3d normal = face.NormalAt(u, v);
+                normal.Reverse();
+                velocity = Vector.Reflect(velocity, normal);
+                agent.Velocity = velocity;
+                return true;
+              }
+            }
+          }
+        }
+      }
+      return false;
+    }
+
+    public Brep[][] BorderWallsArray 
+    {
+      get { return borderWallsArray; }
     }
 
     public override bool Equals(object obj)

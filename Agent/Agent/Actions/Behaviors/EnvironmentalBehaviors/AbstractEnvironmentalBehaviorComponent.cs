@@ -34,7 +34,7 @@ namespace Agent
 
     protected override bool GetInputs2(IGH_DataAccess da)
     {
-      if (!da.GetData(1, ref environment)) return false;
+      if (!da.GetData(nextInputIndex++, ref environment)) return false;
       return true;
     }
   }
