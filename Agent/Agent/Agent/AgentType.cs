@@ -360,7 +360,7 @@ namespace Agent
       set { initialVelocitySet = value; }
     }
 
-    internal void Kill()
+    internal void Die()
     {
       lifespan = 0;
     }

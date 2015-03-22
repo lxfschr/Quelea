@@ -62,6 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractComponent.cs" />
     <Compile Include="Actions\AbstractActionComponent.cs" />
     <Compile Include="Actions\Behaviors\AbstractBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\BoidBehaviors\AbstractBoidBehaviorComponent.cs" />
@@ -91,6 +92,8 @@
     <Compile Include="Emitters\BoxEmitterType.cs" />
     <Compile Include="Agent\DeconstructAgentCollectionComponent.cs" />
     <Compile Include="Agent\NeighborsComponent.cs" />
+    <Compile Include="Emitters\AbstractEmitterComponent.cs" />
+    <Compile Include="Environment\AbstractEnvironmentComponent.cs" />
     <Compile Include="Environment\PolysurfaceEnvironmentComponent.cs" />
     <Compile Include="Properties\Resources1.Designer.cs">
       <AutoGen>True</AutoGen>

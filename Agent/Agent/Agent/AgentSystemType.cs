@@ -251,5 +251,18 @@ namespace Agent
     {
       get { return RS.systemName; }
     }
+
+    public void Populate()
+    {
+      foreach (AbstractEmitterType emitter in emitters)
+      {
+        if (emitter.ContinuousFlow) continue;
+        for (int i = 0; i < emitter.NumAgents; i++)
+        {
+          AddAgent(emitter);
+        }
+      }
+    }
+
   }
 }

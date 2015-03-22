@@ -10,7 +10,7 @@ namespace Agent
     public EatBehaviorComponent()
       : base("Eat Behavior", "Eat",
           "Kills Agents that are within its neighborhood. Try setting the neighborhood radius to the Predator's Body Size and the angle to be low, mimicing a mouth on the front of the Predator.",
-          RS.behaviorsSubCategoryName, RS.icon_EatBehavior, "{1453af23-ec0e-42d9-b108-d74b00ad4594}")
+          RS.behaviorsSubCategoryName, RS.icon_EatBehavior, "1453af23-ec0e-42d9-b108-d74b00ad4594")
     {
     }
 
@@ -19,7 +19,7 @@ namespace Agent
       bool ate = false;
       foreach (AgentType neighbor in neighbors)
       {
-        neighbor.Kill();
+        neighbor.Die();
         ate = true;
       }
       return ate;

@@ -1,20 +1,20 @@
-﻿using System;
-using System.Drawing;
+﻿using Grasshopper.Kernel;
 using RS = Agent.Properties.Resources;
-using Grasshopper.Kernel;
 
 namespace Agent
 {
-  public class DeconstructAgentComponent : GH_Component
+  public class DeconstructAgentComponent : AbstractComponent
   {
+    private AgentType agent;
     /// <summary>
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
     public DeconstructAgentComponent()
       : base(RS.deconstructAgentName, RS.deconstructAgentNickName,
-          RS.deconstructAgentDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName)
+             RS.deconstructAgentDescription, RS.pluginCategoryName, 
+             RS.pluginSubCategoryName, RS.icon_deconstructAgent, RS.deconstructAgentGUID)
     {
+      agent = new AgentType();
     }
 
     /// <summary>
@@ -38,52 +38,19 @@ namespace Agent
       pManager.HideParameter(4);
     }
 
-    /// <summary>
-    /// This is the method that actually does the work.
-    /// </summary>
-    /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override void SolveInstance(IGH_DataAccess da)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
-      // First, we need to retrieve all data from the input parameters.
-      // We'll start by declaring variables and assigning them starting values.
-      AgentType agent = new AgentType();
-
-      // Then we need to access the input parameters individually. 
-      // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(0, ref agent)) return;
-
-      // We should now validate the data and warn the user if invalid data is supplied.
-
-      // We're set to create the output now. To keep the size of the SolveInstance() method small, 
-      // The actual functionality will be in a different method:
-
-      // Finally assign the spiral to the output parameter.
-      da.SetDataList(0, agent.GetPositionHistoryList());
-      da.SetData(1, agent.Velocity);
-      da.SetData(2, agent.Acceleration);
-      da.SetData(3, agent.Lifespan);
-      da.SetData(4, agent.RefPosition);
+      if (!da.GetData(nextInputIndex++, ref agent)) return false;
+      return true;
     }
 
-    /// <summary>
-    /// Provides an Icon for the component.
-    /// </summary>
-    protected override Bitmap Icon
+    protected override void SetOutputs(IGH_DataAccess da)
     {
-      get
-      {
-        //You can add image files to your project resources and access them like this:
-        // return Resources.IconForThisComponent;
-        return RS.icon_deconstructAgent;
-      }
-    }
-
-    /// <summary>
-    /// Gets the unique ID for this component. Do not change this ID after release.
-    /// </summary>
-    public override Guid ComponentGuid
-    {
-      get { return new Guid(RS.deconstructAgentGUID); }
+      da.SetDataList(nextOutputIndex++, agent.GetPositionHistoryList());
+      da.SetData(nextOutputIndex++, agent.Velocity);
+      da.SetData(nextOutputIndex++, agent.Acceleration);
+      da.SetData(nextOutputIndex++, agent.Lifespan);
+      da.SetData(nextOutputIndex++, agent.RefPosition);
     }
   }
 }

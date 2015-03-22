@@ -1,29 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Collections.Generic;
 using Grasshopper.Kernel;
 using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class AgentSystemComponent : GH_Component
+  public class AgentSystemComponent : AbstractComponent
   {
     private AgentSystemType system;
+    private List<AgentType> agents;
+    private List<AbstractEmitterType> emitters;
+    private AbstractEnvironmentType environment;
     /// <summary>
     /// Initializes a new instance of the AgentSystemComponent class.
     /// </summary>
     public AgentSystemComponent()
       : base(RS.systemName, RS.systemComponentNickName,
           RS.systemDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName)
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_system, RS.systemComponentGUID)
     {
+      
     }
 
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams
-      (GH_InputParamManager pManager)
+    protected override void RegisterInputParams (GH_InputParamManager pManager)
     {
       pManager.AddGenericParameter(RS.agentsName, RS.agentNickName, RS.agentDescription, 
                                     GH_ParamAccess.list);
@@ -44,43 +45,35 @@ namespace Agent
                                    GH_ParamAccess.item);
     }
 
-    /// <summary>
-    /// This is the method that actually does the work.
-    /// </summary>
-    /// <param name="da">The DA object is used to retrieve from inputs and 
-    /// store in outputs.</param>
-    protected override void SolveInstance(IGH_DataAccess da)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
-      // First, we need to retrieve all data from the input parameters.
-      // We'll start by declaring variables and assigning them starting values.
-      List<AgentType> agents = new List<AgentType>();
-      List<AbstractEmitterType> emitters = new List<AbstractEmitterType>();
-      AbstractEnvironmentType environment = null;
-
+      agents = new List<AgentType>();
+      emitters = new List<AbstractEmitterType>();
+      environment = null;
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this
       // method.
-      if (!da.GetDataList(0, agents)) return;
-      if (!da.GetDataList(1, emitters)) return;
-      da.GetData(2, ref environment);
-      
-      //if (!DA.GetDataList(2, forces)) return;
+      if (!da.GetDataList(nextInputIndex++, agents)) return false;
+      if (!da.GetDataList(nextInputIndex++, emitters)) return false;
+      da.GetData(nextInputIndex++, ref environment);
 
       // We should now validate the data and warn the user if invalid data is 
       // supplied.
       if (agents.Count <= 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.agentsCountErrorMessage);
-        return;
+        return false;
       }
       if (emitters.Count <= 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.emittersCountErrorMessage);
-        return;
+        return false;
       }
+      return true;
+    }
 
-      // We're set to create the output now. To keep the size of the SolveInstance() method small, 
-      // The actual functionality will be in a different method:
+    protected override void SetOutputs(IGH_DataAccess da)
+    {
       if (system == null)
       {
         system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment);
@@ -91,28 +84,7 @@ namespace Agent
       }
 
       // Finally assign the system to the output parameter.
-      da.SetData(0, system);
-    }
-
-    /// <summary>
-    /// Provides an Icon for the component.
-    /// </summary>
-    protected override Bitmap Icon
-    {
-      get
-      {
-        //You can add image files to your project resources and access them like this:
-        // return RS.IconForThisComponent;
-        return RS.icon_system;
-      }
-    }
-
-    /// <summary>
-    /// Gets the unique ID for this component. Do not change this ID after release.
-    /// </summary>
-    public override Guid ComponentGuid
-    {
-      get { return new Guid(RS.systemComponentGUID); }
+      da.SetData(nextOutputIndex++, system);
     }
   }
 }

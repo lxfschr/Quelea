@@ -1,30 +1,21 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using Grasshopper.Kernel;
 using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class AbstractActionComponent : GH_Component
+  public abstract class AbstractActionComponent : AbstractComponent
   {
-    private readonly Bitmap icon;
-    private readonly Guid componentGuid;
-
     protected AgentType agent;
     protected bool apply;
-
-    protected int nextInputIndex, nextOutputIndex;
 
     /// <summary>
     /// Initializes a new instance of the AbstractActionComponent class.
     /// </summary>
     protected AbstractActionComponent(string name, string nickname, string description, 
                                      string subcategory, Bitmap icon, string componentGuid)
-      : base(name, nickname, description, RS.pluginCategoryName, subcategory)
+      : base(name, nickname, description, RS.pluginCategoryName, subcategory, icon, componentGuid)
     {
-      this.icon = icon;
-      this.componentGuid = new Guid(componentGuid);
-
       agent = new AgentType();
       apply = true;
     }
@@ -43,22 +34,7 @@ namespace Agent
          GH_ParamAccess.item, RS.applyDefault);
     }
 
-    /// <summary>
-    /// Registers all the output parameters for this component.
-    /// </summary>
-    protected abstract override void RegisterOutputParams(GH_OutputParamManager pManager);
-
-    /// <summary>
-    /// This is the method that actually does the work.
-    /// </summary>
-    /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override void SolveInstance(IGH_DataAccess da)
-    {
-      nextInputIndex = nextOutputIndex = 0;
-      if (!GetInputs(da)) return;
-    }
-
-    protected virtual bool GetInputs(IGH_DataAccess da)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
       // First, we need to retrieve all data from the input parameters.
 
@@ -68,27 +44,6 @@ namespace Agent
       if (!da.GetData(nextInputIndex++, ref apply)) return false;
 
       return true;
-    }
-
-    /// <summary>
-    /// Provides an Icon for the component.
-    /// </summary>
-    protected override Bitmap Icon
-    {
-      get
-      {
-        //You can add image files to your project resources and access them like this:
-        // return Resources.IconForThisComponent;
-        return icon;
-      }
-    }
-
-    /// <summary>
-    /// Gets the unique ID for this component. Do not change this ID after release.
-    /// </summary>
-    public override Guid ComponentGuid
-    {
-      get { return componentGuid; }
     }
   }
 }

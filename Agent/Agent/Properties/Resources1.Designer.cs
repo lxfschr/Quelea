@@ -79,7 +79,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {3703308d-1d46-469a-bdf7-bdeec8359171}.
+        ///   Looks up a localized string similar to 3703308d-1d46-469a-bdf7-bdeec8359171.
         /// </summary>
         internal static string AABoxEnvGUID {
             get {
@@ -269,7 +269,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {2734fde9-1c90-4ecd-bcf8-c58dafc5e161}.
+        ///   Looks up a localized string similar to 2734fde9-1c90-4ecd-bcf8-c58dafc5e161.
         /// </summary>
         internal static string alignForceGUID {
             get {
@@ -351,7 +351,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1a428676-8336-4bf6-878a-7366a129140c}.
+        ///   Looks up a localized string similar to 1a428676-8336-4bf6-878a-7366a129140c.
         /// </summary>
         internal static string attractForceGuid {
             get {
@@ -554,7 +554,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {a266091b-aa80-4323-8239-53d9fc4666be}.
+        ///   Looks up a localized string similar to a266091b-aa80-4323-8239-53d9fc4666be.
         /// </summary>
         internal static string bounceContainBehGUID {
             get {
@@ -618,7 +618,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {6a21f2fd-ff8b-41c8-837d-fce5a6ffa2f7}.
+        ///   Looks up a localized string similar to 6a21f2fd-ff8b-41c8-837d-fce5a6ffa2f7.
         /// </summary>
         internal static string boxEmitGUID {
             get {
@@ -690,7 +690,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {27402fe3-133b-4ce2-9b3d-bbc081f4db71}.
+        ///   Looks up a localized string similar to 27402fe3-133b-4ce2-9b3d-bbc081f4db71.
         /// </summary>
         internal static string brepEnvGUID {
             get {
@@ -753,7 +753,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {c8fd8532-661e-47f1-99c1-b8552bb83b73}.
+        ///   Looks up a localized string similar to c8fd8532-661e-47f1-99c1-b8552bb83b73.
         /// </summary>
         internal static string coheseForceGUID {
             get {
@@ -780,7 +780,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {cb8d83ac-eca9-4378-9048-15b37879df2e}.
+        ///   Looks up a localized string similar to cb8d83ac-eca9-4378-9048-15b37879df2e.
         /// </summary>
         internal static string constructAgentComponentGUID {
             get {
@@ -825,7 +825,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {5a6a85be-31d7-47de-bc3b-99a0caf5bcff}.
+        ///   Looks up a localized string similar to 5a6a85be-31d7-47de-bc3b-99a0caf5bcff.
         /// </summary>
         internal static string containForceGUID {
             get {
@@ -954,7 +954,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {fdfef03a-611a-4c07-8b59-317ab92ee69a}.
+        ///   Looks up a localized string similar to fdfef03a-611a-4c07-8b59-317ab92ee69a.
         /// </summary>
         internal static string crvEmitGUID {
             get {
@@ -1044,7 +1044,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b}.
+        ///   Looks up a localized string similar to 2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b.
         /// </summary>
         internal static string deconstructAgentGUID {
             get {
@@ -1080,7 +1080,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {525078b6-0eb9-4d7f-9824-45f0861c19ea}.
+        ///   Looks up a localized string similar to 525078b6-0eb9-4d7f-9824-45f0861c19ea.
         /// </summary>
         internal static string deconstructSystemGUID {
             get {
@@ -1107,7 +1107,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {ef3ec326-e61f-430a-98b9-c11ad27680a2}.
+        ///   Looks up a localized string similar to ef3ec326-e61f-430a-98b9-c11ad27680a2.
         /// </summary>
         internal static string desconstructACGUID {
             get {
@@ -1188,7 +1188,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {b0f076cb-8558-46a1-bf94-20a97a1b4d08}.
+        ///   Looks up a localized string similar to b0f076cb-8558-46a1-bf94-20a97a1b4d08.
         /// </summary>
         internal static string engineGUID {
             get {
@@ -1287,7 +1287,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {9d56197a-8880-4564-b280-0022a75d73c7}.
+        ///   Looks up a localized string similar to 9d56197a-8880-4564-b280-0022a75d73c7.
         /// </summary>
         internal static string followPathForceGuid {
             get {
@@ -1407,6 +1407,16 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_AABoxEnvironment {
+            get {
+                object obj = ResourceManager.GetObject("icon_AABoxEnvironment", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_agent {
             get {
                 object obj = ResourceManager.GetObject("icon_agent", resourceCulture);
@@ -1470,16 +1480,6 @@ namespace Agent.Properties {
         internal static System.Drawing.Bitmap icon_boxEmitter {
             get {
                 object obj = ResourceManager.GetObject("icon_boxEmitter", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icon_boxEnvironment {
-            get {
-                object obj = ResourceManager.GetObject("icon_boxEnvironment", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1888,7 +1888,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {2477a136-9479-4e3e-b60a-1570ee1ab896}.
+        ///   Looks up a localized string similar to 2477a136-9479-4e3e-b60a-1570ee1ab896.
         /// </summary>
         internal static string neighborsGUID {
             get {
@@ -2143,7 +2143,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {7de9eadc-3864-4bb0-9ee0-98b52466323a}.
+        ///   Looks up a localized string similar to 7de9eadc-3864-4bb0-9ee0-98b52466323a.
         /// </summary>
         internal static string ptEmitGUID {
             get {
@@ -2243,7 +2243,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {1ba32976-9427-425e-aa14-fe86ee64a50a}.
+        ///   Looks up a localized string similar to 1ba32976-9427-425e-aa14-fe86ee64a50a.
         /// </summary>
         internal static string separateForceGUID {
             get {
@@ -2288,7 +2288,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {6366359a-7e08-440a-8cab-78403729c8e2}.
+        ///   Looks up a localized string similar to 6366359a-7e08-440a-8cab-78403729c8e2.
         /// </summary>
         internal static string srfEnvGUID {
             get {
@@ -2333,7 +2333,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {9024180f-7500-456d-a79c-75b7c2d308ea}.
+        ///   Looks up a localized string similar to 9024180f-7500-456d-a79c-75b7c2d308ea.
         /// </summary>
         internal static string systemComponentGUID {
             get {
@@ -2443,7 +2443,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {92f9d4d9-6b50-458f-bdfc-bbebae55b8de}.
+        ///   Looks up a localized string similar to 92f9d4d9-6b50-458f-bdfc-bbebae55b8de.
         /// </summary>
         internal static string viewForceGuid {
             get {

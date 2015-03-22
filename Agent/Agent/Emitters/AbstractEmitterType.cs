@@ -12,10 +12,8 @@ namespace Agent
     protected readonly int numAgents;
 
     protected AbstractEmitterType()
+      :this(RS.continuousFlowDefault, RS.creationRateDefault, RS.numAgentsDefault)
     {
-      continuousFlow = RS.continuousFlowDefault;
-      creationRate = RS.creationRateDefault;
-      numAgents = RS.numAgentsDefault;
     }
 
     protected AbstractEmitterType(bool continuousFlow, int creationRate, int numAgents)

@@ -9,7 +9,7 @@ namespace Agent
     public SeekForceComponent()
       : base("Seek Force", "Seek",
           "Applies a force to steer the Agent towards the point.",
-          RS.forcesSubCategoryName, RS.icon_seekForce, "{c0613c95-7c90-4328-af8c-fcdafe059da9}")
+          RS.forcesSubCategoryName, RS.icon_seekForce, "c0613c95-7c90-4328-af8c-fcdafe059da9")
     {
     }
 

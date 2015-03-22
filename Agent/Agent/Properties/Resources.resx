@@ -202,7 +202,7 @@
     <value>Steer towards the average heading of neighbors.</value>
   </data>
   <data name="alignForceGUID" xml:space="preserve">
-    <value>{2734fde9-1c90-4ecd-bcf8-c58dafc5e161}</value>
+    <value>2734fde9-1c90-4ecd-bcf8-c58dafc5e161</value>
   </data>
   <data name="alignForceName" xml:space="preserve">
     <value>Align Force</value>
@@ -217,7 +217,7 @@
     <value>Steer to move toward the average position of neighbors</value>
   </data>
   <data name="coheseForceGUID" xml:space="preserve">
-    <value>{c8fd8532-661e-47f1-99c1-b8552bb83b73}</value>
+    <value>c8fd8532-661e-47f1-99c1-b8552bb83b73</value>
   </data>
   <data name="coheseForceName" xml:space="preserve">
     <value>Cohese Force</value>
@@ -247,7 +247,7 @@
     <value>Steer to avoid neighbors.</value>
   </data>
   <data name="separateForceGUID" xml:space="preserve">
-    <value>{1ba32976-9427-425e-aa14-fe86ee64a50a}</value>
+    <value>1ba32976-9427-425e-aa14-fe86ee64a50a</value>
   </data>
   <data name="separateForceName" xml:space="preserve">
     <value>Separate Force</value>
@@ -277,7 +277,7 @@
     <value>Vision Radius must be greater than or equal to 0.</value>
   </data>
   <data name="constructAgentComponentGUID" xml:space="preserve">
-    <value>{cb8d83ac-eca9-4378-9048-15b37879df2e}</value>
+    <value>cb8d83ac-eca9-4378-9048-15b37879df2e</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lifespanDefault" type="System.Int32, mscorlib">
@@ -335,7 +335,7 @@
     <value>There must be at least 1 Emitter.</value>
   </data>
   <data name="systemComponentGUID" xml:space="preserve">
-    <value>{9024180f-7500-456d-a79c-75b7c2d308ea}</value>
+    <value>9024180f-7500-456d-a79c-75b7c2d308ea</value>
   </data>
   <data name="velocityDefault" type="System.Double, mscorlib">
     <value>0.1</value>
@@ -377,7 +377,7 @@
     <value>Box must be aligned to WorldXY.</value>
   </data>
   <data name="AABoxEnvGUID" xml:space="preserve">
-    <value>{3703308d-1d46-469a-bdf7-bdeec8359171}</value>
+    <value>3703308d-1d46-469a-bdf7-bdeec8359171</value>
   </data>
   <data name="behaviorDescription" xml:space="preserve">
     <value>A Behavior alters the state of the agent.</value>
@@ -428,7 +428,7 @@
     <value>True iff the behavior was applied to the agent.</value>
   </data>
   <data name="bounceContainBehGUID" xml:space="preserve">
-    <value>{a266091b-aa80-4323-8239-53d9fc4666be}</value>
+    <value>a266091b-aa80-4323-8239-53d9fc4666be</value>
   </data>
   <data name="boxEmitName" xml:space="preserve">
     <value>Box Emitter</value>
@@ -486,7 +486,7 @@
     <value>Number of Agents must be greater than or equal to 0.</value>
   </data>
   <data name="boxEmitGUID" xml:space="preserve">
-    <value>{6a21f2fd-ff8b-41c8-837d-fce5a6ffa2f7}</value>
+    <value>6a21f2fd-ff8b-41c8-837d-fce5a6ffa2f7</value>
   </data>
   <data name="containForceName" xml:space="preserve">
     <value>Contain Force</value>
@@ -522,7 +522,7 @@
     <value>Vision Radius Multiplier must be between 0 and 1.</value>
   </data>
   <data name="containForceGUID" xml:space="preserve">
-    <value>{5a6a85be-31d7-47de-bc3b-99a0caf5bcff}</value>
+    <value>5a6a85be-31d7-47de-bc3b-99a0caf5bcff</value>
   </data>
   <data name="deconstructACName" xml:space="preserve">
     <value>Deconstruct AgentCollection</value>
@@ -540,7 +540,7 @@
     <value>A container object of Agents to provide for fast lookup of neighbors.</value>
   </data>
   <data name="desconstructACGUID" xml:space="preserve">
-    <value>{ef3ec326-e61f-430a-98b9-c11ad27680a2}</value>
+    <value>ef3ec326-e61f-430a-98b9-c11ad27680a2</value>
   </data>
   <data name="deconstructAgentName" xml:space="preserve">
     <value>Deconstruct Agent</value>
@@ -588,7 +588,7 @@
     <value>The past positions of the agent.</value>
   </data>
   <data name="deconstructAgentGUID" xml:space="preserve">
-    <value>{2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b}</value>
+    <value>2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b</value>
   </data>
   <data name="deconstructSystemName" xml:space="preserve">
     <value>Deconstruct System</value>
@@ -600,7 +600,7 @@
     <value>Deconstructs a System to expose its Agents and AgentCollection.</value>
   </data>
   <data name="deconstructSystemGUID" xml:space="preserve">
-    <value>{525078b6-0eb9-4d7f-9824-45f0861c19ea}</value>
+    <value>525078b6-0eb9-4d7f-9824-45f0861c19ea</value>
   </data>
   <data name="continuousFlowDefault" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -645,7 +645,7 @@
     <value>True</value>
   </data>
   <data name="engineGUID" xml:space="preserve">
-    <value>{b0f076cb-8558-46a1-bf94-20a97a1b4d08}</value>
+    <value>b0f076cb-8558-46a1-bf94-20a97a1b4d08</value>
   </data>
   <data name="environmentDescription" xml:space="preserve">
     <value>An object representing the environment the Agents will interact with.</value>
@@ -672,7 +672,7 @@
     <value>The neighbors of the Agent.</value>
   </data>
   <data name="neighborsGUID" xml:space="preserve">
-    <value>{2477a136-9479-4e3e-b60a-1570ee1ab896}</value>
+    <value>2477a136-9479-4e3e-b60a-1570ee1ab896</value>
   </data>
   <data name="curveName" xml:space="preserve">
     <value>Curve</value>
@@ -714,7 +714,7 @@
     <value>A point from which Agents can be emitted.</value>
   </data>
   <data name="ptEmitGUID" xml:space="preserve">
-    <value>{7de9eadc-3864-4bb0-9ee0-98b52466323a}</value>
+    <value>7de9eadc-3864-4bb0-9ee0-98b52466323a</value>
   </data>
   <data name="brepEnvName" xml:space="preserve">
     <value>Brep Environment</value>
@@ -738,7 +738,7 @@
     <value>Brep must be closed.</value>
   </data>
   <data name="brepEnvGUID" xml:space="preserve">
-    <value>{27402fe3-133b-4ce2-9b3d-bbc081f4db71}</value>
+    <value>27402fe3-133b-4ce2-9b3d-bbc081f4db71</value>
   </data>
   <data name="srfEnvName" xml:space="preserve">
     <value>Surface Environment</value>
@@ -759,10 +759,10 @@
     <value>An untrimmed Surface.</value>
   </data>
   <data name="srfEnvGUID" xml:space="preserve">
-    <value>{6366359a-7e08-440a-8cab-78403729c8e2}</value>
+    <value>6366359a-7e08-440a-8cab-78403729c8e2</value>
   </data>
   <data name="crvEmitGUID" xml:space="preserve">
-    <value>{fdfef03a-611a-4c07-8b59-317ab92ee69a}</value>
+    <value>fdfef03a-611a-4c07-8b59-317ab92ee69a</value>
   </data>
   <data name="weightMultiplierName" xml:space="preserve">
     <value>Weight Multiplier</value>
@@ -786,7 +786,7 @@
     <value>Applys a force to move the Agent laterally away from any Agent that blocks its view.</value>
   </data>
   <data name="viewForceGuid" xml:space="preserve">
-    <value>{92f9d4d9-6b50-458f-bdfc-bbebae55b8de}</value>
+    <value>92f9d4d9-6b50-458f-bdfc-bbebae55b8de</value>
   </data>
   <data name="toleranceDefault" type="System.Double, mscorlib">
     <value>0.0001</value>
@@ -804,7 +804,7 @@
     <value>Forces</value>
   </data>
   <data name="attractForceGuid" xml:space="preserve">
-    <value>{1a428676-8336-4bf6-878a-7366a129140c}</value>
+    <value>1a428676-8336-4bf6-878a-7366a129140c</value>
   </data>
   <data name="followPathForceName" xml:space="preserve">
     <value>Follow Path Force</value>
@@ -816,7 +816,7 @@
     <value>Applies a Force to an Agent to move along and stay within a specified radius of a curve.</value>
   </data>
   <data name="followPathForceGuid" xml:space="preserve">
-    <value>{9d56197a-8880-4564-b280-0022a75d73c7}</value>
+    <value>9d56197a-8880-4564-b280-0022a75d73c7</value>
   </data>
   <data name="curveForFollowPathDescription" xml:space="preserve">
     <value>A curve representing the spine of the Path to follow.</value>
@@ -945,7 +945,7 @@
   <data name="icon_applyCustomForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_applyCustomForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_boxEnvironment" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="icon_AABoxEnvironment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_boxEnvironment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_brepEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">

@@ -1,20 +1,30 @@
-﻿using System;
-using System.Drawing;
-using Grasshopper.Kernel;
+﻿using Grasshopper.Kernel;
 using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class AgentComponent : GH_Component
+  public class AgentComponent : AbstractComponent
   {
+    private int lifespan;
+    private double mass;
+    private double bodySize;
+    private double maxSpeed;
+    private double maxForce;
+    private int historyLength;
     /// <summary>
     /// Initializes a new instance of the AgentComponent class.
     /// </summary>
     public AgentComponent()
       : base(RS.constructAgentName, RS.constructAgentNickName,
           RS.constructAgentDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName)
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_agent, RS.constructAgentComponentGUID)
     {
+      lifespan = RS.lifespanDefault;
+      mass = RS.massDefault;
+      bodySize = RS.bodySizeDefault;
+      maxSpeed = RS.maxSpeedDefault;
+      maxForce = RS.maxForceDefault;
+      historyLength = RS.historyLenDefault;
     }
 
     /// <summary>
@@ -38,31 +48,16 @@ namespace Agent
       pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.item);
     }
 
-    /// <summary>
-    /// This is the method that actually does the work.
-    /// </summary>
-    /// <param name="DA">The DA object is used to retrieve from inputs and store in outputs.</param>
-    // ReSharper disable once InconsistentNaming
-    protected override void SolveInstance(IGH_DataAccess DA)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
-      // First, we need to retrieve all data from the input parameters.
-      // We'll start by declaring variables and assigning them starting values.
-      int lifespan = RS.lifespanDefault;
-      double mass = RS.massDefault;
-      double bodySize = RS.bodySizeDefault;
-      double maxSpeed = RS.maxSpeedDefault;
-      double maxForce = RS.maxForceDefault;
-      int historyLength = RS.historyLenDefault;
-
-
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!DA.GetData(0, ref lifespan)) return;
-      if (!DA.GetData(1, ref mass)) return;
-      if (!DA.GetData(2, ref bodySize)) return;
-      if (!DA.GetData(3, ref maxSpeed)) return;
-      if (!DA.GetData(4, ref maxForce)) return;
-      if (!DA.GetData(5, ref historyLength)) return;
+      if (!da.GetData(nextInputIndex++, ref lifespan)) return false;
+      if (!da.GetData(nextInputIndex++, ref mass)) return false;
+      if (!da.GetData(nextInputIndex++, ref bodySize)) return false;
+      if (!da.GetData(nextInputIndex++, ref maxSpeed)) return false;
+      if (!da.GetData(nextInputIndex++, ref maxForce)) return false;
+      if (!da.GetData(nextInputIndex++, ref historyLength)) return false;
 
       // We should now validate the data and warn the user if invalid data is supplied.
       //if (lifespan <= 0)
@@ -73,57 +68,40 @@ namespace Agent
       if (mass <= 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.massErrorMessage);
-        return;
+        return false;
       }
       if (bodySize < 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.bodySizeErrorMessage);
-        return;
+        return false;
       }
       if (maxSpeed < 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.maxSpeedErrorMessage);
-        return;
+        return false;
       }
       if (maxForce < 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.maxForceErrorMessage);
-        return;
+        return false;
       }
       if (historyLength < 1)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "History length must be at least 1.");
-        return;
+        return false;
       }
+      return true;
+    }
 
+    protected override void SetOutputs(IGH_DataAccess da)
+    {
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
       AgentType agent = new AgentType(lifespan, mass, bodySize, maxSpeed,
                                       maxForce, historyLength);
 
       // Finally assign the spiral to the output parameter.
-      DA.SetData(0, agent);
-    }
-
-    /// <summary>
-    /// Provides an Icon for the component.
-    /// </summary>
-    protected override Bitmap Icon
-    {
-      get
-      {
-        //You can add image files to your project resources and access them like this:
-        // return Resources.IconForThisComponent;
-        return RS.icon_agent;
-      }
-    }
-
-    /// <summary>
-    /// Gets the unique ID for this component. Do not change this ID after release.
-    /// </summary>
-    public override Guid ComponentGuid
-    {
-      get { return new Guid(RS.constructAgentComponentGUID); }
+      da.SetData(nextOutputIndex++, agent);
     }
   }
 }

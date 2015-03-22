@@ -1,21 +1,29 @@
 ﻿using System;
-using System.Drawing;
-using RS = Agent.Properties.Resources;
+using Agent.Util;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
+using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class NeighborsComponent : GH_Component
+  public class NeighborsComponent : AbstractComponent
   {
+    private AgentType agent;
+    private SpatialCollectionType agentCollection;
+    private double visionRadius;
+    private double visionAngle;
     /// <summary>
     /// Initializes a new instance of the NeighborsComponent class.
     /// </summary>
     public NeighborsComponent()
       : base(RS.getNeighborsInRadiusName, RS.getNeighborsInRadiusComponentNickName,
           RS.getNeighborsInRadiusDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName)
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_neighborsInRadius, RS.neighborsGUID)
     {
+      agent = new AgentType();
+      agentCollection = new SpatialCollectionType();
+      visionRadius = RS.visionRadiusDefault;
+      visionAngle = RS.visionAngleDefault;
     }
 
     /// <summary>
@@ -51,54 +59,41 @@ namespace Agent
       //pManager.HideParameter(1);
     }
 
-    /// <summary>
-    /// This is the method that actually does the work.
-    /// </summary>
-    /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override void SolveInstance(IGH_DataAccess da)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
-      // First, we need to retrieve all data from the input parameters.
-      // We'll start by declaring variables and assigning them starting values.
-      AgentType agent = new AgentType();
-      SpatialCollectionType agentCollection = new SpatialCollectionType();
-      double visionRadius = RS.visionRadiusDefault;
-      double visionAngle = RS.visionAngleDefault;
-
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(0, ref agent)) return;
-      if (!da.GetData(1, ref agentCollection)) return;
-      da.GetData(2, ref visionRadius);
-      da.GetData(3, ref visionAngle);
+      if (!da.GetData(nextInputIndex++, ref agent)) return false;
+      if (!da.GetData(nextInputIndex++, ref agentCollection)) return false;
+      da.GetData(nextInputIndex++, ref visionRadius);
+      da.GetData(nextInputIndex++, ref visionAngle);
 
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (!(0.0 <= visionRadius))
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionRadiusErrorMessage);
-        return;
+        return false;
       }
       if (!(0.0 <= visionAngle && visionAngle <= 360.0))
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionAngleErrorMessage);
-        return;
+        return false;
       }
-
-      // We're set to create the output now. To keep the size of the SolveInstance() method small, 
-      // The actual functionality will be in a different method:
-
-      SpatialCollectionType neighbors = Run(agent, agentCollection, visionRadius, visionAngle);
-
-      // Finally assign the output parameter.
-      da.SetData(0, neighbors);
+      return true;
     }
 
-    private SpatialCollectionType Run(AgentType agent, SpatialCollectionType agentCollection,
-                               double visionRadius, double visionAngle)
+    protected override void SetOutputs(IGH_DataAccess da)
+    {
+      SpatialCollectionType neighbors = Run();
+      da.SetData(nextOutputIndex++, neighbors);
+    }
+
+    private SpatialCollectionType Run()
     {
       ISpatialCollection<AgentType> neighborsInSphere = agentCollection.Agents.GetNeighborsInSphere(agent, visionRadius);
 
-      if (Util.Number.ApproximatelyEqual(visionAngle, 360, RS.toleranceDefault))
+      if (Number.ApproximatelyEqual(visionAngle, 360, RS.toleranceDefault))
       {
         return new SpatialCollectionType(neighborsInSphere);
       }
@@ -114,37 +109,16 @@ namespace Agent
       foreach (AgentType neighbor in neighborsInSphere)
       {
         Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.RefPosition), new Vector3d(position));
-        double angle1 = Util.Vector.CalcAngle(velocity, diff, pl1);
-        double angle2 = Util.Vector.CalcAngle(velocity, diff, pl2);
-        if (Util.Number.ApproximatelyEqual(angle1, visionAngle / 2, RS.toleranceDefault) && 
-            Util.Number.ApproximatelyEqual(angle2, visionAngle / 2, RS.toleranceDefault))
+        double angle1 = Vector.CalcAngle(velocity, diff, pl1);
+        double angle2 = Vector.CalcAngle(velocity, diff, pl2);
+        if (Number.ApproximatelyEqual(angle1, visionAngle / 2, RS.toleranceDefault) &&
+            Number.ApproximatelyEqual(angle2, visionAngle / 2, RS.toleranceDefault))
         {
           neighbors.Add(neighbor);
         }
       }
 
       return new SpatialCollectionType(neighbors);
-    }
-
-    /// <summary>
-    /// Provides an Icon for the component.
-    /// </summary>
-    protected override Bitmap Icon
-    {
-      get
-      {
-        //You can add image files to your project resources and access them like this:
-        // return Resources.IconForThisComponent;
-        return RS.icon_neighborsInRadius;
-      }
-    }
-
-    /// <summary>
-    /// Gets the unique ID for this component. Do not change this ID after release.
-    /// </summary>
-    public override Guid ComponentGuid
-    {
-      get { return new Guid(RS.neighborsGUID); }
     }
   }
 }

@@ -49,23 +49,6 @@ namespace Agent
       //pManager.HideParameter(1);
     }
 
-    /// <summary>
-    /// This is the method that actually does the work.
-    /// </summary>
-    /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override void SolveInstance(IGH_DataAccess da)
-    {
-      base.SolveInstance(da);
-      if (!apply)
-      {
-        da.SetData(nextOutputIndex++, Vector3d.Zero);
-        return;
-      }
-
-      Vector3d force = Run();
-      da.SetData(nextOutputIndex++, force);
-    }
-
     protected override bool GetInputs(IGH_DataAccess da)
     {
       if(!base.GetInputs(da)) return false;
@@ -76,6 +59,18 @@ namespace Agent
       if (!da.GetData(nextInputIndex++, ref weightMultiplier)) return false;
 
       return true;
+    }
+
+    protected override void SetOutputs(IGH_DataAccess da)
+    {
+      if (!apply)
+      {
+        da.SetData(nextOutputIndex++, Vector3d.Zero);
+        return;
+      }
+
+      Vector3d force = Run();
+      da.SetData(nextOutputIndex++, force);
     }
 
     protected Vector3d Run()
