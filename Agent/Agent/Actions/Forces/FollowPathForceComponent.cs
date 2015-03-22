@@ -21,8 +21,9 @@ namespace Agent
       pathTargetDistance = RS.visionRadiusDefault;
     }
 
-    protected override void RegisterInputParams3(GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
+      base.RegisterInputParams(pManager);
       pManager.AddCurveParameter(RS.curveName, RS.curveNickName, RS.curveForFollowPathDescription, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.pathRadiusName, RS.radiusNickName,
         RS.pathRadiusDescription, GH_ParamAccess.item, RS.pathRadiusDefault);
@@ -33,8 +34,9 @@ namespace Agent
         GH_ParamAccess.item, RS.visionRadiusDefault);
     }
 
-    protected override bool GetInputs3(IGH_DataAccess da)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
+      if(!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref path)) return false;
       if (!da.GetData(nextInputIndex++, ref radius)) return false;
       if (!da.GetData(nextInputIndex++, ref predictionDistance)) return false;
@@ -67,10 +69,6 @@ namespace Agent
         steer = Util.Agent.Seek(agent, offset);
       }
       return steer;
-    }
-
-    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
-    {
     }
   }
 }

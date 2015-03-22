@@ -41,10 +41,7 @@ namespace Agent
       pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.item);
       pManager.AddBooleanParameter(RS.applyName, RS.booleanNickname, RS.applyDescription,
          GH_ParamAccess.item, RS.applyDefault);
-      RegisterInputParams2(pManager);
     }
-
-    protected abstract void RegisterInputParams2(GH_InputParamManager pManager);
 
     /// <summary>
     /// Registers all the output parameters for this component.
@@ -59,10 +56,7 @@ namespace Agent
     {
       nextInputIndex = nextOutputIndex = 0;
       if (!GetInputs(da)) return;
-      SolveInstance2(da);
     }
-
-    protected abstract void SolveInstance2(IGH_DataAccess da);
 
     protected virtual bool GetInputs(IGH_DataAccess da)
     {
@@ -73,10 +67,8 @@ namespace Agent
       if (!da.GetData(nextInputIndex++, ref agent)) return false;
       if (!da.GetData(nextInputIndex++, ref apply)) return false;
 
-      return GetInputs2(da);
+      return true;
     }
-
-    protected abstract bool GetInputs2(IGH_DataAccess da);
 
     /// <summary>
     /// Provides an Icon for the component.

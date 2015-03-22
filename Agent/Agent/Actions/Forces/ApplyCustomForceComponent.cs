@@ -15,13 +15,15 @@ namespace Agent
       vec = Vector3d.Zero;
     }
 
-    protected override void RegisterInputParams3(GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
+      base.RegisterInputParams(pManager);
       pManager.AddVectorParameter("Force Vector", "V", "The vector to be applied to the Agent position.", GH_ParamAccess.item);
     }
 
-    protected override bool GetInputs3(IGH_DataAccess da)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
+      if(!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref vec)) return false;
       return true;
     }
@@ -29,10 +31,6 @@ namespace Agent
     protected override Vector3d CalcForce()
     {
       return vec;
-    }
-
-    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
-    {
     }
   }
 }

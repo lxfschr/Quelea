@@ -19,8 +19,9 @@ namespace Agent
       upperLimit = RS.attractUpperLimitDefault;
     }
 
-    protected override void RegisterInputParams4(GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
+      base.RegisterInputParams(pManager);
       pManager.AddNumberParameter(RS.massName, RS.massNickName, "More massive attractors will exert a stronger attraction force than smaller ones.",
         GH_ParamAccess.item, RS.massDefault);
       pManager.AddNumberParameter("Distance Lower Limit", "L",
@@ -29,12 +30,9 @@ namespace Agent
         "The upper limit of the distance by which the strength is divided by.", GH_ParamAccess.item, RS.attractUpperLimitDefault);
     }
 
-    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
-    }
-
-    protected override bool GetInputs4(IGH_DataAccess da)
-    {
+      if (!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref mass)) return false;
       if (!da.GetData(nextInputIndex++, ref lowerLimit)) return false;
       if (!da.GetData(nextInputIndex++, ref upperLimit)) return false;

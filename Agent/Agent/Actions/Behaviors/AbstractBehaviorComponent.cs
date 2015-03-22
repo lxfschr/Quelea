@@ -27,25 +27,23 @@ namespace Agent
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
       //pManager.HideParameter(1);
-      RegisterOutputParams2(pManager);
     }
-
-    protected abstract void RegisterOutputParams2(GH_OutputParamManager pManager);
 
     /// <summary>
     /// This is the method that actually does the work.
     /// </summary>
     /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override void SolveInstance2(IGH_DataAccess da)
+    protected override void SolveInstance(IGH_DataAccess da)
     {
+      base.SolveInstance(da);
       if (!apply)
       {
         da.SetData(nextOutputIndex++, false);
         return;
       }
 
-      bool behaviorsApplied = Run();
-      da.SetData(nextOutputIndex++, behaviorsApplied);
+      bool behaviorApplied = Run();
+      da.SetData(nextOutputIndex++, behaviorApplied);
     }
 
     protected abstract bool Run();

@@ -23,18 +23,16 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams2(GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
+      base.RegisterInputParams(pManager);
       // Use the pManager object to register your input parameters.
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickName, RS.weightMultiplierDescription,
         GH_ParamAccess.item, RS.weightMultiplierDefault);
-      RegisterInputParams3(pManager);
     }
-
-    protected abstract void RegisterInputParams3(GH_InputParamManager pManager);
 
     /// <summary>
     /// Registers all the output parameters for this component.
@@ -49,17 +47,15 @@ namespace Agent
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
       //pManager.HideParameter(1);
-      RegisterOutputParams2(pManager);
     }
-
-    protected abstract void RegisterOutputParams2(GH_OutputParamManager pManager);
 
     /// <summary>
     /// This is the method that actually does the work.
     /// </summary>
     /// <param name="da">The DA object is used to retrieve from inputs and store in outputs.</param>
-    protected override void SolveInstance2(IGH_DataAccess da)
+    protected override void SolveInstance(IGH_DataAccess da)
     {
+      base.SolveInstance(da);
       if (!apply)
       {
         da.SetData(nextOutputIndex++, Vector3d.Zero);
@@ -70,18 +66,17 @@ namespace Agent
       da.SetData(nextOutputIndex++, force);
     }
 
-    protected override bool GetInputs2(IGH_DataAccess da)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
+      if(!base.GetInputs(da)) return false;
       // First, we need to retrieve all data from the input parameters.
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(nextInputIndex++, ref weightMultiplier)) return false;
 
-      return GetInputs3(da);
+      return true;
     }
-
-    protected abstract bool GetInputs3(IGH_DataAccess da);
 
     protected Vector3d Run()
     {

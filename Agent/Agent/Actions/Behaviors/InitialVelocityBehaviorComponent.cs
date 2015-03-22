@@ -21,17 +21,15 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams2(GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
+      base.RegisterInputParams(pManager);
       pManager.AddVectorParameter("Initial Direction", "V", "The direction to travel in initially.", GH_ParamAccess.item);
     }
 
-    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
+    protected override bool GetInputs(IGH_DataAccess da)
     {
-    }
-
-    protected override bool GetInputs2(IGH_DataAccess da)
-    {
+      if (!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref initialVelocity)) return false;
       return true;
     }

@@ -1,5 +1,4 @@
 ﻿using Agent.Util;
-using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
@@ -11,19 +10,6 @@ namespace Agent
       : base("Seek Force", "Seek",
           "Applies a force to steer the Agent towards the point.",
           RS.forcesSubCategoryName, RS.icon_seekForce, "{c0613c95-7c90-4328-af8c-fcdafe059da9}")
-    {
-    }
-
-    protected override void RegisterInputParams4(GH_InputParamManager pManager)
-    {
-    }
-
-    protected override bool GetInputs4(IGH_DataAccess da)
-    {
-      return true;
-    }
-
-    protected override void RegisterOutputParams2(GH_OutputParamManager pManager)
     {
     }
 
