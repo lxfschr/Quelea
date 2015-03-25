@@ -334,7 +334,7 @@
   <data name="emittersCountErrorMessage" xml:space="preserve">
     <value>There must be at least 1 Emitter.</value>
   </data>
-  <data name="systemComponentGUID" xml:space="preserve">
+  <data name="agentSystemGuid" xml:space="preserve">
     <value>9024180f-7500-456d-a79c-75b7c2d308ea</value>
   </data>
   <data name="velocityDefault" type="System.Double, mscorlib">
@@ -962,5 +962,29 @@
   </data>
   <data name="icon_polysurfaceEnvironment" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_polysurfaceEnvironment.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_quelea" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_quelea.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+	<data name="particleSettingNickname" xml:space="preserve">
+    <value>Particle</value>
+  </data>
+	<data name="particleSettingsDescription" xml:space="preserve">
+    <value>Constructs the settings for a particle.</value>
+  </data>
+	<data name="particleSettingsName" xml:space="preserve">
+    <value>Construct Particle</value>
+  </data>
+	<data name="particleName" xml:space="preserve">
+    <value>Particle</value>
+  </data>
+	<data name="particleNickname" xml:space="preserve">
+    <value>P</value>
+  </data>
+	<data name="particleDescription" xml:space="preserve">
+    <value>A particle that can be affected by particle forces or used to supply settings for an agent.</value>
+  </data>
+	<data name="particlesName" xml:space="preserve">
+    <value>Particles</value>
   </data>
 </root>

@@ -11,12 +11,12 @@ namespace Agent
     private List<AbstractEmitterType> emitters;
     private AbstractEnvironmentType environment;
     /// <summary>
-    /// Initializes a new instance of the AgentSystemComponent class.
+    /// Initializes a new instance of the AbstractSystemComponent class.
     /// </summary>
     public AgentSystemComponent()
       : base(RS.systemName, RS.systemComponentNickName,
           RS.systemDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_system, RS.systemComponentGUID)
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_system, RS.agentSystemGuid)
     {
       
     }
@@ -24,7 +24,7 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams (GH_InputParamManager pManager)
+    protected override void RegisterInputParams (GH_InputParamManager pManager, int particlesName)
     {
       pManager.AddGenericParameter(RS.agentsName, RS.agentNickName, RS.agentDescription, 
                                     GH_ParamAccess.list);

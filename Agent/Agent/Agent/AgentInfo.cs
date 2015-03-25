@@ -18,7 +18,7 @@ namespace Agent
       get
       {
         //Return a 24x24 pixel bitmap to represent this GHA library.
-        return null;
+        return Properties.Resources.icon_quelea;
       }
     }
     public override string Description

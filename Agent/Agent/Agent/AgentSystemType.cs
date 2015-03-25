@@ -35,6 +35,7 @@ namespace Agent
       this.agentsSettings = agentsSettings;
       this.emitters = emitters;
       this.environment = environment;
+      this.environment = environment as PolysurfaceEnvironmentType;
       UpdateBounds();
       agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
     }
@@ -46,7 +47,7 @@ namespace Agent
       this.environment = environment;
       timestep = system.timestep;
       UpdateBounds();
-      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)system.Agents.SpatialObjects);
+      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)system.agents.SpatialObjects);
     }
 
     public AgentSystemType(AgentSystemType system)
@@ -56,7 +57,7 @@ namespace Agent
       emitters = system.emitters;
       environment = system.environment;
       UpdateBounds();
-      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)system.Agents.SpatialObjects);
+      agents = new SpatialCollectionAsBinLattice<AgentType>(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)system.agents.SpatialObjects);
     }
 
     public ISpatialCollection<AgentType> Agents
@@ -64,22 +65,6 @@ namespace Agent
       get
       {
         return agents;
-      }
-    }
-
-    public IEnumerable<AgentType> AgentsSettings
-    {
-      get
-      {
-        return agentsSettings;
-      }
-    }
-
-    public IEnumerable<AbstractEmitterType> Emitters
-    {
-      get
-      {
-        return emitters;
       }
     }
 
@@ -103,7 +88,7 @@ namespace Agent
     public void Run()
     {
       UpdateBounds();
-      agents.UpdateDatastructure(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)Agents.SpatialObjects);
+      agents.UpdateDatastructure(min, max, (int)(Util.Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<AgentType>)agents.SpatialObjects);
       IList<AgentType> toRemove = new List<AgentType>();
       foreach (AgentType agent in agents)
       {

@@ -21,9 +21,10 @@ namespace Agent
       pathTargetDistance = RS.visionRadiusDefault;
     }
 
-    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager, int particlesName)
     {
-      base.RegisterInputParams(pManager);
+      base.RegisterInputParams(pManager, pManager.AddGenericParameter("Particles","P", RS.agentDescription, 
+        GH_ParamAccess.list));
       pManager.AddCurveParameter(RS.curveName, RS.curveNickName, RS.curveForFollowPathDescription, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.pathRadiusName, RS.radiusNickName,
         RS.pathRadiusDescription, GH_ParamAccess.item, RS.pathRadiusDefault);

@@ -29,7 +29,7 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager, int particlesName)
     {
       // Use the pManager object to register your input parameters.
       // You can often supply default values when creating parameters.

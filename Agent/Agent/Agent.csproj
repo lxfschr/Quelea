@@ -84,10 +84,18 @@
     <Compile Include="Actions\Forces\EnvironmentalForces\AbstractEnvironmentalForceComponent.cs" />
     <Compile Include="Actions\Forces\EnvironmentalForces\ContainForceComponent.cs" />
     <Compile Include="Actions\Forces\FollowPathForceComponent.cs" />
+    <Compile Include="Agent\AbstractSystemType.cs" />
+    <Compile Include="Agent\ParticleComponent.cs" />
     <Compile Include="Agent\AgentComponent.cs" />
     <Compile Include="Agent\AgentSystemComponent.cs" />
     <Compile Include="Agent\AgentSystemType.cs" />
     <Compile Include="Agent\AgentType.cs" />
+    <Compile Include="Agent\AgentType2.cs" />
+    <Compile Include="Agent\IAgent.cs" />
+    <Compile Include="Agent\IParticle.cs" />
+    <Compile Include="Agent\ISystem.cs" />
+    <Compile Include="Agent\ParticleSystemType.cs" />
+    <Compile Include="Agent\ParticleType.cs" />
     <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Emitters\BoxEmitterType.cs" />
     <Compile Include="Agent\DeconstructAgentCollectionComponent.cs" />
@@ -230,6 +238,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_polysurfaceEnvironment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_quelea.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

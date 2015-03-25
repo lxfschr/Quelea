@@ -19,9 +19,10 @@ namespace Agent
       upperLimit = RS.attractUpperLimitDefault;
     }
 
-    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager, int particlesName)
     {
-      base.RegisterInputParams(pManager);
+      base.RegisterInputParams(pManager, pManager.AddGenericParameter("Particles","P", RS.agentDescription, 
+        GH_ParamAccess.list));
       pManager.AddNumberParameter(RS.massName, RS.massNickName, "More massive attractors will exert a stronger attraction force than smaller ones.",
         GH_ParamAccess.item, RS.massDefault);
       pManager.AddNumberParameter("Distance Lower Limit", "L",

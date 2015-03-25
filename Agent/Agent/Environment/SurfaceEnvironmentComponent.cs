@@ -23,7 +23,7 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager, int particlesName)
     {
       pManager.AddSurfaceParameter(RS.srfName, RS.srfNickName, RS.srfForEnvDescription, GH_ParamAccess.item);
     }

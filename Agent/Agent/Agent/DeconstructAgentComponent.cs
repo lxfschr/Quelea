@@ -20,7 +20,7 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager, int particlesName)
     {
       pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.item);
     }
@@ -46,7 +46,7 @@ namespace Agent
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, agent.GetPositionHistoryList());
+      da.SetDataList(nextOutputIndex++, agent.PositionHistory.ToList());
       da.SetData(nextOutputIndex++, agent.Velocity);
       da.SetData(nextOutputIndex++, agent.Acceleration);
       da.SetData(nextOutputIndex++, agent.Lifespan);

@@ -223,6 +223,15 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 9024180f-7500-456d-a79c-75b7c2d308ea.
+        /// </summary>
+        internal static string agentSystemGuid {
+            get {
+                return ResourceManager.GetString("agentSystemGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent System.
         /// </summary>
         internal static string agentSystemName {
@@ -1637,6 +1646,16 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_quelea {
+            get {
+                object obj = ResourceManager.GetObject("icon_quelea", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_seekForce {
             get {
                 object obj = ResourceManager.GetObject("icon_seekForce", resourceCulture);
@@ -1957,6 +1976,69 @@ namespace Agent.Properties {
         internal static string numAgentsNickName {
             get {
                 return ResourceManager.GetString("numAgentsNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A particle that can be affected by particle forces or used to supply settings for an agent..
+        /// </summary>
+        internal static string particleDescription {
+            get {
+                return ResourceManager.GetString("particleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Particle.
+        /// </summary>
+        internal static string particleName {
+            get {
+                return ResourceManager.GetString("particleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to P.
+        /// </summary>
+        internal static string particleNickname {
+            get {
+                return ResourceManager.GetString("particleNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Particle.
+        /// </summary>
+        internal static string particleSettingNickname {
+            get {
+                return ResourceManager.GetString("particleSettingNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Constructs the settings for a particle..
+        /// </summary>
+        internal static string particleSettingsDescription {
+            get {
+                return ResourceManager.GetString("particleSettingsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Construct Particle.
+        /// </summary>
+        internal static string particleSettingsName {
+            get {
+                return ResourceManager.GetString("particleSettingsName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Particles.
+        /// </summary>
+        internal static string particlesName {
+            get {
+                return ResourceManager.GetString("particlesName", resourceCulture);
             }
         }
         
@@ -2329,15 +2411,6 @@ namespace Agent.Properties {
         internal static string srfNickName {
             get {
                 return ResourceManager.GetString("srfNickName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 9024180f-7500-456d-a79c-75b7c2d308ea.
-        /// </summary>
-        internal static string systemComponentGUID {
-            get {
-                return ResourceManager.GetString("systemComponentGUID", resourceCulture);
             }
         }
         
