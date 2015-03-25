@@ -24,10 +24,9 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_InputParamManager pManager, int particlesName)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      base.RegisterInputParams(pManager, pManager.AddGenericParameter("Particles","P", RS.agentDescription, 
-        GH_ParamAccess.list));
+      base.RegisterInputParams(pManager);
       pManager.AddPointParameter(RS.ptName, RS.ptNickName, RS.ptForEmitDescription, GH_ParamAccess.item, Point3d.Origin);
     }
 

@@ -24,7 +24,7 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams (GH_InputParamManager pManager, int particlesName)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       pManager.AddGenericParameter(RS.agentsName, RS.agentNickName, RS.agentDescription, 
                                     GH_ParamAccess.list);

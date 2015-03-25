@@ -15,10 +15,9 @@ namespace Agent
       vec = Vector3d.Zero;
     }
 
-    protected override void RegisterInputParams(GH_InputParamManager pManager, int particlesName)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      base.RegisterInputParams(pManager, pManager.AddGenericParameter("Particles","P", RS.agentDescription, 
-        GH_ParamAccess.list));
+      base.RegisterInputParams(pManager);
       pManager.AddVectorParameter("Force Vector", "V", "The vector to be applied to the Agent position.", GH_ParamAccess.item);
     }
 

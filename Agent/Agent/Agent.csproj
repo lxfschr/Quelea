@@ -84,6 +84,7 @@
     <Compile Include="Actions\Forces\EnvironmentalForces\AbstractEnvironmentalForceComponent.cs" />
     <Compile Include="Actions\Forces\EnvironmentalForces\ContainForceComponent.cs" />
     <Compile Include="Actions\Forces\FollowPathForceComponent.cs" />
+    <Compile Include="Agent\AbstractSystemComponent.cs" />
     <Compile Include="Agent\AbstractSystemType.cs" />
     <Compile Include="Agent\ParticleComponent.cs" />
     <Compile Include="Agent\AgentComponent.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Agent\IAgent.cs" />
     <Compile Include="Agent\IParticle.cs" />
     <Compile Include="Agent\ISystem.cs" />
+    <Compile Include="Agent\ParticleSystemComponent.cs" />
     <Compile Include="Agent\ParticleSystemType.cs" />
     <Compile Include="Agent\ParticleType.cs" />
     <Compile Include="Emitters\BoxEmitterComponent.cs" />

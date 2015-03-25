@@ -24,10 +24,9 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams(GH_InputParamManager pManager, int particlesName)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      base.RegisterInputParams(pManager, pManager.AddGenericParameter("Particles","P", RS.agentDescription, 
-        GH_ParamAccess.list));
+      base.RegisterInputParams(pManager);
       pManager.AddCurveParameter(RS.curveName, RS.curveNickName, RS.crvForEmitDescription, GH_ParamAccess.item);
     }
 
