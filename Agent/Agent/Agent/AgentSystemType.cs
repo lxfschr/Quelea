@@ -239,6 +239,7 @@ namespace Agent
 
     public void Populate()
     {
+      Agents.Clear();
       foreach (AbstractEmitterType emitter in emitters)
       {
         if (emitter.ContinuousFlow) continue;

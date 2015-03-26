@@ -6,7 +6,7 @@ namespace Agent
 {
   public abstract class AbstractSystemComponent<T> : AbstractComponent where T : class, IParticle
   {
-    protected AbstractSystemType<T> system;
+    protected ISystem system;
     protected List<AbstractEmitterType> emitters;
     protected AbstractEnvironmentType environment;
     /// <summary>

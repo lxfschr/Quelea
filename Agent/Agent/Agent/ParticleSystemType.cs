@@ -21,6 +21,12 @@ namespace Agent
     {
       
     }
+
+    public ParticleSystemType(IParticle[] particleSettings, AbstractEmitterType[] emitters,
+      AbstractEnvironmentType environment, AbstractSystemType<IParticle> system)
+      : base(particleSettings, emitters, environment, system)
+    {
+    }
     public override void Add(AbstractEmitterType emitter)
     {
       Point3d emittionPt = emitter.Emit();

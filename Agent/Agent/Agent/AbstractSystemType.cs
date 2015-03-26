@@ -9,7 +9,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class AbstractSystemType<T> : ISystem<T> where T : class, IParticle
+  public abstract class AbstractSystemType<T> : ISystem where T : class, IParticle
   {
     public ISpatialCollection<T> Quelea { get; private set; }
     protected T[] queleaSettings;

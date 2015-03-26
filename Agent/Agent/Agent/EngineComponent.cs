@@ -54,7 +54,6 @@ namespace Agent
     {
       if (reset)
       {
-        system.Agents.Clear();
         system.Populate();
       }
       else
