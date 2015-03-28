@@ -85,7 +85,8 @@
     <Compile Include="Actions\Forces\EnvironmentalForces\ContainForceComponent.cs" />
     <Compile Include="Actions\Forces\FollowPathForceComponent.cs" />
     <Compile Include="Agent\AbstractSystemComponent.cs" />
-    <Compile Include="Agent\AbstractSystemType.cs" />
+    <Compile Include="Agent\SystemType.cs" />
+    <Compile Include="Agent\AbstractParticleFactory.cs" />
     <Compile Include="Agent\DeconstructParticleSystemComponent.cs" />
     <Compile Include="Agent\ParticleComponent.cs" />
     <Compile Include="Agent\AgentComponent.cs" />

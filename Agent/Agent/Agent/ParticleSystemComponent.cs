@@ -61,7 +61,7 @@ namespace Agent
       }
       else
       {
-        system = new ParticleSystemType(particles.ToArray(), emitters.ToArray(), environment, (AbstractSystemType<IParticle>) system);
+        system = new ParticleSystemType(particles.ToArray(), emitters.ToArray(), environment, (SystemType) system);
       }
 
       // Finally assign the system to the output parameter.

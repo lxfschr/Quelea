@@ -4,7 +4,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class ParticleSystemType : AbstractSystemType<IParticle>
+  public class ParticleSystemType : SystemType
   {
     public ParticleSystemType()
     {
@@ -17,13 +17,13 @@ namespace Agent
     }
 
     public ParticleSystemType(ParticleSystemType particleSystem)
-      : this(particleSystem.queleaSettings, particleSystem.emitters, particleSystem.environment)
+      : this(particleSystem.particlesSettings, particleSystem.emitters, particleSystem.environment)
     {
       
     }
 
     public ParticleSystemType(IParticle[] particleSettings, AbstractEmitterType[] emitters,
-      AbstractEnvironmentType environment, AbstractSystemType<IParticle> system)
+      AbstractEnvironmentType environment, SystemType system)
       : base(particleSettings, emitters, environment, system)
     {
     }
@@ -34,13 +34,13 @@ namespace Agent
       if (environment != null)
       {
         Point3d refEmittionPt = environment.ClosestRefPoint(emittionPt);
-        agent = new ParticleType(queleaSettings[nextIndex % queleaSettings.Length], emittionPt, refEmittionPt);
+        agent = new ParticleType(particlesSettings[nextIndex % particlesSettings.Length], emittionPt, refEmittionPt);
       }
       else
       {
-        agent = new ParticleType(queleaSettings[nextIndex % queleaSettings.Length], emittionPt, emittionPt);
+        agent = new ParticleType(particlesSettings[nextIndex % particlesSettings.Length], emittionPt, emittionPt);
       }
-      Quelea.Add(agent);
+      Particles.Add(agent);
       nextIndex++;
     }
 

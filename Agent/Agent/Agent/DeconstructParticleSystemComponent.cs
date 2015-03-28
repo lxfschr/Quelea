@@ -4,9 +4,9 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class DeconstructParticleSystemComponent<T> : AbstractComponent where T : class, IParticle
+  public class DeconstructParticleSystemComponent : AbstractComponent
   {
-    private AbstractSystemType<T> system;
+    private ParticleSystemType system;
     /// <summary>
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
@@ -43,8 +43,8 @@ namespace Agent
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, (List<T>)system.Quelea.SpatialObjects);
-      //da.SetData(nextOutputIndex++, new SpatialCollectionType(system.Quelea));
+      da.SetDataList(nextOutputIndex++, (List<IParticle>)system.Particles.SpatialObjects);
+      //da.SetData(nextOutputIndex++, new SpatialCollectionType(system.Particles));
     }
   }
 }
