@@ -4,7 +4,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class FollowPathForceComponent : AbstractForceComponent
+  public class FollowPathForceComponent : AbstractAgentForceComponent
   {
     private Curve path;
     private double radius;

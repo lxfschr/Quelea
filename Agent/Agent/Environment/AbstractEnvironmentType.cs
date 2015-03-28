@@ -58,9 +58,9 @@ namespace Agent
 
     abstract public Point3d ClosestPointOnRef(Point3d pt);
 
-    abstract public Vector3d AvoidEdges(AgentType agent, double distance);
+    abstract public Vector3d AvoidEdges(IAgent agent, double distance);
 
-    abstract public bool BounceContain(AgentType agent);
+    abstract public bool BounceContain(IAgent agent);
 
     abstract public BoundingBox GetBoundingBox();
   }

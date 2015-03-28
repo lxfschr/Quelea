@@ -43,7 +43,7 @@ namespace Agent
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, (List<AgentType>)agentCollection.Agents.SpatialObjects);
+      da.SetDataList(nextOutputIndex++, (List<AgentType>)agentCollection.Particles.SpatialObjects);
     }
   }
 }

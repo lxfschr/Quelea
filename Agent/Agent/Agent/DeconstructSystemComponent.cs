@@ -6,7 +6,7 @@ namespace Agent
 {
   public class DeconstructSystemComponent : AbstractComponent
   {
-    private AgentSystemType system;
+    private ISystem system;
     /// <summary>
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
@@ -43,8 +43,8 @@ namespace Agent
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, (List<AgentType>)system.Agents.SpatialObjects);
-      da.SetData(nextOutputIndex++, new SpatialCollectionType(system.Agents));
+      da.SetDataList(nextOutputIndex++, (List<IParticle>)system.Particles.SpatialObjects);
+      da.SetData(nextOutputIndex++, new SpatialCollectionType(system.Particles));
     }
   }
 }

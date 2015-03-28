@@ -8,7 +8,7 @@ namespace Agent
   public class EngineComponent : AbstractComponent
   {
     private Boolean reset;
-    private AgentSystemType system;
+    private ISystem system;
     /// <summary>
     /// Initializes a new instance of the Engine class.
     /// </summary>

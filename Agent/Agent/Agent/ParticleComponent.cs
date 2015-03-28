@@ -6,13 +6,10 @@ namespace Agent
 {
   public class ParticleComponent : AbstractComponent
   {
-    private Point3d position;
 
-    private Vector3d velocity, velocityMin, velocityMax;
+    private Vector3d velocityMin, velocityMax;
 
     private Vector3d acceleration;
-
-    private Point3d refPosition;
 
     private int lifespan;
 
@@ -30,8 +27,6 @@ namespace Agent
           RS.particleSettingsDescription,
           RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_agent, "dd2877f8-e247-4a67-9802-3c68c968779d")
     {
-      position = Point3d.Unset;
-      velocity = Vector3d.Unset;
       velocityMin = new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault);
       velocityMax = new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault);
       acceleration = Vector3d.Zero;
@@ -46,8 +41,6 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddPointParameter(RS.positionName, RS.positionNickName, RS.positionDescription, GH_ParamAccess.item,
-        Point3d.Unset);
       pManager.AddVectorParameter("Minimum Initial Velocity", "mV",
         "The minimum initial velocity from which a random value will be taken.", GH_ParamAccess.item,
         new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault));
@@ -74,7 +67,6 @@ namespace Agent
     {
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(nextInputIndex++, ref position)) return false;
       if (!da.GetData(nextInputIndex++, ref velocityMin)) return false;
       if (!da.GetData(nextInputIndex++, ref velocityMax)) return false;
       if (!da.GetData(nextInputIndex++, ref acceleration)) return false;
@@ -111,7 +103,7 @@ namespace Agent
     {
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      IParticle particle = new ParticleType(position, velocity, velocityMin, velocityMax, acceleration, lifespan, mass, bodySize, historyLength);
+      IParticle particle = new ParticleType(velocityMin, velocityMax, acceleration, lifespan, mass, bodySize, historyLength);
 
       // Finally assign the spiral to the output parameter.
       da.SetData(nextOutputIndex++, particle);

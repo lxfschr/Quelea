@@ -5,9 +5,9 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class AbstractBoidForceComponent : AbstractForceComponent
+  public abstract class AbstractBoidForceComponent : AbstractAgentForceComponent
   {
-    protected ISpatialCollection<AgentType> neighbors;
+    protected ISpatialCollection<IParticle> neighbors;
     /// <summary>
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
@@ -15,7 +15,7 @@ namespace Agent
                                          string subcategory, Bitmap icon, String componentGuid)
       : base(name, nickname, description, subcategory, icon, componentGuid)
     {
-      neighbors = new SpatialCollectionAsList<AgentType>();
+      neighbors = new SpatialCollectionAsList<IParticle>();
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace Agent
       if (!base.GetInputs(da)) return false;
       SpatialCollectionType neighborsCollection = new SpatialCollectionType();
       if (!da.GetData(nextInputIndex++, ref neighborsCollection)) return false;
-      neighbors = neighborsCollection.Agents;
+      neighbors = neighborsCollection.Particles;
       return true;
     }
   }

@@ -63,42 +63,43 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractComponent.cs" />
+    <Compile Include="Actions\AbstractAgentActionComponent.cs" />
+    <Compile Include="Actions\AbstractParticleActionComponent.cs" />
     <Compile Include="Actions\AbstractActionComponent.cs" />
-    <Compile Include="Actions\Behaviors\AbstractBehaviorComponent.cs" />
-    <Compile Include="Actions\Behaviors\BoidBehaviors\AbstractBoidBehaviorComponent.cs" />
-    <Compile Include="Actions\Behaviors\BoidBehaviors\EatBehaviorComponent.cs" />
-    <Compile Include="Actions\Behaviors\EnvironmentalBehaviors\AbstractEnvironmentalBehaviorComponent.cs" />
-    <Compile Include="Actions\Behaviors\EnvironmentalBehaviors\BounceContainBehaviorComponent.cs" />
-    <Compile Include="Actions\Behaviors\InitialVelocityBehaviorComponent.cs" />
-    <Compile Include="Actions\Forces\AbstractForceComponent.cs" />
-    <Compile Include="Actions\Forces\ApplyCustomForceComponent.cs" />
-    <Compile Include="Actions\Forces\AttractionForces\AbstractAttractionForceComponent.cs" />
-    <Compile Include="Actions\Forces\AttractionForces\AttractForceComponent.cs" />
-    <Compile Include="Actions\Forces\AttractionForces\ArriveForceComponent.cs" />
-    <Compile Include="Actions\Forces\AttractionForces\SeekForceComponent.cs" />
-    <Compile Include="Actions\Forces\BoidForces\AbstractBoidForceComponent.cs" />
-    <Compile Include="Actions\Forces\BoidForces\AlignForceComponent.cs" />
-    <Compile Include="Actions\Forces\BoidForces\CoheseForceComponent.cs" />
-    <Compile Include="Actions\Forces\BoidForces\SeparateForceComponent.cs" />
-    <Compile Include="Actions\Forces\BoidForces\ViewForceComponent.cs" />
+    <Compile Include="Actions\Behaviors\AgentBehaviors\AbstractAgentBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\ParticleBehaviors\AbstractParticleBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\AgentBehaviors\BoidBehaviors\AbstractBoidBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\AgentBehaviors\BoidBehaviors\EatBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\AgentBehaviors\EnvironmentalBehaviors\AbstractEnvironmentalBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\AgentBehaviors\EnvironmentalBehaviors\BounceContainBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\ParticleBehaviors\InitialVelocityBehaviorComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\AbstractAgentForceComponent.cs" />
+    <Compile Include="Actions\Forces\ParticleForces\AbstractParticleForceComponent.cs" />
+    <Compile Include="Actions\Forces\ParticleForces\ApplyCustomForceComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\AttractionForces\AbstractSeekForceComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\AttractionForces\ArriveForceComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\AttractionForces\SeekForceComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\BoidForces\AbstractBoidForceComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\BoidForces\AlignForceComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\BoidForces\CoheseForceComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\BoidForces\SeparateForceComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\BoidForces\ViewForceComponent.cs" />
     <Compile Include="Actions\Forces\EnvironmentalForces\AbstractEnvironmentalForceComponent.cs" />
     <Compile Include="Actions\Forces\EnvironmentalForces\ContainForceComponent.cs" />
-    <Compile Include="Actions\Forces\FollowPathForceComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\FollowPathForceComponent.cs" />
+    <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AbstractAttractionForceComponent.cs" />
+    <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AttractForceComponent.cs" />
     <Compile Include="Agent\AbstractSystemComponent.cs" />
+    <Compile Include="Agent\ParticleFactory.cs" />
     <Compile Include="Agent\SystemType.cs" />
-    <Compile Include="Agent\AbstractParticleFactory.cs" />
-    <Compile Include="Agent\DeconstructParticleSystemComponent.cs" />
+    <Compile Include="Agent\IParticleFactory.cs" />
     <Compile Include="Agent\ParticleComponent.cs" />
     <Compile Include="Agent\AgentComponent.cs" />
-    <Compile Include="Agent\AgentSystemComponent.cs" />
-    <Compile Include="Agent\AgentSystemType.cs" />
+    <Compile Include="Agent\SystemComponent.cs" />
     <Compile Include="Agent\AgentType.cs" />
-    <Compile Include="Agent\AgentType2.cs" />
     <Compile Include="Agent\IAgent.cs" />
     <Compile Include="Agent\IParticle.cs" />
     <Compile Include="Agent\ISystem.cs" />
-    <Compile Include="Agent\ParticleSystemComponent.cs" />
-    <Compile Include="Agent\ParticleSystemType.cs" />
     <Compile Include="Agent\ParticleType.cs" />
     <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Emitters\BoxEmitterType.cs" />
@@ -113,7 +114,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SpatialCollections\SpatialCollectionType.cs" />
-    <Compile Include="Agent\DeconstructAgentComponent.cs" />
+    <Compile Include="Agent\DeconstructParticleComponent.cs" />
     <Compile Include="Agent\DeconstructSystemComponent.cs" />
     <Compile Include="Emitters\AbstractEmitterType.cs" />
     <Compile Include="Environment\AbstractEnvironmentType.cs" />
@@ -246,6 +247,7 @@
   <ItemGroup>
     <None Include="Resources\icon_quelea.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -3,18 +3,18 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class DeconstructAgentComponent : AbstractComponent
+  public class DeconstructParticleComponent : AbstractComponent
   {
-    private AgentType agent;
+    private IParticle particle;
     /// <summary>
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
-    public DeconstructAgentComponent()
+    public DeconstructParticleComponent()
       : base(RS.deconstructAgentName, RS.deconstructAgentNickName,
              RS.deconstructAgentDescription, RS.pluginCategoryName, 
              RS.pluginSubCategoryName, RS.icon_deconstructAgent, RS.deconstructAgentGUID)
     {
-      agent = new AgentType();
+      particle = null;
     }
 
     /// <summary>
@@ -34,23 +34,23 @@ namespace Agent
       pManager.AddVectorParameter(RS.velocityName, RS.velocityNickName, RS.velocityDescription, GH_ParamAccess.item);
       pManager.AddVectorParameter(RS.accelerationName, RS.accelerationNickName, RS.accelerationDescription, GH_ParamAccess.item);
       pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickName, RS.lifespanDescription, GH_ParamAccess.item);
-      pManager.AddPointParameter("Reference Position", "RP", "For Agents bound to Surface Environments, the position of the Agent mapped to a 2d plane representing the bounds of the surface ", GH_ParamAccess.item);
+      pManager.AddPointParameter("Reference Position", "RP", "For particles bound to Surface Environments, the position of the Agent mapped to a 2d plane representing the bounds of the surface ", GH_ParamAccess.item);
       pManager.HideParameter(4);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
     {
-      if (!da.GetData(nextInputIndex++, ref agent)) return false;
+      if (!da.GetData(nextInputIndex++, ref particle)) return false;
       return true;
     }
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, agent.PositionHistory.ToList());
-      da.SetData(nextOutputIndex++, agent.Velocity);
-      da.SetData(nextOutputIndex++, agent.Acceleration);
-      da.SetData(nextOutputIndex++, agent.Lifespan);
-      da.SetData(nextOutputIndex++, agent.RefPosition);
+      da.SetDataList(nextOutputIndex++, particle.PositionHistory.ToList());
+      da.SetData(nextOutputIndex++, particle.Velocity);
+      da.SetData(nextOutputIndex++, particle.Acceleration);
+      da.SetData(nextOutputIndex++, particle.Lifespan);
+      da.SetData(nextOutputIndex++, particle.RefPosition);
     }
   }
 }

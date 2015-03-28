@@ -6,14 +6,14 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class AbstractForceComponent : AbstractActionComponent
+  public abstract class AbstractParticleForceComponent : AbstractParticleActionComponent
   {
     private double weightMultiplier;
 
     /// <summary>
-    /// Initializes a new instance of the ViewForceComponent class.
+    /// Initializes a new instance of the AbstractParticleForceComponent class.
     /// </summary>
-    protected AbstractForceComponent(string name, string nickname, string description,
+    protected AbstractParticleForceComponent(string name, string nickname, string description,
                               string subcategory, Bitmap icon, String componentGuid)
       : base(name, nickname, description, subcategory, icon, componentGuid)
     {
@@ -82,7 +82,7 @@ namespace Agent
     private Vector3d ApplyForce(Vector3d force)
     {
       Vector3d weightedForce = Vector3d.Multiply(force, weightMultiplier);
-      agent.ApplyForce(weightedForce);
+      particle.ApplyForce(weightedForce);
       return weightedForce;
     }
 

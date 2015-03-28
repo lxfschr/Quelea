@@ -4,16 +4,16 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class AgentSystemComponent : AbstractComponent
+  public class SystemComponent : AbstractComponent
   {
-    private AgentSystemType system;
-    private List<AgentType> agents;
+    private ISystem system;
+    private List<IParticle> agents;
     private List<AbstractEmitterType> emitters;
     private AbstractEnvironmentType environment;
     /// <summary>
     /// Initializes a new instance of the AbstractSystemComponent class.
     /// </summary>
-    public AgentSystemComponent()
+    public SystemComponent()
       : base(RS.systemName, RS.systemComponentNickName,
           RS.systemDescription,
           RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_system, RS.agentSystemGuid)
@@ -47,7 +47,7 @@ namespace Agent
 
     protected override bool GetInputs(IGH_DataAccess da)
     {
-      agents = new List<AgentType>();
+      agents = new List<IParticle>();
       emitters = new List<AbstractEmitterType>();
       environment = null;
       // Then we need to access the input parameters individually. 
@@ -76,11 +76,11 @@ namespace Agent
     {
       if (system == null)
       {
-        system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment);
+        system = new SystemType(agents.ToArray(), emitters.ToArray(), environment);
       }
       else
       {
-        system = new AgentSystemType(agents.ToArray(), emitters.ToArray(), environment, system);
+        system = new SystemType(agents.ToArray(), emitters.ToArray(), environment, (SystemType) system);
       }
 
       // Finally assign the system to the output parameter.

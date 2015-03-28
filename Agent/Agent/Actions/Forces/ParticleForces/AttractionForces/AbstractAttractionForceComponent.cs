@@ -6,7 +6,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class AbstractAttractionForceComponent : AbstractForceComponent
+  public abstract class AbstractAttractionForceComponent : AbstractParticleForceComponent
   {
     protected Point3d targetPt;
     /// <summary>

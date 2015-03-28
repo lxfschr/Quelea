@@ -6,28 +6,28 @@ namespace Agent
 {
   public class SpatialCollectionType : GH_Goo<Object>
   {
-    private ISpatialCollection<AgentType> agents;
+    private ISpatialCollection<IParticle> particles;
 
     public SpatialCollectionType()
     {
-      agents = new SpatialCollectionAsBinLattice<AgentType>();
+      particles = new SpatialCollectionAsBinLattice<IParticle>();
     }
 
-    public SpatialCollectionType(ISpatialCollection<AgentType> agents)
+    public SpatialCollectionType(ISpatialCollection<IParticle> particles)
     {
-      this.agents = agents;
+      this.particles = particles;
     }
 
     public SpatialCollectionType(SpatialCollectionType spatialCollection)
     {
-      agents = new SpatialCollectionAsBinLattice<AgentType>(spatialCollection.agents);
+      particles = new SpatialCollectionAsBinLattice<IParticle>(spatialCollection.particles);
     }
 
-    public ISpatialCollection<AgentType> Agents
+    public ISpatialCollection<IParticle> Particles
     {
       get
       {
-        return agents;
+        return particles;
       }
     }
 
@@ -43,7 +43,7 @@ namespace Agent
 
     public override string ToString()
     {
-      return agents.ToString();
+      return particles.ToString();
     }
 
     public override string TypeDescription

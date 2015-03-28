@@ -4,7 +4,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class ApplyCustomForceComponent : AbstractForceComponent
+  public class ApplyCustomForceComponent : AbstractParticleForceComponent
   {
     private Vector3d vec;
     public ApplyCustomForceComponent()

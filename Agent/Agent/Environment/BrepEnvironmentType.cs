@@ -107,7 +107,7 @@ namespace Agent
       return new Line(position, feelerVec).ToNurbsCurve();
     }
 
-    private static Curve[] GetFeelerCrvs(AgentType agent, double visionDistance, 
+    private static Curve[] GetFeelerCrvs(IAgent agent, double visionDistance, 
                                   bool accurate)
     {
       Curve[] feelers;
@@ -146,7 +146,7 @@ namespace Agent
       return feelers;
     }
 
-    public override Vector3d AvoidEdges(AgentType agent, double distance)
+    public override Vector3d AvoidEdges(IAgent agent, double distance)
     {
       Vector3d steer = new Vector3d();
       Vector3d avoidVec, parVec;
@@ -193,7 +193,7 @@ namespace Agent
       return steer;
     }
 
-    public override bool BounceContain(AgentType agent)
+    public override bool BounceContain(IAgent agent)
     {
       Vector3d velocity = agent.Velocity;
       

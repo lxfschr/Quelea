@@ -5,7 +5,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class AbstractEnvironmentalForceComponent : AbstractForceComponent
+  public abstract class AbstractEnvironmentalForceComponent : AbstractAgentForceComponent
   {
     protected AbstractEnvironmentType environment;
     protected double visionRadius;

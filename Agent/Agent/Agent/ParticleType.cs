@@ -9,36 +9,21 @@ namespace Agent
   public class ParticleType : IParticle
   {
     public ParticleType()
-      : this(Point3d.Origin, Vector3d.Zero, Vector3d.Zero, RS.lifespanDefault, 
-             RS.massDefault, RS.bodySizeDefault, RS.historyLenDefault)
+      : this(new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault), 
+             new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault), 
+             Vector3d.Zero, RS.lifespanDefault, RS.massDefault, RS.bodySizeDefault, RS.historyLenDefault)
     {
     }
 
-    public ParticleType(Point3d position, Vector3d velocity, Vector3d acceleration, 
+    public ParticleType(Vector3d velocityMin, Vector3d velocityMax, Vector3d acceleration,
                         int lifespan, double mass, double bodySize,
                         int historyLength)
     {
       HistoryLength = historyLength;
       PositionHistory = new CircularArray<Point3d>(HistoryLength);
-      Position = position;
-      RefPosition = position;
-      Velocity = velocity;
-      Acceleration = acceleration;
-      Lifespan = lifespan;
-      Mass = mass;
-      BodySize = bodySize;
-      InitialVelocitySet = false;
-    }
-
-    public ParticleType(Point3d position, Vector3d velocity, Vector3d velocityMin, Vector3d velocityMax, Vector3d acceleration,
-                        int lifespan, double mass, double bodySize,
-                        int historyLength)
-    {
-      HistoryLength = historyLength;
-      PositionHistory = new CircularArray<Point3d>(HistoryLength);
-      Position = position;
-      RefPosition = position;
-      Velocity = velocity;
+      Position = Point3d.Origin;
+      RefPosition = Position;
+      Velocity = Util.Random.RandomVector(velocityMin, velocityMax);
       VelocityMin = velocityMin;
       VelocityMax = velocityMax;
       Acceleration = acceleration;
@@ -49,16 +34,19 @@ namespace Agent
     }
 
     public ParticleType(IParticle p)
-      : this(p.Position, p.Velocity, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
+      : this(p.VelocityMin, p.VelocityMax, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
     {
       InitialVelocitySet = p.InitialVelocitySet;
+      Position = p.Position;
       RefPosition = p.RefPosition;
+      Velocity = p.Velocity;
     }
 
-    public ParticleType(IParticle settings, Point3d emittionPt, Point3d refEmittionPt)
-      : this(emittionPt, settings.Velocity, settings.Acceleration, settings.Lifespan, 
-             settings.Mass, settings.BodySize, settings.HistoryLength)
+    public ParticleType(IParticle p, Point3d emittionPt, Point3d refEmittionPt)
+      : this(p.VelocityMin, p.VelocityMax, p.Acceleration, p.Lifespan,
+             p.Mass, p.BodySize, p.HistoryLength)
     {
+      Position = emittionPt;
       RefPosition = refEmittionPt;
     }
 
@@ -83,8 +71,12 @@ namespace Agent
     public void Run()
     {
       Velocity = Vector3d.Add(Velocity, Acceleration);
-      RefPosition.Transform(Transform.Translation(Velocity));
-      Position.Transform(Transform.Translation(Velocity)); //So disconnecting the environment allows the agent to continue from its current position.
+      Point3d refPosition = RefPosition;
+      refPosition.Transform(Transform.Translation(Velocity));
+      RefPosition = refPosition;
+      Point3d position = Position;
+      position.Transform(Transform.Translation(Velocity)); //So disconnecting the environment allows the agent to continue from its current position.
+      Position = position;
       PositionHistory.Add(Position);
       Acceleration = Vector3d.Zero;
       Lifespan -= 1;
@@ -96,7 +88,7 @@ namespace Agent
       Acceleration = Vector3d.Add(Acceleration, force);
     }
 
-    public void Kill()
+    public void Die()
     {
       Lifespan = 0;
     }

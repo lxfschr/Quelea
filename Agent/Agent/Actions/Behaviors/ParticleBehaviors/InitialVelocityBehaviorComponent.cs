@@ -4,7 +4,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class InitialVelocityBehaviorComponent : AbstractBehaviorComponent
+  public class InitialVelocityBehaviorComponent : AbstractParticleBehaviorComponent
   {
     private Vector3d initialVelocity;
     /// <summary>
@@ -36,10 +36,10 @@ namespace Agent
 
     protected override bool Run()
     {
-      if (!agent.InitialVelocitySet)
+      if (!particle.InitialVelocitySet)
       {
-        agent.Velocity = initialVelocity;
-        agent.InitialVelocitySet = true;
+        particle.Velocity = initialVelocity;
+        particle.InitialVelocitySet = true;
         return true;
       }
       return false;

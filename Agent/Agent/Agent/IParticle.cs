@@ -34,7 +34,7 @@ namespace Agent
 
     void ApplyForce(Vector3d force);
 
-    void Kill();
+    void Die();
 
     Boolean IsDead();
 

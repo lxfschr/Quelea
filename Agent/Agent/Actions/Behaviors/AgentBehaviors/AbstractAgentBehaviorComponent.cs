@@ -4,12 +4,12 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class AbstractBehaviorComponent : AbstractActionComponent
+  public abstract class AbstractAgentBehaviorComponent : AbstractAgentActionComponent
   {
     /// <summary>
-    /// Initializes a new instance of the AbstractBehaviorComponent class.
+    /// Initializes a new instance of the AbstractAgentBehaviorComponent class.
     /// </summary>
-    protected AbstractBehaviorComponent(string name, string nickname, string description, 
+    protected AbstractAgentBehaviorComponent(string name, string nickname, string description, 
                                      string subcategory, Bitmap icon, string componentGuid)
       : base(name, nickname, description, subcategory, icon, componentGuid)
     {

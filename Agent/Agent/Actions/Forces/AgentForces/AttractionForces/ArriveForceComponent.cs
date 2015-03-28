@@ -5,7 +5,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class ArriveForceComponent : AbstractAttractionForceComponent
+  public class ArriveForceComponent : AbstractSeekForceComponent
   {
     private double arrivalRadius;
     public ArriveForceComponent()
@@ -19,7 +19,7 @@ namespace Agent
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddNumberParameter("Arrival Radius", "AR", "The radius within which Agents will start to slow down to eventually stop at the target point. Set this to 0 if you do not want the Agent to stop at the target point.",
+      pManager.AddNumberParameter("Arrival Radius", "AR", "The radius within which agents will start to slow down to eventually stop at the target point. Set this to 0 if you do not want the Agent to stop at the target point.",
         GH_ParamAccess.item, RS.visionRadiusDefault);
     }
 

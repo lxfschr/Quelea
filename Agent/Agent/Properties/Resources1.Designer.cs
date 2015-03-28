@@ -142,7 +142,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A container object of Agents to provide for fast lookup of neighbors..
+        ///   Looks up a localized string similar to A container object of particles to provide for fast lookup of neighbors..
         /// </summary>
         internal static string agentCollectionDescription {
             get {
@@ -214,7 +214,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agents.
+        ///   Looks up a localized string similar to particles.
         /// </summary>
         internal static string agentsName {
             get {
@@ -241,7 +241,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An Agent System controls the adding, removing, and updating of agents..
+        ///   Looks up a localized string similar to An Agent System controls the adding, removing, and updating of particles..
         /// </summary>
         internal static string AgentSystemType_TypeDescription_An_Agent_System_controls_the_adding__removing__and_updating_of_agents_ {
             get {
@@ -545,7 +545,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Causes agents to bounce off Environment boundaries..
+        ///   Looks up a localized string similar to Causes particles to bounce off Environment boundaries..
         /// </summary>
         internal static string bounceContainBehDescription {
             get {
@@ -618,7 +618,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Emit agents from a box..
+        ///   Looks up a localized string similar to Emit particles from a box..
         /// </summary>
         internal static string boxEmitDescription {
             get {
@@ -690,7 +690,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A closed Brep Environment which the Agents will interact with..
+        ///   Looks up a localized string similar to A closed Brep Environment which the particles will interact with..
         /// </summary>
         internal static string brepEnvDescription {
             get {
@@ -825,7 +825,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Applies a force to keep agents away from Environment boundaries..
+        ///   Looks up a localized string similar to Applies a force to keep particles away from Environment boundaries..
         /// </summary>
         internal static string containForceDescription {
             get {
@@ -871,8 +871,8 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If true, Agents will be emitted every Rth timestep.
-        /// If false, N Agents will be emitted once..
+        ///   Looks up a localized string similar to If true, particles will be emitted every Rth timestep.
+        /// If false, N particles will be emitted once..
         /// </summary>
         internal static string continuousFlowDescription {
             get {
@@ -909,7 +909,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate at which new Agents are created. Every Rth timestep..
+        ///   Looks up a localized string similar to Rate at which new particles are created. Every Rth timestep..
         /// </summary>
         internal static string creationRateDescription {
             get {
@@ -954,7 +954,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A curve from which Agents can be emitted..
+        ///   Looks up a localized string similar to A curve from which particles can be emitted..
         /// </summary>
         internal static string crvEmitDescription {
             get {
@@ -1017,7 +1017,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deconstructs an AgentCollection into its Agents..
+        ///   Looks up a localized string similar to Deconstructs an AgentCollection into its particles..
         /// </summary>
         internal static string deconstructACDescription {
             get {
@@ -1080,7 +1080,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deconstructs a System to expose its Agents and AgentCollection..
+        ///   Looks up a localized string similar to Deconstructs a System to expose its particles and AgentCollection..
         /// </summary>
         internal static string deconstructSystemDescription {
             get {
@@ -1125,7 +1125,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object where the Agents will be spawned..
+        ///   Looks up a localized string similar to The object where the particles will be spawned..
         /// </summary>
         internal static string emitterDescription {
             get {
@@ -1161,7 +1161,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Emitters from which the agents will be spawned from..
+        ///   Looks up a localized string similar to Emitters from which the particles will be spawned from..
         /// </summary>
         internal static string emittersDescription {
             get {
@@ -1224,7 +1224,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An object representing the environment the Agents will interact with..
+        ///   Looks up a localized string similar to An object representing the environment the particles will interact with..
         /// </summary>
         internal static string environmentDescription {
             get {
@@ -1944,7 +1944,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The number of Agents that are allowed to be alive in the system at once..
+        ///   Looks up a localized string similar to The number of particles that are allowed to be alive in the system at once..
         /// </summary>
         internal static string numAgentsDescription {
             get {
@@ -1953,7 +1953,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of Agents must be greater than or equal to 0..
+        ///   Looks up a localized string similar to Number of particles must be greater than or equal to 0..
         /// </summary>
         internal static string numAgentsErrorMessage {
             get {
@@ -1962,7 +1962,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of Agents.
+        ///   Looks up a localized string similar to Number of particles.
         /// </summary>
         internal static string numAgentsName {
             get {
@@ -2053,7 +2053,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The radius around which the Agents will try to stay within the Path..
+        ///   Looks up a localized string similar to The radius around which the particles will try to stay within the Path..
         /// </summary>
         internal static string pathRadiusDescription {
             get {
@@ -2216,7 +2216,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A point from which Agents can be emitted..
+        ///   Looks up a localized string similar to A point from which particles can be emitted..
         /// </summary>
         internal static string ptEmitDescription {
             get {
@@ -2361,7 +2361,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Surface Environment upon which the Agents will map their position for the calculation of Forces..
+        ///   Looks up a localized string similar to A Surface Environment upon which the particles will map their position for the calculation of Forces..
         /// </summary>
         internal static string srfEnvDescription {
             get {
@@ -2424,7 +2424,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Represents a self-contained System of Agents and Emitters..
+        ///   Looks up a localized string similar to Represents a self-contained System of particles and Emitters..
         /// </summary>
         internal static string systemDescription {
             get {
@@ -2627,7 +2627,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The factor by which the Agent&apos;s Vision Radius will be multiplied by around which the Agent will see other Agents..
+        ///   Looks up a localized string similar to The factor by which the Agent&apos;s Vision Radius will be multiplied by around which the Agent will see other particles..
         /// </summary>
         internal static string visionRadiusMultiplierDescription {
             get {

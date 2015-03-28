@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms.VisualStyles;
 using Agent.Util;
 using GH_IO.Serialization;
 using Grasshopper.Kernel.Types;
@@ -11,7 +12,7 @@ namespace Agent
 {
   public class SystemType : ISystem
   {
-    public AbstractParticleFactory particleFactory;
+    public IParticleFactory particleFactory;
     public ISpatialCollection<IParticle> Particles { get; private set; }
     protected IParticle[] particlesSettings;
     protected AbstractEmitterType[] emitters;
@@ -21,12 +22,12 @@ namespace Agent
     protected Point3d min;
     protected Point3d max;
 
-    protected SystemType()
+    public SystemType()
       : this(null, new AbstractEmitterType[] {new PtEmitterType(), }, new AxisAlignedBoxEnvironmentType())
     {
     }
 
-    protected SystemType(IParticle[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment)
+    public SystemType(IParticle[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment)
     {
       timestep = 0;
       nextIndex = 0;
@@ -35,9 +36,10 @@ namespace Agent
       this.environment = environment;
       UpdateBounds();
       Particles = new SpatialCollectionAsBinLattice<IParticle>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
+      particleFactory = new ParticleFactory();
     }
 
-    protected SystemType(IParticle[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment, SystemType system)
+    public SystemType(IParticle[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment, SystemType system)
     {
       timestep = system.timestep;
       nextIndex = system.nextIndex;
@@ -46,34 +48,37 @@ namespace Agent
       this.environment = environment;
       UpdateBounds();
       Particles = new SpatialCollectionAsBinLattice<IParticle>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IParticle>)system.Particles.SpatialObjects);
+      particleFactory = system.particleFactory;
     }
 
-    protected SystemType(SystemType system)
+    public SystemType(SystemType system)
     {
-      // private ISpatialCollection<AgentType> agents;
+      // private ISpatialCollection<AgentType> particles;
       particlesSettings = system.particlesSettings;
       emitters = system.emitters;
       environment = system.environment;
       UpdateBounds();
       Particles = new SpatialCollectionAsBinLattice<IParticle>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IParticle>)system.Particles.SpatialObjects);
+      particleFactory = system.particleFactory;
     }
 
     public void Add(AbstractEmitterType emitter)
     {
       Point3d emittionPt = emitter.Emit();
-      IParticle agent;
+      IParticle particle;
       if (environment != null)
       {
         Point3d refEmittionPt = environment.ClosestRefPoint(emittionPt);
         //agent = new ParticleType(particlesSettings[nextIndex % particlesSettings.Length], emittionPt, refEmittionPt);
-        agent = particleFactory.MakeParticle(particlesSettings[nextIndex], emittionPt,
+        particle = particleFactory.MakeParticle(particlesSettings[nextIndex], emittionPt,
           refEmittionPt);
       }
       else
       {
-        agent = new ParticleType(particlesSettings[nextIndex], emittionPt, emittionPt);
+        particle = particleFactory.MakeParticle(particlesSettings[nextIndex], emittionPt,
+          emittionPt);
       }
-      Particles.Add(agent);
+      Particles.Add(particle);
       nextIndex = (nextIndex + 1) % particlesSettings.Length;
     }
 
@@ -158,6 +163,7 @@ namespace Agent
 
     public void Populate()
     {
+      Particles.Clear();
       foreach (AbstractEmitterType emitter in emitters)
       {
         if (emitter.ContinuousFlow) continue;

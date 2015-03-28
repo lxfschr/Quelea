@@ -4,7 +4,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class SeekForceComponent : AbstractAttractionForceComponent
+  public class SeekForceComponent : AbstractSeekForceComponent
   {
     public SeekForceComponent()
       : base("Seek Force", "Seek",

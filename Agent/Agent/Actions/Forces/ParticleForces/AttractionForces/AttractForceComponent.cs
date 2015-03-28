@@ -64,17 +64,17 @@ namespace Agent
 
     protected override Vector3d CalcForce()
     {
-      Vector3d force = Vector3d.Subtract(new Vector3d(targetPt), new Vector3d(agent.RefPosition));
+      Vector3d force = Vector3d.Subtract(new Vector3d(targetPt), new Vector3d(particle.RefPosition));
       double distance = force.Length;
       // If the distance is greater than the radius of the attractor,
       // and the radius is positive, do not apply the force.
-      // Negative radius causes all Agents to be affected, regardless of distance.
+      // Negative radius causes all particles to be affected, regardless of distance.
       // Clamp the distance so the force lies within a reasonable value.
       distance = Util.Number.Clamp(distance, lowerLimit, upperLimit);
       force.Unitize();
       // Divide by distance squared so the farther away the Attractor is,
       // the weaker the force.
-      double strength = (mass * agent.Mass) / (distance * distance);
+      double strength = (mass * particle.Mass) / (distance * distance);
       force = Vector3d.Multiply(force, strength);
       return force;
     }

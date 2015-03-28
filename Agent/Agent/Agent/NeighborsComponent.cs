@@ -8,7 +8,7 @@ namespace Agent
 {
   public class NeighborsComponent : AbstractComponent
   {
-    private AgentType agent;
+    private IAgent agent;
     private SpatialCollectionType agentCollection;
     private double visionRadius;
     private double visionAngle;
@@ -20,8 +20,8 @@ namespace Agent
           RS.getNeighborsInRadiusDescription,
           RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_neighborsInRadius, RS.neighborsGUID)
     {
-      agent = new AgentType();
-      agentCollection = new SpatialCollectionType();
+      agent = null;
+      agentCollection = null;
       visionRadius = RS.visionRadiusDefault;
       visionAngle = RS.visionAngleDefault;
     }
@@ -67,8 +67,7 @@ namespace Agent
       if (!da.GetData(nextInputIndex++, ref agentCollection)) return false;
       da.GetData(nextInputIndex++, ref visionRadius);
       da.GetData(nextInputIndex++, ref visionAngle);
-
-
+      
       // We should now validate the data and warn the user if invalid data is supplied.
       if (!(0.0 <= visionRadius))
       {
@@ -91,14 +90,14 @@ namespace Agent
 
     private SpatialCollectionType Run()
     {
-      ISpatialCollection<AgentType> neighborsInSphere = agentCollection.Agents.GetNeighborsInSphere(agent, visionRadius);
+      ISpatialCollection<IParticle> neighborsInSphere = agentCollection.Particles.GetNeighborsInSphere(agent, visionRadius);
 
       if (Number.ApproximatelyEqual(visionAngle, 360, RS.toleranceDefault))
       {
         return new SpatialCollectionType(neighborsInSphere);
       }
 
-      ISpatialCollection<AgentType> neighbors = new SpatialCollectionAsList<AgentType>();
+      ISpatialCollection<IParticle> neighbors = new SpatialCollectionAsList<IParticle>();
 
       Point3d position = agent.RefPosition;
       Vector3d velocity = agent.Velocity;
@@ -106,7 +105,7 @@ namespace Agent
       pl1.Rotate(-Math.PI / 2, pl1.YAxis);
       Plane pl2 = pl1;
       pl2.Rotate(-Math.PI / 2, pl1.XAxis);
-      foreach (AgentType neighbor in neighborsInSphere)
+      foreach (IParticle neighbor in neighborsInSphere)
       {
         Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.RefPosition), new Vector3d(position));
         double angle1 = Vector.CalcAngle(velocity, diff, pl1);
