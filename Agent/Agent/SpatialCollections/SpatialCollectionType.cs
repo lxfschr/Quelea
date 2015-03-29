@@ -53,7 +53,7 @@ namespace Agent
 
     public override string TypeName
     {
-      get { return RS.agentCollectionName; }
+      get { return RS.queleaNetworkName; }
     }
   }
 }

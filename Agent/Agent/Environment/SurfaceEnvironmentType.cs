@@ -108,18 +108,18 @@ namespace Agent
     public override string ToString()
     {
 
-      string environmentStr = Util.String.ToString(RS.srfName, environment);
+      string environmentStr = Util.String.ToString(RS.surfaceName, environment);
       return environmentStr;
     }
 
     public override string TypeDescription
     {
-      get { return RS.srfEnvDescription; }
+      get { return RS.surfaceEnvironmentDescription; }
     }
 
     public override string TypeName
     {
-      get { return RS.srfEnvName; }
+      get { return RS.surfaceEnvironmentName; }
     }
 
 

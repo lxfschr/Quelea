@@ -15,8 +15,8 @@ namespace Agent
     /// new tabs/panels will automatically be created.
     /// </summary>
     public CrvEmitterComponent()
-      : base(RS.crvEmitName, RS.crvEmitComponentNickName,
-          RS.crvEmitDescription, RS.icon_crvEmitter, RS.crvEmitGUID)
+      : base(RS.curveEmitterName, RS.curveEmitterComponentNickname,
+          RS.curveEmitterDescription, RS.icon_crvEmitter, RS.curveEmitterGuid)
     {
       crv = null;
     }
@@ -27,7 +27,7 @@ namespace Agent
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddCurveParameter(RS.curveName, RS.curveNickName, RS.crvForEmitDescription, GH_ParamAccess.item);
+      pManager.AddCurveParameter(RS.curveName, RS.curveNickname, RS.curveForEmitterDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

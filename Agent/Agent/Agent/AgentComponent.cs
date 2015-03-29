@@ -14,9 +14,9 @@ namespace Agent
     /// Initializes a new instance of the AgentComponent class.
     /// </summary>
     public AgentComponent()
-      : base(RS.constructAgentName, RS.constructAgentNickName,
+      : base(RS.constructAgentName, RS.constructAgentNickname,
           RS.constructAgentDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_agent, RS.constructAgentComponentGUID)
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_agent, RS.constructAgentComponentGuid)
     {
       particle = new ParticleType();
       maxSpeed = RS.maxSpeedDefault;
@@ -32,9 +32,9 @@ namespace Agent
     {
       pManager.AddGenericParameter(RS.particleName, RS.particleNickname, RS.particleDescription, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.maxSpeedName, RS.maxSpeedNickName, RS.maxSpeedDescription, GH_ParamAccess.item, RS.maxSpeedDefault);
-      pManager.AddNumberParameter(RS.maxForceName, RS.maxForceNickName, RS.maxForceDescription, GH_ParamAccess.item, RS.maxForceDefault);
-      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
-      pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickName, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
+      pManager.AddNumberParameter(RS.maxForceName, RS.maxForceNickname, RS.maxForceDescription, GH_ParamAccess.item, RS.maxForceDefault);
+      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickname, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
+      pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickname, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
     }
 
     /// <summary>

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="bodySizeDescription" xml:space="preserve">
-    <value>The diameter of the extent of the agent's bounds.</value>
+    <value>The diameter of the extent of the Quelea's bounds. This is used for collision detection among other things.</value>
   </data>
   <data name="bodySizeName" xml:space="preserve">
     <value>Body Size</value>
@@ -127,33 +127,33 @@
     <value>B</value>
   </data>
   <data name="agentDescription" xml:space="preserve">
-    <value>An autonomous agent that can percieve its surroundings.</value>
+    <value>An autonomous agent that is an extension of a Particle and can percieve its surroundings and make decisions on how to act.</value>
   </data>
-  <data name="historyLenDescription" xml:space="preserve">
-    <value>The number of past positions to remember for each agent.</value>
+  <data name="historyLengthDescription" xml:space="preserve">
+    <value>The number of past positions to remember for each Quelea.</value>
   </data>
-  <data name="historyLenName" xml:space="preserve">
+  <data name="historyLengthName" xml:space="preserve">
     <value>History Length</value>
   </data>
-  <data name="historyLenNickName" xml:space="preserve">
+  <data name="historyLengthNickName" xml:space="preserve">
     <value>N</value>
   </data>
   <data name="lifespanDescription" xml:space="preserve">
-    <value>Number of timesteps that the agent will be alive for. If negative, lifespan will be infinite.</value>
+    <value>Number of timesteps that the Quelea will be alive for. If negative, lifespan will be infinite.</value>
   </data>
   <data name="lifespanName" xml:space="preserve">
     <value>Lifespan</value>
   </data>
-  <data name="lifespanNickName" xml:space="preserve">
+  <data name="lifespanNickname" xml:space="preserve">
     <value>L</value>
   </data>
   <data name="massDescription" xml:space="preserve">
-    <value>Affects how strongly the agent reacts to forces. Larger masses will lead to more cumbersome movement.</value>
+    <value>Affects how strongly the Quelea reacts to forces. Larger masses will lead to more cumbersome movement.</value>
   </data>
   <data name="massName" xml:space="preserve">
     <value>Mass</value>
   </data>
-  <data name="massNickName" xml:space="preserve">
+  <data name="massNickname" xml:space="preserve">
     <value>M</value>
   </data>
   <data name="maxForceDescription" xml:space="preserve">
@@ -162,11 +162,11 @@
   <data name="maxForceName" xml:space="preserve">
     <value>Max Force</value>
   </data>
-  <data name="maxForceNickName" xml:space="preserve">
+  <data name="maxForceNickname" xml:space="preserve">
     <value>F</value>
   </data>
   <data name="maxSpeedDescription" xml:space="preserve">
-    <value>Rather than teleporting, the agent will move incrementally by this speed towards targets that it seeks.</value>
+    <value>Rather than teleporting, the Quelea will move incrementally by this speed towards targets that it seeks.</value>
   </data>
   <data name="maxSpeedName" xml:space="preserve">
     <value>Max Speed</value>
@@ -181,60 +181,60 @@
     <value>A</value>
   </data>
   <data name="visionAngleDescription" xml:space="preserve">
-    <value>The maximum angle, taken from the velocity vector,  that the agent can see around it.</value>
+    <value>The maximum angle, taken from the velocity vector,  that the Agent can see around it.</value>
   </data>
   <data name="visionAngleName" xml:space="preserve">
     <value>Vision Angle</value>
   </data>
-  <data name="visionAngleNickName" xml:space="preserve">
+  <data name="visionAngleNickname" xml:space="preserve">
     <value>A</value>
   </data>
   <data name="visionRadiusDescription" xml:space="preserve">
-    <value>The maximum radius around the agent that it can see.</value>
+    <value>The maximum radius around the Agent that it can see.</value>
   </data>
   <data name="visionRadiusName" xml:space="preserve">
     <value>Vision Radius</value>
   </data>
-  <data name="visionRadiusNickName" xml:space="preserve">
+  <data name="visionRadiusNickname" xml:space="preserve">
     <value>R</value>
   </data>
   <data name="alignForceDescription" xml:space="preserve">
-    <value>Steer towards the average heading of neighbors.</value>
+    <value>Steer towards the average heading of Neighbors.</value>
   </data>
-  <data name="alignForceGUID" xml:space="preserve">
+  <data name="alignForceGuid" xml:space="preserve">
     <value>2734fde9-1c90-4ecd-bcf8-c58dafc5e161</value>
   </data>
   <data name="alignForceName" xml:space="preserve">
     <value>Align Force</value>
   </data>
-  <data name="alignForceNickName" xml:space="preserve">
+  <data name="alignForceNickname" xml:space="preserve">
     <value>Align</value>
   </data>
-  <data name="boidForcesSubCategoryName" xml:space="preserve">
-    <value>Boid Forces</value>
+  <data name="flockingForcesSubcategoryName" xml:space="preserve">
+    <value>Flocking Forces</value>
   </data>
   <data name="coheseForceDescription" xml:space="preserve">
     <value>Steer to move toward the average position of neighbors</value>
   </data>
-  <data name="coheseForceGUID" xml:space="preserve">
+  <data name="coheseForceGuid" xml:space="preserve">
     <value>c8fd8532-661e-47f1-99c1-b8552bb83b73</value>
   </data>
   <data name="coheseForceName" xml:space="preserve">
     <value>Cohese Force</value>
   </data>
-  <data name="coheseForceNickName" xml:space="preserve">
+  <data name="coheseForceNickname" xml:space="preserve">
     <value>Cohese</value>
   </data>
   <data name="constructAgentDescription" xml:space="preserve">
-    <value>Constructs the settings for an agent.</value>
+    <value>Constructs the settings for an Agent.</value>
   </data>
   <data name="constructAgentName" xml:space="preserve">
     <value>Construct Agent</value>
   </data>
-  <data name="constructAgentNickName" xml:space="preserve">
+  <data name="constructAgentNickname" xml:space="preserve">
     <value>Agent</value>
   </data>
-  <data name="forceNickName" xml:space="preserve">
+  <data name="forceNickname" xml:space="preserve">
     <value>F</value>
   </data>
   <data name="pluginCategoryName" xml:space="preserve">
@@ -244,15 +244,15 @@
     <value>Agent</value>
   </data>
   <data name="separateForceDescription" xml:space="preserve">
-    <value>Steer to avoid neighbors.</value>
+    <value>Applies a force to steer to avoid neighbors.</value>
   </data>
-  <data name="separateForceGUID" xml:space="preserve">
+  <data name="separateForceGuid" xml:space="preserve">
     <value>1ba32976-9427-425e-aa14-fe86ee64a50a</value>
   </data>
   <data name="separateForceName" xml:space="preserve">
     <value>Separate Force</value>
   </data>
-  <data name="separateForceNickName" xml:space="preserve">
+  <data name="separateForceNickname" xml:space="preserve">
     <value>Separate</value>
   </data>
   <data name="lifespanErrorMessage" xml:space="preserve">
@@ -276,7 +276,7 @@
   <data name="visionRadiusErrorMessage" xml:space="preserve">
     <value>Vision Radius must be greater than or equal to 0.</value>
   </data>
-  <data name="constructAgentComponentGUID" xml:space="preserve">
+  <data name="constructAgentComponentGuid" xml:space="preserve">
     <value>cb8d83ac-eca9-4378-9048-15b37879df2e</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
@@ -310,23 +310,23 @@
   <data name="systemName" xml:space="preserve">
     <value>System</value>
   </data>
-  <data name="systemNickName" xml:space="preserve">
+  <data name="systemNickname" xml:space="preserve">
     <value>S</value>
   </data>
   <data name="systemDescription" xml:space="preserve">
-    <value>Represents a self-contained System of particles and Emitters.</value>
+    <value>Represents a self-contained System of Quelea and Emitters.</value>
   </data>
   <data name="agentsName" xml:space="preserve">
-    <value>particles</value>
+    <value>Agents</value>
   </data>
   <data name="emittersName" xml:space="preserve">
     <value>Emitters</value>
   </data>
-  <data name="emitterNickName" xml:space="preserve">
+  <data name="emitterNickname" xml:space="preserve">
     <value>E</value>
   </data>
   <data name="emittersDescription" xml:space="preserve">
-    <value>Emitters from which the particles will be spawned from.</value>
+    <value>Emitters from which the Quelea will be spawned from.</value>
   </data>
   <data name="agentsCountErrorMessage" xml:space="preserve">
     <value>There must be at least 1 Agent.</value>
@@ -355,16 +355,16 @@
   <data name="AABoxEnvDescription" xml:space="preserve">
     <value>A world Axis Aligned Box Environment.</value>
   </data>
-  <data name="environmentsSubCategoryName" xml:space="preserve">
+  <data name="environmentsSubcategoryName" xml:space="preserve">
     <value>Environments</value>
   </data>
-  <data name="environmentNickName" xml:space="preserve">
+  <data name="environmentNickname" xml:space="preserve">
     <value>En</value>
   </data>
   <data name="boxName" xml:space="preserve">
     <value>Box</value>
   </data>
-  <data name="boxNickName" xml:space="preserve">
+  <data name="boxNickname" xml:space="preserve">
     <value>B</value>
   </data>
   <data name="AABoxDescription" xml:space="preserve">
@@ -380,7 +380,7 @@
     <value>3703308d-1d46-469a-bdf7-bdeec8359171</value>
   </data>
   <data name="behaviorDescription" xml:space="preserve">
-    <value>A Behavior alters the state of the agent.</value>
+    <value>A Behavior alters the state of the Quelea.</value>
   </data>
   <data name="behaviorName" xml:space="preserve">
     <value>Behavior</value>
@@ -388,34 +388,28 @@
   <data name="agentToAffect" xml:space="preserve">
     <value>The Agent to affect.</value>
   </data>
-  <data name="agentCollectionNickName" xml:space="preserve">
-    <value>AC</value>
+  <data name="queleaNetworkNickname" xml:space="preserve">
+    <value>QN</value>
   </data>
   <data name="neighborsToReactTo" xml:space="preserve">
     <value>The neighbors to react to.</value>
   </data>
-  <data name="bounceContainBehName" xml:space="preserve">
+  <data name="bounceContainBehaviorName" xml:space="preserve">
     <value>Bounce Contain Behavior</value>
   </data>
-  <data name="bounceContainBehNickName" xml:space="preserve">
+  <data name="bounceContainBehaviorNickname" xml:space="preserve">
     <value>BounceContain</value>
   </data>
-  <data name="bounceContainBehDescription" xml:space="preserve">
-    <value>Causes particles to bounce off Environment boundaries.</value>
+  <data name="bounceContainBehaviorDescription" xml:space="preserve">
+    <value>Causes Quelea to bounce off Environment boundaries.</value>
   </data>
-  <data name="behaviorsSubCategoryName" xml:space="preserve">
+  <data name="behaviorsSubcategoryName" xml:space="preserve">
     <value>Behaviors</value>
   </data>
   <data name="environmentName" xml:space="preserve">
     <value>Environment</value>
   </data>
-  <data name="bounceContainEnvDescription" xml:space="preserve">
-    <value>The environment which to bounce off of.</value>
-  </data>
-  <data name="bounceContainEnvBehDescription" xml:space="preserve">
-    <value>The environment which to bounce off of.</value>
-  </data>
-  <data name="bounceContainBehEnvDescription" xml:space="preserve">
+  <data name="bounceContainBehaviorEnvironmentDescription" xml:space="preserve">
     <value>The environment which to bounce off of.</value>
   </data>
   <data name="behaviorAppliedName" xml:space="preserve">
@@ -425,30 +419,30 @@
     <value>B</value>
   </data>
   <data name="behaviorAppliedDescription" xml:space="preserve">
-    <value>True iff the behavior was applied to the agent.</value>
+    <value>True iff the behavior was applied to the Quelea.</value>
   </data>
-  <data name="bounceContainBehGUID" xml:space="preserve">
+  <data name="bounceContainBehaviorGuid" xml:space="preserve">
     <value>a266091b-aa80-4323-8239-53d9fc4666be</value>
   </data>
-  <data name="boxEmitName" xml:space="preserve">
+  <data name="boxEmitterName" xml:space="preserve">
     <value>Box Emitter</value>
   </data>
-  <data name="boxEmitNickName" xml:space="preserve">
+  <data name="boxEmitterNickname" xml:space="preserve">
     <value>BoxEmit</value>
   </data>
-  <data name="boxEmitDescription" xml:space="preserve">
-    <value>Emit particles from a box.</value>
+  <data name="boxEmitterDescription" xml:space="preserve">
+    <value>Emit Quelea from a box.</value>
   </data>
-  <data name="emittersSubCategoryName" xml:space="preserve">
+  <data name="emittersSubcategoryName" xml:space="preserve">
     <value>Emitters</value>
   </data>
   <data name="boxForEmitterDescription" xml:space="preserve">
-    <value>Box for emitter</value>
+    <value>Box representing the bounds within which Quelea will be emitted.</value>
   </data>
   <data name="continuousFlowName" xml:space="preserve">
     <value>Continuous Flow</value>
   </data>
-  <data name="continuousFlowNickName" xml:space="preserve">
+  <data name="continuousFlowNickname" xml:space="preserve">
     <value>C</value>
   </data>
   <data name="continuousFlowDescription" xml:space="preserve">
@@ -458,20 +452,20 @@
   <data name="creationRateName" xml:space="preserve">
     <value>Creation Rate</value>
   </data>
-  <data name="creationRateNickName" xml:space="preserve">
+  <data name="creationRateNickname" xml:space="preserve">
     <value>R</value>
   </data>
   <data name="creationRateDescription" xml:space="preserve">
-    <value>Rate at which new particles are created. Every Rth timestep.</value>
+    <value>Rate at which new Quelea are created. Every Rth timestep.</value>
   </data>
-  <data name="numAgentsName" xml:space="preserve">
-    <value>Number of particles</value>
+  <data name="numQueleaName" xml:space="preserve">
+    <value>Number of Quelea</value>
   </data>
-  <data name="numAgentsNickName" xml:space="preserve">
+  <data name="numQueleaNickName" xml:space="preserve">
     <value>N</value>
   </data>
-  <data name="numAgentsDescription" xml:space="preserve">
-    <value>The number of particles that are allowed to be alive in the system at once.</value>
+  <data name="numQueleaDescription" xml:space="preserve">
+    <value>The number of Quelea that are allowed to be alive in the system at once.</value>
   </data>
   <data name="creationRateDefault" type="System.Int32, mscorlib">
     <value>1</value>
@@ -482,22 +476,22 @@
   <data name="creationRateErrorMessage" xml:space="preserve">
     <value>Creation rate must be greater than 0.</value>
   </data>
-  <data name="numAgentsErrorMessage" xml:space="preserve">
-    <value>Number of particles must be greater than or equal to 0.</value>
+  <data name="numQueleaErrorMessage" xml:space="preserve">
+    <value>Number of Quelea must be greater than or equal to 0.</value>
   </data>
-  <data name="boxEmitGUID" xml:space="preserve">
+  <data name="boxEmitterGuid" xml:space="preserve">
     <value>6a21f2fd-ff8b-41c8-837d-fce5a6ffa2f7</value>
   </data>
   <data name="containForceName" xml:space="preserve">
     <value>Contain Force</value>
   </data>
-  <data name="containForceNickName" xml:space="preserve">
+  <data name="containForceNickname" xml:space="preserve">
     <value>Contain</value>
   </data>
   <data name="containForceDescription" xml:space="preserve">
-    <value>Applies a force to keep particles away from Environment boundaries.</value>
+    <value>Applies a force to keep Agents away from Environment boundaries.</value>
   </data>
-  <data name="environmentForcesSubCategory" xml:space="preserve">
+  <data name="environmentForcesSubcategory" xml:space="preserve">
     <value>Environment Forces</value>
   </data>
   <data name="environmentToReactTo" xml:space="preserve">
@@ -509,7 +503,7 @@
   <data name="visionRadiusMultiplierName" xml:space="preserve">
     <value>Vision Radius Mutliplier</value>
   </data>
-  <data name="visionRadiusMultiplierNickName" xml:space="preserve">
+  <data name="visionRadiusMultiplierNickname" xml:space="preserve">
     <value>R</value>
   </data>
   <data name="visionRadiusMultiplierDescription" xml:space="preserve">
@@ -521,35 +515,35 @@
   <data name="visionRadiusMultiplierErrorMessage" xml:space="preserve">
     <value>Vision Radius Multiplier must be between 0 and 1.</value>
   </data>
-  <data name="containForceGUID" xml:space="preserve">
+  <data name="containForceGuid" xml:space="preserve">
     <value>5a6a85be-31d7-47de-bc3b-99a0caf5bcff</value>
   </data>
-  <data name="deconstructACName" xml:space="preserve">
-    <value>Deconstruct AgentCollection</value>
+  <data name="deconstructQNName" xml:space="preserve">
+    <value>Deconstruct Quelea Network</value>
   </data>
-  <data name="deconstructACNickName" xml:space="preserve">
-    <value>DeconstructAC</value>
+  <data name="deconstructQNNickname" xml:space="preserve">
+    <value>DeconstructQN</value>
   </data>
-  <data name="deconstructACDescription" xml:space="preserve">
-    <value>Deconstructs an AgentCollection into its particles.</value>
+  <data name="deconstructQNDescription" xml:space="preserve">
+    <value>Deconstructs a Quelea Network into a list of Quelea</value>
   </data>
-  <data name="agentCollectionName" xml:space="preserve">
-    <value>AgentCollection</value>
+  <data name="queleaNetworkName" xml:space="preserve">
+    <value>Quelea Network</value>
   </data>
   <data name="agentCollectionDescription" xml:space="preserve">
-    <value>A container object of particles to provide for fast lookup of neighbors.</value>
+    <value>A container object of Quelea to provide for fast lookup of neighbors.</value>
   </data>
-  <data name="desconstructACGUID" xml:space="preserve">
+  <data name="desconstructQNGuid" xml:space="preserve">
     <value>ef3ec326-e61f-430a-98b9-c11ad27680a2</value>
   </data>
-  <data name="deconstructAgentName" xml:space="preserve">
-    <value>Deconstruct Agent</value>
+  <data name="deconstructQueleaName" xml:space="preserve">
+    <value>Deconstruct Quelea</value>
   </data>
-  <data name="deconstructAgentNickName" xml:space="preserve">
-    <value>DeconstructAgent</value>
+  <data name="deconstructQueleaNickName" xml:space="preserve">
+    <value>DeconstructQuelea</value>
   </data>
-  <data name="deconstructAgentDescription" xml:space="preserve">
-    <value>Deconstructs an Agent to expose its position, velocity, and lifespan.</value>
+  <data name="deconstructQueleaDescription" xml:space="preserve">
+    <value>Deconstructs a Quelea to expose its position, velocity, and lifespan.</value>
   </data>
   <data name="positionName" xml:space="preserve">
     <value>Position</value>
@@ -569,7 +563,7 @@
   <data name="accelerationNickName" xml:space="preserve">
     <value>A</value>
   </data>
-  <data name="velocityNickName" xml:space="preserve">
+  <data name="velocityNickname" xml:space="preserve">
     <value>V</value>
   </data>
   <data name="positionNickName" xml:space="preserve">
@@ -579,27 +573,27 @@
     <value>The Point3d Position of the Agent.</value>
   </data>
   <data name="velocityDescription" xml:space="preserve">
-    <value>The direction and magnitude of the Agent's movement.</value>
+    <value>The direction and magnitude of the Quelea's movement.</value>
   </data>
   <data name="accelerationDescription" xml:space="preserve">
-    <value>The vector of the Agent's acceleration.</value>
+    <value>The vector of the Quelea's acceleration.</value>
   </data>
   <data name="positionHistoryDescription" xml:space="preserve">
     <value>The past positions of the agent.</value>
   </data>
-  <data name="deconstructAgentGUID" xml:space="preserve">
+  <data name="deconstructQueleaGuid" xml:space="preserve">
     <value>2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b</value>
   </data>
   <data name="deconstructSystemName" xml:space="preserve">
     <value>Deconstruct System</value>
   </data>
-  <data name="deconstructSystemNickName" xml:space="preserve">
+  <data name="deconstructSystemNickname" xml:space="preserve">
     <value>DeconstructSystem</value>
   </data>
   <data name="deconstructSystemDescription" xml:space="preserve">
-    <value>Deconstructs a System to expose its particles and AgentCollection.</value>
+    <value>Deconstructs a System to expose its list of Quelea and QueleaNetwork.</value>
   </data>
-  <data name="deconstructSystemGUID" xml:space="preserve">
+  <data name="deconstructSystemGuid" xml:space="preserve">
     <value>525078b6-0eb9-4d7f-9824-45f0861c19ea</value>
   </data>
   <data name="continuousFlowDefault" type="System.Boolean, mscorlib">
@@ -609,12 +603,12 @@
     <value>Emitter</value>
   </data>
   <data name="emitterDescription" xml:space="preserve">
-    <value>The object where the particles will be spawned.</value>
+    <value>The geometry from which Quelea will be spawned.</value>
   </data>
   <data name="engineName" xml:space="preserve">
     <value>Engine</value>
   </data>
-  <data name="engineNickName" xml:space="preserve">
+  <data name="engineNickname" xml:space="preserve">
     <value>Engine</value>
   </data>
   <data name="engineDescription" xml:space="preserve">
@@ -623,23 +617,20 @@
   <data name="resetName" xml:space="preserve">
     <value>Reset</value>
   </data>
-  <data name="resetNickName" xml:space="preserve">
+  <data name="resetNickname" xml:space="preserve">
     <value>R</value>
   </data>
   <data name="resetDescription" xml:space="preserve">
-    <value>Reset the scene?</value>
+    <value>Reset the simulation?</value>
   </data>
   <data name="forcesName" xml:space="preserve">
     <value>Forces</value>
-  </data>
-  <data name="forcesDescription" xml:space="preserve">
-    <value>Force vectors to apply to each Agent.</value>
   </data>
   <data name="behaviorsName" xml:space="preserve">
     <value>Behaviors</value>
   </data>
   <data name="applyBehaviorsDescription" xml:space="preserve">
-    <value>Apply Behaviors to each Agent?.</value>
+    <value>Apply Behaviors to each Agent?</value>
   </data>
   <data name="resetDefault" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -648,7 +639,7 @@
     <value>b0f076cb-8558-46a1-bf94-20a97a1b4d08</value>
   </data>
   <data name="environmentDescription" xml:space="preserve">
-    <value>An object representing the environment the particles will interact with.</value>
+    <value>A geometrical object representing the environment the Quelea will interact with.</value>
   </data>
   <data name="neighborsName" xml:space="preserve">
     <value>Get Neighbors in Radius</value>
@@ -656,7 +647,7 @@
   <data name="getNeighborsInRadiusName" xml:space="preserve">
     <value>Get Neighbors in Radius</value>
   </data>
-  <data name="getNeighborsInRadiusComponentNickName" xml:space="preserve">
+  <data name="getNeighborsInRadiusComponentNickname" xml:space="preserve">
     <value>Neighbors</value>
   </data>
   <data name="getNeighborsInRadiusDescription" xml:space="preserve">
@@ -665,109 +656,109 @@
   <data name="agentToGetNeighborsFor" xml:space="preserve">
     <value>The Agent to get neighbors for.</value>
   </data>
-  <data name="agentCollectionToSearch" xml:space="preserve">
-    <value>The AgentCollection to search through.</value>
+  <data name="queleaNetworkToSearch" xml:space="preserve">
+    <value>The Quelea Network to search through.</value>
   </data>
   <data name="neighborsDescription" xml:space="preserve">
     <value>The neighbors of the Agent.</value>
   </data>
-  <data name="neighborsGUID" xml:space="preserve">
+  <data name="neighborsGuid" xml:space="preserve">
     <value>2477a136-9479-4e3e-b60a-1570ee1ab896</value>
   </data>
   <data name="curveName" xml:space="preserve">
     <value>Curve</value>
   </data>
-  <data name="systemComponentNickName" xml:space="preserve">
+  <data name="systemComponentNickname" xml:space="preserve">
     <value>System</value>
   </data>
-  <data name="crvEmitName" xml:space="preserve">
+  <data name="curveEmitterName" xml:space="preserve">
     <value>Curve Emitter</value>
   </data>
-  <data name="crvEmitComponentNickName" xml:space="preserve">
+  <data name="curveEmitterComponentNickname" xml:space="preserve">
     <value>crvEmit</value>
   </data>
-  <data name="crvEmitDescription" xml:space="preserve">
-    <value>A curve from which particles can be emitted.</value>
+  <data name="curveEmitterDescription" xml:space="preserve">
+    <value>A curve from which Quelea can be emitted.</value>
   </data>
-  <data name="curveNickName" xml:space="preserve">
+  <data name="curveNickname" xml:space="preserve">
     <value>C</value>
   </data>
-  <data name="crvForEmitDescription" xml:space="preserve">
+  <data name="curveForEmitterDescription" xml:space="preserve">
     <value>Base curve for emitter.</value>
   </data>
-  <data name="ptName" xml:space="preserve">
+  <data name="pointName" xml:space="preserve">
     <value>Point</value>
   </data>
-  <data name="ptNickName" xml:space="preserve">
+  <data name="pointNickname" xml:space="preserve">
     <value>P</value>
   </data>
-  <data name="ptForEmitDescription" xml:space="preserve">
-    <value>Base point for emitter.</value>
+  <data name="pointForEmitterDescription" xml:space="preserve">
+    <value>Base point for Emitter.</value>
   </data>
-  <data name="ptEmitName" xml:space="preserve">
+  <data name="pointEmitterName" xml:space="preserve">
     <value>Point Emitter</value>
   </data>
-  <data name="ptEmitComponentNickName" xml:space="preserve">
+  <data name="pointEmitterComponentNickname" xml:space="preserve">
     <value>ptEmit</value>
   </data>
-  <data name="ptEmitDescription" xml:space="preserve">
-    <value>A point from which particles can be emitted.</value>
+  <data name="pointEmitterDescription" xml:space="preserve">
+    <value>A point from which Quelea can be emitted.</value>
   </data>
-  <data name="ptEmitGUID" xml:space="preserve">
+  <data name="pointEmitterGuid" xml:space="preserve">
     <value>7de9eadc-3864-4bb0-9ee0-98b52466323a</value>
   </data>
-  <data name="brepEnvName" xml:space="preserve">
+  <data name="brepEnvironmentName" xml:space="preserve">
     <value>Brep Environment</value>
   </data>
-  <data name="brepEnvComponentNickName" xml:space="preserve">
+  <data name="brepEnvironmentComponentNickname" xml:space="preserve">
     <value>BrepEnv</value>
   </data>
-  <data name="brepEnvDescription" xml:space="preserve">
+  <data name="brepEnvironmentDescription" xml:space="preserve">
     <value>A closed Brep Environment which the particles will interact with.</value>
   </data>
   <data name="brepName" xml:space="preserve">
     <value>Brep</value>
   </data>
-  <data name="brepNickName" xml:space="preserve">
+  <data name="brepNickname" xml:space="preserve">
     <value>B</value>
   </data>
-  <data name="brepForEnvDescription" xml:space="preserve">
+  <data name="brepForEnvironmentDescription" xml:space="preserve">
     <value>A closed Brep with normals facing out.</value>
   </data>
   <data name="brepErrorMessage" xml:space="preserve">
     <value>Brep must be closed.</value>
   </data>
-  <data name="brepEnvGUID" xml:space="preserve">
+  <data name="brepEnvironmentGuid" xml:space="preserve">
     <value>27402fe3-133b-4ce2-9b3d-bbc081f4db71</value>
   </data>
-  <data name="srfEnvName" xml:space="preserve">
+  <data name="surfaceEnvironmentName" xml:space="preserve">
     <value>Surface Environment</value>
   </data>
-  <data name="srfEnvComponentNickName" xml:space="preserve">
+  <data name="surfaceEnvironmentComponentNickname" xml:space="preserve">
     <value>SrfEnv</value>
   </data>
-  <data name="srfEnvDescription" xml:space="preserve">
-    <value>A Surface Environment upon which the particles will map their position for the calculation of Forces.</value>
+  <data name="surfaceEnvironmentDescription" xml:space="preserve">
+    <value>A Surface Environment upon which the Quelea will map their position for the calculation of Forces.</value>
   </data>
-  <data name="srfName" xml:space="preserve">
+  <data name="surfaceName" xml:space="preserve">
     <value>Surface</value>
   </data>
-  <data name="srfNickName" xml:space="preserve">
+  <data name="surfaceNickname" xml:space="preserve">
     <value>S</value>
   </data>
-  <data name="srfForEnvDescription" xml:space="preserve">
+  <data name="surfaceForEnvironmentDescription" xml:space="preserve">
     <value>An untrimmed Surface.</value>
   </data>
-  <data name="srfEnvGUID" xml:space="preserve">
+  <data name="surfaceEnvironmentGuid" xml:space="preserve">
     <value>6366359a-7e08-440a-8cab-78403729c8e2</value>
   </data>
-  <data name="crvEmitGUID" xml:space="preserve">
+  <data name="curveEmitterGuid" xml:space="preserve">
     <value>fdfef03a-611a-4c07-8b59-317ab92ee69a</value>
   </data>
   <data name="weightMultiplierName" xml:space="preserve">
     <value>Weight Multiplier</value>
   </data>
-  <data name="weightMultiplierNickName" xml:space="preserve">
+  <data name="weightMultiplierNickname" xml:space="preserve">
     <value>W</value>
   </data>
   <data name="weightMultiplierDescription" xml:space="preserve">
@@ -779,11 +770,11 @@
   <data name="viewForceName" xml:space="preserve">
     <value>View Force</value>
   </data>
-  <data name="viewForceComponentNickName" xml:space="preserve">
+  <data name="viewForceNickname" xml:space="preserve">
     <value>View</value>
   </data>
   <data name="viewForceDescription" xml:space="preserve">
-    <value>Applys a force to move the Agent laterally away from any Agent that blocks its view.</value>
+    <value>Applies a force to move the Agent laterally away from any Agent that blocks its view.</value>
   </data>
   <data name="viewForceGuid" xml:space="preserve">
     <value>92f9d4d9-6b50-458f-bdfc-bbebae55b8de</value>
@@ -798,9 +789,9 @@
     <value>Attract</value>
   </data>
   <data name="attractForceDescription" xml:space="preserve">
-    <value>Attracts an Agent within the radius of the pt.</value>
+    <value>Attracts a Quelea within the radius of the pt.</value>
   </data>
-  <data name="forcesSubCategoryName" xml:space="preserve">
+  <data name="forcesSubcategoryName" xml:space="preserve">
     <value>Forces</value>
   </data>
   <data name="attractForceGuid" xml:space="preserve">
@@ -809,7 +800,7 @@
   <data name="followPathForceName" xml:space="preserve">
     <value>Follow Path Force</value>
   </data>
-  <data name="followPathForceComponentNickName" xml:space="preserve">
+  <data name="followPathForceComponentNickname" xml:space="preserve">
     <value>FollowPath</value>
   </data>
   <data name="followPathForceDescription" xml:space="preserve">
@@ -824,11 +815,11 @@
   <data name="pathRadiusName" xml:space="preserve">
     <value>Path Radius</value>
   </data>
-  <data name="radiusNickName" xml:space="preserve">
+  <data name="radiusNickname" xml:space="preserve">
     <value>R</value>
   </data>
   <data name="pathRadiusDescription" xml:space="preserve">
-    <value>The radius around which the particles will try to stay within the Path.</value>
+    <value>The radius around which the Agents will try to stay within the Path.</value>
   </data>
   <data name="pathRadiusDefault" type="System.Double, mscorlib">
     <value>5</value>
@@ -931,7 +922,7 @@
     <value>B</value>
   </data>
   <data name="applyDescription" xml:space="preserve">
-    <value>If false, the Force will not be applied to the Agent. This is useful for having Behaviors override Forces. Can also be used for only applying the force if the Agent is within a certain area.</value>
+    <value>If false, the Force will not be applied to the Quelea. This is useful for having Behaviors override Forces. Can also be used for only applying the force if the Quelea is within a certain area.</value>
   </data>
   <data name="applyDefault" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -966,25 +957,25 @@
   <data name="icon_quelea" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_quelea.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-	<data name="particleSettingNickname" xml:space="preserve">
+  <data name="particleSettingNickname" xml:space="preserve">
     <value>Particle</value>
   </data>
-	<data name="particleSettingsDescription" xml:space="preserve">
+  <data name="particleSettingsDescription" xml:space="preserve">
     <value>Constructs the settings for a particle.</value>
   </data>
-	<data name="particleSettingsName" xml:space="preserve">
+  <data name="particleSettingsName" xml:space="preserve">
     <value>Construct Particle</value>
   </data>
-	<data name="particleName" xml:space="preserve">
+  <data name="particleName" xml:space="preserve">
     <value>Particle</value>
   </data>
-	<data name="particleNickname" xml:space="preserve">
+  <data name="particleNickname" xml:space="preserve">
     <value>P</value>
   </data>
-	<data name="particleDescription" xml:space="preserve">
-    <value>A particle that can be affected by particle forces or used to supply settings for an agent.</value>
+  <data name="particleDescription" xml:space="preserve">
+    <value>A particle is a point that can be affected by forces that do not require a perception of its surroundings or used to supply settings for an agent.</value>
   </data>
-	<data name="particlesName" xml:space="preserve">
+  <data name="particlesName" xml:space="preserve">
     <value>Particles</value>
   </data>
 </root>

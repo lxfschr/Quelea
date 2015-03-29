@@ -99,7 +99,7 @@ namespace Agent
     {
       string continuousFlowStr = RS.continuousFlowName + ": " + continuousFlow + "\n";
       string creationRateStr = RS.creationRateName + ": " + creationRate + "\n";
-      string numAgentsStr = RS.numAgentsName + ": " + numAgents + "\n";
+      string numAgentsStr = RS.numQueleaName + ": " + numAgents + "\n";
       return continuousFlowStr + creationRateStr + numAgentsStr;
     }
 

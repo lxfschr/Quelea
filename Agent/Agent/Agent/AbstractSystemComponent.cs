@@ -22,9 +22,9 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams (GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.emittersName, RS.emitterNickName, RS.emittersDescription,
+      pManager.AddGenericParameter(RS.emittersName, RS.emitterNickname, RS.emittersDescription,
                                     GH_ParamAccess.list);
-      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickName, "(Optional) Restricts and Agent's postion to be contained within the environment. This is most useful for Surface Environments.",
+      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, "(Optional) Restricts and Agent's postion to be contained within the environment. This is most useful for Surface Environments.",
                                     GH_ParamAccess.item);
       pManager[1].Optional = true;
     }
@@ -35,7 +35,7 @@ namespace Agent
     protected override void RegisterOutputParams
       (GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.systemName, RS.systemNickName, RS.systemDescription, 
+      pManager.AddGenericParameter(RS.systemName, RS.systemNickname, RS.systemDescription, 
                                    GH_ParamAccess.item);
     }
 

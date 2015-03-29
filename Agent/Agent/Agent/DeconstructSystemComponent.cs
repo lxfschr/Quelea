@@ -11,9 +11,9 @@ namespace Agent
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
     public DeconstructSystemComponent()
-      : base(RS.deconstructSystemName, RS.deconstructSystemNickName,
+      : base(RS.deconstructSystemName, RS.deconstructSystemNickname,
              RS.deconstructSystemDescription, RS.pluginCategoryName, 
-             RS.pluginSubCategoryName, RS.icon_deconstructSystem, RS.deconstructSystemGUID)
+             RS.pluginSubCategoryName, RS.icon_deconstructSystem, RS.deconstructSystemGuid)
     {
       system = null;
     }
@@ -23,7 +23,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.systemName, RS.systemNickName, RS.systemDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.systemName, RS.systemNickname, RS.systemDescription, GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace Agent
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
       pManager.AddGenericParameter(RS.agentsName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.list);
-      pManager.AddGenericParameter(RS.agentCollectionName, RS.agentCollectionNickName, RS.agentCollectionDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.agentCollectionDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

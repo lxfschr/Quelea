@@ -11,8 +11,8 @@ namespace Agent
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
     public ViewForceComponent()
-      : base(RS.viewForceName, RS.viewForceComponentNickName,
-          RS.viewForceDescription, RS.boidForcesSubCategoryName, 
+      : base(RS.viewForceName, RS.viewForceNickname,
+          RS.viewForceDescription, RS.flockingForcesSubcategoryName, 
           RS.icon_viewForce, RS.viewForceGuid)
     {
     }

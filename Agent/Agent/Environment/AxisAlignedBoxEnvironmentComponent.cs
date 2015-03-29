@@ -23,7 +23,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddBoxParameter(RS.boxName, RS.boxNickName, RS.AABoxDescription, GH_ParamAccess.item);
+      pManager.AddBoxParameter(RS.boxName, RS.boxNickname, RS.AABoxDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

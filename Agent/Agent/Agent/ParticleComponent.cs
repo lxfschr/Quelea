@@ -49,10 +49,10 @@ namespace Agent
         new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault));
       pManager.AddVectorParameter(RS.accelerationName, RS.accelerationNickName, 
                                   RS.accelerationDescription, GH_ParamAccess.item, Vector3d.Zero);
-      pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickName, RS.lifespanDescription, GH_ParamAccess.item, RS.lifespanDefault);
-      pManager.AddNumberParameter(RS.massName, RS.massNickName, RS.massDescription, GH_ParamAccess.item, RS.massDefault);
+      pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickname, RS.lifespanDescription, GH_ParamAccess.item, RS.lifespanDefault);
+      pManager.AddNumberParameter(RS.massName, RS.massNickname, RS.massDescription, GH_ParamAccess.item, RS.massDefault);
       pManager.AddNumberParameter(RS.bodySizeName, RS.bodySizeNickName, RS.bodySizeDescription, GH_ParamAccess.item, RS.bodySizeDefault);
-      pManager.AddIntegerParameter(RS.historyLenName, RS.historyLenNickName, RS.historyLenDescription, GH_ParamAccess.item, RS.historyLenDefault);
+      pManager.AddIntegerParameter(RS.historyLengthName, RS.historyLengthNickName, RS.historyLengthDescription, GH_ParamAccess.item, RS.historyLenDefault);
     }
 
     /// <summary>

@@ -19,7 +19,7 @@ namespace Agent
     protected AbstractEmitterComponent(string name, string nickname, string description,
                                     Bitmap icon, string componentGuid)
       : base(name, nickname, description, RS.pluginCategoryName, 
-             RS.emittersSubCategoryName, icon, componentGuid)
+             RS.emittersSubcategoryName, icon, componentGuid)
     {
       continuousFlow = RS.continuousFlowDefault;
       creationRate = RS.creationRateDefault;
@@ -35,9 +35,9 @@ namespace Agent
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddBooleanParameter(RS.continuousFlowName, RS.continuousFlowNickName, RS.continuousFlowDescription, GH_ParamAccess.item, RS.continuousFlowDefault);
-      pManager.AddIntegerParameter(RS.creationRateName, RS.creationRateNickName, RS.creationRateDescription, GH_ParamAccess.item, RS.creationRateDefault);
-      pManager.AddIntegerParameter(RS.numAgentsName, RS.numAgentsNickName, RS.numAgentsDescription, GH_ParamAccess.item, RS.numAgentsDefault);
+      pManager.AddBooleanParameter(RS.continuousFlowName, RS.continuousFlowNickname, RS.continuousFlowDescription, GH_ParamAccess.item, RS.continuousFlowDefault);
+      pManager.AddIntegerParameter(RS.creationRateName, RS.creationRateNickname, RS.creationRateDescription, GH_ParamAccess.item, RS.creationRateDefault);
+      pManager.AddIntegerParameter(RS.numQueleaName, RS.numQueleaNickName, RS.numQueleaDescription, GH_ParamAccess.item, RS.numAgentsDefault);
 
       pManager[1].Optional = true;
       pManager[2].Optional = true;
@@ -53,7 +53,7 @@ namespace Agent
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter(RS.emitterName, RS.emitterNickName, RS.emitterDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.emitterName, RS.emitterNickname, RS.emitterDescription, GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
@@ -85,7 +85,7 @@ namespace Agent
       }
       if (numAgents < 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.numAgentsErrorMessage);
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.numQueleaErrorMessage);
         return false;
       }
       return true;

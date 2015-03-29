@@ -14,7 +14,7 @@ namespace Agent
     /// Initializes a new instance of the AbstractSystemComponent class.
     /// </summary>
     public SystemComponent()
-      : base(RS.systemName, RS.systemComponentNickName,
+      : base(RS.systemName, RS.systemComponentNickname,
           RS.systemDescription,
           RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_system, RS.agentSystemGuid)
     {
@@ -26,11 +26,11 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentsName, RS.agentNickName, RS.agentDescription, 
+      pManager.AddGenericParameter("Quelea", "Q", "The settings for your particle, agent, or vehicle; collectively reffered to as 'quelea'.", 
                                     GH_ParamAccess.list);
-      pManager.AddGenericParameter(RS.emittersName, RS.emitterNickName, RS.emittersDescription,
+      pManager.AddGenericParameter(RS.emittersName, RS.emitterNickname, RS.emittersDescription,
                                     GH_ParamAccess.list);
-      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickName, "Restricts and Agent's postion to be contained within the environment. This is most useful for Surface Environments.",
+      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, "Restricts and Agent's postion to be contained within the environment. This is most useful for Surface Environments.",
                                     GH_ParamAccess.item);
       pManager[2].Optional = true;
     }
@@ -41,7 +41,7 @@ namespace Agent
     protected override void RegisterOutputParams
       (GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.systemName, RS.systemNickName, RS.systemDescription, 
+      pManager.AddGenericParameter(RS.systemName, RS.systemNickname, RS.systemDescription, 
                                    GH_ParamAccess.item);
     }
 

@@ -10,9 +10,9 @@ namespace Agent
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
     public DeconstructParticleComponent()
-      : base(RS.deconstructAgentName, RS.deconstructAgentNickName,
-             RS.deconstructAgentDescription, RS.pluginCategoryName, 
-             RS.pluginSubCategoryName, RS.icon_deconstructAgent, RS.deconstructAgentGUID)
+      : base(RS.deconstructQueleaName, RS.deconstructQueleaNickName,
+             RS.deconstructQueleaDescription, RS.pluginCategoryName, 
+             RS.pluginSubCategoryName, RS.icon_deconstructAgent, RS.deconstructQueleaGuid)
     {
       particle = null;
     }
@@ -31,9 +31,9 @@ namespace Agent
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
       pManager.AddPointParameter(RS.positionName, RS.positionNickName, RS.positionDescription, GH_ParamAccess.item);
-      pManager.AddVectorParameter(RS.velocityName, RS.velocityNickName, RS.velocityDescription, GH_ParamAccess.item);
+      pManager.AddVectorParameter(RS.velocityName, RS.velocityNickname, RS.velocityDescription, GH_ParamAccess.item);
       pManager.AddVectorParameter(RS.accelerationName, RS.accelerationNickName, RS.accelerationDescription, GH_ParamAccess.item);
-      pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickName, RS.lifespanDescription, GH_ParamAccess.item);
+      pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickname, RS.lifespanDescription, GH_ParamAccess.item);
       pManager.AddPointParameter("Reference Position", "RP", "For particles bound to Surface Environments, the position of the Agent mapped to a 2d plane representing the bounds of the surface ", GH_ParamAccess.item);
       pManager.HideParameter(4);
     }

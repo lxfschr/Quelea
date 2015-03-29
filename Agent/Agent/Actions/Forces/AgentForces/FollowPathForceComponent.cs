@@ -11,8 +11,8 @@ namespace Agent
     private double predictionDistance;
     private double pathTargetDistance;
     public FollowPathForceComponent()
-      : base(RS.followPathForceName, RS.followPathForceComponentNickName,
-          RS.followPathForceDescription, RS.forcesSubCategoryName, 
+      : base(RS.followPathForceName, RS.followPathForceComponentNickname,
+          RS.followPathForceDescription, RS.forcesSubcategoryName, 
           RS.icon_FollowPathForce, RS.followPathForceGuid)
     {
       path = null;
@@ -24,8 +24,8 @@ namespace Agent
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddCurveParameter(RS.curveName, RS.curveNickName, RS.curveForFollowPathDescription, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.pathRadiusName, RS.radiusNickName,
+      pManager.AddCurveParameter(RS.curveName, RS.curveNickname, RS.curveForFollowPathDescription, GH_ParamAccess.item);
+      pManager.AddNumberParameter(RS.pathRadiusName, RS.radiusNickname,
         RS.pathRadiusDescription, GH_ParamAccess.item, RS.pathRadiusDefault);
       pManager.AddNumberParameter(RS.predictionDistanceName, RS.predictionDistanceNickName, RS.predictionDistanceDescription,
         GH_ParamAccess.item, RS.visionRadiusDefault);

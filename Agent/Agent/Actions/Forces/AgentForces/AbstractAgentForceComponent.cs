@@ -30,7 +30,7 @@ namespace Agent
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickName, RS.weightMultiplierDescription,
+      pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickname, RS.weightMultiplierDescription,
         GH_ParamAccess.item, RS.weightMultiplierDefault);
     }
 
@@ -41,7 +41,7 @@ namespace Agent
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter("Force", RS.forceNickName,
+      pManager.AddGenericParameter("Force", RS.forceNickname,
                                    "The resulting force vector for debugging purposes.", GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.

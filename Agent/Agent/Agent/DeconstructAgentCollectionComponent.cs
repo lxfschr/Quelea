@@ -11,9 +11,9 @@ namespace Agent
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
     public DeconstructAgentCollectionComponent()
-      : base(RS.deconstructACName, RS.deconstructACNickName,
-          RS.deconstructACDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_deconstructAC, RS.desconstructACGUID)
+      : base(RS.deconstructQNName, RS.deconstructQNNickname,
+          RS.deconstructQNDescription,
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_deconstructAC, RS.desconstructQNGuid)
     {
       agentCollection = new SpatialCollectionType();
     }
@@ -23,7 +23,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentCollectionName, RS.agentCollectionNickName, RS.agentCollectionDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.agentCollectionDescription, GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ namespace Agent
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, (List<AgentType>)agentCollection.Particles.SpatialObjects);
+      da.SetDataList(nextOutputIndex++, (List<IParticle>)agentCollection.Particles.SpatialObjects);
     }
   }
 }

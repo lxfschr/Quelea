@@ -8,9 +8,9 @@ namespace Agent
     /// Initializes a new instance of the EatBehaviorComponent class.
     /// </summary>
     public BounceContainBehaviorComponent()
-      : base(RS.bounceContainBehName, RS.bounceContainBehNickName,
-          RS.bounceContainBehDescription, RS.behaviorsSubCategoryName, 
-          RS.icon_bounceContainBehavior, RS.bounceContainBehGUID)
+      : base(RS.bounceContainBehaviorName, RS.bounceContainBehaviorNickname,
+          RS.bounceContainBehaviorDescription, RS.behaviorsSubcategoryName, 
+          RS.icon_bounceContainBehavior, RS.bounceContainBehaviorGuid)
     {
       
     }

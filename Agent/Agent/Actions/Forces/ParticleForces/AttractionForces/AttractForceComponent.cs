@@ -11,7 +11,7 @@ namespace Agent
 
     public AttractForceComponent()
       : base(RS.attractForceName, RS.attractForceComponentNickName,
-          RS.attractForceDescription, RS.forcesSubCategoryName, 
+          RS.attractForceDescription, RS.forcesSubcategoryName, 
           RS.icon_attractForce, RS.attractForceGuid)
     {
       mass = RS.weightMultiplierDefault;
@@ -22,7 +22,7 @@ namespace Agent
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddNumberParameter(RS.massName, RS.massNickName, "More massive attractors will exert a stronger attraction force than smaller ones.",
+      pManager.AddNumberParameter(RS.massName, RS.massNickname, "More massive attractors will exert a stronger attraction force than smaller ones.",
         GH_ParamAccess.item, RS.massDefault);
       pManager.AddNumberParameter("Distance Lower Limit", "L",
         "The lower limit of the distance by which the strength is divided by.", GH_ParamAccess.item, RS.attractLowerLimitDefault);

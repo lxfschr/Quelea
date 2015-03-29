@@ -23,7 +23,7 @@ namespace Agent
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickName, RS.bounceContainBehEnvDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, RS.bounceContainBehaviorEnvironmentDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

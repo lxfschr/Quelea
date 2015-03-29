@@ -15,8 +15,8 @@ namespace Agent
     /// new tabs/panels will automatically be created.
     /// </summary>
     public BoxEmitterComponent()
-      : base(RS.boxEmitName, RS.boxEmitNickName,
-          RS.boxEmitDescription, RS.icon_boxEmitter, RS.boxEmitGUID)
+      : base(RS.boxEmitterName, RS.boxEmitterNickname,
+          RS.boxEmitterDescription, RS.icon_boxEmitter, RS.boxEmitterGuid)
     {
       box = new Box();
     }
@@ -27,7 +27,7 @@ namespace Agent
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddBoxParameter(RS.boxName, RS.boxNickName, RS.boxForEmitterDescription, GH_ParamAccess.item);
+      pManager.AddBoxParameter(RS.boxName, RS.boxNickname, RS.boxForEmitterDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

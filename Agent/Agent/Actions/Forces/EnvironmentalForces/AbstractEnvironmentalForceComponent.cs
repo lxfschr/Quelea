@@ -26,8 +26,8 @@ namespace Agent
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickName, RS.environmentDescription, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionAngleDescription,
+      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, RS.environmentDescription, GH_ParamAccess.item);
+      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickname, RS.visionAngleDescription,
         GH_ParamAccess.item, RS.bodySizeDefault);
     }
 

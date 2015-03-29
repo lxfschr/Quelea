@@ -115,7 +115,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The vector of the Agent&apos;s acceleration..
+        ///   Looks up a localized string similar to The vector of the Quelea&apos;s acceleration..
         /// </summary>
         internal static string accelerationDescription {
             get {
@@ -142,7 +142,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A container object of particles to provide for fast lookup of neighbors..
+        ///   Looks up a localized string similar to A container object of Quelea to provide for fast lookup of neighbors..
         /// </summary>
         internal static string agentCollectionDescription {
             get {
@@ -151,34 +151,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AgentCollection.
-        /// </summary>
-        internal static string agentCollectionName {
-            get {
-                return ResourceManager.GetString("agentCollectionName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AC.
-        /// </summary>
-        internal static string agentCollectionNickName {
-            get {
-                return ResourceManager.GetString("agentCollectionNickName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The AgentCollection to search through..
-        /// </summary>
-        internal static string agentCollectionToSearch {
-            get {
-                return ResourceManager.GetString("agentCollectionToSearch", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An autonomous agent that can percieve its surroundings..
+        ///   Looks up a localized string similar to An autonomous agent that is an extension of a Particle and can percieve its surroundings and make decisions on how to act..
         /// </summary>
         internal static string agentDescription {
             get {
@@ -214,7 +187,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to particles.
+        ///   Looks up a localized string similar to Agents.
         /// </summary>
         internal static string agentsName {
             get {
@@ -269,7 +242,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Steer towards the average heading of neighbors..
+        ///   Looks up a localized string similar to Steer towards the average heading of Neighbors..
         /// </summary>
         internal static string alignForceDescription {
             get {
@@ -280,9 +253,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 2734fde9-1c90-4ecd-bcf8-c58dafc5e161.
         /// </summary>
-        internal static string alignForceGUID {
+        internal static string alignForceGuid {
             get {
-                return ResourceManager.GetString("alignForceGUID", resourceCulture);
+                return ResourceManager.GetString("alignForceGuid", resourceCulture);
             }
         }
         
@@ -298,14 +271,14 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Align.
         /// </summary>
-        internal static string alignForceNickName {
+        internal static string alignForceNickname {
             get {
-                return ResourceManager.GetString("alignForceNickName", resourceCulture);
+                return ResourceManager.GetString("alignForceNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply Behaviors to each Agent?..
+        ///   Looks up a localized string similar to Apply Behaviors to each Agent?.
         /// </summary>
         internal static string applyBehaviorsDescription {
             get {
@@ -324,7 +297,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to If false, the Force will not be applied to the Agent. This is useful for having Behaviors override Forces. Can also be used for only applying the force if the Agent is within a certain area..
+        ///   Looks up a localized string similar to If false, the Force will not be applied to the Quelea. This is useful for having Behaviors override Forces. Can also be used for only applying the force if the Quelea is within a certain area..
         /// </summary>
         internal static string applyDescription {
             get {
@@ -351,7 +324,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Attracts an Agent within the radius of the pt..
+        ///   Looks up a localized string similar to Attracts a Quelea within the radius of the pt..
         /// </summary>
         internal static string attractForceDescription {
             get {
@@ -408,7 +381,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to True iff the behavior was applied to the agent..
+        ///   Looks up a localized string similar to True iff the behavior was applied to the Quelea..
         /// </summary>
         internal static string behaviorAppliedDescription {
             get {
@@ -426,7 +399,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Behavior alters the state of the agent..
+        ///   Looks up a localized string similar to A Behavior alters the state of the Quelea..
         /// </summary>
         internal static string behaviorDescription {
             get {
@@ -464,9 +437,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Behaviors.
         /// </summary>
-        internal static string behaviorsSubCategoryName {
+        internal static string behaviorsSubcategoryName {
             get {
-                return ResourceManager.GetString("behaviorsSubCategoryName", resourceCulture);
+                return ResourceManager.GetString("behaviorsSubcategoryName", resourceCulture);
             }
         }
         
@@ -491,7 +464,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The diameter of the extent of the agent&apos;s bounds..
+        ///   Looks up a localized string similar to The diameter of the extent of the Quelea&apos;s bounds. This is used for collision detection among other things..
         /// </summary>
         internal static string bodySizeDescription {
             get {
@@ -527,15 +500,6 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Boid Forces.
-        /// </summary>
-        internal static string boidForcesSubCategoryName {
-            get {
-                return ResourceManager.GetString("boidForcesSubCategoryName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to B.
         /// </summary>
         internal static string booleanNickname {
@@ -545,65 +509,47 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Causes particles to bounce off Environment boundaries..
+        ///   Looks up a localized string similar to Causes Quelea to bounce off Environment boundaries..
         /// </summary>
-        internal static string bounceContainBehDescription {
+        internal static string bounceContainBehaviorDescription {
             get {
-                return ResourceManager.GetString("bounceContainBehDescription", resourceCulture);
+                return ResourceManager.GetString("bounceContainBehaviorDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to The environment which to bounce off of..
         /// </summary>
-        internal static string bounceContainBehEnvDescription {
+        internal static string bounceContainBehaviorEnvironmentDescription {
             get {
-                return ResourceManager.GetString("bounceContainBehEnvDescription", resourceCulture);
+                return ResourceManager.GetString("bounceContainBehaviorEnvironmentDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to a266091b-aa80-4323-8239-53d9fc4666be.
         /// </summary>
-        internal static string bounceContainBehGUID {
+        internal static string bounceContainBehaviorGuid {
             get {
-                return ResourceManager.GetString("bounceContainBehGUID", resourceCulture);
+                return ResourceManager.GetString("bounceContainBehaviorGuid", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Bounce Contain Behavior.
         /// </summary>
-        internal static string bounceContainBehName {
+        internal static string bounceContainBehaviorName {
             get {
-                return ResourceManager.GetString("bounceContainBehName", resourceCulture);
+                return ResourceManager.GetString("bounceContainBehaviorName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to BounceContain.
         /// </summary>
-        internal static string bounceContainBehNickName {
+        internal static string bounceContainBehaviorNickname {
             get {
-                return ResourceManager.GetString("bounceContainBehNickName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The environment which to bounce off of..
-        /// </summary>
-        internal static string bounceContainEnvBehDescription {
-            get {
-                return ResourceManager.GetString("bounceContainEnvBehDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The environment which to bounce off of..
-        /// </summary>
-        internal static string bounceContainEnvDescription {
-            get {
-                return ResourceManager.GetString("bounceContainEnvDescription", resourceCulture);
+                return ResourceManager.GetString("bounceContainBehaviorNickname", resourceCulture);
             }
         }
         
@@ -618,43 +564,43 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Emit particles from a box..
+        ///   Looks up a localized string similar to Emit Quelea from a box..
         /// </summary>
-        internal static string boxEmitDescription {
+        internal static string boxEmitterDescription {
             get {
-                return ResourceManager.GetString("boxEmitDescription", resourceCulture);
+                return ResourceManager.GetString("boxEmitterDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 6a21f2fd-ff8b-41c8-837d-fce5a6ffa2f7.
         /// </summary>
-        internal static string boxEmitGUID {
+        internal static string boxEmitterGuid {
             get {
-                return ResourceManager.GetString("boxEmitGUID", resourceCulture);
+                return ResourceManager.GetString("boxEmitterGuid", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Box Emitter.
         /// </summary>
-        internal static string boxEmitName {
+        internal static string boxEmitterName {
             get {
-                return ResourceManager.GetString("boxEmitName", resourceCulture);
+                return ResourceManager.GetString("boxEmitterName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to BoxEmit.
         /// </summary>
-        internal static string boxEmitNickName {
+        internal static string boxEmitterNickname {
             get {
-                return ResourceManager.GetString("boxEmitNickName", resourceCulture);
+                return ResourceManager.GetString("boxEmitterNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Box for emitter.
+        ///   Looks up a localized string similar to Box representing the bounds within which Quelea will be emitted..
         /// </summary>
         internal static string boxForEmitterDescription {
             get {
@@ -674,45 +620,45 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to B.
         /// </summary>
-        internal static string boxNickName {
+        internal static string boxNickname {
             get {
-                return ResourceManager.GetString("boxNickName", resourceCulture);
+                return ResourceManager.GetString("boxNickname", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to BrepEnv.
         /// </summary>
-        internal static string brepEnvComponentNickName {
+        internal static string brepEnvironmentComponentNickname {
             get {
-                return ResourceManager.GetString("brepEnvComponentNickName", resourceCulture);
+                return ResourceManager.GetString("brepEnvironmentComponentNickname", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to A closed Brep Environment which the particles will interact with..
         /// </summary>
-        internal static string brepEnvDescription {
+        internal static string brepEnvironmentDescription {
             get {
-                return ResourceManager.GetString("brepEnvDescription", resourceCulture);
+                return ResourceManager.GetString("brepEnvironmentDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 27402fe3-133b-4ce2-9b3d-bbc081f4db71.
         /// </summary>
-        internal static string brepEnvGUID {
+        internal static string brepEnvironmentGuid {
             get {
-                return ResourceManager.GetString("brepEnvGUID", resourceCulture);
+                return ResourceManager.GetString("brepEnvironmentGuid", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Brep Environment.
         /// </summary>
-        internal static string brepEnvName {
+        internal static string brepEnvironmentName {
             get {
-                return ResourceManager.GetString("brepEnvName", resourceCulture);
+                return ResourceManager.GetString("brepEnvironmentName", resourceCulture);
             }
         }
         
@@ -728,9 +674,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to A closed Brep with normals facing out..
         /// </summary>
-        internal static string brepForEnvDescription {
+        internal static string brepForEnvironmentDescription {
             get {
-                return ResourceManager.GetString("brepForEnvDescription", resourceCulture);
+                return ResourceManager.GetString("brepForEnvironmentDescription", resourceCulture);
             }
         }
         
@@ -746,9 +692,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to B.
         /// </summary>
-        internal static string brepNickName {
+        internal static string brepNickname {
             get {
-                return ResourceManager.GetString("brepNickName", resourceCulture);
+                return ResourceManager.GetString("brepNickname", resourceCulture);
             }
         }
         
@@ -764,9 +710,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to c8fd8532-661e-47f1-99c1-b8552bb83b73.
         /// </summary>
-        internal static string coheseForceGUID {
+        internal static string coheseForceGuid {
             get {
-                return ResourceManager.GetString("coheseForceGUID", resourceCulture);
+                return ResourceManager.GetString("coheseForceGuid", resourceCulture);
             }
         }
         
@@ -782,23 +728,23 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Cohese.
         /// </summary>
-        internal static string coheseForceNickName {
+        internal static string coheseForceNickname {
             get {
-                return ResourceManager.GetString("coheseForceNickName", resourceCulture);
+                return ResourceManager.GetString("coheseForceNickname", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to cb8d83ac-eca9-4378-9048-15b37879df2e.
         /// </summary>
-        internal static string constructAgentComponentGUID {
+        internal static string constructAgentComponentGuid {
             get {
-                return ResourceManager.GetString("constructAgentComponentGUID", resourceCulture);
+                return ResourceManager.GetString("constructAgentComponentGuid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Constructs the settings for an agent..
+        ///   Looks up a localized string similar to Constructs the settings for an Agent..
         /// </summary>
         internal static string constructAgentDescription {
             get {
@@ -818,14 +764,14 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
-        internal static string constructAgentNickName {
+        internal static string constructAgentNickname {
             get {
-                return ResourceManager.GetString("constructAgentNickName", resourceCulture);
+                return ResourceManager.GetString("constructAgentNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Applies a force to keep particles away from Environment boundaries..
+        ///   Looks up a localized string similar to Applies a force to keep Agents away from Environment boundaries..
         /// </summary>
         internal static string containForceDescription {
             get {
@@ -836,9 +782,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 5a6a85be-31d7-47de-bc3b-99a0caf5bcff.
         /// </summary>
-        internal static string containForceGUID {
+        internal static string containForceGuid {
             get {
-                return ResourceManager.GetString("containForceGUID", resourceCulture);
+                return ResourceManager.GetString("containForceGuid", resourceCulture);
             }
         }
         
@@ -854,9 +800,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Contain.
         /// </summary>
-        internal static string containForceNickName {
+        internal static string containForceNickname {
             get {
-                return ResourceManager.GetString("containForceNickName", resourceCulture);
+                return ResourceManager.GetString("containForceNickname", resourceCulture);
             }
         }
         
@@ -892,9 +838,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to C.
         /// </summary>
-        internal static string continuousFlowNickName {
+        internal static string continuousFlowNickname {
             get {
-                return ResourceManager.GetString("continuousFlowNickName", resourceCulture);
+                return ResourceManager.GetString("continuousFlowNickname", resourceCulture);
             }
         }
         
@@ -909,7 +855,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rate at which new particles are created. Every Rth timestep..
+        ///   Looks up a localized string similar to Rate at which new Quelea are created. Every Rth timestep..
         /// </summary>
         internal static string creationRateDescription {
             get {
@@ -938,54 +884,54 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to R.
         /// </summary>
-        internal static string creationRateNickName {
+        internal static string creationRateNickname {
             get {
-                return ResourceManager.GetString("creationRateNickName", resourceCulture);
+                return ResourceManager.GetString("creationRateNickname", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to crvEmit.
         /// </summary>
-        internal static string crvEmitComponentNickName {
+        internal static string curveEmitterComponentNickname {
             get {
-                return ResourceManager.GetString("crvEmitComponentNickName", resourceCulture);
+                return ResourceManager.GetString("curveEmitterComponentNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A curve from which particles can be emitted..
+        ///   Looks up a localized string similar to A curve from which Quelea can be emitted..
         /// </summary>
-        internal static string crvEmitDescription {
+        internal static string curveEmitterDescription {
             get {
-                return ResourceManager.GetString("crvEmitDescription", resourceCulture);
+                return ResourceManager.GetString("curveEmitterDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to fdfef03a-611a-4c07-8b59-317ab92ee69a.
         /// </summary>
-        internal static string crvEmitGUID {
+        internal static string curveEmitterGuid {
             get {
-                return ResourceManager.GetString("crvEmitGUID", resourceCulture);
+                return ResourceManager.GetString("curveEmitterGuid", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Curve Emitter.
         /// </summary>
-        internal static string crvEmitName {
+        internal static string curveEmitterName {
             get {
-                return ResourceManager.GetString("crvEmitName", resourceCulture);
+                return ResourceManager.GetString("curveEmitterName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Base curve for emitter..
         /// </summary>
-        internal static string crvForEmitDescription {
+        internal static string curveForEmitterDescription {
             get {
-                return ResourceManager.GetString("crvForEmitDescription", resourceCulture);
+                return ResourceManager.GetString("curveForEmitterDescription", resourceCulture);
             }
         }
         
@@ -1010,77 +956,77 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to C.
         /// </summary>
-        internal static string curveNickName {
+        internal static string curveNickname {
             get {
-                return ResourceManager.GetString("curveNickName", resourceCulture);
+                return ResourceManager.GetString("curveNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deconstructs an AgentCollection into its particles..
+        ///   Looks up a localized string similar to Deconstructs a Quelea Network into a list of Quelea.
         /// </summary>
-        internal static string deconstructACDescription {
+        internal static string deconstructQNDescription {
             get {
-                return ResourceManager.GetString("deconstructACDescription", resourceCulture);
+                return ResourceManager.GetString("deconstructQNDescription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deconstruct AgentCollection.
+        ///   Looks up a localized string similar to Deconstruct Quelea Network.
         /// </summary>
-        internal static string deconstructACName {
+        internal static string deconstructQNName {
             get {
-                return ResourceManager.GetString("deconstructACName", resourceCulture);
+                return ResourceManager.GetString("deconstructQNName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeconstructAC.
+        ///   Looks up a localized string similar to DeconstructQN.
         /// </summary>
-        internal static string deconstructACNickName {
+        internal static string deconstructQNNickname {
             get {
-                return ResourceManager.GetString("deconstructACNickName", resourceCulture);
+                return ResourceManager.GetString("deconstructQNNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deconstructs an Agent to expose its position, velocity, and lifespan..
+        ///   Looks up a localized string similar to Deconstructs a Quelea to expose its position, velocity, and lifespan..
         /// </summary>
-        internal static string deconstructAgentDescription {
+        internal static string deconstructQueleaDescription {
             get {
-                return ResourceManager.GetString("deconstructAgentDescription", resourceCulture);
+                return ResourceManager.GetString("deconstructQueleaDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b.
         /// </summary>
-        internal static string deconstructAgentGUID {
+        internal static string deconstructQueleaGuid {
             get {
-                return ResourceManager.GetString("deconstructAgentGUID", resourceCulture);
+                return ResourceManager.GetString("deconstructQueleaGuid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deconstruct Agent.
+        ///   Looks up a localized string similar to Deconstruct Quelea.
         /// </summary>
-        internal static string deconstructAgentName {
+        internal static string deconstructQueleaName {
             get {
-                return ResourceManager.GetString("deconstructAgentName", resourceCulture);
+                return ResourceManager.GetString("deconstructQueleaName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeconstructAgent.
+        ///   Looks up a localized string similar to DeconstructQuelea.
         /// </summary>
-        internal static string deconstructAgentNickName {
+        internal static string deconstructQueleaNickName {
             get {
-                return ResourceManager.GetString("deconstructAgentNickName", resourceCulture);
+                return ResourceManager.GetString("deconstructQueleaNickName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deconstructs a System to expose its particles and AgentCollection..
+        ///   Looks up a localized string similar to Deconstructs a System to expose its list of Quelea and QueleaNetwork..
         /// </summary>
         internal static string deconstructSystemDescription {
             get {
@@ -1091,9 +1037,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 525078b6-0eb9-4d7f-9824-45f0861c19ea.
         /// </summary>
-        internal static string deconstructSystemGUID {
+        internal static string deconstructSystemGuid {
             get {
-                return ResourceManager.GetString("deconstructSystemGUID", resourceCulture);
+                return ResourceManager.GetString("deconstructSystemGuid", resourceCulture);
             }
         }
         
@@ -1109,23 +1055,23 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to DeconstructSystem.
         /// </summary>
-        internal static string deconstructSystemNickName {
+        internal static string deconstructSystemNickname {
             get {
-                return ResourceManager.GetString("deconstructSystemNickName", resourceCulture);
+                return ResourceManager.GetString("deconstructSystemNickname", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ef3ec326-e61f-430a-98b9-c11ad27680a2.
         /// </summary>
-        internal static string desconstructACGUID {
+        internal static string desconstructQNGuid {
             get {
-                return ResourceManager.GetString("desconstructACGUID", resourceCulture);
+                return ResourceManager.GetString("desconstructQNGuid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The object where the particles will be spawned..
+        ///   Looks up a localized string similar to The geometry from which Quelea will be spawned..
         /// </summary>
         internal static string emitterDescription {
             get {
@@ -1145,9 +1091,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to E.
         /// </summary>
-        internal static string emitterNickName {
+        internal static string emitterNickname {
             get {
-                return ResourceManager.GetString("emitterNickName", resourceCulture);
+                return ResourceManager.GetString("emitterNickname", resourceCulture);
             }
         }
         
@@ -1161,7 +1107,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Emitters from which the particles will be spawned from..
+        ///   Looks up a localized string similar to Emitters from which the Quelea will be spawned from..
         /// </summary>
         internal static string emittersDescription {
             get {
@@ -1181,9 +1127,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Emitters.
         /// </summary>
-        internal static string emittersSubCategoryName {
+        internal static string emittersSubcategoryName {
             get {
-                return ResourceManager.GetString("emittersSubCategoryName", resourceCulture);
+                return ResourceManager.GetString("emittersSubcategoryName", resourceCulture);
             }
         }
         
@@ -1217,14 +1163,14 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Engine.
         /// </summary>
-        internal static string engineNickName {
+        internal static string engineNickname {
             get {
-                return ResourceManager.GetString("engineNickName", resourceCulture);
+                return ResourceManager.GetString("engineNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An object representing the environment the particles will interact with..
+        ///   Looks up a localized string similar to A geometrical object representing the environment the Quelea will interact with..
         /// </summary>
         internal static string environmentDescription {
             get {
@@ -1235,9 +1181,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Environment Forces.
         /// </summary>
-        internal static string environmentForcesSubCategory {
+        internal static string environmentForcesSubcategory {
             get {
-                return ResourceManager.GetString("environmentForcesSubCategory", resourceCulture);
+                return ResourceManager.GetString("environmentForcesSubcategory", resourceCulture);
             }
         }
         
@@ -1253,18 +1199,18 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to En.
         /// </summary>
-        internal static string environmentNickName {
+        internal static string environmentNickname {
             get {
-                return ResourceManager.GetString("environmentNickName", resourceCulture);
+                return ResourceManager.GetString("environmentNickname", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Environments.
         /// </summary>
-        internal static string environmentsSubCategoryName {
+        internal static string environmentsSubcategoryName {
             get {
-                return ResourceManager.GetString("environmentsSubCategoryName", resourceCulture);
+                return ResourceManager.GetString("environmentsSubcategoryName", resourceCulture);
             }
         }
         
@@ -1278,11 +1224,20 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Flocking Forces.
+        /// </summary>
+        internal static string flockingForcesSubcategoryName {
+            get {
+                return ResourceManager.GetString("flockingForcesSubcategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to FollowPath.
         /// </summary>
-        internal static string followPathForceComponentNickName {
+        internal static string followPathForceComponentNickname {
             get {
-                return ResourceManager.GetString("followPathForceComponentNickName", resourceCulture);
+                return ResourceManager.GetString("followPathForceComponentNickname", resourceCulture);
             }
         }
         
@@ -1316,18 +1271,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to F.
         /// </summary>
-        internal static string forceNickName {
+        internal static string forceNickname {
             get {
-                return ResourceManager.GetString("forceNickName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Force vectors to apply to each Agent..
-        /// </summary>
-        internal static string forcesDescription {
-            get {
-                return ResourceManager.GetString("forcesDescription", resourceCulture);
+                return ResourceManager.GetString("forceNickname", resourceCulture);
             }
         }
         
@@ -1343,18 +1289,18 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Forces.
         /// </summary>
-        internal static string forcesSubCategoryName {
+        internal static string forcesSubcategoryName {
             get {
-                return ResourceManager.GetString("forcesSubCategoryName", resourceCulture);
+                return ResourceManager.GetString("forcesSubcategoryName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Neighbors.
         /// </summary>
-        internal static string getNeighborsInRadiusComponentNickName {
+        internal static string getNeighborsInRadiusComponentNickname {
             get {
-                return ResourceManager.GetString("getNeighborsInRadiusComponentNickName", resourceCulture);
+                return ResourceManager.GetString("getNeighborsInRadiusComponentNickname", resourceCulture);
             }
         }
         
@@ -1387,29 +1333,29 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The number of past positions to remember for each agent..
+        ///   Looks up a localized string similar to The number of past positions to remember for each Quelea..
         /// </summary>
-        internal static string historyLenDescription {
+        internal static string historyLengthDescription {
             get {
-                return ResourceManager.GetString("historyLenDescription", resourceCulture);
+                return ResourceManager.GetString("historyLengthDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to History Length.
         /// </summary>
-        internal static string historyLenName {
+        internal static string historyLengthName {
             get {
-                return ResourceManager.GetString("historyLenName", resourceCulture);
+                return ResourceManager.GetString("historyLengthName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to N.
         /// </summary>
-        internal static string historyLenNickName {
+        internal static string historyLengthNickName {
             get {
-                return ResourceManager.GetString("historyLenNickName", resourceCulture);
+                return ResourceManager.GetString("historyLengthNickName", resourceCulture);
             }
         }
         
@@ -1724,7 +1670,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of timesteps that the agent will be alive for. If negative, lifespan will be infinite..
+        ///   Looks up a localized string similar to Number of timesteps that the Quelea will be alive for. If negative, lifespan will be infinite..
         /// </summary>
         internal static string lifespanDescription {
             get {
@@ -1753,9 +1699,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to L.
         /// </summary>
-        internal static string lifespanNickName {
+        internal static string lifespanNickname {
             get {
-                return ResourceManager.GetString("lifespanNickName", resourceCulture);
+                return ResourceManager.GetString("lifespanNickname", resourceCulture);
             }
         }
         
@@ -1770,7 +1716,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Affects how strongly the agent reacts to forces. Larger masses will lead to more cumbersome movement..
+        ///   Looks up a localized string similar to Affects how strongly the Quelea reacts to forces. Larger masses will lead to more cumbersome movement..
         /// </summary>
         internal static string massDescription {
             get {
@@ -1799,9 +1745,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to M.
         /// </summary>
-        internal static string massNickName {
+        internal static string massNickname {
             get {
-                return ResourceManager.GetString("massNickName", resourceCulture);
+                return ResourceManager.GetString("massNickname", resourceCulture);
             }
         }
         
@@ -1845,9 +1791,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to F.
         /// </summary>
-        internal static string maxForceNickName {
+        internal static string maxForceNickname {
             get {
-                return ResourceManager.GetString("maxForceNickName", resourceCulture);
+                return ResourceManager.GetString("maxForceNickname", resourceCulture);
             }
         }
         
@@ -1862,7 +1808,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rather than teleporting, the agent will move incrementally by this speed towards targets that it seeks..
+        ///   Looks up a localized string similar to Rather than teleporting, the Quelea will move incrementally by this speed towards targets that it seeks..
         /// </summary>
         internal static string maxSpeedDescription {
             get {
@@ -1909,9 +1855,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 2477a136-9479-4e3e-b60a-1570ee1ab896.
         /// </summary>
-        internal static string neighborsGUID {
+        internal static string neighborsGuid {
             get {
-                return ResourceManager.GetString("neighborsGUID", resourceCulture);
+                return ResourceManager.GetString("neighborsGuid", resourceCulture);
             }
         }
         
@@ -1944,43 +1890,43 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The number of particles that are allowed to be alive in the system at once..
+        ///   Looks up a localized string similar to The number of Quelea that are allowed to be alive in the system at once..
         /// </summary>
-        internal static string numAgentsDescription {
+        internal static string numQueleaDescription {
             get {
-                return ResourceManager.GetString("numAgentsDescription", resourceCulture);
+                return ResourceManager.GetString("numQueleaDescription", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of particles must be greater than or equal to 0..
+        ///   Looks up a localized string similar to Number of Quelea must be greater than or equal to 0..
         /// </summary>
-        internal static string numAgentsErrorMessage {
+        internal static string numQueleaErrorMessage {
             get {
-                return ResourceManager.GetString("numAgentsErrorMessage", resourceCulture);
+                return ResourceManager.GetString("numQueleaErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of particles.
+        ///   Looks up a localized string similar to Number of Quelea.
         /// </summary>
-        internal static string numAgentsName {
+        internal static string numQueleaName {
             get {
-                return ResourceManager.GetString("numAgentsName", resourceCulture);
+                return ResourceManager.GetString("numQueleaName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to N.
         /// </summary>
-        internal static string numAgentsNickName {
+        internal static string numQueleaNickName {
             get {
-                return ResourceManager.GetString("numAgentsNickName", resourceCulture);
+                return ResourceManager.GetString("numQueleaNickName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A particle that can be affected by particle forces or used to supply settings for an agent..
+        ///   Looks up a localized string similar to A particle is a point that can be affected by forces that do not require a perception of its surroundings or used to supply settings for an agent..
         /// </summary>
         internal static string particleDescription {
             get {
@@ -2053,7 +1999,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The radius around which the particles will try to stay within the Path..
+        ///   Looks up a localized string similar to The radius around which the Agents will try to stay within the Path..
         /// </summary>
         internal static string pathRadiusDescription {
             get {
@@ -2112,6 +2058,69 @@ namespace Agent.Properties {
         internal static string pluginSubCategoryName {
             get {
                 return ResourceManager.GetString("pluginSubCategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ptEmit.
+        /// </summary>
+        internal static string pointEmitterComponentNickname {
+            get {
+                return ResourceManager.GetString("pointEmitterComponentNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A point from which Quelea can be emitted..
+        /// </summary>
+        internal static string pointEmitterDescription {
+            get {
+                return ResourceManager.GetString("pointEmitterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7de9eadc-3864-4bb0-9ee0-98b52466323a.
+        /// </summary>
+        internal static string pointEmitterGuid {
+            get {
+                return ResourceManager.GetString("pointEmitterGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point Emitter.
+        /// </summary>
+        internal static string pointEmitterName {
+            get {
+                return ResourceManager.GetString("pointEmitterName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base point for Emitter..
+        /// </summary>
+        internal static string pointForEmitterDescription {
+            get {
+                return ResourceManager.GetString("pointForEmitterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Point.
+        /// </summary>
+        internal static string pointName {
+            get {
+                return ResourceManager.GetString("pointName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to P.
+        /// </summary>
+        internal static string pointNickname {
+            get {
+                return ResourceManager.GetString("pointNickname", resourceCulture);
             }
         }
         
@@ -2207,74 +2216,38 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ptEmit.
+        ///   Looks up a localized string similar to Quelea Network.
         /// </summary>
-        internal static string ptEmitComponentNickName {
+        internal static string queleaNetworkName {
             get {
-                return ResourceManager.GetString("ptEmitComponentNickName", resourceCulture);
+                return ResourceManager.GetString("queleaNetworkName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A point from which particles can be emitted..
+        ///   Looks up a localized string similar to QN.
         /// </summary>
-        internal static string ptEmitDescription {
+        internal static string queleaNetworkNickname {
             get {
-                return ResourceManager.GetString("ptEmitDescription", resourceCulture);
+                return ResourceManager.GetString("queleaNetworkNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 7de9eadc-3864-4bb0-9ee0-98b52466323a.
+        ///   Looks up a localized string similar to The Quelea Network to search through..
         /// </summary>
-        internal static string ptEmitGUID {
+        internal static string queleaNetworkToSearch {
             get {
-                return ResourceManager.GetString("ptEmitGUID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Point Emitter.
-        /// </summary>
-        internal static string ptEmitName {
-            get {
-                return ResourceManager.GetString("ptEmitName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Base point for emitter..
-        /// </summary>
-        internal static string ptForEmitDescription {
-            get {
-                return ResourceManager.GetString("ptForEmitDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Point.
-        /// </summary>
-        internal static string ptName {
-            get {
-                return ResourceManager.GetString("ptName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to P.
-        /// </summary>
-        internal static string ptNickName {
-            get {
-                return ResourceManager.GetString("ptNickName", resourceCulture);
+                return ResourceManager.GetString("queleaNetworkToSearch", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to R.
         /// </summary>
-        internal static string radiusNickName {
+        internal static string radiusNickname {
             get {
-                return ResourceManager.GetString("radiusNickName", resourceCulture);
+                return ResourceManager.GetString("radiusNickname", resourceCulture);
             }
         }
         
@@ -2289,7 +2262,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Reset the scene?.
+        ///   Looks up a localized string similar to Reset the simulation?.
         /// </summary>
         internal static string resetDescription {
             get {
@@ -2309,14 +2282,14 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to R.
         /// </summary>
-        internal static string resetNickName {
+        internal static string resetNickname {
             get {
-                return ResourceManager.GetString("resetNickName", resourceCulture);
+                return ResourceManager.GetString("resetNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Steer to avoid neighbors..
+        ///   Looks up a localized string similar to Applies a force to steer to avoid neighbors..
         /// </summary>
         internal static string separateForceDescription {
             get {
@@ -2327,9 +2300,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to 1ba32976-9427-425e-aa14-fe86ee64a50a.
         /// </summary>
-        internal static string separateForceGUID {
+        internal static string separateForceGuid {
             get {
-                return ResourceManager.GetString("separateForceGUID", resourceCulture);
+                return ResourceManager.GetString("separateForceGuid", resourceCulture);
             }
         }
         
@@ -2345,86 +2318,86 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Separate.
         /// </summary>
-        internal static string separateForceNickName {
+        internal static string separateForceNickname {
             get {
-                return ResourceManager.GetString("separateForceNickName", resourceCulture);
+                return ResourceManager.GetString("separateForceNickname", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to SrfEnv.
         /// </summary>
-        internal static string srfEnvComponentNickName {
+        internal static string surfaceEnvironmentComponentNickname {
             get {
-                return ResourceManager.GetString("srfEnvComponentNickName", resourceCulture);
+                return ResourceManager.GetString("surfaceEnvironmentComponentNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A Surface Environment upon which the particles will map their position for the calculation of Forces..
+        ///   Looks up a localized string similar to A Surface Environment upon which the Quelea will map their position for the calculation of Forces..
         /// </summary>
-        internal static string srfEnvDescription {
+        internal static string surfaceEnvironmentDescription {
             get {
-                return ResourceManager.GetString("srfEnvDescription", resourceCulture);
+                return ResourceManager.GetString("surfaceEnvironmentDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to 6366359a-7e08-440a-8cab-78403729c8e2.
         /// </summary>
-        internal static string srfEnvGUID {
+        internal static string surfaceEnvironmentGuid {
             get {
-                return ResourceManager.GetString("srfEnvGUID", resourceCulture);
+                return ResourceManager.GetString("surfaceEnvironmentGuid", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Surface Environment.
         /// </summary>
-        internal static string srfEnvName {
+        internal static string surfaceEnvironmentName {
             get {
-                return ResourceManager.GetString("srfEnvName", resourceCulture);
+                return ResourceManager.GetString("surfaceEnvironmentName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to An untrimmed Surface..
         /// </summary>
-        internal static string srfForEnvDescription {
+        internal static string surfaceForEnvironmentDescription {
             get {
-                return ResourceManager.GetString("srfForEnvDescription", resourceCulture);
+                return ResourceManager.GetString("surfaceForEnvironmentDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Surface.
         /// </summary>
-        internal static string srfName {
+        internal static string surfaceName {
             get {
-                return ResourceManager.GetString("srfName", resourceCulture);
+                return ResourceManager.GetString("surfaceName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to S.
         /// </summary>
-        internal static string srfNickName {
+        internal static string surfaceNickname {
             get {
-                return ResourceManager.GetString("srfNickName", resourceCulture);
+                return ResourceManager.GetString("surfaceNickname", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to System.
         /// </summary>
-        internal static string systemComponentNickName {
+        internal static string systemComponentNickname {
             get {
-                return ResourceManager.GetString("systemComponentNickName", resourceCulture);
+                return ResourceManager.GetString("systemComponentNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Represents a self-contained System of particles and Emitters..
+        ///   Looks up a localized string similar to Represents a self-contained System of Quelea and Emitters..
         /// </summary>
         internal static string systemDescription {
             get {
@@ -2444,9 +2417,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to S.
         /// </summary>
-        internal static string systemNickName {
+        internal static string systemNickname {
             get {
-                return ResourceManager.GetString("systemNickName", resourceCulture);
+                return ResourceManager.GetString("systemNickname", resourceCulture);
             }
         }
         
@@ -2471,7 +2444,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The direction and magnitude of the Agent&apos;s movement..
+        ///   Looks up a localized string similar to The direction and magnitude of the Quelea&apos;s movement..
         /// </summary>
         internal static string velocityDescription {
             get {
@@ -2491,23 +2464,14 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to V.
         /// </summary>
-        internal static string velocityNickName {
+        internal static string velocityNickname {
             get {
-                return ResourceManager.GetString("velocityNickName", resourceCulture);
+                return ResourceManager.GetString("velocityNickname", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to View.
-        /// </summary>
-        internal static string viewForceComponentNickName {
-            get {
-                return ResourceManager.GetString("viewForceComponentNickName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Applys a force to move the Agent laterally away from any Agent that blocks its view..
+        ///   Looks up a localized string similar to Applies a force to move the Agent laterally away from any Agent that blocks its view..
         /// </summary>
         internal static string viewForceDescription {
             get {
@@ -2534,6 +2498,15 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        internal static string viewForceNickname {
+            get {
+                return ResourceManager.GetString("viewForceNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Double similar to 360.
         /// </summary>
         internal static double visionAngleDefault {
@@ -2544,7 +2517,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The maximum angle, taken from the velocity vector,  that the agent can see around it..
+        ///   Looks up a localized string similar to The maximum angle, taken from the velocity vector,  that the Agent can see around it..
         /// </summary>
         internal static string visionAngleDescription {
             get {
@@ -2573,9 +2546,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to A.
         /// </summary>
-        internal static string visionAngleNickName {
+        internal static string visionAngleNickname {
             get {
-                return ResourceManager.GetString("visionAngleNickName", resourceCulture);
+                return ResourceManager.GetString("visionAngleNickname", resourceCulture);
             }
         }
         
@@ -2590,7 +2563,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The maximum radius around the agent that it can see..
+        ///   Looks up a localized string similar to The maximum radius around the Agent that it can see..
         /// </summary>
         internal static string visionRadiusDescription {
             get {
@@ -2656,9 +2629,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to R.
         /// </summary>
-        internal static string visionRadiusMultiplierNickName {
+        internal static string visionRadiusMultiplierNickname {
             get {
-                return ResourceManager.GetString("visionRadiusMultiplierNickName", resourceCulture);
+                return ResourceManager.GetString("visionRadiusMultiplierNickname", resourceCulture);
             }
         }
         
@@ -2674,9 +2647,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to R.
         /// </summary>
-        internal static string visionRadiusNickName {
+        internal static string visionRadiusNickname {
             get {
-                return ResourceManager.GetString("visionRadiusNickName", resourceCulture);
+                return ResourceManager.GetString("visionRadiusNickname", resourceCulture);
             }
         }
         
@@ -2711,9 +2684,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to W.
         /// </summary>
-        internal static string weightMultiplierNickName {
+        internal static string weightMultiplierNickname {
             get {
-                return ResourceManager.GetString("weightMultiplierNickName", resourceCulture);
+                return ResourceManager.GetString("weightMultiplierNickname", resourceCulture);
             }
         }
     }

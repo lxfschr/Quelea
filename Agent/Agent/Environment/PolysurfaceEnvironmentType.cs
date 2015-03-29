@@ -514,7 +514,7 @@ namespace Agent
 
     public override string ToString()
     {
-      string environmentStr = String.ToString(RS.brepEnvName, environment);
+      string environmentStr = String.ToString(RS.brepEnvironmentName, environment);
       return environmentStr;
     }
 

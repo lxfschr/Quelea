@@ -16,9 +16,9 @@ namespace Agent
     /// Initializes a new instance of the NeighborsComponent class.
     /// </summary>
     public NeighborsComponent()
-      : base(RS.getNeighborsInRadiusName, RS.getNeighborsInRadiusComponentNickName,
+      : base(RS.getNeighborsInRadiusName, RS.getNeighborsInRadiusComponentNickname,
           RS.getNeighborsInRadiusDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_neighborsInRadius, RS.neighborsGUID)
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_neighborsInRadius, RS.neighborsGuid)
     {
       agent = null;
       agentCollection = null;
@@ -36,9 +36,9 @@ namespace Agent
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentToGetNeighborsFor, GH_ParamAccess.item);
-      pManager.AddGenericParameter(RS.agentCollectionName, RS.agentCollectionNickName, RS.agentCollectionToSearch, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
-      pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickName, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
+      pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.queleaNetworkToSearch, GH_ParamAccess.item);
+      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickname, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
+      pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickname, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
       // If you want to change properties of certain parameters, 
       // you can use the pManager instance to access them by index:
       pManager[2].Optional = true;
@@ -52,7 +52,7 @@ namespace Agent
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter(RS.getNeighborsInRadiusComponentNickName, RS.agentCollectionNickName, RS.neighborsDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.getNeighborsInRadiusComponentNickname, RS.queleaNetworkNickname, RS.neighborsDescription, GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:

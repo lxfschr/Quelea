@@ -11,8 +11,8 @@ namespace Agent
     /// Initializes a new instance of the BrepEnvironmentComponent class.
     /// </summary>
     public BrepEnvironmentComponent()
-      : base(RS.brepEnvName, RS.brepEnvComponentNickName,
-          RS.brepEnvDescription, RS.icon_BrepEnvironment, RS.brepEnvGUID)
+      : base(RS.brepEnvironmentName, RS.brepEnvironmentComponentNickname,
+          RS.brepEnvironmentDescription, RS.icon_BrepEnvironment, RS.brepEnvironmentGuid)
     {
       brep = new Cone(Plane.WorldXY, RS.boxBoundsDefault, RS.boxBoundsDefault).ToBrep(true);
     }
@@ -22,7 +22,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddBrepParameter(RS.brepName, RS.brepNickName, RS.brepForEnvDescription, GH_ParamAccess.item);
+      pManager.AddBrepParameter(RS.brepName, RS.brepNickname, RS.brepForEnvironmentDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

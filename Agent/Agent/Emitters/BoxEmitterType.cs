@@ -89,18 +89,18 @@ namespace Agent
       string origin = RS.boxName + ": " + box + "\n";
       string continuousFlowStr = RS.continuousFlowName + ": " + continuousFlow + "\n";
       string creationRateStr = RS.creationRateName + ": " + creationRate + "\n";
-      string numAgentsStr = RS.numAgentsName + ": " + numAgents + "\n";
+      string numAgentsStr = RS.numQueleaName + ": " + numAgents + "\n";
       return origin + continuousFlowStr + creationRateStr + numAgentsStr;
     }
 
     public override string TypeDescription
     {
-      get { return RS.boxEmitDescription; }
+      get { return RS.boxEmitterDescription; }
     }
 
     public override string TypeName
     {
-      get { return RS.boxEmitName; }
+      get { return RS.boxEmitterName; }
     }
 
 

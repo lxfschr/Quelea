@@ -12,7 +12,7 @@ namespace Agent
     protected AbstractEnvironmentComponent(string name, string nickname, string description,
                                     Bitmap icon, string componentGuid)
       : base(name, nickname, description, RS.pluginCategoryName,
-             RS.environmentsSubCategoryName, icon, componentGuid)
+             RS.environmentsSubcategoryName, icon, componentGuid)
     {
     }
 
@@ -21,7 +21,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickName, RS.environmentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, RS.environmentDescription, GH_ParamAccess.item);
     }
   }
 }

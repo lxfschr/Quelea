@@ -10,9 +10,9 @@ namespace Agent
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
     public SeparateForceComponent()
-      : base(RS.separateForceName, RS.separateForceNickName,
-          RS.separateForceDescription, RS.boidForcesSubCategoryName, 
-          RS.icon_separateForce, RS.separateForceGUID)
+      : base(RS.separateForceName, RS.separateForceNickname,
+          RS.separateForceDescription, RS.flockingForcesSubcategoryName, 
+          RS.icon_separateForce, RS.separateForceGuid)
     {
     }
 
