@@ -14,8 +14,8 @@ namespace Agent
     /// Initializes a new instance of the AbstractParticleForceComponent class.
     /// </summary>
     protected AbstractAgentForceComponent(string name, string nickname, string description,
-                              string subcategory, Bitmap icon, String componentGuid)
-      : base(name, nickname, description, subcategory, icon, componentGuid)
+                                          Bitmap icon, String componentGuid)
+      : base(name, nickname, description, RS.agentForcesSubcategoryName, icon, componentGuid)
     {
       weightMultiplier = RS.weightMultiplierDefault;
     }

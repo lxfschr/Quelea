@@ -160,6 +160,15 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent Forces.
+        /// </summary>
+        internal static string agentForcesSubcategoryName {
+            get {
+                return ResourceManager.GetString("agentForcesSubcategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Agent.
         /// </summary>
         internal static string agentName {
@@ -171,9 +180,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to A.
         /// </summary>
-        internal static string agentNickName {
+        internal static string agentNickname {
             get {
-                return ResourceManager.GetString("agentNickName", resourceCulture);
+                return ResourceManager.GetString("agentNickname", resourceCulture);
             }
         }
         
@@ -1017,11 +1026,11 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeconstructQuelea.
+        ///   Looks up a localized string similar to DeQuelea.
         /// </summary>
-        internal static string deconstructQueleaNickName {
+        internal static string deconstructQueleaNickname {
             get {
-                return ResourceManager.GetString("deconstructQueleaNickName", resourceCulture);
+                return ResourceManager.GetString("deconstructQueleaNickname", resourceCulture);
             }
         }
         
@@ -1053,7 +1062,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeconstructSystem.
+        ///   Looks up a localized string similar to DeSystem.
         /// </summary>
         internal static string deconstructSystemNickname {
             get {
@@ -1935,6 +1944,15 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Particle Forces.
+        /// </summary>
+        internal static string particleForcesSubcategoryName {
+            get {
+                return ResourceManager.GetString("particleForcesSubcategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Particle.
         /// </summary>
         internal static string particleName {
@@ -2216,6 +2234,24 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A Quelea which can be a Particle, Agent, or Vehicle..
+        /// </summary>
+        internal static string queleaDescription {
+            get {
+                return ResourceManager.GetString("queleaDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quelea.
+        /// </summary>
+        internal static string queleaName {
+            get {
+                return ResourceManager.GetString("queleaName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quelea Network.
         /// </summary>
         internal static string queleaNetworkName {
@@ -2239,6 +2275,15 @@ namespace Agent.Properties {
         internal static string queleaNetworkToSearch {
             get {
                 return ResourceManager.GetString("queleaNetworkToSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Q.
+        /// </summary>
+        internal static string queleaNickname {
+            get {
+                return ResourceManager.GetString("queleaNickname", resourceCulture);
             }
         }
         

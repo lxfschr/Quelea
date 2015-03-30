@@ -13,8 +13,8 @@ namespace Agent
     /// Initializes a new instance of the AbstractSeekForceComponent class.
     /// </summary>
     protected AbstractSeekForceComponent(string name, string nickname, string description,
-                                               string subcategory, Bitmap icon, String componentGuid)
-      : base(name, nickname, description, subcategory, icon, componentGuid)
+                                         Bitmap icon, String componentGuid)
+      : base(name, nickname, description, icon, componentGuid)
     {
       targetPt = new Point3d();
     }

@@ -13,7 +13,7 @@ namespace Agent
     public InitialVelocityBehaviorComponent()
       : base("Initial Velocity", "InitialVel",
           "Applys a one-time force to the Agent when it is first emitted.",
-          RS.behaviorsSubcategoryName, RS.icon_InitialVelocity, "e8da8a7b-9d58-4583-ab88-b4c9c8bd7fca")
+          RS.icon_InitialVelocity, "e8da8a7b-9d58-4583-ab88-b4c9c8bd7fca")
     {
       initialVelocity = new Vector3d();
     }

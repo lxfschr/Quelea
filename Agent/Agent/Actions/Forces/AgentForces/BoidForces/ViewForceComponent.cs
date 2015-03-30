@@ -12,8 +12,7 @@ namespace Agent
     /// </summary>
     public ViewForceComponent()
       : base(RS.viewForceName, RS.viewForceNickname,
-          RS.viewForceDescription, RS.flockingForcesSubcategoryName, 
-          RS.icon_viewForce, RS.viewForceGuid)
+          RS.viewForceDescription, RS.icon_viewForce, RS.viewForceGuid)
     {
     }
 

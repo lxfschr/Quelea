@@ -177,7 +177,7 @@
   <data name="agentName" xml:space="preserve">
     <value>Agent</value>
   </data>
-  <data name="agentNickName" xml:space="preserve">
+  <data name="agentNickname" xml:space="preserve">
     <value>A</value>
   </data>
   <data name="visionAngleDescription" xml:space="preserve">
@@ -539,8 +539,8 @@
   <data name="deconstructQueleaName" xml:space="preserve">
     <value>Deconstruct Quelea</value>
   </data>
-  <data name="deconstructQueleaNickName" xml:space="preserve">
-    <value>DeconstructQuelea</value>
+  <data name="deconstructQueleaNickname" xml:space="preserve">
+    <value>DeQuelea</value>
   </data>
   <data name="deconstructQueleaDescription" xml:space="preserve">
     <value>Deconstructs a Quelea to expose its position, velocity, and lifespan.</value>
@@ -588,7 +588,7 @@
     <value>Deconstruct System</value>
   </data>
   <data name="deconstructSystemNickname" xml:space="preserve">
-    <value>DeconstructSystem</value>
+    <value>DeSystem</value>
   </data>
   <data name="deconstructSystemDescription" xml:space="preserve">
     <value>Deconstructs a System to expose its list of Quelea and QueleaNetwork.</value>
@@ -977,5 +977,20 @@
   </data>
   <data name="particlesName" xml:space="preserve">
     <value>Particles</value>
+  </data>
+  <data name="queleaNickname" xml:space="preserve">
+    <value>Q</value>
+  </data>
+	<data name="queleaName" xml:space="preserve">
+    <value>Quelea</value>
+  </data>
+	<data name="queleaDescription" xml:space="preserve">
+    <value>A Quelea which can be a Particle, Agent, or Vehicle.</value>
+  </data>
+	<data name="particleForcesSubcategoryName" xml:space="preserve">
+    <value>Particle Forces</value>
+  </data>
+	<data name="agentForcesSubcategoryName" xml:space="preserve">
+    <value>Agent Forces</value>
   </data>
 </root>

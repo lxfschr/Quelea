@@ -10,7 +10,7 @@ namespace Agent
     /// </summary>
     public CoheseForceComponent()
       : base(RS.coheseForceName, RS.coheseForceNickname, RS.coheseForceDescription, 
-             RS.flockingForcesSubcategoryName, RS.icon_coheseForce, RS.coheseForceGuid)
+             RS.icon_coheseForce, RS.coheseForceGuid)
     {
     }
 

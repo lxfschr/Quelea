@@ -11,8 +11,7 @@ namespace Agent
     /// </summary>
     public SeparateForceComponent()
       : base(RS.separateForceName, RS.separateForceNickname,
-          RS.separateForceDescription, RS.flockingForcesSubcategoryName, 
-          RS.icon_separateForce, RS.separateForceGuid)
+          RS.separateForceDescription, RS.icon_separateForce, RS.separateForceGuid)
     {
     }
 

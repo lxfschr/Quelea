@@ -11,7 +11,7 @@ namespace Agent
     /// </summary>
     public ContainForceComponent()
       : base(RS.containForceName, RS.containForceNickname, RS.containForceDescription,
-             RS.forcesSubcategoryName, RS.icon_containForce, RS.containForceGuid)
+             RS.icon_containForce, RS.containForceGuid)
     {
     }
 

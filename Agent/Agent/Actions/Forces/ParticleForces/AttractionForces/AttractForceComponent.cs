@@ -11,8 +11,7 @@ namespace Agent
 
     public AttractForceComponent()
       : base(RS.attractForceName, RS.attractForceComponentNickName,
-          RS.attractForceDescription, RS.forcesSubcategoryName, 
-          RS.icon_attractForce, RS.attractForceGuid)
+             RS.attractForceDescription, RS.icon_attractForce, RS.attractForceGuid)
     {
       mass = RS.weightMultiplierDefault;
       lowerLimit = RS.attractLowerLimitDefault;

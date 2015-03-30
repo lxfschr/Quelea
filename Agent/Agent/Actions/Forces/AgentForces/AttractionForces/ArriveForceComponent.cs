@@ -11,7 +11,7 @@ namespace Agent
     public ArriveForceComponent()
       : base("Arrive Force", "Arrive",
           "Applies a force to steer the Agent towards a target point and slow down to a stop is it approaches the target point.",
-          RS.forcesSubcategoryName, RS.icon_arriveForce, "052be3a2-59a3-419f-a9d4-6b31ff991b26")
+           RS.icon_arriveForce, "052be3a2-59a3-419f-a9d4-6b31ff991b26")
     {
       arrivalRadius = RS.visionRadiusDefault;
     }

@@ -42,7 +42,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.agentName, RS.agentNickname + RS.queleaNickname, RS.agentDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

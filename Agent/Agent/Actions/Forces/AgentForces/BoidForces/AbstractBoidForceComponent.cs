@@ -12,8 +12,8 @@ namespace Agent
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
     protected AbstractBoidForceComponent(string name, string nickname, string description, 
-                                         string subcategory, Bitmap icon, String componentGuid)
-      : base(name, nickname, description, subcategory, icon, componentGuid)
+                                         Bitmap icon, String componentGuid)
+      : base(name, nickname, description, icon, componentGuid)
     {
       neighbors = new SpatialCollectionAsList<IParticle>();
     }

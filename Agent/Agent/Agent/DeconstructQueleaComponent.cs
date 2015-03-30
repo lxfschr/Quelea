@@ -3,14 +3,14 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public class DeconstructParticleComponent : AbstractComponent
+  public class DeconstructQueleaComponent : AbstractComponent
   {
     private IParticle particle;
     /// <summary>
-    /// Initializes a new instance of the DecomposeAgent class.
+    /// Initializes a new instance of the DeconstructQueleaComponent class.
     /// </summary>
-    public DeconstructParticleComponent()
-      : base(RS.deconstructQueleaName, RS.deconstructQueleaNickName,
+    public DeconstructQueleaComponent()
+      : base(RS.deconstructQueleaName, RS.deconstructQueleaNickname,
              RS.deconstructQueleaDescription, RS.pluginCategoryName, 
              RS.pluginSubCategoryName, RS.icon_deconstructAgent, RS.deconstructQueleaGuid)
     {
@@ -22,7 +22,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.queleaName, RS.queleaNickname, RS.queleaDescription, GH_ParamAccess.item);
     }
 
     /// <summary>

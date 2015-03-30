@@ -10,8 +10,8 @@ namespace Agent
     /// Initializes a new instance of the AbstractAgentBehaviorComponent class.
     /// </summary>
     protected AbstractAgentBehaviorComponent(string name, string nickname, string description, 
-                                     string subcategory, Bitmap icon, string componentGuid)
-      : base(name, nickname, description, subcategory, icon, componentGuid)
+                                             Bitmap icon, string componentGuid)
+      : base(name, nickname, description, RS.agentForcesSubcategoryName, icon, componentGuid)
     {
     }
 

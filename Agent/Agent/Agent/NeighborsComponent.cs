@@ -35,7 +35,7 @@ namespace Agent
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentToGetNeighborsFor, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentToGetNeighborsFor, GH_ParamAccess.item);
       pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.queleaNetworkToSearch, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickname, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
       pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickname, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);

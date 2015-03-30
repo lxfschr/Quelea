@@ -12,8 +12,7 @@ namespace Agent
     private double pathTargetDistance;
     public FollowPathForceComponent()
       : base(RS.followPathForceName, RS.followPathForceComponentNickname,
-          RS.followPathForceDescription, RS.forcesSubcategoryName, 
-          RS.icon_FollowPathForce, RS.followPathForceGuid)
+          RS.followPathForceDescription, RS.icon_FollowPathForce, RS.followPathForceGuid)
     {
       path = null;
       radius = 5.0;

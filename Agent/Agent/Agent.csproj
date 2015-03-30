@@ -114,7 +114,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SpatialCollections\SpatialCollectionType.cs" />
-    <Compile Include="Agent\DeconstructParticleComponent.cs" />
+    <Compile Include="Agent\DeconstructQueleaComponent.cs" />
     <Compile Include="Agent\DeconstructSystemComponent.cs" />
     <Compile Include="Emitters\AbstractEmitterType.cs" />
     <Compile Include="Environment\AbstractEnvironmentType.cs" />

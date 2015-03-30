@@ -9,8 +9,8 @@ namespace Agent
     /// </summary>
     public BounceContainBehaviorComponent()
       : base(RS.bounceContainBehaviorName, RS.bounceContainBehaviorNickname,
-          RS.bounceContainBehaviorDescription, RS.behaviorsSubcategoryName, 
-          RS.icon_bounceContainBehavior, RS.bounceContainBehaviorGuid)
+             RS.bounceContainBehaviorDescription, RS.icon_bounceContainBehavior, 
+             RS.bounceContainBehaviorGuid)
     {
       
     }

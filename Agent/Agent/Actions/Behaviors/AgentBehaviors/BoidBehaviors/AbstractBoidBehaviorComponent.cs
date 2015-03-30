@@ -11,8 +11,8 @@ namespace Agent
     /// Initializes a new instance of the EatBehaviorComponent class.
     /// </summary>
     protected AbstractBoidBehaviorComponent(string name, string nickname, string description,
-                                     string subcategory, Bitmap icon, string componentGuid)
-      : base(name, nickname, description, subcategory, icon, componentGuid)
+                                            Bitmap icon, string componentGuid)
+      : base(name, nickname, description, icon, componentGuid)
     {
       neighbors = new SpatialCollectionAsList<IParticle>();
     }

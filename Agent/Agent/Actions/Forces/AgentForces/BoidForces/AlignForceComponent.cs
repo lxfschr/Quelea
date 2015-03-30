@@ -11,7 +11,7 @@ namespace Agent
     /// </summary>
     public AlignForceComponent()
       : base(RS.alignForceName, RS.alignForceNickname, RS.alignForceDescription, 
-             RS.flockingForcesSubcategoryName, RS.icon_alignForce, RS.alignForceGuid)
+             RS.icon_alignForce, RS.alignForceGuid)
     {
     }
 
