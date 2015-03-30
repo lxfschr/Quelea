@@ -7,7 +7,7 @@ namespace Agent
 {
   public abstract class AbstractBoidForceComponent : AbstractAgentForceComponent
   {
-    protected ISpatialCollection<IParticle> neighbors;
+    protected ISpatialCollection<IQuelea> neighbors;
     /// <summary>
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
@@ -15,7 +15,7 @@ namespace Agent
                                          Bitmap icon, String componentGuid)
       : base(name, nickname, description, icon, componentGuid)
     {
-      neighbors = new SpatialCollectionAsList<IParticle>();
+      neighbors = new SpatialCollectionAsList<IQuelea>();
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ namespace Agent
       if (!base.GetInputs(da)) return false;
       SpatialCollectionType neighborsCollection = new SpatialCollectionType();
       if (!da.GetData(nextInputIndex++, ref neighborsCollection)) return false;
-      neighbors = neighborsCollection.Particles;
+      neighbors = neighborsCollection.Quelea;
       return true;
     }
   }

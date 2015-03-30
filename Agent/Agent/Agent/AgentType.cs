@@ -38,6 +38,7 @@ namespace Agent
       VisionAngle = a.VisionAngle;
       Position = emittionPt;
       RefPosition = refEmittionPt;
+      PositionHistory.Add(Position);
     }
 
     public AgentType(Vector3d velocityMin, Vector3d velocityMax, Vector3d acceleration,

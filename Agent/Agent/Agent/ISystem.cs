@@ -5,7 +5,7 @@ namespace Agent
 {
   public interface ISystem : IGH_Goo
   {
-    ISpatialCollection<IParticle> Particles { get; }
+    ISpatialCollection<IQuelea> Particles { get; }
     void Run();
 
     void Populate();

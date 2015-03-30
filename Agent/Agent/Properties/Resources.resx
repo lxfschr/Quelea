@@ -530,7 +530,7 @@
   <data name="queleaNetworkName" xml:space="preserve">
     <value>Quelea Network</value>
   </data>
-  <data name="agentCollectionDescription" xml:space="preserve">
+  <data name="queleaNetworkDescription" xml:space="preserve">
     <value>A container object of Quelea to provide for fast lookup of neighbors.</value>
   </data>
   <data name="desconstructQNGuid" xml:space="preserve">

@@ -11,8 +11,8 @@ namespace Agent
 {
   public class SystemType : ISystem
   {
-    public ISpatialCollection<IParticle> Particles { get; private set; }
-    protected readonly IParticle[] particlesSettings;
+    public ISpatialCollection<IQuelea> Particles { get; private set; }
+    protected readonly IQuelea[] particlesSettings;
     protected readonly AbstractEmitterType[] emitters;
     protected readonly AbstractEnvironmentType environment;
     protected int timestep;
@@ -25,7 +25,7 @@ namespace Agent
     {
     }
 
-    public SystemType(IParticle[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment)
+    public SystemType(IQuelea[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment)
     {
       timestep = 0;
       nextIndex = 0;
@@ -33,10 +33,10 @@ namespace Agent
       this.emitters = emitters;
       this.environment = environment;
       UpdateBounds();
-      Particles = new SpatialCollectionAsBinLattice<IParticle>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
+      Particles = new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
     }
 
-    public SystemType(IParticle[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment, SystemType system)
+    public SystemType(IQuelea[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment, SystemType system)
     {
       timestep = system.timestep;
       nextIndex = system.nextIndex;
@@ -44,7 +44,7 @@ namespace Agent
       this.emitters = emitters;
       this.environment = environment;
       UpdateBounds();
-      Particles = new SpatialCollectionAsBinLattice<IParticle>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IParticle>)system.Particles.SpatialObjects);
+      Particles = new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IQuelea>)system.Particles.SpatialObjects);
     }
 
     public SystemType(SystemType system)
@@ -54,13 +54,13 @@ namespace Agent
       emitters = system.emitters;
       environment = system.environment;
       UpdateBounds();
-      Particles = new SpatialCollectionAsBinLattice<IParticle>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IParticle>)system.Particles.SpatialObjects);
+      Particles = new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IQuelea>)system.Particles.SpatialObjects);
     }
 
     public void Add(AbstractEmitterType emitter)
     {
       Point3d emittionPt = emitter.Emit();
-      IParticle particle;
+      IQuelea particle;
       if (environment != null)
       {
         Point3d refEmittionPt = environment.ClosestRefPoint(emittionPt);
@@ -77,11 +77,11 @@ namespace Agent
       nextIndex = (nextIndex + 1) % particlesSettings.Length;
     }
 
-    public IParticle MakeParticle(IParticle p, Point3d emittionPt, Point3d refEmittionPt)
+    public IQuelea MakeParticle(IQuelea p, Point3d emittionPt, Point3d refEmittionPt)
     {
       if (p.GetType() == typeof(ParticleType))
       {
-        return new ParticleType(p, emittionPt, refEmittionPt);
+        return new ParticleType((IParticle)p, emittionPt, refEmittionPt);
       }
       else if (p.GetType() == typeof(AgentType))
       {
@@ -113,7 +113,7 @@ namespace Agent
       }
       else
       {
-        foreach (IParticle quelea in Particles)
+        foreach (IQuelea quelea in Particles)
         {
           min.X = quelea.RefPosition.X < min.X ? quelea.RefPosition.X : min.X;
           min.Y = quelea.RefPosition.Y < min.Y ? quelea.RefPosition.Y : min.Y;
@@ -128,9 +128,9 @@ namespace Agent
     public void Run()
     {
       UpdateBounds();
-      Particles.UpdateDatastructure(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IParticle>)Particles.SpatialObjects);
-      IList<IParticle> toRemove = new List<IParticle>();
-      foreach (IParticle quelea in Particles)
+      Particles.UpdateDatastructure(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IQuelea>)Particles.SpatialObjects);
+      IList<IQuelea> toRemove = new List<IQuelea>();
+      foreach (IQuelea quelea in Particles)
       {
         quelea.Run();
         if (environment != null)
@@ -162,7 +162,7 @@ namespace Agent
         }
       }
 
-      foreach (IParticle deadParticle in toRemove)
+      foreach (IQuelea deadParticle in toRemove)
       {
         Particles.Remove(deadParticle);
       }

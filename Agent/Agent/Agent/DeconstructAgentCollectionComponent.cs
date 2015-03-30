@@ -23,7 +23,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.agentCollectionDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.queleaNetworkDescription, GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ namespace Agent
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, (List<IParticle>)agentCollection.Particles.SpatialObjects);
+      da.SetDataList(nextOutputIndex++, (List<IQuelea>)agentCollection.Quelea.SpatialObjects);
     }
   }
 }

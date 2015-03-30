@@ -90,14 +90,14 @@ namespace Agent
 
     private SpatialCollectionType Run()
     {
-      ISpatialCollection<IParticle> neighborsInSphere = agentCollection.Particles.GetNeighborsInSphere(agent, visionRadius);
+      ISpatialCollection<IQuelea> neighborsInSphere = agentCollection.Quelea.GetNeighborsInSphere(agent, visionRadius);
 
       if (Number.ApproximatelyEqual(visionAngle, 360, RS.toleranceDefault))
       {
         return new SpatialCollectionType(neighborsInSphere);
       }
 
-      ISpatialCollection<IParticle> neighbors = new SpatialCollectionAsList<IParticle>();
+      ISpatialCollection<IQuelea> neighbors = new SpatialCollectionAsList<IQuelea>();
 
       Point3d position = agent.RefPosition;
       Vector3d velocity = agent.Velocity;
@@ -105,7 +105,7 @@ namespace Agent
       pl1.Rotate(-Math.PI / 2, pl1.YAxis);
       Plane pl2 = pl1;
       pl2.Rotate(-Math.PI / 2, pl1.XAxis);
-      foreach (IParticle neighbor in neighborsInSphere)
+      foreach (IQuelea neighbor in neighborsInSphere)
       {
         Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.RefPosition), new Vector3d(position));
         double angle1 = Vector.CalcAngle(velocity, diff, pl1);

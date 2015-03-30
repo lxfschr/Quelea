@@ -6,28 +6,28 @@ namespace Agent
 {
   public class SpatialCollectionType : GH_Goo<Object>
   {
-    private ISpatialCollection<IParticle> particles;
+    private readonly ISpatialCollection<IQuelea> quelea;
 
     public SpatialCollectionType()
     {
-      particles = new SpatialCollectionAsBinLattice<IParticle>();
+      quelea = new SpatialCollectionAsBinLattice<IQuelea>();
     }
 
-    public SpatialCollectionType(ISpatialCollection<IParticle> particles)
+    public SpatialCollectionType(ISpatialCollection<IQuelea> quelea)
     {
-      this.particles = particles;
+      this.quelea = quelea;
     }
 
     public SpatialCollectionType(SpatialCollectionType spatialCollection)
     {
-      particles = new SpatialCollectionAsBinLattice<IParticle>(spatialCollection.particles);
+      quelea = new SpatialCollectionAsBinLattice<IQuelea>(spatialCollection.quelea);
     }
 
-    public ISpatialCollection<IParticle> Particles
+    public ISpatialCollection<IQuelea> Quelea
     {
       get
       {
-        return particles;
+        return quelea;
       }
     }
 
@@ -43,12 +43,12 @@ namespace Agent
 
     public override string ToString()
     {
-      return particles.ToString();
+      return quelea.ToString();
     }
 
     public override string TypeDescription
     {
-      get { return RS.agentCollectionDescription; }
+      get { return RS.queleaNetworkDescription; }
     }
 
     public override string TypeName

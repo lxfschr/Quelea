@@ -90,6 +90,7 @@
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AbstractAttractionForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AttractForceComponent.cs" />
     <Compile Include="Agent\AbstractSystemComponent.cs" />
+    <Compile Include="Agent\IQuelea.cs" />
     <Compile Include="Agent\SystemType.cs" />
     <Compile Include="Agent\ParticleComponent.cs" />
     <Compile Include="Agent\AgentComponent.cs" />

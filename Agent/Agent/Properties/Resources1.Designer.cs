@@ -142,15 +142,6 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A container object of Quelea to provide for fast lookup of neighbors..
-        /// </summary>
-        internal static string agentCollectionDescription {
-            get {
-                return ResourceManager.GetString("agentCollectionDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to An autonomous agent that is an extension of a Particle and can percieve its surroundings and make decisions on how to act..
         /// </summary>
         internal static string agentDescription {
@@ -2248,6 +2239,15 @@ namespace Agent.Properties {
         internal static string queleaName {
             get {
                 return ResourceManager.GetString("queleaName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A container object of Quelea to provide for fast lookup of neighbors..
+        /// </summary>
+        internal static string queleaNetworkDescription {
+            get {
+                return ResourceManager.GetString("queleaNetworkDescription", resourceCulture);
             }
         }
         
