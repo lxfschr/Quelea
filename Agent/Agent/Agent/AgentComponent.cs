@@ -5,26 +5,24 @@ namespace Agent
 {
   public class AgentComponent : AbstractComponent
   {
-    private int lifespan;
-    private double mass;
-    private double bodySize;
+    private IParticle particle;
     private double maxSpeed;
     private double maxForce;
-    private int historyLength;
+    private double visionRadius;
+    private double visionAngle;
     /// <summary>
     /// Initializes a new instance of the AgentComponent class.
     /// </summary>
     public AgentComponent()
-      : base(RS.constructAgentName, RS.constructAgentNickName,
+      : base(RS.constructAgentName, RS.constructAgentNickname,
           RS.constructAgentDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_agent, RS.constructAgentComponentGUID)
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_constructAgent, RS.constructAgentComponentGuid)
     {
-      lifespan = RS.lifespanDefault;
-      mass = RS.massDefault;
-      bodySize = RS.bodySizeDefault;
+      particle = new ParticleType();
       maxSpeed = RS.maxSpeedDefault;
       maxForce = RS.maxForceDefault;
-      historyLength = RS.historyLenDefault;
+      visionRadius = RS.visionRadiusDefault;
+      visionAngle = RS.visionAngleDefault;
     }
 
     /// <summary>
@@ -32,12 +30,11 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickName, RS.lifespanDescription, GH_ParamAccess.item, RS.lifespanDefault);
-      pManager.AddNumberParameter(RS.massName, RS.massNickName, RS.massDescription, GH_ParamAccess.item, RS.massDefault);
-      pManager.AddNumberParameter(RS.bodySizeName, RS.bodySizeNickName, RS.bodySizeDescription, GH_ParamAccess.item, RS.bodySizeDefault);
+      pManager.AddGenericParameter(RS.particleName, RS.particleNickname, RS.particleDescription, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.maxSpeedName, RS.maxSpeedNickName, RS.maxSpeedDescription, GH_ParamAccess.item, RS.maxSpeedDefault);
-      pManager.AddNumberParameter(RS.maxForceName, RS.maxForceNickName, RS.maxForceDescription, GH_ParamAccess.item, RS.maxForceDefault);
-      pManager.AddIntegerParameter(RS.historyLenName, RS.historyLenNickName, RS.historyLenDescription, GH_ParamAccess.item, RS.historyLenDefault);
+      pManager.AddNumberParameter(RS.maxForceName, RS.maxForceNickname, RS.maxForceDescription, GH_ParamAccess.item, RS.maxForceDefault);
+      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickname, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
+      pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickname, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
     }
 
     /// <summary>
@@ -45,19 +42,18 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.agentName, RS.agentNickname + RS.queleaNickname, RS.agentDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
     {
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(nextInputIndex++, ref lifespan)) return false;
-      if (!da.GetData(nextInputIndex++, ref mass)) return false;
-      if (!da.GetData(nextInputIndex++, ref bodySize)) return false;
+      if (!da.GetData(nextInputIndex++, ref particle)) return false;
       if (!da.GetData(nextInputIndex++, ref maxSpeed)) return false;
       if (!da.GetData(nextInputIndex++, ref maxForce)) return false;
-      if (!da.GetData(nextInputIndex++, ref historyLength)) return false;
+      if (!da.GetData(nextInputIndex++, ref visionRadius)) return false;
+      if (!da.GetData(nextInputIndex++, ref visionAngle)) return false;
 
       // We should now validate the data and warn the user if invalid data is supplied.
       //if (lifespan <= 0)
@@ -65,16 +61,6 @@ namespace Agent
       //  AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.lifespanErrorMessage);
       //  return;
       //}
-      if (mass <= 0)
-      {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.massErrorMessage);
-        return false;
-      }
-      if (bodySize < 0)
-      {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.bodySizeErrorMessage);
-        return false;
-      }
       if (maxSpeed < 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.maxSpeedErrorMessage);
@@ -85,9 +71,14 @@ namespace Agent
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.maxForceErrorMessage);
         return false;
       }
-      if (historyLength < 1)
+      if (visionRadius < 0)
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "History length must be at least 1.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionRadiusErrorMessage);
+        return false;
+      }
+      if (!(0 <= visionAngle && visionAngle <= 360))
+      {
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionAngleErrorMessage);
         return false;
       }
       return true;
@@ -97,8 +88,7 @@ namespace Agent
     {
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      AgentType agent = new AgentType(lifespan, mass, bodySize, maxSpeed,
-                                      maxForce, historyLength);
+      IAgent agent = new AgentType(particle, maxSpeed, maxForce, visionRadius, visionAngle);
 
       // Finally assign the spiral to the output parameter.
       da.SetData(nextOutputIndex++, agent);

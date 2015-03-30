@@ -66,7 +66,7 @@ namespace Agent
         return sum;
       }
 
-      public static Vector3d Seek(AgentType agent, Vector3d target)
+      public static Vector3d Seek(IAgent agent, Vector3d target)
       {
         Vector3d desired = Vector3d.Subtract(target, new Vector3d(agent.RefPosition));
         desired.Unitize();
@@ -162,6 +162,12 @@ namespace Agent
       private static readonly object SyncLock = new object();
       public static double RandomDouble(double min, double max)
       {
+        if (min > max)
+        {
+          double temp = min;
+          min = max;
+          max = temp;
+        }
         lock (SyncLock)
         { // synchronize
           return random.NextDouble() * (max - min) + min;
@@ -173,6 +179,14 @@ namespace Agent
         double x = RandomDouble(min, max);
         double y = RandomDouble(min, max);
         double z = RandomDouble(min, max);
+        return new Vector3d(x, y, z);
+      }
+
+      internal static Vector3d RandomVector(Vector3d min, Vector3d max)
+      {
+        double x = RandomDouble(min.X, max.X);
+        double y = RandomDouble(min.Y, max.Y);
+        double z = RandomDouble(min.Z, max.Z);
         return new Vector3d(x, y, z);
       }
     }

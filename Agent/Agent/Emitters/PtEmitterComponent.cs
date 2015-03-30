@@ -15,8 +15,8 @@ namespace Agent
     /// new tabs/panels will automatically be created.
     /// </summary>
     public PtEmitterComponent()
-      : base(RS.ptEmitName, RS.ptEmitComponentNickName,
-          RS.ptEmitDescription, RS.icon_ptEmitter, RS.ptEmitGUID)
+      : base(RS.pointEmitterName, RS.pointEmitterComponentNickname,
+          RS.pointEmitterDescription, RS.icon_ptEmitter, RS.pointEmitterGuid)
     {
       pt = Point3d.Origin;
     }
@@ -27,7 +27,7 @@ namespace Agent
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddPointParameter(RS.ptName, RS.ptNickName, RS.ptForEmitDescription, GH_ParamAccess.item, Point3d.Origin);
+      pManager.AddPointParameter(RS.pointName, RS.pointNickname, RS.pointForEmitterDescription, GH_ParamAccess.item, Point3d.Origin);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

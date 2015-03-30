@@ -8,7 +8,7 @@ namespace Agent
 {
   public class NeighborsComponent : AbstractComponent
   {
-    private AgentType agent;
+    private IAgent agent;
     private SpatialCollectionType agentCollection;
     private double visionRadius;
     private double visionAngle;
@@ -16,12 +16,12 @@ namespace Agent
     /// Initializes a new instance of the NeighborsComponent class.
     /// </summary>
     public NeighborsComponent()
-      : base(RS.getNeighborsInRadiusName, RS.getNeighborsInRadiusComponentNickName,
+      : base(RS.getNeighborsInRadiusName, RS.getNeighborsInRadiusComponentNickname,
           RS.getNeighborsInRadiusDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_neighborsInRadius, RS.neighborsGUID)
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_neighborsInRadius, RS.neighborsGuid)
     {
-      agent = new AgentType();
-      agentCollection = new SpatialCollectionType();
+      agent = null;
+      agentCollection = null;
       visionRadius = RS.visionRadiusDefault;
       visionAngle = RS.visionAngleDefault;
     }
@@ -35,10 +35,10 @@ namespace Agent
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentToGetNeighborsFor, GH_ParamAccess.item);
-      pManager.AddGenericParameter(RS.agentCollectionName, RS.agentCollectionNickName, RS.agentCollectionToSearch, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
-      pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickName, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
+      pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentToGetNeighborsFor, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.queleaNetworkToSearch, GH_ParamAccess.item);
+      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickname, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
+      pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickname, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
       // If you want to change properties of certain parameters, 
       // you can use the pManager instance to access them by index:
       pManager[2].Optional = true;
@@ -52,7 +52,7 @@ namespace Agent
     {
       // Use the pManager object to register your output parameters.
       // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter(RS.getNeighborsInRadiusComponentNickName, RS.agentCollectionNickName, RS.neighborsDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.getNeighborsInRadiusComponentNickname, RS.queleaNetworkNickname, RS.neighborsDescription, GH_ParamAccess.item);
 
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
@@ -67,8 +67,7 @@ namespace Agent
       if (!da.GetData(nextInputIndex++, ref agentCollection)) return false;
       da.GetData(nextInputIndex++, ref visionRadius);
       da.GetData(nextInputIndex++, ref visionAngle);
-
-
+      
       // We should now validate the data and warn the user if invalid data is supplied.
       if (!(0.0 <= visionRadius))
       {
@@ -91,14 +90,14 @@ namespace Agent
 
     private SpatialCollectionType Run()
     {
-      ISpatialCollection<AgentType> neighborsInSphere = agentCollection.Agents.GetNeighborsInSphere(agent, visionRadius);
+      ISpatialCollection<IQuelea> neighborsInSphere = agentCollection.Quelea.GetNeighborsInSphere(agent, visionRadius);
 
       if (Number.ApproximatelyEqual(visionAngle, 360, RS.toleranceDefault))
       {
         return new SpatialCollectionType(neighborsInSphere);
       }
 
-      ISpatialCollection<AgentType> neighbors = new SpatialCollectionAsList<AgentType>();
+      ISpatialCollection<IQuelea> neighbors = new SpatialCollectionAsList<IQuelea>();
 
       Point3d position = agent.RefPosition;
       Vector3d velocity = agent.Velocity;
@@ -106,7 +105,7 @@ namespace Agent
       pl1.Rotate(-Math.PI / 2, pl1.YAxis);
       Plane pl2 = pl1;
       pl2.Rotate(-Math.PI / 2, pl1.XAxis);
-      foreach (AgentType neighbor in neighborsInSphere)
+      foreach (IQuelea neighbor in neighborsInSphere)
       {
         Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.RefPosition), new Vector3d(position));
         double angle1 = Vector.CalcAngle(velocity, diff, pl1);

@@ -11,9 +11,9 @@ namespace Agent
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
     public DeconstructAgentCollectionComponent()
-      : base(RS.deconstructACName, RS.deconstructACNickName,
-          RS.deconstructACDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_deconstructAC, RS.desconstructACGUID)
+      : base(RS.deconstructQNName, RS.deconstructQNNickname,
+          RS.deconstructQNDescription,
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_deconstructAC, RS.desconstructQNGuid)
     {
       agentCollection = new SpatialCollectionType();
     }
@@ -21,9 +21,9 @@ namespace Agent
     /// <summary>
     /// Registers all the input parameters for this component.
     /// </summary>
-    protected override void RegisterInputParams( GH_InputParamManager pManager)
+    protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentCollectionName, RS.agentCollectionNickName, RS.agentCollectionDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.queleaNetworkDescription, GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -31,7 +31,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentsName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.list);
+      pManager.AddGenericParameter(RS.queleaName, RS.queleaNickname, RS.queleaDescription, GH_ParamAccess.list);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
@@ -43,7 +43,7 @@ namespace Agent
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, (List<AgentType>)agentCollection.Agents.SpatialObjects);
+      da.SetDataList(nextOutputIndex++, (List<IQuelea>)agentCollection.Quelea.SpatialObjects);
     }
   }
 }

@@ -80,21 +80,21 @@ namespace Agent
     public override string ToString()
     {
 
-      string origin = String.ToString(RS.ptName, pt);
+      string origin = String.ToString(RS.pointName, pt);
       string continuousFlowStr = String.ToString(RS.continuousFlowName, continuousFlow);
       string creationRateStr = String.ToString(RS.creationRateName, creationRate);
-      string numAgentsStr = String.ToString(RS.numAgentsName, numAgents);
+      string numAgentsStr = String.ToString(RS.numQueleaName, numAgents);
       return origin + continuousFlowStr + creationRateStr + numAgentsStr;
     }
 
     public override string TypeDescription
     {
-      get { return RS.ptEmitDescription; }
+      get { return RS.pointEmitterDescription; }
     }
 
     public override string TypeName
     {
-      get { return RS.ptEmitName; }
+      get { return RS.pointEmitterName; }
     }
 
 

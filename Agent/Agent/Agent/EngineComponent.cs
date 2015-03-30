@@ -8,12 +8,12 @@ namespace Agent
   public class EngineComponent : AbstractComponent
   {
     private Boolean reset;
-    private AgentSystemType system;
+    private ISystem system;
     /// <summary>
     /// Initializes a new instance of the Engine class.
     /// </summary>
     public EngineComponent()
-      : base(RS.engineName, RS.engineNickName,
+      : base(RS.engineName, RS.engineNickname,
           RS.engineDescription,
           RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_engine, RS.engineGUID)
     {
@@ -26,8 +26,8 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddBooleanParameter(RS.resetName, RS.resetNickName, RS.resetDescription, GH_ParamAccess.item, RS.resetDefault);
-      pManager.AddGenericParameter(RS.systemName, RS.systemNickName, RS.systemDescription, GH_ParamAccess.item);
+      pManager.AddBooleanParameter(RS.resetName, RS.resetNickname, RS.resetDescription, GH_ParamAccess.item, RS.resetDefault);
+      pManager.AddGenericParameter(RS.systemName, RS.systemNickname, RS.systemDescription, GH_ParamAccess.item);
       
     }
 
@@ -54,7 +54,6 @@ namespace Agent
     {
       if (reset)
       {
-        system.Agents.Clear();
         system.Populate();
       }
       else

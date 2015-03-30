@@ -343,7 +343,7 @@ namespace Agent
       return new Line(position, feelerVec).ToNurbsCurve();
     }
 
-    private static Curve[] GetFeelerCrvs(AgentType agent, double visionDistance, 
+    private static Curve[] GetFeelerCrvs(IParticle agent, double visionDistance, 
                                   bool accurate)
     {
       Curve[] feelers;
@@ -382,7 +382,7 @@ namespace Agent
       return feelers;
     }
 
-    public override Vector3d AvoidEdges(AgentType agent, double distance)
+    public override Vector3d AvoidEdges(IAgent agent, double distance)
     {
       Vector3d desired = new Vector3d();
       Vector3d avoidVec, parVec;
@@ -433,13 +433,13 @@ namespace Agent
       return desired;
     }
 
-    public override bool BounceContain(AgentType agent)
+    public override bool BounceContain(IParticle particle)
     {
-      Vector3d velocity = agent.Velocity;
+      Vector3d velocity = particle.Velocity;
 
       double tol = 0.01;
 
-      Curve[] feelers = GetFeelerCrvs(agent, agent.BodySize, false);
+      Curve[] feelers = GetFeelerCrvs(particle, particle.BodySize, false);
 
       foreach (Brep[] borderWalls in borderWallsArray)
       {
@@ -461,7 +461,7 @@ namespace Agent
                 Vector3d normal = face.NormalAt(u, v);
                 normal.Reverse();
                 velocity = Vector.Reflect(velocity, normal);
-                agent.Velocity = velocity;
+                particle.Velocity = velocity;
                 return true;
               }
             }
@@ -514,7 +514,7 @@ namespace Agent
 
     public override string ToString()
     {
-      string environmentStr = String.ToString(RS.brepEnvName, environment);
+      string environmentStr = String.ToString(RS.brepEnvironmentName, environment);
       return environmentStr;
     }
 

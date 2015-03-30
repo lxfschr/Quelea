@@ -6,7 +6,6 @@ namespace Agent
 {
   public abstract class AbstractActionComponent : AbstractComponent
   {
-    protected AgentType agent;
     protected bool apply;
 
     /// <summary>
@@ -16,7 +15,6 @@ namespace Agent
                                      string subcategory, Bitmap icon, string componentGuid)
       : base(name, nickname, description, RS.pluginCategoryName, subcategory, icon, componentGuid)
     {
-      agent = new AgentType();
       apply = true;
     }
 
@@ -29,7 +27,6 @@ namespace Agent
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.item);
       pManager.AddBooleanParameter(RS.applyName, RS.booleanNickname, RS.applyDescription,
          GH_ParamAccess.item, RS.applyDefault);
     }
@@ -40,7 +37,6 @@ namespace Agent
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(nextInputIndex++, ref agent)) return false;
       if (!da.GetData(nextInputIndex++, ref apply)) return false;
 
       return true;

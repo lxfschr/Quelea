@@ -6,14 +6,14 @@ namespace Agent
 {
   public class DeconstructSystemComponent : AbstractComponent
   {
-    private AgentSystemType system;
+    private ISystem system;
     /// <summary>
     /// Initializes a new instance of the DecomposeAgent class.
     /// </summary>
     public DeconstructSystemComponent()
-      : base(RS.deconstructSystemName, RS.deconstructSystemNickName,
+      : base(RS.deconstructSystemName, RS.deconstructSystemNickname,
              RS.deconstructSystemDescription, RS.pluginCategoryName, 
-             RS.pluginSubCategoryName, RS.icon_deconstructSystem, RS.deconstructSystemGUID)
+             RS.pluginSubCategoryName, RS.icon_deconstructSystem, RS.deconstructSystemGuid)
     {
       system = null;
     }
@@ -23,7 +23,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.systemName, RS.systemNickName, RS.systemDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.systemName, RS.systemNickname, RS.systemDescription, GH_ParamAccess.item);
     }
 
     /// <summary>
@@ -31,8 +31,8 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentsName, RS.agentNickName, RS.agentDescription, GH_ParamAccess.list);
-      pManager.AddGenericParameter(RS.agentCollectionName, RS.agentCollectionNickName, RS.agentCollectionDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.queleaName, RS.queleaNickname, RS.queleaDescription, GH_ParamAccess.list);
+      pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.queleaNetworkDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
@@ -43,8 +43,8 @@ namespace Agent
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, (List<AgentType>)system.Agents.SpatialObjects);
-      da.SetData(nextOutputIndex++, new SpatialCollectionType(system.Agents));
+      da.SetDataList(nextOutputIndex++, (List<IQuelea>)system.Particles.SpatialObjects);
+      da.SetData(nextOutputIndex++, new SpatialCollectionType(system.Particles));
     }
   }
 }

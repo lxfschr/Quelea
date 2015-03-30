@@ -26,7 +26,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddBrepParameter(RS.brepName, RS.brepNickName, RS.brepForEnvDescription, GH_ParamAccess.item);
+      pManager.AddBrepParameter(RS.brepName, RS.brepNickname, RS.brepForEnvironmentDescription, GH_ParamAccess.item);
       pManager.AddVectorParameter("Border Extrution Direction", "D", "A vector indicating which direction to extrude the borders of the polysurface to create border walls for containment. If the zero vector is supplied, the default is to extrude each border point normal to the surface.", GH_ParamAccess.item, Vector3d.Zero);
     }
 

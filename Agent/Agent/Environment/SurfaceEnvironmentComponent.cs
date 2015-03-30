@@ -11,8 +11,8 @@ namespace Agent
     /// Initializes a new instance of the WorldBoxEnvironmentComponent class.
     /// </summary>
     public SurfaceEnvironmentComponent()
-      : base(RS.srfEnvName, RS.srfEnvComponentNickName,
-          RS.srfEnvDescription, RS.icon_srfEnvironment, RS.srfEnvGUID)
+      : base(RS.surfaceEnvironmentName, RS.surfaceEnvironmentComponentNickname,
+          RS.surfaceEnvironmentDescription, RS.icon_srfEnvironment, RS.surfaceEnvironmentGuid)
     {
       Point3d pt1 = Point3d.Origin;
       Point3d pt2 = new Point3d(RS.boxBoundsDefault, 0, 0);
@@ -25,7 +25,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddSurfaceParameter(RS.srfName, RS.srfNickName, RS.srfForEnvDescription, GH_ParamAccess.item);
+      pManager.AddSurfaceParameter(RS.surfaceName, RS.surfaceNickname, RS.surfaceForEnvironmentDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

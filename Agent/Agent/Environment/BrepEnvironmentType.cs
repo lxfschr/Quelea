@@ -68,7 +68,7 @@ namespace Agent
 
     public override string ToString()
     {
-      string environmentStr = Util.String.ToString(RS.brepEnvName, environment);
+      string environmentStr = Util.String.ToString(RS.brepEnvironmentName, environment);
       return environmentStr;
     }
 
@@ -107,7 +107,7 @@ namespace Agent
       return new Line(position, feelerVec).ToNurbsCurve();
     }
 
-    private static Curve[] GetFeelerCrvs(AgentType agent, double visionDistance, 
+    private static Curve[] GetFeelerCrvs(IParticle particle, double visionDistance, 
                                   bool accurate)
     {
       Curve[] feelers;
@@ -122,10 +122,10 @@ namespace Agent
       
       double feelerAngle = Math.PI/2;
       //Calculate straight ahead feeler with length visionDistance
-      Vector3d feelerVec = agent.Velocity;
+      Vector3d feelerVec = particle.Velocity;
       feelerVec.Unitize();
       feelerVec = Vector3d.Multiply(feelerVec, visionDistance);
-      feelers[0] = new Line(agent.Position, feelerVec).ToNurbsCurve();
+      feelers[0] = new Line(particle.Position, feelerVec).ToNurbsCurve();
 
       if (!accurate)
       {
@@ -133,20 +133,20 @@ namespace Agent
       }
 
       //Calculate tertiary feelers with length bodySize
-      feelerVec = agent.Velocity;
+      feelerVec = particle.Velocity;
       feelerVec.Unitize();
-      Plane rotPln = new Plane(agent.Position, agent.Velocity);
+      Plane rotPln = new Plane(particle.Position, particle.Velocity);
       Vector3d rotAxis = rotPln.XAxis;
-      feelers[1] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, feelerAngle, rotAxis);
-      feelers[2] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, -feelerAngle, rotAxis);
+      feelers[1] = GetFeelerCrv(feelerVec, particle.RefPosition, particle.BodySize, feelerAngle, rotAxis);
+      feelers[2] = GetFeelerCrv(feelerVec, particle.RefPosition, particle.BodySize, -feelerAngle, rotAxis);
       rotAxis = rotPln.YAxis;
-      feelers[3] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, feelerAngle, rotAxis);
-      feelers[4] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, -feelerAngle, rotAxis);
+      feelers[3] = GetFeelerCrv(feelerVec, particle.RefPosition, particle.BodySize, feelerAngle, rotAxis);
+      feelers[4] = GetFeelerCrv(feelerVec, particle.RefPosition, particle.BodySize, -feelerAngle, rotAxis);
 
       return feelers;
     }
 
-    public override Vector3d AvoidEdges(AgentType agent, double distance)
+    public override Vector3d AvoidEdges(IAgent agent, double distance)
     {
       Vector3d steer = new Vector3d();
       Vector3d avoidVec, parVec;
@@ -193,16 +193,16 @@ namespace Agent
       return steer;
     }
 
-    public override bool BounceContain(AgentType agent)
+    public override bool BounceContain(IParticle particle)
     {
-      Vector3d velocity = agent.Velocity;
+      Vector3d velocity = particle.Velocity;
       
       double tol = 0.01;
 
       Curve[] overlapCrvs;
       Point3d[] intersectPts;
 
-      Curve[] feelers = GetFeelerCrvs(agent, agent.BodySize, false);
+      Curve[] feelers = GetFeelerCrvs(particle, particle.BodySize, false);
 
       foreach (Curve feeler in feelers)
       {
@@ -218,7 +218,7 @@ namespace Agent
             Vector3d normal = face.NormalAt(u, v);
             normal.Reverse();
             velocity = Vector.Reflect(velocity, normal);
-            agent.Velocity = velocity;
+            particle.Velocity = velocity;
             return true;
           }
         }

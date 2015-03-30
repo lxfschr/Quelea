@@ -5,7 +5,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class AbstractEnvironmentalForceComponent : AbstractForceComponent
+  public abstract class AbstractEnvironmentalForceComponent : AbstractAgentForceComponent
   {
     protected AbstractEnvironmentType environment;
     protected double visionRadius;
@@ -13,8 +13,8 @@ namespace Agent
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
     protected AbstractEnvironmentalForceComponent(string name, string nickname, string description,
-                                                  string subcategory, Bitmap icon, String componentGuid)
-      : base(name, nickname, description, subcategory, icon, componentGuid)
+                                                  Bitmap icon, String componentGuid)
+      : base(name, nickname, description, icon, componentGuid)
     {
       environment = new AxisAlignedBoxEnvironmentType();
       visionRadius = RS.bodySizeDefault;
@@ -26,8 +26,8 @@ namespace Agent
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickName, RS.environmentDescription, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickName, RS.visionAngleDescription,
+      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, RS.environmentDescription, GH_ParamAccess.item);
+      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickname, RS.visionAngleDescription,
         GH_ParamAccess.item, RS.bodySizeDefault);
     }
 

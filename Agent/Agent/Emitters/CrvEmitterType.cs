@@ -87,18 +87,18 @@ namespace Agent
       string origin = String.ToString(RS.curveName, crv);
       string continuousFlowStr = String.ToString(RS.continuousFlowName, continuousFlow);
       string creationRateStr = String.ToString(RS.creationRateName, creationRate);
-      string numAgentsStr = String.ToString(RS.numAgentsName, numAgents);
+      string numAgentsStr = String.ToString(RS.numQueleaName, numAgents);
       return origin + continuousFlowStr + creationRateStr + numAgentsStr;
     }
 
     public override string TypeDescription
     {
-      get { return RS.crvEmitDescription; }
+      get { return RS.curveEmitterDescription; }
     }
 
     public override string TypeName
     {
-      get { return RS.crvEmitName; }
+      get { return RS.curveEmitterName; }
     }
 
 
