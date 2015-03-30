@@ -160,9 +160,6 @@
     <None Include="Resources\icon_coheseForce.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_deconstructAgent.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_engine.png" />
   </ItemGroup>
   <ItemGroup>
@@ -173,9 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_deconstructAC.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_deconstructSystem.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_neighborsInRadius.png" />
@@ -202,9 +196,6 @@
     <None Include="Resources\icon_srfEnvironment .png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_attractForce.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_boxEmitter.png" />
   </ItemGroup>
   <ItemGroup>
@@ -229,16 +220,10 @@
     <None Include="Resources\icon_arriveForce.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_bounceContainBehavior.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_containForce.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_initialVelocity.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_applyCustomForce.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_polysurfaceEnvironment.png" />
@@ -246,7 +231,27 @@
   <ItemGroup>
     <None Include="Resources\icon_quelea.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\icon_constructAgent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_constructParticle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructAgent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructSystem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_applyCustomForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_attractForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_bounceContainBehavior.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

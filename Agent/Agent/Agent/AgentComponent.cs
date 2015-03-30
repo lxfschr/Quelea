@@ -16,7 +16,7 @@ namespace Agent
     public AgentComponent()
       : base(RS.constructAgentName, RS.constructAgentNickname,
           RS.constructAgentDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_agent, RS.constructAgentComponentGuid)
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_constructAgent, RS.constructAgentComponentGuid)
     {
       particle = new ParticleType();
       maxSpeed = RS.maxSpeedDefault;

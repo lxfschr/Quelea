@@ -849,9 +849,6 @@
     <value>-1</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="icon_agent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icon_agent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icon_alignForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_alignForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -992,5 +989,11 @@
   </data>
   <data name="agentForcesSubcategoryName" xml:space="preserve">
     <value>Agent Forces</value>
+  </data>
+  <data name="icon_constructAgent" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_constructAgent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_constructParticle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_constructParticle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

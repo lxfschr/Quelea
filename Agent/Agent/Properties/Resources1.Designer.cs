@@ -1372,16 +1372,6 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_agent {
-            get {
-                object obj = ResourceManager.GetObject("icon_agent", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icon_alignForce {
             get {
                 object obj = ResourceManager.GetObject("icon_alignForce", resourceCulture);
@@ -1465,6 +1455,26 @@ namespace Agent.Properties {
         internal static System.Drawing.Bitmap icon_coheseForce {
             get {
                 object obj = ResourceManager.GetObject("icon_coheseForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_constructAgent {
+            get {
+                object obj = ResourceManager.GetObject("icon_constructAgent", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_constructParticle {
+            get {
+                object obj = ResourceManager.GetObject("icon_constructParticle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
