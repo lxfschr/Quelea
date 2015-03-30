@@ -60,7 +60,7 @@ namespace Agent
 
     abstract public Vector3d AvoidEdges(IAgent agent, double distance);
 
-    abstract public bool BounceContain(IAgent agent);
+    abstract public bool BounceContain(IParticle particle);
 
     abstract public BoundingBox GetBoundingBox();
   }

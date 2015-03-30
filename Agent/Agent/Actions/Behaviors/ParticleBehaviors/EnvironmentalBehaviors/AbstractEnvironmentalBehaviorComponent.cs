@@ -4,7 +4,7 @@ using RS = Agent.Properties.Resources;
 
 namespace Agent
 {
-  public abstract class AbstractEnvironmentalBehaviorComponent : AbstractAgentBehaviorComponent
+  public abstract class AbstractEnvironmentalBehaviorComponent : AbstractParticleBehaviorComponent
   {
     protected AbstractEnvironmentType environment;
     /// <summary>

@@ -180,7 +180,7 @@ namespace Agent
       return desired;
     }
 
-    public override bool BounceContain(IAgent agent)
+    public override bool BounceContain(IParticle agent)
     {
       Point3d position = agent.RefPosition;
       Vector3d velocity = agent.Velocity;

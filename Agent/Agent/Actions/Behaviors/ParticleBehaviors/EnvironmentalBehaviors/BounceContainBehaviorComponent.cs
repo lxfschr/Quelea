@@ -17,7 +17,7 @@ namespace Agent
 
     protected override bool Run()
     {
-      return environment.BounceContain(agent);
+      return environment.BounceContain(particle);
     }
   }
 }

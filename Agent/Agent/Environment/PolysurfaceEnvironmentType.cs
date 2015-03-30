@@ -343,7 +343,7 @@ namespace Agent
       return new Line(position, feelerVec).ToNurbsCurve();
     }
 
-    private static Curve[] GetFeelerCrvs(IAgent agent, double visionDistance, 
+    private static Curve[] GetFeelerCrvs(IParticle agent, double visionDistance, 
                                   bool accurate)
     {
       Curve[] feelers;
@@ -433,13 +433,13 @@ namespace Agent
       return desired;
     }
 
-    public override bool BounceContain(IAgent agent)
+    public override bool BounceContain(IParticle particle)
     {
-      Vector3d velocity = agent.Velocity;
+      Vector3d velocity = particle.Velocity;
 
       double tol = 0.01;
 
-      Curve[] feelers = GetFeelerCrvs(agent, agent.BodySize, false);
+      Curve[] feelers = GetFeelerCrvs(particle, particle.BodySize, false);
 
       foreach (Brep[] borderWalls in borderWallsArray)
       {
@@ -461,7 +461,7 @@ namespace Agent
                 Vector3d normal = face.NormalAt(u, v);
                 normal.Reverse();
                 velocity = Vector.Reflect(velocity, normal);
-                agent.Velocity = velocity;
+                particle.Velocity = velocity;
                 return true;
               }
             }

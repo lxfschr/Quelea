@@ -39,6 +39,7 @@ namespace Agent
       InitialVelocitySet = p.InitialVelocitySet;
       Position = p.Position;
       RefPosition = p.RefPosition;
+      PositionHistory.Add(Position);
       Velocity = p.Velocity;
     }
 
@@ -48,6 +49,7 @@ namespace Agent
     {
       Position = emittionPt;
       RefPosition = refEmittionPt;
+      PositionHistory.Add(Position);
     }
 
     public Point3d Position { get; set; }
@@ -77,7 +79,7 @@ namespace Agent
       Point3d position = Position;
       position.Transform(Transform.Translation(Velocity)); //So disconnecting the environment allows the agent to continue from its current position.
       Position = position;
-      PositionHistory.Add(Position);
+      //PositionHistory.Add(Position);
       Acceleration = Vector3d.Zero;
       Lifespan -= 1;
     }

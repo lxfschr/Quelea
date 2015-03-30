@@ -518,7 +518,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Causes Quelea to bounce off Environment boundaries..
+        ///   Looks up a localized string similar to Causes Particles to bounce off Environment boundaries..
         /// </summary>
         internal static string bounceContainBehaviorDescription {
             get {
@@ -2062,7 +2062,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent.
+        ///   Looks up a localized string similar to Quelea.
         /// </summary>
         internal static string pluginCategoryName {
             get {
@@ -2071,7 +2071,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Agent.
+        ///   Looks up a localized string similar to Quelea.
         /// </summary>
         internal static string pluginSubCategoryName {
             get {

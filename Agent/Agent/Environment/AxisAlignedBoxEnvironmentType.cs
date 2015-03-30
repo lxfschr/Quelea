@@ -167,7 +167,7 @@ namespace Agent
       return desired;
     }
 
-    public override bool BounceContain(IAgent agent)
+    public override bool BounceContain(IParticle agent)
     {
       bool bounced = false;
       Point3d position = agent.RefPosition;

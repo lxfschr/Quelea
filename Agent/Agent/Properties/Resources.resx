@@ -238,10 +238,10 @@
     <value>F</value>
   </data>
   <data name="pluginCategoryName" xml:space="preserve">
-    <value>Agent</value>
+    <value>Quelea</value>
   </data>
   <data name="pluginSubCategoryName" xml:space="preserve">
-    <value>Agent</value>
+    <value>Quelea</value>
   </data>
   <data name="separateForceDescription" xml:space="preserve">
     <value>Applies a force to steer to avoid neighbors.</value>
@@ -401,7 +401,7 @@
     <value>BounceContain</value>
   </data>
   <data name="bounceContainBehaviorDescription" xml:space="preserve">
-    <value>Causes Quelea to bounce off Environment boundaries.</value>
+    <value>Causes Particles to bounce off Environment boundaries.</value>
   </data>
   <data name="behaviorsSubcategoryName" xml:space="preserve">
     <value>Behaviors</value>
@@ -981,16 +981,16 @@
   <data name="queleaNickname" xml:space="preserve">
     <value>Q</value>
   </data>
-	<data name="queleaName" xml:space="preserve">
+  <data name="queleaName" xml:space="preserve">
     <value>Quelea</value>
   </data>
-	<data name="queleaDescription" xml:space="preserve">
+  <data name="queleaDescription" xml:space="preserve">
     <value>A Quelea which can be a Particle, Agent, or Vehicle.</value>
   </data>
-	<data name="particleForcesSubcategoryName" xml:space="preserve">
+  <data name="particleForcesSubcategoryName" xml:space="preserve">
     <value>Particle Forces</value>
   </data>
-	<data name="agentForcesSubcategoryName" xml:space="preserve">
+  <data name="agentForcesSubcategoryName" xml:space="preserve">
     <value>Agent Forces</value>
   </data>
 </root>

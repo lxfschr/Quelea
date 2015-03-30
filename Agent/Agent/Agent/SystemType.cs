@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms.VisualStyles;
 using Agent.Util;
 using GH_IO.Serialization;
 using Grasshopper.Kernel.Types;
@@ -12,11 +11,10 @@ namespace Agent
 {
   public class SystemType : ISystem
   {
-    public IParticleFactory particleFactory;
     public ISpatialCollection<IParticle> Particles { get; private set; }
-    protected IParticle[] particlesSettings;
-    protected AbstractEmitterType[] emitters;
-    protected AbstractEnvironmentType environment;
+    protected readonly IParticle[] particlesSettings;
+    protected readonly AbstractEmitterType[] emitters;
+    protected readonly AbstractEnvironmentType environment;
     protected int timestep;
     protected int nextIndex;
     protected Point3d min;
@@ -36,7 +34,6 @@ namespace Agent
       this.environment = environment;
       UpdateBounds();
       Particles = new SpatialCollectionAsBinLattice<IParticle>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
-      particleFactory = new ParticleFactory();
     }
 
     public SystemType(IParticle[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment, SystemType system)
@@ -48,7 +45,6 @@ namespace Agent
       this.environment = environment;
       UpdateBounds();
       Particles = new SpatialCollectionAsBinLattice<IParticle>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IParticle>)system.Particles.SpatialObjects);
-      particleFactory = system.particleFactory;
     }
 
     public SystemType(SystemType system)
@@ -59,7 +55,6 @@ namespace Agent
       environment = system.environment;
       UpdateBounds();
       Particles = new SpatialCollectionAsBinLattice<IParticle>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IParticle>)system.Particles.SpatialObjects);
-      particleFactory = system.particleFactory;
     }
 
     public void Add(AbstractEmitterType emitter)
@@ -70,16 +65,29 @@ namespace Agent
       {
         Point3d refEmittionPt = environment.ClosestRefPoint(emittionPt);
         //agent = new ParticleType(particlesSettings[nextIndex % particlesSettings.Length], emittionPt, refEmittionPt);
-        particle = particleFactory.MakeParticle(particlesSettings[nextIndex], emittionPt,
+        particle = MakeParticle(particlesSettings[nextIndex], emittionPt,
           refEmittionPt);
       }
       else
       {
-        particle = particleFactory.MakeParticle(particlesSettings[nextIndex], emittionPt,
+        particle = MakeParticle(particlesSettings[nextIndex], emittionPt,
           emittionPt);
       }
       Particles.Add(particle);
       nextIndex = (nextIndex + 1) % particlesSettings.Length;
+    }
+
+    public IParticle MakeParticle(IParticle p, Point3d emittionPt, Point3d refEmittionPt)
+    {
+      if (p.GetType() == typeof(ParticleType))
+      {
+        return new ParticleType(p, emittionPt, refEmittionPt);
+      }
+      else if (p.GetType() == typeof(AgentType))
+      {
+        return new AgentType((IAgent)p, emittionPt, refEmittionPt);
+      }
+      return new AgentType((IAgent)p, emittionPt, refEmittionPt);
     }
 
     private void UpdateBounds()

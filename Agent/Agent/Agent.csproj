@@ -70,8 +70,8 @@
     <Compile Include="Actions\Behaviors\ParticleBehaviors\AbstractParticleBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\AgentBehaviors\BoidBehaviors\AbstractBoidBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\AgentBehaviors\BoidBehaviors\EatBehaviorComponent.cs" />
-    <Compile Include="Actions\Behaviors\AgentBehaviors\EnvironmentalBehaviors\AbstractEnvironmentalBehaviorComponent.cs" />
-    <Compile Include="Actions\Behaviors\AgentBehaviors\EnvironmentalBehaviors\BounceContainBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\ParticleBehaviors\EnvironmentalBehaviors\AbstractEnvironmentalBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\ParticleBehaviors\EnvironmentalBehaviors\BounceContainBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\ParticleBehaviors\InitialVelocityBehaviorComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\AbstractAgentForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AbstractParticleForceComponent.cs" />
@@ -90,9 +90,7 @@
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AbstractAttractionForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AttractForceComponent.cs" />
     <Compile Include="Agent\AbstractSystemComponent.cs" />
-    <Compile Include="Agent\ParticleFactory.cs" />
     <Compile Include="Agent\SystemType.cs" />
-    <Compile Include="Agent\IParticleFactory.cs" />
     <Compile Include="Agent\ParticleComponent.cs" />
     <Compile Include="Agent\AgentComponent.cs" />
     <Compile Include="Agent\SystemComponent.cs" />
