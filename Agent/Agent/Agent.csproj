@@ -74,6 +74,7 @@
     <Compile Include="Actions\Behaviors\ParticleBehaviors\EnvironmentalBehaviors\BounceContainBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\ParticleBehaviors\InitialVelocityBehaviorComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\AbstractAgentForceComponent.cs" />
+    <Compile Include="Actions\Forces\AgentForces\WanderForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AbstractParticleForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\ApplyCustomForceComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\AttractionForces\AbstractSeekForceComponent.cs" />
@@ -232,16 +233,7 @@
     <None Include="Resources\icon_quelea.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_constructAgent.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_constructParticle.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_deconstructAgent.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_deconstructSystem.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_applyCustomForce.png" />
@@ -251,6 +243,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_bounceContainBehavior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_wanderForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructQuelea.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructSystem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_constructAgent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_constructParticle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

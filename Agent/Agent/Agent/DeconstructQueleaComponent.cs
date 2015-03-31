@@ -12,7 +12,7 @@ namespace Agent
     public DeconstructQueleaComponent()
       : base(RS.deconstructQueleaName, RS.deconstructQueleaNickname,
              RS.deconstructQueleaDescription, RS.pluginCategoryName, 
-             RS.pluginSubCategoryName, RS.icon_deconstructAgent, RS.deconstructQueleaGuid)
+             RS.pluginSubCategoryName, RS.icon_deconstructQuelea, RS.deconstructQueleaGuid)
     {
       particle = null;
     }

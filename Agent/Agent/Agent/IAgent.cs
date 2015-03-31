@@ -9,5 +9,7 @@
     double VisionRadius { get; set; }
 
     double VisionAngle { get; set; }
+    double Lon { get; set; }
+    double Lat { get; set; }
   }
 }

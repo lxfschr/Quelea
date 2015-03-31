@@ -1522,6 +1522,16 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_deconstructQuelea {
+            get {
+                object obj = ResourceManager.GetObject("icon_deconstructQuelea", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_deconstructSystem {
             get {
                 object obj = ResourceManager.GetObject("icon_deconstructSystem", resourceCulture);
@@ -1665,6 +1675,16 @@ namespace Agent.Properties {
         internal static System.Drawing.Bitmap icon_viewForce {
             get {
                 object obj = ResourceManager.GetObject("icon_viewForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_wanderForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_wanderForce", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

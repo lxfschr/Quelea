@@ -1,4 +1,5 @@
-﻿using Rhino.Geometry;
+﻿using System;
+using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
 namespace Agent
@@ -27,6 +28,8 @@ namespace Agent
       MaxForce = maxForce;
       VisionRadius = visionRadius;
       VisionAngle = visionAngle;
+      Lat = Util.Random.RandomDouble(0, 2 * Math.PI);
+      Lon = Util.Random.RandomDouble(-Math.PI / 2, Math.PI / 2);
     }
 
     public AgentType(IAgent a, Point3d emittionPt, Point3d refEmittionPt)
@@ -39,6 +42,8 @@ namespace Agent
       Position = emittionPt;
       RefPosition = refEmittionPt;
       PositionHistory.Add(Position);
+      Lat = Util.Random.RandomDouble(0, 2 * Math.PI);
+      Lon = Util.Random.RandomDouble(-Math.PI / 2, Math.PI / 2);
     }
 
     public AgentType(Vector3d velocityMin, Vector3d velocityMax, Vector3d acceleration,
@@ -50,11 +55,15 @@ namespace Agent
       MaxForce = maxForce;
       VisionRadius = visionRadius;
       VisionAngle = visionAngle;
+      Lat = Util.Random.RandomDouble(0, 2 * Math.PI);
+      Lon = Util.Random.RandomDouble(-Math.PI / 2, Math.PI / 2);
     }
 
    public double MaxSpeed { get; set; }
    public double MaxForce { get; set; }
    public double VisionRadius { get; set; }
    public double VisionAngle { get; set; }
+   public double Lon { get; set; }
+   public double Lat { get; set; }
   }
 }
