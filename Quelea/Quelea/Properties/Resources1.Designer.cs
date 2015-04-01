@@ -2218,7 +2218,7 @@ namespace Agent.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Double similar to 5.
+        ///   Looks up a localized resource of type System.Double similar to 1.
         /// </summary>
         internal static double predictionDistanceDefault {
             get {

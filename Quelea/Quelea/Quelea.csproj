@@ -76,6 +76,7 @@
     <Compile Include="Actions\Forces\AgentForces\AbstractAgentForceComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\WanderForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AbstractParticleForceComponent.cs" />
+    <Compile Include="Actions\Forces\ParticleForces\FlowDownSurfaceForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\ApplyCustomForceComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\AttractionForces\AbstractSeekForceComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\AttractionForces\ArriveForceComponent.cs" />

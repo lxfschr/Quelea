@@ -828,7 +828,7 @@
     <value>The distance the Agent will predict its future location at to determine if corrective steering should be applied.</value>
   </data>
   <data name="predictionDistanceDefault" type="System.Double, mscorlib">
-    <value>5</value>
+    <value>1</value>
   </data>
   <data name="predictionDistanceName" xml:space="preserve">
     <value>Prediction Distance</value>
