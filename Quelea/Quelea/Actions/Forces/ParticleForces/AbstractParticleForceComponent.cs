@@ -63,12 +63,6 @@ namespace Agent
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      if (!apply)
-      {
-        da.SetData(nextOutputIndex++, Vector3d.Zero);
-        return;
-      }
-
       Vector3d force = Run();
       da.SetData(nextOutputIndex++, force);
     }
@@ -82,7 +76,10 @@ namespace Agent
     private Vector3d ApplyForce(Vector3d force)
     {
       Vector3d weightedForce = Vector3d.Multiply(force, weightMultiplier);
-      particle.ApplyForce(weightedForce);
+      if (apply)
+      {
+        particle.ApplyForce(weightedForce);
+      }
       return weightedForce;
     }
 

@@ -129,6 +129,19 @@ namespace Agent
       return environment.ClosestPoint(pt);
     }
 
+    public override Vector3d ClosestNormal(Point3d pt)
+    {
+      Brep brepEnv = environment.ToBrep();
+      Point3d closestPoint;
+      ComponentIndex componentIndex;
+      double s;
+      double t;
+      const double maxDist = 100;
+      Vector3d normal;
+      brepEnv.ClosestPoint(pt, out closestPoint, out componentIndex, out s, out t, maxDist, out normal);
+      return normal;
+    }
+
     public override Vector3d AvoidEdges(IAgent agent, double distance)
     {
       Point3d refPosition = agent.RefPosition;

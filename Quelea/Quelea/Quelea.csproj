@@ -72,6 +72,7 @@
     <Compile Include="Actions\Behaviors\AgentBehaviors\BoidBehaviors\EatBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\ParticleBehaviors\EnvironmentalBehaviors\AbstractEnvironmentalBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\ParticleBehaviors\EnvironmentalBehaviors\BounceContainBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\ParticleBehaviors\SetVelocityBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\ParticleBehaviors\InitialVelocityBehaviorComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\AbstractAgentForceComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\WanderForceComponent.cs" />

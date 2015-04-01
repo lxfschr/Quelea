@@ -333,6 +333,18 @@ namespace Agent
       return ClosestPoint(pt);
     }
 
+    public override Vector3d ClosestNormal(Point3d pt)
+    {
+      Point3d closestPoint;
+      ComponentIndex componentIndex;
+      double s;
+      double t;
+      const double maxDist = 100;
+      Vector3d normal;
+      environment.ClosestPoint(pt, out closestPoint, out componentIndex, out s, out t, maxDist, out normal);
+      return normal;
+    }
+
     //visionAngle in radians
     private static Curve GetFeelerCrv(Vector3d feelerVec, Point3d position, 
                                       double bodySize, double visionAngle, 

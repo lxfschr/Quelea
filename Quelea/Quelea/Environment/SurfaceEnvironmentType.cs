@@ -151,6 +151,13 @@ namespace Agent
       return environment.PointAt(u, v);
     }
 
+    public override Vector3d ClosestNormal(Point3d pt)
+    {
+      double u, v;
+      environment.ClosestPoint(pt, out u, out v);
+      return environment.NormalAt(u, v);
+    }
+
     public override Vector3d AvoidEdges(IAgent agent, double distance)
     {
       Point3d refPosition = agent.RefPosition;
