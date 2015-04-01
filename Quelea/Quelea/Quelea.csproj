@@ -90,21 +90,21 @@
     <Compile Include="Actions\Forces\AgentForces\FollowPathForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AbstractAttractionForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AttractForceComponent.cs" />
-    <Compile Include="Agent\AbstractSystemComponent.cs" />
-    <Compile Include="Agent\IQuelea.cs" />
-    <Compile Include="Agent\SystemType.cs" />
-    <Compile Include="Agent\ParticleComponent.cs" />
-    <Compile Include="Agent\AgentComponent.cs" />
-    <Compile Include="Agent\SystemComponent.cs" />
-    <Compile Include="Agent\AgentType.cs" />
-    <Compile Include="Agent\IAgent.cs" />
-    <Compile Include="Agent\IParticle.cs" />
-    <Compile Include="Agent\ISystem.cs" />
-    <Compile Include="Agent\ParticleType.cs" />
+    <Compile Include="Quelea\AbstractSystemComponent.cs" />
+    <Compile Include="Quelea\IQuelea.cs" />
+    <Compile Include="Quelea\SystemType.cs" />
+    <Compile Include="Quelea\ParticleComponent.cs" />
+    <Compile Include="Quelea\AgentComponent.cs" />
+    <Compile Include="Quelea\SystemComponent.cs" />
+    <Compile Include="Quelea\AgentType.cs" />
+    <Compile Include="Quelea\IAgent.cs" />
+    <Compile Include="Quelea\IParticle.cs" />
+    <Compile Include="Quelea\ISystem.cs" />
+    <Compile Include="Quelea\ParticleType.cs" />
     <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Emitters\BoxEmitterType.cs" />
-    <Compile Include="Agent\DeconstructAgentCollectionComponent.cs" />
-    <Compile Include="Agent\NeighborsComponent.cs" />
+    <Compile Include="Quelea\DeconstructAgentCollectionComponent.cs" />
+    <Compile Include="Quelea\NeighborsComponent.cs" />
     <Compile Include="Emitters\AbstractEmitterComponent.cs" />
     <Compile Include="Environment\AbstractEnvironmentComponent.cs" />
     <Compile Include="Environment\PolysurfaceEnvironmentComponent.cs" />
@@ -114,14 +114,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SpatialCollections\SpatialCollectionType.cs" />
-    <Compile Include="Agent\DeconstructQueleaComponent.cs" />
-    <Compile Include="Agent\DeconstructSystemComponent.cs" />
+    <Compile Include="Quelea\DeconstructQueleaComponent.cs" />
+    <Compile Include="Quelea\DeconstructSystemComponent.cs" />
     <Compile Include="Emitters\AbstractEmitterType.cs" />
     <Compile Include="Environment\AbstractEnvironmentType.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Environment\AxisAlignedBoxEnvironmentComponent.cs" />
     <Compile Include="Environment\AxisAlignedBoxEnvironmentType.cs" />
-    <Compile Include="Agent\EngineComponent.cs" />
+    <Compile Include="Quelea\EngineComponent.cs" />
     <Compile Include="SpatialCollections\CircularArray.cs" />
     <Compile Include="SpatialCollections\IPosition.cs" />
     <Compile Include="SpatialCollections\ISpatialCollection.cs" />
@@ -141,7 +141,7 @@
     <Compile Include="Emitters\CrvEmitterType.cs" />
     <Compile Include="Emitters\PtEmitterType.cs" />
     <Compile Include="Emitters\PtEmitterComponent.cs" />
-    <Compile Include="Agent\AgentInfo.cs" />
+    <Compile Include="Quelea\AgentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
