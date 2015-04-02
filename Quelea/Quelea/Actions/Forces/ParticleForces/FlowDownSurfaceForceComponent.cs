@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Windows.Forms.VisualStyles;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
@@ -10,14 +8,13 @@ namespace Agent
   public class FlowDownSurfaceForceComponent : AbstractParticleForceComponent
   {
     private AbstractEnvironmentType environment;
-    private Plane frame;
     private double stepDistance;
     public FlowDownSurfaceForceComponent()
       : base("Flow Down Surface Force", "SurfaceFlow",
           "Applies a force to simulate water flowing over the surface.",
           null, "a020520c-2da2-444e-a014-4a1bc0d844a5")
     {
-      stepDistance = RS.predictionDistanceDefault;
+      stepDistance = 0.1;
     }
 
     protected override void RegisterInputParams(GH_InputParamManager pManager)
@@ -25,13 +22,7 @@ namespace Agent
       base.RegisterInputParams(pManager);
       pManager.AddGenericParameter("Environment", "En", "The Surface or Polysurface Environment to flow over.", GH_ParamAccess.item);
       pManager.AddNumberParameter("Step distance", "D", "The distance the particle will move each timestep. Smaller distances will lead to more accurate results.",
-        GH_ParamAccess.item, RS.predictionDistanceDefault);
-    }
-
-    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
-    {
-      base.RegisterOutputParams(pManager);
-      pManager.AddPlaneParameter("P", "P", "P", GH_ParamAccess.item);
+        GH_ParamAccess.item, 0.1);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
@@ -50,12 +41,6 @@ namespace Agent
       drainVec.Transform(Transform.Rotation(Math.PI / 2, nrml, particle.Position));
       drainVec = Vector3d.Multiply(drainVec, stepDistance);
       return drainVec;
-    }
-
-    protected override void SetOutputs(IGH_DataAccess da)
-    {
-      base.SetOutputs(da);
-      da.SetData(nextOutputIndex++, frame);
     }
   }
 }
