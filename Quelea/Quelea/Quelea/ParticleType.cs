@@ -70,7 +70,7 @@ namespace Agent
       return RefPosition;
     }
 
-    public void Run()
+    virtual public void Run()
     {
       Velocity = Vector3d.Add(Velocity, Acceleration);
       Point3d refPosition = RefPosition;

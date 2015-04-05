@@ -15,9 +15,8 @@ namespace Agent
     {
     }
 
-    public AgentType(AgentType a)
-     : this(a.VelocityMin, a.VelocityMax, a.Acceleration, a.Lifespan, a.Mass, a.BodySize, a.HistoryLength,
-             a.MaxSpeed, a.MaxForce, a.VisionRadius, a.VisionAngle)
+    public AgentType(IAgent a)
+     : this((IParticle) a, a.MaxSpeed, a.MaxForce, a.VisionRadius, a.VisionAngle)
     {
     }
 

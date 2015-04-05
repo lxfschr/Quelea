@@ -93,7 +93,10 @@
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AbstractAttractionForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AttractForceComponent.cs" />
     <Compile Include="Quelea\AbstractSystemComponent.cs" />
+    <Compile Include="Quelea\VehicleComponent.cs" />
+    <Compile Include="Quelea\VehicleType.cs" />
     <Compile Include="Quelea\IQuelea.cs" />
+    <Compile Include="Quelea\IVehicle.cs" />
     <Compile Include="Quelea\SystemType.cs" />
     <Compile Include="Quelea\ParticleComponent.cs" />
     <Compile Include="Quelea\AgentComponent.cs" />

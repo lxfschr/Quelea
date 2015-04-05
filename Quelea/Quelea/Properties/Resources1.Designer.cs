@@ -2764,5 +2764,15 @@ namespace Agent.Properties {
                 return ResourceManager.GetString("weightMultiplierNickname", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 1.
+        /// </summary>
+        internal static double wheelRadiusDefault {
+            get {
+                object obj = ResourceManager.GetObject("wheelRadiusDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
     }
 }

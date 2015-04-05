@@ -79,15 +79,15 @@ namespace Agent
 
     public IQuelea MakeParticle(IQuelea p, Point3d emittionPt, Point3d refEmittionPt)
     {
-      if (p.GetType() == typeof(ParticleType))
+      if (p.GetType() == typeof(VehicleType))
       {
-        return new ParticleType((IParticle)p, emittionPt, refEmittionPt);
+        return new VehicleType((IVehicle)p, emittionPt, refEmittionPt);
       }
-      else if (p.GetType() == typeof(AgentType))
+      if (p.GetType() == typeof(AgentType))
       {
         return new AgentType((IAgent)p, emittionPt, refEmittionPt);
       }
-      return new AgentType((IAgent)p, emittionPt, refEmittionPt);
+      return new ParticleType((IParticle)p, emittionPt, refEmittionPt);
     }
 
     private void UpdateBounds()
