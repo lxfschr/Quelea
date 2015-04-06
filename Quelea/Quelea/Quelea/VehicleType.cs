@@ -50,6 +50,8 @@ namespace Agent
 
    public override void Run()
    {
+     //WheelLeft.Run();
+     //WheelRight.Run();
      wheelDiff = WheelLeft.RadialSpeed - WheelRight.RadialSpeed;
      wheelAvg = (WheelLeft.RadialSpeed + WheelRight.RadialSpeed) / 2;
      double angle = wheelDiff/BodySize;

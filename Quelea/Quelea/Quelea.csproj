@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractComponent.cs" />
+    <Compile Include="Actions\AbstractVehicleActionComponent.cs" />
     <Compile Include="Actions\AbstractAgentActionComponent.cs" />
     <Compile Include="Actions\AbstractParticleActionComponent.cs" />
     <Compile Include="Actions\AbstractActionComponent.cs" />
@@ -92,6 +93,8 @@
     <Compile Include="Actions\Forces\AgentForces\FollowPathForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AbstractAttractionForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AttractForceComponent.cs" />
+    <Compile Include="Actions\Forces\VehicleForces\AbstractVehicleForceComponent.cs" />
+    <Compile Include="Actions\Forces\VehicleForces\SensoryPtForceComponent.cs" />
     <Compile Include="Quelea\AbstractSystemComponent.cs" />
     <Compile Include="Quelea\VehicleComponent.cs" />
     <Compile Include="Quelea\VehicleType.cs" />

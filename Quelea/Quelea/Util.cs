@@ -10,7 +10,10 @@ namespace Agent
     {
       public static double Map(double v, double from1, double to1, double from2, double to2)
       {
-        return from2 + (v - from1) * (to2 - from2) / (to1 - from1);
+        double remappedVal = from2 + (v - from1) * (to2 - from2) / (to1 - from1);
+        remappedVal = remappedVal > to2 ? to2 : remappedVal;
+        remappedVal = remappedVal < from2 ? from2 : remappedVal;
+        return remappedVal;
       }
       public static double Clamp(double x, double lower, double upper)
       {

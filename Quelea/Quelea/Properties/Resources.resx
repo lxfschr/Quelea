@@ -1005,4 +1005,16 @@
 	<data name="wheelRadiusDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
 		<value>1</value>
 	</data>
+	<data name="vehicleName" xml:space="preserve">
+    <value>Vehicle</value>
+  </data>
+	<data name="vehicleNickname" xml:space="preserve">
+    <value>V</value>
+  </data>
+	<data name="vehicleDescription" xml:space="preserve">
+    <value>A Vehicle with wheels that uses sensors to examine its' environment.</value>
+  </data>
+	<data name="vehicleForcesSubcategoryName" xml:space="preserve">
+    <value>Vehicle Forces</value>
+  </data>
 </root>

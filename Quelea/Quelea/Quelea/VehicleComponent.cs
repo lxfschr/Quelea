@@ -14,7 +14,7 @@ namespace Agent
     /// Initializes a new instance of the AgentComponent class.
     /// </summary>
     public VehicleComponent()
-      : base("Construct Vehicle", "Vehicle",
+      : base("Construct Vehicle", RS.vehicleName,
           "Constructs settings for a Vehicle",
           RS.pluginCategoryName, RS.pluginSubCategoryName, null, "c785d70e-6196-4068-a7f6-78444450b518")
     {
@@ -38,7 +38,7 @@ namespace Agent
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter("Vehicle", "V" + RS.queleaNickname, "A Vehicle with wheels that uses sensors to examine its' environment.", GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.vehicleName, RS.vehicleNickname + RS.queleaNickname, RS.vehicleDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

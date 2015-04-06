@@ -2509,6 +2509,42 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A Vehicle with wheels that uses sensors to examine its&apos; environment..
+        /// </summary>
+        internal static string vehicleDescription {
+            get {
+                return ResourceManager.GetString("vehicleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle Forces.
+        /// </summary>
+        internal static string vehicleForcesSubcategoryName {
+            get {
+                return ResourceManager.GetString("vehicleForcesSubcategoryName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vehicle.
+        /// </summary>
+        internal static string vehicleName {
+            get {
+                return ResourceManager.GetString("vehicleName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to V.
+        /// </summary>
+        internal static string vehicleNickname {
+            get {
+                return ResourceManager.GetString("vehicleNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Double similar to 0.1.
         /// </summary>
         internal static double velocityDefault {
