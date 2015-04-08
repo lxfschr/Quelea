@@ -9,6 +9,8 @@ namespace Agent
     IWheel WheelLeft { get; set; }
     IWheel WheelRight { get; set; }
     double WheelRadius { get; set; }
+    Point3d GetPartPosition(double gapSize, double rotation);
+    double HalfPi { get; }
   }
 
   public interface ISensor
@@ -21,11 +23,11 @@ namespace Agent
   public interface IWheel
   {
     Point3d Position { get; set; }
-    double AngularSpeed { get; set; }
+    double AngularVelocity { get; set; }
     double Angle { get; set; }
     double Radius { get; set; }
-    double RadialSpeed { get; set; }
-    void SetSpeed(double angularSpeed);
+    double TangentialVelocity { get; set; }
+    void SetSpeed(double angularVelocity);
     void SetSpeedChange(double increment);
     void Run();
   }

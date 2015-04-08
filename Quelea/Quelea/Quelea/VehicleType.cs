@@ -6,7 +6,7 @@ namespace Agent
 {
  public class VehicleType : AgentType, IVehicle
  {
-   private double wheelDiff, wheelAvg;
+   private double wheelDiff;
     public VehicleType(IVehicle v)
      : this(v, v.Orientation, v.WheelRadius)
     {
@@ -15,28 +15,27 @@ namespace Agent
     public VehicleType(IVehicle v, Point3d emittionPt, Point3d refEmittionPt)
       : base(v, emittionPt, refEmittionPt)
     {
+      HalfPi = Math.PI / 2;
       Orientation = v.Orientation;
       WheelRadius = v.WheelRadius;
-      double halfBodySize = BodySize / 2;
-      const double halfPi = Math.PI / 2;
-
-      Vector3d wheelLeftVec = Velocity;
-      Vector3d wheelRightVec = Velocity;
-      wheelLeftVec.Rotate(halfPi, Orientation.ZAxis);
-      wheelRightVec.Rotate(-halfPi, Orientation.ZAxis);
-      wheelLeftVec.Unitize();
-      wheelRightVec.Unitize();
-      wheelLeftVec = Vector3d.Multiply(wheelLeftVec, halfBodySize);
-      wheelRightVec = Vector3d.Multiply(wheelRightVec, halfBodySize);
-      Point3d wheelLeftPos = Position;
-      Point3d wheelRightPos = Position;
-      wheelLeftPos.Transform(Transform.Translation(wheelLeftVec));
-      wheelRightPos.Transform(Transform.Translation(wheelRightVec));
-      WheelLeft = new Wheel(wheelLeftPos, WheelRadius, 0);
-      WheelRight = new Wheel(wheelRightPos, WheelRadius, 0);
+      WheelLeft = new Wheel(GetPartPosition(BodySize, HalfPi), WheelRadius, 0);
+      WheelRight = new Wheel(GetPartPosition(BodySize, -HalfPi), WheelRadius, 0);
     }
 
-    public VehicleType(IAgent agentSettings, Plane orientation, double wheelRadius)
+   public Point3d GetPartPosition(double gapSize, double rotation)
+   {
+     Vector3d offsetVec = Velocity;
+     offsetVec.Rotate(rotation, Orientation.ZAxis);
+     offsetVec.Unitize();
+     offsetVec = Vector3d.Multiply(offsetVec, gapSize / 2);
+     Point3d partPosition = Position;
+     partPosition.Transform(Transform.Translation(offsetVec));
+     return partPosition;
+   }
+
+   public double HalfPi { get; private set; }
+
+   public VehicleType(IAgent agentSettings, Plane orientation, double wheelRadius)
       : base(agentSettings)
     {
       WheelRadius = wheelRadius;
@@ -50,10 +49,9 @@ namespace Agent
 
    public override void Run()
    {
-     //WheelLeft.Run();
-     //WheelRight.Run();
-     wheelDiff = WheelLeft.RadialSpeed - WheelRight.RadialSpeed;
-     wheelAvg = (WheelLeft.RadialSpeed + WheelRight.RadialSpeed) / 2;
+     WheelLeft.Run();
+     WheelRight.Run();
+     wheelDiff = WheelLeft.TangentialVelocity - WheelRight.TangentialVelocity;
      double angle = wheelDiff/BodySize;
      Vector3d velocity = Velocity;
      velocity.Rotate(angle, Orientation.ZAxis);
@@ -65,39 +63,40 @@ namespace Agent
   public class Wheel : IWheel
   {
     public Wheel(IWheel w)
-      : this(w.Position, w.Radius, w.AngularSpeed)
+      : this(w.Position, w.Radius, w.AngularVelocity)
     {
     }
 
-    public Wheel(Point3d position, double radius, double angularSpeed)
+    public Wheel(Point3d position, double radius, double angularVelocity)
     {
       Position = position;
       Radius = radius;
-      AngularSpeed = angularSpeed;
+      AngularVelocity = angularVelocity;
       Angle = 0;
-      RadialSpeed = AngularSpeed*Radius;
+      TangentialVelocity = Radius*AngularVelocity;
     }
 
     public Point3d Position { get; set; }
-    public double AngularSpeed { get; set; }
+    public double AngularVelocity { get; set; }
     public double Angle { get; set; }
     public double Radius { get; set; }
-    public double RadialSpeed { get; set; }
-    public void SetSpeed(double angularSpeed)
+    public double TangentialVelocity { get; set; }
+    public void SetSpeed(double angularVelocity)
     {
-      AngularSpeed = angularSpeed;
-      RadialSpeed = AngularSpeed*Radius;
+      AngularVelocity = angularVelocity;
+      TangentialVelocity = Radius*AngularVelocity;
     }
 
     public void SetSpeedChange(double increment)
     {
-      AngularSpeed = AngularSpeed + increment;
-      RadialSpeed = AngularSpeed*Radius;
+      AngularVelocity += increment;
+      TangentialVelocity = AngularVelocity*Radius;
     }
 
     public void Run()
     {
-      Angle += AngularSpeed;
+      Angle += AngularVelocity;
+      AngularVelocity = 0;
       if (Angle > Math.PI*2) Angle -= Math.PI*2;
     }
   }

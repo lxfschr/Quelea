@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Agent.Util;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
@@ -57,33 +57,21 @@ namespace Agent
 
     protected override Vector3d CalcForce()
     {
-      const double halfPi = Math.PI/2;
-      double halfBodySize = vehicle.BodySize/2;
-      Vector3d sensorLeftVec = vehicle.Velocity;
-      Vector3d sensorRightVec = vehicle.Velocity;
-      sensorLeftVec.Rotate(halfPi, vehicle.Orientation.ZAxis);
-      sensorRightVec.Rotate(-halfPi, vehicle.Orientation.ZAxis);
-      sensorLeftVec.Unitize();
-      sensorRightVec.Unitize();
-      sensorLeftVec = Vector3d.Multiply(sensorLeftVec, halfBodySize);
-      sensorRightVec = Vector3d.Multiply(sensorRightVec, halfBodySize);
-      Point3d sensorLeftPos = vehicle.Position;
-      Point3d sensorRightPos = vehicle.Position;
-      sensorLeftPos.Transform(Transform.Translation(sensorLeftVec));
-      sensorRightPos.Transform(Transform.Translation(sensorRightVec));
+      Point3d sensorLeftPos = vehicle.GetPartPosition(vehicle.BodySize, vehicle.HalfPi);
+      Point3d sensorRightPos = vehicle.GetPartPosition(vehicle.BodySize, -vehicle.HalfPi);
       sensorLeftValue = sensorLeftPos.DistanceTo(sourcePt);
       sensorRightValue = sensorRightPos.DistanceTo(sourcePt);
-      sensorLeftValue = Util.Number.Map(sensorLeftValue, 0, radius, 0, 1);
-      sensorRightValue = Util.Number.Map(sensorRightValue, 0, radius, 0, 1);
+      sensorLeftValue = Number.Map(sensorLeftValue, 0, radius, 0, 1);
+      sensorRightValue = Number.Map(sensorRightValue, 0, radius, 0, 1);
       if (crossed)
       {
-        vehicle.WheelLeft.SetSpeed(sensorRightValue);
-        vehicle.WheelRight.SetSpeed(sensorLeftValue);
+        vehicle.WheelLeft.SetSpeedChange(sensorRightValue);
+        vehicle.WheelRight.SetSpeedChange(sensorLeftValue);
       }
       else
       {
-        vehicle.WheelLeft.SetSpeed(sensorLeftValue);
-        vehicle.WheelRight.SetSpeed(sensorRightValue);
+        vehicle.WheelLeft.SetSpeedChange(sensorLeftValue);
+        vehicle.WheelRight.SetSpeedChange(sensorRightValue);
       }
       
       return Vector3d.Zero;
