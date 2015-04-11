@@ -51,7 +51,7 @@ namespace Agent
                                   RS.accelerationDescription, GH_ParamAccess.item, Vector3d.Zero);
       pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickname, RS.lifespanDescription, GH_ParamAccess.item, RS.lifespanDefault);
       pManager.AddNumberParameter(RS.massName, RS.massNickname, RS.massDescription, GH_ParamAccess.item, RS.massDefault);
-      pManager.AddNumberParameter(RS.bodySizeName, RS.bodySizeNickName, RS.bodySizeDescription, GH_ParamAccess.item, RS.bodySizeDefault);
+      pManager.AddNumberParameter(RS.bodySizeName, RS.bodySizeNickname, RS.bodySizeDescription, GH_ParamAccess.item, RS.bodySizeDefault);
       pManager.AddIntegerParameter(RS.historyLengthName, RS.historyLengthNickName, RS.historyLengthDescription, GH_ParamAccess.item, RS.historyLenDefault);
     }
 

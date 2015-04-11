@@ -493,9 +493,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to B.
         /// </summary>
-        internal static string bodySizeNickName {
+        internal static string bodySizeNickname {
             get {
-                return ResourceManager.GetString("bodySizeNickName", resourceCulture);
+                return ResourceManager.GetString("bodySizeNickname", resourceCulture);
             }
         }
         
@@ -963,6 +963,15 @@ namespace Agent.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b.
+        /// </summary>
+        internal static string deconstructParticleGuid {
+            get {
+                return ResourceManager.GetString("deconstructParticleGuid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deconstructs a Quelea Network into a list of Quelea.
         /// </summary>
         internal static string deconstructQNDescription {
@@ -995,15 +1004,6 @@ namespace Agent.Properties {
         internal static string deconstructQueleaDescription {
             get {
                 return ResourceManager.GetString("deconstructQueleaDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 2fdb9a2d-e6e5-4312-a426-62dc3ac40e0b.
-        /// </summary>
-        internal static string deconstructQueleaGuid {
-            get {
-                return ResourceManager.GetString("deconstructQueleaGuid", resourceCulture);
             }
         }
         
@@ -1522,9 +1522,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_deconstructQuelea {
+        internal static System.Drawing.Bitmap icon_deconstructParticle {
             get {
-                object obj = ResourceManager.GetObject("icon_deconstructQuelea", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_deconstructParticle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

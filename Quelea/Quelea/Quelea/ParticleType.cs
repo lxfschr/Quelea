@@ -27,6 +27,7 @@ namespace Agent
       VelocityMin = velocityMin;
       VelocityMax = velocityMax;
       Acceleration = acceleration;
+      PreviousAcceleration = acceleration;
       Lifespan = lifespan;
       Mass = mass;
       BodySize = bodySize;
@@ -39,6 +40,7 @@ namespace Agent
       InitialVelocitySet = p.InitialVelocitySet;
       Position = p.Position;
       RefPosition = p.RefPosition;
+      PreviousAcceleration = p.PreviousAcceleration;
       PositionHistory.Add(Position);
       Velocity = p.Velocity;
     }
@@ -58,6 +60,7 @@ namespace Agent
     public Vector3d VelocityMax { get; set; }
     public Vector3d Acceleration { get; set; }
     public Point3d RefPosition { get; set; }
+    public Vector3d PreviousAcceleration { get; set; }
     public int Lifespan { get; set; }
     public double Mass { get; set; }
     public double BodySize { get; set; }
@@ -80,6 +83,7 @@ namespace Agent
       position.Transform(Transform.Translation(Velocity)); //So disconnecting the environment allows the agent to continue from its current position.
       Position = position;
       //PositionHistory.Add(Position);
+      PreviousAcceleration = Acceleration;
       Acceleration = Vector3d.Zero;
       Lifespan -= 1;
     }

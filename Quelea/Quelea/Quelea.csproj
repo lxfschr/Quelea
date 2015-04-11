@@ -122,7 +122,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SpatialCollections\SpatialCollectionType.cs" />
-    <Compile Include="Quelea\DeconstructQueleaComponent.cs" />
+    <Compile Include="Quelea\DeconstructParticleComponent.cs" />
     <Compile Include="Quelea\DeconstructSystemComponent.cs" />
     <Compile Include="Emitters\AbstractEmitterType.cs" />
     <Compile Include="Environment\AbstractEnvironmentType.cs" />

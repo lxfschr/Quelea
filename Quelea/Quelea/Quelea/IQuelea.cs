@@ -14,6 +14,8 @@ namespace Agent
 
     Point3d RefPosition { get; set; }
 
+    Vector3d PreviousAcceleration { get; set; }
+
     int Lifespan { get; set; }
 
     double Mass { get; set; }
