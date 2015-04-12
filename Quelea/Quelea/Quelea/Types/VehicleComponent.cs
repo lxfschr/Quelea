@@ -29,7 +29,7 @@ namespace Agent
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentDescription, GH_ParamAccess.item);
-      pManager.AddPlaneParameter("Orientation", "O", "A plane representing the orientation of the vehicle in the world.", GH_ParamAccess.item, Plane.WorldXY);
+      pManager.AddPlaneParameter(RS.orientationName, RS.orientationNickname, RS.orientationDescription, GH_ParamAccess.item, Plane.WorldXY);
       pManager.AddNumberParameter("Wheel Radius", "W", "The radius of the wheels.", GH_ParamAccess.item, RS.wheelRadiusDefault);
     }
 

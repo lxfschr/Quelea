@@ -96,19 +96,21 @@
     <Compile Include="Actions\Forces\VehicleForces\AbstractVehicleForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\SensoryPtForceComponent.cs" />
     <Compile Include="Quelea\AbstractSystemComponent.cs" />
-    <Compile Include="Quelea\VehicleComponent.cs" />
-    <Compile Include="Quelea\VehicleType.cs" />
-    <Compile Include="Quelea\IQuelea.cs" />
-    <Compile Include="Quelea\IVehicle.cs" />
+    <Compile Include="Quelea\Types\DeconstructVehicleComponent.cs" />
+    <Compile Include="Quelea\Types\DeconstructAgentComponent.cs" />
+    <Compile Include="Quelea\Types\VehicleComponent.cs" />
+    <Compile Include="Quelea\Types\VehicleType.cs" />
+    <Compile Include="Quelea\Types\IQuelea.cs" />
+    <Compile Include="Quelea\Types\IVehicle.cs" />
     <Compile Include="Quelea\SystemType.cs" />
-    <Compile Include="Quelea\ParticleComponent.cs" />
-    <Compile Include="Quelea\AgentComponent.cs" />
+    <Compile Include="Quelea\Types\ParticleComponent.cs" />
+    <Compile Include="Quelea\Types\AgentComponent.cs" />
     <Compile Include="Quelea\SystemComponent.cs" />
-    <Compile Include="Quelea\AgentType.cs" />
-    <Compile Include="Quelea\IAgent.cs" />
-    <Compile Include="Quelea\IParticle.cs" />
+    <Compile Include="Quelea\Types\AgentType.cs" />
+    <Compile Include="Quelea\Types\IAgent.cs" />
+    <Compile Include="Quelea\Types\IParticle.cs" />
     <Compile Include="Quelea\ISystem.cs" />
-    <Compile Include="Quelea\ParticleType.cs" />
+    <Compile Include="Quelea\Types\ParticleType.cs" />
     <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Emitters\BoxEmitterType.cs" />
     <Compile Include="Quelea\DeconstructAgentCollectionComponent.cs" />
@@ -122,7 +124,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SpatialCollections\SpatialCollectionType.cs" />
-    <Compile Include="Quelea\DeconstructParticleComponent.cs" />
+    <Compile Include="Quelea\Types\DeconstructParticleComponent.cs" />
     <Compile Include="Quelea\DeconstructSystemComponent.cs" />
     <Compile Include="Emitters\AbstractEmitterType.cs" />
     <Compile Include="Environment\AbstractEnvironmentType.cs" />

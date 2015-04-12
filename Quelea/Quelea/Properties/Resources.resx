@@ -171,7 +171,7 @@
   <data name="maxSpeedName" xml:space="preserve">
     <value>Max Speed</value>
   </data>
-  <data name="maxSpeedNickName" xml:space="preserve">
+  <data name="maxSpeedNickname" xml:space="preserve">
     <value>S</value>
   </data>
   <data name="agentName" xml:space="preserve">
@@ -1016,5 +1016,14 @@
   </data>
 	<data name="vehicleForcesSubcategoryName" xml:space="preserve">
     <value>Vehicle Forces</value>
+  </data>
+	<data name="orientationName" xml:space="preserve">
+    <value>Orientation</value>
+  </data>
+	<data name="orientationNickname" xml:space="preserve">
+    <value>O</value>
+  </data>
+	<data name="orientationDescription" xml:space="preserve">
+    <value>A plane representing the orientation of the vehicle in the world.</value>
   </data>
 </root>

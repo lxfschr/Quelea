@@ -1,4 +1,5 @@
 ﻿using System;
+using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using RS = Agent.Properties.Resources;
 
@@ -6,6 +7,14 @@ namespace Agent
 {
  public class VehicleType : AgentType, IVehicle
  {
+   public enum WheelPositions
+   {
+     LeftRear,
+     RightRear,
+     LeftFront,
+     RightFront
+   };
+
    private double wheelDiff;
     public VehicleType(IVehicle v)
      : this(v, v.Orientation, v.WheelRadius)
@@ -18,8 +27,9 @@ namespace Agent
       HalfPi = Math.PI / 2;
       Orientation = v.Orientation;
       WheelRadius = v.WheelRadius;
-      WheelLeft = new Wheel(GetPartPosition(BodySize, HalfPi), WheelRadius, 0);
-      WheelRight = new Wheel(GetPartPosition(BodySize, -HalfPi), WheelRadius, 0);
+      Wheels = new IWheel[2];
+      Wheels[(int)WheelPositions.LeftRear] = new Wheel(GetPartPosition(BodySize, HalfPi), WheelRadius, 0);
+      Wheels[(int)WheelPositions.RightRear] = new Wheel(GetPartPosition(BodySize, -HalfPi), WheelRadius, 0);
     }
 
    public Point3d GetPartPosition(double gapSize, double rotation)
@@ -34,6 +44,11 @@ namespace Agent
    }
 
    public double HalfPi { get; private set; }
+   public void SetSpeedChanges(double leftValue, double rightValue)
+   {
+     Wheels[(int)WheelPositions.LeftRear].SetSpeedChange(leftValue);
+     Wheels[(int)WheelPositions.RightRear].SetSpeedChange(rightValue);
+   }
 
    public VehicleType(IAgent agentSettings, Plane orientation, double wheelRadius)
       : base(agentSettings)
@@ -43,24 +58,33 @@ namespace Agent
     }
 
    public Plane Orientation { get; set; }
-   public IWheel WheelLeft { get; set; }
-   public IWheel WheelRight { get; set; }
+   public IWheel[] Wheels { get; set; }
    public double WheelRadius { get; set; }
 
    public override void Run()
    {
-     WheelLeft.Run();
-     WheelRight.Run();
-     wheelDiff = WheelLeft.TangentialVelocity - WheelRight.TangentialVelocity;
+     foreach (IWheel wheel in Wheels)
+     {
+       wheel.Run();
+     }
+     wheelDiff = Wheels[(int)WheelPositions.LeftRear].TangentialVelocity - Wheels[(int)WheelPositions.RightRear].TangentialVelocity;
      double angle = wheelDiff/BodySize;
      Vector3d velocity = Velocity;
      velocity.Rotate(angle, Orientation.ZAxis);
      Velocity = velocity;
      base.Run();
+     //foreach (IWheel wheel in Wheels)
+     //{
+     //  Point3d wheelPosition = wheel.Position;
+     //  wheelPosition.Transform(Transform.Translation(Velocity));
+     //  wheel.Position = wheelPosition;
+     //}
+     Wheels[(int)WheelPositions.LeftRear].Position = GetPartPosition(BodySize, HalfPi);
+     Wheels[(int)WheelPositions.RightRear].Position = GetPartPosition(BodySize, -HalfPi);
    }
   }
 
-  public class Wheel : IWheel
+  public class Wheel : IWheel, IGH_Goo
   {
     public Wheel(IWheel w)
       : this(w.Position, w.Radius, w.AngularVelocity)
@@ -98,6 +122,71 @@ namespace Agent
       Angle += AngularVelocity;
       AngularVelocity = 0;
       if (Angle > Math.PI*2) Angle -= Math.PI*2;
+    }
+
+    public IGH_Goo Duplicate()
+    {
+      return new Wheel(this);
+    }
+
+    public bool IsValid
+    {
+      get { return (0 <= Angle && Angle <= Math.PI*2) && (Radius > 0); }
+    }
+
+    public override string ToString()
+    {
+      string positionStr = Util.String.ToString("Position", Position);
+      string radiusStr = Util.String.ToString("Angle", Angle);
+      string angularVelocitStr = Util.String.ToString("Angular Velocity", AngularVelocity);
+      string angleStr = Util.String.ToString("Angle", Angle);
+      string tangentialVelocityStr = Util.String.ToString("Tangential Velocity", TangentialVelocity);
+      return positionStr + radiusStr + angularVelocitStr + angleStr + tangentialVelocityStr;
+    }
+
+    public string TypeDescription
+    {
+      get { return "Wheel"; }
+    }
+
+    public string TypeName
+    {
+      get { return "Wheel"; }
+    }
+
+    public bool CastFrom(object source)
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool CastTo<T>(out T target)
+    {
+      throw new NotImplementedException();
+    }
+
+    public IGH_GooProxy EmitProxy()
+    {
+      throw new NotImplementedException();
+    }
+
+    public string IsValidWhyNot
+    {
+      get { throw new NotImplementedException(); }
+    }
+
+    public object ScriptVariable()
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool Read(GH_IO.Serialization.GH_IReader reader)
+    {
+      throw new NotImplementedException();
+    }
+
+    public bool Write(GH_IO.Serialization.GH_IWriter writer)
+    {
+      throw new NotImplementedException();
     }
   }
 }

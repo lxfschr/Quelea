@@ -1867,9 +1867,9 @@ namespace Agent.Properties {
         /// <summary>
         ///   Looks up a localized string similar to S.
         /// </summary>
-        internal static string maxSpeedNickName {
+        internal static string maxSpeedNickname {
             get {
-                return ResourceManager.GetString("maxSpeedNickName", resourceCulture);
+                return ResourceManager.GetString("maxSpeedNickname", resourceCulture);
             }
         }
         
@@ -1952,6 +1952,33 @@ namespace Agent.Properties {
         internal static string numQueleaNickName {
             get {
                 return ResourceManager.GetString("numQueleaNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A plane representing the orientation of the vehicle in the world..
+        /// </summary>
+        internal static string orientationDescription {
+            get {
+                return ResourceManager.GetString("orientationDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Orientation.
+        /// </summary>
+        internal static string orientationName {
+            get {
+                return ResourceManager.GetString("orientationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to O.
+        /// </summary>
+        internal static string orientationNickname {
+            get {
+                return ResourceManager.GetString("orientationNickname", resourceCulture);
             }
         }
         

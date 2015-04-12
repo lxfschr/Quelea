@@ -1,16 +1,15 @@
-﻿using Grasshopper.Kernel.Types;
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 
 namespace Agent
 {
   public interface IVehicle : IAgent
   {
     Plane Orientation { get; set; }
-    IWheel WheelLeft { get; set; }
-    IWheel WheelRight { get; set; }
+    IWheel[] Wheels { get; set; }
     double WheelRadius { get; set; }
     Point3d GetPartPosition(double gapSize, double rotation);
     double HalfPi { get; }
+    void SetSpeedChanges(double leftValue, double rightValue);
   }
 
   public interface ISensor

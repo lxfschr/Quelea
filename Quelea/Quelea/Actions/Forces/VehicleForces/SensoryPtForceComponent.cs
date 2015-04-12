@@ -65,13 +65,11 @@ namespace Agent
       sensorRightValue = Number.Map(sensorRightValue, 0, radius, 0, 1);
       if (crossed)
       {
-        vehicle.WheelLeft.SetSpeedChange(sensorRightValue);
-        vehicle.WheelRight.SetSpeedChange(sensorLeftValue);
+        vehicle.SetSpeedChanges(sensorRightValue, sensorLeftValue);
       }
       else
       {
-        vehicle.WheelLeft.SetSpeedChange(sensorLeftValue);
-        vehicle.WheelRight.SetSpeedChange(sensorRightValue);
+        vehicle.SetSpeedChanges(sensorLeftValue, sensorRightValue);
       }
       
       return Vector3d.Zero;
