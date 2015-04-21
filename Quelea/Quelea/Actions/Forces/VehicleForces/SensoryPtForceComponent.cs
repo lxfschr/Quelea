@@ -14,7 +14,7 @@ namespace Quelea
     public SensoryPointForceComponent()
       : base("Sensory Point Force", "SensePt",
           "Sensory Point Force",
-          null, "2e0a5081-6a73-440e-91b5-c5ed96d512f0")
+          RS.icon_sensePointForce, "2e0a5081-6a73-440e-91b5-c5ed96d512f0")
     {
     }
 

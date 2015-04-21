@@ -12,7 +12,7 @@ namespace Quelea
     public FlowDownSurfaceForceComponent()
       : base("Flow Down Surface Force", "SurfaceFlow",
           "Applies a force to simulate water flowing over the surface.",
-          null, "a020520c-2da2-444e-a014-4a1bc0d844a5")
+          RS.icon_flowDownSurfaceForce, "a020520c-2da2-444e-a014-4a1bc0d844a5")
     {
       stepDistance = 0.1;
     }

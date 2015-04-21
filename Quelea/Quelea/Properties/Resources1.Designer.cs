@@ -1482,6 +1482,16 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_constructVehicle {
+            get {
+                object obj = ResourceManager.GetObject("icon_constructVehicle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_containForce {
             get {
                 object obj = ResourceManager.GetObject("icon_containForce", resourceCulture);
@@ -1542,6 +1552,16 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_deconstructVehicle {
+            get {
+                object obj = ResourceManager.GetObject("icon_deconstructVehicle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_EatBehavior {
             get {
                 object obj = ResourceManager.GetObject("icon_EatBehavior", resourceCulture);
@@ -1562,6 +1582,16 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_flowDownSurfaceForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_flowDownSurfaceForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_FollowPathForce {
             get {
                 object obj = ResourceManager.GetObject("icon_FollowPathForce", resourceCulture);
@@ -1575,6 +1605,16 @@ namespace Quelea.Properties {
         internal static System.Drawing.Bitmap icon_InitialVelocity {
             get {
                 object obj = ResourceManager.GetObject("icon_InitialVelocity", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_killContainBehavior {
+            get {
+                object obj = ResourceManager.GetObject("icon_killContainBehavior", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1632,9 +1672,29 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_sensePointForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_sensePointForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_separateForce {
             get {
                 object obj = ResourceManager.GetObject("icon_separateForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_setVelocityBehavior {
+            get {
+                object obj = ResourceManager.GetObject("icon_setVelocityBehavior", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

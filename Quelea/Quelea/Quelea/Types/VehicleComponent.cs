@@ -16,7 +16,7 @@ namespace Quelea
     public VehicleComponent()
       : base("Construct Vehicle", RS.vehicleName,
           "Constructs settings for a Vehicle",
-          RS.pluginCategoryName, RS.pluginSubCategoryName, null, "c785d70e-6196-4068-a7f6-78444450b518")
+          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_constructVehicle, "c785d70e-6196-4068-a7f6-78444450b518")
     {
       agent = null;
       orientation = Plane.WorldXY;

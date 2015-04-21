@@ -269,6 +269,24 @@
   <ItemGroup>
     <None Include="Resources\icon_constructParticle.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_constructVehicle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructVehicle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_flowDownSurfaceForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_killContainBehavior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_sensePointForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_setVelocityBehavior.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

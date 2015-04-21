@@ -10,7 +10,7 @@ namespace Quelea
     public SetVelocityBehaviorComponent()
       : base("Set Velocity", "Velocity",
           "Sets the particle's velocity to the desired velocity.",
-          null, "54762f40-4d9d-4275-9ab5-0e8880b647b4")
+          RS.icon_setVelocityBehavior, "54762f40-4d9d-4275-9ab5-0e8880b647b4")
     {
       
     }
