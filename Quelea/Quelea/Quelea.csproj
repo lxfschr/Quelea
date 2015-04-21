@@ -72,6 +72,7 @@
     <Compile Include="Actions\Behaviors\AgentBehaviors\BoidBehaviors\AbstractBoidBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\AgentBehaviors\BoidBehaviors\EatBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\ParticleBehaviors\EnvironmentalBehaviors\AbstractEnvironmentalBehaviorComponent.cs" />
+    <Compile Include="Actions\Behaviors\ParticleBehaviors\EnvironmentalBehaviors\KillContainBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\ParticleBehaviors\EnvironmentalBehaviors\BounceContainBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\ParticleBehaviors\SetVelocityBehaviorComponent.cs" />
     <Compile Include="Actions\Behaviors\ParticleBehaviors\InitialVelocityBehaviorComponent.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AttractForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\AbstractVehicleForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\SensoryPtForceComponent.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Quelea\AbstractSystemComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructVehicleComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructAgentComponent.cs" />

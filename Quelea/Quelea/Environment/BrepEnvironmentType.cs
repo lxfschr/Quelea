@@ -242,5 +242,10 @@ namespace Quelea
     {
       return environment.GetBoundingBox(false);
     }
+
+    public override bool Contains(Point3d pt)
+    {
+      return environment.IsPointInside(pt, Constants.Tolerance, true);
+    }
   }
 }

@@ -65,5 +65,6 @@ namespace Quelea
     abstract public bool BounceContain(IParticle particle);
 
     abstract public BoundingBox GetBoundingBox();
+    public abstract bool Contains(Point3d pt);
   }
 }

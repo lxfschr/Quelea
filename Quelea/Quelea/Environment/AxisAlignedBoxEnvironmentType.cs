@@ -240,5 +240,12 @@ namespace Quelea
     {
       return environment.BoundingBox;
     }
+
+    public override bool Contains(Point3d pt)
+    {
+      return (pt.X < maxX) && (pt.X > minX) &&
+             (pt.Y < maxY) && (pt.Y > minY) &&
+             (pt.Z < maxZ) && (pt.Z > minZ);
+    }
   }
 }

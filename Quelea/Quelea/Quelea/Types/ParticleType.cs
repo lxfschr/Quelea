@@ -101,7 +101,7 @@ namespace Quelea
 
     public bool IsDead()
     {
-      return (Lifespan == 0);
+      return (Lifespan == -1);
     }
 
     public override bool Equals(Object obj)

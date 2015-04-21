@@ -95,8 +95,7 @@ namespace Quelea
             nakedEdges.Add(crv);
         }
       }
-      RhinoDoc doc = RhinoDoc.ActiveDoc;
-      double tol = 2.1 * doc.ModelAbsoluteTolerance;
+      double tol = 2.1*Constants.Tolerance;
 
       return Curve.JoinCurves(nakedEdges, tol);
     }
@@ -449,8 +448,6 @@ namespace Quelea
     {
       Vector3d velocity = particle.Velocity;
 
-      double tol = 0.01;
-
       Curve[] feelers = GetFeelerCrvs(particle, particle.BodySize, false);
 
       foreach (Brep[] borderWalls in borderWallsArray)
@@ -464,7 +461,7 @@ namespace Quelea
             {
               Curve[] overlapCrvs;
               Point3d[] intersectPts;
-              Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+              Intersection.CurveBrepFace(feeler, face, Constants.Tolerance, out overlapCrvs, out intersectPts);
               if (intersectPts.Length > 0)
               {
                 Point3d testPt = intersectPts[0];
@@ -533,6 +530,21 @@ namespace Quelea
     public override BoundingBox GetBoundingBox()
     {
       return environment.GetBoundingBox(false);
+    }
+
+    public override bool Contains(Point3d pt)
+    {
+      foreach (Brep[] borderWalls in borderWallsArray)
+      {
+        foreach (Brep brep in borderWalls)
+        {
+          if (pt.DistanceTo(brep.ClosestPoint(pt)) < Constants.Tolerance)
+          {
+            return false;
+          }
+        }
+      }
+      return true;
     }
   }
 }
