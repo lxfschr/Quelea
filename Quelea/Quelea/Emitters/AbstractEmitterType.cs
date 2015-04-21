@@ -1,9 +1,9 @@
 ﻿using System;
-using RS = Agent.Properties.Resources;
+using RS = Quelea.Properties.Resources;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 
-namespace Agent
+namespace Quelea
 {
   public abstract class AbstractEmitterType : GH_Goo<Object>
   {

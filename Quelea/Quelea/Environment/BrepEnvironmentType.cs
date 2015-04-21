@@ -1,11 +1,11 @@
 ﻿using System;
-using Agent.Util;
+using Quelea.Util;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using Rhino.Geometry.Intersect;
-using RS = Agent.Properties.Resources;
+using RS = Quelea.Properties.Resources;
 
-namespace Agent
+namespace Quelea
 {
   class BrepEnvironmentType : AbstractEnvironmentType, IDisposable
   {

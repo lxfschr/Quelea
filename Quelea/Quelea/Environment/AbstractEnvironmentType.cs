@@ -1,9 +1,9 @@
 ﻿using System;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
-using RS = Agent.Properties.Resources;
+using RS = Quelea.Properties.Resources;
 
-namespace Agent
+namespace Quelea
 {
   public abstract class AbstractEnvironmentType : GH_Goo<Object>
   {

@@ -1,8 +1,8 @@
 ﻿using System;
 using Grasshopper.Kernel.Types;
-using RS = Agent.Properties.Resources;
+using RS = Quelea.Properties.Resources;
 
-namespace Agent
+namespace Quelea
 {
   public class SpatialCollectionType : GH_Goo<Object>
   {

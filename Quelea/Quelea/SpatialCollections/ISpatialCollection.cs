@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Rhino.Geometry;
 
-namespace Agent
+namespace Quelea
 {
   public interface ISpatialCollection<T> : ICollection<T>
   {

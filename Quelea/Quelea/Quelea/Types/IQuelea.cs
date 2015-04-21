@@ -2,7 +2,7 @@
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 
-namespace Agent
+namespace Quelea
 {
   public interface IQuelea : IGH_Goo, IPosition
   {

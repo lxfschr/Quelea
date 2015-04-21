@@ -1,4 +1,4 @@
-﻿namespace Agent
+﻿namespace Quelea
 {
   public interface IAgent : IParticle
   {

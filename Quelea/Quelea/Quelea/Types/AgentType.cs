@@ -1,8 +1,8 @@
 ﻿using System;
 using Rhino.Geometry;
-using RS = Agent.Properties.Resources;
+using RS = Quelea.Properties.Resources;
 
-namespace Agent
+namespace Quelea
 {
  public class AgentType : ParticleType, IAgent
   {

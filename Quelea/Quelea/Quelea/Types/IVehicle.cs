@@ -1,6 +1,6 @@
 ﻿using Rhino.Geometry;
 
-namespace Agent
+namespace Quelea
 {
   public interface IVehicle : IAgent
   {

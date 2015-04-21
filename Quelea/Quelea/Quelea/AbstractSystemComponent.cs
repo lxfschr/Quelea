@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Grasshopper.Kernel;
-using RS = Agent.Properties.Resources;
+using RS = Quelea.Properties.Resources;
 
-namespace Agent
+namespace Quelea
 {
   public abstract class AbstractSystemComponent<T> : AbstractComponent where T : class, IParticle
   {

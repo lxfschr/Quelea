@@ -2,16 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Agent.Util;
+using Quelea.Util;
 using Grasshopper.Kernel.Types;
 using Rhino;
 using Rhino.Geometry;
 using Rhino.Geometry.Collections;
 using Rhino.Geometry.Intersect;
-using RS = Agent.Properties.Resources;
-using String = Agent.Util.String;
+using RS = Quelea.Properties.Resources;
+using String = Quelea.Util.String;
 
-namespace Agent
+namespace Quelea
 {
   class PolysurfaceEnvironmentType : AbstractEnvironmentType, IDisposable
   {

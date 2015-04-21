@@ -2,7 +2,7 @@
 using System.Drawing;
 using Grasshopper.Kernel;
 
-namespace Agent
+namespace Quelea
 {
   public abstract class AbstractComponent: GH_Component
   {

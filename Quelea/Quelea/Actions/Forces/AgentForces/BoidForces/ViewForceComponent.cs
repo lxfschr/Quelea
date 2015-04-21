@@ -1,9 +1,9 @@
 ﻿using System;
-using Agent.Util;
+using Quelea.Util;
 using Rhino.Geometry;
-using RS = Agent.Properties.Resources;
+using RS = Quelea.Properties.Resources;
 
-namespace Agent
+namespace Quelea
 {
   public class ViewForceComponent : AbstractBoidForceComponent
   {

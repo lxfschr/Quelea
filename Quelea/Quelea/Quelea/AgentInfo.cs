@@ -2,7 +2,7 @@
 using System.Drawing;
 using Grasshopper.Kernel;
 
-namespace Agent
+namespace Quelea
 {
   public class AgentInfo : GH_AssemblyInfo
   {

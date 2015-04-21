@@ -1,7 +1,7 @@
 ﻿using Grasshopper.Kernel.Types;
-using RS = Agent.Properties.Resources;
+using RS = Quelea.Properties.Resources;
 
-namespace Agent
+namespace Quelea
 {
   public interface ISystem : IGH_Goo
   {

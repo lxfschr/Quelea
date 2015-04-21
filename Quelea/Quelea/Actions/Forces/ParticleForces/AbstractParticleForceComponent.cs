@@ -2,9 +2,9 @@
 using System.Drawing;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
-using RS = Agent.Properties.Resources;
+using RS = Quelea.Properties.Resources;
 
-namespace Agent
+namespace Quelea
 {
   public abstract class AbstractParticleForceComponent : AbstractParticleActionComponent
   {
