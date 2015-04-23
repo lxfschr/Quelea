@@ -299,7 +299,7 @@
   -->
   <PropertyGroup>
     <PostBuildEvent>Copy "$(TargetPath)" "$(TargetDir)$(ProjectName).gha"
-Erase "$(TargetPath)"
+
 copy /Y "$(TargetDir)$(ProjectName).gha" "C:\Users\Administrator\AppData\Roaming\Grasshopper\Libraries\$(ProjectName).gha"
 </PostBuildEvent>
   </PropertyGroup>
