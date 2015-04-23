@@ -16,7 +16,17 @@ namespace Quelea
    };
 
    private double wheelDiff;
-    public VehicleType(IVehicle v)
+
+   public VehicleType(IAgent agentSettings, Plane orientation, double wheelRadius)
+     : base(agentSettings)
+   {
+     WheelRadius = wheelRadius;
+     Orientation = new Plane(Position, orientation.ZAxis);
+     double angle = Vector3d.VectorAngle(Velocity, orientation.XAxis);
+     Orientation.Rotate(angle, Orientation.ZAxis);
+   }
+   
+   public VehicleType(IVehicle v)
      : this(v, v.Orientation, v.WheelRadius)
     {
     }
@@ -25,12 +35,27 @@ namespace Quelea
       : base(v, emittionPt, refEmittionPt)
     {
       HalfPi = Math.PI / 2;
-      Orientation = v.Orientation;
+      Orientation = new Plane(Position, v.Orientation.ZAxis);
+      UpdateOrientation();
       WheelRadius = v.WheelRadius;
       Wheels = new IWheel[2];
       Wheels[(int)WheelPositions.LeftRear] = new Wheel(GetPartPosition(BodySize, HalfPi), WheelRadius, 0);
       Wheels[(int)WheelPositions.RightRear] = new Wheel(GetPartPosition(BodySize, -HalfPi), WheelRadius, 0);
     }
+
+    private void UpdateOrientation()
+   {
+     Plane orientation = Orientation;
+     orientation.Origin = Position;
+     double angle = Vector3d.VectorAngle(Velocity, Orientation.XAxis, Orientation);
+     
+     orientation.Rotate(angle, Orientation.ZAxis);
+     if (!Util.Number.EssentiallyEqual(Vector3d.VectorAngle(Velocity, Orientation.XAxis, Orientation), 0, 0.1))
+     {
+       orientation.Rotate(-2 * angle, Orientation.ZAxis);
+     }
+     Orientation = orientation;
+   }
 
    public Point3d GetPartPosition(double gapSize, double rotation)
    {
@@ -50,13 +75,6 @@ namespace Quelea
      Wheels[(int)WheelPositions.RightRear].SetSpeedChange(rightValue);
    }
 
-   public VehicleType(IAgent agentSettings, Plane orientation, double wheelRadius)
-      : base(agentSettings)
-    {
-      WheelRadius = wheelRadius;
-      Orientation = orientation;
-    }
-
    public Plane Orientation { get; set; }
    public IWheel[] Wheels { get; set; }
    public double WheelRadius { get; set; }
@@ -73,12 +91,7 @@ namespace Quelea
      velocity.Rotate(angle, Orientation.ZAxis);
      Velocity = velocity;
      base.Run();
-     //foreach (IWheel wheel in Wheels)
-     //{
-     //  Point3d wheelPosition = wheel.Position;
-     //  wheelPosition.Transform(Transform.Translation(Velocity));
-     //  wheel.Position = wheelPosition;
-     //}
+     UpdateOrientation();
      Wheels[(int)WheelPositions.LeftRear].Position = GetPartPosition(BodySize, HalfPi);
      Wheels[(int)WheelPositions.RightRear].Position = GetPartPosition(BodySize, -HalfPi);
    }
