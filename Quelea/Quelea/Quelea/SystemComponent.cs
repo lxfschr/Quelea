@@ -7,7 +7,7 @@ namespace Quelea
   public class SystemComponent : AbstractComponent
   {
     private ISystem system;
-    private List<IParticle> agents;
+    private List<IQuelea> agents;
     private List<AbstractEmitterType> emitters;
     private AbstractEnvironmentType environment;
     /// <summary>
@@ -47,7 +47,7 @@ namespace Quelea
 
     protected override bool GetInputs(IGH_DataAccess da)
     {
-      agents = new List<IParticle>();
+      agents = new List<IQuelea>();
       emitters = new List<AbstractEmitterType>();
       environment = null;
       // Then we need to access the input parameters individually. 
@@ -76,11 +76,11 @@ namespace Quelea
     {
       if (system == null)
       {
-        system = new SystemType(agents.ToArray(), emitters.ToArray(), environment);
+        system = new SystemType(agents, emitters, environment);
       }
       else
       {
-        system = new SystemType(agents.ToArray(), emitters.ToArray(), environment, (SystemType) system);
+        system = new SystemType(agents, emitters, environment, (SystemType) system);
       }
 
       // Finally assign the system to the output parameter.

@@ -12,8 +12,8 @@ namespace Quelea
   public class SystemType : ISystem
   {
     public ISpatialCollection<IQuelea> Particles { get; private set; }
-    protected readonly IQuelea[] particlesSettings;
-    protected readonly AbstractEmitterType[] emitters;
+    protected readonly List<IQuelea> queleaSettings;
+    protected readonly List<AbstractEmitterType> emitters;
     protected readonly AbstractEnvironmentType environment;
     protected int timestep;
     protected int nextIndex;
@@ -21,26 +21,26 @@ namespace Quelea
     protected Point3d max;
 
     public SystemType()
-      : this(null, new AbstractEmitterType[] {new PtEmitterType(), }, new AxisAlignedBoxEnvironmentType())
+      : this(null, new List<AbstractEmitterType> {new PtEmitterType(), }, new AxisAlignedBoxEnvironmentType())
     {
     }
 
-    public SystemType(IQuelea[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment)
+    public SystemType(List<IQuelea> queleaSettings, List<AbstractEmitterType> emitters, AbstractEnvironmentType environment)
     {
       timestep = 0;
       nextIndex = 0;
-      this.particlesSettings = particlesSettings;
+      this.queleaSettings = queleaSettings;
       this.emitters = emitters;
       this.environment = environment;
       UpdateBounds();
       Particles = new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
     }
 
-    public SystemType(IQuelea[] particlesSettings, AbstractEmitterType[] emitters, AbstractEnvironmentType environment, SystemType system)
+    public SystemType(List<IQuelea> queleaSettings, List<AbstractEmitterType> emitters, AbstractEnvironmentType environment, SystemType system)
     {
       timestep = system.timestep;
       nextIndex = system.nextIndex;
-      this.particlesSettings = particlesSettings;
+      this.queleaSettings = queleaSettings;
       this.emitters = emitters;
       this.environment = environment;
       UpdateBounds();
@@ -50,7 +50,7 @@ namespace Quelea
     public SystemType(SystemType system)
     {
       // private ISpatialCollection<AgentType> particles;
-      particlesSettings = system.particlesSettings;
+      queleaSettings = system.queleaSettings;
       emitters = system.emitters;
       environment = system.environment;
       UpdateBounds();
@@ -65,16 +65,16 @@ namespace Quelea
       {
         Point3d refEmittionPt = environment.ClosestRefPoint(emittionPt);
         //agent = new ParticleType(particlesSettings[nextIndex % particlesSettings.Length], emittionPt, refEmittionPt);
-        particle = MakeParticle(particlesSettings[nextIndex], emittionPt,
+        particle = MakeParticle(queleaSettings[nextIndex], emittionPt,
           refEmittionPt);
       }
       else
       {
-        particle = MakeParticle(particlesSettings[nextIndex], emittionPt,
+        particle = MakeParticle(queleaSettings[nextIndex], emittionPt,
           emittionPt);
       }
       Particles.Add(particle);
-      nextIndex = (nextIndex + 1) % particlesSettings.Length;
+      nextIndex = (nextIndex + 1) % queleaSettings.Count;
     }
 
     public IQuelea MakeParticle(IQuelea p, Point3d emittionPt, Point3d refEmittionPt)
@@ -202,13 +202,13 @@ namespace Quelea
 
       // Return true if the fields match:
       return (emitters.Equals(s.emitters)) &&
-             (particlesSettings.Equals(s.Particles)) &&
+             (queleaSettings.Equals(s.Particles)) &&
              (environment.Equals(s.environment));
     }
 
     public override int GetHashCode()
     {
-      int agentHash = particlesSettings.Aggregate(1, (current, agent) => current * agent.GetHashCode());
+      int agentHash = queleaSettings.Aggregate(1, (current, agent) => current * agent.GetHashCode());
       int emitterHash = emitters.Aggregate(1, (current, emitter) => current * emitter.GetHashCode());
       int environmentHash = environment.GetHashCode();
       return agentHash ^ emitterHash * 7 * environmentHash;
