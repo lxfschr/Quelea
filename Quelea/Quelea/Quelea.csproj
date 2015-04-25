@@ -95,6 +95,8 @@
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AbstractAttractionForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AttractForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\AbstractVehicleForceComponent.cs" />
+    <Compile Include="Actions\Forces\VehicleForces\SensorForceComponent.cs" />
+    <Compile Include="Actions\Forces\VehicleForces\SensoryFieldForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\SensoryPtForceComponent.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Quelea\AbstractSystemComponent.cs" />
