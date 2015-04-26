@@ -21,7 +21,8 @@ namespace Quelea
       }
       public static bool ApproximatelyEqual(double a, double b, double epsilon)
       {
-        return a - b <= ((a < b ? b : a) * epsilon);
+        //return a - b <= ((a < b ? b : a) * epsilon);
+        return Math.Abs(a - b) <= epsilon*Math.Max(Math.Max(1.0f, Math.Abs(a)), Math.Abs(b));
       }
 
       public static bool EssentiallyEqual(double a, double b, double epsilon)

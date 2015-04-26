@@ -163,28 +163,38 @@ namespace Quelea
       Point3d refPosition = agent.RefPosition;
       double maxSpeed = agent.MaxSpeed;
       Vector3d velocity = agent.Velocity;
+      bool avoided = false;
 
-      Vector3d desired = new Vector3d();
+      Vector3d desired = velocity;
 
       if (refPosition.X < minX + distance)
       {
-        desired = new Vector3d(maxSpeed, velocity.Y, velocity.Z);
+        //desired = new Vector3d(maxSpeed, velocity.Y, velocity.Z);
+        desired.X = maxSpeed;
+        avoided = true;
       }
       else if (refPosition.X > maxX - distance)
       {
-        desired = new Vector3d(-maxSpeed, velocity.Y, velocity.Z);
+        //desired = new Vector3d(-maxSpeed, velocity.Y, velocity.Z);
+        desired.X = -maxSpeed;
+        avoided = true;
       }
 
       if (refPosition.Y < minY + distance)
       {
-        desired = new Vector3d(velocity.X, maxSpeed, velocity.Z);
+        //desired = new Vector3d(velocity.X, maxSpeed, velocity.Z);
+        desired.Y = maxSpeed;
+        avoided = true;
       }
       else if (refPosition.Y > maxY - distance)
       {
-        desired = new Vector3d(velocity.X, -maxSpeed, velocity.Z);
+        //desired = new Vector3d(velocity.X, -maxSpeed, velocity.Z);
+        desired.Y = -maxSpeed;
+        avoided = true;
       }
-
-      return desired;
+      if (avoided) return desired;
+      return Vector3d.Zero;
+      //return desired;
     }
 
     public override bool BounceContain(IParticle agent)
