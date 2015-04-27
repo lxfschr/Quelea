@@ -110,8 +110,8 @@ namespace Quelea
         Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.RefPosition), new Vector3d(position));
         double angle1 = Vector.CalcAngle(velocity, diff, pl1);
         double angle2 = Vector.CalcAngle(velocity, diff, pl2);
-        if (Number.ApproximatelyEqual(angle1, visionAngle / 2, RS.toleranceDefault) &&
-            Number.ApproximatelyEqual(angle2, visionAngle / 2, RS.toleranceDefault))
+        if (Number.DefinitelyLessThan(angle1, visionAngle / 2, RS.toleranceDefault) &&
+            Number.DefinitelyLessThan(angle2, visionAngle / 2, RS.toleranceDefault))
         {
           neighbors.Add(neighbor);
         }

@@ -69,12 +69,6 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      if (!apply)
-      {
-        da.SetData(nextOutputIndex++, Vector3d.Zero);
-        return;
-      }
-
       Vector3d force = Run();
       da.SetData(nextOutputIndex++, force);
     }
@@ -88,7 +82,10 @@ namespace Quelea
     private Vector3d ApplyForce(Vector3d force)
     {
       Vector3d weightedForce = Vector3d.Multiply(force, weightMultiplier);
-      agent.ApplyForce(weightedForce);
+      if (apply)
+      {
+        agent.ApplyForce(weightedForce);
+      }
       return weightedForce;
     }
 
