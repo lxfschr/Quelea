@@ -63,7 +63,7 @@ namespace Quelea
      offsetVec.Rotate(rotation, Orientation.ZAxis);
      offsetVec.Unitize();
      offsetVec = Vector3d.Multiply(offsetVec, gapSize / 2);
-     Point3d partPosition = Position;
+     Point3d partPosition = RefPosition;
      partPosition.Transform(Transform.Translation(offsetVec));
      return partPosition;
    }
