@@ -96,7 +96,7 @@
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AttractForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\AbstractVehicleForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\SensorForceComponent.cs" />
-    <Compile Include="Actions\Forces\VehicleForces\SensoryFieldForceComponent.cs" />
+    <Compile Include="Actions\Forces\VehicleForces\SenseImageForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\SensoryPtForceComponent.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Quelea\AbstractSystemComponent.cs" />
@@ -157,6 +157,7 @@
     <Compile Include="Emitters\PtEmitterComponent.cs" />
     <Compile Include="Quelea\AgentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\LoadImage.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -5,13 +5,13 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class SensoryPointForceComponent : AbstractVehicleForceComponent
+  public class SensePointForceComponent : AbstractVehicleForceComponent
   {
     private Point3d sourcePt;
     private double radius;
     private double sensorLeftValue, sensorRightValue;
     private bool crossed;
-    public SensoryPointForceComponent()
+    public SensePointForceComponent()
       : base("Sensory Point Force", "SensePt",
           "Sensory Point Force",
           RS.icon_sensePointForce, "2e0a5081-6a73-440e-91b5-c5ed96d512f0")

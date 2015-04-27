@@ -6,12 +6,12 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class SensoryFieldForceComponent : AbstractVehicleForceComponent
+  public class SenseImageForceComponent : AbstractVehicleForceComponent
   {
     private double sensorLeftValue, sensorRightValue;
     private bool crossed;
     private Bitmap bitmap;
-    public SensoryFieldForceComponent()
+    public SenseImageForceComponent()
       : base("Sensory Field Force", "SenseField",
           "Sensory Field Force",
           null, "8fd658ec-90df-41ef-8f1a-490a05a58a13")
