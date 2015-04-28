@@ -95,19 +95,30 @@ namespace Quelea
       Velocity = Vector3d.Add(Velocity, Acceleration);
       Point3d position = Position;
       position.Transform(Transform.Translation(Velocity));
+
+      Velocity3D = MapTo3D(Velocity);
+      Acceleration3D = MapTo3D(Acceleration);
       Position = position;
       Point3d position3D = Position3D;
-      position3D.Transform(Transform.Translation(Velocity)); //So disconnecting the environment allows the agent to continue from its current position.
+      position3D.Transform(Transform.Translation(Velocity3D)); //So disconnecting the environment allows the agent to continue from its current position.
       Position3D = position3D;
       
-      Position = Environment.ClosestRefPointOnRef(Position);
-      Position3D = Environment.ClosestPointOnRef(Position);
+      //Position = Environment.ClosestRefPointOnRef(Position);
+      //Position3D = Environment.ClosestPointOnRef(Position);
 
       Position3DHistory.Add(Position3D);
 
       PreviousAcceleration3D = Acceleration;
       Acceleration = Vector3d.Zero;
       Lifespan -= 1;
+    }
+
+    private Vector3d MapTo3D(Vector3d vector2D)
+    {
+      Point3d pt3D = Position;
+      pt3D.Transform(Transform.Translation(vector2D));
+      pt3D = Environment.ClosestPointOnRef(pt3D);
+      return Util.Vector.Vector2Point(Position3D, pt3D);
     }
 
     public virtual Vector3d ApplyForce(Vector3d force, double weightMultiplier, bool apply)
