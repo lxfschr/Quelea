@@ -18,7 +18,7 @@ namespace Quelea
           RS.systemDescription,
           RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_system, RS.agentSystemGuid)
     {
-      environment = new WorldEnvironmentType();
+      
     }
 
     /// <summary>
@@ -49,6 +49,7 @@ namespace Quelea
     {
       agents = new List<IQuelea>();
       emitters = new List<AbstractEmitterType>();
+      environment = new WorldEnvironmentType();
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this
       // method.

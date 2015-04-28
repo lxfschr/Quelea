@@ -120,11 +120,9 @@ namespace Quelea
       IList<IQuelea> toRemove = new List<IQuelea>();
       foreach (IQuelea quelea in Quelea)
       {
+        quelea.Environment = environment;
         quelea.Run();
-        quelea.RefPosition = environment.ClosestRefPointOnRef(quelea.RefPosition);
-        quelea.Position = environment.ClosestPointOnRef(quelea.RefPosition);
-
-        quelea.PositionHistory.Add(quelea.Position);
+        
         if (quelea.IsDead())
         {
           toRemove.Add(quelea);

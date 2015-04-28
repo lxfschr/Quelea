@@ -84,7 +84,12 @@ namespace Quelea
       Point3d position = Position;
       position.Transform(Transform.Translation(Velocity)); //So disconnecting the environment allows the agent to continue from its current position.
       Position = position;
-      //PositionHistory.Add(Position);
+      
+      RefPosition = Environment.ClosestRefPointOnRef(RefPosition);
+      Position = Environment.ClosestPointOnRef(RefPosition);
+
+      PositionHistory.Add(Position);
+
       PreviousAcceleration = Acceleration;
       Acceleration = Vector3d.Zero;
       Lifespan -= 1;

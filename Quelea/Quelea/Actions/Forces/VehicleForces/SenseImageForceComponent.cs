@@ -49,8 +49,8 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Point3d sensorLeftPos = vehicle.GetPartPosition(vehicle.BodySize, vehicle.HalfPi);
-      Point3d sensorRightPos = vehicle.GetPartPosition(vehicle.BodySize, -vehicle.HalfPi);
+      Point3d sensorLeftPos = vehicle.GetPartPosition(vehicle.BodySize, RS.HALF_PI);
+      Point3d sensorRightPos = vehicle.GetPartPosition(vehicle.BodySize, -RS.HALF_PI);
       int x = (int)sensorLeftPos.X * 10;
       int y = bitmap.Height - (int)sensorLeftPos.Y * 10;
       Color color = crossed ? Color.White : Color.Black;
