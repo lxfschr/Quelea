@@ -70,13 +70,13 @@ namespace Quelea
         return sum;
       }
 
-      public static Vector3d Seek(IAgent agent, Vector3d target)
+      public static Vector3d Seek(IAgent agent, Point3d target)
       {
-        Vector3d desired = Vector3d.Subtract(target, new Vector3d(agent.RefPosition));
+        Vector3d desired = Util.Vector.Vector2Point(agent.RefPosition, target);
         desired.Unitize();
         // The agent desires to move towards the target at maximum speed.
         // Instead of teleporting to the target, the agent will move incrementally.
-        desired = Vector3d.Multiply(desired, agent.MaxSpeed);
+        desired = desired * agent.MaxSpeed;
         return desired;
       }
     }
@@ -138,6 +138,11 @@ namespace Quelea
         angle = RadToDeg(angle);
         if (angle > 180) angle = 360 - angle;
         return angle;
+      }
+
+      public static Vector3d Vector2Point(Point3d from, Point3d to)
+      {
+        return to - from;
       }
     }
 

@@ -1,5 +1,4 @@
-﻿using Quelea.Util;
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
 namespace Quelea
@@ -24,7 +23,7 @@ namespace Quelea
       {
         //Add up all the velocities and divide by the total to calculate
         //the average velocity.
-        desired = Vector3d.Add(desired, new Vector3d(neighbor.Velocity));
+        desired = desired + neighbor.Velocity;
         //For an average, we need to keep track of how many boids
         //are in our vision.
         count++;
@@ -32,9 +31,9 @@ namespace Quelea
 
       if (count > 0)
       {
-        desired = Vector3d.Divide(desired, count);
+        desired = desired / count;
         desired.Unitize();
-        desired = Vector3d.Multiply(desired, agent.MaxSpeed);
+        desired = desired * agent.MaxSpeed;
       }
       //Seek the average location of our neighbors.
       return desired;

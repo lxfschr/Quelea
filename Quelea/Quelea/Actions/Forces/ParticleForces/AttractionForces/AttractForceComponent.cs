@@ -63,7 +63,7 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Vector3d force = Vector3d.Subtract(new Vector3d(targetPt), new Vector3d(particle.RefPosition));
+      Vector3d force = Util.Vector.Vector2Point(particle.RefPosition, targetPt);
       double distance = force.Length;
       // If the distance is greater than the radius of the attractor,
       // and the radius is positive, do not apply the force.

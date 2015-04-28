@@ -70,12 +70,12 @@ namespace Quelea
     {
       Vector3d offsetVec = agent.Velocity;
       offsetVec.Unitize();
-      offsetVec = Vector3d.Multiply(offsetVec, strength + Math.Sqrt(2) * agent.MaxSpeed);
+      offsetVec = Vector3d.Multiply(offsetVec, strength + RS.SQUARE_ROOT_OF_TWO * agent.MaxSpeed);
       Transform xform = Transform.Translation(offsetVec);
       Point3d pt = agent.Position;
       pt.Transform(xform);
       sphere = new Sphere(pt, strength);
-      agent.Lon += Util.Random.RandomDouble(-rate * 2 * Math.PI, rate * 2 * Math.PI);
+      agent.Lon += Util.Random.RandomDouble(-rate * RS.TWO_PI, rate * RS.TWO_PI);
       agent.Lat += Util.Random.RandomDouble(-rate * Math.PI, rate * Math.PI);
       //if (agent.Lon < 0) agent.Lon = Math.PI - agent.Lon;
       //if (agent.Lon > 2*Math.PI) agent.Lon = agent.Lon - Math.PI;
@@ -84,7 +84,7 @@ namespace Quelea
       //agent.Lon = Util.Number.Clamp(agent.Lon, 0, 2 * Math.PI);
       //agent.Lat = Util.Number.Clamp(agent.Lat, -Math.PI / 2, Math.PI / 2);
       targetPt = sphere.PointAt(agent.Lon, agent.Lat);
-      Vector3d desired = Util.Agent.Seek(agent, new Vector3d(targetPt));
+      Vector3d desired = Util.Agent.Seek(agent, targetPt);
       return desired;
     }
   }

@@ -24,7 +24,7 @@ namespace Quelea
         if (!desired.IsZero)
         {
           desired.Unitize();
-          desired = Vector3d.Multiply(desired, agent.MaxSpeed);
+          desired = desired * agent.MaxSpeed;
         }
       }
       return desired;

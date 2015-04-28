@@ -95,9 +95,8 @@ namespace Quelea
             nakedEdges.Add(crv);
         }
       }
-      double tol = 2.1*Constants.Tolerance;
 
-      return Curve.JoinCurves(nakedEdges, tol);
+      return Curve.JoinCurves(nakedEdges, Constants.AbsoluteTolerance);
     }
 
     /**
@@ -113,7 +112,12 @@ namespace Quelea
 
       //initialize parameters
       double theta = angle;
-      const double stepSize = 0.5;
+      const double stepSize = 
+        
+        
+        
+        
+        5;
 
       //initialize list
       List<Point3d> pts = new List<Point3d>();
@@ -397,7 +401,6 @@ namespace Quelea
     {
       Vector3d desired = new Vector3d();
       Vector3d avoidVec, parVec;
-      double tol = 0.01;
       Curve[] overlapCrvs;
       Point3d[] intersectPts;
 
@@ -413,7 +416,7 @@ namespace Quelea
             //Check feeler intersection with each brep face
             foreach (BrepFace face in brep.Faces)
             {
-              Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+              Intersection.CurveBrepFace(feeler, face, Constants.AbsoluteTolerance, out overlapCrvs, out intersectPts);
               if (intersectPts.Length > 0)
               {
                 Point3d testPt = feeler.PointAtEnd;
@@ -461,7 +464,7 @@ namespace Quelea
             {
               Curve[] overlapCrvs;
               Point3d[] intersectPts;
-              Intersection.CurveBrepFace(feeler, face, Constants.Tolerance, out overlapCrvs, out intersectPts);
+              Intersection.CurveBrepFace(feeler, face, Constants.AbsoluteTolerance, out overlapCrvs, out intersectPts);
               if (intersectPts.Length > 0)
               {
                 Point3d testPt = intersectPts[0];
@@ -538,7 +541,7 @@ namespace Quelea
       {
         foreach (Brep brep in borderWalls)
         {
-          if (pt.DistanceTo(brep.ClosestPoint(pt)) < Constants.Tolerance)
+          if (pt.DistanceTo(brep.ClosestPoint(pt)) < Constants.AbsoluteTolerance)
           {
             return false;
           }

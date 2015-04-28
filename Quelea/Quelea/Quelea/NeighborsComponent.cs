@@ -69,12 +69,12 @@ namespace Quelea
       da.GetData(nextInputIndex++, ref visionAngle);
       
       // We should now validate the data and warn the user if invalid data is supplied.
-      if (!(0.0 <= visionRadius))
+      if (!(0 <= visionRadius))
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionRadiusErrorMessage);
         return false;
       }
-      if (!(0.0 <= visionAngle && visionAngle <= 360.0))
+      if (!(0 <= visionAngle && visionAngle <= 360))
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionAngleErrorMessage);
         return false;
@@ -92,7 +92,7 @@ namespace Quelea
     {
       ISpatialCollection<IQuelea> neighborsInSphere = agentCollection.Quelea.GetNeighborsInSphere(agent, visionRadius);
 
-      if (Number.ApproximatelyEqual(visionAngle, 360, RS.toleranceDefault))
+      if (Number.ApproximatelyEqual(visionAngle, 360, Constants.AbsoluteTolerance))
       {
         return new SpatialCollectionType(neighborsInSphere);
       }
@@ -110,8 +110,8 @@ namespace Quelea
         Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.RefPosition), new Vector3d(position));
         double angle1 = Vector.CalcAngle(velocity, diff, pl1);
         double angle2 = Vector.CalcAngle(velocity, diff, pl2);
-        if (Number.DefinitelyLessThan(angle1, visionAngle / 2, RS.toleranceDefault) &&
-            Number.DefinitelyLessThan(angle2, visionAngle / 2, RS.toleranceDefault))
+        if (Number.DefinitelyLessThan(angle1, visionAngle / 2, Constants.AbsoluteTolerance) &&
+            Number.DefinitelyLessThan(angle2, visionAngle / 2, Constants.AbsoluteTolerance))
         {
           neighbors.Add(neighbor);
         }

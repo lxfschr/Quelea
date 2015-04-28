@@ -14,7 +14,8 @@ namespace Quelea
           "Applies a force to simulate water flowing over the surface.",
           RS.icon_flowDownSurfaceForce, "a020520c-2da2-444e-a014-4a1bc0d844a5")
     {
-      stepDistance = 0.1;
+      stepDistance = 
+        1;
     }
 
     protected override void RegisterInputParams(GH_InputParamManager pManager)
@@ -38,8 +39,8 @@ namespace Quelea
       Vector3d nrml = environment.ClosestNormal(particle.Position);
       Vector3d drainVec = Vector3d.CrossProduct(nrml, Vector3d.ZAxis);
       drainVec.Unitize();
-      drainVec.Transform(Transform.Rotation(Math.PI / 2, nrml, particle.Position));
-      drainVec = Vector3d.Multiply(drainVec, stepDistance);
+      drainVec.Transform(Transform.Rotation(RS.HALF_PI, nrml, particle.Position));
+      drainVec = drainVec * stepDistance;
       return drainVec;
     }
   }

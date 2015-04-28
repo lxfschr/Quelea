@@ -1,5 +1,4 @@
-﻿using Quelea.Util;
-using Grasshopper.Kernel;
+﻿using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
@@ -33,19 +32,19 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Vector3d desired = Vector3d.Subtract((Vector3d)targetPt, new Vector3d(agent.RefPosition));
+      Vector3d desired = Util.Vector.Vector2Point(agent.RefPosition, targetPt);
       double d = desired.Length;
       desired.Unitize();
       // The agent desires to move towards the target at maximum speed.
       // Instead of teleporting to the target, the agent will move incrementally.
       if (d < arrivalRadius)
       {
-        double m = Number.Map(d, 0, arrivalRadius, 0, agent.MaxSpeed);
-        desired = Vector3d.Multiply(desired, m);
+        double m = Util.Number.Map(d, 0, arrivalRadius, 0, agent.MaxSpeed);
+        desired = desired * m;
       }
       else
       {
-        desired = Vector3d.Multiply(desired, agent.MaxSpeed);
+        desired = desired * agent.MaxSpeed;
       }
       return desired;
     }

@@ -147,37 +147,50 @@ namespace Quelea
       Point3d refPosition = agent.RefPosition;
       double maxSpeed = agent.MaxSpeed;
       Vector3d velocity = agent.Velocity;
-
-      Vector3d desired = new Vector3d();
+      bool avoided = false;
+      Vector3d desired = velocity;
 
       if (refPosition.X < minX + distance)
       {
-        desired = new Vector3d(maxSpeed, velocity.Y, velocity.Z);
+        //desired = new Vector3d(maxSpeed, velocity.Y, velocity.Z);
+        desired.X = maxSpeed;
+        avoided = true;
       }
       else if (refPosition.X > maxX - distance)
       {
-        desired = new Vector3d(-maxSpeed, velocity.Y, velocity.Z);
+        //desired = new Vector3d(-maxSpeed, velocity.Y, velocity.Z);
+        desired.X = -maxSpeed;
+        avoided = true;
       }
 
       if (refPosition.Y < minY + distance)
       {
-        desired = new Vector3d(velocity.X, maxSpeed, velocity.Z);
+        //desired = new Vector3d(velocity.X, maxSpeed, velocity.Z);
+        desired.Y = maxSpeed;
+        avoided = true;
       }
       else if (refPosition.Y > maxY - distance)
       {
-        desired = new Vector3d(velocity.X, -maxSpeed, velocity.Z);
+        //desired = new Vector3d(velocity.X, -maxSpeed, velocity.Z);
+        desired.Y = -maxSpeed;
+        avoided = true;
       }
 
-      if (agent.RefPosition.Z < minZ + distance)
+      if (refPosition.Z < minZ + distance)
       {
-        desired = new Vector3d(velocity.X, velocity.Y, maxSpeed);
+        //desired = new Vector3d(velocity.X, maxSpeed, velocity.Z);
+        desired.Z = maxSpeed;
+        avoided = true;
       }
-      else if (agent.RefPosition.Z > maxZ - distance)
+      else if (refPosition.Z > maxZ - distance)
       {
-        desired = new Vector3d(velocity.X, velocity.Y, -maxSpeed);
+        //desired = new Vector3d(velocity.X, -maxSpeed, velocity.Z);
+        desired.Z = -maxSpeed;
+        avoided = true;
       }
 
-      return desired;
+      if (avoided) return desired;
+      return Vector3d.Zero;
     }
 
     public override bool BounceContain(IParticle agent)

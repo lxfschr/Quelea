@@ -1,5 +1,4 @@
-﻿using Quelea.Util;
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
 namespace Quelea
@@ -27,7 +26,7 @@ namespace Quelea
         //double d = Vector3d.Subtract(agent.RefPosition, other.RefPosition).Length;
         //if we are not comparing the seeker to iteself and it is at least
         //desired separation away:
-        Vector3d diff = Point3d.Subtract(agent.RefPosition, neighbor.RefPosition);
+        Vector3d diff = Util.Vector.Vector2Point(neighbor.RefPosition, agent.RefPosition);
         diff.Unitize();
 
         //Weight the magnitude by distance to other

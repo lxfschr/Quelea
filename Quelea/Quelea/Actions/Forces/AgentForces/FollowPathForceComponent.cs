@@ -49,12 +49,12 @@ namespace Quelea
       //Predict the vehicle's future location
       Vector3d predict = agent.Velocity;
       predict.Unitize();
-      predict = Vector3d.Multiply(predict, predictionDistance);
-      Point3d predictLoc = Point3d.Add(agent.RefPosition, predict);
+      predict = predict * predictionDistance;
+      Point3d predictLoc = agent.RefPosition + predict;
 
       //Find the normal point along the path
       double t;
-      path.ClosestPoint(new Point3d(predictLoc), out t);
+      path.ClosestPoint(predictLoc, out t);
       Point3d normal = path.PointAt(t);
 
       //Move a little further along the path and set a target
@@ -64,9 +64,9 @@ namespace Quelea
       double distance = normal.DistanceTo(new Point3d(predictLoc));
       if (distance > radius)
       {
-        Vector3d offset = new Vector3d(path.PointAt(t + pathTargetDistance));
+        Point3d offsetPt = path.PointAt(t + pathTargetDistance);
         // Seek that point
-        desired = Util.Agent.Seek(agent, new Vector3d(offset));
+        desired = Util.Agent.Seek(agent, offsetPt);
       }
       return desired;
     }

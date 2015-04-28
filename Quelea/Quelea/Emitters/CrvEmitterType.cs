@@ -65,10 +65,7 @@ namespace Quelea
 
     public override Point3d Emit()
     {
-
-      const double min = 0;
-      const double max = 1;
-      return crv.PointAtNormalizedLength((Random.RandomDouble(min, max)));
+      return crv.PointAtNormalizedLength((Random.RandomDouble(0, 1)));
 
     }
 

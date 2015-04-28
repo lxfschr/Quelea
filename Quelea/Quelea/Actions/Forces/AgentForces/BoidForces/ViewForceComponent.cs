@@ -25,11 +25,11 @@ namespace Quelea
       Plane pl = new Plane(position, velocity, Vector3d.ZAxis);
       foreach (IQuelea neighbor in neighbors)
       {
-        Vector3d diff = Vector3d.Subtract((Vector3d) neighbor.RefPosition, (Vector3d) position);
+        Vector3d diff = Util.Vector.Vector2Point(position, neighbor.RefPosition);
         angle = Vector3d.VectorAngle(velocity, diff, pl);
         //angle = Util.Vector.RadToDeg(angle);
-        if (angle > Math.PI) angle = angle - 2*Math.PI;
-        desired = Vector3d.Add(desired, (Vector3d) neighbor.RefPosition);
+        if (angle > Math.PI) angle = angle - RS.TWO_PI;
+        desired = desired + (Vector3d) neighbor.RefPosition;
         //For an average, we need to keep track of how many boids
         //are in our vision.
         count++;
@@ -38,8 +38,8 @@ namespace Quelea
       if (count > 0)
       {
         //We desire to go in that direction at maximum speed.
-        desired = Vector3d.Divide(desired, count);
-        desired = Util.Agent.Seek(agent, desired);
+        desired = desired / count;
+        desired = Util.Agent.Seek(agent, new Point3d(desired));
         Plane nrml = new Plane(position, velocity);
         if (angle >= 0) desired.Rotate(Math.PI / 2, nrml.YAxis);
         else desired.Rotate(-Math.PI / 2, nrml.YAxis);

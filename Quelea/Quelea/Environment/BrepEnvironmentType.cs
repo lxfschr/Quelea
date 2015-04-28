@@ -74,8 +74,7 @@ namespace Quelea
 
     public override Point3d ClosestPoint(Point3d pt)
     {
-      double tol = 0.01;
-      if (!environment.IsPointInside(pt, tol, true))
+      if (!environment.IsPointInside(pt, Constants.AbsoluteTolerance, true))
       {
         return environment.ClosestPoint(pt);
       }
@@ -132,7 +131,7 @@ namespace Quelea
         feelers = new Curve[1];
       }
       
-      double feelerAngle = Math.PI/2;
+      double feelerAngle = RS.HALF_PI;
       //Calculate straight ahead feeler with length visionDistance
       Vector3d feelerVec = particle.Velocity;
       feelerVec.Unitize();
@@ -165,8 +164,6 @@ namespace Quelea
       
       Vector3d velocity = agent.Velocity;
       Point3d position = agent.Position;
-      
-      double tol = 0.01;
 
       Curve[] overlapCrvs;
       Point3d[] intersectPts;
@@ -179,7 +176,7 @@ namespace Quelea
         //Check feeler intersection with each brep face
         foreach (BrepFace face in environment.Faces)
         {
-          Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+          Intersection.CurveBrepFace(feeler, face, Constants.AbsoluteTolerance, out overlapCrvs, out intersectPts);
           if (intersectPts.Length > 0)
           {
             Point3d testPt = feeler.PointAtEnd;
@@ -190,8 +187,8 @@ namespace Quelea
             Vector.GetProjectionComponents(normal, velocity, out parVec, out avoidVec);
             avoidVec.Unitize();
             //weight by distance
-            avoidVec = Vector3d.Divide(avoidVec, position.DistanceTo(intersectPts[0]));
-            steer = Vector3d.Add(steer, avoidVec);
+            avoidVec = avoidVec / position.DistanceTo(intersectPts[0]);
+            steer = steer + avoidVec;
             count++;
             break; //Break when we hit a face
           }
@@ -199,7 +196,7 @@ namespace Quelea
       }
       if (count > 0)
       {
-        steer = Vector3d.Divide(steer, count);
+        steer = steer / count;
       }
 
       return steer;
@@ -208,8 +205,6 @@ namespace Quelea
     public override bool BounceContain(IParticle particle)
     {
       Vector3d velocity = particle.Velocity;
-      
-      double tol = 0.01;
 
       Curve[] overlapCrvs;
       Point3d[] intersectPts;
@@ -221,7 +216,7 @@ namespace Quelea
         //Check feeler intersection with each brep face
         foreach (BrepFace face in environment.Faces)
         {
-          Intersection.CurveBrepFace(feeler, face, tol, out overlapCrvs, out intersectPts);
+          Intersection.CurveBrepFace(feeler, face, Constants.AbsoluteTolerance, out overlapCrvs, out intersectPts);
           if (intersectPts.Length > 0)
           {
             Point3d testPt = intersectPts[0];
@@ -245,7 +240,7 @@ namespace Quelea
 
     public override bool Contains(Point3d pt)
     {
-      return environment.IsPointInside(pt, Constants.Tolerance, true);
+      return environment.IsPointInside(pt, Constants.AbsoluteTolerance, true);
     }
   }
 }

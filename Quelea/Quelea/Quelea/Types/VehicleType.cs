@@ -1,6 +1,5 @@
 ﻿using System;
 using Grasshopper.Kernel.Types;
-using Quelea.Util;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
@@ -51,7 +50,7 @@ namespace Quelea
       double angle = Vector3d.VectorAngle(Velocity, Orientation.XAxis, Orientation);
 
       orientation.Rotate(angle, Orientation.ZAxis);
-      if (!Util.Number.EssentiallyEqual(Vector3d.VectorAngle(Velocity, Orientation.XAxis, Orientation), 0, 0.1))
+      if (!Util.Number.ApproximatelyEqual(Vector3d.VectorAngle(Velocity, Orientation.XAxis, Orientation), 0, Constants.AbsoluteTolerance))
       {
         orientation.Rotate(-2*angle, Orientation.ZAxis);
       }

@@ -1323,6 +1323,16 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 1.5707963267949.
+        /// </summary>
+        internal static double HALF_PI {
+            get {
+                object obj = ResourceManager.GetObject("HALF_PI", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Int32 similar to 1.
         /// </summary>
         internal static int historyLenDefault {
@@ -2487,6 +2497,16 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 1.41421356237.
+        /// </summary>
+        internal static double SQUARE_ROOT_OF_TWO {
+            get {
+                object obj = ResourceManager.GetObject("SQUARE_ROOT_OF_TWO", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SrfEnv.
         /// </summary>
         internal static string surfaceEnvironmentComponentNickname {
@@ -2591,6 +2611,16 @@ namespace Quelea.Properties {
         internal static double toleranceDefault {
             get {
                 object obj = ResourceManager.GetObject("toleranceDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 6.28318530717959.
+        /// </summary>
+        internal static double TWO_PI {
+            get {
+                object obj = ResourceManager.GetObject("TWO_PI", resourceCulture);
                 return ((double)(obj));
             }
         }

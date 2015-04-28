@@ -22,7 +22,7 @@ namespace Quelea
       foreach (IQuelea neighbor in neighbors)
       {
         //Adding up all the others' location
-        desired = Vector3d.Add(desired, new Vector3d(neighbor.RefPosition));
+        desired = desired + (Vector3d)neighbor.RefPosition;
         //For an average, we need to keep track of how many boids
         //are in our vision.
         count++;
@@ -31,8 +31,8 @@ namespace Quelea
       if (count > 0)
       {
         //We desire to go in that direction at maximum speed.
-        desired = Vector3d.Divide(desired, count);
-        desired = Util.Agent.Seek(agent, desired);
+        desired = desired / count;
+        desired = Util.Agent.Seek(agent, new Point3d(desired));
       }
       //Seek the average location of our neighbors.
       return desired;
