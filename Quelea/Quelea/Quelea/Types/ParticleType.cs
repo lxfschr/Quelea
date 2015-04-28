@@ -45,13 +45,14 @@ namespace Quelea
       Velocity = p.Velocity;
     }
 
-    public ParticleType(IParticle p, Point3d emittionPt, Point3d refEmittionPt)
+    public ParticleType(IParticle p, Point3d emittionPt, Point3d refEmittionPt, AbstractEnvironmentType environment)
       : this(p.VelocityMin, p.VelocityMax, p.Acceleration, p.Lifespan,
              p.Mass, p.BodySize, p.HistoryLength)
     {
       Position = emittionPt;
       RefPosition = refEmittionPt;
       PositionHistory.Add(Position);
+      Environment = environment;
     }
 
     public Point3d Position { get; set; }
@@ -67,6 +68,7 @@ namespace Quelea
     public int HistoryLength { get; set; }
     public bool InitialVelocitySet { get; set; }
     public CircularArray<Point3d> PositionHistory { get; private set; }
+    public AbstractEnvironmentType Environment { get; set; }
 
     public Point3d GetPoint3D()
     {

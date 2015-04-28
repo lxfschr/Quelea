@@ -99,6 +99,7 @@
     <Compile Include="Actions\Forces\VehicleForces\SenseImageForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\SensoryPtForceComponent.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Environment\AxisAlignedBoxEnvironmentType - Copy.cs" />
     <Compile Include="Quelea\AbstractSystemComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructVehicleComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructAgentComponent.cs" />
@@ -134,7 +135,7 @@
     <Compile Include="Environment\AbstractEnvironmentType.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="Environment\AxisAlignedBoxEnvironmentComponent.cs" />
-    <Compile Include="Environment\AxisAlignedBoxEnvironmentType.cs" />
+    <Compile Include="Environment\WorldEnvironmentType.cs" />
     <Compile Include="Quelea\EngineComponent.cs" />
     <Compile Include="SpatialCollections\CircularArray.cs" />
     <Compile Include="SpatialCollections\IPosition.cs" />

@@ -43,8 +43,8 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, (List<IQuelea>)system.Particles.SpatialObjects);
-      da.SetData(nextOutputIndex++, new SpatialCollectionType(system.Particles));
+      da.SetDataList(nextOutputIndex++, (List<IQuelea>)system.Quelea.SpatialObjects);
+      da.SetData(nextOutputIndex++, new SpatialCollectionType(system.Quelea));
     }
   }
 }

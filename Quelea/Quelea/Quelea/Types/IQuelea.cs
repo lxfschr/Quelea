@@ -26,6 +26,8 @@ namespace Quelea
 
     CircularArray<Point3d> PositionHistory { get; }
 
+    AbstractEnvironmentType Environment { get; set; }
+
     void Run();
 
     Boolean IsDead();

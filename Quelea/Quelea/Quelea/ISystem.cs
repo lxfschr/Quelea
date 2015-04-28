@@ -5,7 +5,7 @@ namespace Quelea
 {
   public interface ISystem : IGH_Goo
   {
-    ISpatialCollection<IQuelea> Particles { get; }
+    ISpatialCollection<IQuelea> Quelea { get; }
     void Run();
 
     void Populate();

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
@@ -54,7 +53,7 @@ namespace Quelea
       Point3d sensorRightPos = vehicle.GetPartPosition(vehicle.BodySize, -vehicle.HalfPi);
       int x = (int)sensorLeftPos.X * 10;
       int y = bitmap.Height - (int)sensorLeftPos.Y * 10;
-       Color color = crossed ? Color.White : Color.Black;
+      Color color = crossed ? Color.White : Color.Black;
       
       if ((0 <= x && x < bitmap.Width) && (0 <= y && y < bitmap.Height))
       {
