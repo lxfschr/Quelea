@@ -59,7 +59,6 @@ namespace Quelea
       if ((0 <= x && x < bitmap.Width) && (0 <= y && y < bitmap.Height))
       {
         color = bitmap.GetPixel(x, y);
-        Color c = bitmap.GetPixel(0, 0);
       }
       sensorLeftValue = color.GetBrightness();
       x = (int)sensorRightPos.X * 10;
@@ -70,16 +69,22 @@ namespace Quelea
         color = bitmap.GetPixel(x, y);
       }
       sensorRightValue = color.GetBrightness();
+      double wheelDiff;
       if (crossed)
       {
         vehicle.SetSpeedChanges(sensorRightValue, sensorLeftValue);
+        wheelDiff = sensorRightValue * vehicle.WheelRadius - sensorLeftValue * vehicle.WheelRadius;
       }
       else
       {
         vehicle.SetSpeedChanges(sensorLeftValue, sensorRightValue);
+        wheelDiff = sensorLeftValue * vehicle.WheelRadius - sensorRightValue * vehicle.WheelRadius;
       }
-      
-      return Vector3d.Zero;
+      double angle = wheelDiff / vehicle.BodySize;
+      Vector3d desired = vehicle.Velocity;
+      desired.Rotate(angle, vehicle.Orientation.ZAxis);
+
+      return desired;
     }
   }
 }

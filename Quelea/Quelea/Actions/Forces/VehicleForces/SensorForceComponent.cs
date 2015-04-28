@@ -1,6 +1,4 @@
-﻿using System;
-using System.Drawing;
-using Grasshopper.Kernel;
+﻿using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
@@ -51,16 +49,22 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
+      double wheelDiff;
       if (crossed)
       {
         vehicle.SetSpeedChanges(sensorRightValue, sensorLeftValue);
+        wheelDiff = sensorRightValue * vehicle.WheelRadius - sensorLeftValue * vehicle.WheelRadius;
       }
       else
       {
         vehicle.SetSpeedChanges(sensorLeftValue, sensorRightValue);
+        wheelDiff = sensorLeftValue * vehicle.WheelRadius - sensorRightValue * vehicle.WheelRadius;
       }
-      
-      return Vector3d.Zero;
+      double angle = wheelDiff / vehicle.BodySize;
+      Vector3d desired = vehicle.Velocity;
+      desired.Rotate(angle, vehicle.Orientation.ZAxis);
+
+      return desired;
     }
   }
 }

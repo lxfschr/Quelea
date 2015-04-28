@@ -79,7 +79,6 @@ namespace Quelea
       desired.Rotate(angle, vehicle.Orientation.ZAxis);
 
       return desired;
-      //return Vector3d.Zero;
     }
   }
 }
