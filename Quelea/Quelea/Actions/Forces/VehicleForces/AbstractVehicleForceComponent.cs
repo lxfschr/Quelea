@@ -87,7 +87,7 @@ namespace Quelea
 
     private Vector3d ApplyForce(Vector3d force)
     {
-      return vehicle.ApplyForce(force, weightMultiplier, apply);
+      return vehicle.ApplySteeringForce(force, weightMultiplier, apply);
     }
 
     protected abstract Vector3d CalcForce();

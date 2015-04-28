@@ -21,8 +21,10 @@ namespace Quelea
 
       foreach (IQuelea neighbor in neighbors)
       {
+        //Point3d neighborPosition2D = agent.Environment.ClosestRefPoint(neighbor.Position3D);
+        Point3d neighborPosition2D = neighbor.Position;
         //Adding up all the others' location
-        desired = desired + (Vector3d)neighbor.Position;
+        desired = desired + (Vector3d)neighborPosition2D;
         //For an average, we need to keep track of how many boids
         //are in our vision.
         count++;

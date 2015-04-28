@@ -1,5 +1,4 @@
 ﻿using System;
-using Quelea.Util;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
@@ -24,6 +23,7 @@ namespace Quelea
     public AgentType(IParticle p, double maxSpeed, double maxForce, double visionRadius, double visionAngle)
       : base(p.VelocityMin, p.VelocityMax, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
     {
+      SteerAcceleration = Vector3d.Zero;
       MaxSpeed = maxSpeed;
       MaxForce = maxForce;
       VisionRadius = visionRadius;
@@ -35,6 +35,7 @@ namespace Quelea
     public AgentType(IAgent a, Point3d emittionPt, AbstractEnvironmentType environment)
       : base(a, emittionPt, environment)
     {
+      SteerAcceleration = a.SteerAcceleration;
       MaxSpeed = a.MaxSpeed;
       MaxForce = a.MaxForce;
       VisionRadius = a.VisionRadius;
@@ -56,25 +57,34 @@ namespace Quelea
       Lon = Util.Random.RandomDouble(-Math.PI / 2, Math.PI / 2);
     }
 
-    public override Vector3d ApplyForce(Vector3d force, double weightMultiplier, bool apply)
+    public Vector3d ApplySteeringForce(Vector3d force, double weightMultiplier, bool apply)
     {
       if (force.Equals(Vector3d.Zero))
       {
         return Vector3d.Zero;
       }
-      force = Vector3d.Subtract(force, Velocity);
-      // Optimumization so we don't need to create a new Vector3d called steer
+      // Reynold's steering formula: steer = desired - velocity
+      force = force - Velocity;
 
       // Steering ability can be controlled by limiting the magnitude of the steering force.
-      force = Vector.Limit(force, MaxForce);
-      force = Vector3d.Multiply(force, weightMultiplier);
+      force = Util.Vector.Limit(force, MaxForce);
+      force = force * weightMultiplier;
       if (apply)
       {
-        Acceleration = Vector3d.Add(Acceleration, force);
+        SteerAcceleration += force;
       }
       return force;
     }
 
+    public override void Run()
+    {
+      SteerAcceleration = Util.Vector.Limit(SteerAcceleration, MaxForce);
+      Acceleration += SteerAcceleration;
+      SteerAcceleration = Vector3d.Zero;
+      base.Run();
+    }
+
+   public Vector3d SteerAcceleration { get; set; }
    public double MaxSpeed { get; set; }
    public double MaxForce { get; set; }
    public double VisionRadius { get; set; }

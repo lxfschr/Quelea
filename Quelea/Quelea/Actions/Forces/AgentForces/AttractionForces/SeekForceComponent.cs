@@ -15,7 +15,6 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      targetPt = agent.Environment.ClosestRefPoint(targetPt);
       Vector3d desired = Util.Agent.Seek(agent, targetPt);
       return desired;
     }

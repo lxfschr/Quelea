@@ -26,6 +26,7 @@ namespace Quelea
       Velocity3D = Util.Random.RandomVector(velocityMin, velocityMax);
       Acceleration = acceleration;
       PreviousAcceleration3D = acceleration;
+      PreviousAcceleration = acceleration;
       Lifespan = lifespan;
       Mass = mass;
       BodySize = bodySize;
@@ -39,6 +40,7 @@ namespace Quelea
       Position = p.Position;
       Velocity = p.Velocity;
       PreviousAcceleration3D = p.PreviousAcceleration3D;
+      PreviousAcceleration = p.PreviousAcceleration;
       Position3D = p.Position3D;
       Velocity3D = p.Velocity3D;
       Acceleration3D = p.Acceleration3D;
@@ -77,6 +79,7 @@ namespace Quelea
     public Vector3d Velocity3D { get; set; }
     public Vector3d Acceleration3D { get; set; }
     public Vector3d PreviousAcceleration3D { get; set; }
+    public Vector3d PreviousAcceleration { get; set; }
     public int Lifespan { get; set; }
     public double Mass { get; set; }
     public double BodySize { get; set; }
@@ -93,22 +96,21 @@ namespace Quelea
     virtual public void Run()
     {
       Velocity = Vector3d.Add(Velocity, Acceleration);
-      Point3d position = Position;
-      position.Transform(Transform.Translation(Velocity));
-
       Velocity3D = MapTo3D(Velocity);
       Acceleration3D = MapTo3D(Acceleration);
+      Point3d position = Position;
+      position.Transform(Transform.Translation(Velocity));
+      position = Environment.ClosestRefPointOnRef(position);
       Position = position;
       Point3d position3D = Position3D;
-      position3D.Transform(Transform.Translation(Velocity3D)); //So disconnecting the environment allows the agent to continue from its current position.
+      position3D.Transform(Transform.Translation(Velocity3D));
       Position3D = position3D;
-      
-      //Position = Environment.ClosestRefPointOnRef(Position);
-      //Position3D = Environment.ClosestPointOnRef(Position);
 
       Position3DHistory.Add(Position3D);
 
-      PreviousAcceleration3D = Acceleration;
+      PreviousAcceleration3D = Acceleration3D;
+      PreviousAcceleration = Acceleration;
+
       Acceleration = Vector3d.Zero;
       Lifespan -= 1;
     }
@@ -121,13 +123,13 @@ namespace Quelea
       return Util.Vector.Vector2Point(Position3D, pt3D);
     }
 
-    public virtual Vector3d ApplyForce(Vector3d force, double weightMultiplier, bool apply)
+    public Vector3d ApplyForce(Vector3d force, double weightMultiplier, bool apply)
     {
-      force = Vector3d.Divide(force, Mass);
-      force = Vector3d.Multiply(force, weightMultiplier);
+      force = force / Mass;
+      force = force * weightMultiplier;
       if (apply)
       {
-        Acceleration = Vector3d.Add(Acceleration, force);
+        Acceleration += force;
       }
       return force;
     }

@@ -25,11 +25,12 @@ namespace Quelea
       Plane pl = new Plane(position, velocity, Vector3d.ZAxis);
       foreach (IQuelea neighbor in neighbors)
       {
-        Vector3d diff = Util.Vector.Vector2Point(position, neighbor.Position);
+        Point3d neighborPosition2D = agent.Environment.ClosestRefPoint(neighbor.Position);
+        Vector3d diff = Util.Vector.Vector2Point(position, neighborPosition2D);
         angle = Vector3d.VectorAngle(velocity, diff, pl);
         //angle = Util.Vector.RadToDeg(angle);
         if (angle > Math.PI) angle = angle - RS.TWO_PI;
-        desired = desired + (Vector3d) neighbor.Position;
+        desired = desired + (Vector3d)neighborPosition2D;
         //For an average, we need to keep track of how many boids
         //are in our vision.
         count++;

@@ -58,7 +58,7 @@ namespace Quelea
       da.SetData(nextOutputIndex++, particle.BodySize);
       da.SetData(nextOutputIndex++, particle.Position);
       da.SetData(nextOutputIndex++, particle.Velocity);
-      da.SetData(nextOutputIndex++, particle.Acceleration);
+      da.SetData(nextOutputIndex++, particle.PreviousAcceleration);
     }
   }
 }
