@@ -16,13 +16,13 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Vector3d sum = new Vector3d();
+      Vector3d desired = new Vector3d();
       int count = 0;
 
-      foreach (AgentType neighbor in neighbors)
+      foreach (IQuelea neighbor in neighbors)
       {
         //Adding up all the others' location
-        sum = Vector3d.Add(sum, new Vector3d(neighbor.RefPosition));
+        desired = Vector3d.Add(desired, new Vector3d(neighbor.RefPosition));
         //For an average, we need to keep track of how many boids
         //are in our vision.
         count++;
@@ -31,11 +31,11 @@ namespace Quelea
       if (count > 0)
       {
         //We desire to go in that direction at maximum speed.
-        sum = Vector3d.Divide(sum, count);
-        sum = Util.Agent.Seek(agent, sum);
+        desired = Vector3d.Divide(desired, count);
+        desired = Util.Agent.Seek(agent, desired);
       }
       //Seek the average location of our neighbors.
-      return sum;
+      return desired;
     }
   }
 }

@@ -16,7 +16,7 @@ namespace Quelea
                                                   Bitmap icon, String componentGuid)
       : base(name, nickname, description, icon, componentGuid)
     {
-      environment = new AxisAlignedBoxEnvironmentType();
+      environment = null;
       visionRadius = RS.bodySizeDefault;
     }
 

@@ -17,19 +17,17 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Vector3d steer = new Vector3d();
+      Vector3d desired = new Vector3d();
       if (environment != null)
       {
-        steer = environment.AvoidEdges(agent, visionRadius);
-        if (!steer.IsZero)
+        desired = environment.AvoidEdges(agent, visionRadius);
+        if (!desired.IsZero)
         {
-          steer.Unitize();
-          steer = Vector3d.Multiply(steer, agent.MaxSpeed);
-          steer = Vector3d.Subtract(steer, agent.Velocity);
-          steer = Vector.Limit(steer, agent.MaxForce);
+          desired.Unitize();
+          desired = Vector3d.Multiply(desired, agent.MaxSpeed);
         }
       }
-      return steer;
+      return desired;
     }
   }
 }

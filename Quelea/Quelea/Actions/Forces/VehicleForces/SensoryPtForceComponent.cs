@@ -63,16 +63,23 @@ namespace Quelea
       sensorRightValue = sensorRightPos.DistanceTo(sourcePt);
       sensorLeftValue = Number.Map(sensorLeftValue, 0, radius, 0, 1);
       sensorRightValue = Number.Map(sensorRightValue, 0, radius, 0, 1);
+      double wheelDiff;
       if (crossed)
       {
         vehicle.SetSpeedChanges(sensorRightValue, sensorLeftValue);
+        wheelDiff = sensorRightValue * vehicle.WheelRadius - sensorLeftValue * vehicle.WheelRadius;
       }
       else
       {
         vehicle.SetSpeedChanges(sensorLeftValue, sensorRightValue);
+        wheelDiff = sensorLeftValue * vehicle.WheelRadius - sensorRightValue * vehicle.WheelRadius;
       }
-      
-      return Vector3d.Zero;
+      double angle = wheelDiff / vehicle.BodySize;
+      Vector3d desired = vehicle.Velocity;
+      desired.Rotate(angle, vehicle.Orientation.ZAxis);
+
+      return desired;
+      //return Vector3d.Zero;
     }
   }
 }

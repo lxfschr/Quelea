@@ -88,10 +88,15 @@ namespace Quelea
       Lifespan -= 1;
     }
 
-    public void ApplyForce(Vector3d force)
+    public virtual Vector3d ApplyForce(Vector3d force, double weightMultiplier, bool apply)
     {
       force = Vector3d.Divide(force, Mass);
-      Acceleration = Vector3d.Add(Acceleration, force);
+      force = Vector3d.Multiply(force, weightMultiplier);
+      if (apply)
+      {
+        Acceleration = Vector3d.Add(Acceleration, force);
+      }
+      return force;
     }
 
     public void Die()

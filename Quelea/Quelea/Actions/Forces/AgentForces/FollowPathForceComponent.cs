@@ -45,7 +45,7 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Vector3d steer = new Vector3d();
+      Vector3d desired = new Vector3d();
       //Predict the vehicle's future location
       Vector3d predict = agent.Velocity;
       predict.Unitize();
@@ -65,9 +65,10 @@ namespace Quelea
       if (distance > radius)
       {
         Vector3d offset = new Vector3d(path.PointAt(t + pathTargetDistance));
-        steer = Util.Agent.Seek(agent, offset);
+        // Seek that point
+        desired = Util.Agent.Seek(agent, new Vector3d(offset));
       }
-      return steer;
+      return desired;
     }
   }
 }

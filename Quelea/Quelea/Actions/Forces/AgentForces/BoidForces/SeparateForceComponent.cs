@@ -17,24 +17,23 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Vector3d sum = new Vector3d();
-      Vector3d diff;
+      Vector3d desired = new Vector3d();
       int count = 0;
 
-      foreach (AgentType other in neighbors)
+      foreach (IQuelea neighbor in neighbors)
       {
-        double d = agent.RefPosition.DistanceTo(other.RefPosition);
+        double d = agent.RefPosition.DistanceTo(neighbor.RefPosition);
         if (!(d > 0)) continue;
         //double d = Vector3d.Subtract(agent.RefPosition, other.RefPosition).Length;
         //if we are not comparing the seeker to iteself and it is at least
         //desired separation away:
-        diff = Point3d.Subtract(agent.RefPosition, other.RefPosition);
+        Vector3d diff = Point3d.Subtract(agent.RefPosition, neighbor.RefPosition);
         diff.Unitize();
 
         //Weight the magnitude by distance to other
         diff = Vector3d.Divide(diff, d);
 
-        sum = Vector3d.Add(sum, diff);
+        desired = Vector3d.Add(desired, diff);
 
         //For an average, we need to keep track of how many boids
         //are in our vision.
@@ -43,14 +42,12 @@ namespace Quelea
 
       if (count > 0)
       {
-        sum = Vector3d.Divide(sum, count);
-        sum.Unitize();
-        sum = Vector3d.Multiply(sum, agent.MaxSpeed);
-        sum = Vector3d.Subtract(sum, agent.Velocity);
-        sum = Vector.Limit(sum, agent.MaxForce);
+        desired = Vector3d.Divide(desired, count);
+        desired.Unitize();
+        desired = Vector3d.Multiply(desired, agent.MaxSpeed);
       }
       //Seek the average position of our neighbors.
-      return sum;
+      return desired;
     }
   }
 }

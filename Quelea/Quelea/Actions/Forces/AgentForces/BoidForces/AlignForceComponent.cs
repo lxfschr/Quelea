@@ -17,15 +17,14 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Vector3d sum = new Vector3d();
+      Vector3d desired = new Vector3d();
       int count = 0;
-      Vector3d steer = new Vector3d();
 
-      foreach (AgentType other in neighbors)
+      foreach (IQuelea neighbor in neighbors)
       {
         //Add up all the velocities and divide by the total to calculate
         //the average velocity.
-        sum = Vector3d.Add(sum, new Vector3d(other.Velocity));
+        desired = Vector3d.Add(desired, new Vector3d(neighbor.Velocity));
         //For an average, we need to keep track of how many boids
         //are in our vision.
         count++;
@@ -33,14 +32,12 @@ namespace Quelea
 
       if (count > 0)
       {
-        sum = Vector3d.Divide(sum, count);
-        sum.Unitize();
-        sum = Vector3d.Multiply(sum, agent.MaxSpeed);
-        steer = Vector3d.Subtract(sum, agent.Velocity);
-        steer = Vector.Limit(steer, agent.MaxForce);
+        desired = Vector3d.Divide(desired, count);
+        desired.Unitize();
+        desired = Vector3d.Multiply(desired, agent.MaxSpeed);
       }
       //Seek the average location of our neighbors.
-      return steer;
+      return desired;
     }
   }
 }

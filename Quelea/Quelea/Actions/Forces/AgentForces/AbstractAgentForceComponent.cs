@@ -81,12 +81,7 @@ namespace Quelea
 
     private Vector3d ApplyForce(Vector3d force)
     {
-      Vector3d weightedForce = Vector3d.Multiply(force, weightMultiplier);
-      if (apply)
-      {
-        agent.ApplyForce(weightedForce);
-      }
-      return weightedForce;
+      return agent.ApplyForce(force, weightMultiplier, apply);
     }
 
     protected abstract Vector3d CalcForce();

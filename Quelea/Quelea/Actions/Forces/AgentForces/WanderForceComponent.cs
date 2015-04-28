@@ -84,8 +84,8 @@ namespace Quelea
       //agent.Lon = Util.Number.Clamp(agent.Lon, 0, 2 * Math.PI);
       //agent.Lat = Util.Number.Clamp(agent.Lat, -Math.PI / 2, Math.PI / 2);
       targetPt = sphere.PointAt(agent.Lon, agent.Lat);
-      Vector3d steer = Util.Agent.Seek(agent, new Vector3d(targetPt));
-      return steer;
+      Vector3d desired = Util.Agent.Seek(agent, new Vector3d(targetPt));
+      return desired;
     }
   }
 }

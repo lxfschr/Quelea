@@ -1,4 +1,5 @@
 ﻿using System;
+using Quelea.Util;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
@@ -16,7 +17,7 @@ namespace Quelea
     }
 
     public AgentType(IAgent a)
-     : this((IParticle) a, a.MaxSpeed, a.MaxForce, a.VisionRadius, a.VisionAngle)
+     : this(a, a.MaxSpeed, a.MaxForce, a.VisionRadius, a.VisionAngle)
     {
     }
 
@@ -56,6 +57,25 @@ namespace Quelea
       VisionAngle = visionAngle;
       Lat = Util.Random.RandomDouble(0, 2 * Math.PI);
       Lon = Util.Random.RandomDouble(-Math.PI / 2, Math.PI / 2);
+    }
+
+    public override Vector3d ApplyForce(Vector3d force, double weightMultiplier, bool apply)
+    {
+      if (force.Equals(Vector3d.Zero))
+      {
+        return Vector3d.Zero;
+      }
+      force = Vector3d.Subtract(force, Velocity);
+      // Optimumization so we don't need to create a new Vector3d called steer
+
+      // Steering ability can be controlled by limiting the magnitude of the steering force.
+      force = Vector.Limit(force, MaxForce);
+      force = Vector3d.Multiply(force, weightMultiplier);
+      if (apply)
+      {
+        Acceleration = Vector3d.Add(Acceleration, force);
+      }
+      return force;
     }
 
    public double MaxSpeed { get; set; }

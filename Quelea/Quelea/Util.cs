@@ -77,13 +77,6 @@ namespace Quelea
         // The agent desires to move towards the target at maximum speed.
         // Instead of teleporting to the target, the agent will move incrementally.
         desired = Vector3d.Multiply(desired, agent.MaxSpeed);
-
-        //Seek the average position of our neighbors.
-        desired /*steer*/ = Vector3d.Subtract(desired, agent.Velocity);
-        // Optimumization so we don't need to create a new Vector3d called steer
-
-        // Steering ability can be controlled by limiting the magnitude of the steering force.
-        desired = Vector.Limit(desired, agent.MaxForce);
         return desired;
       }
     }

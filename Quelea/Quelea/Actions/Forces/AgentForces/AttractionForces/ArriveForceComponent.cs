@@ -47,14 +47,6 @@ namespace Quelea
       {
         desired = Vector3d.Multiply(desired, agent.MaxSpeed);
       }
-
-      // The actual force that is applied to the agent is the difference 
-      // between its current heading and the desired heading.
-      desired /*steer*/ = Vector3d.Subtract(desired, agent.Velocity);
-      // Optimumization so we don't need to create a new Vector3d called steer
-
-      // Steering ability can be controlled by limiting the magnitude of the steering force.
-      desired = Vector.Limit(desired, agent.MaxForce);
       return desired;
     }
   }
