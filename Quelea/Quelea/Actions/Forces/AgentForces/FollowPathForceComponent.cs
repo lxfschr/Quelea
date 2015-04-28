@@ -50,7 +50,7 @@ namespace Quelea
       Vector3d predict = agent.Velocity;
       predict.Unitize();
       predict = predict * predictionDistance;
-      Point3d predictLoc = agent.RefPosition + predict;
+      Point3d predictLoc = agent.Position + predict;
 
       //Find the normal point along the path
       double t;

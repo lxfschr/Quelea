@@ -99,7 +99,7 @@ namespace Quelea
 
       ISpatialCollection<IQuelea> neighbors = new SpatialCollectionAsList<IQuelea>();
 
-      Point3d position = agent.RefPosition;
+      Point3d position = agent.Position;
       Vector3d velocity = agent.Velocity;
       Plane pl1 = new Plane(position, velocity);
       pl1.Rotate(-Math.PI / 2, pl1.YAxis);
@@ -107,7 +107,7 @@ namespace Quelea
       pl2.Rotate(-Math.PI / 2, pl1.XAxis);
       foreach (IQuelea neighbor in neighborsInSphere)
       {
-        Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.RefPosition), new Vector3d(position));
+        Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.Position), new Vector3d(position));
         double angle1 = Vector.CalcAngle(velocity, diff, pl1);
         double angle2 = Vector.CalcAngle(velocity, diff, pl2);
         if (Number.DefinitelyLessThan(angle1, visionAngle / 2, Constants.AbsoluteTolerance) &&

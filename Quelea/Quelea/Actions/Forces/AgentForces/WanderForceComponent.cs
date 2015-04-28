@@ -72,7 +72,7 @@ namespace Quelea
       offsetVec.Unitize();
       offsetVec = Vector3d.Multiply(offsetVec, strength + RS.SQUARE_ROOT_OF_TWO * agent.MaxSpeed);
       Transform xform = Transform.Translation(offsetVec);
-      Point3d pt = agent.Position;
+      Point3d pt = agent.Position3D;
       pt.Transform(xform);
       sphere = new Sphere(pt, strength);
       agent.Lon += Util.Random.RandomDouble(-rate * RS.TWO_PI, rate * RS.TWO_PI);

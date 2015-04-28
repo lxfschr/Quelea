@@ -376,7 +376,7 @@ namespace Quelea
       Vector3d feelerVec = agent.Velocity;
       feelerVec.Unitize();
       feelerVec = Vector3d.Multiply(feelerVec, visionDistance);
-      feelers[0] = new Line(agent.Position, feelerVec).ToNurbsCurve();
+      feelers[0] = new Line(agent.Position3D, feelerVec).ToNurbsCurve();
 
       if (!accurate)
       {
@@ -386,13 +386,13 @@ namespace Quelea
       //Calculate tertiary feelers with length bodySize
       feelerVec = agent.Velocity;
       feelerVec.Unitize();
-      Plane rotPln = new Plane(agent.Position, agent.Velocity);
+      Plane rotPln = new Plane(agent.Position3D, agent.Velocity);
       Vector3d rotAxis = rotPln.XAxis;
-      feelers[1] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, feelerAngle, rotAxis);
-      feelers[2] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, -feelerAngle, rotAxis);
+      feelers[1] = GetFeelerCrv(feelerVec, agent.Position, agent.BodySize, feelerAngle, rotAxis);
+      feelers[2] = GetFeelerCrv(feelerVec, agent.Position, agent.BodySize, -feelerAngle, rotAxis);
       rotAxis = rotPln.YAxis;
-      feelers[3] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, feelerAngle, rotAxis);
-      feelers[4] = GetFeelerCrv(feelerVec, agent.RefPosition, agent.BodySize, -feelerAngle, rotAxis);
+      feelers[3] = GetFeelerCrv(feelerVec, agent.Position, agent.BodySize, feelerAngle, rotAxis);
+      feelers[4] = GetFeelerCrv(feelerVec, agent.Position, agent.BodySize, -feelerAngle, rotAxis);
 
       return feelers;
     }
@@ -427,9 +427,9 @@ namespace Quelea
                 Vector.GetProjectionComponents(normal, agent.Velocity, out parVec, out avoidVec);
                 avoidVec.Unitize();
                 //weight by distance
-                if (!agent.Position.DistanceTo(intersectPts[0]).Equals(0))
+                if (!agent.Position3D.DistanceTo(intersectPts[0]).Equals(0))
                 {
-                  avoidVec = Vector3d.Divide(avoidVec, agent.Position.DistanceTo(intersectPts[0]));
+                  avoidVec = Vector3d.Divide(avoidVec, agent.Position3D.DistanceTo(intersectPts[0]));
                 }
                 desired = Vector3d.Add(desired, avoidVec);
                 count++;

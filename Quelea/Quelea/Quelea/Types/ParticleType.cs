@@ -20,14 +20,12 @@ namespace Quelea
                         int historyLength)
     {
       HistoryLength = historyLength;
-      PositionHistory = new CircularArray<Point3d>(HistoryLength);
-      Position = Point3d.Origin;
-      RefPosition = Position;
-      Velocity = Util.Random.RandomVector(velocityMin, velocityMax);
+      Position3DHistory = new CircularArray<Point3d>(HistoryLength);
       VelocityMin = velocityMin;
       VelocityMax = velocityMax;
+      Velocity3D = Util.Random.RandomVector(velocityMin, velocityMax);
       Acceleration = acceleration;
-      PreviousAcceleration = acceleration;
+      PreviousAcceleration3D = acceleration;
       Lifespan = lifespan;
       Mass = mass;
       BodySize = bodySize;
@@ -39,58 +37,75 @@ namespace Quelea
     {
       InitialVelocitySet = p.InitialVelocitySet;
       Position = p.Position;
-      RefPosition = p.RefPosition;
-      PreviousAcceleration = p.PreviousAcceleration;
-      PositionHistory.Add(Position);
       Velocity = p.Velocity;
+      PreviousAcceleration3D = p.PreviousAcceleration3D;
+      Position3D = p.Position3D;
+      Velocity3D = p.Velocity3D;
+      Acceleration3D = p.Acceleration3D;
+      Position3DHistory.Add(Position3D);
+      
     }
 
     public ParticleType(IParticle p, Point3d emittionPt, AbstractEnvironmentType environment)
       : this(p.VelocityMin, p.VelocityMax, p.Acceleration, p.Lifespan,
              p.Mass, p.BodySize, p.HistoryLength)
     {
-      Position = emittionPt;
-      RefPosition = environment.ClosestRefPoint(emittionPt);
-      PositionHistory.Add(Position);
       Environment = environment;
+      Position3D = emittionPt;
+      Position = Environment.ClosestRefPoint(emittionPt);
+      Velocity = MapTo2D(Velocity3D);
+      Acceleration = MapTo2D(Acceleration3D);
+      Position3DHistory.Add(Position3D);
+      
     }
+
+    private Vector3d MapTo2D(Vector3d vector3D)
+    {
+      Point3d pt2D = Position3D;
+      pt2D.Transform(Transform.Translation(vector3D));
+      pt2D = Environment.ClosestRefPoint(pt2D);
+      return Util.Vector.Vector2Point(Position, pt2D);
+    }
+
 
     public Point3d Position { get; set; }
     public Vector3d Velocity { get; set; }
     public Vector3d VelocityMin { get; set; }
     public Vector3d VelocityMax { get; set; }
     public Vector3d Acceleration { get; set; }
-    public Point3d RefPosition { get; set; }
-    public Vector3d PreviousAcceleration { get; set; }
+    public Point3d Position3D { get; set; }
+    public Vector3d Velocity3D { get; set; }
+    public Vector3d Acceleration3D { get; set; }
+    public Vector3d PreviousAcceleration3D { get; set; }
     public int Lifespan { get; set; }
     public double Mass { get; set; }
     public double BodySize { get; set; }
     public int HistoryLength { get; set; }
     public bool InitialVelocitySet { get; set; }
-    public CircularArray<Point3d> PositionHistory { get; private set; }
+    public CircularArray<Point3d> Position3DHistory { get; private set; }
     public AbstractEnvironmentType Environment { get; set; }
 
     public Point3d GetPoint3D()
     {
-      return RefPosition;
+      return Position;
     }
 
     virtual public void Run()
     {
       Velocity = Vector3d.Add(Velocity, Acceleration);
-      Point3d refPosition = RefPosition;
-      refPosition.Transform(Transform.Translation(Velocity));
-      RefPosition = refPosition;
       Point3d position = Position;
-      position.Transform(Transform.Translation(Velocity)); //So disconnecting the environment allows the agent to continue from its current position.
+      position.Transform(Transform.Translation(Velocity));
       Position = position;
+      Point3d position3D = Position3D;
+      position3D.Transform(Transform.Translation(Velocity)); //So disconnecting the environment allows the agent to continue from its current position.
+      Position3D = position3D;
       
-      RefPosition = Environment.ClosestRefPointOnRef(RefPosition);
-      Position = Environment.ClosestPointOnRef(RefPosition);
+      Position = Environment.ClosestRefPointOnRef(Position);
+      Position3D = Environment.ClosestPointOnRef(Position);
 
-      PositionHistory.Add(Position);
+      Position3DHistory.Add(Position3D);
 
-      PreviousAcceleration = Acceleration;
+      PreviousAcceleration3D = Acceleration;
       Acceleration = Vector3d.Zero;
       Lifespan -= 1;
     }
@@ -133,8 +148,8 @@ namespace Quelea
       }
 
       // Return true if the fields match:
-      return Position.Equals(p.Position) &&
-             RefPosition.Equals(p.RefPosition) &&
+      return Position3D.Equals(p.Position3D) &&
+             Position.Equals(p.Position) &&
              Velocity.Equals(p.Velocity) &&
              Acceleration.Equals(p.Acceleration) &&
              Lifespan.Equals(p.Lifespan) &&
@@ -149,8 +164,8 @@ namespace Quelea
       unchecked // disable overflow, for the unlikely possibility that you
       {         // are compiling with overflow-checking enabled
         int hash = 27;
+        hash = (13 * hash) + Position3D.GetHashCode();
         hash = (13 * hash) + Position.GetHashCode();
-        hash = (13 * hash) + RefPosition.GetHashCode();
         hash = (13 * hash) + Velocity.GetHashCode();
         hash = (13 * hash) + Acceleration.GetHashCode();
         hash = (13 * hash) + Lifespan.GetHashCode();

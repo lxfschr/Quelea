@@ -22,7 +22,7 @@ namespace Quelea
       foreach (IQuelea neighbor in neighbors)
       {
         //Adding up all the others' location
-        desired = desired + (Vector3d)neighbor.RefPosition;
+        desired = desired + (Vector3d)neighbor.Position;
         //For an average, we need to keep track of how many boids
         //are in our vision.
         count++;

@@ -6,15 +6,21 @@ namespace Quelea
 {
   public interface IQuelea : IGH_Goo, IPosition
   {
+    
     Point3d Position { get; set; }
 
     Vector3d Velocity { get; set; }
 
     Vector3d Acceleration { get; set; }
 
-    Point3d RefPosition { get; set; }
+    Point3d Position3D { get; set; }
 
-    Vector3d PreviousAcceleration { get; set; }
+    Vector3d Velocity3D { get; set; }
+
+    Vector3d Acceleration3D { get; set; }
+
+
+    Vector3d PreviousAcceleration3D { get; set; }
 
     int Lifespan { get; set; }
 
@@ -24,7 +30,7 @@ namespace Quelea
 
     int HistoryLength { get; set; }
 
-    CircularArray<Point3d> PositionHistory { get; }
+    CircularArray<Point3d> Position3DHistory { get; }
 
     AbstractEnvironmentType Environment { get; set; }
 

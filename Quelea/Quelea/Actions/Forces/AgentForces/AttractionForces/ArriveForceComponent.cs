@@ -32,7 +32,7 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Vector3d desired = Util.Vector.Vector2Point(agent.RefPosition, targetPt);
+      Vector3d desired = Util.Vector.Vector2Point(agent.Position, targetPt);
       double d = desired.Length;
       desired.Unitize();
       // The agent desires to move towards the target at maximum speed.

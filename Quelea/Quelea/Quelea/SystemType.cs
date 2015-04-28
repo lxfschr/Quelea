@@ -103,12 +103,12 @@ namespace Quelea
       {
         foreach (IQuelea quelea in Quelea)
         {
-          min.X = quelea.RefPosition.X < min.X ? quelea.RefPosition.X : min.X;
-          min.Y = quelea.RefPosition.Y < min.Y ? quelea.RefPosition.Y : min.Y;
-          min.Z = quelea.RefPosition.Z < min.Z ? quelea.RefPosition.Z : min.Z;
-          max.X = quelea.RefPosition.X > max.X ? quelea.RefPosition.X : max.X;
-          max.Y = quelea.RefPosition.Y > max.Y ? quelea.RefPosition.Y : max.Y;
-          max.Z = quelea.RefPosition.Z > max.Z ? quelea.RefPosition.Z : max.Z;
+          min.X = quelea.Position.X < min.X ? quelea.Position.X : min.X;
+          min.Y = quelea.Position.Y < min.Y ? quelea.Position.Y : min.Y;
+          min.Z = quelea.Position.Z < min.Z ? quelea.Position.Z : min.Z;
+          max.X = quelea.Position.X > max.X ? quelea.Position.X : max.X;
+          max.Y = quelea.Position.Y > max.Y ? quelea.Position.Y : max.Y;
+          max.Z = quelea.Position.Z > max.Z ? quelea.Position.Z : max.Z;
         }
       }
     }

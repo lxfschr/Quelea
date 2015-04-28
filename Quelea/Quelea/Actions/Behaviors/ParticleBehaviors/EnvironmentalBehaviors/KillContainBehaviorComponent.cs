@@ -18,7 +18,7 @@ namespace Quelea
     protected override bool Run()
     {
       bool behaviorApplied = false;
-      if (!environment.Contains(particle.RefPosition))
+      if (!environment.Contains(particle.Position))
       {
         particle.Die();
         behaviorApplied = true;

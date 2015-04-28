@@ -160,7 +160,7 @@ namespace Quelea
 
     public override Vector3d AvoidEdges(IAgent agent, double distance)
     {
-      Point3d refPosition = agent.RefPosition;
+      Point3d refPosition = agent.Position;
       double maxSpeed = agent.MaxSpeed;
       Vector3d velocity = agent.Velocity;
       bool avoided = false;
@@ -199,7 +199,7 @@ namespace Quelea
 
     public override bool BounceContain(IParticle agent)
     {
-      Point3d position = agent.RefPosition;
+      Point3d position = agent.Position;
       Vector3d velocity = agent.Velocity;
       if (position.X >= maxX)
       {

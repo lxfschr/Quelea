@@ -36,8 +36,10 @@ namespace Quelea
       pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickname, RS.lifespanDescription, GH_ParamAccess.item);
       pManager.AddIntegerParameter(RS.massName, RS.massNickname, RS.massDescription, GH_ParamAccess.item);
       pManager.AddIntegerParameter(RS.bodySizeName, RS.bodySizeNickname, RS.bodySizeDescription, GH_ParamAccess.item);
-      pManager.AddPointParameter("Reference Position", "RP", "For particles bound to Surface Environments, the position of the Agent mapped to a 2d plane representing the bounds of the surface ", GH_ParamAccess.item);
-      pManager.HideParameter(pManager.ParamCount-2);
+      pManager.AddPointParameter("Surface Position", "SP", "For particles bound to Surface and Polysurface Environments, the position of the Agent mapped to a 2D plane representing the bounds of the surface.", GH_ParamAccess.item);
+      pManager.AddVectorParameter("Surface Velocity", "SV", "For particles bound to Surface and Polysurface Environments, the velocity of the Agent mapped to a 2D plane representing the bounds of the surface.", GH_ParamAccess.item);
+      pManager.AddVectorParameter("Surface Acceleration", "SA", "For particles bound to Surface and Polysurface Environments, the acceleration of the Agent mapped to a 2D plane representing the bounds of the surface.", GH_ParamAccess.item);
+      //pManager.HideParameter(pManager.ParamCount-2);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
@@ -48,13 +50,15 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      da.SetDataList(nextOutputIndex++, particle.PositionHistory.ToList());
-      da.SetData(nextOutputIndex++, particle.Velocity);
-      da.SetData(nextOutputIndex++, particle.PreviousAcceleration);
+      da.SetDataList(nextOutputIndex++, particle.Position3DHistory.ToList());
+      da.SetData(nextOutputIndex++, particle.Velocity3D);
+      da.SetData(nextOutputIndex++, particle.PreviousAcceleration3D);
       da.SetData(nextOutputIndex++, particle.Lifespan);
       da.SetData(nextOutputIndex++, particle.Mass);
       da.SetData(nextOutputIndex++, particle.BodySize);
-      da.SetData(nextOutputIndex++, particle.RefPosition);
+      da.SetData(nextOutputIndex++, particle.Position);
+      da.SetData(nextOutputIndex++, particle.Velocity);
+      da.SetData(nextOutputIndex++, particle.Acceleration);
     }
   }
 }

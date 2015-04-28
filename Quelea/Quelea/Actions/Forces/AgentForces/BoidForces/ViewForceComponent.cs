@@ -20,16 +20,16 @@ namespace Quelea
       Vector3d desired = new Vector3d();
       int count = 0;
       double angle = 0;
-      Point3d position = agent.RefPosition;
+      Point3d position = agent.Position;
       Vector3d velocity = agent.Velocity;
       Plane pl = new Plane(position, velocity, Vector3d.ZAxis);
       foreach (IQuelea neighbor in neighbors)
       {
-        Vector3d diff = Util.Vector.Vector2Point(position, neighbor.RefPosition);
+        Vector3d diff = Util.Vector.Vector2Point(position, neighbor.Position);
         angle = Vector3d.VectorAngle(velocity, diff, pl);
         //angle = Util.Vector.RadToDeg(angle);
         if (angle > Math.PI) angle = angle - RS.TWO_PI;
-        desired = desired + (Vector3d) neighbor.RefPosition;
+        desired = desired + (Vector3d) neighbor.Position;
         //For an average, we need to keep track of how many boids
         //are in our vision.
         count++;

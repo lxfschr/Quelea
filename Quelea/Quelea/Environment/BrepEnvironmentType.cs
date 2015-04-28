@@ -136,7 +136,7 @@ namespace Quelea
       Vector3d feelerVec = particle.Velocity;
       feelerVec.Unitize();
       feelerVec = Vector3d.Multiply(feelerVec, visionDistance);
-      feelers[0] = new Line(particle.Position, feelerVec).ToNurbsCurve();
+      feelers[0] = new Line(particle.Position3D, feelerVec).ToNurbsCurve();
 
       if (!accurate)
       {
@@ -146,13 +146,13 @@ namespace Quelea
       //Calculate tertiary feelers with length bodySize
       feelerVec = particle.Velocity;
       feelerVec.Unitize();
-      Plane rotPln = new Plane(particle.Position, particle.Velocity);
+      Plane rotPln = new Plane(particle.Position3D, particle.Velocity);
       Vector3d rotAxis = rotPln.XAxis;
-      feelers[1] = GetFeelerCrv(feelerVec, particle.RefPosition, particle.BodySize, feelerAngle, rotAxis);
-      feelers[2] = GetFeelerCrv(feelerVec, particle.RefPosition, particle.BodySize, -feelerAngle, rotAxis);
+      feelers[1] = GetFeelerCrv(feelerVec, particle.Position, particle.BodySize, feelerAngle, rotAxis);
+      feelers[2] = GetFeelerCrv(feelerVec, particle.Position, particle.BodySize, -feelerAngle, rotAxis);
       rotAxis = rotPln.YAxis;
-      feelers[3] = GetFeelerCrv(feelerVec, particle.RefPosition, particle.BodySize, feelerAngle, rotAxis);
-      feelers[4] = GetFeelerCrv(feelerVec, particle.RefPosition, particle.BodySize, -feelerAngle, rotAxis);
+      feelers[3] = GetFeelerCrv(feelerVec, particle.Position, particle.BodySize, feelerAngle, rotAxis);
+      feelers[4] = GetFeelerCrv(feelerVec, particle.Position, particle.BodySize, -feelerAngle, rotAxis);
 
       return feelers;
     }
@@ -163,7 +163,7 @@ namespace Quelea
       Vector3d avoidVec, parVec;
       
       Vector3d velocity = agent.Velocity;
-      Point3d position = agent.Position;
+      Point3d position = agent.Position3D;
 
       Curve[] overlapCrvs;
       Point3d[] intersectPts;

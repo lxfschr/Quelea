@@ -48,13 +48,13 @@ namespace Quelea
         count = 0;
         foreach (AgentType other in agents)
         {
-          double d = agent.Position.DistanceTo(other.Position);
+          double d = agent.Position3D.DistanceTo(other.Position3D);
           //double d = Vector3d.Subtract(agent.Position, other.Position).Length;
           //if we are not comparing the seeker to iteself and it is at least
           //desired separation away:
           if (d > 0)
           {
-            Vector3d diff = Point3d.Subtract(agent.Position, other.Position);
+            Vector3d diff = Point3d.Subtract(agent.Position3D, other.Position3D);
             diff.Unitize();
 
             //Weight the magnitude by distance to other
@@ -72,7 +72,7 @@ namespace Quelea
 
       public static Vector3d Seek(IAgent agent, Point3d target)
       {
-        Vector3d desired = Util.Vector.Vector2Point(agent.RefPosition, target);
+        Vector3d desired = Util.Vector.Vector2Point(agent.Position, target);
         desired.Unitize();
         // The agent desires to move towards the target at maximum speed.
         // Instead of teleporting to the target, the agent will move incrementally.

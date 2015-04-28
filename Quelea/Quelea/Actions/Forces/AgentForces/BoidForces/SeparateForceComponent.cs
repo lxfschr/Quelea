@@ -21,12 +21,12 @@ namespace Quelea
 
       foreach (IQuelea neighbor in neighbors)
       {
-        double d = agent.RefPosition.DistanceTo(neighbor.RefPosition);
+        double d = agent.Position.DistanceTo(neighbor.Position);
         if (!(d > 0)) continue;
         //double d = Vector3d.Subtract(agent.RefPosition, other.RefPosition).Length;
         //if we are not comparing the seeker to iteself and it is at least
         //desired separation away:
-        Vector3d diff = Util.Vector.Vector2Point(neighbor.RefPosition, agent.RefPosition);
+        Vector3d diff = Util.Vector.Vector2Point(neighbor.Position, agent.Position);
         diff.Unitize();
 
         //Weight the magnitude by distance to other

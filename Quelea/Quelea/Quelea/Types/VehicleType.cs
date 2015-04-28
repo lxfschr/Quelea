@@ -21,7 +21,7 @@ namespace Quelea
       : base(agentSettings)
     {
       WheelRadius = wheelRadius;
-      Orientation = new Plane(Position, orientation.ZAxis);
+      Orientation = new Plane(Position3D, orientation.ZAxis);
       double angle = Vector3d.VectorAngle(Velocity, orientation.XAxis);
       Orientation.Rotate(angle, Orientation.ZAxis);
     }
@@ -34,7 +34,7 @@ namespace Quelea
     public VehicleType(IVehicle v, Point3d emittionPt, AbstractEnvironmentType environment)
       : base(v, emittionPt, environment)
     {
-      Orientation = new Plane(Position, v.Orientation.ZAxis);
+      Orientation = new Plane(Position3D, v.Orientation.ZAxis);
       UpdateOrientation();
       WheelRadius = v.WheelRadius;
       Wheels = new IWheel[2];
@@ -45,7 +45,7 @@ namespace Quelea
     private void UpdateOrientation()
     {
       Plane orientation = Orientation;
-      orientation.Origin = Position;
+      orientation.Origin = Position3D;
       double angle = Vector3d.VectorAngle(Velocity, Orientation.XAxis, Orientation);
 
       orientation.Rotate(angle, Orientation.ZAxis);
@@ -62,7 +62,7 @@ namespace Quelea
       offsetVec.Rotate(rotation, Orientation.ZAxis);
       offsetVec.Unitize();
       offsetVec = Vector3d.Multiply(offsetVec, gapSize/2);
-      Point3d partPosition = RefPosition;
+      Point3d partPosition = Position;
       partPosition.Transform(Transform.Translation(offsetVec));
       return partPosition;
     }

@@ -36,10 +36,10 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Vector3d nrml = environment.ClosestNormal(particle.Position);
+      Vector3d nrml = environment.ClosestNormal(particle.Position3D);
       Vector3d drainVec = Vector3d.CrossProduct(nrml, Vector3d.ZAxis);
       drainVec.Unitize();
-      drainVec.Transform(Transform.Rotation(RS.HALF_PI, nrml, particle.Position));
+      drainVec.Transform(Transform.Rotation(RS.HALF_PI, nrml, particle.Position3D));
       drainVec = drainVec * stepDistance;
       return drainVec;
     }

@@ -144,7 +144,7 @@ namespace Quelea
 
     public override Vector3d AvoidEdges(IAgent agent, double distance)
     {
-      Point3d refPosition = agent.RefPosition;
+      Point3d refPosition = agent.Position;
       double maxSpeed = agent.MaxSpeed;
       Vector3d velocity = agent.Velocity;
       bool avoided = false;
@@ -196,13 +196,13 @@ namespace Quelea
     public override bool BounceContain(IParticle agent)
     {
       bool bounced = false;
-      Point3d position = agent.RefPosition;
+      Point3d position = agent.Position;
       Vector3d velocity = agent.Velocity;
       if (position.X >= maxX)
       {
         position.X = maxX;
         velocity.X *= -1;
-        agent.RefPosition = position;
+        agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
@@ -210,7 +210,7 @@ namespace Quelea
       {
         position.X = minX;
         velocity.X *= -1;
-        agent.RefPosition = position;
+        agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
@@ -218,7 +218,7 @@ namespace Quelea
       {
         position.Y = maxY;
         velocity.Y *= -1;
-        agent.RefPosition = position;
+        agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
@@ -226,7 +226,7 @@ namespace Quelea
       {
         position.Y = minY;
         velocity.Y *= -1;
-        agent.RefPosition = position;
+        agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
@@ -234,7 +234,7 @@ namespace Quelea
       {
         position.Z = maxZ;
         velocity.Z *= -1;
-        agent.RefPosition = position;
+        agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
@@ -242,7 +242,7 @@ namespace Quelea
       {
         position.Z = minZ;
         velocity.Z *= -1;
-        agent.RefPosition = position;
+        agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
