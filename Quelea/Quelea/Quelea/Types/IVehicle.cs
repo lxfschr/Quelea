@@ -8,7 +8,6 @@ namespace Quelea
     IWheel[] Wheels { get; set; }
     double WheelRadius { get; set; }
     Point3d GetPartPosition(double gapSize, double rotation);
-    double HalfPi { get; }
     void SetSpeedChanges(double leftValue, double rightValue);
   }
 

@@ -45,12 +45,12 @@ namespace Quelea
       Velocity = p.Velocity;
     }
 
-    public ParticleType(IParticle p, Point3d emittionPt, Point3d refEmittionPt, AbstractEnvironmentType environment)
+    public ParticleType(IParticle p, Point3d emittionPt, AbstractEnvironmentType environment)
       : this(p.VelocityMin, p.VelocityMax, p.Acceleration, p.Lifespan,
              p.Mass, p.BodySize, p.HistoryLength)
     {
       Position = emittionPt;
-      RefPosition = refEmittionPt;
+      RefPosition = environment.ClosestRefPoint(emittionPt);
       PositionHistory.Add(Position);
       Environment = environment;
     }

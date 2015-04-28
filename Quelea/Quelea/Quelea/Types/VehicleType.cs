@@ -15,7 +15,7 @@ namespace Quelea
       RightFront
     };
 
-    private double wheelDiff;
+    //private double wheelDiff;
 
     public VehicleType(IAgent agentSettings, Plane orientation, double wheelRadius)
       : base(agentSettings)
@@ -31,16 +31,15 @@ namespace Quelea
     {
     }
 
-    public VehicleType(IVehicle v, Point3d emittionPt, Point3d refEmittionPt, AbstractEnvironmentType environment)
-      : base(v, emittionPt, refEmittionPt, environment)
+    public VehicleType(IVehicle v, Point3d emittionPt, AbstractEnvironmentType environment)
+      : base(v, emittionPt, environment)
     {
-      HalfPi = Math.PI/2;
       Orientation = new Plane(Position, v.Orientation.ZAxis);
       UpdateOrientation();
       WheelRadius = v.WheelRadius;
       Wheels = new IWheel[2];
-      Wheels[(int) WheelPositions.LeftRear] = new Wheel(GetPartPosition(BodySize, HalfPi), WheelRadius, 0);
-      Wheels[(int) WheelPositions.RightRear] = new Wheel(GetPartPosition(BodySize, -HalfPi), WheelRadius, 0);
+      Wheels[(int)WheelPositions.LeftRear] = new Wheel(GetPartPosition(BodySize, RS.HALF_PI), WheelRadius, 0);
+      Wheels[(int)WheelPositions.RightRear] = new Wheel(GetPartPosition(BodySize, -RS.HALF_PI), WheelRadius, 0);
     }
 
     private void UpdateOrientation()
@@ -68,8 +67,6 @@ namespace Quelea
       return partPosition;
     }
 
-    public double HalfPi { get; private set; }
-
     public void SetSpeedChanges(double leftValue, double rightValue)
     {
       Wheels[(int) WheelPositions.LeftRear].SetSpeedChange(leftValue);
@@ -94,8 +91,8 @@ namespace Quelea
       //Velocity = velocity;
       base.Run();
       UpdateOrientation();
-      Wheels[(int) WheelPositions.LeftRear].Position = GetPartPosition(BodySize, HalfPi);
-      Wheels[(int) WheelPositions.RightRear].Position = GetPartPosition(BodySize, -HalfPi);
+      Wheels[(int)WheelPositions.LeftRear].Position = GetPartPosition(BodySize, RS.HALF_PI);
+      Wheels[(int)WheelPositions.RightRear].Position = GetPartPosition(BodySize, -RS.HALF_PI);
     }
 
     public class Wheel : IWheel, IGH_Goo

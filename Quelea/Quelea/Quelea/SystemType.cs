@@ -60,23 +60,22 @@ namespace Quelea
     public void Add(AbstractEmitterType emitter)
     {
       Point3d emittionPt = emitter.Emit();
-      Point3d refEmittionPt = environment.ClosestRefPoint(emittionPt);
-      IQuelea quelea = MakeParticle(queleaSettings[nextIndex], emittionPt, refEmittionPt);
+      IQuelea quelea = MakeParticle(queleaSettings[nextIndex], emittionPt);
       Quelea.Add(quelea);
       nextIndex = (nextIndex + 1) % queleaSettings.Count;
     }
 
-    public IQuelea MakeParticle(IQuelea p, Point3d emittionPt, Point3d refEmittionPt)
+    public IQuelea MakeParticle(IQuelea p, Point3d emittionPt)
     {
       if (p.GetType() == typeof(VehicleType))
       {
-        return new VehicleType((IVehicle)p, emittionPt, refEmittionPt, environment);
+        return new VehicleType((IVehicle)p, emittionPt, environment);
       }
       if (p.GetType() == typeof(AgentType))
       {
-        return new AgentType((IAgent)p, emittionPt, refEmittionPt, environment);
+        return new AgentType((IAgent)p, emittionPt, environment);
       }
-      return new ParticleType((IParticle)p, emittionPt, refEmittionPt, environment);
+      return new ParticleType((IParticle)p, emittionPt, environment);
     }
 
     private void UpdateBounds()
