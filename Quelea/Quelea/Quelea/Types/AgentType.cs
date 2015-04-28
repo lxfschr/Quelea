@@ -32,13 +32,14 @@ namespace Quelea
       Lon = Util.Random.RandomDouble(-Math.PI / 2, Math.PI / 2);
     }
 
-    public AgentType(IAgent a, Point3d emittionPt, Point3d refEmittionPt)
-      : base(a.VelocityMin, a.VelocityMax, a.Acceleration, a.Lifespan, a.Mass, a.BodySize, a.HistoryLength)
+    public AgentType(IAgent a, Point3d emittionPt, Point3d refEmittionPt, AbstractEnvironmentType environment)
+      : base(a, emittionPt, refEmittionPt, environment)
     {
       MaxSpeed = a.MaxSpeed;
       MaxForce = a.MaxForce;
       VisionRadius = a.VisionRadius;
       VisionAngle = a.VisionAngle;
+      Environment = environment;
       Position = emittionPt;
       RefPosition = refEmittionPt;
       PositionHistory.Add(Position);

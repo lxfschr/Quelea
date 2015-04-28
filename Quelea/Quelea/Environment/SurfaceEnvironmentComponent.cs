@@ -28,6 +28,12 @@ namespace Quelea
       pManager.AddSurfaceParameter(RS.surfaceName, RS.surfaceNickname, RS.surfaceForEnvironmentDescription, GH_ParamAccess.item);
     }
 
+    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
+    {
+      base.RegisterOutputParams(pManager);
+      pManager.AddSurfaceParameter("2D Reference Surface", "RS", "The surface mapped to a 2D plane using the input surface's u and v dimensions.", GH_ParamAccess.item);
+    }
+
     protected override bool GetInputs(IGH_DataAccess da)
     {
       if (!da.GetData(nextInputIndex++, ref srf)) return false;
@@ -36,8 +42,9 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      AbstractEnvironmentType environment = new SurfaceEnvironmentType(srf);
+      SurfaceEnvironmentType environment = new SurfaceEnvironmentType(srf);
       da.SetData(nextOutputIndex++, environment);
+      da.SetData(nextOutputIndex++, environment.RefEnvironment);
     }
   }
 }

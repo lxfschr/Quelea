@@ -31,8 +31,8 @@ namespace Quelea
     {
     }
 
-    public VehicleType(IVehicle v, Point3d emittionPt, Point3d refEmittionPt)
-      : base(v, emittionPt, refEmittionPt)
+    public VehicleType(IVehicle v, Point3d emittionPt, Point3d refEmittionPt, AbstractEnvironmentType environment)
+      : base(v, emittionPt, refEmittionPt, environment)
     {
       HalfPi = Math.PI/2;
       Orientation = new Plane(Position, v.Orientation.ZAxis);

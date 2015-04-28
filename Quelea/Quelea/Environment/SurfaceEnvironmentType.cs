@@ -8,7 +8,7 @@ namespace Quelea
   {
 
     private readonly Surface environment;
-    private readonly Surface refEnvironment;
+    public Surface RefEnvironment { get; private set; }
 
     private readonly double minX;
     private readonly double maxX;
@@ -27,10 +27,10 @@ namespace Quelea
       pt1 = new Point3d(u.Min, v.Min, 0);
       pt2 = new Point3d(u.Max, v.Min, 0);
       pt3 = new Point3d(u.Min, v.Max, 0);
-      refEnvironment = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
+      RefEnvironment = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
 
-      Interval uDom = refEnvironment.Domain(0);
-      Interval vDom = refEnvironment.Domain(1);
+      Interval uDom = RefEnvironment.Domain(0);
+      Interval vDom = RefEnvironment.Domain(1);
 
       minX = uDom.Min;
       maxX = uDom.Max;
@@ -44,10 +44,10 @@ namespace Quelea
       environment = srf;
       Interval u = srf.Domain(0);
       Interval v = srf.Domain(1);
-      refEnvironment = new PlaneSurface(Plane.WorldXY, u, v);
+      RefEnvironment = new PlaneSurface(Plane.WorldXY, u, v);
 
-      Interval uDom = refEnvironment.Domain(0);
-      Interval vDom = refEnvironment.Domain(1);
+      Interval uDom = RefEnvironment.Domain(0);
+      Interval vDom = RefEnvironment.Domain(1);
 
       minX = uDom.Min;
       maxX = uDom.Max;
@@ -60,8 +60,8 @@ namespace Quelea
     {
       this.environment = environment.environment;
 
-      Interval uDom = environment.refEnvironment.Domain(0);
-      Interval vDom = environment.refEnvironment.Domain(1);
+      Interval uDom = environment.RefEnvironment.Domain(0);
+      Interval vDom = environment.RefEnvironment.Domain(1);
 
       minX = uDom.Min;
       maxX = uDom.Max;
@@ -88,7 +88,7 @@ namespace Quelea
 
     public override int GetHashCode()
     {
-      return environment.GetHashCode() ^ refEnvironment.GetHashCode();
+      return environment.GetHashCode() ^ RefEnvironment.GetHashCode();
     }
 
     public override IGH_Goo Duplicate()
@@ -134,20 +134,20 @@ namespace Quelea
     {
       double u, v;
       environment.ClosestPoint(pt, out u, out v);
-      return refEnvironment.PointAt(u, v);
+      return RefEnvironment.PointAt(u, v);
     }
 
     public override Point3d ClosestRefPointOnRef(Point3d pt)
     {
       double u, v;
-      refEnvironment.ClosestPoint(pt, out u, out v);
-      return refEnvironment.PointAt(u, v);
+      RefEnvironment.ClosestPoint(pt, out u, out v);
+      return RefEnvironment.PointAt(u, v);
     }
 
     public override Point3d ClosestPointOnRef(Point3d pt)
     {
       double u, v;
-      refEnvironment.ClosestPoint(pt, out u, out v);
+      RefEnvironment.ClosestPoint(pt, out u, out v);
       return environment.PointAt(u, v);
     }
 

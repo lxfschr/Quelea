@@ -18,7 +18,7 @@ namespace Quelea
           RS.systemDescription,
           RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_system, RS.agentSystemGuid)
     {
-      
+      environment = new WorldEnvironmentType();
     }
 
     /// <summary>
@@ -26,11 +26,11 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter("Quelea", "Q", "The settings for your particle, agent, or vehicle; collectively reffered to as 'quelea'.", 
+      pManager.AddGenericParameter(RS.queleaName, RS.queleaNickname, "The settings for your particle, agent, or vehicle; collectively reffered to as 'quelea'.", 
                                     GH_ParamAccess.list);
       pManager.AddGenericParameter(RS.emittersName, RS.emitterNickname, RS.emittersDescription,
                                     GH_ParamAccess.list);
-      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, "Restricts and Agent's postion to be contained within the environment. This is most useful for Surface Environments.",
+      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, "Restricts and Agent's postion to be contained within the environment. This is most useful for Surface and Polysurface Environments.",
                                     GH_ParamAccess.item);
       pManager[2].Optional = true;
     }
@@ -49,7 +49,6 @@ namespace Quelea
     {
       agents = new List<IQuelea>();
       emitters = new List<AbstractEmitterType>();
-      environment = null;
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this
       // method.

@@ -60,19 +60,8 @@ namespace Quelea
     public void Add(AbstractEmitterType emitter)
     {
       Point3d emittionPt = emitter.Emit();
-      IQuelea quelea;
-      if (environment != null)
-      {
-        Point3d refEmittionPt = environment.ClosestRefPoint(emittionPt);
-        //agent = new ParticleType(particlesSettings[nextIndex % particlesSettings.Length], emittionPt, refEmittionPt);
-        quelea = MakeParticle(queleaSettings[nextIndex], emittionPt,
-          refEmittionPt);
-      }
-      else
-      {
-        quelea = MakeParticle(queleaSettings[nextIndex], emittionPt,
-          emittionPt);
-      }
+      Point3d refEmittionPt = environment.ClosestRefPoint(emittionPt);
+      IQuelea quelea = MakeParticle(queleaSettings[nextIndex], emittionPt, refEmittionPt);
       Quelea.Add(quelea);
       nextIndex = (nextIndex + 1) % queleaSettings.Count;
     }
@@ -81,11 +70,11 @@ namespace Quelea
     {
       if (p.GetType() == typeof(VehicleType))
       {
-        return new VehicleType((IVehicle)p, emittionPt, refEmittionPt);
+        return new VehicleType((IVehicle)p, emittionPt, refEmittionPt, environment);
       }
       if (p.GetType() == typeof(AgentType))
       {
-        return new AgentType((IAgent)p, emittionPt, refEmittionPt);
+        return new AgentType((IAgent)p, emittionPt, refEmittionPt, environment);
       }
       return new ParticleType((IParticle)p, emittionPt, refEmittionPt, environment);
     }
@@ -133,22 +122,14 @@ namespace Quelea
       foreach (IQuelea quelea in Quelea)
       {
         quelea.Run();
-        if (environment != null)
-        {
-          quelea.RefPosition = environment.ClosestRefPointOnRef(quelea.RefPosition);
-          quelea.Position = environment.ClosestPointOnRef(quelea.RefPosition);
-        }
-        else
-        {
-          quelea.RefPosition = quelea.Position;
-          quelea.Position = quelea.RefPosition;
-        }
+        quelea.RefPosition = environment.ClosestRefPointOnRef(quelea.RefPosition);
+        quelea.Position = environment.ClosestPointOnRef(quelea.RefPosition);
+
         quelea.PositionHistory.Add(quelea.Position);
         if (quelea.IsDead())
         {
           toRemove.Add(quelea);
         }
-
       }
 
       foreach (AbstractEmitterType emitter in emitters)
@@ -202,7 +183,7 @@ namespace Quelea
 
       // Return true if the fields match:
       return (emitters.Equals(s.emitters)) &&
-             (queleaSettings.Equals(s.Quelea)) &&
+             (queleaSettings.Equals(s.Quelea.SpatialObjects)) &&
              (environment.Equals(s.environment));
     }
 
