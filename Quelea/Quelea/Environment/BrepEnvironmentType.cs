@@ -81,17 +81,17 @@ namespace Quelea
       return pt;
     }
 
-    public override Point3d ClosestRefPoint(Point3d pt)
-    {
-      return ClosestPoint(pt);
-    }
-
-    public override Point3d ClosestRefPointOnRef(Point3d pt)
+    public override Point3d MapTo2D(Point3d pt)
     {
       return ClosestPoint(pt);
     }
 
     public override Point3d ClosestPointOnRef(Point3d pt)
+    {
+      return ClosestPoint(pt);
+    }
+
+    public override Point3d MapTo3D(Point3d pt)
     {
       return ClosestPoint(pt);
     }

@@ -52,11 +52,11 @@ namespace Quelea
 
     abstract public Point3d ClosestPoint(Point3d pt);
 
-    abstract public Point3d ClosestRefPoint(Point3d pt);
-
-    abstract public Point3d ClosestRefPointOnRef(Point3d pt);
+    abstract public Point3d MapTo2D(Point3d pt);
 
     abstract public Point3d ClosestPointOnRef(Point3d pt);
+
+    abstract public Point3d MapTo3D(Point3d pt);
 
     public abstract Vector3d ClosestNormal(Point3d pt);
 

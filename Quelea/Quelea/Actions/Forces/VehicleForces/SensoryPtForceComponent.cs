@@ -57,12 +57,13 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
+      sourcePt = vehicle.Environment.MapTo2D(sourcePt);
       Point3d sensorLeftPos = vehicle.GetPartPosition(vehicle.BodySize, RS.HALF_PI);
       Point3d sensorRightPos = vehicle.GetPartPosition(vehicle.BodySize, -RS.HALF_PI);
       sensorLeftValue = sensorLeftPos.DistanceTo(sourcePt);
       sensorRightValue = sensorRightPos.DistanceTo(sourcePt);
-      sensorLeftValue = Number.Map(sensorLeftValue, 0, radius, 0, 1);
-      sensorRightValue = Number.Map(sensorRightValue, 0, radius, 0, 1);
+      sensorLeftValue = Number.Map(sensorLeftValue, 0, radius, 0, 1, false);
+      sensorRightValue = Number.Map(sensorRightValue, 0, radius, 0, 1, false);
       double wheelDiff;
       if (crossed)
       {

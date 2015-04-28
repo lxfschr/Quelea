@@ -36,7 +36,7 @@ namespace Quelea
     {
       if (!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref targetPt)) return false;
-      targetPt = agent.Environment.ClosestRefPoint(targetPt);
+      targetPt = agent.Environment.MapTo2D(targetPt);
       return true;
     }
   }

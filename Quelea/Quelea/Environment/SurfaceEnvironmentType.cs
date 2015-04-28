@@ -42,9 +42,19 @@ namespace Quelea
     public SurfaceEnvironmentType(Surface srf)
     {
       environment = srf;
+      double width, height;
+      srf.GetSurfaceSize(out width, out height);
       Interval u = srf.Domain(0);
       Interval v = srf.Domain(1);
-      RefEnvironment = new PlaneSurface(Plane.WorldXY, u, v);
+      
+      Interval widthInterval = new Interval(0, width);
+      Interval heightInterval = new Interval(0, height);
+      
+      Surface refEnvironment = new PlaneSurface(Plane.WorldXY, widthInterval, heightInterval);
+      //refEnvironment.Rebuild(3, 3, u.Max, v.Max);
+      refEnvironment.SetDomain(0, u);
+      refEnvironment.SetDomain(1, v);
+      RefEnvironment = refEnvironment;
 
       Interval uDom = RefEnvironment.Domain(0);
       Interval vDom = RefEnvironment.Domain(1);
@@ -130,21 +140,21 @@ namespace Quelea
       return environment.PointAt(u, v);
     }
 
-    public override Point3d ClosestRefPoint(Point3d pt)
+    public override Point3d MapTo2D(Point3d pt)
     {
       double u, v;
       environment.ClosestPoint(pt, out u, out v);
       return RefEnvironment.PointAt(u, v);
     }
 
-    public override Point3d ClosestRefPointOnRef(Point3d pt)
+    public override Point3d ClosestPointOnRef(Point3d pt)
     {
       double u, v;
       RefEnvironment.ClosestPoint(pt, out u, out v);
       return RefEnvironment.PointAt(u, v);
     }
 
-    public override Point3d ClosestPointOnRef(Point3d pt)
+    public override Point3d MapTo3D(Point3d pt)
     {
       double u, v;
       RefEnvironment.ClosestPoint(pt, out u, out v);
@@ -235,7 +245,7 @@ namespace Quelea
 
     public override BoundingBox GetBoundingBox()
     {
-      return environment.GetBoundingBox(false);
+      return RefEnvironment.GetBoundingBox(false);
     }
 
     public override bool Contains(Point3d pt)

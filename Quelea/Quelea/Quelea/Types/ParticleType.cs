@@ -54,7 +54,7 @@ namespace Quelea
     {
       Environment = environment;
       Position3D = emittionPt;
-      Position = Environment.ClosestRefPoint(emittionPt);
+      Position = Environment.MapTo2D(emittionPt);
       Velocity = MapTo2D(Velocity3D);
       Acceleration = MapTo2D(Acceleration3D);
       Position3DHistory.Add(Position3D);
@@ -65,7 +65,7 @@ namespace Quelea
     {
       Point3d pt2D = Position3D;
       pt2D.Transform(Transform.Translation(vector3D));
-      pt2D = Environment.ClosestRefPoint(pt2D);
+      pt2D = Environment.MapTo2D(pt2D);
       return Util.Vector.Vector2Point(Position, pt2D);
     }
 
@@ -100,7 +100,7 @@ namespace Quelea
       Acceleration3D = MapTo3D(Acceleration);
       Point3d position = Position;
       position.Transform(Transform.Translation(Velocity));
-      position = Environment.ClosestRefPointOnRef(position);
+      position = Environment.ClosestPointOnRef(position);
       Position = position;
       Point3d position3D = Position3D;
       position3D.Transform(Transform.Translation(Velocity3D));
@@ -119,7 +119,7 @@ namespace Quelea
     {
       Point3d pt3D = Position;
       pt3D.Transform(Transform.Translation(vector2D));
-      pt3D = Environment.ClosestPointOnRef(pt3D);
+      pt3D = Environment.MapTo3D(pt3D);
       return Util.Vector.Vector2Point(Position3D, pt3D);
     }
 

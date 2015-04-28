@@ -51,8 +51,15 @@ namespace Quelea
     {
       Point3d sensorLeftPos = vehicle.GetPartPosition(vehicle.BodySize, RS.HALF_PI);
       Point3d sensorRightPos = vehicle.GetPartPosition(vehicle.BodySize, -RS.HALF_PI);
-      int x = (int)sensorLeftPos.X * 10;
-      int y = bitmap.Height - (int)sensorLeftPos.Y * 10;
+      BoundingBox bbox = vehicle.Environment.GetBoundingBox();
+      double minX = bbox.Min.X;
+      double maxX = bbox.Max.X;
+      double minY = bbox.Min.Y;
+      double maxY = bbox.Max.Y;
+      int x = (int) Util.Number.Map(sensorLeftPos.X, minX, maxX, 0, bitmap.Width - 1, false);
+      int y = (int)(bitmap.Height - Util.Number.Map(sensorLeftPos.Y, minY, maxY, 0, bitmap.Height - 1, false));
+      //int x = (int)sensorLeftPos.X * 10;
+      //int y = (int) (bitmap.Height - sensorLeftPos.Y * 10);
       Color color = crossed ? Color.White : Color.Black;
       
       if ((0 <= x && x < bitmap.Width) && (0 <= y && y < bitmap.Height))
@@ -60,8 +67,10 @@ namespace Quelea
         color = bitmap.GetPixel(x, y);
       }
       sensorLeftValue = color.GetBrightness();
-      x = (int)sensorRightPos.X * 10;
-      y = bitmap.Height - (int)sensorRightPos.Y * 10;
+      x = (int)Util.Number.Map(sensorRightPos.X, minX, maxX, 0, bitmap.Width - 1, false);
+      y = (int)(bitmap.Height - Util.Number.Map(sensorRightPos.Y, minY, maxY, 0, bitmap.Height - 1, false));
+      //x = (int)sensorRightPos.X * 10;
+      //y = bitmap.Height - (int)sensorRightPos.Y * 10;
       color = crossed ? Color.White : Color.Black;
       if ((0 <= x && x < bitmap.Width) && (0 <= y && y < bitmap.Height))
       {

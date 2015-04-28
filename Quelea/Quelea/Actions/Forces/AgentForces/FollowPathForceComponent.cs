@@ -55,16 +55,17 @@ namespace Quelea
       //Find the normal point along the path
       double t;
       path.ClosestPoint(predictLoc, out t);
-      Point3d normal = path.PointAt(t);
+      Point3d pathPt = path.PointAt(t);
 
       //Move a little further along the path and set a target
 
 
       //If we are off the path, seek that target in order to stay on the path
-      double distance = normal.DistanceTo(new Point3d(predictLoc));
+      double distance = pathPt.DistanceTo(new Point3d(predictLoc));
       if (distance > radius)
       {
         Point3d offsetPt = path.PointAt(t + pathTargetDistance);
+        offsetPt = agent.Environment.MapTo2D(offsetPt);
         // Seek that point
         desired = Util.Agent.Seek(agent, offsetPt);
       }

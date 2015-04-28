@@ -84,6 +84,7 @@ namespace Quelea
       //agent.Lon = Util.Number.Clamp(agent.Lon, 0, 2 * Math.PI);
       //agent.Lat = Util.Number.Clamp(agent.Lat, -Math.PI / 2, Math.PI / 2);
       targetPt = sphere.PointAt(agent.Lon, agent.Lat);
+      targetPt = agent.Environment.MapTo2D(targetPt);
       Vector3d desired = Util.Agent.Seek(agent, targetPt);
       return desired;
     }

@@ -39,7 +39,7 @@ namespace Quelea
       // Instead of teleporting to the target, the agent will move incrementally.
       if (d < arrivalRadius)
       {
-        double m = Util.Number.Map(d, 0, arrivalRadius, 0, agent.MaxSpeed);
+        double m = Util.Number.Map(d, 0, arrivalRadius, 0, agent.MaxSpeed, true);
         desired = desired * m;
       }
       else

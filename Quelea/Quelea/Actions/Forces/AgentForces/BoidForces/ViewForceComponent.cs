@@ -25,7 +25,7 @@ namespace Quelea
       Plane pl = new Plane(position, velocity, Vector3d.ZAxis);
       foreach (IQuelea neighbor in neighbors)
       {
-        Point3d neighborPosition2D = agent.Environment.ClosestRefPoint(neighbor.Position);
+        Point3d neighborPosition2D = agent.Environment.MapTo2D(neighbor.Position);
         Vector3d diff = Util.Vector.Vector2Point(position, neighborPosition2D);
         angle = Vector3d.VectorAngle(velocity, diff, pl);
         //angle = Util.Vector.RadToDeg(angle);
