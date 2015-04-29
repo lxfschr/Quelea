@@ -42,16 +42,17 @@ namespace Quelea
     public SurfaceEnvironmentType(Surface srf)
     {
       environment = srf;
+
       double width, height;
       srf.GetSurfaceSize(out width, out height);
+
+      Interval widthInterval = new Interval(0, width);
+      Interval heightInterval = new Interval(0, height);
+
       Interval u = srf.Domain(0);
       Interval v = srf.Domain(1);
       
-      Interval widthInterval = new Interval(0, width);
-      Interval heightInterval = new Interval(0, height);
-      
       Surface refEnvironment = new PlaneSurface(Plane.WorldXY, widthInterval, heightInterval);
-      //refEnvironment.Rebuild(3, 3, u.Max, v.Max);
       refEnvironment.SetDomain(0, u);
       refEnvironment.SetDomain(1, v);
       RefEnvironment = refEnvironment;
@@ -69,9 +70,10 @@ namespace Quelea
     public SurfaceEnvironmentType(SurfaceEnvironmentType environment)
     {
       this.environment = environment.environment;
+      RefEnvironment = environment.RefEnvironment;
 
-      Interval uDom = environment.RefEnvironment.Domain(0);
-      Interval vDom = environment.RefEnvironment.Domain(1);
+      Interval uDom = RefEnvironment.Domain(0);
+      Interval vDom = RefEnvironment.Domain(1);
 
       minX = uDom.Min;
       maxX = uDom.Max;

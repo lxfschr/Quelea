@@ -66,7 +66,11 @@ namespace Quelea
       Point3d pt2D = Position3D;
       pt2D.Transform(Transform.Translation(vector3D));
       pt2D = Environment.MapTo2D(pt2D);
-      return Util.Vector.Vector2Point(Position, pt2D);
+      //return Util.Vector.Vector2Point(Position, pt2D);
+      Vector3d vector2D = Util.Vector.Vector2Point(Position, pt2D);
+      vector2D.Unitize();
+      vector2D *= vector3D.Length;
+      return vector2D;
     }
 
 
