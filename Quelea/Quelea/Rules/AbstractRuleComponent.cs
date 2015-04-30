@@ -4,18 +4,18 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public abstract class AbstractVehicleActionComponent : AbstractActionComponent
+  public abstract class AbstractRuleComponent : AbstractComponent
   {
-    protected IVehicle vehicle;
+    protected bool apply;
 
     /// <summary>
-    /// Initializes a new instance of the AbstractAgentActionComponent class.
+    /// Initializes a new instance of the AbstractRuleComponent class.
     /// </summary>
-    protected AbstractVehicleActionComponent(string name, string nickname, string description, 
+    protected AbstractRuleComponent(string name, string nickname, string description, 
                                      string subcategory, Bitmap icon, string componentGuid)
-      : base(name, nickname, description, subcategory, icon, componentGuid)
+      : base(name, nickname, description, RS.pluginCategoryName, subcategory, icon, componentGuid)
     {
-      vehicle = null;
+      apply = true;
     }
 
     /// <summary>
@@ -23,21 +23,21 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      base.RegisterInputParams(pManager);
       // Use the pManager object to register your input parameters.
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddGenericParameter(RS.vehicleName, RS.vehicleNickname, RS.vehicleDescription, GH_ParamAccess.item);
+      pManager.AddBooleanParameter(RS.applyName, RS.booleanNickname, RS.applyDescription,
+         GH_ParamAccess.item, RS.applyDefault);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
     {
       // First, we need to retrieve all data from the input parameters.
-      if (!base.GetInputs(da)) return false;
+
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(nextInputIndex++, ref vehicle)) return false;
+      if (!da.GetData(nextInputIndex++, ref apply)) return false;
 
       return true;
     }

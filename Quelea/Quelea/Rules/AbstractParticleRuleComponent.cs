@@ -4,18 +4,18 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public abstract class AbstractAgentActionComponent : AbstractActionComponent
+  public abstract class AbstractParticleRuleComponent : AbstractRuleComponent
   {
-    protected IAgent agent;
+    protected IParticle particle;
 
     /// <summary>
-    /// Initializes a new instance of the AbstractAgentActionComponent class.
+    /// Initializes a new instance of the AbstractParticleRuleComponent class.
     /// </summary>
-    protected AbstractAgentActionComponent(string name, string nickname, string description, 
+    protected AbstractParticleRuleComponent(string name, string nickname, string description, 
                                      string subcategory, Bitmap icon, string componentGuid)
       : base(name, nickname, description, subcategory, icon, componentGuid)
     {
-      agent = null;
+      particle = null;
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ namespace Quelea
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.particleName, RS.particleNickname, RS.particleDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
@@ -37,7 +37,7 @@ namespace Quelea
       if (!base.GetInputs(da)) return false;
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(nextInputIndex++, ref agent)) return false;
+      if (!da.GetData(nextInputIndex++, ref particle)) return false;
 
       return true;
     }

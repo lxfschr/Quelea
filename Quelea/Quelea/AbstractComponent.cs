@@ -12,7 +12,7 @@ namespace Quelea
     protected int nextInputIndex, nextOutputIndex;
 
     /// <summary>
-    /// Initializes a new instance of the AbstractActionComponent class.
+    /// Initializes a new instance of the AbstractRuleComponent class.
     /// </summary>
     protected AbstractComponent(string name, string nickname, string description, 
                                 string category, string subcategory, Bitmap icon, 

@@ -4,14 +4,14 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public abstract class AbstractAgentBehaviorComponent : AbstractAgentActionComponent
+  public abstract class AbstractAgentBehaviorComponent : AbstractAgentRuleComponent
   {
     /// <summary>
     /// Initializes a new instance of the AbstractAgentBehaviorComponent class.
     /// </summary>
     protected AbstractAgentBehaviorComponent(string name, string nickname, string description, 
                                              Bitmap icon, string componentGuid)
-      : base(name, nickname, description, RS.agentForcesSubcategoryName, icon, componentGuid)
+      : base(name, nickname, description, RS.agentName + " " + RS.rulesName, icon, componentGuid)
     {
     }
 

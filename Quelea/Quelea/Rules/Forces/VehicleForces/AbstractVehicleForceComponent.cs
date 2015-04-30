@@ -6,7 +6,7 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public abstract class AbstractVehicleForceComponent : AbstractVehicleActionComponent
+  public abstract class AbstractVehicleForceComponent : AbstractVehicleRuleComponent
   {
     private double weightMultiplier;
 
@@ -15,7 +15,7 @@ namespace Quelea
     /// </summary>
     protected AbstractVehicleForceComponent(string name, string nickname, string description,
                                           Bitmap icon, String componentGuid)
-      : base(name, nickname, description, RS.vehicleForcesSubcategoryName, icon, componentGuid)
+      : base(name, nickname, description, RS.vehicleName + " " + RS.rulesName, icon, componentGuid)
     {
       weightMultiplier = RS.weightMultiplierDefault;
     }

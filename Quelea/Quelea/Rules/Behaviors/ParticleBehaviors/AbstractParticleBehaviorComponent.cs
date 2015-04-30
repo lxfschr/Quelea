@@ -4,14 +4,14 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public abstract class AbstractParticleBehaviorComponent : AbstractParticleActionComponent
+  public abstract class AbstractParticleBehaviorComponent : AbstractParticleRuleComponent
   {
     /// <summary>
     /// Initializes a new instance of the AbstractParticleBehaviorComponent class.
     /// </summary>
     protected AbstractParticleBehaviorComponent(string name, string nickname, string description, 
                                                 Bitmap icon, string componentGuid)
-      : base(name, nickname, description, RS.particleForcesSubcategoryName, icon, componentGuid)
+      : base(name, nickname, description, RS.particleName + " " + RS.rulesName, icon, componentGuid)
     {
     }
 

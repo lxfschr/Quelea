@@ -2461,6 +2461,15 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rules.
+        /// </summary>
+        internal static string rulesName {
+            get {
+                return ResourceManager.GetString("rulesName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Applies a force to steer to avoid neighbors..
         /// </summary>
         internal static string separateForceDescription {

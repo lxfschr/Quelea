@@ -6,7 +6,7 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public abstract class AbstractParticleForceComponent : AbstractParticleActionComponent
+  public abstract class AbstractParticleForceComponent : AbstractParticleRuleComponent
   {
     private double weightMultiplier;
 
@@ -15,7 +15,7 @@ namespace Quelea
     /// </summary>
     protected AbstractParticleForceComponent(string name, string nickname, string description,
                                              Bitmap icon, String componentGuid)
-      : base(name, nickname, description, RS.particleForcesSubcategoryName, icon, componentGuid)
+      : base(name, nickname, description, RS.particleName + " " + RS.rulesName, icon, componentGuid)
     {
       weightMultiplier = RS.weightMultiplierDefault;
     }
