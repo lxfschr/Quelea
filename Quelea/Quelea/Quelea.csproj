@@ -79,7 +79,6 @@
     <Compile Include="Actions\Forces\AgentForces\AbstractAgentForceComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\WanderForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AbstractParticleForceComponent.cs" />
-    <Compile Include="Actions\Forces\ParticleForces\FlowDownSurfaceForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\ApplyCustomForceComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\AttractionForces\AbstractSeekForceComponent.cs" />
     <Compile Include="Actions\Forces\AgentForces\AttractionForces\ArriveForceComponent.cs" />
@@ -94,6 +93,7 @@
     <Compile Include="Actions\Forces\AgentForces\FollowPathForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AbstractAttractionForceComponent.cs" />
     <Compile Include="Actions\Forces\ParticleForces\AttractionForces\AttractForceComponent.cs" />
+    <Compile Include="Actions\Forces\ParticleForces\SurfaceFlowForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\AbstractVehicleForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\SensorForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\SenseImageForceComponent.cs" />
