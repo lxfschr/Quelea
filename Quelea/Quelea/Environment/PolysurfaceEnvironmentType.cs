@@ -342,7 +342,7 @@ namespace Quelea
       ComponentIndex componentIndex;
       double s;
       double t;
-      const double maxDist = 100;
+      const double maxDist = 500;
       Vector3d normal;
       environment.ClosestPoint(pt, out closestPoint, out componentIndex, out s, out t, maxDist, out normal);
       return normal;

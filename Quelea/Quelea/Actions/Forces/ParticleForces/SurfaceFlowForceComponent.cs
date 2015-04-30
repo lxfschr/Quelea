@@ -42,10 +42,13 @@ namespace Quelea
       drainVec.Unitize();
       drainVec.Transform(Transform.Rotation(Math.PI * angle, nrml, particle.Position3D));
       drainVec = drainVec * stepDistance;
-      Point3d pt2D = particle.Position3D;
-      pt2D.Transform(Transform.Translation(drainVec));
-      pt2D = environment.MapTo2D(pt2D);
-      drainVec = Util.Vector.Vector2Point(particle.Position, pt2D);
+      if (environment.GetType() == typeof (SurfaceEnvironmentType))
+      {
+        Point3d pt2D = particle.Position3D;
+        pt2D.Transform(Transform.Translation(drainVec));
+        pt2D = environment.MapTo2D(pt2D);
+        drainVec = Util.Vector.Vector2Point(particle.Position, pt2D);
+      }
       return drainVec;
     }
   }
