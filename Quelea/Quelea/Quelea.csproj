@@ -129,7 +129,6 @@
     </Compile>
     <Compile Include="SpatialCollections\SpatialCollectionType.cs" />
     <Compile Include="Quelea\Types\DeconstructParticleComponent.cs" />
-    <Compile Include="Quelea\DeconstructSystemComponent.cs" />
     <Compile Include="Emitters\AbstractEmitterType.cs" />
     <Compile Include="Environment\AbstractEnvironmentType.cs" />
     <Compile Include="Util.cs" />

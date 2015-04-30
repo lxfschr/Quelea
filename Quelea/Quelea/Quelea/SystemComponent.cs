@@ -43,6 +43,8 @@ namespace Quelea
     {
       pManager.AddGenericParameter(RS.systemName, RS.systemNickname, RS.systemDescription, 
                                    GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.queleaName, RS.queleaNickname, RS.queleaDescription, GH_ParamAccess.list);
+      pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.queleaNetworkDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
@@ -85,6 +87,8 @@ namespace Quelea
 
       // Finally assign the system to the output parameter.
       da.SetData(nextOutputIndex++, system);
+      da.SetDataList(nextOutputIndex++, (List<IQuelea>)system.Quelea.SpatialObjects);
+      da.SetData(nextOutputIndex++, new SpatialCollectionType(system.Quelea));
     }
   }
 }
