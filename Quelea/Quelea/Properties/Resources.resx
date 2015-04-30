@@ -240,7 +240,7 @@
   <data name="pluginCategoryName" xml:space="preserve">
     <value>Quelea</value>
   </data>
-  <data name="pluginSubCategoryName" xml:space="preserve">
+  <data name="pluginSubcategoryName" xml:space="preserve">
     <value>Quelea</value>
   </data>
   <data name="separateForceDescription" xml:space="preserve">
@@ -1055,5 +1055,8 @@
   </data>
 	<data name="rulesName" xml:space="preserve">
     <value>Rules</value>
+  </data>
+	<data name="utilitySubcategoryName" xml:space="preserve">
+    <value>Utility</value>
   </data>
 </root>

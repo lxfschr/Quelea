@@ -3,7 +3,7 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class AgentComponent : AbstractComponent
+  public class AgentComponent : AbstractConstructTypeComponent
   {
     private IParticle particle;
     private double maxSpeed;
@@ -15,8 +15,7 @@ namespace Quelea
     /// </summary>
     public AgentComponent()
       : base(RS.constructAgentName, RS.constructAgentNickname,
-          RS.constructAgentDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_constructAgent, RS.constructAgentComponentGuid)
+          RS.constructAgentDescription, RS.icon_constructAgent, RS.constructAgentComponentGuid)
     {
       particle = new ParticleType();
       maxSpeed = RS.maxSpeedDefault;

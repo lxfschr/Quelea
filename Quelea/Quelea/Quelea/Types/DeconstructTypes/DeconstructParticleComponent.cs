@@ -3,7 +3,7 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class DeconstructParticleComponent : AbstractComponent
+  public class DeconstructParticleComponent : AbstractDeconstructTypeComponent
   {
     private IParticle particle;
     /// <summary>
@@ -11,8 +11,7 @@ namespace Quelea
     /// </summary>
     public DeconstructParticleComponent()
       : base("Deconstruct Particle", "DeParticle",
-             "Deconstructs a Particle to expose its fields such as position, velocity, and acceleration.", RS.pluginCategoryName, 
-             RS.pluginSubCategoryName, RS.icon_deconstructParticle, RS.deconstructParticleGuid)
+             "Deconstructs a Particle to expose its fields such as position, velocity, and acceleration.", RS.icon_deconstructParticle, RS.deconstructParticleGuid)
     {
       particle = null;
     }

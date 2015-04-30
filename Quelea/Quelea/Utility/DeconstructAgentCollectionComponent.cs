@@ -13,7 +13,7 @@ namespace Quelea
     public DeconstructAgentCollectionComponent()
       : base(RS.deconstructQNName, RS.deconstructQNNickname,
           RS.deconstructQNDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_deconstructAC, RS.desconstructQNGuid)
+          RS.pluginCategoryName, RS.utilitySubcategoryName, RS.icon_deconstructAC, RS.desconstructQNGuid)
     {
       agentCollection = new SpatialCollectionType();
     }

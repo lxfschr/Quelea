@@ -4,7 +4,7 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class ParticleComponent : AbstractComponent
+  public class ParticleComponent : AbstractConstructTypeComponent
   {
 
     private Vector3d velocityMin, velocityMax;
@@ -24,8 +24,7 @@ namespace Quelea
     /// </summary>
     public ParticleComponent()
       : base(RS.particleSettingsName, RS.particleSettingNickname,
-          RS.particleSettingsDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_constructParticle, "dd2877f8-e247-4a67-9802-3c68c968779d")
+          RS.particleSettingsDescription, RS.icon_constructParticle, "dd2877f8-e247-4a67-9802-3c68c968779d")
     {
       velocityMin = new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault);
       velocityMax = new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault);

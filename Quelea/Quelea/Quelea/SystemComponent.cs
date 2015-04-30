@@ -11,12 +11,12 @@ namespace Quelea
     private List<AbstractEmitterType> emitters;
     private AbstractEnvironmentType environment;
     /// <summary>
-    /// Initializes a new instance of the AbstractSystemComponent class.
+    /// Initializes a new instance of the SystemComponent class.
     /// </summary>
     public SystemComponent()
       : base(RS.systemName, RS.systemComponentNickname,
           RS.systemDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_system, RS.agentSystemGuid)
+          RS.pluginCategoryName, RS.pluginSubcategoryName, RS.icon_system, RS.agentSystemGuid)
     {
       
     }
@@ -30,7 +30,7 @@ namespace Quelea
                                     GH_ParamAccess.list);
       pManager.AddGenericParameter(RS.emittersName, RS.emitterNickname, RS.emittersDescription,
                                     GH_ParamAccess.list);
-      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, "Restricts and Agent's postion to be contained within the environment. This is most useful for Surface and Polysurface Environments.",
+      pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, "Restricts and Agent's postion to be contained within the environment. This is most useful for Surface and Polysurface Environments. For Brep Environments, consider using the Contain rules as they will run much faster.",
                                     GH_ParamAccess.item);
       pManager[2].Optional = true;
     }
@@ -89,6 +89,10 @@ namespace Quelea
       da.SetData(nextOutputIndex++, system);
       da.SetDataList(nextOutputIndex++, (List<IQuelea>)system.Quelea.SpatialObjects);
       da.SetData(nextOutputIndex++, new SpatialCollectionType(system.Quelea));
+    }
+    public override GH_Exposure Exposure
+    {
+      get { return GH_Exposure.secondary; }
     }
   }
 }

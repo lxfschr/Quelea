@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Grasshopper.Kernel;
 using Quelea.Util;
-using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
@@ -18,7 +17,7 @@ namespace Quelea
     public NeighborsComponent()
       : base(RS.getNeighborsInRadiusName, RS.getNeighborsInRadiusComponentNickname,
           RS.getNeighborsInRadiusDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_neighborsInRadius, RS.neighborsGuid)
+          RS.pluginCategoryName, RS.utilitySubcategoryName, RS.icon_neighborsInRadius, RS.neighborsGuid)
     {
       agent = null;
       agentCollection = null;
@@ -102,9 +101,9 @@ namespace Quelea
       Point3d position = agent.Position;
       Vector3d velocity = agent.Velocity;
       Plane pl1 = new Plane(position, velocity);
-      pl1.Rotate(-Math.PI / 2, pl1.YAxis);
+      pl1.Rotate(-RS.HALF_PI, pl1.YAxis);
       Plane pl2 = pl1;
-      pl2.Rotate(-Math.PI / 2, pl1.XAxis);
+      pl2.Rotate(-RS.HALF_PI, pl1.XAxis);
       foreach (IQuelea neighbor in neighborsInSphere)
       {
         Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.Position), new Vector3d(position));

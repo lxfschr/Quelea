@@ -15,7 +15,7 @@ namespace Quelea
     public EngineComponent()
       : base(RS.engineName, RS.engineNickname,
           RS.engineDescription,
-          RS.pluginCategoryName, RS.pluginSubCategoryName, RS.icon_engine, RS.engineGUID)
+          RS.pluginCategoryName, RS.pluginSubcategoryName, RS.icon_engine, RS.engineGUID)
     {
       reset = RS.resetDefault;
       system = null;
@@ -60,6 +60,11 @@ namespace Quelea
       {
         system.Run();
       }
+    }
+
+    public override GH_Exposure Exposure
+    {
+      get { return GH_Exposure.secondary; }
     }
   }
 }

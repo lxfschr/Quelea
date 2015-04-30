@@ -3,7 +3,7 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class DeconstructAgentComponent : AbstractComponent
+  public class DeconstructAgentComponent : AbstractDeconstructTypeComponent
   {
     private IAgent agent;
     /// <summary>
@@ -11,8 +11,7 @@ namespace Quelea
     /// </summary>
     public DeconstructAgentComponent()
       : base("Deconstruct Agent", "DeAgent",
-             "Deconstructs a Agent to expose its fields such as max speed, max force, and vision radius. Use Deconstruct Particle to expose particle fields such as position.", RS.pluginCategoryName,
-             RS.pluginSubCategoryName, RS.icon_deconstructAgent, "4b324c0d-07d7-432b-bef4-983ef0af8cc5")
+             "Deconstructs a Agent to expose its fields such as max speed, max force, and vision radius. Use Deconstruct Particle to expose particle fields such as position.", RS.icon_deconstructAgent, "4b324c0d-07d7-432b-bef4-983ef0af8cc5")
     {
       agent = null;
     }

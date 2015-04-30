@@ -2191,9 +2191,9 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Quelea.
         /// </summary>
-        internal static string pluginSubCategoryName {
+        internal static string pluginSubcategoryName {
             get {
-                return ResourceManager.GetString("pluginSubCategoryName", resourceCulture);
+                return ResourceManager.GetString("pluginSubcategoryName", resourceCulture);
             }
         }
         
@@ -2631,6 +2631,15 @@ namespace Quelea.Properties {
             get {
                 object obj = ResourceManager.GetObject("TWO_PI", resourceCulture);
                 return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Utility.
+        /// </summary>
+        internal static string utilitySubcategoryName {
+            get {
+                return ResourceManager.GetString("utilitySubcategoryName", resourceCulture);
             }
         }
         

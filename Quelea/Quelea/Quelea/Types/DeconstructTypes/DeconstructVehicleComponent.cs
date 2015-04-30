@@ -5,7 +5,7 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class DeconstructVehicleComponent : AbstractComponent
+  public class DeconstructVehicleComponent : AbstractDeconstructTypeComponent
   {
     private IVehicle vehicle;
     /// <summary>
@@ -13,8 +13,7 @@ namespace Quelea
     /// </summary>
     public DeconstructVehicleComponent()
       : base("Deconstruct Vehicle", "DeVehicle",
-             "Deconstructs a Vehicle to expose its fields such as orientation and wheel fields. Use Deconstruct Particle to expose particle fields such as position.", RS.pluginCategoryName,
-             RS.pluginSubCategoryName, RS.icon_deconstructVehicle, "ad29903c-e0e2-4545-8753-1fd96a6dfa2a")
+             "Deconstructs a Vehicle to expose its fields such as orientation and wheel fields. Use Deconstruct Particle to expose particle fields such as position.", RS.icon_deconstructVehicle, "ad29903c-e0e2-4545-8753-1fd96a6dfa2a")
     {
       vehicle = null;
     }
