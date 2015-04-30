@@ -99,7 +99,7 @@
     <Compile Include="Actions\Forces\VehicleForces\SenseImageForceComponent.cs" />
     <Compile Include="Actions\Forces\VehicleForces\SensoryPtForceComponent.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Environment\AxisAlignedBoxEnvironmentType - Copy.cs" />
+    <Compile Include="Environment\AxisAlignedBoxEnvironmentType.cs" />
     <Compile Include="Quelea\AbstractSystemComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructVehicleComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructAgentComponent.cs" />

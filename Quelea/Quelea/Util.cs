@@ -153,7 +153,7 @@ namespace Quelea
     {
       public static string ToString(string name, Object obj)
       {
-        return name + ": " + obj.ToString() + "\n";
+        return name + ": " + obj + "\n";
       }
     }
     class Random

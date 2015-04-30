@@ -8,7 +8,7 @@ namespace Quelea
   public class FlowDownSurfaceForceComponent : AbstractParticleForceComponent
   {
     private AbstractEnvironmentType environment;
-    private double stepDistance;
+    private double stepDistance, angle;
     public FlowDownSurfaceForceComponent()
       : base("Flow Down Surface Force", "SurfaceFlow",
           "Applies a force to simulate water flowing over the surface.",
@@ -24,6 +24,8 @@ namespace Quelea
       pManager.AddGenericParameter("Environment", "En", "The Surface or Polysurface Environment to flow over.", GH_ParamAccess.item);
       pManager.AddNumberParameter("Step distance", "D", "The distance the particle will move each timestep. Smaller distances will lead to more accurate results.",
         GH_ParamAccess.item, 0.1);
+      pManager.AddNumberParameter("Rotation Angle", "A", "The angle the surface tangent vector will be rotated by. A 0 angle will cause the particle to flow across the surface whereas a 0.5 angle will cause the particle to flow down the surface.",
+        GH_ParamAccess.item, 0.5);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
@@ -31,6 +33,7 @@ namespace Quelea
       if(!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref environment)) return false;
       if (!da.GetData(nextInputIndex++, ref stepDistance)) return false;
+      if (!da.GetData(nextInputIndex++, ref angle)) return false;
       return true;
     }
 
@@ -39,8 +42,12 @@ namespace Quelea
       Vector3d nrml = environment.ClosestNormal(particle.Position3D);
       Vector3d drainVec = Vector3d.CrossProduct(nrml, Vector3d.ZAxis);
       drainVec.Unitize();
-      drainVec.Transform(Transform.Rotation(RS.HALF_PI, nrml, particle.Position3D));
+      drainVec.Transform(Transform.Rotation(Math.PI * angle, nrml, particle.Position3D));
       drainVec = drainVec * stepDistance;
+      Point3d pt2D = particle.Position3D;
+      pt2D.Transform(Transform.Translation(drainVec));
+      pt2D = environment.MapTo2D(pt2D);
+      drainVec = Util.Vector.Vector2Point(particle.Position, pt2D);
       return drainVec;
     }
   }

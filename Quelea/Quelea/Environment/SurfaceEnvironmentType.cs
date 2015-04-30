@@ -60,10 +60,10 @@ namespace Quelea
       Interval uDom = RefEnvironment.Domain(0);
       Interval vDom = RefEnvironment.Domain(1);
 
-      minX = uDom.Min;
-      maxX = uDom.Max;
-      minY = vDom.Min;
-      maxY = vDom.Max;
+      minX = 0;
+      maxX = width;
+      minY = 0;
+      maxY = height;
     }
 
     // Copy Constructor
