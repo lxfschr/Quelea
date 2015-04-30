@@ -5,17 +5,15 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class FlowDownSurfaceForceComponent : AbstractParticleForceComponent
+  public class SurfaceFlowForceComponent : AbstractParticleForceComponent
   {
     private AbstractEnvironmentType environment;
     private double stepDistance, angle;
-    public FlowDownSurfaceForceComponent()
-      : base("Flow Down Surface Force", "SurfaceFlow",
+    public SurfaceFlowForceComponent()
+      : base("Surface Flow Force", "SurfaceFlow",
           "Applies a force to simulate water flowing over the surface.",
           RS.icon_flowDownSurfaceForce, "a020520c-2da2-444e-a014-4a1bc0d844a5")
     {
-      stepDistance = 
-        1;
     }
 
     protected override void RegisterInputParams(GH_InputParamManager pManager)
@@ -24,7 +22,7 @@ namespace Quelea
       pManager.AddGenericParameter("Environment", "En", "The Surface or Polysurface Environment to flow over.", GH_ParamAccess.item);
       pManager.AddNumberParameter("Step distance", "D", "The distance the particle will move each timestep. Smaller distances will lead to more accurate results.",
         GH_ParamAccess.item, 0.1);
-      pManager.AddNumberParameter("Rotation Angle", "A", "The angle the surface tangent vector will be rotated by. A 0 angle will cause the particle to flow across the surface whereas a 0.5 angle will cause the particle to flow down the surface.",
+      pManager.AddNumberParameter("Rotation Angle", "A", "The angle that the surface tangent vector will be multiplied by PI and rotated by. A 0 angle will cause the particle to flow across the surface whereas a 0.5 angle will cause the particle to flow down the surface.",
         GH_ParamAccess.item, 0.5);
     }
 
