@@ -7,10 +7,11 @@ namespace Quelea
     Plane Orientation { get; set; }
     IWheel[] Wheels { get; set; }
     double WheelRadius { get; set; }
-    Point3d GetPartPosition(double gapSize, double rotation);
+    Point3d GetWheelPosition(double gapSize, double rotation);
     void SetSpeedChanges(double leftValue, double rightValue);
 
     Vector3d ApplySensorForce(double leftWheelValue, double rightWheelValue, double weightMultiplier, bool apply);
+    Point3d GetSensorPosition(double bodySize, double forwardOffset, double halfPi);
   }
 
   public interface ISensor

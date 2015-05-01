@@ -35,25 +35,22 @@ namespace Quelea
       double maxX = bbox.Max.X;
       double minY = bbox.Min.Y;
       double maxY = bbox.Max.Y;
-      int x = (int) Util.Number.Map(sensorLeftPos.X, minX, maxX, 0, bitmap.Width - 1, false);
-      int y = (int)(bitmap.Height - Util.Number.Map(sensorLeftPos.Y, minY, maxY, 0, bitmap.Height - 1, false));
+      sensorLeftValue = GetValue(sensorLeftPos, minX, maxX, minY, maxY);
+      sensorRightValue = GetValue(sensorRightPos, minX, maxX, minY, maxY);
+    }
+
+    private float GetValue(Point3d pt, double minX, double maxX, double minY, double maxY)
+    {
+      int x = (int)Util.Number.Map(pt.X, minX, maxX, 0, bitmap.Width - 1, false);
+      int y = (int)(bitmap.Height - Util.Number.Map(pt.Y, minY, maxY, 0, bitmap.Height - 1, false));
 
       Color color = crossed ? Color.White : Color.Black;
-      
-      if ((0 <= x && x < bitmap.Width) && (0 <= y && y < bitmap.Height))
-      {
-        color = bitmap.GetPixel(x, y);
-      }
-      sensorLeftValue = color.GetBrightness();
-      x = (int)Util.Number.Map(sensorRightPos.X, minX, maxX, 0, bitmap.Width - 1, false);
-      y = (int)(bitmap.Height - Util.Number.Map(sensorRightPos.Y, minY, maxY, 0, bitmap.Height - 1, false));
 
-      color = crossed ? Color.White : Color.Black;
       if ((0 <= x && x < bitmap.Width) && (0 <= y && y < bitmap.Height))
       {
         color = bitmap.GetPixel(x, y);
       }
-      sensorRightValue = color.GetBrightness();
+      return color.GetBrightness();
     }
   }
 }

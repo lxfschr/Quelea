@@ -38,8 +38,8 @@ namespace Quelea
       UpdateOrientation();
       WheelRadius = v.WheelRadius;
       Wheels = new IWheel[2];
-      Wheels[(int)WheelPositions.LeftRear] = new Wheel(GetPartPosition(BodySize, RS.HALF_PI), WheelRadius, 0);
-      Wheels[(int)WheelPositions.RightRear] = new Wheel(GetPartPosition(BodySize, -RS.HALF_PI), WheelRadius, 0);
+      Wheels[(int)WheelPositions.LeftRear] = new Wheel(GetWheelPosition(BodySize, RS.HALF_PI), WheelRadius, 0);
+      Wheels[(int)WheelPositions.RightRear] = new Wheel(GetWheelPosition(BodySize, -RS.HALF_PI), WheelRadius, 0);
     }
 
     private void UpdateOrientation()
@@ -56,7 +56,7 @@ namespace Quelea
       Orientation = orientation;
     }
 
-    public Point3d GetPartPosition(double gapSize, double rotation)
+    public Point3d GetWheelPosition(double gapSize, double rotation)
     {
       Vector3d offsetVec = Velocity;
       offsetVec.Rotate(rotation, Orientation.ZAxis);
@@ -87,6 +87,19 @@ namespace Quelea
       return ApplySteeringForce(desired, weightMultiplier, apply);
     }
 
+    public Point3d GetSensorPosition(double bodySize, double forwardOffset, double halfPi)
+    {
+      Point3d sensorPos = GetWheelPosition(bodySize, halfPi);
+      if (forwardOffset > 0)
+      {
+        Vector3d offset = Velocity;
+        offset.Unitize();
+        offset *= forwardOffset;
+        sensorPos.Transform(Transform.Translation(offset));
+      }
+      return sensorPos;
+    }
+
     public override void Run()
     {
       foreach (IWheel wheel in Wheels)
@@ -96,8 +109,8 @@ namespace Quelea
 
       base.Run();
       UpdateOrientation();
-      Wheels[(int)WheelPositions.LeftRear].Position = GetPartPosition(BodySize, RS.HALF_PI);
-      Wheels[(int)WheelPositions.RightRear].Position = GetPartPosition(BodySize, -RS.HALF_PI);
+      Wheels[(int)WheelPositions.LeftRear].Position = GetWheelPosition(BodySize, RS.HALF_PI);
+      Wheels[(int)WheelPositions.RightRear].Position = GetWheelPosition(BodySize, -RS.HALF_PI);
     }
 
     public class Wheel : IWheel, IGH_Goo

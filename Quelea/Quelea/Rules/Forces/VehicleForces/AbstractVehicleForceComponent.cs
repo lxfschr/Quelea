@@ -12,6 +12,8 @@ namespace Quelea
     protected bool crossed;
     protected double sensorLeftValue, sensorRightValue;
     protected Point3d sensorLeftPos, sensorRightPos;
+    private double forwardOffset;
+    
     /// <summary>
     /// Initializes a new instance of the AbstractParticleForceComponent class.
     /// </summary>
@@ -36,6 +38,8 @@ namespace Quelea
         GH_ParamAccess.item, RS.weightMultiplierDefault);
       pManager.AddBooleanParameter("Crossed?", "C", "If true, the sensors will affect the wheels on the opposite side. If false, a higher sensor reading on the left side will cause the left wheel to turn faster causing the vehicle to turn to its right. Generally, if the sensors are not crossed, then the vehicle will steer away from areas with high values.",
         GH_ParamAccess.item, false);
+      pManager.AddNumberParameter("Sensor foward offset distance", "D", "The distance in front of the wheels that the sensors will read values from.",
+        GH_ParamAccess.item, 0);
     }
 
     /// <summary>
@@ -63,13 +67,14 @@ namespace Quelea
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(nextInputIndex++, ref weightMultiplier)) return false;
       if (!da.GetData(nextInputIndex++, ref crossed)) return false;
+      if (!da.GetData(nextInputIndex++, ref forwardOffset)) return false;
       if (!(0.0 <= weightMultiplier && weightMultiplier <= 1.0))
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Weight multiplier must be between 0.0 and 1.0.");
         return false;
       }
-      sensorLeftPos = vehicle.GetPartPosition(vehicle.BodySize, RS.HALF_PI);
-      sensorRightPos = vehicle.GetPartPosition(vehicle.BodySize, -RS.HALF_PI);
+      sensorLeftPos = vehicle.GetSensorPosition(vehicle.BodySize, forwardOffset, RS.HALF_PI);
+      sensorRightPos = vehicle.GetSensorPosition(vehicle.BodySize, forwardOffset, -RS.HALF_PI);
       return true;
     }
 
