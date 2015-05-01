@@ -9,8 +9,8 @@ namespace Quelea
   {
     private Bitmap bitmap;
     public SenseImageForceComponent()
-      : base("Sensory Field Force", "SenseField",
-          "Sensory Field Force",
+      : base("Sense Image Force", "SenseImage",
+          "Sense Image Force",
           null, "8fd658ec-90df-41ef-8f1a-490a05a58a13")
     {
     }

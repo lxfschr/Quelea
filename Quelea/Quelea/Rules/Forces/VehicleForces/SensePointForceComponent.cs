@@ -11,8 +11,8 @@ namespace Quelea
     private double radius;
     
     public SensePointForceComponent()
-      : base("Sensory Point Force", "SensePt",
-          "Sensory Point Force",
+      : base("Sense Point Force", "SensePt",
+          "Sense Point Force",
           RS.icon_sensePointForce, "2e0a5081-6a73-440e-91b5-c5ed96d512f0")
     {
     }

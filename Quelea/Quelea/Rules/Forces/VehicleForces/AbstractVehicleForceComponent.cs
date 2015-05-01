@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
@@ -51,8 +52,8 @@ namespace Quelea
       // Output parameters do not have default values, but they too must have the correct access type.
       pManager.AddGenericParameter("Force", RS.forceNickname,
                                    "The resulting force vector for debugging purposes.", GH_ParamAccess.item);
-      pManager.AddNumberParameter("SL", "SL", "SL", GH_ParamAccess.item);
-      pManager.AddNumberParameter("SR", "SR", "SR", GH_ParamAccess.item);
+      pManager.AddNumberParameter("Sensor Values", "V", "The values read by the left and right sensor.", GH_ParamAccess.list);
+      pManager.AddPointParameter("Sensor Positions", "P", "The position of the left and right sensor.", GH_ParamAccess.list);
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
       //pManager.HideParameter(1);
@@ -82,8 +83,8 @@ namespace Quelea
     {
       Vector3d force = Run();
       da.SetData(nextOutputIndex++, force);
-      da.SetData(nextOutputIndex++, sensorLeftValue);
-      da.SetData(nextOutputIndex++, sensorRightValue);
+      da.SetDataList(nextOutputIndex++, new List<double>(2) {sensorLeftValue, sensorRightValue});
+      da.SetDataList(nextOutputIndex++, new List<Point3d>(2) { sensorLeftPos, sensorRightPos });
     }
 
     protected Vector3d Run()
