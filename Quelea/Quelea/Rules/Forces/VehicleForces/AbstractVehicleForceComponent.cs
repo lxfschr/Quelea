@@ -73,12 +73,6 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      if (!apply)
-      {
-        da.SetData(nextOutputIndex++, Vector3d.Zero);
-        return;
-      }
-
       Vector3d force = Run();
       da.SetData(nextOutputIndex++, force);
       da.SetData(nextOutputIndex++, sensorLeftValue);
