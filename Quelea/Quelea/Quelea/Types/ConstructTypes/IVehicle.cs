@@ -9,6 +9,8 @@ namespace Quelea
     double WheelRadius { get; set; }
     Point3d GetPartPosition(double gapSize, double rotation);
     void SetSpeedChanges(double leftValue, double rightValue);
+
+    Vector3d ApplySensorForce(double leftWheelValue, double rightWheelValue, double weightMultiplier, bool apply);
   }
 
   public interface ISensor

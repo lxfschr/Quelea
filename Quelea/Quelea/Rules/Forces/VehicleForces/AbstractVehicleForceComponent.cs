@@ -84,21 +84,11 @@ namespace Quelea
     protected Vector3d Run()
     {
       GetSensorReadings();
-      double wheelDiff;
       if (crossed)
       {
-        vehicle.SetSpeedChanges(sensorRightValue, sensorLeftValue);
-        wheelDiff = sensorRightValue * vehicle.WheelRadius - sensorLeftValue * vehicle.WheelRadius;
+        return vehicle.ApplySensorForce(sensorRightValue, sensorLeftValue, weightMultiplier, apply);
       }
-      else
-      {
-        vehicle.SetSpeedChanges(sensorLeftValue, sensorRightValue);
-        wheelDiff = sensorLeftValue * vehicle.WheelRadius - sensorRightValue * vehicle.WheelRadius;
-      }
-      double angle = wheelDiff / vehicle.BodySize;
-      Vector3d desired = vehicle.Velocity;
-      desired.Rotate(angle, vehicle.Orientation.ZAxis);
-      return vehicle.ApplySteeringForce(desired, weightMultiplier, apply);
+      return vehicle.ApplySensorForce(sensorLeftValue, sensorRightValue, weightMultiplier, apply);
     }
 
     protected abstract void GetSensorReadings();

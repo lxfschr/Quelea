@@ -77,18 +77,23 @@ namespace Quelea
     public IWheel[] Wheels { get; set; }
     public double WheelRadius { get; set; }
 
+    public Vector3d ApplySensorForce(double leftWheelValue, double rightWheelValue, double weightMultiplier, bool apply)
+    {
+      SetSpeedChanges(leftWheelValue, rightWheelValue);
+      double wheelDiff = leftWheelValue * WheelRadius - rightWheelValue * WheelRadius;
+      double angle = wheelDiff / BodySize;
+      Vector3d desired = Velocity;
+      desired.Rotate(angle, Orientation.ZAxis);
+      return ApplySteeringForce(desired, weightMultiplier, apply);
+    }
+
     public override void Run()
     {
       foreach (IWheel wheel in Wheels)
       {
         wheel.Run();
       }
-      //wheelDiff = Wheels[(int)WheelPositions.LeftRear].TangentialVelocity -
-      //            Wheels[(int)WheelPositions.RightRear].TangentialVelocity;
-      //double angle = wheelDiff / BodySize;
-      //Vector3d velocity = Velocity;
-      //velocity.Rotate(angle, Orientation.ZAxis);
-      //Velocity = velocity;
+
       base.Run();
       UpdateOrientation();
       Wheels[(int)WheelPositions.LeftRear].Position = GetPartPosition(BodySize, RS.HALF_PI);

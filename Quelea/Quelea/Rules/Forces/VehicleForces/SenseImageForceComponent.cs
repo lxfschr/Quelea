@@ -54,7 +54,6 @@ namespace Quelea
         color = bitmap.GetPixel(x, y);
       }
       sensorRightValue = color.GetBrightness();
-      
     }
   }
 }
