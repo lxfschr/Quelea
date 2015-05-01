@@ -41,6 +41,10 @@ namespace Quelea
       if (queleaSettings[0].GetType() == typeof(AgentType))
       {
         IAgent agent = (AgentType)queleaSettings[0];
+        if (environment.GetType() == typeof(WorldEnvironmentType) && emitters[0].GetType() != typeof(PtEmitterType))
+        {
+          return new SpatialCollectionAsOctTree<IQuelea>(min, max, 1);
+        }
         return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius);
       }
       if (!emitters[0].ContinuousFlow)
@@ -54,6 +58,10 @@ namespace Quelea
     {
       if (queleaSettings[0].GetType() == typeof(AgentType))
       {
+        if (environment.GetType() == typeof(WorldEnvironmentType))
+        {
+          return new SpatialCollectionAsOctTree<IQuelea>(min, max, spatialObjects);
+        }
         IAgent agent = (AgentType)queleaSettings[0];
         return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius, spatialObjects);
       }
