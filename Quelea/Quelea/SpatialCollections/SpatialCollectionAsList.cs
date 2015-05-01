@@ -33,6 +33,16 @@ namespace Quelea
       this.spatialObjects = (spatialCollection.SpatialObjects.ToList());
     }
 
+    public SpatialCollectionAsList(int initialNum)
+    {
+      spatialObjects = new List<T>(initialNum);
+    }
+
+    public SpatialCollectionAsList(IList<T> spatialCollection)
+    {
+      spatialObjects = spatialCollection;
+    }
+
     public ISpatialCollection<T> GetNeighborsInSphere(T item, double r)
     {
       ISpatialCollection<T> neighbors = new SpatialCollectionAsList<T>();

@@ -33,7 +33,31 @@ namespace Quelea
       this.emitters = emitters;
       this.environment = environment;
       UpdateBounds();
-      Quelea = new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
+      Quelea = MakeDynamicSpatialDataStructure();//new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)));
+    }
+
+    private ISpatialCollection<IQuelea> MakeDynamicSpatialDataStructure()
+    {
+      if (queleaSettings[0].GetType() == typeof(AgentType))
+      {
+        IAgent agent = (AgentType)queleaSettings[0];
+        return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius);
+      }
+      if (!emitters[0].ContinuousFlow)
+      {
+        return new SpatialCollectionAsList<IQuelea>(emitters[0].NumAgents);
+      }
+      return new SpatialCollectionAsList<IQuelea>();
+    }
+
+    private ISpatialCollection<IQuelea> UpdateDynamicSpatialDataStructure(IList<IQuelea> spatialObjects)
+    {
+      if (queleaSettings[0].GetType() == typeof(AgentType))
+      {
+        IAgent agent = (AgentType)queleaSettings[0];
+        return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius, spatialObjects);
+      }
+      return new SpatialCollectionAsList<IQuelea>(spatialObjects);
     }
 
     public SystemType(List<IQuelea> queleaSettings, List<AbstractEmitterType> emitters, AbstractEnvironmentType environment, SystemType system)
@@ -44,7 +68,7 @@ namespace Quelea
       this.emitters = emitters;
       this.environment = environment;
       UpdateBounds();
-      Quelea = new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IQuelea>)system.Quelea.SpatialObjects);
+      Quelea = UpdateDynamicSpatialDataStructure((IList<IQuelea>)system.Quelea.SpatialObjects);//new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IQuelea>)system.Quelea.SpatialObjects);
     }
 
     public SystemType(SystemType system)

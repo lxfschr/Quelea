@@ -1,4 +1,6 @@
-﻿using Grasshopper.Kernel;
+﻿using System.Collections.Generic;
+using Grasshopper.Kernel;
+using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
 namespace Quelea
@@ -33,8 +35,8 @@ namespace Quelea
       pManager.AddVectorParameter(RS.velocityName, RS.velocityNickname, RS.velocityDescription, GH_ParamAccess.item);
       pManager.AddVectorParameter(RS.accelerationName, RS.accelerationNickName, RS.accelerationDescription, GH_ParamAccess.item);
       pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickname, RS.lifespanDescription, GH_ParamAccess.item);
-      pManager.AddIntegerParameter(RS.massName, RS.massNickname, RS.massDescription, GH_ParamAccess.item);
-      pManager.AddIntegerParameter(RS.bodySizeName, RS.bodySizeNickname, RS.bodySizeDescription, GH_ParamAccess.item);
+      //pManager.AddIntegerParameter(RS.massName, RS.massNickname, RS.massDescription, GH_ParamAccess.item);
+      //pManager.AddIntegerParameter(RS.bodySizeName, RS.bodySizeNickname, RS.bodySizeDescription, GH_ParamAccess.item);
       pManager.AddPointParameter("Surface Position", "SP", "For particles bound to Surface and Polysurface Environments, the position of the Agent mapped to a 2D plane representing the bounds of the surface.", GH_ParamAccess.item);
       pManager.AddVectorParameter("Surface Velocity", "SV", "For particles bound to Surface and Polysurface Environments, the velocity of the Agent mapped to a 2D plane representing the bounds of the surface.", GH_ParamAccess.item);
       pManager.AddVectorParameter("Surface Acceleration", "SA", "For particles bound to Surface and Polysurface Environments, the acceleration of the Agent mapped to a 2D plane representing the bounds of the surface.", GH_ParamAccess.item);
@@ -53,11 +55,14 @@ namespace Quelea
       da.SetData(nextOutputIndex++, particle.Velocity3D);
       da.SetData(nextOutputIndex++, particle.PreviousAcceleration3D);
       da.SetData(nextOutputIndex++, particle.Lifespan);
-      da.SetData(nextOutputIndex++, particle.Mass);
-      da.SetData(nextOutputIndex++, particle.BodySize);
-      da.SetData(nextOutputIndex++, particle.Position);
-      da.SetData(nextOutputIndex++, particle.Velocity);
-      da.SetData(nextOutputIndex++, particle.PreviousAcceleration);
+      //da.SetData(nextOutputIndex++, particle.Mass);
+      //da.SetData(nextOutputIndex++, particle.BodySize);
+      if (particle.Environment.GetType() == typeof (SurfaceEnvironmentType))
+      {
+        da.SetData(nextOutputIndex++, particle.Position);
+        da.SetData(nextOutputIndex++, particle.Velocity);
+        da.SetData(nextOutputIndex++, particle.PreviousAcceleration);
+      }
     }
   }
 }
