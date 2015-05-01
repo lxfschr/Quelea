@@ -8,7 +8,7 @@ namespace Quelea
   public abstract class AbstractEnvironmentalForceComponent : AbstractAgentForceComponent
   {
     protected AbstractEnvironmentType environment;
-    protected double visionRadius;
+    protected double visionRadiusMultiplier;
     /// <summary>
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
@@ -17,7 +17,7 @@ namespace Quelea
       : base(name, nickname, description, icon, componentGuid)
     {
       environment = null;
-      visionRadius = RS.bodySizeDefault;
+      visionRadiusMultiplier = RS.visionRadiusMultiplierDefault/5;
     }
 
     /// <summary>
@@ -27,15 +27,15 @@ namespace Quelea
     {
       base.RegisterInputParams(pManager);
       pManager.AddGenericParameter(RS.environmentName, RS.environmentNickname, RS.environmentDescription, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickname, RS.visionAngleDescription,
-        GH_ParamAccess.item, RS.bodySizeDefault);
+      pManager.AddNumberParameter(RS.visionRadiusMultiplierName, RS.visionRadiusMultiplierNickname, RS.visionRadiusMultiplierDescription,
+        GH_ParamAccess.item, RS.visionRadiusMultiplierDefault / 5);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
     {
       if (!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref environment)) return false;
-      if (!da.GetData(nextInputIndex++, ref visionRadius)) return false;
+      if (!da.GetData(nextInputIndex++, ref visionRadiusMultiplier)) return false;
 
       return true;
     }

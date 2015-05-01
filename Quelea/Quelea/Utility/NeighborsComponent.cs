@@ -1,5 +1,4 @@
 ﻿using Grasshopper.Kernel;
-using Quelea.Util;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
@@ -9,8 +8,8 @@ namespace Quelea
   {
     private IAgent agent;
     private SpatialCollectionType agentCollection;
-    private double visionRadius;
-    private double visionAngle;
+    private double visionRadiusMultiplier;
+    private double visionAngleMultiplier;
     /// <summary>
     /// Initializes a new instance of the NeighborsComponent class.
     /// </summary>
@@ -21,8 +20,8 @@ namespace Quelea
     {
       agent = null;
       agentCollection = null;
-      visionRadius = RS.visionRadiusDefault;
-      visionAngle = RS.visionAngleDefault;
+      visionRadiusMultiplier = RS.visionRadiusMultiplierDefault;
+      visionAngleMultiplier = RS.visionAngleMultiplierDefault;
     }
 
     /// <summary>
@@ -36,8 +35,8 @@ namespace Quelea
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentToGetNeighborsFor, GH_ParamAccess.item);
       pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.queleaNetworkToSearch, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickname, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);
-      pManager.AddNumberParameter(RS.visionAngleName, RS.visionAngleNickname, RS.visionAngleDescription, GH_ParamAccess.item, RS.visionAngleDefault);
+      pManager.AddNumberParameter(RS.visionRadiusName + " " + RS.multiplierName, RS.visionRadiusNickname + " " + RS.multiplierNickname, RS.visionRadiusMultiplierDescription, GH_ParamAccess.item, RS.visionRadiusMultiplierDefault);
+      pManager.AddNumberParameter(RS.visionAngleName + " " + RS.multiplierName, RS.visionAngleNickname + " " + RS.multiplierNickname, "The factor by which the Agent's Vision Angle will be multiplied. The result will be used to determine the angle from the velocity that the agent will be able to see neighbors.", GH_ParamAccess.item, RS.visionAngleMultiplierDefault);
       // If you want to change properties of certain parameters, 
       // you can use the pManager instance to access them by index:
       pManager[2].Optional = true;
@@ -64,18 +63,18 @@ namespace Quelea
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(nextInputIndex++, ref agent)) return false;
       if (!da.GetData(nextInputIndex++, ref agentCollection)) return false;
-      da.GetData(nextInputIndex++, ref visionRadius);
-      da.GetData(nextInputIndex++, ref visionAngle);
+      da.GetData(nextInputIndex++, ref visionRadiusMultiplier);
+      da.GetData(nextInputIndex++, ref visionAngleMultiplier);
       
       // We should now validate the data and warn the user if invalid data is supplied.
-      if (!(0 <= visionRadius))
+      if (!(0.0 <= visionRadiusMultiplier && visionRadiusMultiplier <= 1.0))
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionRadiusErrorMessage);
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionRadiusMultiplierErrorMessage);
         return false;
       }
-      if (!(0 <= visionAngle && visionAngle <= 360))
+      if (!(0.0 <= visionAngleMultiplier && visionAngleMultiplier <= 1.0))
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionAngleErrorMessage);
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionAngleMultiplierErrorMessage);
         return false;
       }
       return true;
@@ -89,9 +88,9 @@ namespace Quelea
 
     private SpatialCollectionType Run()
     {
-      ISpatialCollection<IQuelea> neighborsInSphere = agentCollection.Quelea.GetNeighborsInSphere(agent, visionRadius);
+      ISpatialCollection<IQuelea> neighborsInSphere = agentCollection.Quelea.GetNeighborsInSphere(agent, agent.VisionRadius*visionRadiusMultiplier);
 
-      if (Number.ApproximatelyEqual(visionAngle, 360, Constants.AbsoluteTolerance))
+      if (Util.Number.ApproximatelyEqual(visionAngleMultiplier, 1.0, Constants.AbsoluteTolerance))
       {
         return new SpatialCollectionType(neighborsInSphere);
       }
@@ -104,13 +103,14 @@ namespace Quelea
       pl1.Rotate(-RS.HALF_PI, pl1.YAxis);
       Plane pl2 = pl1;
       pl2.Rotate(-RS.HALF_PI, pl1.XAxis);
+      double halfVisionAngle = agent.VisionAngle*visionAngleMultiplier/2;
       foreach (IQuelea neighbor in neighborsInSphere)
       {
-        Vector3d diff = Vector3d.Subtract(new Vector3d(neighbor.Position), new Vector3d(position));
-        double angle1 = Vector.CalcAngle(velocity, diff, pl1);
-        double angle2 = Vector.CalcAngle(velocity, diff, pl2);
-        if (Number.DefinitelyLessThan(angle1, visionAngle / 2, Constants.AbsoluteTolerance) &&
-            Number.DefinitelyLessThan(angle2, visionAngle / 2, Constants.AbsoluteTolerance))
+        Vector3d diff = Util.Vector.Vector2Point(position, neighbor.Position);
+        double angle1 = Util.Vector.CalcAngle(velocity, diff, pl1);
+        double angle2 = Util.Vector.CalcAngle(velocity, diff, pl2);
+        if (Util.Number.DefinitelyLessThan(angle1, halfVisionAngle, Constants.AbsoluteTolerance) &&
+            Util.Number.DefinitelyLessThan(angle2, halfVisionAngle, Constants.AbsoluteTolerance))
         {
           neighbors.Add(neighbor);
         }

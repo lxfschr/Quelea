@@ -1944,6 +1944,24 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Multiplier.
+        /// </summary>
+        internal static string multiplierName {
+            get {
+                return ResourceManager.GetString("multiplierName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to M.
+        /// </summary>
+        internal static string multiplierNickname {
+            get {
+                return ResourceManager.GetString("multiplierNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The neighbors of the Agent..
         /// </summary>
         internal static string neighborsDescription {
@@ -2781,6 +2799,25 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Double similar to 1.
+        /// </summary>
+        internal static double visionAngleMultiplierDefault {
+            get {
+                object obj = ResourceManager.GetObject("visionAngleMultiplierDefault", resourceCulture);
+                return ((double)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision Angle Multiplier must be between 0.0 and 1.0..
+        /// </summary>
+        internal static string visionAngleMultiplierErrorMessage {
+            get {
+                return ResourceManager.GetString("visionAngleMultiplierErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vision Angle.
         /// </summary>
         internal static string visionAngleName {
@@ -2846,7 +2883,7 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The factor by which the Agent&apos;s Vision Radius will be multiplied by around which the Agent will see other particles..
+        ///   Looks up a localized string similar to The factor by which the Agent&apos;s Vision Radius will be multiplied by. The result will determine how far out the Agent will see other neighbors..
         /// </summary>
         internal static string visionRadiusMultiplierDescription {
             get {
@@ -2855,7 +2892,7 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vision Radius Multiplier must be between 0 and 1..
+        ///   Looks up a localized string similar to Vision Radius Multiplier must be between 0.0 and 1.0..
         /// </summary>
         internal static string visionRadiusMultiplierErrorMessage {
             get {

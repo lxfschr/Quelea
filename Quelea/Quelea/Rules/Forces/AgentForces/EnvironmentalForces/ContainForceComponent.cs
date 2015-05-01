@@ -1,5 +1,4 @@
-﻿using Quelea.Util;
-using Rhino.Geometry;
+﻿using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
 namespace Quelea
@@ -17,16 +16,9 @@ namespace Quelea
 
     protected override Vector3d CalcForce()
     {
-      Vector3d desired = new Vector3d();
-      if (environment != null)
-      {
-        desired = environment.AvoidEdges(agent, visionRadius);
-        if (!desired.IsZero)
-        {
-          desired.Unitize();
-          desired = desired * agent.MaxSpeed;
-        }
-      }
+      Vector3d desired = environment.AvoidEdges(agent, agent.VisionRadius*visionRadiusMultiplier);
+      desired.Unitize();
+      desired = desired * agent.MaxSpeed;
       return desired;
     }
   }

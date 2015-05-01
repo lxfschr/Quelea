@@ -507,13 +507,13 @@
     <value>R</value>
   </data>
   <data name="visionRadiusMultiplierDescription" xml:space="preserve">
-    <value>The factor by which the Agent's Vision Radius will be multiplied by around which the Agent will see other particles.</value>
+    <value>The factor by which the Agent's Vision Radius will be multiplied by. The result will determine how far out the Agent will see other neighbors.</value>
   </data>
   <data name="visionRadiusMultiplierDefault" type="System.Double, mscorlib">
     <value>1</value>
   </data>
   <data name="visionRadiusMultiplierErrorMessage" xml:space="preserve">
-    <value>Vision Radius Multiplier must be between 0 and 1.</value>
+    <value>Vision Radius Multiplier must be between 0.0 and 1.0.</value>
   </data>
   <data name="containForceGuid" xml:space="preserve">
     <value>5a6a85be-31d7-47de-bc3b-99a0caf5bcff</value>
@@ -1058,5 +1058,17 @@
   </data>
 	<data name="utilitySubcategoryName" xml:space="preserve">
     <value>Utility</value>
+  </data>
+	<data name="visionAngleMultiplierDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+		<value>1</value>
+	</data>
+	<data name="multiplierName" xml:space="preserve">
+    <value>Multiplier</value>
+  </data>
+	<data name="multiplierNickname" xml:space="preserve">
+    <value>M</value>
+  </data>
+	<data name="visionAngleMultiplierErrorMessage" xml:space="preserve">
+    <value>Vision Angle Multiplier must be between 0.0 and 1.0.</value>
   </data>
 </root>
