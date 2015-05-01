@@ -10,6 +10,7 @@ namespace Quelea
   {
     private double weightMultiplier;
     protected bool crossed;
+    protected double sensorLeftValue, sensorRightValue;
     /// <summary>
     /// Initializes a new instance of the AbstractParticleForceComponent class.
     /// </summary>
@@ -45,7 +46,8 @@ namespace Quelea
       // Output parameters do not have default values, but they too must have the correct access type.
       pManager.AddGenericParameter("Force", RS.forceNickname,
                                    "The resulting force vector for debugging purposes.", GH_ParamAccess.item);
-
+      pManager.AddNumberParameter("SL", "SL", "SL", GH_ParamAccess.item);
+      pManager.AddNumberParameter("SR", "SR", "SR", GH_ParamAccess.item);
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
       //pManager.HideParameter(1);
@@ -79,6 +81,8 @@ namespace Quelea
 
       Vector3d force = Run();
       da.SetData(nextOutputIndex++, force);
+      da.SetData(nextOutputIndex++, sensorLeftValue);
+      da.SetData(nextOutputIndex++, sensorRightValue);
     }
 
     protected Vector3d Run()

@@ -9,7 +9,7 @@ namespace Quelea
   {
     private Point3d sourcePt;
     private double radius;
-    private double sensorLeftValue, sensorRightValue;
+    
     public SensePointForceComponent()
       : base("Sensory Point Force", "SensePt",
           "Sensory Point Force",
@@ -22,13 +22,6 @@ namespace Quelea
       base.RegisterInputParams(pManager);
       pManager.AddPointParameter(RS.pointName, RS.pointNickname, "The source point for the sensory field.", GH_ParamAccess.item, Point3d.Origin);
       pManager.AddNumberParameter("Radius", "R", "The radius of the range of the sensory field falloff.", GH_ParamAccess.item, 10);
-    }
-
-    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
-    {
-      base.RegisterOutputParams(pManager);
-      pManager.AddNumberParameter("SL", "SL", "SL", GH_ParamAccess.item);
-      pManager.AddNumberParameter("SR", "SR", "SR", GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

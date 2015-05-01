@@ -7,7 +7,6 @@ namespace Quelea
 {
   public class SenseImageForceComponent : AbstractVehicleForceComponent
   {
-    private double sensorLeftValue, sensorRightValue;
     private Bitmap bitmap;
     public SenseImageForceComponent()
       : base("Sensory Field Force", "SenseField",
@@ -22,25 +21,11 @@ namespace Quelea
       pManager.AddGenericParameter("Bitmap Image", "I", "An image from which the brightness values will be used to steer the Vehicle. Ideally, this will be a grayscale somewhat blurry image.", GH_ParamAccess.item);
     }
 
-    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
-    {
-      base.RegisterOutputParams(pManager);
-      pManager.AddNumberParameter("SL", "SL", "SL", GH_ParamAccess.item);
-      pManager.AddNumberParameter("SR", "SR", "SR", GH_ParamAccess.item);
-    }
-
     protected override bool GetInputs(IGH_DataAccess da)
     {
       if (!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref bitmap)) return false;
       return true;
-    }
-
-    protected override void SetOutputs(IGH_DataAccess da)
-    {
-      base.SetOutputs(da);
-      da.SetData(nextOutputIndex++, sensorLeftValue);
-      da.SetData(nextOutputIndex++, sensorRightValue);
     }
 
     protected override Vector3d CalcForce()
