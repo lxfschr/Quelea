@@ -44,31 +44,13 @@ namespace Quelea
       da.SetData(nextOutputIndex++, sensorRightValue);
     }
 
-    protected override Vector3d CalcForce()
+    protected override void GetSensorReadings()
     {
       sourcePt = vehicle.Environment.MapTo2D(sourcePt);
-      Point3d sensorLeftPos = vehicle.GetPartPosition(vehicle.BodySize, RS.HALF_PI);
-      Point3d sensorRightPos = vehicle.GetPartPosition(vehicle.BodySize, -RS.HALF_PI);
       sensorLeftValue = sensorLeftPos.DistanceTo(sourcePt);
       sensorRightValue = sensorRightPos.DistanceTo(sourcePt);
       sensorLeftValue = Number.Map(sensorLeftValue, 0, radius, 0, 1, false);
       sensorRightValue = Number.Map(sensorRightValue, 0, radius, 0, 1, false);
-      double wheelDiff;
-      if (crossed)
-      {
-        vehicle.SetSpeedChanges(sensorRightValue, sensorLeftValue);
-        wheelDiff = sensorRightValue * vehicle.WheelRadius - sensorLeftValue * vehicle.WheelRadius;
-      }
-      else
-      {
-        vehicle.SetSpeedChanges(sensorLeftValue, sensorRightValue);
-        wheelDiff = sensorLeftValue * vehicle.WheelRadius - sensorRightValue * vehicle.WheelRadius;
-      }
-      double angle = wheelDiff / vehicle.BodySize;
-      Vector3d desired = vehicle.Velocity;
-      desired.Rotate(angle, vehicle.Orientation.ZAxis);
-
-      return desired;
     }
   }
 }

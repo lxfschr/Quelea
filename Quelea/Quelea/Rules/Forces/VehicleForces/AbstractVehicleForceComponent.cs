@@ -11,6 +11,7 @@ namespace Quelea
     private double weightMultiplier;
     protected bool crossed;
     protected double sensorLeftValue, sensorRightValue;
+    protected Point3d sensorLeftPos, sensorRightPos;
     /// <summary>
     /// Initializes a new instance of the AbstractParticleForceComponent class.
     /// </summary>
@@ -67,7 +68,8 @@ namespace Quelea
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Weight multiplier must be between 0.0 and 1.0.");
         return false;
       }
-
+      sensorLeftPos = vehicle.GetPartPosition(vehicle.BodySize, RS.HALF_PI);
+      sensorRightPos = vehicle.GetPartPosition(vehicle.BodySize, -RS.HALF_PI);
       return true;
     }
 
@@ -81,15 +83,24 @@ namespace Quelea
 
     protected Vector3d Run()
     {
-      Vector3d force = CalcForce();
-      return ApplyForce(force);
+      GetSensorReadings();
+      double wheelDiff;
+      if (crossed)
+      {
+        vehicle.SetSpeedChanges(sensorRightValue, sensorLeftValue);
+        wheelDiff = sensorRightValue * vehicle.WheelRadius - sensorLeftValue * vehicle.WheelRadius;
+      }
+      else
+      {
+        vehicle.SetSpeedChanges(sensorLeftValue, sensorRightValue);
+        wheelDiff = sensorLeftValue * vehicle.WheelRadius - sensorRightValue * vehicle.WheelRadius;
+      }
+      double angle = wheelDiff / vehicle.BodySize;
+      Vector3d desired = vehicle.Velocity;
+      desired.Rotate(angle, vehicle.Orientation.ZAxis);
+      return vehicle.ApplySteeringForce(desired, weightMultiplier, apply);
     }
 
-    private Vector3d ApplyForce(Vector3d force)
-    {
-      return vehicle.ApplySteeringForce(force, weightMultiplier, apply);
-    }
-
-    protected abstract Vector3d CalcForce();
+    protected abstract void GetSensorReadings();
   }
 }
