@@ -75,6 +75,9 @@ namespace Quelea
       this.queleaSettings = queleaSettings;
       this.emitters = emitters;
       this.environment = environment;
+      //this.min = system.min;
+      //this.max = system.max;
+      //this.Quelea = system.Quelea;
       UpdateBounds();
       Quelea = UpdateDynamicSpatialDataStructure((IList<IQuelea>)system.Quelea.SpatialObjects);//new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IQuelea>)system.Quelea.SpatialObjects);
     }
@@ -114,24 +117,19 @@ namespace Quelea
     {
       min.X = min.Y = min.Z = Double.MaxValue;
       max.X = max.Y = max.Z = Double.MinValue;
-      //IList<Point3d> boundingPts = new List<Point3d>();
-      //BoundingBox bounds;
-      //foreach (AbstractEmitterType emitter in this.emitters)
-      //{
-      //  bounds = emitter.getBoundingBox();
-      //  this.min.X = bounds.Min.X < this.min.X ? bounds.Min.X : this.min.X;
-      //  this.min.Y = bounds.Min.Y < this.min.Y ? bounds.Min.Y : this.min.Y;
-      //  this.min.Z = bounds.Min.Z < this.min.Z ? bounds.Min.Z : this.min.Z;
-      //  this.max.X = bounds.Max.X > this.max.X ? bounds.Max.X : this.max.X;
-      //  this.max.Y = bounds.Max.Y > this.max.Y ? bounds.Max.Y : this.max.Y;
-      //  this.max.Z = bounds.Max.Z > this.max.Z ? bounds.Max.Z : this.max.Z;
-      //}
-      if (Quelea == null || Quelea.Count == 0)
+      IList<Point3d> boundingPts = new List<Point3d>();
+      BoundingBox bounds;
+      foreach (AbstractEmitterType emitter in this.emitters)
       {
-        min.X = min.Y = min.Z = 0;
-        max.X = max.Y = max.Z = 0;
+        bounds = emitter.GetBoundingBox();
+        this.min.X = bounds.Min.X < this.min.X ? bounds.Min.X : this.min.X;
+        this.min.Y = bounds.Min.Y < this.min.Y ? bounds.Min.Y : this.min.Y;
+        this.min.Z = bounds.Min.Z < this.min.Z ? bounds.Min.Z : this.min.Z;
+        this.max.X = bounds.Max.X > this.max.X ? bounds.Max.X : this.max.X;
+        this.max.Y = bounds.Max.Y > this.max.Y ? bounds.Max.Y : this.max.Y;
+        this.max.Z = bounds.Max.Z > this.max.Z ? bounds.Max.Z : this.max.Z;
       }
-      else
+      if (Quelea != null && Quelea.Count != 0)
       {
         foreach (IQuelea quelea in Quelea)
         {
@@ -143,12 +141,17 @@ namespace Quelea
           max.Z = quelea.Position.Z > max.Z ? quelea.Position.Z : max.Z;
         }
       }
+      if (min.X.Equals(Double.MinValue))
+      {
+        min.X = min.Y = min.Z = 0;
+        max.X = max.Y = max.Z = 0;
+      }
     }
 
     public void Run()
     {
-      UpdateBounds();
-      Quelea.UpdateDatastructure(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IQuelea>)Quelea.SpatialObjects);
+      //UpdateBounds();
+      //Quelea.UpdateDatastructure(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IQuelea>)Quelea.SpatialObjects);
       IList<IQuelea> toRemove = new List<IQuelea>();
       foreach (IQuelea quelea in Quelea)
       {

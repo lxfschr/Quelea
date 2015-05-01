@@ -45,6 +45,7 @@ namespace Quelea
       else
       {
         this.min.X = min.X;
+        this.max.X = max.X;
       }
       if (min.Y.Equals(max.Y))
       {
@@ -54,6 +55,7 @@ namespace Quelea
       else
       {
         this.min.Y = min.Y;
+        this.max.Y = max.Y;
       }
       if (min.Z.Equals(max.Z))
       {
@@ -63,6 +65,7 @@ namespace Quelea
       else
       {
         this.min.Z = min.Z;
+        this.max.Z = max.Z;
       }
     }
 

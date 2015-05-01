@@ -126,6 +126,11 @@ namespace Quelea
       float z = (float)box.Center.Z;
       Vector3 initialWorldPos = new Vector3(x, y, z);
       this.octTree = new PointOctree<T>(initialWorldSize, initialWorldPos, minNodeSize); // DK: these values matter!
+      foreach (T item in spatialObjects)
+      {
+        Point3d p = ((IPosition)item).GetPoint3D();
+        this.octTree.Add(item, new Vector3((float)p.X, (float)p.Y, (float)p.Z)); // DK: added
+      }
     }
   }
 }
