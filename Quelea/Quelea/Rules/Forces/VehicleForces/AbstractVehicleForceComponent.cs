@@ -9,7 +9,7 @@ namespace Quelea
   public abstract class AbstractVehicleForceComponent : AbstractVehicleRuleComponent
   {
     private double weightMultiplier;
-
+    protected bool crossed;
     /// <summary>
     /// Initializes a new instance of the AbstractParticleForceComponent class.
     /// </summary>
@@ -32,6 +32,8 @@ namespace Quelea
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickname, RS.weightMultiplierDescription,
         GH_ParamAccess.item, RS.weightMultiplierDefault);
+      pManager.AddBooleanParameter("Crossed?", "C", "If true, the sensors will affect the wheels on the opposite side. If false, a higher sensor reading on the left side will cause the left wheel to turn faster causing the vehicle to turn to its right. Generally, if the sensors are not crossed, then the vehicle will steer away from areas with high values.",
+        GH_ParamAccess.item, false);
     }
 
     /// <summary>
@@ -57,7 +59,7 @@ namespace Quelea
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(nextInputIndex++, ref weightMultiplier)) return false;
-
+      if (!da.GetData(nextInputIndex++, ref crossed)) return false;
       if (!(0.0 <= weightMultiplier && weightMultiplier <= 1.0))
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Weight multiplier must be between 0.0 and 1.0.");

@@ -10,7 +10,6 @@ namespace Quelea
     private Point3d sourcePt;
     private double radius;
     private double sensorLeftValue, sensorRightValue;
-    private bool crossed;
     public SensePointForceComponent()
       : base("Sensory Point Force", "SensePt",
           "Sensory Point Force",
@@ -23,8 +22,6 @@ namespace Quelea
       base.RegisterInputParams(pManager);
       pManager.AddPointParameter(RS.pointName, RS.pointNickname, "The source point for the sensory field.", GH_ParamAccess.item, Point3d.Origin);
       pManager.AddNumberParameter("Radius", "R", "The radius of the range of the sensory field falloff.", GH_ParamAccess.item, 10);
-      pManager.AddBooleanParameter("Crossed?", "C", "If true, the sensors will affect the wheels on the opposite side.",
-        GH_ParamAccess.item, false);
     }
 
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -39,7 +36,6 @@ namespace Quelea
       if (!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref sourcePt)) return false;
       if (!da.GetData(nextInputIndex++, ref radius)) return false;
-      if (!da.GetData(nextInputIndex++, ref crossed)) return false;
       if (radius < 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Radius must be positive.");

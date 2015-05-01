@@ -8,7 +8,6 @@ namespace Quelea
   public class SenseImageForceComponent : AbstractVehicleForceComponent
   {
     private double sensorLeftValue, sensorRightValue;
-    private bool crossed;
     private Bitmap bitmap;
     public SenseImageForceComponent()
       : base("Sensory Field Force", "SenseField",
@@ -21,8 +20,6 @@ namespace Quelea
     {
       base.RegisterInputParams(pManager);
       pManager.AddGenericParameter("Bitmap Image", "I", "An image from which the brightness values will be used to steer the Vehicle. Ideally, this will be a grayscale somewhat blurry image.", GH_ParamAccess.item);
-      pManager.AddBooleanParameter("Crossed?", "C", "If true, the sensors will affect the wheels on the opposite side. If false, a higher sensor reading on the left side will cause the left wheel to turn faster causing the vehicle to turn to its right. Generally, if the sensors are not crossed, then the vehicle will steer away from areas with high values.",
-        GH_ParamAccess.item, false);
     }
 
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -36,7 +33,6 @@ namespace Quelea
     {
       if (!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref bitmap)) return false;
-      if (!da.GetData(nextInputIndex++, ref crossed)) return false;
       return true;
     }
 
