@@ -17,7 +17,7 @@ namespace Quelea
     protected override bool Run()
     {
       bool ate = false;
-      foreach (IParticle neighbor in neighbors)
+      foreach (IQuelea neighbor in neighbors)
       {
         neighbor.Die();
         ate = true;

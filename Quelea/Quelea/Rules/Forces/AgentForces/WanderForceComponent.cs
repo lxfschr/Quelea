@@ -66,7 +66,7 @@ namespace Quelea
       da.SetData(nextOutputIndex++, targetPt);
     }
 
-    protected override Vector3d CalcForce()
+    protected override Vector3d CalculateDesiredVelocity()
     {
       Vector3d offsetVec = agent.Velocity;
       offsetVec.Unitize();

@@ -23,7 +23,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.vehicleName, RS.vehicleNickname + "/" + RS.queleaNickname, RS.vehicleDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.vehicleName, RS.vehicleNickname, RS.vehicleDescription, GH_ParamAccess.item);
     }
 
     /// <summary>

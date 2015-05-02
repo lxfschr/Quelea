@@ -57,23 +57,20 @@ namespace Quelea
       Lon = Util.Random.RandomDouble(-Math.PI / 2, Math.PI / 2);
     }
 
-    public Vector3d ApplySteeringForce(Vector3d force, double weightMultiplier, bool apply)
+    public override Vector3d ApplyDesiredVelocity(Vector3d desiredVelocity, double weightMultiplier)
     {
-      if (force.Equals(Vector3d.Zero))
+      if (desiredVelocity.Equals(Vector3d.Zero))
       {
         return Vector3d.Zero;
       }
       // Reynold's steering formula: steer = desired - velocity
-      force = force - Velocity;
+      desiredVelocity = desiredVelocity - Velocity;
 
       // Steering ability can be controlled by limiting the magnitude of the steering force.
-      force = Util.Vector.Limit(force, MaxForce);
-      force = force * weightMultiplier;
-      if (apply)
-      {
-        SteerAcceleration += force;
-      }
-      return force;
+      desiredVelocity = Util.Vector.Limit(desiredVelocity, MaxForce);
+      desiredVelocity = desiredVelocity * weightMultiplier;
+      SteerAcceleration += desiredVelocity;
+      return desiredVelocity;
     }
 
     public override void Run()

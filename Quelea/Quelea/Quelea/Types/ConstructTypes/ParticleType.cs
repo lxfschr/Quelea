@@ -127,15 +127,12 @@ namespace Quelea
       return Util.Vector.Vector2Point(Position3D, pt3D);
     }
 
-    public Vector3d ApplyForce(Vector3d force, double weightMultiplier, bool apply)
+    public virtual Vector3d ApplyDesiredVelocity(Vector3d desiredVelocity, double weightMultiplier)
     {
-      force = force / Mass;
-      force = force * weightMultiplier;
-      if (apply)
-      {
-        Acceleration += force;
-      }
-      return force;
+      desiredVelocity = desiredVelocity / Mass;
+      desiredVelocity = desiredVelocity * weightMultiplier;
+      Acceleration += desiredVelocity;
+      return desiredVelocity;
     }
 
     public void Die()

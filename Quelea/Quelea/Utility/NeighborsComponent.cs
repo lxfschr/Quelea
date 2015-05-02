@@ -35,8 +35,8 @@ namespace Quelea
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentToGetNeighborsFor, GH_ParamAccess.item);
       pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.queleaNetworkToSearch, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.visionRadiusName + RS.multiplierName, RS.visionRadiusNickname + " " + RS.multiplierNickname, RS.visionRadiusMultiplierDescription, GH_ParamAccess.item, RS.visionRadiusMultiplierDefault);
-      pManager.AddNumberParameter(RS.visionAngleName + RS.multiplierName, RS.visionAngleNickname + " " + RS.multiplierNickname, "The factor by which the Agent's Vision Angle will be multiplied. The result will be used to determine the angle from the velocity that the agent will be able to see neighbors.", GH_ParamAccess.item, RS.visionAngleMultiplierDefault);
+      pManager.AddNumberParameter(RS.visionRadiusName + " " + RS.multiplierName, RS.visionRadiusNickname + RS.multiplierNickname, RS.visionRadiusMultiplierDescription, GH_ParamAccess.item, RS.visionRadiusMultiplierDefault);
+      pManager.AddNumberParameter(RS.visionAngleName + " " + RS.multiplierName, RS.visionAngleNickname + RS.multiplierNickname, "The factor by which the Agent's Vision Angle will be multiplied. The result will be used to determine the angle from the velocity that the agent will be able to see neighbors.", GH_ParamAccess.item, RS.visionAngleMultiplierDefault);
       // If you want to change properties of certain parameters, 
       // you can use the pManager instance to access them by index:
       pManager[2].Optional = true;

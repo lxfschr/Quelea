@@ -35,7 +35,7 @@ namespace Quelea
       return true;
     }
 
-    protected override Vector3d CalcForce()
+    protected override Vector3d CalculateDesiredVelocity()
     {
       Vector3d nrml = environment.ClosestNormal(particle.Position3D);
       Vector3d drainVec = Vector3d.CrossProduct(nrml, Vector3d.ZAxis);

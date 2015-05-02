@@ -6,9 +6,9 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public abstract class AbstractParticleForceComponent : AbstractParticleRuleComponent
+  public abstract class AbstractParticleForceComponent : AbstractForceComponent
   {
-    private double weightMultiplier;
+    protected IParticle particle;
 
     /// <summary>
     /// Initializes a new instance of the AbstractParticleForceComponent class.
@@ -17,7 +17,6 @@ namespace Quelea
                                              Bitmap icon, String componentGuid)
       : base(name, nickname, description, RS.particleName + " " + RS.rulesName, icon, componentGuid)
     {
-      weightMultiplier = RS.weightMultiplierDefault;
     }
 
     /// <summary>
@@ -30,23 +29,7 @@ namespace Quelea
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddNumberParameter(RS.weightMultiplierName, RS.weightMultiplierNickname, RS.weightMultiplierDescription,
-        GH_ParamAccess.item, RS.weightMultiplierDefault);
-    }
-
-    /// <summary>
-    /// Registers all the output parameters for this component.
-    /// </summary>
-    protected override void RegisterOutputParams(GH_OutputParamManager pManager)
-    {
-      // Use the pManager object to register your output parameters.
-      // Output parameters do not have default values, but they too must have the correct access type.
-      pManager.AddGenericParameter("Force", RS.forceNickname,
-                                   "The resulting force vector for debugging purposes.", GH_ParamAccess.item);
-
-      // Sometimes you want to hide a specific parameter from the Rhino preview.
-      // You can use the HideParameter() method as a quick way:
-      //pManager.HideParameter(1);
+      pManager.AddGenericParameter(RS.particleName, RS.particleNickname, RS.particleDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
@@ -56,28 +39,18 @@ namespace Quelea
 
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(nextInputIndex++, ref weightMultiplier)) return false;
+      if (!da.GetData(nextInputIndex++, ref particle)) return false;
 
       return true;
     }
 
-    protected override void SetOutputs(IGH_DataAccess da)
+    protected override Vector3d ApplyDesiredVelocity()
     {
-      Vector3d force = Run();
-      da.SetData(nextOutputIndex++, force);
+      if (apply)
+      {
+        return particle.ApplyDesiredVelocity(desiredVelocity, weightMultiplier);
+      }
+      return Vector3d.Zero;
     }
-
-    protected Vector3d Run()
-    {
-      Vector3d force = CalcForce();
-      return ApplyForce(force);
-    }
-
-    private Vector3d ApplyForce(Vector3d force)
-    {
-      return particle.ApplyForce(force, weightMultiplier, apply);
-    }
-
-    protected abstract Vector3d CalcForce();
   }
 }

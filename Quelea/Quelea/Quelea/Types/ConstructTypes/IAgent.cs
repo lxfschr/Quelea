@@ -14,6 +14,5 @@ namespace Quelea
     double VisionAngle { get; set; }
     double Lon { get; set; }
     double Lat { get; set; }
-    Vector3d ApplySteeringForce(Vector3d force, double weightMultiplier, bool apply);
   }
 }

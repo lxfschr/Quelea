@@ -66,10 +66,8 @@
     <Compile Include="Quelea\Types\AbstractTypeComponent.cs" />
     <Compile Include="Quelea\Types\ConstructTypes\AbstractConstructTypeComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructTypes\AbstractDeconstructTypeComponent.cs" />
-    <Compile Include="Rules\AbstractVehicleRuleComponent.cs" />
-    <Compile Include="Rules\AbstractAgentRuleComponent.cs" />
-    <Compile Include="Rules\AbstractParticleRuleComponent.cs" />
     <Compile Include="Rules\AbstractRuleComponent.cs" />
+    <Compile Include="Rules\Behaviors\AbstractBehaviorComponent.cs" />
     <Compile Include="Rules\Behaviors\AgentBehaviors\AbstractAgentBehaviorComponent.cs" />
     <Compile Include="Rules\Behaviors\ParticleBehaviors\AbstractParticleBehaviorComponent.cs" />
     <Compile Include="Rules\Behaviors\AgentBehaviors\BoidBehaviors\AbstractBoidBehaviorComponent.cs" />
@@ -79,6 +77,7 @@
     <Compile Include="Rules\Behaviors\ParticleBehaviors\EnvironmentalBehaviors\BounceContainBehaviorComponent.cs" />
     <Compile Include="Rules\Behaviors\ParticleBehaviors\SetVelocityBehaviorComponent.cs" />
     <Compile Include="Rules\Behaviors\ParticleBehaviors\InitialVelocityBehaviorComponent.cs" />
+    <Compile Include="Rules\Forces\AbstractForceComponent.cs" />
     <Compile Include="Rules\Forces\AgentForces\AbstractAgentForceComponent.cs" />
     <Compile Include="Rules\Forces\AgentForces\WanderForceComponent.cs" />
     <Compile Include="Rules\Forces\ParticleForces\AbstractParticleForceComponent.cs" />

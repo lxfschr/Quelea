@@ -13,7 +13,7 @@ namespace Quelea
     {
     }
 
-    protected override Vector3d CalcForce()
+    protected override Vector3d CalculateDesiredVelocity()
     {
       Vector3d desired = Util.Agent.Seek(agent, targetPt);
       return desired;

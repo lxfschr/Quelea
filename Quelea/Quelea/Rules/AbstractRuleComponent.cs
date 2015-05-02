@@ -15,7 +15,6 @@ namespace Quelea
                                      string subcategory, Bitmap icon, string componentGuid)
       : base(name, nickname, description, RS.pluginCategoryName, subcategory, icon, componentGuid)
     {
-      apply = true;
     }
 
     /// <summary>

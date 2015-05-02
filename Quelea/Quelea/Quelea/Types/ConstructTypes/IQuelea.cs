@@ -43,5 +43,7 @@ namespace Quelea
     bool Equals(Object obj);
 
     int GetHashCode();
+
+    void Die();
   }
 }

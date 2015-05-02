@@ -77,14 +77,14 @@ namespace Quelea
     public IWheel[] Wheels { get; set; }
     public double WheelRadius { get; set; }
 
-    public Vector3d ApplySensorForce(double leftWheelValue, double rightWheelValue, double weightMultiplier, bool apply)
+    public Vector3d CalculateSensorForce(double leftWheelValue, double rightWheelValue)
     {
       SetSpeedChanges(leftWheelValue, rightWheelValue);
       double wheelDiff = leftWheelValue * WheelRadius - rightWheelValue * WheelRadius;
       double angle = wheelDiff / BodySize;
       Vector3d desired = Velocity;
       desired.Rotate(angle, Orientation.ZAxis);
-      return ApplySteeringForce(desired, weightMultiplier, apply);
+      return desired;
     }
 
     public Point3d GetSensorPosition(double bodySize, double forwardOffset, double halfPi)

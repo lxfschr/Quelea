@@ -79,9 +79,9 @@ namespace Quelea
 
     private void PopulateLattice()
     {
-      this.cols = (int)Math.Ceiling((this.max.X - this.min.X) / this.binSize);
-      this.rows = (int)Math.Ceiling((this.max.Y - this.min.Y) / this.binSize);
-      this.layers = (int)Math.Ceiling((this.max.Z - this.min.Z) / this.binSize);
+      this.cols = (int)((this.max.X - this.min.X) / this.binSize) + 1;
+      this.rows = (int)((this.max.Y - this.min.Y) / this.binSize) + 1;
+      this.layers = (int)((this.max.Z - this.min.Z) / this.binSize) + 1;
 
       //Initialize lattice as 3D array of empty LinkedLists
       this.lattice = new LinkedList<T>[cols][][];

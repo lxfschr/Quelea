@@ -14,7 +14,7 @@ namespace Quelea
     {
     }
 
-    protected override Vector3d CalcForce()
+    protected override Vector3d CalculateDesiredVelocity()
     {
       Vector3d desired = new Vector3d();
       int count = 0;

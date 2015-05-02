@@ -10,7 +10,7 @@ namespace Quelea
     Point3d GetWheelPosition(double gapSize, double rotation);
     void SetSpeedChanges(double leftValue, double rightValue);
 
-    Vector3d ApplySensorForce(double leftWheelValue, double rightWheelValue, double weightMultiplier, bool apply);
+    Vector3d CalculateSensorForce(double leftWheelValue, double rightWheelValue);
     Point3d GetSensorPosition(double bodySize, double forwardOffset, double halfPi);
   }
 

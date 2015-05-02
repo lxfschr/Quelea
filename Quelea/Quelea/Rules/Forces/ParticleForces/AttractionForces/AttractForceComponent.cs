@@ -61,7 +61,7 @@ namespace Quelea
       return true;
     }
 
-    protected override Vector3d CalcForce()
+    protected override Vector3d CalculateDesiredVelocity()
     {
       targetPt = particle.Environment.MapTo2D(targetPt);
       Vector3d force = Util.Vector.Vector2Point(particle.Position, targetPt);

@@ -30,7 +30,7 @@ namespace Quelea
       return true;
     }
 
-    protected override Vector3d CalcForce()
+    protected override Vector3d CalculateDesiredVelocity()
     {
       Vector3d desired = Util.Vector.Vector2Point(agent.Position, targetPt);
       double d = desired.Length;

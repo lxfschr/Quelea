@@ -21,7 +21,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickname + "/" + RS.queleaNickname, RS.agentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentDescription, GH_ParamAccess.item);
     }
 
     /// <summary>

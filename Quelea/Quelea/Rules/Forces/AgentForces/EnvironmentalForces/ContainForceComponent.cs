@@ -14,7 +14,7 @@ namespace Quelea
     {
     }
 
-    protected override Vector3d CalcForce()
+    protected override Vector3d CalculateDesiredVelocity()
     {
       Vector3d desired = environment.AvoidEdges(agent, agent.VisionRadius*visionRadiusMultiplier);
       desired.Unitize();

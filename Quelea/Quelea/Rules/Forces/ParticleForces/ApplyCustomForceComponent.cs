@@ -28,7 +28,7 @@ namespace Quelea
       return true;
     }
 
-    protected override Vector3d CalcForce()
+    protected override Vector3d CalculateDesiredVelocity()
     {
       return vec;
     }

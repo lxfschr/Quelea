@@ -14,7 +14,6 @@ namespace Quelea
                                             Bitmap icon, string componentGuid)
       : base(name, nickname, description, icon, componentGuid)
     {
-      neighbors = new SpatialCollectionAsList<IQuelea>();
     }
 
     /// <summary>
