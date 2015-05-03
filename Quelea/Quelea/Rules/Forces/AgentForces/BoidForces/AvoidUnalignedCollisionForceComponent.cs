@@ -8,7 +8,8 @@ namespace Quelea
 {
   public class AvoidUnalignedCollisionForceComponent : AbstractBoidForceComponent
   {
-    private double checkDistance, potentialCollisionDistanceThreshold, rotationAngleMultiplier;
+    private double minTimeToCollision;
+    private Point3d ourPositionAtNearestApproach, hisPositionAtNearestApproach;
     /// <summary>
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
@@ -21,21 +22,14 @@ namespace Quelea
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddNumberParameter("Check Distance", "D",
-        "The distance to project the agent and neighbors' future positions to check for potential collision.", GH_ParamAccess.item, RS.visionRadiusDefault);
-      pManager.AddNumberParameter("Potential Collision Distance Threshold", "T", "The distance from the neighbor's position plus their body size to say is a potential collision.",
-        GH_ParamAccess.item, RS.bodySizeDefault/2);
-      pManager.AddNumberParameter("Rotation Angle Mutliplier", "R",
-        "The number by which the angle of vector to the potential collision point will be rotated by.",
-        GH_ParamAccess.item, 0.5);
+      pManager.AddNumberParameter("Minumum Time To Collision", "T",
+        "The number of seconds of travel at the Agent's current velocity that the Agent will predict its position to avoid collisions.", GH_ParamAccess.item, RS.visionRadiusDefault);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
     {
       if (!base.GetInputs(da)) return false;
-      if (!da.GetData(nextInputIndex++, ref checkDistance)) return false;
-      if (!da.GetData(nextInputIndex++, ref potentialCollisionDistanceThreshold)) return false;
-      if (!da.GetData(nextInputIndex++, ref rotationAngleMultiplier)) return false;
+      if (!da.GetData(nextInputIndex++, ref minTimeToCollision)) return false;
       return true;
     }
 
@@ -45,53 +39,135 @@ namespace Quelea
     // http://www.red3d.com/cwr/steer/Unaligned.html
     protected override Vector3d CalculateDesiredVelocity()
     {
-      Vector3d desired = Vector3d.Zero;
-      Vector3d forward = agent.Velocity;
-      forward.Unitize();
-      double minDistanceSoFar = Double.MaxValue;
+      double steer = 0;
 
-      // Determine which neighbor presents the most 
-      // immediate threat for collision.
-      foreach (IQuelea neighbor in neighbors)
+      IParticle threat = null;
+
+      // Time (in seconds) until the most immediate collision threat found
+      // so far.  Initial value is a threshold: don't look more than this
+      // many frames into the future.
+      double minTime = minTimeToCollision;
+
+      // xxx solely for annotation
+      Point3d xxxThreatPositionAtNearestApproach = Point3d.Unset;
+      Point3d xxxOurPositionAtNearestApproach = Point3d.Unset;
+
+      // for each of the other vehicles, determine which (if any)
+      // pose the most immediate threat of collision.
+      foreach (IParticle neighbor in neighbors)
       {
-        // Predict neighbor's future position.
-        Point3d neighborFuturePosition = neighbor.Position;
-        Vector3d neighborForward = neighbor.Velocity;
-        neighborForward.Unitize();
-        neighborFuturePosition += neighborForward * checkDistance;
-
-        // Get the vector to the neighbors future position.
-        Vector3d vectorToNeighborFuturePosition = Vector.Vector2Point(agent.Position, neighborFuturePosition);
-
-        // Check to see if they might collide in the future.
-        // (i.e. the future position is in front of the agent.
-        double dotProduct = Vector.DotProduct(vectorToNeighborFuturePosition, forward);
-        if (dotProduct > 0) // They might collide in the future.
+        if (neighbor != agent)
         {
-          // Cast a ray in the direction of current velocity with a length of checkDistance.
-          Vector3d ray = forward;
-          ray *= checkDistance;
-          Vector3d projection = forward;
-          projection *= dotProduct;
+          // avoid when future positions are this close (or less)
+          double collisionDangerThreshold = agent.BodySize / 2 + neighbor.BodySize / 2;
 
-          Vector3d projectionToNeighborFuturePosition = Vector.Vector2Point(vectorToNeighborFuturePosition, projection);
+          // predicted time until nearest approach of "this" and "other"
+          double time = PredictNearestApproachTime(neighbor);
 
-          double distance = projectionToNeighborFuturePosition.Length;
-
-          if (distance < agent.BodySize / 2 + neighbor.BodySize/2 + potentialCollisionDistanceThreshold && projection.Length < ray.Length && distance < minDistanceSoFar)
+          // If the time is in the future, sooner than any other
+          // threatened collision...
+          if ((time >= 0) && (time < minTime))
           {
-            minDistanceSoFar = distance;
-            desired = agent.Velocity;
-            desired.Unitize();
-            desired *= agent.MaxSpeed;
-            desired.Rotate(rotationAngleMultiplier * Math.PI, Vector3d.ZAxis); // Rotate it laterally from the collision site.
-            desired *= 1 - projection.Length / ray.Length; // scale it based on the distance between the position and collision site.
+
+            // if the two will be close enough to collide,
+            // make a note of it
+            if (ComputeNearestApproachPositions(neighbor, time) < collisionDangerThreshold)
+            {
+              //D = neighbor.Position;
+              minTime = time;
+              threat = neighbor;
+              xxxThreatPositionAtNearestApproach = hisPositionAtNearestApproach;
+              xxxOurPositionAtNearestApproach = ourPositionAtNearestApproach;
+            }
           }
         }
-
       }
-      //Seek the average position of our neighbors.
-      return desired;
+      // if a potential collision was found, compute steering to avoid
+      if (threat != null)
+      {
+        // parallel: +1, perpendicular: 0, anti-parallel: -1
+        double parallelness = Util.Vector.DotProduct(agent.Forward, threat.Forward);
+        double angle = 0.707;
+        if (parallelness < -angle)
+        {
+          // anti-parallel "head on" paths:
+          // steer away from future threat position
+          Vector3d offset = xxxThreatPositionAtNearestApproach - agent.Position;
+          double sideDot = Util.Vector.DotProduct(offset, agent.Side);
+          steer = (sideDot > 0) ? -1.0 : 1.0;
+        }
+        else
+        {
+          if (parallelness > angle)
+          {
+            // parallel paths: steer away from threat
+            Vector3d offset = threat.Position - agent.Position;
+            double sideDot = Util.Vector.DotProduct(offset, agent.Side);
+            steer = (sideDot > 0) ? -1.0 : 1.0;
+          }
+          else
+          {
+            // perpendicular paths: steer behind threat
+            // (only the slower of the two does this)
+            if (threat.SquareSpeed <= agent.SquareSpeed)
+            {
+              double sideDot = Util.Vector.DotProduct(agent.Side, threat.Velocity);
+              steer = (sideDot > 0) ? -1.0 : 1.0;
+            }
+          }
+        }
+      }
+
+      return agent.Side * steer * agent.MaxSpeed;
+    }
+
+    // Given two vehicles, based on their current positions and velocities,
+    // determine the time until nearest approach
+    //
+    // XXX should this return zero if they are already in contact?
+    private double PredictNearestApproachTime(IParticle neighbor)
+    {
+      // imagine we are at the origin with no velocity,
+      // compute the relative velocity of the other vehicle
+      Vector3d agentVelocity = agent.Velocity;
+      Vector3d neighborVelocity = neighbor.Velocity;
+      Vector3d relativeVelocity = neighborVelocity - agentVelocity;
+      double relativeSpeed = relativeVelocity.Length;
+
+      // for parallel paths, the vehicles will always be at the same distance,
+      // so return 0 (aka "now") since "there is no time like the present"
+      if (relativeSpeed == 0) return 0;
+
+      // Now consider the path of the other vehicle in this relative
+      // space, a line defined by the relative position and velocity.
+      // The distance from the origin (our vehicle) to that line is
+      // the nearest approach.
+
+      // Take the unit tangent along the other vehicle's path
+      Vector3d relativeTangent = relativeVelocity / relativeSpeed;
+
+      // find distance from its path to origin (compute offset from
+      // other to us, find length of projection onto path)
+      Vector3d relativePosition = agent.Position - neighbor.Position;
+      double projection = Util.Vector.DotProduct(relativeTangent, relativePosition);
+
+      return projection / relativeSpeed;
+    }
+
+    private double ComputeNearestApproachPositions(IParticle neighbor, double time)
+    {
+
+      Vector3d agentTravel = agent.Forward * agent.Speed * time;
+      Vector3d neighborTravel = neighbor.Forward * neighbor.Speed * time;
+
+      Point3d agentFinal = agent.Position + agentTravel;
+      Point3d neighborFinal = neighbor.Position + neighborTravel;
+
+      // xxx for annotation
+      ourPositionAtNearestApproach = agentFinal;
+      hisPositionAtNearestApproach = neighborFinal;
+
+      return Util.Vector.Vector2Point(agentFinal, neighborFinal).Length;
     }
   }
 }

@@ -80,6 +80,27 @@ namespace Quelea
 
     public Plane Orientation { get; set; }
     public Vector3d Up { get; set; }
+
+    public Vector3d Forward
+    {
+      get { return Orientation.ZAxis; }
+    }
+
+    public Vector3d Side
+    {
+      get { return Orientation.YAxis; }
+    }
+
+    public double Speed
+    {
+      get { return Velocity.Length; }
+    }
+
+    public double SquareSpeed
+    {
+      get { return Velocity.SquareLength; }
+    }
+
     public Point3d Position { get; set; }
     public Vector3d Velocity { get; set; }
     public Vector3d VelocityMin { get; set; }
