@@ -57,7 +57,7 @@ namespace Quelea
       Lon = Util.Random.RandomDouble(-Math.PI / 2, Math.PI / 2);
     }
 
-    public override Vector3d ApplyDesiredVelocity(Vector3d desiredVelocity, double weightMultiplier)
+    public Vector3d ApplyDesiredVelocity(Vector3d desiredVelocity, double weightMultiplier)
     {
       if (desiredVelocity.Equals(Vector3d.Zero))
       {

@@ -14,5 +14,6 @@ namespace Quelea
     double VisionAngle { get; set; }
     double Lon { get; set; }
     double Lat { get; set; }
+    Vector3d ApplyDesiredVelocity(Vector3d desiredVelocity, double weightMultiplier);
   }
 }

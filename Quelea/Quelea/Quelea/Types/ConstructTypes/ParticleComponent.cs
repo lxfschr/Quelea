@@ -26,13 +26,13 @@ namespace Quelea
       : base(RS.particleSettingsName, RS.particleSettingNickname,
           RS.particleSettingsDescription, RS.icon_constructParticle, "dd2877f8-e247-4a67-9802-3c68c968779d")
     {
-      velocityMin = new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault);
-      velocityMax = new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault);
-      acceleration = Vector3d.Zero;
-      lifespan = RS.lifespanDefault;
-      mass = RS.massDefault;
-      bodySize = RS.bodySizeDefault;
-      historyLength = RS.historyLenDefault;
+      //velocityMin = new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault);
+      //velocityMax = new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault);
+      //acceleration = Vector3d.Zero;
+      //lifespan = RS.lifespanDefault;
+      //mass = RS.massDefault;
+      //bodySize = RS.bodySizeDefault;
+      //historyLength = RS.historyLenDefault;
     }
 
     /// <summary>

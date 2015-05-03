@@ -48,7 +48,7 @@ namespace Quelea
     {
       if (apply)
       {
-        return particle.ApplyDesiredVelocity(desiredVelocity, weightMultiplier);
+        return particle.ApplyForce(desiredVelocity, weightMultiplier);
       }
       return Vector3d.Zero;
     }

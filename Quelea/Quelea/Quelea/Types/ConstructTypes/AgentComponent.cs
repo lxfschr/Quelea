@@ -17,11 +17,11 @@ namespace Quelea
       : base(RS.constructAgentName, RS.constructAgentNickname,
           RS.constructAgentDescription, RS.icon_constructAgent, RS.constructAgentComponentGuid)
     {
-      particle = new ParticleType();
-      maxSpeed = RS.maxSpeedDefault;
-      maxForce = RS.maxForceDefault;
-      visionRadius = RS.visionRadiusDefault;
-      visionAngle = RS.visionAngleDefault;
+      //particle = new ParticleType();
+      //maxSpeed = RS.maxSpeedDefault;
+      //maxForce = RS.maxForceDefault;
+      //visionRadius = RS.visionRadiusDefault;
+      //visionAngle = RS.visionAngleDefault;
     }
 
     /// <summary>

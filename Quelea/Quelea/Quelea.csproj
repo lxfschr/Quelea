@@ -66,6 +66,8 @@
     <Compile Include="Quelea\Types\AbstractTypeComponent.cs" />
     <Compile Include="Quelea\Types\ConstructTypes\AbstractConstructTypeComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructTypes\AbstractDeconstructTypeComponent.cs" />
+    <Compile Include="Quelea\Types\DeconstructTypes\GetVelocityComponent.cs" />
+    <Compile Include="Quelea\Types\DeconstructTypes\GetPositionComponent.cs" />
     <Compile Include="Rules\AbstractRuleComponent.cs" />
     <Compile Include="Rules\Behaviors\AbstractBehaviorComponent.cs" />
     <Compile Include="Rules\Behaviors\AgentBehaviors\AbstractAgentBehaviorComponent.cs" />

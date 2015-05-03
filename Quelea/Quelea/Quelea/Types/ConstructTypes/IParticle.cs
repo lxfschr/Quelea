@@ -10,6 +10,6 @@ namespace Quelea
 
     bool InitialVelocitySet { get; set; }
 
-    Vector3d ApplyDesiredVelocity(Vector3d desiredVelocity, double weightMultiplier);
+    Vector3d ApplyForce(Vector3d force, double weightMultiplier);
   }
 }
