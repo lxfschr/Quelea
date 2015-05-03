@@ -182,7 +182,7 @@ namespace Quelea
 
     public void Populate()
     {
-      Quelea.Clear();
+      Quelea = MakeDynamicSpatialDataStructure();
       foreach (AbstractEmitterType emitter in emitters)
       {
         if (emitter.ContinuousFlow) continue;

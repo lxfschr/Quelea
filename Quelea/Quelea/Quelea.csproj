@@ -83,6 +83,7 @@
     <Compile Include="Rules\Forces\AgentForces\AbstractAgentForceComponent.cs" />
     <Compile Include="Rules\Forces\AgentForces\AvoidObstableForces\AbstractAvoidObstacleForceComponent.cs" />
     <Compile Include="Rules\Forces\AgentForces\AvoidObstableForces\AvoidObstacleForceComponent.cs" />
+    <Compile Include="Rules\Forces\AgentForces\BoidForces\AvoidUnalignedCollisionForceComponent.cs" />
     <Compile Include="Rules\Forces\AgentForces\WanderForceComponent.cs" />
     <Compile Include="Rules\Forces\ParticleForces\AbstractParticleForceComponent.cs" />
     <Compile Include="Rules\Forces\ParticleForces\ApplyCustomForceComponent.cs" />

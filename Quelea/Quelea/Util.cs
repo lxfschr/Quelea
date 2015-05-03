@@ -147,6 +147,11 @@ namespace Quelea
       {
         return to - from;
       }
+
+      public static Vector3d Vector2Point(Vector3d from, Vector3d to)
+      {
+        return to - from;
+      }
     }
 
     public static class String
