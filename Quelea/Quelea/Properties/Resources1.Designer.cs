@@ -2044,7 +2044,7 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to A plane representing the orientation of the vehicle in the world..
+        ///   Looks up a localized string similar to A plane representing the orientation of the particle in the world..
         /// </summary>
         internal static string orientationDescription {
             get {
@@ -2326,9 +2326,9 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized string similar to P.
         /// </summary>
-        internal static string positionNickName {
+        internal static string positionNickname {
             get {
-                return ResourceManager.GetString("positionNickName", resourceCulture);
+                return ResourceManager.GetString("positionNickname", resourceCulture);
             }
         }
         

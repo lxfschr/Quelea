@@ -34,26 +34,10 @@ namespace Quelea
     public VehicleType(IVehicle v, Point3d emittionPt, AbstractEnvironmentType environment)
       : base(v, emittionPt, environment)
     {
-      Orientation = new Plane(Position3D, v.Orientation.ZAxis);
-      UpdateOrientation();
       WheelRadius = v.WheelRadius;
       Wheels = new IWheel[2];
       Wheels[(int)WheelPositions.LeftRear] = new Wheel(GetWheelPosition(BodySize, RS.HALF_PI), WheelRadius, 0);
       Wheels[(int)WheelPositions.RightRear] = new Wheel(GetWheelPosition(BodySize, -RS.HALF_PI), WheelRadius, 0);
-    }
-
-    private void UpdateOrientation()
-    {
-      Plane orientation = Orientation;
-      orientation.Origin = Position3D;
-      double angle = Vector3d.VectorAngle(Velocity, Orientation.XAxis, Orientation);
-
-      orientation.Rotate(angle, Orientation.ZAxis);
-      if (!Util.Number.ApproximatelyEqual(Vector3d.VectorAngle(Velocity, Orientation.XAxis, Orientation), 0, Constants.AbsoluteTolerance))
-      {
-        orientation.Rotate(-2*angle, Orientation.ZAxis);
-      }
-      Orientation = orientation;
     }
 
     public Point3d GetWheelPosition(double gapSize, double rotation)
@@ -73,7 +57,6 @@ namespace Quelea
       Wheels[(int) WheelPositions.RightRear].SetSpeedChange(rightValue);
     }
 
-    public Plane Orientation { get; set; }
     public IWheel[] Wheels { get; set; }
     public double WheelRadius { get; set; }
 
@@ -108,7 +91,7 @@ namespace Quelea
       }
 
       base.Run();
-      UpdateOrientation();
+      
       Wheels[(int)WheelPositions.LeftRear].Position = GetWheelPosition(BodySize, RS.HALF_PI);
       Wheels[(int)WheelPositions.RightRear].Position = GetWheelPosition(BodySize, -RS.HALF_PI);
     }

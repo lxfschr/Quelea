@@ -71,7 +71,7 @@ namespace Quelea
     public SystemType(List<IQuelea> queleaSettings, List<AbstractEmitterType> emitters, AbstractEnvironmentType environment, SystemType system)
     {
       timestep = system.timestep;
-      nextIndex = system.nextIndex;
+      //nextIndex = system.nextIndex;
       this.queleaSettings = queleaSettings;
       this.emitters = emitters;
       this.environment = environment;

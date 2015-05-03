@@ -1,8 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using System;
 using Grasshopper.Kernel;
+using Quelea.Util;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
-using System;
 
 namespace Quelea
 {
@@ -61,11 +61,11 @@ namespace Quelea
         neighborFuturePosition += neighborForward * checkDistance;
 
         // Get the vector to the neighbors future position.
-        Vector3d vectorToNeighborFuturePosition = Util.Vector.Vector2Point(agent.Position, neighborFuturePosition);
+        Vector3d vectorToNeighborFuturePosition = Vector.Vector2Point(agent.Position, neighborFuturePosition);
 
         // Check to see if they might collide in the future.
         // (i.e. the future position is in front of the agent.
-        double dotProduct = Util.Vector.DotProduct(vectorToNeighborFuturePosition, forward);
+        double dotProduct = Vector.DotProduct(vectorToNeighborFuturePosition, forward);
         if (dotProduct > 0) // They might collide in the future.
         {
           // Cast a ray in the direction of current velocity with a length of checkDistance.
@@ -74,7 +74,7 @@ namespace Quelea
           Vector3d projection = forward;
           projection *= dotProduct;
 
-          Vector3d projectionToNeighborFuturePosition = Util.Vector.Vector2Point(vectorToNeighborFuturePosition, projection);
+          Vector3d projectionToNeighborFuturePosition = Vector.Vector2Point(vectorToNeighborFuturePosition, projection);
 
           double distance = projectionToNeighborFuturePosition.Length;
 

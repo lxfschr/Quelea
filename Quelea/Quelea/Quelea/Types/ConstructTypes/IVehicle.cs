@@ -4,7 +4,6 @@ namespace Quelea
 {
   public interface IVehicle : IAgent
   {
-    Plane Orientation { get; set; }
     IWheel[] Wheels { get; set; }
     double WheelRadius { get; set; }
     Point3d GetWheelPosition(double gapSize, double rotation);

@@ -566,7 +566,7 @@
   <data name="velocityNickname" xml:space="preserve">
     <value>V</value>
   </data>
-  <data name="positionNickName" xml:space="preserve">
+  <data name="positionNickname" xml:space="preserve">
     <value>P</value>
   </data>
   <data name="positionDescription" xml:space="preserve">
@@ -1024,7 +1024,7 @@
     <value>O</value>
   </data>
   <data name="orientationDescription" xml:space="preserve">
-    <value>A plane representing the orientation of the vehicle in the world.</value>
+    <value>A plane representing the orientation of the particle in the world.</value>
   </data>
   <data name="icon_constructVehicle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_constructVehicle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

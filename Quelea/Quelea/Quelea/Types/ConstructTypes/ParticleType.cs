@@ -10,31 +10,29 @@ namespace Quelea
   {
     public ParticleType()
       : this(new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault), 
-             new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault), 
+             new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault), Vector3d.ZAxis,
              Vector3d.Zero, RS.lifespanDefault, RS.massDefault, RS.bodySizeDefault, RS.historyLenDefault)
     {
     }
 
-    public ParticleType(Vector3d velocityMin, Vector3d velocityMax, Vector3d acceleration,
+    // For Construct Particle Settings
+    public ParticleType(Vector3d velocityMin, Vector3d velocityMax, Vector3d up, Vector3d acceleration,
                         int lifespan, double mass, double bodySize,
                         int historyLength)
     {
-      HistoryLength = historyLength;
-      Position3DHistory = new CircularArray<Point3d>(HistoryLength);
       VelocityMin = velocityMin;
       VelocityMax = velocityMax;
-      Velocity3D = Util.Random.RandomVector(velocityMin, velocityMax);
+      Up = up;
       Acceleration = acceleration;
-      PreviousAcceleration3D = acceleration;
-      PreviousAcceleration = acceleration;
       Lifespan = lifespan;
       Mass = mass;
       BodySize = bodySize;
-      InitialVelocitySet = false;
+      HistoryLength = historyLength;
     }
 
+    // Copy Constructor
     public ParticleType(IParticle p)
-      : this(p.VelocityMin, p.VelocityMax, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
+      : this(p.VelocityMin, p.VelocityMax, p.Up, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
     {
       InitialVelocitySet = p.InitialVelocitySet;
       Position = p.Position;
@@ -44,21 +42,28 @@ namespace Quelea
       Position3D = p.Position3D;
       Velocity3D = p.Velocity3D;
       Acceleration3D = p.Acceleration3D;
-      Position3DHistory.Add(Position3D);
-      
+      Position3DHistory = p.Position3DHistory;
     }
 
     public ParticleType(IParticle p, Point3d emittionPt, AbstractEnvironmentType environment)
-      : this(p.VelocityMin, p.VelocityMax, p.Acceleration, p.Lifespan,
+      : this(p.VelocityMin, p.VelocityMax, p.Up, p.Acceleration, p.Lifespan,
              p.Mass, p.BodySize, p.HistoryLength)
     {
       Environment = environment;
       Position3D = emittionPt;
       Position = Environment.MapTo2D(emittionPt);
+      Velocity3D = Util.Random.RandomVector(VelocityMin, VelocityMax);
       Velocity = MapTo2D(Velocity3D);
       Acceleration = MapTo2D(Acceleration3D);
+      Orientation = SetOrientation();
+      Position3DHistory = new CircularArray<Point3d>(HistoryLength);
       Position3DHistory.Add(Position3D);
-      
+    }
+
+    private Plane SetOrientation()
+    {
+      Vector3d y = Vector3d.CrossProduct(Velocity, Up);
+      return new Plane(Position, Velocity, y);
     }
 
     private Vector3d MapTo2D(Vector3d vector3D)
@@ -73,7 +78,8 @@ namespace Quelea
       return vector2D;
     }
 
-
+    public Plane Orientation { get; set; }
+    public Vector3d Up { get; set; }
     public Point3d Position { get; set; }
     public Vector3d Velocity { get; set; }
     public Vector3d VelocityMin { get; set; }
@@ -109,14 +115,51 @@ namespace Quelea
       Point3d position3D = Position3D;
       position3D.Transform(Transform.Translation(Velocity3D));
       Position3D = position3D;
-
       Position3DHistory.Add(Position3D);
 
       PreviousAcceleration3D = Acceleration3D;
       PreviousAcceleration = Acceleration;
 
+      UpdateOrientation();
+
       Acceleration = Vector3d.Zero;
       Lifespan -= 1;
+    }
+
+    private void UpdateOrientation()
+    {
+      Plane orientation = Orientation;
+      orientation.Origin = Position3D;
+      if (Util.Number.ApproximatelyEqual(Velocity.SquareLength, 0, Constants.AbsoluteTolerance))
+      {
+        //orientation.Rotate(-RS.HALF_PI / 2, orientation.ZAxis);
+        Orientation = orientation;
+        return;
+      }
+      
+      
+      double angle = Vector3d.VectorAngle(Velocity, orientation.XAxis, orientation);
+
+      orientation.Rotate(angle, orientation.ZAxis);
+      if (!Util.Number.ApproximatelyEqual(Vector3d.VectorAngle(Velocity, orientation.XAxis, orientation), 0, Constants.AbsoluteTolerance))
+      {
+        orientation.Rotate(-2 * angle, orientation.ZAxis);
+      }
+      Plane pln = new Plane(orientation.Origin, orientation.XAxis, -orientation.ZAxis);
+      angle = Vector3d.VectorAngle(Velocity, orientation.XAxis, pln);
+      orientation.Rotate(angle, orientation.YAxis);
+      if (!Util.Number.ApproximatelyEqual(Vector3d.VectorAngle(Velocity, orientation.XAxis, pln), 0, Constants.AbsoluteTolerance))
+      {
+        orientation.Rotate(-2 * angle, orientation.YAxis);
+      }
+      //if (!Util.Number.ApproximatelyEqual(Vector3d.VectorAngle(Velocity, orientation.XAxis, pln), 0, Constants.AbsoluteTolerance))
+      //{
+      //  if (!Util.Number.ApproximatelyEqual(Vector3d.VectorAngle(Velocity, orientation.XAxis, pln), RS.TWO_PI, Constants.AbsoluteTolerance))
+      //  {
+      //    throw new ApplicationException("Plane not aligned.");
+      //  }
+      //}
+      Orientation = orientation;
     }
 
     private Vector3d MapTo3D(Vector3d vector2D)

@@ -6,7 +6,7 @@ namespace Quelea
 {
   public class ParticleComponent : AbstractConstructTypeComponent
   {
-
+    private Vector3d up;
     private Vector3d velocityMin, velocityMax;
 
     private Vector3d acceleration;
@@ -26,13 +26,6 @@ namespace Quelea
       : base(RS.particleSettingsName, RS.particleSettingNickname,
           RS.particleSettingsDescription, RS.icon_constructParticle, "dd2877f8-e247-4a67-9802-3c68c968779d")
     {
-      //velocityMin = new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault);
-      //velocityMax = new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault);
-      //acceleration = Vector3d.Zero;
-      //lifespan = RS.lifespanDefault;
-      //mass = RS.massDefault;
-      //bodySize = RS.bodySizeDefault;
-      //historyLength = RS.historyLenDefault;
     }
 
     /// <summary>
@@ -46,6 +39,9 @@ namespace Quelea
       pManager.AddVectorParameter("Maximum Initial Velocity", "MV",
         "The maximum initial velocity from which a random value will be taken.", GH_ParamAccess.item,
         new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault));
+      pManager.AddVectorParameter("Up Direction", "U",
+        "The up direction for the calculation of the initial orientation.", GH_ParamAccess.item,
+        Vector3d.ZAxis);
       pManager.AddVectorParameter(RS.accelerationName, RS.accelerationNickName, 
                                   RS.accelerationDescription, GH_ParamAccess.item, Vector3d.Zero);
       pManager.AddIntegerParameter(RS.lifespanName, RS.lifespanNickname, RS.lifespanDescription, GH_ParamAccess.item, RS.lifespanDefault);
@@ -68,6 +64,7 @@ namespace Quelea
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(nextInputIndex++, ref velocityMin)) return false;
       if (!da.GetData(nextInputIndex++, ref velocityMax)) return false;
+      if (!da.GetData(nextInputIndex++, ref up)) return false;
       if (!da.GetData(nextInputIndex++, ref acceleration)) return false;
       if (!da.GetData(nextInputIndex++, ref lifespan)) return false;
       if (!da.GetData(nextInputIndex++, ref mass)) return false;
@@ -80,6 +77,11 @@ namespace Quelea
       //  AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.lifespanErrorMessage);
       //  return;
       //}
+      if (up.Length.Equals(0))
+      {
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "The up direction length must be non-zero.");
+        return false;
+      }
       if (mass <= 0)
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.massErrorMessage);
@@ -102,7 +104,7 @@ namespace Quelea
     {
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      IParticle particle = new ParticleType(velocityMin, velocityMax, acceleration, lifespan, mass, bodySize, historyLength);
+      IParticle particle = new ParticleType(velocityMin, velocityMax, up, acceleration, lifespan, mass, bodySize, historyLength);
 
       // Finally assign the spiral to the output parameter.
       da.SetData(nextOutputIndex++, particle);

@@ -8,7 +8,7 @@ namespace Quelea
   {
    public AgentType()
      : this(new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault),
-            new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault),
+            new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault), Vector3d.ZAxis,
             Vector3d.Zero, RS.lifespanDefault, RS.massDefault, RS.bodySizeDefault, 
             RS.historyLenDefault, RS.maxSpeedDefault, RS.maxForceDefault, 
             RS.visionRadiusDefault, RS.visionAngleDefault)
@@ -20,8 +20,9 @@ namespace Quelea
     {
     }
 
+   //For Construct Agent Settings
     public AgentType(IParticle p, double maxSpeed, double maxForce, double visionRadius, double visionAngle)
-      : base(p.VelocityMin, p.VelocityMax, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
+      : base(p.VelocityMin, p.VelocityMax, p.Up, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
     {
       SteerAcceleration = Vector3d.Zero;
       MaxSpeed = maxSpeed;
@@ -44,10 +45,10 @@ namespace Quelea
       Lon = Util.Random.RandomDouble(-RS.HALF_PI, RS.HALF_PI);
     }
 
-    public AgentType(Vector3d velocityMin, Vector3d velocityMax, Vector3d acceleration,
+    public AgentType(Vector3d velocityMin, Vector3d velocityMax, Vector3d up, Vector3d acceleration,
                         int lifespan, double mass, double bodySize,
                         int historyLength, double maxSpeed, double maxForce, double visionRadius, double visionAngle)
-      : base(velocityMin, velocityMax, acceleration, lifespan, mass, bodySize, historyLength)
+      : base(velocityMin, velocityMax, up, acceleration, lifespan, mass, bodySize, historyLength)
     {
       MaxSpeed = maxSpeed;
       MaxForce = maxForce;
