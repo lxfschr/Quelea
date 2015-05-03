@@ -58,21 +58,17 @@ namespace Quelea
     private ISpatialCollection<IQuelea> UpdateDynamicSpatialDataStructure(IList<IQuelea> spatialObjects)
     {
       //return new SpatialCollectionAsList<IQuelea>(spatialObjects);
-      if (queleaSettings[0].GetType() == typeof(AgentType))
+      if (queleaSettings[0].GetType() == typeof(AgentType) || queleaSettings[0].GetType() == typeof(VehicleType))
       {
         IAgent agent = (AgentType)queleaSettings[0];
-        if (environment.GetType() == typeof(WorldEnvironmentType))
+        if (min.DistanceTo(max) <= agent.VisionRadius*2 || Quelea.Count <= 10)
         {
-          if (min.DistanceTo(max) <= agent.VisionRadius*2 || Quelea.Count <= 10)
-          {
-            return new SpatialCollectionAsList<IQuelea>(spatialObjects);
-          }
-          if(min.DistanceTo(max) <= agent.VisionRadius*10) {
-            return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius, spatialObjects);
-          }
-          return new SpatialCollectionAsOctTree<IQuelea>(min, max, spatialObjects);
+          return new SpatialCollectionAsList<IQuelea>(spatialObjects);
         }
-        return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius, spatialObjects);
+        if(min.DistanceTo(max) <= agent.VisionRadius*10) {
+          return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius, spatialObjects);
+        }
+        return new SpatialCollectionAsOctTree<IQuelea>(min, max, spatialObjects);
       }
       return new SpatialCollectionAsList<IQuelea>(spatialObjects);
     }
