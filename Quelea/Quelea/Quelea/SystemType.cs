@@ -63,7 +63,7 @@ namespace Quelea
         IAgent agent = (AgentType)queleaSettings[0];
         if (environment.GetType() == typeof(WorldEnvironmentType))
         {
-          if (min.Equals(max) || Quelea.Count <= 10)
+          if (min.DistanceTo(max) <= agent.VisionRadius*2 || Quelea.Count <= 10)
           {
             return new SpatialCollectionAsList<IQuelea>(spatialObjects);
           }
