@@ -38,6 +38,7 @@ namespace Quelea
 
     private ISpatialCollection<IQuelea> MakeDynamicSpatialDataStructure()
     {
+      return new SpatialCollectionAsList<IQuelea>();
       if (queleaSettings[0].GetType() == typeof(AgentType))
       {
         IAgent agent = (AgentType)queleaSettings[0];
@@ -56,13 +57,21 @@ namespace Quelea
 
     private ISpatialCollection<IQuelea> UpdateDynamicSpatialDataStructure(IList<IQuelea> spatialObjects)
     {
+      //return new SpatialCollectionAsList<IQuelea>(spatialObjects);
       if (queleaSettings[0].GetType() == typeof(AgentType))
       {
+        IAgent agent = (AgentType)queleaSettings[0];
         if (environment.GetType() == typeof(WorldEnvironmentType))
         {
+          if (min.Equals(max) || Quelea.Count <= 10)
+          {
+            return new SpatialCollectionAsList<IQuelea>(spatialObjects);
+          }
+          if(min.DistanceTo(max) <= agent.VisionRadius*10) {
+            return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius, spatialObjects);
+          }
           return new SpatialCollectionAsOctTree<IQuelea>(min, max, spatialObjects);
         }
-        IAgent agent = (AgentType)queleaSettings[0];
         return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius, spatialObjects);
       }
       return new SpatialCollectionAsList<IQuelea>(spatialObjects);
@@ -77,7 +86,7 @@ namespace Quelea
       this.environment = environment;
       //this.min = system.min;
       //this.max = system.max;
-      //this.Quelea = system.Quelea;
+      this.Quelea = system.Quelea;
       UpdateBounds();
       Quelea = UpdateDynamicSpatialDataStructure((IList<IQuelea>)system.Quelea.SpatialObjects);//new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)(Number.Clamp((min.DistanceTo(max) / 5), 5, 25)), (IList<IQuelea>)system.Quelea.SpatialObjects);
     }
