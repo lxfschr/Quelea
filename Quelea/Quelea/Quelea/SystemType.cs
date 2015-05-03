@@ -38,19 +38,18 @@ namespace Quelea
 
     private ISpatialCollection<IQuelea> MakeDynamicSpatialDataStructure()
     {
-      return new SpatialCollectionAsList<IQuelea>();
-      if (queleaSettings[0].GetType() == typeof(AgentType))
+      if (queleaSettings[0].GetType() == typeof(AgentType) || queleaSettings[0].GetType() == typeof(VehicleType))
       {
         IAgent agent = (AgentType)queleaSettings[0];
-        if (environment.GetType() == typeof(WorldEnvironmentType) && emitters[0].GetType() != typeof(PtEmitterType))
+        if (min.DistanceTo(max) <= agent.VisionRadius * 2 || Quelea.Count <= 10)
         {
-          return new SpatialCollectionAsOctTree<IQuelea>(min, max, 1);
+          return new SpatialCollectionAsList<IQuelea>();
         }
-        return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius);
-      }
-      if (!emitters[0].ContinuousFlow)
-      {
-        return new SpatialCollectionAsList<IQuelea>(emitters[0].NumAgents);
+        if (min.DistanceTo(max) <= agent.VisionRadius * 10)
+        {
+          return new SpatialCollectionAsBinLattice<IQuelea>(min, max, (int)agent.VisionRadius);
+        }
+        return new SpatialCollectionAsOctTree<IQuelea>(min, max, (int)agent.VisionRadius / 5);
       }
       return new SpatialCollectionAsList<IQuelea>();
     }
