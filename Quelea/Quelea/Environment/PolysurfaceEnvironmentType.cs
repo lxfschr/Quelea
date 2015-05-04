@@ -112,19 +112,15 @@ namespace Quelea
 
       //initialize parameters
       double theta = angle;
-      const double stepSize = 
-        
-        
-        
-        
-        5;
+      Interval dom = crv.Domain;
+      double stepSize = Math.Abs(dom.Length) * Constants.AbsoluteTolerance * Constants.AbsoluteTolerance;
 
       //initialize list
       List<Point3d> pts = new List<Point3d>();
 
       Continuity c = Continuity.C1_continuous;
       //initialize data
-      Interval dom = crv.Domain;
+      
       double rover = dom.Min; //steps along the curve by stepSize
 
       //Add plane at start point of curve to list
@@ -274,31 +270,51 @@ namespace Quelea
       crvs.Add(crvIn);
       Brep[] lofts = Brep.CreateFromLoft(crvs, Point3d.Unset, Point3d.Unset, LoftType.Normal, false);
 
-      double minSoFar = Double.MaxValue;
+      
       Interval interval = new Interval(0, 1);
-      Point3d loftPt = lofts[0].Faces[0].PointAt(0, 0);
-      BrepFace testFace = environment.Faces[0];
+      double u, v;
+      u = v = 0.05;
+      BrepFace loftFace = lofts[0].Faces[0];
+      loftFace.SetDomain(0, interval);
+      loftFace.SetDomain(1, interval);
+      while (!(loftFace.IsPointOnFace(u, v).Equals(PointFaceRelation.Interior) && u < 1 && v < 1))
+      {
+        u += .05;
+        v += .05;
+      }
+      Point3d loftPt = loftFace.PointAt(u, v);
+      Vector3d loftNrml = loftFace.NormalAt(u, v);
+
+      BrepFace polySrfEnvFace = environment.Faces[0];
       Point3d facePt;
+      double minSoFar = Double.MaxValue;
       foreach (BrepFace face in environment.Faces)
       {
-        double u, v;
         face.ClosestPoint(loftPt, out u, out v);
         facePt = face.PointAt(u, v);
         dist = loftPt.DistanceTo(facePt);
         if (dist < minSoFar)
         {
           minSoFar = dist;
-          testFace = face;
+          polySrfEnvFace = face;
         }
       }
 
-      Vector3d loftNrml = lofts[0].Faces[0].NormalAt(0, 0);
-      testFace.SetDomain(0, interval);
-      testFace.SetDomain(1, interval);
-      facePt = testFace.PointAt(0.5, 0.5);
+      
+      polySrfEnvFace.SetDomain(0, interval);
+      polySrfEnvFace.SetDomain(1, interval);
+      u = v = 0.05;
+      while (!(polySrfEnvFace.IsPointOnFace(u, v).Equals(PointFaceRelation.Interior) && u < 1 && v < 1))
+      {
+        u += .05;
+        v += .05;
+      }
+      facePt = polySrfEnvFace.PointAt(u, v);
+      
       Vector3d testVec = Vector3d.Subtract(new Vector3d(facePt), new Vector3d(loftPt));
+      testVec.Unitize();
       double dotProd = Vector3d.Multiply(loftNrml, testVec) / (loftNrml.Length * testVec.Length);
-      if (dotProd >= 0)
+      if (dotProd < 0)
       {
         foreach (Brep brep in lofts)
         {
@@ -404,7 +420,7 @@ namespace Quelea
       Curve[] overlapCrvs;
       Point3d[] intersectPts;
 
-      Curve[] feelers = GetFeelerCrvs(agent, distance, true);
+      Curve[] feelers = GetFeelerCrvs(agent, distance, false);
 
       int count = 0;
       foreach (Brep[] borderWalls in borderWallsArray)
