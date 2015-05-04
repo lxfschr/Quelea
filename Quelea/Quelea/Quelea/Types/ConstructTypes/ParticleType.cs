@@ -62,8 +62,18 @@ namespace Quelea
 
     private Plane SetOrientation()
     {
-      Vector3d y = Vector3d.CrossProduct(Velocity, Up);
-      return new Plane(Position, Velocity, y);
+      Plane orientation;
+      if (Velocity.IsZero)
+      {
+        orientation = new Plane(Position, Up);
+      }
+      else
+      {
+        Vector3d y = Vector3d.CrossProduct(Velocity, Up);
+        orientation = new Plane(Position, Velocity, y);
+      }
+      Up = orientation.ZAxis;
+      return orientation;
     }
 
     private Vector3d MapTo2D(Vector3d vector3D)

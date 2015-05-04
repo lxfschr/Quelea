@@ -56,7 +56,7 @@ namespace Quelea
       // pose the most immediate threat of collision.
       foreach (IParticle neighbor in neighbors)
       {
-        if (neighbor != agent)
+        if (!neighbor.Position.Equals(agent.Position))
         {
           // avoid when future positions are this close (or less)
           double collisionDangerThreshold = agent.BodySize / 2 + neighbor.BodySize / 2;
