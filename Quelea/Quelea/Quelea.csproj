@@ -67,6 +67,7 @@
     <Compile Include="Quelea\Types\ConstructTypes\AbstractConstructTypeComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructTypes\AbstractDeconstructTypeComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructTypes\GetOrientationComponent.cs" />
+    <Compile Include="Quelea\Types\DeconstructTypes\GetPositionHistoryComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructTypes\GetVelocityComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructTypes\GetPositionComponent.cs" />
     <Compile Include="Rules\AbstractRuleComponent.cs" />

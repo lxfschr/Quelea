@@ -41,7 +41,7 @@ namespace Quelea
       if (queleaSettings[0].GetType() == typeof(AgentType) || queleaSettings[0].GetType() == typeof(VehicleType))
       {
         IAgent agent = (AgentType)queleaSettings[0];
-        if (min.DistanceTo(max) <= agent.VisionRadius * 2 || Quelea.Count <= 10)
+        if (min.DistanceTo(max) <= agent.VisionRadius * 2)
         {
           return new SpatialCollectionAsList<IQuelea>();
         }
