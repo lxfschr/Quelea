@@ -8,7 +8,7 @@ namespace Quelea
 {
   public class AvoidUnalignedCollisionForceComponent : AbstractBoidForceComponent
   {
-    private double minTimeToCollision;
+    private double minTimeToCollision, potentialCollisionDistance;
     private Point3d ourPositionAtNearestApproach, hisPositionAtNearestApproach;
     /// <summary>
     /// Initializes a new instance of the ViewForceComponent class.
@@ -24,12 +24,16 @@ namespace Quelea
       base.RegisterInputParams(pManager);
       pManager.AddNumberParameter("Minumum Time To Collision", "T",
         "The number of seconds of travel at the Agent's current velocity that the Agent will predict its position to avoid collisions.", GH_ParamAccess.item, RS.visionRadiusDefault);
+      pManager.AddNumberParameter("Potential Collision Distance", "D",
+        "The distance which will be used to indicate a potential collision is iminent. This number is added to the Agent's and the neighbor" +
+        "s Body Sizes.", GH_ParamAccess.item, 0);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
     {
       if (!base.GetInputs(da)) return false;
       if (!da.GetData(nextInputIndex++, ref minTimeToCollision)) return false;
+      if (!da.GetData(nextInputIndex++, ref potentialCollisionDistance)) return false;
       return true;
     }
 
@@ -59,7 +63,7 @@ namespace Quelea
         if (!neighbor.Position.Equals(agent.Position))
         {
           // avoid when future positions are this close (or less)
-          double collisionDangerThreshold = agent.BodySize / 2 + neighbor.BodySize / 2;
+          double collisionDangerThreshold = agent.BodySize / 2 + neighbor.BodySize / 2 + potentialCollisionDistance;
 
           // predicted time until nearest approach of "this" and "other"
           double time = PredictNearestApproachTime(neighbor);
