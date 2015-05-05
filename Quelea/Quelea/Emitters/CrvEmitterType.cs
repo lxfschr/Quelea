@@ -17,8 +17,8 @@ namespace Quelea
     }
 
     // Constructor with initial values.
-    public CrvEmitterType(Curve crv, bool continuousFlow, int creationRate, int numAgents)
-      :base(continuousFlow, creationRate, numAgents)
+    public CrvEmitterType(Curve crv, bool continuousFlow, int creationRate, int numAgents, Vector3d velocityMin, Vector3d velocityMax)
+      :base(continuousFlow, creationRate, numAgents, velocityMin, velocityMax)
     {
       this.crv = crv;
     }
@@ -31,7 +31,7 @@ namespace Quelea
 
     // Copy Constructor
     public CrvEmitterType(CrvEmitterType emitCrvType)
-      : base(emitCrvType.continuousFlow, emitCrvType.creationRate, emitCrvType.numAgents)
+      : base(emitCrvType.continuousFlow, emitCrvType.creationRate, emitCrvType.numAgents, emitCrvType.velocityMin, emitCrvType.velocityMax)
     {
       crv = emitCrvType.crv;
     }
@@ -63,7 +63,7 @@ namespace Quelea
       return new CrvEmitterType(this);
     }
 
-    public override Point3d Emit()
+    protected override Point3d GetEmittionPoint()
     {
       return crv.PointAtNormalizedLength((Random.RandomDouble(0, 1)));
 

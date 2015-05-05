@@ -4,7 +4,7 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class PtEmitterComponent : AbstractEmitterComponent
+  public class PointEmitterComponent : AbstractEmitterComponent
   {
     private Point3d pt;
     /// <summary>
@@ -14,11 +14,10 @@ namespace Quelea
     /// Subcategory the panel. If you use non-existing tab or panel names, 
     /// new tabs/panels will automatically be created.
     /// </summary>
-    public PtEmitterComponent()
+    public PointEmitterComponent()
       : base(RS.pointEmitterName, RS.pointEmitterComponentNickname,
           RS.pointEmitterDescription, RS.icon_ptEmitter, RS.pointEmitterGuid)
     {
-      pt = Point3d.Origin;
     }
 
     /// <summary>
@@ -39,7 +38,7 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      AbstractEmitterType emitterPt = new PtEmitterType(pt, continuousFlow, creationRate, numAgents);
+      AbstractEmitterType emitterPt = new PointEmitterType(pt, continuousFlow, creationRate, numAgents, velocityMin, velocityMax);
       da.SetData(nextOutputIndex++, emitterPt);
     }
   }

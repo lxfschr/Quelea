@@ -10,20 +10,30 @@ namespace Quelea
     protected bool continuousFlow;
     protected readonly int creationRate;
     protected readonly int numAgents;
+    protected readonly Vector3d velocityMin;
+    protected readonly Vector3d velocityMax;
 
     protected AbstractEmitterType()
-      :this(RS.continuousFlowDefault, RS.creationRateDefault, RS.numAgentsDefault)
+      :this(RS.continuousFlowDefault, RS.creationRateDefault, RS.numAgentsDefault, Constants.VelocityMin, Constants.VelocityMax)
     {
     }
 
-    protected AbstractEmitterType(bool continuousFlow, int creationRate, int numAgents)
+    protected AbstractEmitterType(bool continuousFlow, int creationRate, int numAgents, Vector3d velocityMin, Vector3d velocityMax)
     {
       this.continuousFlow = continuousFlow;
       this.creationRate = creationRate;
       this.numAgents = numAgents;
+      this.velocityMin = velocityMin;
+      this.velocityMax = velocityMax;
     }
 
-    abstract public Point3d Emit();
+    public Point3d Emit(out Vector3d initialVelocity)
+    {
+      initialVelocity = Util.Random.RandomVector(velocityMin, velocityMax);
+      return GetEmittionPoint();
+    }
+
+    protected abstract Point3d GetEmittionPoint();
 
     public int CreationRate
     {
@@ -54,16 +64,7 @@ namespace Quelea
       // If parameter is null return false.
 
       // If parameter cannot be cast to Point return false.
-      AbstractEmitterType p = obj as AbstractEmitterType;
-      if (p == null)
-      {
-        return false;
-      }
-
-      // Return true if the fields match:
-      return continuousFlow.Equals(p.continuousFlow) && 
-             creationRate.Equals(p.creationRate) && 
-             numAgents.Equals(p.numAgents);
+      return Equals(obj as AbstractEmitterType);
     }
 
     public bool Equals(AbstractEmitterType p)
@@ -77,12 +78,14 @@ namespace Quelea
       // Return true if the fields match:
       return continuousFlow.Equals(p.continuousFlow) &&
              creationRate.Equals(p.creationRate) &&
-             numAgents.Equals(p.numAgents);
+             numAgents.Equals(p.numAgents) &&
+             velocityMin.Equals(p.velocityMin) &&
+             velocityMax.Equals(p.velocityMax);
     }
 
     public override int GetHashCode()
     {
-      return creationRate.GetHashCode() ^ numAgents.GetHashCode();
+      return creationRate.GetHashCode() ^ numAgents.GetHashCode() * velocityMin.GetHashCode() * velocityMax.GetHashCode();
     }
 
     abstract public override IGH_Goo Duplicate();
@@ -97,10 +100,12 @@ namespace Quelea
 
     public override string ToString()
     {
-      string continuousFlowStr = RS.continuousFlowName + ": " + continuousFlow + "\n";
-      string creationRateStr = RS.creationRateName + ": " + creationRate + "\n";
-      string numAgentsStr = RS.numQueleaName + ": " + numAgents + "\n";
-      return continuousFlowStr + creationRateStr + numAgentsStr;
+      string continuousFlowStr = Util.String.ToString(RS.continuousFlowName,continuousFlow);
+      string creationRateStr = Util.String.ToString(RS.creationRateName, creationRate);
+      string numAgentsStr = Util.String.ToString(RS.numQueleaName, numAgents);
+      string velocityMinStr = Util.String.ToString("Minimum Velocity", velocityMin);
+      string velocityMaxStr = Util.String.ToString("Maximum Velocity", velocityMax);
+      return continuousFlowStr + creationRateStr + numAgentsStr + velocityMinStr + velocityMaxStr;
     }
 
     public override string TypeDescription

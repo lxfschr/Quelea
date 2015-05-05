@@ -160,8 +160,8 @@
     <Compile Include="Environment\SurfaceEnvironmentType.cs" />
     <Compile Include="Emitters\CrvEmitterComponent.cs" />
     <Compile Include="Emitters\CrvEmitterType.cs" />
-    <Compile Include="Emitters\PtEmitterType.cs" />
-    <Compile Include="Emitters\PtEmitterComponent.cs" />
+    <Compile Include="Emitters\PointEmitterType.cs" />
+    <Compile Include="Emitters\PointEmitterComponent.cs" />
     <Compile Include="Quelea\AgentInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\LoadImage.cs" />

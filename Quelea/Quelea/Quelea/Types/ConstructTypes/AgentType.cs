@@ -33,8 +33,8 @@ namespace Quelea
       Lon = Util.Random.RandomDouble(-RS.HALF_PI, RS.HALF_PI);
     }
 
-    public AgentType(IAgent a, Point3d emittionPt, AbstractEnvironmentType environment)
-      : base(a, emittionPt, environment)
+    public AgentType(IAgent a, Point3d emittionPt, Vector3d initialVelocity, AbstractEnvironmentType environment)
+      : base(a, emittionPt, initialVelocity, environment)
     {
       SteerAcceleration = a.SteerAcceleration;
       MaxSpeed = a.MaxSpeed;

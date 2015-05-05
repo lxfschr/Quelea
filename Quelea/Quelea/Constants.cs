@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using RS = Quelea.Properties.Resources;
 using Rhino;
+using Rhino.Geometry;
 
 namespace Quelea
 {
@@ -34,6 +32,22 @@ namespace Quelea
       get
       {
         return RhinoDoc.ActiveDoc.ModelAngleToleranceRadians;
+      }
+    }
+
+    public static Vector3d VelocityMin
+    {
+      get
+      {
+        return new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault);
+      }
+    }
+
+    public static Vector3d VelocityMax
+    {
+      get
+      {
+        return new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault);
       }
     }
   }

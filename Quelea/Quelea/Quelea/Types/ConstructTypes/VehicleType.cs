@@ -31,8 +31,8 @@ namespace Quelea
     {
     }
 
-    public VehicleType(IVehicle v, Point3d emittionPt, AbstractEnvironmentType environment)
-      : base(v, emittionPt, environment)
+    public VehicleType(IVehicle v, Point3d emittionPt, Vector3d initialVelocity, AbstractEnvironmentType environment)
+      : base(v, emittionPt, initialVelocity, environment)
     {
       WheelRadius = v.WheelRadius;
       Wheels = new IWheel[2];

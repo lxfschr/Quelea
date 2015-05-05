@@ -39,7 +39,7 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      AbstractEmitterType emitter = new CrvEmitterType(crv, continuousFlow, creationRate, numAgents);
+      AbstractEmitterType emitter = new CrvEmitterType(crv, continuousFlow, creationRate, numAgents, velocityMin, velocityMax);
       da.SetData(nextOutputIndex++, emitter);
     }
   }

@@ -45,14 +45,14 @@ namespace Quelea
       Position3DHistory = p.Position3DHistory;
     }
 
-    public ParticleType(IParticle p, Point3d emittionPt, AbstractEnvironmentType environment)
+    public ParticleType(IParticle p, Point3d emittionPt, Vector3d initialVelocity, AbstractEnvironmentType environment)
       : this(p.VelocityMin, p.VelocityMax, p.Up, p.Acceleration, p.Lifespan,
              p.Mass, p.BodySize, p.HistoryLength)
     {
       Environment = environment;
       Position3D = emittionPt;
       Position = Environment.MapTo2D(emittionPt);
-      Velocity3D = Util.Random.RandomVector(VelocityMin, VelocityMax);
+      Velocity3D = initialVelocity;
       Velocity = MapTo2D(Velocity3D);
       Acceleration = MapTo2D(Acceleration3D);
       Orientation = SetOrientation();

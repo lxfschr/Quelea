@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using Grasshopper.Kernel;
+using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
 namespace Quelea
@@ -9,6 +10,7 @@ namespace Quelea
     protected bool continuousFlow;
     protected int creationRate;
     protected int numAgents;
+    protected Vector3d velocityMin, velocityMax;
     /// <summary>
     /// Each implementation of GH_Component must provide a public 
     /// constructor without any arguments.
@@ -21,9 +23,6 @@ namespace Quelea
       : base(name, nickname, description, RS.pluginCategoryName, 
              RS.emittersSubcategoryName, icon, componentGuid)
     {
-      continuousFlow = RS.continuousFlowDefault;
-      creationRate = RS.creationRateDefault;
-      numAgents = RS.numAgentsDefault;
     }
 
     /// <summary>
@@ -38,7 +37,12 @@ namespace Quelea
       pManager.AddBooleanParameter(RS.continuousFlowName, RS.continuousFlowNickname, RS.continuousFlowDescription, GH_ParamAccess.item, RS.continuousFlowDefault);
       pManager.AddIntegerParameter(RS.creationRateName, RS.creationRateNickname, RS.creationRateDescription, GH_ParamAccess.item, RS.creationRateDefault);
       pManager.AddIntegerParameter(RS.numQueleaName, RS.numQueleaNickName, RS.numQueleaDescription, GH_ParamAccess.item, RS.numAgentsDefault);
-
+      pManager.AddVectorParameter("Minimum Initial Velocity", "mV",
+        "The minimum initial velocity from which a random value will be taken.", GH_ParamAccess.item,
+        Constants.VelocityMin);
+      pManager.AddVectorParameter("Maximum Initial Velocity", "MV",
+        "The maximum initial velocity from which a random value will be taken.", GH_ParamAccess.item,
+        Constants.VelocityMax);
       pManager[1].Optional = true;
       pManager[2].Optional = true;
       // If you want to change properties of certain parameters, 
@@ -76,7 +80,8 @@ namespace Quelea
       if (!da.GetData(nextInputIndex++, ref continuousFlow)) return false;
       if (!da.GetData(nextInputIndex++, ref creationRate)) return false;
       if (!da.GetData(nextInputIndex++, ref numAgents)) return false;
-
+      if (!da.GetData(nextInputIndex++, ref velocityMin)) return false;
+      if (!da.GetData(nextInputIndex++, ref velocityMax)) return false;
       // We should now validate the data and warn the user if invalid data is supplied.
       if (creationRate <= 0)
       {

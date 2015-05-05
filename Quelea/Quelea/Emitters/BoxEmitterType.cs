@@ -19,8 +19,8 @@ namespace Quelea
     }
 
     // Constructor with initial values.
-    public BoxEmitterType(Box box, bool continuousFlow, int creationRate, int numAgents)
-      :base(continuousFlow, creationRate, numAgents)
+    public BoxEmitterType(Box box, bool continuousFlow, int creationRate, int numAgents, Vector3d velocityMin, Vector3d velocityMax)
+      : base(continuousFlow, creationRate, numAgents, velocityMin, velocityMax)
     {
       this.box = box;
     }
@@ -64,7 +64,7 @@ namespace Quelea
       return new BoxEmitterType(this);
     }
 
-    public override Point3d Emit()
+    protected override Point3d GetEmittionPoint()
     {
       const double min = 0;
       const double max = 1;

@@ -39,7 +39,7 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      AbstractEmitterType emitter = new BoxEmitterType(box, continuousFlow, creationRate, numAgents);
+      AbstractEmitterType emitter = new BoxEmitterType(box, continuousFlow, creationRate, numAgents, velocityMin, velocityMax);
       da.SetData(nextOutputIndex++, emitter);
     }
   }

@@ -5,41 +5,41 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class PtEmitterType : AbstractEmitterType
+  public class PointEmitterType : AbstractEmitterType
   {
 
     private readonly Point3d pt;
 
     // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
-    public PtEmitterType()
+    public PointEmitterType()
     {
       pt = Point3d.Origin;
     }
 
     // Constructor with initial values.
-    public PtEmitterType(Point3d pt, bool continuousFlow, int creationRate, int numAgents)
-      :base(continuousFlow, creationRate, numAgents)
+    public PointEmitterType(Point3d pt, bool continuousFlow, int creationRate, int numAgents, Vector3d velocityMin, Vector3d velocityMax)
+      :base(continuousFlow, creationRate, numAgents, velocityMin, velocityMax)
     {
       this.pt = pt;
     }
 
     // Constructor with initial values.
-    public PtEmitterType(Point3d pt)
+    public PointEmitterType(Point3d pt)
     {
       this.pt = pt;
     }
 
     // Copy Constructor
-    public PtEmitterType(PtEmitterType ptEmitType)
-      : base(ptEmitType.continuousFlow, ptEmitType.creationRate, ptEmitType.numAgents)
+    public PointEmitterType(PointEmitterType p)
+      : base(p.continuousFlow, p.creationRate, p.numAgents, p.velocityMin, p.velocityMax)
     {
-      pt = ptEmitType.pt;
+      pt = p.pt;
     }
 
     public override bool Equals(object obj)
     {
       // If parameter cannot be cast to ThreeDPoint return false:
-      PtEmitterType p = obj as PtEmitterType;
+      PointEmitterType p = obj as PointEmitterType;
       if (p == null)
       {
         return false;
@@ -48,7 +48,7 @@ namespace Quelea
       return base.Equals(obj) && pt.Equals(p.pt);
     }
 
-    public bool Equals(PtEmitterType p)
+    public bool Equals(PointEmitterType p)
     {
       return base.Equals(p) && pt.Equals(p.pt);
     }
@@ -60,10 +60,10 @@ namespace Quelea
 
     public override IGH_Goo Duplicate()
     {
-      return new PtEmitterType(this);
+      return new PointEmitterType(this);
     }
 
-    public override Point3d Emit()
+    protected override Point3d GetEmittionPoint()
     {
       return pt;
     }

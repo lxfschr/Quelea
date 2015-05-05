@@ -21,7 +21,7 @@ namespace Quelea
     protected Point3d max;
 
     public SystemType()
-      : this(null, new List<AbstractEmitterType> {new PtEmitterType(), }, new AxisAlignedBoxEnvironmentType())
+      : this(null, new List<AbstractEmitterType> {new PointEmitterType(), }, new AxisAlignedBoxEnvironmentType())
     {
     }
 
@@ -98,23 +98,24 @@ namespace Quelea
 
     public void Add(AbstractEmitterType emitter)
     {
-      Point3d emittionPt = emitter.Emit();
-      IQuelea quelea = MakeParticle(queleaSettings[nextIndex], emittionPt);
+      Vector3d initialVelocity;
+      Point3d emittionPt = emitter.Emit(out initialVelocity);
+      IQuelea quelea = MakeParticle(queleaSettings[nextIndex], emittionPt, initialVelocity);
       Quelea.Add(quelea);
       nextIndex = (nextIndex + 1) % queleaSettings.Count;
     }
 
-    public IQuelea MakeParticle(IQuelea p, Point3d emittionPt)
+    public IQuelea MakeParticle(IQuelea p, Point3d emittionPt, Vector3d initialVelocity)
     {
       if (p.GetType() == typeof(VehicleType))
       {
-        return new VehicleType((IVehicle)p, emittionPt, environment);
+        return new VehicleType((IVehicle)p, emittionPt, initialVelocity, environment);
       }
       if (p.GetType() == typeof(AgentType))
       {
-        return new AgentType((IAgent)p, emittionPt, environment);
+        return new AgentType((IAgent)p, emittionPt, initialVelocity, environment);
       }
-      return new ParticleType((IParticle)p, emittionPt, environment);
+      return new ParticleType((IParticle)p, emittionPt, initialVelocity, environment);
     }
 
     private void UpdateBounds()
