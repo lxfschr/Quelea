@@ -22,7 +22,7 @@ namespace Quelea
 
    //For Construct Agent Settings
     public AgentType(IParticle p, double maxSpeed, double maxForce, double visionRadius, double visionAngle)
-      : base(p.VelocityMin, p.VelocityMax, p.Up, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
+      : base(p.Up, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
     {
       SteerAcceleration = Vector3d.Zero;
       MaxSpeed = maxSpeed;
@@ -48,7 +48,7 @@ namespace Quelea
     public AgentType(Vector3d velocityMin, Vector3d velocityMax, Vector3d up, Vector3d acceleration,
                         int lifespan, double mass, double bodySize,
                         int historyLength, double maxSpeed, double maxForce, double visionRadius, double visionAngle)
-      : base(velocityMin, velocityMax, up, acceleration, lifespan, mass, bodySize, historyLength)
+      : base(up, acceleration, lifespan, mass, bodySize, historyLength)
     {
       MaxSpeed = maxSpeed;
       MaxForce = maxForce;

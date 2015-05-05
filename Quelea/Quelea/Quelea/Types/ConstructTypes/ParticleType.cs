@@ -9,19 +9,16 @@ namespace Quelea
   public class ParticleType : IParticle
   {
     public ParticleType()
-      : this(new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault), 
-             new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault), Vector3d.ZAxis,
+      : this(Vector3d.ZAxis,
              Vector3d.Zero, RS.lifespanDefault, RS.massDefault, RS.bodySizeDefault, RS.historyLenDefault)
     {
     }
 
     // For Construct Particle Settings
-    public ParticleType(Vector3d velocityMin, Vector3d velocityMax, Vector3d up, Vector3d acceleration,
+    public ParticleType(Vector3d up, Vector3d acceleration,
                         int lifespan, double mass, double bodySize,
                         int historyLength)
     {
-      VelocityMin = velocityMin;
-      VelocityMax = velocityMax;
       Up = up;
       Acceleration = acceleration;
       Lifespan = lifespan;
@@ -32,7 +29,7 @@ namespace Quelea
 
     // Copy Constructor
     public ParticleType(IParticle p)
-      : this(p.VelocityMin, p.VelocityMax, p.Up, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
+      : this(p.Up, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
     {
       InitialVelocitySet = p.InitialVelocitySet;
       Position = p.Position;
@@ -46,7 +43,7 @@ namespace Quelea
     }
 
     public ParticleType(IParticle p, Point3d emittionPt, Vector3d initialVelocity, AbstractEnvironmentType environment)
-      : this(p.VelocityMin, p.VelocityMax, p.Up, p.Acceleration, p.Lifespan,
+      : this(p.Up, p.Acceleration, p.Lifespan,
              p.Mass, p.BodySize, p.HistoryLength)
     {
       Environment = environment;
@@ -113,8 +110,6 @@ namespace Quelea
 
     public Point3d Position { get; set; }
     public Vector3d Velocity { get; set; }
-    public Vector3d VelocityMin { get; set; }
-    public Vector3d VelocityMax { get; set; }
     public Vector3d Acceleration { get; set; }
     public Point3d Position3D { get; set; }
     public Vector3d Velocity3D { get; set; }

@@ -10,9 +10,6 @@ namespace Quelea
     Vector3d Side { get; }
     double Speed { get; }
     double SquareSpeed { get; }
-    Vector3d VelocityMin { get; set; }
-
-    Vector3d VelocityMax { get; set; }
 
     bool InitialVelocitySet { get; set; }
 

@@ -33,12 +33,6 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddVectorParameter("Minimum Initial Velocity", "mV",
-        "The minimum initial velocity from which a random value will be taken.", GH_ParamAccess.item,
-        new Vector3d(-RS.velocityDefault, -RS.velocityDefault, -RS.velocityDefault));
-      pManager.AddVectorParameter("Maximum Initial Velocity", "MV",
-        "The maximum initial velocity from which a random value will be taken.", GH_ParamAccess.item,
-        new Vector3d(RS.velocityDefault, RS.velocityDefault, RS.velocityDefault));
       pManager.AddVectorParameter("Up Direction", "U",
         "The up direction for the calculation of the initial orientation.", GH_ParamAccess.item,
         Vector3d.ZAxis);
@@ -62,8 +56,6 @@ namespace Quelea
     {
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
-      if (!da.GetData(nextInputIndex++, ref velocityMin)) return false;
-      if (!da.GetData(nextInputIndex++, ref velocityMax)) return false;
       if (!da.GetData(nextInputIndex++, ref up)) return false;
       if (!da.GetData(nextInputIndex++, ref acceleration)) return false;
       if (!da.GetData(nextInputIndex++, ref lifespan)) return false;
@@ -104,7 +96,7 @@ namespace Quelea
     {
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      IParticle particle = new ParticleType(velocityMin, velocityMax, up, acceleration, lifespan, mass, bodySize, historyLength);
+      IParticle particle = new ParticleType(up, acceleration, lifespan, mass, bodySize, historyLength);
 
       // Finally assign the spiral to the output parameter.
       da.SetData(nextOutputIndex++, particle);
