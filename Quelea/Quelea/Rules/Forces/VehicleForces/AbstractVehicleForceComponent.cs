@@ -13,7 +13,7 @@ namespace Quelea
     protected bool crossed;
     protected double sensorLeftValue, sensorRightValue;
     protected Point3d sensorLeftPos, sensorRightPos;
-    private double forwardOffset;
+    private double visionAngleMultiplier, visionRadiusMultiplier;
     
     /// <summary>
     /// Initializes a new instance of the AbstractParticleForceComponent class.
@@ -35,10 +35,10 @@ namespace Quelea
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddGenericParameter(RS.vehicleName, RS.vehicleNickname, RS.vehicleDescription, GH_ParamAccess.item);
+      pManager.AddNumberParameter(RS.visionRadiusName + " " + RS.multiplierName, RS.visionRadiusNickname + RS.multiplierNickname, RS.visionRadiusMultiplierDescription, GH_ParamAccess.item, RS.visionRadiusMultiplierDefault/5);
+      pManager.AddNumberParameter(RS.visionAngleName + " " + RS.multiplierName, RS.visionAngleNickname + RS.multiplierNickname, RS.visionAngleMultiplierDescription, GH_ParamAccess.item, RS.visionAngleMultiplierDefault/8);
       pManager.AddBooleanParameter("Crossed?", "C", "If true, the sensors will affect the wheels on the opposite side. If false, a higher sensor reading on the left side will cause the left wheel to turn faster causing the vehicle to turn to its right. Generally, if the sensors are not crossed, then the vehicle will steer away from areas with high values.",
         GH_ParamAccess.item, false);
-      pManager.AddNumberParameter("Sensor foward offset distance", "D", "The distance in front of the wheels that the sensors will read values from.",
-        GH_ParamAccess.item, 0);
     }
 
     /// <summary>
@@ -64,15 +64,21 @@ namespace Quelea
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(nextInputIndex++, ref vehicle)) return false;
+      if (!da.GetData(nextInputIndex++, ref visionRadiusMultiplier)) return false;
+      if (!da.GetData(nextInputIndex++, ref visionAngleMultiplier)) return false;
       if (!da.GetData(nextInputIndex++, ref crossed)) return false;
-      if (!da.GetData(nextInputIndex++, ref forwardOffset)) return false;
-      if (!(0.0 <= weightMultiplier && weightMultiplier <= 1.0))
+      if (!(0.0 <= visionRadiusMultiplier && visionRadiusMultiplier <= 1.0))
       {
-        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Weight multiplier must be between 0.0 and 1.0.");
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionRadiusMultiplierErrorMessage);
         return false;
       }
-      sensorLeftPos = vehicle.GetSensorPosition(vehicle.BodySize, forwardOffset, RS.HALF_PI);
-      sensorRightPos = vehicle.GetSensorPosition(vehicle.BodySize, forwardOffset, -RS.HALF_PI);
+      if (!(0.0 <= visionAngleMultiplier && visionAngleMultiplier <= 1.0))
+      {
+        AddRuntimeMessage(GH_RuntimeMessageLevel.Error, RS.visionAngleMultiplierErrorMessage);
+        return false;
+      }
+      sensorLeftPos = vehicle.GetSensorPosition(visionRadiusMultiplier, visionAngleMultiplier);
+      sensorRightPos = vehicle.GetSensorPosition(visionRadiusMultiplier, -visionAngleMultiplier);
       return true;
     }
 

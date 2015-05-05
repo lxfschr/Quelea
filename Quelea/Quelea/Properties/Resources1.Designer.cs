@@ -2809,6 +2809,15 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The factor by which the Agent&apos;s Vision Angle will be multiplied. The result will be used to determine the angle from the velocity that the agent will be able to see neighbors..
+        /// </summary>
+        internal static string visionAngleMultiplierDescription {
+            get {
+                return ResourceManager.GetString("visionAngleMultiplierDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Vision Angle Multiplier must be between 0.0 and 1.0..
         /// </summary>
         internal static string visionAngleMultiplierErrorMessage {

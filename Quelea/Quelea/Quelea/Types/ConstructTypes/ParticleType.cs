@@ -90,7 +90,7 @@ namespace Quelea
 
     public Vector3d Forward
     {
-      get { return Orientation.ZAxis; }
+      get { return Orientation.XAxis; }
     }
 
     public Vector3d Side

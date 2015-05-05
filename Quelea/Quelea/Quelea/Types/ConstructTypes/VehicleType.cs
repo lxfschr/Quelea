@@ -70,16 +70,13 @@ namespace Quelea
       return desired;
     }
 
-    public Point3d GetSensorPosition(double bodySize, double forwardOffset, double halfPi)
+    public Point3d GetSensorPosition(double visionRadiusMultiplier, double visionAngleMultiplier)
     {
-      Point3d sensorPos = GetWheelPosition(bodySize, halfPi);
-      if (forwardOffset > 0)
-      {
-        Vector3d offset = Velocity;
-        offset.Unitize();
-        offset *= forwardOffset;
-        sensorPos.Transform(Transform.Translation(offset));
-      }
+      Vector3d offset = Forward;
+      offset *= VisionRadius * visionRadiusMultiplier;
+      offset.Rotate(Rhino.RhinoMath.ToRadians(VisionAngle/2)*visionAngleMultiplier, Up);
+      Point3d sensorPos = Position;
+      sensorPos.Transform(Transform.Translation(offset));
       return sensorPos;
     }
 
