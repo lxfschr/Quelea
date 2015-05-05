@@ -277,50 +277,35 @@ namespace Quelea
       BrepFace loftFace = lofts[0].Faces[0];
       loftFace.SetDomain(0, interval);
       loftFace.SetDomain(1, interval);
-      while (!(loftFace.IsPointOnFace(u, v).Equals(PointFaceRelation.Interior) && u < 1 && v < 1))
+      while (u < 1 && v < 1)
       {
+        if (loftFace.IsPointOnFace(u, v).Equals(PointFaceRelation.Interior))
+        {
+          break;
+        }
         u += .05;
         v += .05;
       }
       Point3d loftPt = loftFace.PointAt(u, v);
       Vector3d loftNrml = loftFace.NormalAt(u, v);
 
-      BrepFace polySrfEnvFace = environment.Faces[0];
-      Point3d facePt;
-      double minSoFar = Double.MaxValue;
-      foreach (BrepFace face in environment.Faces)
-      {
-        face.ClosestPoint(loftPt, out u, out v);
-        facePt = face.PointAt(u, v);
-        dist = loftPt.DistanceTo(facePt);
-        if (dist < minSoFar)
-        {
-          minSoFar = dist;
-          polySrfEnvFace = face;
-        }
-      }
+      Point3d loftPtOut = loftPt;
+      Point3d loftPtIn = loftPt;
+      loftPtOut.Transform(Transform.Translation(loftNrml));
+      loftNrml.Reverse();
+      loftPtIn.Transform(Transform.Translation(loftNrml));
 
-      
-      polySrfEnvFace.SetDomain(0, interval);
-      polySrfEnvFace.SetDomain(1, interval);
-      u = v = 0.05;
-      while (!(polySrfEnvFace.IsPointOnFace(u, v).Equals(PointFaceRelation.Interior) && u < 1 && v < 1))
-      {
-        u += .05;
-        v += .05;
-      }
-      facePt = polySrfEnvFace.PointAt(u, v);
-      
-      Vector3d testVec = Vector3d.Subtract(new Vector3d(facePt), new Vector3d(loftPt));
-      testVec.Unitize();
-      double dotProd = Vector3d.Multiply(loftNrml, testVec) / (loftNrml.Length * testVec.Length);
-      if (dotProd < 0)
+      Point3d envPtOut = environment.ClosestPoint(loftPtOut);
+      Point3d envPtIn = environment.ClosestPoint(loftPtIn);
+
+      if (loftPtOut.DistanceTo(envPtOut) < loftPtIn.DistanceTo(envPtIn))
       {
         foreach (Brep brep in lofts)
         {
           brep.Flip();
         }
       }
+
       return lofts;
     }
 
