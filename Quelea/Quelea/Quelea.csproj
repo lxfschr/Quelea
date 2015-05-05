@@ -63,6 +63,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractComponent.cs" />
+    <Compile Include="Emitters\SurfaceEmitterType.cs" />
+    <Compile Include="Emitters\SurfaceEmitterComponent.cs" />
     <Compile Include="Quelea\Types\AbstractTypeComponent.cs" />
     <Compile Include="Quelea\Types\ConstructTypes\AbstractConstructTypeComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructTypes\AbstractDeconstructTypeComponent.cs" />
@@ -158,8 +160,8 @@
     <Compile Include="Environment\BrepEnvironmentType.cs" />
     <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
     <Compile Include="Environment\SurfaceEnvironmentType.cs" />
-    <Compile Include="Emitters\CrvEmitterComponent.cs" />
-    <Compile Include="Emitters\CrvEmitterType.cs" />
+    <Compile Include="Emitters\CurveEmitterComponent.cs" />
+    <Compile Include="Emitters\CurveEmitterType.cs" />
     <Compile Include="Emitters\PointEmitterType.cs" />
     <Compile Include="Emitters\PointEmitterComponent.cs" />
     <Compile Include="Quelea\AgentInfo.cs" />

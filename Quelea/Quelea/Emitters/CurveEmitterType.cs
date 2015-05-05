@@ -5,32 +5,32 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class CrvEmitterType : AbstractEmitterType
+  public class CurveEmitterType : AbstractEmitterType
   {
 
     private readonly Curve crv;
 
     // Default Constructor. Defaults to continuous flow, creating a new Agent every timestep.
-    public CrvEmitterType()
+    public CurveEmitterType()
     {
       crv = new Line().ToNurbsCurve();
     }
 
     // Constructor with initial values.
-    public CrvEmitterType(Curve crv, bool continuousFlow, int creationRate, int numAgents, Vector3d velocityMin, Vector3d velocityMax)
+    public CurveEmitterType(Curve crv, bool continuousFlow, int creationRate, int numAgents, Vector3d velocityMin, Vector3d velocityMax)
       :base(continuousFlow, creationRate, numAgents, velocityMin, velocityMax)
     {
       this.crv = crv;
     }
 
     // Constructor with initial values.
-    public CrvEmitterType(Curve crv)
+    public CurveEmitterType(Curve crv)
     {
       this.crv = crv;
     }
 
     // Copy Constructor
-    public CrvEmitterType(CrvEmitterType emitCrvType)
+    public CurveEmitterType(CurveEmitterType emitCrvType)
       : base(emitCrvType.continuousFlow, emitCrvType.creationRate, emitCrvType.numAgents, emitCrvType.velocityMin, emitCrvType.velocityMax)
     {
       crv = emitCrvType.crv;
@@ -39,7 +39,7 @@ namespace Quelea
     public override bool Equals(object obj)
     {
       // If parameter cannot be cast to ThreeDPoint return false:
-        CrvEmitterType p = obj as CrvEmitterType;
+        CurveEmitterType p = obj as CurveEmitterType;
         if (p == null)
         {
             return false;
@@ -48,7 +48,7 @@ namespace Quelea
       return base.Equals(obj) && crv.Equals(p.crv);
     }
 
-    public bool Equals(CrvEmitterType p)
+    public bool Equals(CurveEmitterType p)
     {
       return base.Equals(p) && crv.Equals(p.crv);
     }
@@ -60,7 +60,7 @@ namespace Quelea
 
     public override IGH_Goo Duplicate()
     {
-      return new CrvEmitterType(this);
+      return new CurveEmitterType(this);
     }
 
     protected override Point3d GetEmittionPoint()

@@ -4,7 +4,7 @@ using RS = Quelea.Properties.Resources;
 
 namespace Quelea
 {
-  public class CrvEmitterComponent : AbstractEmitterComponent
+  public class CurveEmitterComponent : AbstractEmitterComponent
   {
     private Curve crv;
     /// <summary>
@@ -14,7 +14,7 @@ namespace Quelea
     /// Subcategory the panel. If you use non-existing tab or panel names, 
     /// new tabs/panels will automatically be created.
     /// </summary>
-    public CrvEmitterComponent()
+    public CurveEmitterComponent()
       : base(RS.curveEmitterName, RS.curveEmitterComponentNickname,
           RS.curveEmitterDescription, RS.icon_crvEmitter, RS.curveEmitterGuid)
     {
@@ -39,7 +39,7 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      AbstractEmitterType emitter = new CrvEmitterType(crv, continuousFlow, creationRate, numAgents, velocityMin, velocityMax);
+      AbstractEmitterType emitter = new CurveEmitterType(crv, continuousFlow, creationRate, numAgents, velocityMin, velocityMax);
       da.SetData(nextOutputIndex++, emitter);
     }
   }
