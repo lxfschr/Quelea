@@ -37,13 +37,6 @@ namespace Quelea
       return true;
     }
 
-    protected override void SetOutputs(IGH_DataAccess da)
-    {
-      base.SetOutputs(da);
-      da.SetData(nextOutputIndex++, sensorLeftValue);
-      da.SetData(nextOutputIndex++, sensorRightValue);
-    }
-
     protected override void GetSensorReadings()
     {
       sourcePt = vehicle.Environment.MapTo2D(sourcePt);

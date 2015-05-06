@@ -17,17 +17,14 @@ namespace Quelea
 
     //private double wheelDiff;
 
-    public VehicleType(IAgent agentSettings, Plane orientation, double wheelRadius)
+    public VehicleType(IAgent agentSettings, double wheelRadius)
       : base(agentSettings)
     {
       WheelRadius = wheelRadius;
-      //Orientation = new Plane(Position3D, orientation.ZAxis);
-      //double angle = Vector3d.VectorAngle(Velocity, orientation.XAxis);
-      //Orientation.Rotate(angle, Orientation.ZAxis);
     }
 
     public VehicleType(IVehicle v)
-      : this(v, v.Orientation, v.WheelRadius)
+      : this(v, v.WheelRadius)
     {
     }
 
