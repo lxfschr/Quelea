@@ -15,7 +15,7 @@ namespace Quelea
     /// </summary>
     public AvoidUnalignedCollisionForceComponent()
       : base("Avoid Unaligned Collision Force", "AvoidCollision",
-          "Applied a force to steer the Agent away from a predicted potential collision.", null, "7b046f6a-0e29-44c2-a500-8b484346effb")
+          "Applied a force to steer the Agent away from a predicted potential collision.", RS.icon_avoidUnalignedCollision, "7b046f6a-0e29-44c2-a500-8b484346effb")
     {
     }
 

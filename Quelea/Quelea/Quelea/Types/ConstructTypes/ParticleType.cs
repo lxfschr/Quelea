@@ -178,9 +178,9 @@ namespace Quelea
       {
         orientation.Rotate(-2 * angle, orientation.YAxis);
       }
-      //if (!Util.Number.ApproximatelyEqual(Vector3d.VectorAngle(Velocity, orientation.XAxis, pln), 0, Constants.AbsoluteTolerance))
+      //if (!Util.Number.ApproximatelyEqual(Vector3d.VectorAngle(Velocity3D, orientation.XAxis, pln), 0, Constants.AbsoluteTolerance))
       //{
-      //  if (!Util.Number.ApproximatelyEqual(Vector3d.VectorAngle(Velocity, orientation.XAxis, pln), RS.TWO_PI, Constants.AbsoluteTolerance))
+      //  if (!Util.Number.ApproximatelyEqual(Vector3d.VectorAngle(Velocity3D, orientation.XAxis, pln), RS.TWO_PI, Constants.AbsoluteTolerance))
       //  {
       //    throw new ApplicationException("Plane not aligned.");
       //  }

@@ -11,7 +11,7 @@ namespace Quelea
     public SenseImageForceComponent()
       : base("Sense Image Force", "SenseImage",
           "Sense Image Force",
-          null, "8fd658ec-90df-41ef-8f1a-490a05a58a13")
+          RS.icon_senseImageForce, "8fd658ec-90df-41ef-8f1a-490a05a58a13")
     {
     }
 

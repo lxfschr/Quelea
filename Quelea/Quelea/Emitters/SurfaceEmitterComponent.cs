@@ -16,7 +16,7 @@ namespace Quelea
     /// </summary>
     public SurfaceEmitterComponent()
       : base("Surface Emitter", "SrfEmit",
-          "A surface from which a quelea can be emitted.", null, "27384c1e-1a3e-4871-b5b5-d88284378b1d")
+          "A surface from which a quelea can be emitted.", RS.icon_surfaceEmitter, "27384c1e-1a3e-4871-b5b5-d88284378b1d")
     {
     }
 

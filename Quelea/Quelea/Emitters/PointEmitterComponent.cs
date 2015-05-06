@@ -16,7 +16,7 @@ namespace Quelea
     /// </summary>
     public PointEmitterComponent()
       : base(RS.pointEmitterName, RS.pointEmitterComponentNickname,
-          RS.pointEmitterDescription, RS.icon_ptEmitter, RS.pointEmitterGuid)
+          RS.pointEmitterDescription, RS.icon_pointEmitter, RS.pointEmitterGuid)
     {
     }
 

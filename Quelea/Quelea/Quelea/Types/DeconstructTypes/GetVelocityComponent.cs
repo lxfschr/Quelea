@@ -11,7 +11,7 @@ namespace Quelea
     /// </summary>
     public GetVelocityComponent()
       : base("Get Particle Velocity", "GetVelocity",
-             "Gets the velocity of anything that inherits from Particle.", null, "340f3b90-5038-46a1-bc7f-7903c09037dc")
+             "Gets the velocity of anything that inherits from Particle.", RS.icon_getVelocity, "340f3b90-5038-46a1-bc7f-7903c09037dc")
     {
     }
 

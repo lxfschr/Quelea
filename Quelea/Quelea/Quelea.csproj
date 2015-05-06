@@ -179,34 +179,13 @@
     <None Include="Resources\icon_agent.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_alignForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_coheseForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_engine.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_separateForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_system.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_deconstructAC.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_neighborsInRadius.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_viewForce.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon_AABoxEnvironment.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_EatBehavior.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_SurfaceEnvironment.png" />
@@ -215,10 +194,10 @@
     <None Include="Resources\icon_FollowPathForce.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_srfEmitter.png" />
+    <None Include="Resources\icon_quelea.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_srfEnvironment .png" />
+    <None Include="Resources\icon_deconstructQuelea.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_boxEmitter.png" />
@@ -233,49 +212,7 @@
     <None Include="Resources\icon_brepEnvironment.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icon_crvEmitter.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_ptEmitter.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_seekForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_arriveForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_containForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_initialVelocity.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_polysurfaceEnvironment.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_quelea.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_deconstructAgent.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_applyCustomForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_attractForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_bounceContainBehavior.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_wanderForce.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_deconstructQuelea.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icon_deconstructSystem.png" />
+    <None Include="Resources\icon_coheseForce.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_constructAgent.png" />
@@ -287,19 +224,118 @@
     <None Include="Resources\icon_constructVehicle.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icon_containForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_crvEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructAgent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructParticle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructQueleaNetwork.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_deconstructSystem.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\icon_deconstructVehicle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_eatBehavior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_engine.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_flowDownSurfaceForce.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icon_getOrientation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_getPosition.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_getPositionHistory.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_getVelocity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_initialVelocity.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\icon_killContainBehavior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_loadImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_neighbors.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_polysurfaceEnvironment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_ptEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_seekForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_senseImageForce.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon_sensePointForce.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\icon_separateForce.png" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Resources\icon_setVelocityBehavior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_srfEmitter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_srfEnvironment .png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_system.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_viewForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_wanderForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_wrapContainBehavior.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_alignForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_applyCustomForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_arriveForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_attractForce.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_avoidObstacle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_avoidUnalignedCollision.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_bounceContainBehavior.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,7 +12,7 @@ namespace Quelea
     /// </summary>
     public AvoidObstacleForceComponent()
       : base("Avoid Obstacle Force", "AvoidObstacle", "Applied a force to steer the Agent away if it is about to intersect with an obstacle.",
-             null, "b1eab486-e541-4529-a895-474576bf5c0c")
+             RS.icon_avoidObstacle, "b1eab486-e541-4529-a895-474576bf5c0c")
     {
     }
 

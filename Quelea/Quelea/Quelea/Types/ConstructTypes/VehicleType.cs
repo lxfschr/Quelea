@@ -21,9 +21,9 @@ namespace Quelea
       : base(agentSettings)
     {
       WheelRadius = wheelRadius;
-      Orientation = new Plane(Position3D, orientation.ZAxis);
-      double angle = Vector3d.VectorAngle(Velocity, orientation.XAxis);
-      Orientation.Rotate(angle, Orientation.ZAxis);
+      //Orientation = new Plane(Position3D, orientation.ZAxis);
+      //double angle = Vector3d.VectorAngle(Velocity, orientation.XAxis);
+      //Orientation.Rotate(angle, Orientation.ZAxis);
     }
 
     public VehicleType(IVehicle v)

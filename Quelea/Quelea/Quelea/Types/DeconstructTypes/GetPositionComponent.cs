@@ -11,7 +11,7 @@ namespace Quelea
     /// </summary>
     public GetPositionComponent()
       : base("Get Particle Position", "GetPosition",
-             "Gets the position of anything that inherits from Particle.", null, "2b044f4c-908b-42aa-9df0-d89656cdfba7")
+             "Gets the position of anything that inherits from Particle.", RS.icon_getPosition, "2b044f4c-908b-42aa-9df0-d89656cdfba7")
     {
     }
 

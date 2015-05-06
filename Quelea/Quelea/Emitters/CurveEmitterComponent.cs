@@ -16,7 +16,7 @@ namespace Quelea
     /// </summary>
     public CurveEmitterComponent()
       : base(RS.curveEmitterName, RS.curveEmitterComponentNickname,
-          RS.curveEmitterDescription, RS.icon_crvEmitter, RS.curveEmitterGuid)
+          RS.curveEmitterDescription, RS.icon_curveEmitter, RS.curveEmitterGuid)
     {
       crv = null;
     }

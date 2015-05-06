@@ -10,7 +10,7 @@ namespace Quelea
     private Bitmap bitmap;
     private bool reload;
     public LoadImage()
-      : base("Load Image", "Image", "Loads a bitmap image from a filepath.", RS.pluginCategoryName, RS.utilitySubcategoryName, null, "352571b8-3f04-47cf-bdb5-729a9da1145b")
+      : base("Load Image", "Image", "Loads a bitmap image from a filepath.", RS.pluginCategoryName, RS.utilitySubcategoryName, RS.icon_loadImage, "352571b8-3f04-47cf-bdb5-729a9da1145b")
     {
     }
 

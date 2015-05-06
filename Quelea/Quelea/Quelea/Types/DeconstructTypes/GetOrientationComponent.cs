@@ -11,7 +11,7 @@ namespace Quelea
     /// </summary>
     public GetOrientationComponent()
       : base("Get Orientation", "GetOrientation",
-             "Gets the position of anything that inherits from Particle.", null, "074d0d1a-9142-496e-9fe6-14bfbcd3e346")
+             "Gets the position of anything that inherits from Particle.", RS.icon_getOrientation, "074d0d1a-9142-496e-9fe6-14bfbcd3e346")
     {
     }
 

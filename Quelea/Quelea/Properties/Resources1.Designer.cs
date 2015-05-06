@@ -1422,6 +1422,26 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_avoidObstacle {
+            get {
+                object obj = ResourceManager.GetObject("icon_avoidObstacle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_avoidUnalignedCollision {
+            get {
+                object obj = ResourceManager.GetObject("icon_avoidUnalignedCollision", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_bounceContainBehavior {
             get {
                 object obj = ResourceManager.GetObject("icon_bounceContainBehavior", resourceCulture);
@@ -1512,9 +1532,9 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_crvEmitter {
+        internal static System.Drawing.Bitmap icon_curveEmitter {
             get {
-                object obj = ResourceManager.GetObject("icon_crvEmitter", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_curveEmitter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1545,6 +1565,26 @@ namespace Quelea.Properties {
         internal static System.Drawing.Bitmap icon_deconstructParticle {
             get {
                 object obj = ResourceManager.GetObject("icon_deconstructParticle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_deconstructParticle1 {
+            get {
+                object obj = ResourceManager.GetObject("icon_deconstructParticle1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_deconstructQueleaNetwork {
+            get {
+                object obj = ResourceManager.GetObject("icon_deconstructQueleaNetwork", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1612,6 +1652,46 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_getOrientation {
+            get {
+                object obj = ResourceManager.GetObject("icon_getOrientation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_getPosition {
+            get {
+                object obj = ResourceManager.GetObject("icon_getPosition", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_getPositionHistory {
+            get {
+                object obj = ResourceManager.GetObject("icon_getPositionHistory", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_getVelocity {
+            get {
+                object obj = ResourceManager.GetObject("icon_getVelocity", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_InitialVelocity {
             get {
                 object obj = ResourceManager.GetObject("icon_InitialVelocity", resourceCulture);
@@ -1632,6 +1712,26 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icon_loadImage {
+            get {
+                object obj = ResourceManager.GetObject("icon_loadImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_neighbors {
+            get {
+                object obj = ResourceManager.GetObject("icon_neighbors", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_neighborsInRadius {
             get {
                 object obj = ResourceManager.GetObject("icon_neighborsInRadius", resourceCulture);
@@ -1642,9 +1742,9 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_polysurfaceEnvironment {
+        internal static System.Drawing.Bitmap icon_pointEmitter {
             get {
-                object obj = ResourceManager.GetObject("icon_polysurfaceEnvironment", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_pointEmitter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1652,9 +1752,9 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_ptEmitter {
+        internal static System.Drawing.Bitmap icon_polysurfaceEnvironment {
             get {
-                object obj = ResourceManager.GetObject("icon_ptEmitter", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_polysurfaceEnvironment", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1675,6 +1775,16 @@ namespace Quelea.Properties {
         internal static System.Drawing.Bitmap icon_seekForce {
             get {
                 object obj = ResourceManager.GetObject("icon_seekForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_senseImageForce {
+            get {
+                object obj = ResourceManager.GetObject("icon_senseImageForce", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1712,9 +1822,9 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_srfEmitter {
+        internal static System.Drawing.Bitmap icon_srfEnvironment {
             get {
-                object obj = ResourceManager.GetObject("icon_srfEmitter", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_srfEnvironment", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1722,9 +1832,9 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icon_srfEnvironment {
+        internal static System.Drawing.Bitmap icon_surfaceEmitter {
             get {
-                object obj = ResourceManager.GetObject("icon_srfEnvironment", resourceCulture);
+                object obj = ResourceManager.GetObject("icon_surfaceEmitter", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1755,6 +1865,16 @@ namespace Quelea.Properties {
         internal static System.Drawing.Bitmap icon_wanderForce {
             get {
                 object obj = ResourceManager.GetObject("icon_wanderForce", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icon_wrapContainBehavior {
+            get {
+                object obj = ResourceManager.GetObject("icon_wrapContainBehavior", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

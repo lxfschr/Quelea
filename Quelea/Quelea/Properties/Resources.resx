@@ -870,7 +870,7 @@
   <data name="icon_containForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_containForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_crvEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="icon_curveEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_crvEmitter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_deconstructAC" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -894,7 +894,7 @@
   <data name="icon_neighborsInRadius" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_neighborsInRadius.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_ptEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="icon_pointEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_ptEmitter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_separateForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -942,7 +942,7 @@
   <data name="icon_seekForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_seekForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icon_srfEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="icon_surfaceEmitter" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icon_srfEmitter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icon_srfEnvironment" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -1053,25 +1053,61 @@
   <data name="HALF_PI" type="System.Double, mscorlib">
     <value>1.5707963267948966</value>
   </data>
-	<data name="rulesName" xml:space="preserve">
+  <data name="rulesName" xml:space="preserve">
     <value>Rules</value>
   </data>
-	<data name="utilitySubcategoryName" xml:space="preserve">
+  <data name="utilitySubcategoryName" xml:space="preserve">
     <value>Utility</value>
   </data>
-	<data name="visionAngleMultiplierDefault" type="System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-		<value>1</value>
-	</data>
-	<data name="multiplierName" xml:space="preserve">
+  <data name="visionAngleMultiplierDefault" type="System.Double, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="multiplierName" xml:space="preserve">
     <value>Multiplier</value>
   </data>
-	<data name="multiplierNickname" xml:space="preserve">
+  <data name="multiplierNickname" xml:space="preserve">
     <value>M</value>
   </data>
-	<data name="visionAngleMultiplierErrorMessage" xml:space="preserve">
+  <data name="visionAngleMultiplierErrorMessage" xml:space="preserve">
     <value>Vision Angle Multiplier must be between 0.0 and 1.0.</value>
   </data>
-	<data name="visionAngleMultiplierDescription" xml:space="preserve">
+  <data name="visionAngleMultiplierDescription" xml:space="preserve">
     <value>The factor by which the Agent's Vision Angle will be multiplied. The result will be used to determine the angle from the velocity that the agent will be able to see neighbors.</value>
+  </data>
+  <data name="icon_avoidObstacle" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_avoidObstacle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_avoidUnalignedCollision" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_avoidUnalignedCollision.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_deconstructParticle1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_deconstructParticle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_deconstructQueleaNetwork" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_deconstructQueleaNetwork.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_getOrientation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_getOrientation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_getPosition" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_getPosition.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_getPositionHistory" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_getPositionHistory.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_getVelocity" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_getVelocity.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_loadImage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_loadImage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_neighbors" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_neighbors.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_senseImageForce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_senseImageForce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icon_wrapContainBehavior" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icon_wrapContainBehavior.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
