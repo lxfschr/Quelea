@@ -13,7 +13,6 @@ namespace Quelea
       : base("Deconstruct Agent", "DeAgent",
              "Deconstructs a Agent to expose its fields such as max speed, max force, and vision radius. Use Deconstruct Particle to expose particle fields such as position.", RS.icon_deconstructAgent, "4b324c0d-07d7-432b-bef4-983ef0af8cc5")
     {
-      agent = null;
     }
 
     /// <summary>
@@ -21,7 +20,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.agentName + " " + RS.queleaName, RS.agentNickname + RS.queleaNickname, RS.agentDescription, GH_ParamAccess.item);
     }
 
     /// <summary>

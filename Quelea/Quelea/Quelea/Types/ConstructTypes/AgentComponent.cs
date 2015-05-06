@@ -17,11 +17,6 @@ namespace Quelea
       : base(RS.constructAgentName, RS.constructAgentNickname,
           RS.constructAgentDescription, RS.icon_constructAgent, RS.constructAgentComponentGuid)
     {
-      //particle = new ParticleType();
-      //maxSpeed = RS.maxSpeedDefault;
-      //maxForce = RS.maxForceDefault;
-      //visionRadius = RS.visionRadiusDefault;
-      //visionAngle = RS.visionAngleDefault;
     }
 
     /// <summary>
@@ -41,7 +36,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickname + RS.queleaNickname, RS.agentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.agentName + " " + RS.queleaName + " Settings", RS.agentNickname + RS.queleaNickname + "S", RS.agentDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

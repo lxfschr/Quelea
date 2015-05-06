@@ -15,7 +15,6 @@ namespace Quelea
       : base("Deconstruct Vehicle", "DeVehicle",
              "Deconstructs a Vehicle to expose its fields such as orientation and wheel fields. Use Deconstruct Particle to expose particle fields such as position.", RS.icon_deconstructVehicle, "ad29903c-e0e2-4545-8753-1fd96a6dfa2a")
     {
-      vehicle = null;
     }
 
     /// <summary>
@@ -23,7 +22,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.vehicleName, RS.vehicleNickname, RS.vehicleDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.vehicleName + " " + RS.queleaName, RS.vehicleNickname + RS.queleaName, RS.vehicleDescription, GH_ParamAccess.item);
     }
 
     /// <summary>

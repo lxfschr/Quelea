@@ -26,7 +26,7 @@ namespace Quelea
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddCurveParameter(RS.surfaceName, RS.surfaceNickname, "Surface for emitter.", GH_ParamAccess.item);
+      pManager.AddSurfaceParameter(RS.surfaceName, RS.surfaceNickname, "Surface for emitter.", GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

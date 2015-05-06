@@ -26,7 +26,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.queleaName, RS.queleaNickname, "The settings for your particle, agent, or vehicle; collectively reffered to as 'quelea'.", 
+      pManager.AddGenericParameter(RS.queleaName + " Settings", RS.queleaNickname + "S", "The settings for your particle, agent, or vehicle; collectively reffered to as 'quelea'.", 
                                     GH_ParamAccess.list);
       pManager.AddGenericParameter(RS.emittersName, RS.emitterNickname, RS.emittersDescription,
                                     GH_ParamAccess.list);

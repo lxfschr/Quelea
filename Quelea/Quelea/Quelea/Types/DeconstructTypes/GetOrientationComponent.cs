@@ -11,7 +11,7 @@ namespace Quelea
     /// </summary>
     public GetOrientationComponent()
       : base("Get Orientation", "GetOrientation",
-             "Gets the position of anything that inherits from Particle.", RS.icon_getOrientation, "074d0d1a-9142-496e-9fe6-14bfbcd3e346")
+             "Gets the position of a quelea.", RS.icon_getOrientation, "074d0d1a-9142-496e-9fe6-14bfbcd3e346")
     {
     }
 
@@ -20,7 +20,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.particleName, RS.particleNickname, RS.particleDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.particleName + " " + RS.queleaName, RS.particleNickname + RS.queleaNickname, RS.particleDescription, GH_ParamAccess.item);
     }
 
     /// <summary>

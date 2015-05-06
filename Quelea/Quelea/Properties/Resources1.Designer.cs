@@ -2157,9 +2157,9 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized string similar to N.
         /// </summary>
-        internal static string numQueleaNickName {
+        internal static string numQueleaNickname {
             get {
-                return ResourceManager.GetString("numQueleaNickName", resourceCulture);
+                return ResourceManager.GetString("numQueleaNickname", resourceCulture);
             }
         }
         

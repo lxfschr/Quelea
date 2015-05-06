@@ -36,7 +36,7 @@ namespace Quelea
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddBooleanParameter(RS.continuousFlowName, RS.continuousFlowNickname, RS.continuousFlowDescription, GH_ParamAccess.item, RS.continuousFlowDefault);
       pManager.AddIntegerParameter(RS.creationRateName, RS.creationRateNickname, RS.creationRateDescription, GH_ParamAccess.item, RS.creationRateDefault);
-      pManager.AddIntegerParameter(RS.numQueleaName, RS.numQueleaNickName, RS.numQueleaDescription, GH_ParamAccess.item, RS.numAgentsDefault);
+      pManager.AddIntegerParameter(RS.numQueleaName, RS.numQueleaNickname, RS.numQueleaDescription, GH_ParamAccess.item, RS.numAgentsDefault);
       pManager.AddVectorParameter("Minimum Initial Velocity", "mV",
         "The minimum initial velocity from which a random value will be taken.", GH_ParamAccess.item,
         Constants.VelocityMin);

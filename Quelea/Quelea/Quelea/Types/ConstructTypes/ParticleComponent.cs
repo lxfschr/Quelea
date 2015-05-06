@@ -49,7 +49,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.particleName, RS.particleNickname + RS.queleaNickname, RS.particleDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.particleName + " " + RS.queleaName + " " + "Settings", RS.particleNickname + RS.queleaNickname + "S", RS.particleDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

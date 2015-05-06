@@ -17,9 +17,6 @@ namespace Quelea
       : base("Construct Vehicle", RS.vehicleName,
           "Constructs settings for a Vehicle", RS.icon_constructVehicle, "c785d70e-6196-4068-a7f6-78444450b518")
     {
-      agent = null;
-      orientation = Plane.WorldXY;
-      wheelRadius = RS.wheelRadiusDefault;
     }
 
     /// <summary>
@@ -28,7 +25,6 @@ namespace Quelea
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentDescription, GH_ParamAccess.item);
-      pManager.AddPlaneParameter(RS.orientationName, RS.orientationNickname, RS.orientationDescription, GH_ParamAccess.item, Plane.WorldXY);
       pManager.AddNumberParameter("Wheel Radius", "W", "The radius of the wheels.", GH_ParamAccess.item, RS.wheelRadiusDefault);
     }
 
@@ -37,7 +33,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.vehicleName, RS.vehicleNickname + RS.queleaNickname, RS.vehicleDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.vehicleName + " " + RS.queleaName + " Settings", RS.vehicleNickname + RS.queleaNickname + "S", RS.vehicleDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
@@ -45,7 +41,6 @@ namespace Quelea
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(nextInputIndex++, ref agent)) return false;
-      if (!da.GetData(nextInputIndex++, ref orientation)) return false;
       if (!da.GetData(nextInputIndex++, ref wheelRadius)) return false;
 
       // We should now validate the data and warn the user if invalid data is supplied.
@@ -66,7 +61,7 @@ namespace Quelea
     {
       // We're set to create the output now. To keep the size of the SolveInstance() method small, 
       // The actual functionality will be in a different method:
-      IVehicle vehicle = new VehicleType(agent, orientation, wheelRadius);
+      IVehicle vehicle = new VehicleType(agent, wheelRadius);
 
       // Finally assign the spiral to the output parameter.
       da.SetData(nextOutputIndex++, vehicle);
