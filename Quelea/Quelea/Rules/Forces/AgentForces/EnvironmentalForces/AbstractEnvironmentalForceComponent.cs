@@ -16,8 +16,6 @@ namespace Quelea
                                                   Bitmap icon, String componentGuid)
       : base(name, nickname, description, icon, componentGuid)
     {
-      environment = null;
-      visionRadiusMultiplier = RS.visionRadiusMultiplierDefault/5;
     }
 
     /// <summary>

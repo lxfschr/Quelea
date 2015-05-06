@@ -37,8 +37,8 @@ namespace Quelea
         "The target point that the agent will seek for debugging purposes.", GH_ParamAccess.item);
       // Sometimes you want to hide a specific parameter from the Rhino preview.
       // You can use the HideParameter() method as a quick way:
-      pManager.HideParameter(pManager.ParamCount - 2);
-      pManager.HideParameter(pManager.ParamCount - 1);
+      //pManager.HideParameter(pManager.ParamCount - 2);
+      //pManager.HideParameter(pManager.ParamCount - 1);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

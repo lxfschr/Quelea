@@ -2109,7 +2109,7 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The neighbors to react to..
+        ///   Looks up a localized string similar to The neighbors to react to. Use the Get Neighbors in Radius Component..
         /// </summary>
         internal static string neighborsToReactTo {
             get {

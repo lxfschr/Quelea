@@ -24,7 +24,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.particleName, RS.particleNickname, RS.particleDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.particleName + " " + RS.queleaName + " Settings", RS.particleNickname + RS.queleaNickname + "S", RS.particleDescription, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.maxSpeedName, RS.maxSpeedNickname, RS.maxSpeedDescription, GH_ParamAccess.item, RS.maxSpeedDefault);
       pManager.AddNumberParameter(RS.maxForceName, RS.maxForceNickname, RS.maxForceDescription, GH_ParamAccess.item, RS.maxForceDefault);
       pManager.AddNumberParameter(RS.visionRadiusName, RS.visionRadiusNickname, RS.visionRadiusDescription, GH_ParamAccess.item, RS.visionRadiusDefault);

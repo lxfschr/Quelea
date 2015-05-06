@@ -28,7 +28,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
     {
-      pManager.AddPointParameter(RS.positionName, RS.positionNickname, RS.positionDescription, GH_ParamAccess.list);
+      pManager.AddPointParameter(RS.positionHistoryName, RS.positionHistoryName, RS.positionHistoryDescription, GH_ParamAccess.list);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

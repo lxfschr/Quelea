@@ -24,7 +24,7 @@ namespace Quelea
     /// </summary>
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.agentName + " " + RS.queleaName + " Settings", RS.agentNickname + RS.queleaNickname + "S", RS.agentDescription, GH_ParamAccess.item);
       pManager.AddNumberParameter("Wheel Radius", "W", "The radius of the wheels.", GH_ParamAccess.item, RS.wheelRadiusDefault);
     }
 

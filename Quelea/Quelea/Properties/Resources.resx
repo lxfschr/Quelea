@@ -392,7 +392,7 @@
     <value>QN</value>
   </data>
   <data name="neighborsToReactTo" xml:space="preserve">
-    <value>The neighbors to react to.</value>
+    <value>The neighbors to react to. Use the Get Neighbors in Radius Component.</value>
   </data>
   <data name="bounceContainBehaviorName" xml:space="preserve">
     <value>Bounce Contain Behavior</value>

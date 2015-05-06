@@ -16,7 +16,6 @@ namespace Quelea
                                          Bitmap icon, String componentGuid)
       : base(name, nickname, description, icon, componentGuid)
     {
-      targetPt = new Point3d();
     }
 
     /// <summary>
@@ -25,7 +24,7 @@ namespace Quelea
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddGenericParameter("Target Point", "P", "Point to be attracted to.", GH_ParamAccess.item);
+      pManager.AddPointParameter("Target Point", "P", "Point to be attracted to.", GH_ParamAccess.item, Point3d.Origin);
     }
 
     /// <summary>

@@ -22,7 +22,7 @@ namespace Quelea
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddGenericParameter(RS.agentName, RS.agentNickname, RS.agentDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.agentName + " " + RS.queleaName, RS.agentNickname + RS.queleaNickname, RS.agentDescription, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

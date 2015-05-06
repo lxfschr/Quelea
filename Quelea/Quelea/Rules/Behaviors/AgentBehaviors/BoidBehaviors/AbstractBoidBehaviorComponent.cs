@@ -22,7 +22,7 @@ namespace Quelea
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       base.RegisterInputParams(pManager);
-      pManager.AddGenericParameter(RS.neighborsName, RS.queleaNetworkNickname, RS.neighborsToReactTo, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.neighborsToReactTo, GH_ParamAccess.item);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)

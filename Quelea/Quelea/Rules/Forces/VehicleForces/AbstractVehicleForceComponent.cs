@@ -34,7 +34,7 @@ namespace Quelea
       // You can often supply default values when creating parameters.
       // All parameters must have the correct access type. If you want 
       // to import lists or trees of values, modify the ParamAccess flag.
-      pManager.AddGenericParameter(RS.vehicleName, RS.vehicleNickname, RS.vehicleDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.vehicleName + " " + RS.queleaName, RS.vehicleNickname + RS.queleaNickname, RS.vehicleDescription, GH_ParamAccess.item);
       pManager.AddNumberParameter(RS.visionRadiusName + " " + RS.multiplierName, RS.visionRadiusNickname + RS.multiplierNickname, RS.visionRadiusMultiplierDescription, GH_ParamAccess.item, RS.visionRadiusMultiplierDefault/5);
       pManager.AddNumberParameter(RS.visionAngleName + " " + RS.multiplierName, RS.visionAngleNickname + RS.multiplierNickname, RS.visionAngleMultiplierDescription, GH_ParamAccess.item, RS.visionAngleMultiplierDefault/8);
       pManager.AddBooleanParameter("Crossed?", "C", "If true, the sensors will affect the wheels on the opposite side. If false, a higher sensor reading on the left side will cause the left wheel to turn faster causing the vehicle to turn to its right. Generally, if the sensors are not crossed, then the vehicle will steer away from areas with high values.",
