@@ -29,8 +29,8 @@ namespace Quelea
       MaxForce = maxForce;
       VisionRadius = visionRadius;
       VisionAngle = visionAngle;
-      Lat = Util.Random.RandomDouble(0, RS.TWO_PI);
-      Lon = Util.Random.RandomDouble(-RS.HALF_PI, RS.HALF_PI);
+      Lat = 0;//Util.Random.RandomDouble(0, RS.TWO_PI);
+      Lon = 0;//Util.Random.RandomDouble(-RS.HALF_PI, RS.HALF_PI);
     }
 
     public AgentType(IAgent a, Point3d emittionPt, Vector3d initialVelocity, AbstractEnvironmentType environment)
@@ -41,8 +41,8 @@ namespace Quelea
       MaxForce = a.MaxForce;
       VisionRadius = a.VisionRadius;
       VisionAngle = a.VisionAngle;
-      Lat = Util.Random.RandomDouble(0, RS.TWO_PI);
-      Lon = Util.Random.RandomDouble(-RS.HALF_PI, RS.HALF_PI);
+      Lat = 0;//Util.Random.RandomDouble(0, RS.TWO_PI);
+      Lon = 0;//Util.Random.RandomDouble(-RS.HALF_PI, RS.HALF_PI);
     }
 
     public AgentType(Vector3d velocityMin, Vector3d velocityMax, Vector3d up, Vector3d acceleration,
@@ -54,8 +54,8 @@ namespace Quelea
       MaxForce = maxForce;
       VisionRadius = visionRadius;
       VisionAngle = visionAngle;
-      Lat = Util.Random.RandomDouble(0, 2 * Math.PI);
-      Lon = Util.Random.RandomDouble(-Math.PI / 2, Math.PI / 2);
+      Lat = 0;//Util.Random.RandomDouble(0, 2 * Math.PI);
+      Lon = 0;//Util.Random.RandomDouble(-Math.PI / 2, Math.PI / 2);
     }
 
     public Vector3d ApplyDesiredVelocity(Vector3d desiredVelocity, double weightMultiplier)

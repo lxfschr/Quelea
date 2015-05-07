@@ -557,7 +557,7 @@
   <data name="positionHistoryName" xml:space="preserve">
     <value>Position History</value>
   </data>
-  <data name="positionHistoryNickName" xml:space="preserve">
+  <data name="positionHistoryNickname" xml:space="preserve">
     <value>H</value>
   </data>
   <data name="accelerationNickName" xml:space="preserve">

@@ -44,10 +44,10 @@ namespace Quelea
       this.octTree = ((SpatialCollectionAsOctTree<T>)spatialCollection).octTree;
     }
 
-    public SpatialCollectionAsOctTree(Point3d min, Point3d max, IList<T> spatialObjects)
+    public SpatialCollectionAsOctTree(Point3d min, Point3d max, int minNodeSize, IList<T> spatialObjects)
     {
       this.spatialObjects = spatialObjects;
-      UpdateDatastructure(min, max, 1, spatialObjects);
+      UpdateDatastructure(min, max, minNodeSize, spatialObjects);
     }
 
     public ISpatialCollection<T> GetNeighborsInSphere(T item, double r)

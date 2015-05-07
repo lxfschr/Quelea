@@ -20,7 +20,7 @@ namespace Quelea
                         int historyLength)
     {
       Up = up;
-      Acceleration = acceleration;
+      Acceleration3D = acceleration;
       Lifespan = lifespan;
       Mass = mass;
       BodySize = bodySize;
@@ -29,7 +29,7 @@ namespace Quelea
 
     // Copy Constructor
     public ParticleType(IParticle p)
-      : this(p.Up, p.Acceleration, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
+      : this(p.Up, p.Acceleration3D, p.Lifespan, p.Mass, p.BodySize, p.HistoryLength)
     {
       InitialVelocitySet = p.InitialVelocitySet;
       Position = p.Position;
@@ -38,12 +38,12 @@ namespace Quelea
       PreviousAcceleration = p.PreviousAcceleration;
       Position3D = p.Position3D;
       Velocity3D = p.Velocity3D;
-      Acceleration3D = p.Acceleration3D;
+      Acceleration = p.Acceleration;
       Position3DHistory = p.Position3DHistory;
     }
 
     public ParticleType(IParticle p, Point3d emittionPt, Vector3d initialVelocity, AbstractEnvironmentType environment)
-      : this(p.Up, p.Acceleration, p.Lifespan,
+      : this(p.Up, p.Acceleration3D, p.Lifespan,
              p.Mass, p.BodySize, p.HistoryLength)
     {
       Environment = environment;

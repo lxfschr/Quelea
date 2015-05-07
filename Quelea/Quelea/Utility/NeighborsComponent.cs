@@ -88,6 +88,12 @@ namespace Quelea
 
     private SpatialCollectionType Run()
     {
+      ISpatialCollection<IQuelea> neighbors = new SpatialCollectionAsList<IQuelea>();
+      if (agent.VisionRadius <= 0)
+      {
+        return new SpatialCollectionType(neighbors);
+      }
+
       ISpatialCollection<IQuelea> neighborsInSphere = agentCollection.Quelea.GetNeighborsInSphere(agent, agent.VisionRadius*visionRadiusMultiplier);
 
       if (Util.Number.ApproximatelyEqual(visionAngleMultiplier, 1.0, Constants.AbsoluteTolerance))
@@ -95,7 +101,7 @@ namespace Quelea
         return new SpatialCollectionType(neighborsInSphere);
       }
 
-      ISpatialCollection<IQuelea> neighbors = new SpatialCollectionAsList<IQuelea>();
+      
 
       Point3d position = agent.Position;
       Vector3d velocity = agent.Velocity;

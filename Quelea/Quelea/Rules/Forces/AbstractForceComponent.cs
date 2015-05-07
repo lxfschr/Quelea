@@ -56,7 +56,7 @@ namespace Quelea
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(nextInputIndex++, ref weightMultiplier)) return false;
 
-      if (!(0.0 <= weightMultiplier && weightMultiplier <= 1.0))
+      if (!(-1.0 <= weightMultiplier && weightMultiplier <= 1.0))
       {
         AddRuntimeMessage(GH_RuntimeMessageLevel.Error, "Weight multiplier must be between 0.0 and 1.0.");
         return false;

@@ -30,6 +30,8 @@ namespace Quelea
       pManager.AddNumberParameter(RS.pathTargetDistanceName, RS.pathTargetDistanceNickName,
         RS.pathTargetDistanceDescription,
         GH_ParamAccess.item);
+      pManager[pManager.ParamCount-1].Optional = true;
+      pManager[pManager.ParamCount - 2].Optional = true;
     }
 
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)

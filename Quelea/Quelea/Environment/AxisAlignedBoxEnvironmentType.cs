@@ -195,52 +195,53 @@ namespace Quelea
 
     public override bool BounceContain(IParticle agent)
     {
+      double d = agent.BodySize/2;
       bool bounced = false;
       Point3d position = agent.Position;
       Vector3d velocity = agent.Velocity;
-      if (position.X >= maxX)
+      if (position.X+d >= maxX)
       {
-        position.X = maxX;
+        position.X = maxX-d;
         velocity.X *= -1;
         agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
-      else if (position.X <= minX)
+      else if (position.X-d <= minX)
       {
-        position.X = minX;
+        position.X = minX+d;
         velocity.X *= -1;
         agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
-      if (position.Y >= maxY)
+      if (position.Y+d >= maxY)
       {
-        position.Y = maxY;
+        position.Y = maxY-d;
         velocity.Y *= -1;
         agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
-      else if (position.Y <= minY)
+      else if (position.Y-d <= minY)
       {
-        position.Y = minY;
+        position.Y = minY+d;
         velocity.Y *= -1;
         agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
-      if (position.Z >= maxZ)
+      if (position.Z+d >= maxZ)
       {
-        position.Z = maxZ;
+        position.Z = maxZ-d;
         velocity.Z *= -1;
         agent.Position = position;
         agent.Velocity = velocity;
         bounced = true;
       }
-      else if (position.Z <= minZ)
+      else if (position.Z-d <= minZ)
       {
-        position.Z = minZ;
+        position.Z = minZ+d;
         velocity.Z *= -1;
         agent.Position = position;
         agent.Velocity = velocity;

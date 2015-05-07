@@ -2428,9 +2428,9 @@ namespace Quelea.Properties {
         /// <summary>
         ///   Looks up a localized string similar to H.
         /// </summary>
-        internal static string positionHistoryNickName {
+        internal static string positionHistoryNickname {
             get {
-                return ResourceManager.GetString("positionHistoryNickName", resourceCulture);
+                return ResourceManager.GetString("positionHistoryNickname", resourceCulture);
             }
         }
         
