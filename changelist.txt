@@ -1,4 +1,21 @@
-0.2.0
+0.1
++ Added new Braitenberg Vehicle Type. 
++ Implemented Avoid Unaligned Collision Force.
++ Implemented Avoid Obstacle Force. 
++ Implemented Kill Contain Behavior
+* Fixed Surface Environment bugs. 
+* Fixed Polysurface Environment bug. 
++ Implemented Dynamic Spatial Data Structure to improve performance. 
+* Changed component input and output names to match. 
+* Changed to allow initial velocity to be set per each emitter. 
+
+0.0.9
++ Added Polysurface Environments 
++ Added Wander Force 
++ Implemented polymorphic type system of Particles and Agents 
+- Fixed bug in Bounce Contain Behavior
+
+0.0.5
 + Added Apply Custom Force Component so you can apply whatever vector force you want.
 + Added Arrive Force Component to cause Agent to seek and stop at a point.
 + Added Seek Force Component to cause Agent to steer towards a target point.
@@ -10,3 +27,17 @@
 * Fixed Bug that caused Creation Rate not to work.
 * Fixed Bug in Deconstruct System that caused AgentCollections to be output as lists instead of bin-lattices.
 * Fixed Bug in Attract that caused the force to be limited to the Agents MaxForce.
+
+0.0.4
++ Added Attract and Seek forces. 
+* Fixed bug in path follow force and surface environments. 
+* Changed how DeconstructAgent displays position history.
+
+0.0.3
+* Fixed bug in Surface Environments. 
+- Removed dead inputs from Construct Agent.
+
+0.0.2
++ Updated icons
++ Added eat behavior
++ Updated documentation
