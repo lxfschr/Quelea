@@ -7,6 +7,7 @@ namespace Quelea
   public class AxisAlignedBoxEnvironmentComponent : AbstractEnvironmentComponent
   {
     private Box box;
+    private bool wrap;
     /// <summary>
     /// Initializes a new instance of the AbstractEnvironmentComponent class.
     /// </summary>
@@ -14,8 +15,6 @@ namespace Quelea
       : base(RS.AABoxEnvName, RS.AABoxEnvNickName,
           RS.AABoxEnvDescription, RS.icon_AABoxEnvironment, RS.AABoxEnvGUID)
     {
-      Interval interval = new Interval(-RS.boxBoundsDefault, RS.boxBoundsDefault);
-      box = new Box(Plane.WorldXY, interval, interval, interval);
     }
 
     /// <summary>
@@ -24,11 +23,13 @@ namespace Quelea
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       pManager.AddBoxParameter(RS.boxName, RS.boxNickname, RS.AABoxDescription, GH_ParamAccess.item);
+      pManager.AddBooleanParameter(RS.wrapName, RS.wrapNickname, RS.wrapDescription, GH_ParamAccess.item, RS.wrapDefault);
     }
 
     protected override bool GetInputs(IGH_DataAccess da)
     {
       if (!da.GetData(nextInputIndex++, ref box)) return false;
+      if (!da.GetData(nextInputIndex++, ref wrap)) return false;
 
       // We should now validate the data and warn the user if invalid data is supplied.
       if (!(box.Plane.XAxis.Equals(Plane.WorldXY.XAxis) && box.Plane.YAxis.Equals(Plane.WorldXY.YAxis)))
@@ -41,7 +42,7 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      AbstractEnvironmentType environment = new AxisAlignedBoxEnvironmentType(box);
+      AbstractEnvironmentType environment = new AxisAlignedBoxEnvironmentType(box, wrap);
       da.SetData(nextOutputIndex++, environment);
     }
   }

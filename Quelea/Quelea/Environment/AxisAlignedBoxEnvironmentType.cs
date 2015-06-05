@@ -27,12 +27,16 @@ namespace Quelea
       maxY = boundingBox.Corner(false, false, false).Y;
       minZ = boundingBox.Corner(false, false, true).Z;
       maxZ = boundingBox.Corner(false, false, false).Z;
+      Width = maxX - minX;
+      Height = maxY - minY;
+      Depth = maxZ - minZ;
     }
 
     // Constructor with initial values.
-    public AxisAlignedBoxEnvironmentType(Box box)
+    public AxisAlignedBoxEnvironmentType(Box box, bool wrap)
     {
       environment = box;
+      Wrap = wrap;
       BoundingBox boundingBox = environment.BoundingBox;
       minX = boundingBox.Corner(true, false, false).X;
       maxX = boundingBox.Corner(false, false, false).X;
@@ -40,18 +44,25 @@ namespace Quelea
       maxY = boundingBox.Corner(false, false, false).Y;
       minZ = boundingBox.Corner(false, false, true).Z;
       maxZ = boundingBox.Corner(false, false, false).Z;
+      Width = maxX - minX;
+      Height = maxY - minY;
+      Depth = maxZ - minZ;
     }
 
     // Copy Constructor
     public AxisAlignedBoxEnvironmentType(AxisAlignedBoxEnvironmentType environment)
     {
       this.environment = environment.environment;
+      this.Wrap = environment.Wrap;
       minX = environment.minX;
       maxX = environment.maxX;
       minY = environment.minY;
       maxY = environment.maxY;
       minZ = environment.minZ;
       maxZ = environment.maxZ;
+      Width = maxX - minX;
+      Height = maxY - minY;
+      Depth = maxZ - minZ;
     }
 
     public override bool Equals(object obj)
@@ -109,7 +120,6 @@ namespace Quelea
       get { return RS.AABoxEnvName; }
     }
 
-
     public override Point3d ClosestPoint(Point3d pt)
     {
       return environment.ClosestPoint(pt);
@@ -156,7 +166,7 @@ namespace Quelea
         desired.X = maxSpeed;
         avoided = true;
       }
-      else if (refPosition.X > maxX - distance)
+      else if (refPosition.X >= maxX - distance)
       {
         //desired = new Vector3d(-maxSpeed, velocity.Y, velocity.Z);
         desired.X = -maxSpeed;
@@ -169,7 +179,7 @@ namespace Quelea
         desired.Y = maxSpeed;
         avoided = true;
       }
-      else if (refPosition.Y > maxY - distance)
+      else if (refPosition.Y >= maxY - distance)
       {
         //desired = new Vector3d(velocity.X, -maxSpeed, velocity.Z);
         desired.Y = -maxSpeed;
@@ -182,7 +192,7 @@ namespace Quelea
         desired.Z = maxSpeed;
         avoided = true;
       }
-      else if (refPosition.Z > maxZ - distance)
+      else if (refPosition.Z >= maxZ - distance)
       {
         //desired = new Vector3d(velocity.X, -maxSpeed, velocity.Z);
         desired.Z = -maxSpeed;
@@ -248,6 +258,44 @@ namespace Quelea
         bounced = true;
       }
       return bounced;
+    }
+
+    public override Point3d WrapPosition(Point3d position)
+    {
+      bool wrapped = false;
+      //Point3d position = quelea.Position;
+      if (position.X >= maxX)
+      {
+        position.X -= Width;
+        wrapped = true;
+      }
+      if (position.X < minX)
+      {
+        position.X += Width;
+        wrapped = true;
+      }
+      if (position.Y >= maxY)
+      {
+        position.Y -= Height;
+        wrapped = true;
+      }
+      if (position.Y < minY)
+      {
+        position.Y += Height;
+        wrapped = true;
+      }
+      if (position.Z >= maxZ)
+      {
+        position.Z -= Depth;
+        wrapped = true;
+      }
+      if (position.Z < minZ)
+      {
+        position.Z += Depth;
+        wrapped = true;
+      }
+      //return wrapped;
+      return position;
     }
 
     public override BoundingBox GetBoundingBox()

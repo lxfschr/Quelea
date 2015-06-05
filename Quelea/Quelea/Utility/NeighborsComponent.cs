@@ -1,4 +1,5 @@
-﻿using Grasshopper.Kernel;
+﻿using System;
+using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
@@ -91,6 +92,55 @@ namespace Quelea
       ISpatialCollection<IQuelea> neighbors = new SpatialCollectionAsList<IQuelea>();
       if (agent.VisionRadius <= 0)
       {
+        return new SpatialCollectionType(neighbors);
+      }
+
+      if (agent.Environment.Wrap)
+      {
+        double width = agent.Environment.Width;
+        double height = agent.Environment.Height;
+        double depth = agent.Environment.Depth;
+        foreach (IQuelea potentialNeighbor in agentCollection.Quelea)
+        {
+          if (agent == potentialNeighbor)
+          {
+            continue;
+          }
+          double minDistance = Double.MaxValue;
+          for (double x = -width; x <= width; x += width)
+          {
+            for (double y = -height; y <= height; y += height)
+            {
+              // if there is no z dimension, ie it is a surface environment,
+              // then do not loop on the depth.
+              if (depth.Equals(0)) 
+              {
+                Point3d wrappedPoint = new Point3d(agent.Position.X + x, agent.Position.Y + y, agent.Position.Z);
+                double distance = wrappedPoint.DistanceTo(potentialNeighbor.Position);
+                if (distance < minDistance)
+                {
+                  minDistance = distance;
+                }
+              }
+              else
+              {
+                for (double z = -depth; z <= depth && !depth.Equals(0); z += depth)
+                {
+                  Point3d wrappedPoint = new Point3d(agent.Position.X + x, agent.Position.Y + y, agent.Position.Z + z);
+                  double distance = wrappedPoint.DistanceTo(potentialNeighbor.Position);
+                  if (distance < minDistance)
+                  {
+                    minDistance = distance;
+                  }
+                }
+              }
+            }
+          }
+          if (minDistance <= agent.VisionRadius * visionRadiusMultiplier)
+          {
+            neighbors.Add(potentialNeighbor);
+          }
+        }
         return new SpatialCollectionType(neighbors);
       }
 

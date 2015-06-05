@@ -7,6 +7,11 @@ namespace Quelea
 {
   public abstract class AbstractEnvironmentType : GH_Goo<Object>
   {
+
+    protected AbstractEnvironmentType()
+    {
+      Wrap = false;
+    }
     public override bool Equals(object obj)
     {
       // If parameter is null return false.
@@ -49,7 +54,20 @@ namespace Quelea
     {
       get { return RS.environmentName; }
     }
+    public bool Wrap { get; protected set; }
+    public abstract Point3d WrapPosition(Point3d position);
+    public Point3d UpdateOutOfBoundsPosition(Point3d position)
+    {
+      if (Wrap)
+      {
+        return WrapPosition(position);
+      }
+      return ClosestPointOnRef(position);
+    }
 
+    public double Width { get; protected set; }
+    public double Height { get; protected set; }
+    public double Depth { get; protected set; }
     abstract public Point3d ClosestPoint(Point3d pt);
 
     abstract public Point3d MapTo2D(Point3d pt);

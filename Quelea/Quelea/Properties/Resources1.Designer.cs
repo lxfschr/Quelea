@@ -3111,5 +3111,42 @@ namespace Quelea.Properties {
                 return ((double)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Boolean similar to False.
+        /// </summary>
+        internal static bool wrapDefault {
+            get {
+                object obj = ResourceManager.GetObject("wrapDefault", resourceCulture);
+                return ((bool)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If true, quelea will wrap around to other side of environment bounds..
+        /// </summary>
+        internal static string wrapDescription {
+            get {
+                return ResourceManager.GetString("wrapDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrap?.
+        /// </summary>
+        internal static string wrapName {
+            get {
+                return ResourceManager.GetString("wrapName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to W.
+        /// </summary>
+        internal static string wrapNickname {
+            get {
+                return ResourceManager.GetString("wrapNickname", resourceCulture);
+            }
+        }
     }
 }

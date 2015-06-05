@@ -309,6 +309,10 @@ namespace Quelea
       return lofts;
     }
 
+    public override Point3d WrapPosition(Point3d position)
+    {
+      return position;
+    }
 
     public override Point3d ClosestPoint(Point3d pt)
     {

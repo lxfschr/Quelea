@@ -72,6 +72,11 @@ namespace Quelea
       return environmentStr;
     }
 
+    public override Point3d WrapPosition(Point3d position)
+    {
+      return position;
+    }
+
     public override Point3d ClosestPoint(Point3d pt)
     {
       if (!environment.IsPointInside(pt, Constants.AbsoluteTolerance, true))

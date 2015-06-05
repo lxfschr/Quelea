@@ -7,6 +7,7 @@ namespace Quelea
   public class SurfaceEnvironmentComponent : AbstractEnvironmentComponent
   {
     private Surface srf;
+    private bool wrap;
     /// <summary>
     /// Initializes a new instance of the WorldBoxEnvironmentComponent class.
     /// </summary>
@@ -14,10 +15,6 @@ namespace Quelea
       : base(RS.surfaceEnvironmentName, RS.surfaceEnvironmentComponentNickname,
           RS.surfaceEnvironmentDescription, RS.icon_srfEnvironment, RS.surfaceEnvironmentGuid)
     {
-      Point3d pt1 = Point3d.Origin;
-      Point3d pt2 = new Point3d(RS.boxBoundsDefault, 0, 0);
-      Point3d pt3 = new Point3d(0, RS.boxBoundsDefault, 0);
-      srf = NurbsSurface.CreateFromCorners(pt1, pt2, pt3);
     }
 
     /// <summary>
@@ -26,6 +23,7 @@ namespace Quelea
     protected override void RegisterInputParams(GH_InputParamManager pManager)
     {
       pManager.AddSurfaceParameter(RS.surfaceName, RS.surfaceNickname, RS.surfaceForEnvironmentDescription, GH_ParamAccess.item);
+      pManager.AddBooleanParameter(RS.wrapName, RS.wrapNickname, RS.wrapDescription, GH_ParamAccess.item, RS.wrapDefault);
     }
 
     protected override void RegisterOutputParams(GH_OutputParamManager pManager)
@@ -37,12 +35,13 @@ namespace Quelea
     protected override bool GetInputs(IGH_DataAccess da)
     {
       if (!da.GetData(nextInputIndex++, ref srf)) return false;
+      if (!da.GetData(nextInputIndex++, ref wrap)) return false;
       return true;
     }
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      SurfaceEnvironmentType environment = new SurfaceEnvironmentType(srf);
+      SurfaceEnvironmentType environment = new SurfaceEnvironmentType(srf, wrap);
       da.SetData(nextOutputIndex++, environment);
       da.SetData(nextOutputIndex++, environment.RefEnvironment);
     }

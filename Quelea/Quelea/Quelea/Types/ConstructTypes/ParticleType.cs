@@ -136,8 +136,7 @@ namespace Quelea
       Acceleration3D = MapTo3D(Acceleration);
       Point3d position = Position;
       position.Transform(Transform.Translation(Velocity));
-      position = Environment.ClosestPointOnRef(position);
-      Position = position;
+      Position = Environment.UpdateOutOfBoundsPosition(position);
       Point3d position3D = Position3D;
       position3D.Transform(Transform.Translation(Velocity3D));
       Position3D = position3D;

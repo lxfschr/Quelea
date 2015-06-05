@@ -36,15 +36,20 @@ namespace Quelea
       maxX = uDom.Max;
       minY = vDom.Min;
       maxY = vDom.Max;
+
+      Width = maxX - minX;
+      Height = maxY - minY;
     }
 
     // Constructor with initial values.
-    public SurfaceEnvironmentType(Surface srf)
+    public SurfaceEnvironmentType(Surface srf, bool wrap)
     {
       environment = srf;
-
+      Wrap = wrap;
       double width, height;
       srf.GetSurfaceSize(out width, out height);
+      Width = width;
+      Height = height;
 
       Interval widthInterval = new Interval(0, width);
       Interval heightInterval = new Interval(0, height);
@@ -70,6 +75,9 @@ namespace Quelea
     public SurfaceEnvironmentType(SurfaceEnvironmentType environment)
     {
       this.environment = environment.environment;
+      Width = environment.Width;
+      Height = environment.Height;
+      Wrap = environment.Wrap;
       RefEnvironment = environment.RefEnvironment;
 
       Interval uDom = RefEnvironment.Domain(0);
@@ -134,7 +142,6 @@ namespace Quelea
       get { return RS.surfaceEnvironmentName; }
     }
 
-
     public override Point3d ClosestPoint(Point3d pt)
     {
       double u, v;
@@ -185,7 +192,7 @@ namespace Quelea
         desired.X = maxSpeed;
         avoided = true;
       }
-      else if (refPosition.X > maxX - distance)
+      else if (refPosition.X >= maxX - distance)
       {
         //desired = new Vector3d(-maxSpeed, velocity.Y, velocity.Z);
         desired.X = -maxSpeed;
@@ -198,7 +205,7 @@ namespace Quelea
         desired.Y = maxSpeed;
         avoided = true;
       }
-      else if (refPosition.Y > maxY - distance)
+      else if (refPosition.Y >= maxY - distance)
       {
         //desired = new Vector3d(velocity.X, -maxSpeed, velocity.Z);
         desired.Y = -maxSpeed;
@@ -221,7 +228,7 @@ namespace Quelea
         agent.Velocity = velocity;
         return true;
       }
-      if (position.X <= minX)
+      if (position.X < minX)
       {
         position.X = minX;
         velocity.X *= -1;
@@ -235,7 +242,7 @@ namespace Quelea
         agent.Velocity = velocity;
         return true;
       }
-      if (position.Y <= minY)
+      if (position.Y < minY)
       {
         position.Y = minY;
         velocity.Y *= -1;
@@ -243,6 +250,32 @@ namespace Quelea
         return true;
       }
       return false;
+    }
+
+    public override Point3d WrapPosition(Point3d position)
+    {
+      bool wrapped = false;
+      if (position.X >= maxX)
+      {
+        position.X -= Width;
+        wrapped = true;
+      }
+      if (position.X < minX)
+      {
+        position.X += Width;
+        wrapped = true;
+      }
+      if (position.Y >= maxY)
+      {
+        position.Y -= Height;
+        wrapped = true;
+      }
+      if (position.Y < minY)
+      {
+        position.Y += Height;
+        wrapped = true;
+      }
+      return position;
     }
 
     public override BoundingBox GetBoundingBox()
