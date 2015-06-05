@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
@@ -8,9 +9,11 @@ namespace Quelea
   public class NeighborsComponent : AbstractComponent
   {
     private IAgent agent;
-    private SpatialCollectionType agentCollection;
+    private SpatialCollectionType queleaNetwork;
     private double visionRadiusMultiplier;
     private double visionAngleMultiplier;
+    ISpatialCollection<IQuelea> neighbors;
+    private List<Point3d> wrappedPositions; 
     /// <summary>
     /// Initializes a new instance of the NeighborsComponent class.
     /// </summary>
@@ -19,8 +22,8 @@ namespace Quelea
           RS.getNeighborsInRadiusDescription,
           RS.pluginCategoryName, RS.utilitySubcategoryName, RS.icon_neighborsInRadius, RS.neighborsGuid)
     {
-      agent = null;
-      agentCollection = null;
+      neighbors = new SpatialCollectionAsList<IQuelea>();
+      wrappedPositions = new List<Point3d>();
       visionRadiusMultiplier = RS.visionRadiusMultiplierDefault;
       visionAngleMultiplier = RS.visionAngleMultiplierDefault;
     }
@@ -36,8 +39,8 @@ namespace Quelea
       // to import lists or trees of values, modify the ParamAccess flag.
       pManager.AddGenericParameter(RS.agentName + " " + RS.queleaName, RS.agentNickname + RS.queleaNickname, RS.agentToGetNeighborsFor, GH_ParamAccess.item);
       pManager.AddGenericParameter(RS.queleaNetworkName, RS.queleaNetworkNickname, RS.queleaNetworkToSearch, GH_ParamAccess.item);
-      pManager.AddNumberParameter(RS.visionRadiusName + " " + RS.multiplierName, RS.visionRadiusNickname + RS.multiplierNickname, RS.visionRadiusMultiplierDescription, GH_ParamAccess.item, RS.visionRadiusMultiplierDefault);
-      pManager.AddNumberParameter(RS.visionAngleName + " " + RS.multiplierName, RS.visionAngleNickname + RS.multiplierNickname, "The factor by which the Agent's Vision Angle will be multiplied. The result will be used to determine the angle from the velocity that the agent will be able to see neighbors.", GH_ParamAccess.item, RS.visionAngleMultiplierDefault);
+      pManager.AddGenericParameter(RS.visionRadiusName + " " + RS.multiplierName, RS.visionRadiusNickname + RS.multiplierNickname, RS.visionRadiusMultiplierDescription, GH_ParamAccess.item);
+      pManager.AddGenericParameter(RS.visionAngleName + " " + RS.multiplierName, RS.visionAngleNickname + RS.multiplierNickname, "The factor by which the Agent's Vision Angle will be multiplied. The result will be used to determine the angle from the velocity that the agent will be able to see neighbors.", GH_ParamAccess.item);
       // If you want to change properties of certain parameters, 
       // you can use the pManager instance to access them by index:
       pManager[2].Optional = true;
@@ -63,7 +66,7 @@ namespace Quelea
       // Then we need to access the input parameters individually. 
       // When data cannot be extracted from a parameter, we should abort this method.
       if (!da.GetData(nextInputIndex++, ref agent)) return false;
-      if (!da.GetData(nextInputIndex++, ref agentCollection)) return false;
+      if (!da.GetData(nextInputIndex++, ref queleaNetwork)) return false;
       da.GetData(nextInputIndex++, ref visionRadiusMultiplier);
       da.GetData(nextInputIndex++, ref visionAngleMultiplier);
       
@@ -83,83 +86,43 @@ namespace Quelea
 
     protected override void SetOutputs(IGH_DataAccess da)
     {
-      SpatialCollectionType neighbors = Run();
-      da.SetData(nextOutputIndex++, neighbors);
+      da.SetData(nextOutputIndex++, GetNeighbors());
     }
 
-    private SpatialCollectionType Run()
+    private SpatialCollectionType GetNeighbors()
     {
-      ISpatialCollection<IQuelea> neighbors = new SpatialCollectionAsList<IQuelea>();
-      if (agent.VisionRadius <= 0)
+      neighbors = new SpatialCollectionAsList<IQuelea>();
+      wrappedPositions = new List<Point3d>();
+      if (agent.VisionRadius > 0)
       {
-        return new SpatialCollectionType(neighbors);
-      }
-
-      if (agent.Environment.Wrap)
-      {
-        double width = agent.Environment.Width;
-        double height = agent.Environment.Height;
-        double depth = agent.Environment.Depth;
-        foreach (IQuelea potentialNeighbor in agentCollection.Quelea)
+        if (agent.Environment.Wrap)
         {
-          if (agent == potentialNeighbor)
+          neighbors = GetNeighborsWrapped();
+        }
+        else
+        {
+          neighbors = queleaNetwork.Quelea.GetNeighborsInSphere(agent, agent.VisionRadius * visionRadiusMultiplier);
+
+          if (visionAngleMultiplier < 1.0)
           {
-            continue;
-          }
-          double minDistance = Double.MaxValue;
-          for (double x = -width; x <= width; x += width)
-          {
-            for (double y = -height; y <= height; y += height)
-            {
-              // if there is no z dimension, ie it is a surface environment,
-              // then do not loop on the depth.
-              if (depth.Equals(0)) 
-              {
-                Point3d wrappedPoint = new Point3d(agent.Position.X + x, agent.Position.Y + y, agent.Position.Z);
-                double distance = wrappedPoint.DistanceTo(potentialNeighbor.Position);
-                if (distance < minDistance)
-                {
-                  minDistance = distance;
-                }
-              }
-              else
-              {
-                for (double z = -depth; z <= depth && !depth.Equals(0); z += depth)
-                {
-                  Point3d wrappedPoint = new Point3d(agent.Position.X + x, agent.Position.Y + y, agent.Position.Z + z);
-                  double distance = wrappedPoint.DistanceTo(potentialNeighbor.Position);
-                  if (distance < minDistance)
-                  {
-                    minDistance = distance;
-                  }
-                }
-              }
-            }
-          }
-          if (minDistance <= agent.VisionRadius * visionRadiusMultiplier)
-          {
-            neighbors.Add(potentialNeighbor);
+            neighbors = GetNeighborsInVisionAngle(neighbors);
           }
         }
-        return new SpatialCollectionType(neighbors);
       }
+      SpatialCollectionType neighborsType = new SpatialCollectionType(neighbors);
+      neighborsType.WrappedPositions = wrappedPositions;
+      return neighborsType;
+    }
 
-      ISpatialCollection<IQuelea> neighborsInSphere = agentCollection.Quelea.GetNeighborsInSphere(agent, agent.VisionRadius*visionRadiusMultiplier);
-
-      if (Util.Number.ApproximatelyEqual(visionAngleMultiplier, 1.0, Constants.AbsoluteTolerance))
-      {
-        return new SpatialCollectionType(neighborsInSphere);
-      }
-
-      
-
+    private ISpatialCollection<IQuelea> GetNeighborsInVisionAngle(ISpatialCollection<IQuelea> neighborsInSphere)
+    {
       Point3d position = agent.Position;
       Vector3d velocity = agent.Velocity;
       Plane pl1 = new Plane(position, velocity);
       pl1.Rotate(-RS.HALF_PI, pl1.YAxis);
       Plane pl2 = pl1;
       pl2.Rotate(-RS.HALF_PI, pl1.XAxis);
-      double halfVisionAngle = agent.VisionAngle*visionAngleMultiplier/2;
+      double halfVisionAngle = agent.VisionAngle * visionAngleMultiplier / 2;
       foreach (IQuelea neighbor in neighborsInSphere)
       {
         Vector3d diff = Util.Vector.Vector2Point(position, neighbor.Position);
@@ -172,7 +135,53 @@ namespace Quelea
         }
       }
 
-      return new SpatialCollectionType(neighbors);
+      return neighbors;
+    }
+
+    private ISpatialCollection<IQuelea> GetNeighborsWrapped()
+    {
+      double width = agent.Environment.Width;
+      double height = agent.Environment.Height;
+      double depth = agent.Environment.Depth;
+      foreach (IQuelea potentialNeighbor in queleaNetwork.Quelea)
+      {
+        if (agent == potentialNeighbor)
+        {
+          continue;
+        }
+        Point3d wrappedPosition = potentialNeighbor.Position;
+        double minDistance = Double.MaxValue;
+        for (double x = -width; x <= width; x += width)
+        {
+          for (double y = -height; y <= height; y += height)
+          {
+            // if there is no z dimension, ie it is a surface environment,
+            // then do not loop on the depth.
+            double z = -depth;
+            do
+            {
+              wrappedPosition = new Point3d(potentialNeighbor.Position.X + x, potentialNeighbor.Position.Y + y, potentialNeighbor.Position.Z + z);
+              double distance = agent.Position.DistanceTo(wrappedPosition);
+              if (distance < minDistance)
+              {
+                minDistance = distance;
+                z += depth;
+              }
+            } while (depth > 0 && z <= depth);
+            
+          }
+        }
+        if (minDistance <= agent.VisionRadius * visionRadiusMultiplier)
+        {
+          neighbors.Add(potentialNeighbor);
+          if (neighbors.Count > queleaNetwork.Quelea.Count)
+          {
+            throw new Exception("Too many neighbors!");
+          }
+          wrappedPositions.Add(wrappedPosition);
+        }
+      }
+      return neighbors;
     }
   }
 }

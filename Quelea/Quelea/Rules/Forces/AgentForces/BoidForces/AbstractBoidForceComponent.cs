@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using Grasshopper.Kernel;
+using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
 namespace Quelea
@@ -8,6 +10,7 @@ namespace Quelea
   public abstract class AbstractBoidForceComponent : AbstractAgentForceComponent
   {
     protected ISpatialCollection<IQuelea> neighbors;
+    protected List<Point3d> wrappedPositions;
     /// <summary>
     /// Initializes a new instance of the ViewForceComponent class.
     /// </summary>
@@ -32,6 +35,7 @@ namespace Quelea
       if (!base.GetInputs(da)) return false;
       SpatialCollectionType neighborsCollection = new SpatialCollectionType();
       if (!da.GetData(nextInputIndex++, ref neighborsCollection)) return false;
+      wrappedPositions = neighborsCollection.WrappedPositions;
       neighbors = neighborsCollection.Quelea;
       return true;
     }

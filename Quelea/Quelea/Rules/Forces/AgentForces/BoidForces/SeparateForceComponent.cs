@@ -21,8 +21,7 @@ namespace Quelea
 
       foreach (IQuelea neighbor in neighbors)
       {
-        //Point3d neighborPosition2D = agent.Environment.ClosestRefPoint(neighbor.Position3D);
-        Point3d neighborPosition2D = neighbor.Position;
+        Point3d neighborPosition2D = agent.Environment.Wrap ? wrappedPositions[count] : neighbor.Position;
         double d = agent.Position.DistanceTo(neighborPosition2D);
         if (!(d > 0)) continue;
         //double d = Vector3d.Subtract(agent.RefPosition, other.RefPosition).Length;

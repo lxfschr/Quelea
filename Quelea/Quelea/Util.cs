@@ -4,6 +4,113 @@ using Rhino.Geometry;
 
 namespace Quelea
 {
+  public struct RoundedDouble : IEquatable<RoundedDouble>, IComparable<RoundedDouble>
+  {
+    public readonly double value;
+    public RoundedDouble(double value)
+    {
+      this.value = value;
+    }
+
+    public static implicit operator RoundedDouble(double value)
+    {
+      return new RoundedDouble(value);
+    }
+
+    public static implicit operator double(RoundedDouble wrapper)
+    {
+      return wrapper.value;
+    }
+
+    public override int GetHashCode()
+    {
+      return value.GetHashCode();
+    }
+
+    public override bool Equals(object other)
+    {
+      if (other is RoundedDouble)
+        return ((RoundedDouble)other).value == value;
+
+      return false;
+    }
+
+    public bool Equals(RoundedDouble other)
+    {
+      return other.value == value;
+    }
+
+    public int CompareTo(RoundedDouble other)
+    {
+      if (value < other.value)
+      {
+        return -1;
+      }
+
+      if (value > other.value)
+      {
+        return 1;
+      }
+
+      return 0;
+    }
+
+    public static bool operator ==(RoundedDouble a, RoundedDouble b)
+    {
+      return Math.Abs(a - b) <= Constants.AbsoluteTolerance * Math.Max(Math.Max(1.0f, Math.Abs(a)), Math.Abs(b));
+    }
+
+    public static bool operator !=(RoundedDouble a, RoundedDouble b)
+    {
+      return !(a == b);
+    }
+
+    public static bool operator >(RoundedDouble a, RoundedDouble b)
+    {
+      return (a - b) > Constants.AbsoluteTolerance * Math.Max(Math.Max(1.0f, Math.Abs(a)), Math.Abs(b));
+    }
+
+    public static bool operator <(RoundedDouble a, RoundedDouble b)
+    {
+      return (b - a) > Constants.AbsoluteTolerance * Math.Max(Math.Max(1.0f, Math.Abs(a)), Math.Abs(b));
+    }
+    public static bool operator >=(RoundedDouble a, RoundedDouble b)
+    {
+      return a > b || a == b;
+    }
+
+    public static bool operator <=(RoundedDouble a, RoundedDouble b)
+    {
+      return a < b || a == b;
+    }
+
+    new public string ToString()
+    {
+      return value.ToString();
+    }
+  }
+  namespace ExtensionMethods
+  {
+    public static class DoubleExtensions
+    {
+      
+
+      public static bool ApproximatelyEqual(this double a, double b, double epsilon)
+      {
+        return Math.Abs(a - b) <= epsilon * Math.Max(Math.Max(1.0f, Math.Abs(a)), Math.Abs(b));
+      }
+
+      public static bool ApproximatelyGreaterThan(this double a, double b, double epsilon)
+      {
+        return (a - b) > epsilon * Math.Max(Math.Max(1.0f, Math.Abs(a)), Math.Abs(b));
+      }
+
+      public static bool ApproximatelyLessThan(this double a, double b, double epsilon)
+      {
+        return (b - a) > epsilon * Math.Max(Math.Max(1.0f, Math.Abs(a)), Math.Abs(b));
+      }
+    }
+  }
   namespace Util
   {
     public static class Number

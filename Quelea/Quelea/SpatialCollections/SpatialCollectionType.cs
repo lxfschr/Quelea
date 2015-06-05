@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Grasshopper.Kernel.Types;
+using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
 namespace Quelea
@@ -7,6 +9,7 @@ namespace Quelea
   public class SpatialCollectionType : GH_Goo<Object>
   {
     private readonly ISpatialCollection<IQuelea> quelea;
+    private List<Point3d> wrappedPositions;
 
     public SpatialCollectionType()
     {
@@ -28,6 +31,18 @@ namespace Quelea
       get
       {
         return quelea;
+      }
+    }
+
+    public List<Point3d> WrappedPositions
+    {
+      get
+      {
+        return wrappedPositions;
+      }
+      set
+      {
+        wrappedPositions = value;
       }
     }
 
