@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 using Grasshopper.Kernel;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
@@ -46,10 +47,31 @@ namespace Quelea
 
       Color color = crossed ? Color.White : Color.Black;
 
+      if (vehicle.Environment.Wrap)
+      {
+        if (x < 0)
+        {
+          x += bitmap.Width;
+        }
+        else if (x >= bitmap.Width)
+        {
+          x -= bitmap.Width;
+        }
+        if (y < 0)
+        {
+          y += bitmap.Height;
+        }
+        else if (y >= bitmap.Height)
+        {
+          y -= bitmap.Height;
+        }
+      }
+
       if ((0 <= x && x < bitmap.Width) && (0 <= y && y < bitmap.Height))
       {
         color = bitmap.GetPixel(x, y);
       }
+
       return color.GetBrightness();
     }
   }
