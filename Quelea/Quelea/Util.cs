@@ -182,6 +182,11 @@ namespace Quelea
 
       public static Vector3d Seek(IAgent agent, Point3d target)
       {
+        if (agent.Environment.Wrap)
+        {
+          bool wrapped;
+          target = agent.Environment.WrapPoint(target, out wrapped);
+        }
         Vector3d desired = Util.Vector.Vector2Point(agent.Position, target);
         desired.Unitize();
         // The agent desires to move towards the target at maximum speed.
