@@ -53,8 +53,8 @@ namespace Quelea
       Velocity = MapTo2D(Velocity3D);
       Acceleration = MapTo2D(Acceleration3D);
       Orientation = SetOrientation();
-      Position3DHistory = new CircularArray<Point3d>(HistoryLength);
-      Position3DHistory.Add(Position3D);
+      Position3DHistory = new PositionHistoryAsDataTree(HistoryLength);
+      Position3DHistory.Add(Position3D, false);
     }
 
     private Plane SetOrientation()
@@ -121,7 +121,8 @@ namespace Quelea
     public double BodySize { get; set; }
     public int HistoryLength { get; set; }
     public bool InitialVelocitySet { get; set; }
-    public CircularArray<Point3d> Position3DHistory { get; private set; }
+    public IPositionHistory Position3DHistory { get; private set; }
+    //public CircularArray<Point3d> Position3DHistory { get; private set; }
     public AbstractEnvironmentType Environment { get; set; }
 
     public Point3d GetPoint3D()
@@ -136,11 +137,20 @@ namespace Quelea
       Acceleration3D = MapTo3D(Acceleration);
       Point3d position = Position;
       position.Transform(Transform.Translation(Velocity));
-      Position = Environment.UpdateOutOfBoundsPosition(position);
+      bool wrapped = false;
+      if (Environment.Wrap)
+      {
+        Position = Environment.WrapPosition(position, out wrapped);
+      }
+      else
+      {
+        Position = Environment.ClosestPointOnRef(position);
+      }
+
       Point3d position3D = Position3D;
       position3D.Transform(Transform.Translation(Velocity3D));
       Position3D = position3D;
-      Position3DHistory.Add(Position3D);
+      Position3DHistory.Add(Position3D, wrapped);
 
       PreviousAcceleration3D = Acceleration3D;
       PreviousAcceleration = Acceleration;

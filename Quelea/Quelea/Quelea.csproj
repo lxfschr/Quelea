@@ -65,6 +65,10 @@
     <Compile Include="AbstractComponent.cs" />
     <Compile Include="Emitters\SurfaceEmitterType.cs" />
     <Compile Include="Emitters\SurfaceEmitterComponent.cs" />
+    <Compile Include="Quelea\IPositionHistory.cs" />
+    <Compile Include="Quelea\PositionHistoryAsCircularArray.cs" />
+    <Compile Include="Quelea\PositionHistoryAsDataTree.cs" />
+    <Compile Include="Quelea\PositionHistoryAsGHStructure.cs" />
     <Compile Include="Quelea\Types\AbstractTypeComponent.cs" />
     <Compile Include="Quelea\Types\ConstructTypes\AbstractConstructTypeComponent.cs" />
     <Compile Include="Quelea\Types\DeconstructTypes\AbstractDeconstructTypeComponent.cs" />

@@ -87,10 +87,7 @@ namespace Quelea
       if (distance > radius)
       {
         pathPt = path.PointAt(t + pathTargetDistance);
-        if(agent.Environment.GetType() == typeof(SurfaceEnvironmentType))
-        {
-          pathPt = agent.Environment.MapTo2D(pathPt);
-        }
+        pathPt = agent.Environment.MapTo2D(pathPt);
         // Seek that point
         desired = Util.Agent.Seek(agent, pathPt);
       }

@@ -32,7 +32,7 @@ namespace Quelea
 
     int HistoryLength { get; set; }
 
-    CircularArray<Point3d> Position3DHistory { get; }
+    IPositionHistory Position3DHistory { get; }
 
     AbstractEnvironmentType Environment { get; set; }
 

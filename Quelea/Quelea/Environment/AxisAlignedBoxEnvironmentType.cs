@@ -260,10 +260,10 @@ namespace Quelea
       return bounced;
     }
 
-    public override Point3d WrapPosition(Point3d position)
+    public override Point3d WrapPosition(Point3d position, out bool wrapped)
     {
-      bool wrapped = false;
       //Point3d position = quelea.Position;
+      wrapped = false;
       if (position.X >= maxX)
       {
         position.X -= Width;

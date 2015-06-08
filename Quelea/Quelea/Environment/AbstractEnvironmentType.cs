@@ -55,15 +55,7 @@ namespace Quelea
       get { return RS.environmentName; }
     }
     public bool Wrap { get; protected set; }
-    public abstract Point3d WrapPosition(Point3d position);
-    public Point3d UpdateOutOfBoundsPosition(Point3d position)
-    {
-      if (Wrap)
-      {
-        return WrapPosition(position);
-      }
-      return ClosestPointOnRef(position);
-    }
+    public abstract Point3d WrapPosition(Point3d position, out bool wrapped);
 
     public double Width { get; protected set; }
     public double Height { get; protected set; }

@@ -309,8 +309,9 @@ namespace Quelea
       return lofts;
     }
 
-    public override Point3d WrapPosition(Point3d position)
+    public override Point3d WrapPosition(Point3d position, out bool wrapped)
     {
+      wrapped = false;
       return position;
     }
 
