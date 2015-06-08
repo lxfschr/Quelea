@@ -133,8 +133,11 @@ namespace Quelea
     virtual public void Run()
     {
       Velocity = Vector3d.Add(Velocity, Acceleration);
+      
       Velocity3D = MapTo3D(Velocity);
       Acceleration3D = MapTo3D(Acceleration);
+
+      
       Point3d position = Position;
       position.Transform(Transform.Translation(Velocity));
       bool wrapped = false;
@@ -146,7 +149,7 @@ namespace Quelea
       {
         Position = Environment.ClosestPointOnRef(position);
       }
-
+      
       Point3d position3D = Position3D;
       position3D.Transform(Transform.Translation(Velocity3D));
       Position3D = position3D;
@@ -158,7 +161,7 @@ namespace Quelea
       UpdateOrientation();
 
       Acceleration = Vector3d.Zero;
-      Lifespan -= 1;
+      Lifespan--;
     }
 
     private void UpdateOrientation()
@@ -201,6 +204,11 @@ namespace Quelea
     {
       Point3d pt3D = Position;
       pt3D.Transform(Transform.Translation(vector2D));
+      if (Environment.Wrap)
+      {
+        bool wrapped;
+        pt3D = Environment.WrapPosition(pt3D, out wrapped);
+      }
       pt3D = Environment.MapTo3D(pt3D);
       return Util.Vector.Vector2Point(Position3D, pt3D);
     }

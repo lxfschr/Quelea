@@ -35,9 +35,9 @@ namespace Quelea
       }
       if (wrapped)
       {
-        
-        tree.Add(position, new GH_Path(nextPathIndex));
         nextPathIndex++;
+        tree.Add(position, new GH_Path(nextPathIndex));
+        
       }
       else
       {
