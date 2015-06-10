@@ -185,8 +185,16 @@ namespace Quelea
         if (agent.Environment.Wrap)
         {
           bool wrapped;
-          target = agent.Environment.WrapPoint(target, out wrapped);
+          Point3d targetWrapped = agent.Environment.WrapPoint(target, out wrapped);
+          if (wrapped)
+          {
+            if (targetWrapped.DistanceTo(agent.Position) < target.DistanceTo(agent.Position))
+            {
+              target = targetWrapped;
+            }
+          }
         }
+
         Vector3d desired = Util.Vector.Vector2Point(agent.Position, target);
         desired.Unitize();
         // The agent desires to move towards the target at maximum speed.

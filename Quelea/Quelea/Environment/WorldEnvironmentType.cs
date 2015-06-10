@@ -68,7 +68,7 @@ namespace Quelea
     }
 
 
-    public override Point3d WrapPosition(Point3d position, out bool wrapped)
+    public override Point3d WrapPoint(Point3d position, out bool wrapped)
     {
       wrapped = false;
       return position;

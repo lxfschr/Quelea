@@ -252,30 +252,31 @@ namespace Quelea
       return false;
     }
 
-    public override Point3d WrapPosition(Point3d position, out bool wrapped)
+    public override Point3d WrapPoint(Point3d position, out bool wrapped)
     {
       wrapped = false;
-      if (position.X >= maxX)
+      Point3d wrappedPoint = position;
+      if (wrappedPoint.X >= maxX)
       {
-        position.X -= Width;
+        wrappedPoint.X -= Width;
         wrapped = true;
       }
-      if (position.X < minX)
+      if (wrappedPoint.X <= minX)
       {
-        position.X += Width;
+        wrappedPoint.X += Width;
         wrapped = true;
       }
-      if (position.Y >= maxY)
+      if (wrappedPoint.Y >= maxY)
       {
-        position.Y -= Height;
+        wrappedPoint.Y -= Height;
         wrapped = true;
       }
-      if (position.Y < minY)
+      if (wrappedPoint.Y <= minY)
       {
-        position.Y += Height;
+        wrappedPoint.Y += Height;
         wrapped = true;
       }
-      return position;
+      return wrappedPoint;
     }
 
     public override BoundingBox GetBoundingBox()

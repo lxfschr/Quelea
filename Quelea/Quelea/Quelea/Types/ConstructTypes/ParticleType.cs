@@ -143,7 +143,7 @@ namespace Quelea
       bool wrapped = false;
       if (Environment.Wrap)
       {
-        Position = Environment.WrapPosition(position, out wrapped);
+        Position = Environment.WrapPoint(position, out wrapped);
       }
       else
       {
@@ -207,7 +207,7 @@ namespace Quelea
       if (Environment.Wrap)
       {
         bool wrapped;
-        pt3D = Environment.WrapPosition(pt3D, out wrapped);
+        pt3D = Environment.WrapPoint(pt3D, out wrapped);
       }
       pt3D = Environment.MapTo3D(pt3D);
       return Util.Vector.Vector2Point(Position3D, pt3D);
