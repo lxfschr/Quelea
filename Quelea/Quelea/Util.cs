@@ -184,13 +184,30 @@ namespace Quelea
       {
         if (agent.Environment.Wrap)
         {
-          bool wrapped;
-          Point3d targetWrapped = agent.Environment.WrapPoint(target, out wrapped);
-          if (wrapped)
+          double width = agent.Environment.Width;
+          double height = agent.Environment.Height;
+          double depth = agent.Environment.Depth;
+          Point3d unmodifiedTarget = target;
+          double minDistance = Double.MaxValue;
+          for (double x = -width; x <= width; x += width)
           {
-            if (targetWrapped.DistanceTo(agent.Position) < target.DistanceTo(agent.Position))
+            for (double y = -height; y <= height; y += height)
             {
-              target = targetWrapped;
+              // if there is no z dimension, ie it is a surface environment,
+              // then do not loop on the depth.
+              double z = -depth;
+              do
+              {
+                Point3d wrappedTarget = new Point3d(unmodifiedTarget.X + x, unmodifiedTarget.Y + y, unmodifiedTarget.Z + z);
+                double distance = agent.Position.DistanceTo(wrappedTarget);
+                if (distance < minDistance)
+                {
+                  minDistance = distance;
+                  target = wrappedTarget;
+                }
+                z += depth;
+              } while (depth > 0 && z <= depth);
+
             }
           }
         }

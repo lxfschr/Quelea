@@ -165,8 +165,9 @@ namespace Quelea
               if (distance < minDistance)
               {
                 minDistance = distance;
-                z += depth;
+                
               }
+              z += depth;
             } while (depth > 0 && z <= depth);
             
           }
