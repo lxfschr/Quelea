@@ -262,14 +262,13 @@ namespace Quelea
 
     public override Point3d WrapPoint(Point3d position, out bool wrapped)
     {
-      //Point3d position = quelea.Position;
       wrapped = false;
       if (position.X >= maxX)
       {
         position.X -= Width;
         wrapped = true;
       }
-      if (position.X < minX)
+      else if (position.X <= minX)
       {
         position.X += Width;
         wrapped = true;
@@ -279,7 +278,7 @@ namespace Quelea
         position.Y -= Height;
         wrapped = true;
       }
-      if (position.Y < minY)
+      else if (position.Y <= minY)
       {
         position.Y += Height;
         wrapped = true;
@@ -289,12 +288,11 @@ namespace Quelea
         position.Z -= Depth;
         wrapped = true;
       }
-      if (position.Z < minZ)
+      else if (position.Z <= minZ)
       {
         position.Z += Depth;
         wrapped = true;
       }
-      //return wrapped;
       return position;
     }
 

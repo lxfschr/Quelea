@@ -255,28 +255,27 @@ namespace Quelea
     public override Point3d WrapPoint(Point3d position, out bool wrapped)
     {
       wrapped = false;
-      Point3d wrappedPoint = position;
-      if (wrappedPoint.X >= maxX)
+      if (position.X >= maxX)
       {
-        wrappedPoint.X -= Width;
+        position.X -= Width;
         wrapped = true;
       }
-      if (wrappedPoint.X <= minX)
+      else if (position.X <= minX)
       {
-        wrappedPoint.X += Width;
+        position.X += Width;
         wrapped = true;
       }
-      if (wrappedPoint.Y >= maxY)
+      if (position.Y >= maxY)
       {
-        wrappedPoint.Y -= Height;
+        position.Y -= Height;
         wrapped = true;
       }
-      if (wrappedPoint.Y <= minY)
+      else if (position.Y <= minY)
       {
-        wrappedPoint.Y += Height;
+        position.Y += Height;
         wrapped = true;
       }
-      return wrappedPoint;
+      return position;
     }
 
     public override BoundingBox GetBoundingBox()
