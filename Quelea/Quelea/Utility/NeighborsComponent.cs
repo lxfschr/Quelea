@@ -140,45 +140,16 @@ namespace Quelea
 
     private ISpatialCollection<IQuelea> GetNeighborsWrapped()
     {
-      double width = agent.Environment.Width;
-      double height = agent.Environment.Height;
-      double depth = agent.Environment.Depth;
       foreach (IQuelea potentialNeighbor in queleaNetwork.Quelea)
       {
         if (agent == potentialNeighbor)
         {
           continue;
         }
-        Point3d wrappedPosition = potentialNeighbor.Position;
-        double minDistance = Double.MaxValue;
-        for (double x = -width; x <= width; x += width)
-        {
-          for (double y = -height; y <= height; y += height)
-          {
-            // if there is no z dimension, ie it is a surface environment,
-            // then do not loop on the depth.
-            double z = -depth;
-            do
-            {
-              wrappedPosition = new Point3d(potentialNeighbor.Position.X + x, potentialNeighbor.Position.Y + y, potentialNeighbor.Position.Z + z);
-              double distance = agent.Position.DistanceTo(wrappedPosition);
-              if (distance < minDistance)
-              {
-                minDistance = distance;
-                
-              }
-              z += depth;
-            } while (depth > 0 && z <= depth);
-            
-          }
-        }
-        if (minDistance <= agent.VisionRadius * visionRadiusMultiplier)
+        Point3d wrappedPosition = agent.Environment.WrapPoint(agent.Position, potentialNeighbor.Position);
+        if (agent.Position.DistanceTo(wrappedPosition) <= agent.VisionRadius * visionRadiusMultiplier)
         {
           neighbors.Add(potentialNeighbor);
-          if (neighbors.Count > queleaNetwork.Quelea.Count)
-          {
-            throw new Exception("Too many neighbors!");
-          }
           wrappedPositions.Add(wrappedPosition);
         }
       }

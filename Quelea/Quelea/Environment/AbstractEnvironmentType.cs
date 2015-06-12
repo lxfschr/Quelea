@@ -55,6 +55,7 @@ namespace Quelea
       get { return RS.environmentName; }
     }
     public bool Wrap { get; protected set; }
+    public abstract Point3d WrapPoint(Point3d relativePoint, Point3d point);
     public abstract Point3d WrapPoint(Point3d position, out bool wrapped);
 
     public double Width { get; protected set; }

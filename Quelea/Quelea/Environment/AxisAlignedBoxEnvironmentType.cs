@@ -1,4 +1,5 @@
-﻿using Grasshopper.Kernel.Types;
+﻿using System;
+using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
@@ -258,6 +259,42 @@ namespace Quelea
         bounced = true;
       }
       return bounced;
+    }
+
+    public override Point3d WrapPoint(Point3d relativePoint, Point3d point)
+    {
+      Point3d wrappedPoint = point;
+      bool wrapped;
+      wrappedPoint = WrapPoint(point, out wrapped);
+      if (wrapped)
+      {
+        if (relativePoint.DistanceTo(wrappedPoint) < relativePoint.DistanceTo(point))
+        {
+          return wrappedPoint;
+        }
+        else 
+        {
+          return point;
+        }
+      }
+      double minDistance = Double.MaxValue;
+      for (double x = -Width; x <= Width; x += Width)
+      {
+        for (double y = -Height; y <= Height; y += Height)
+        {
+          for (double z = -Depth; z <= Depth; z += Depth)
+          {
+            Point3d potentialPoint = new Point3d(point.X + x, point.Y + y, point.Z + z);
+            double distance = relativePoint.DistanceTo(potentialPoint);
+            if (distance < minDistance)
+            {
+              minDistance = distance;
+              wrappedPoint = potentialPoint;
+            }
+          }
+        }
+      }
+      return wrappedPoint;
     }
 
     public override Point3d WrapPoint(Point3d position, out bool wrapped)

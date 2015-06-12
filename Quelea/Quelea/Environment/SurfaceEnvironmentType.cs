@@ -1,4 +1,5 @@
-﻿using Grasshopper.Kernel.Types;
+﻿using System;
+using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 using RS = Quelea.Properties.Resources;
 
@@ -250,6 +251,29 @@ namespace Quelea
         return true;
       }
       return false;
+    }
+
+    /*
+     *  Gets the wrapped point that is closest to the relativePoint.
+     */
+    public override Point3d WrapPoint(Point3d relativePoint, Point3d point)
+    {
+      Point3d wrappedPoint = point;
+      double minDistance = Double.MaxValue;
+      for (double x = -Width; x <= Width; x += Width)
+      {
+        for (double y = -Height; y <= Height; y += Height)
+        {
+          Point3d potentialPoint = new Point3d(point.X + x, point.Y + y, point.Z);
+          double distance = relativePoint.DistanceTo(potentialPoint);
+          if (distance < minDistance)
+          {
+            minDistance = distance;
+            wrappedPoint = potentialPoint;
+          }
+        }
+      }
+      return wrappedPoint;
     }
 
     public override Point3d WrapPoint(Point3d position, out bool wrapped)
