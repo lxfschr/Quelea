@@ -77,5 +77,10 @@ namespace Quelea
 
     abstract public BoundingBox GetBoundingBox();
     public abstract bool Contains(Point3d pt);
+
+    public virtual Vector3d Orient(Vector3d vector, Point3d point)
+    {
+      return vector;
+    }
   }
 }

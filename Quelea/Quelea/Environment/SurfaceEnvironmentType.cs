@@ -178,6 +178,16 @@ namespace Quelea
       return environment.NormalAt(u, v);
     }
 
+    public override Vector3d Orient(Vector3d vector, Point3d point)
+    {
+      double u, v;
+      environment.ClosestPoint(point, out u, out v);
+      Plane frame;
+      environment.FrameAt(u, v, out frame);
+      vector.Transform(Transform.PlaneToPlane(Plane.WorldXY, frame));
+      return vector;
+    }
+
     public override Vector3d AvoidEdges(IAgent agent, double distance)
     {
       Point3d refPosition = agent.Position;

@@ -152,6 +152,14 @@ namespace Quelea
       
       Point3d position3D = Position3D;
       position3D.Transform(Transform.Translation(Velocity3D));
+
+      if (wrapped)
+      {
+        Velocity3D = Environment.Orient(Velocity, Position3D);
+        //Velocity3D = Velocity;
+      }
+      
+
       Position3D = position3D;
       Position3DHistory.Add(Position3D, wrapped);
 

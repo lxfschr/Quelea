@@ -53,13 +53,13 @@ namespace Quelea
       GH_Path branch = new GH_Path(); // {}\
       GH_Path limb = new GH_Path();
 
-      // then add six branches...
+      
       for (int i = 0; i < particles.Count; i++)
       {
         IQuelea particle = particles[i];
         branch = trunk.AppendElement(i);
         DataTree<Point3d> particlePositionHistoryTree = particle.Position3DHistory.ToTree();
-        // ...with 4 items each
+        
         for (int j = 0; j < particlePositionHistoryTree.BranchCount; j++)
         {
           limb = branch.AppendElement(j);

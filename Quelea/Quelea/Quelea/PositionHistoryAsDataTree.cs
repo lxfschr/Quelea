@@ -27,10 +27,11 @@ namespace Quelea
     {
       if (Count >= size)
       {
-        tree.Path(0).CullFirstElement();
-        if (tree.Path(0).Length == 0)
+        tree.Branch(0).RemoveAt(0);
+          
+        if (tree.Branch(0).Count == 0)
         {
-          tree.RemovePath(0);
+          tree.RemovePath(tree.Path(0));
         }
       }
       if (wrapped)
