@@ -141,8 +141,6 @@ namespace Quelea
 
     public void Run()
     {
-      UpdateBounds();
-      Quelea = UpdateDynamicSpatialDataStructure((IList<IQuelea>)Quelea.SpatialObjects);
       IList<IQuelea> toRemove = new List<IQuelea>();
       foreach (IQuelea quelea in Quelea)
       {
@@ -165,7 +163,8 @@ namespace Quelea
           }
         }
       }
-
+      UpdateBounds();
+      Quelea = UpdateDynamicSpatialDataStructure((IList<IQuelea>)Quelea.SpatialObjects);
       foreach (IQuelea deadParticle in toRemove)
       {
         Quelea.Remove(deadParticle);

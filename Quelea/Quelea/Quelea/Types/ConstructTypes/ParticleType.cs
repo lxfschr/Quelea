@@ -256,15 +256,15 @@ namespace Quelea
       }
 
       // Return true if the fields match:
-      return Position3D.Equals(p.Position3D) &&
-             Position.Equals(p.Position) &&
+      return Position.Equals(p.Position) &&
              Velocity.Equals(p.Velocity) &&
              Acceleration.Equals(p.Acceleration) &&
              Lifespan.Equals(p.Lifespan) &&
              Mass.Equals(p.Mass) &&
              BodySize.Equals(p.BodySize) &&
              HistoryLength.Equals(p.HistoryLength) &&
-             InitialVelocitySet.Equals(p.InitialVelocitySet);
+             InitialVelocitySet.Equals(p.InitialVelocitySet) &&
+             Orientation.Equals(Orientation);
     }
 
     public override int GetHashCode()
@@ -272,7 +272,6 @@ namespace Quelea
       unchecked // disable overflow, for the unlikely possibility that you
       {         // are compiling with overflow-checking enabled
         int hash = 27;
-        hash = (13 * hash) + Position3D.GetHashCode();
         hash = (13 * hash) + Position.GetHashCode();
         hash = (13 * hash) + Velocity.GetHashCode();
         hash = (13 * hash) + Acceleration.GetHashCode();
@@ -281,6 +280,7 @@ namespace Quelea
         hash = (13 * hash) + BodySize.GetHashCode();
         hash = (13 * hash) + HistoryLength.GetHashCode();
         hash = (13 * hash) + InitialVelocitySet.GetHashCode();
+        hash = (13 * hash) + Orientation.GetHashCode();
         return hash;
       }
     }

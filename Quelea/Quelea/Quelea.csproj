@@ -371,5 +371,6 @@ copy /Y "$(TargetDir)$(ProjectName).gha" "C:\Users\Administrator\AppData\Roaming
     <StartAction>Program</StartAction>
     <RunCodeAnalysis>true</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>0</WarningLevel>
   </PropertyGroup>
 </Project>
