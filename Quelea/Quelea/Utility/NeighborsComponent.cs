@@ -116,6 +116,7 @@ namespace Quelea
 
     private ISpatialCollection<IQuelea> GetNeighborsInVisionAngle(ISpatialCollection<IQuelea> neighborsInSphere)
     {
+      ISpatialCollection<IQuelea> neighborsInVisionAngle = new SpatialCollectionAsList<IQuelea>();
       Point3d position = agent.Position;
       Vector3d velocity = agent.Velocity;
       Plane pl1 = new Plane(position, velocity);
@@ -131,11 +132,11 @@ namespace Quelea
         if (Util.Number.DefinitelyLessThan(angle1, halfVisionAngle, Constants.AbsoluteTolerance) &&
             Util.Number.DefinitelyLessThan(angle2, halfVisionAngle, Constants.AbsoluteTolerance))
         {
-          neighbors.Add(neighbor);
+          neighborsInVisionAngle.Add(neighbor);
         }
       }
 
-      return neighbors;
+      return neighborsInVisionAngle;
     }
 
     private ISpatialCollection<IQuelea> GetNeighborsWrapped()
