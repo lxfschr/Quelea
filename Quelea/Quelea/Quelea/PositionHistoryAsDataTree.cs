@@ -37,13 +37,8 @@ namespace Quelea
       if (wrapped)
       {
         nextPathIndex++;
-        tree.Add(position, new GH_Path(nextPathIndex));
-        
       }
-      else
-      {
-        tree.Add(position, new GH_Path(nextPathIndex));
-      }
+      tree.Add(position, new GH_Path(nextPathIndex));
     }
     public void Add(Point3d position)
     {

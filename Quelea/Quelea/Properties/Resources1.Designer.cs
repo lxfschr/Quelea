@@ -2672,20 +2672,20 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 6366359a-7e08-440a-8cab-78403729c8e2.
-        /// </summary>
-        internal static string surfaceEnvironmentGuid {
-            get {
-                return ResourceManager.GetString("surfaceEnvironmentGuid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Surface Environment.
         /// </summary>
         internal static string surfaceEnvironmentName {
             get {
                 return ResourceManager.GetString("surfaceEnvironmentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6366359a-7e08-440a-8cab-78403729c8e2.
+        /// </summary>
+        internal static string surfaceEnvironmentOldGuid {
+            get {
+                return ResourceManager.GetString("surfaceEnvironmentOldGuid", resourceCulture);
             }
         }
         

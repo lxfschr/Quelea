@@ -7,18 +7,18 @@ using Grasshopper.Kernel.Data;
 using Grasshopper.Kernel.Types;
 using Rhino.Geometry;
 
-namespace Quelea.Quelea
+namespace Quelea
 {
   class PositionHistoryAsCircularArray : IPositionHistory
   {
-    private CircularArray<Point3d> positionHistory;
+    private WrappingCircularArray<Point3d> positionHistory;
     private List<int> wrapIndices;
     private int size;
 
     public PositionHistoryAsCircularArray(int size)
     {
       this.size = size;
-      positionHistory = new CircularArray<Point3d>(this.size);
+      positionHistory = new WrappingCircularArray<Point3d>(this.size);
       wrapIndices = new List<int>(this.size);
     }
     public int Count { get { return positionHistory.Count; } }
@@ -26,15 +26,10 @@ namespace Quelea.Quelea
     public void Add(Point3d position)
     {
       positionHistory.Add(position);
-
     }
     public void Add(Point3d position, bool wrapped)
     {
-      if (wrapped)
-      {
-        wrapIndices.Add(Count);
-      }
-      Add(position);
+      positionHistory.Add(position, wrapped);
     }
 
     public Point3d Get(int i)
@@ -54,7 +49,7 @@ namespace Quelea.Quelea
 
     public DataTree<Point3d> ToTree()
     {
-      throw new NotImplementedException();
+      return positionHistory.ToTree();
     }
 
     public List<IGH_Goo> ToGooList()

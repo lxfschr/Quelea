@@ -65,6 +65,7 @@
     <Compile Include="AbstractComponent.cs" />
     <Compile Include="Emitters\SurfaceEmitterType.cs" />
     <Compile Include="Emitters\SurfaceEmitterComponent.cs" />
+    <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
     <Compile Include="Quelea\IPositionHistory.cs" />
     <Compile Include="Quelea\PositionHistoryAsCircularArray.cs" />
     <Compile Include="Quelea\PositionHistoryAsDataTree.cs" />
@@ -131,6 +132,7 @@
     <Compile Include="Quelea\Types\ConstructTypes\ParticleType.cs" />
     <Compile Include="Emitters\BoxEmitterComponent.cs" />
     <Compile Include="Emitters\BoxEmitterType.cs" />
+    <Compile Include="SpatialCollections\WrappingCircularArray.cs" />
     <Compile Include="Utility\DeconstructAgentCollectionComponent.cs" />
     <Compile Include="Utility\NeighborsComponent.cs" />
     <Compile Include="Emitters\AbstractEmitterComponent.cs" />
@@ -162,7 +164,7 @@
     <Compile Include="Environment\BrepEnvironmentComponent.cs" />
     <Compile Include="Environment\PolysurfaceEnvironmentType.cs" />
     <Compile Include="Environment\BrepEnvironmentType.cs" />
-    <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
+    <Compile Include="Environment\SurfaceEnvironmentComponentOld.cs" />
     <Compile Include="Environment\SurfaceEnvironmentType.cs" />
     <Compile Include="Emitters\CurveEmitterComponent.cs" />
     <Compile Include="Emitters\CurveEmitterType.cs" />

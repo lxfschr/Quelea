@@ -5,10 +5,10 @@ namespace Quelea
 {
   public class CircularArray<T>
   {
-    private readonly int size;
-    private int count;
-    private int head, tail;
-    private readonly T[] array;
+    protected readonly int size;
+    protected int count;
+    protected int head, tail;
+    protected readonly T[] array;
 
     public CircularArray(int size)
     {
@@ -70,7 +70,7 @@ namespace Quelea
     }
 
     // Custom defined mod because built in % does not loop negatives.
-    private int mod(int x, int m)
+    protected int mod(int x, int m)
     {
       int r = x % m;
       return r < 0 ? r + m : r;
@@ -93,22 +93,6 @@ namespace Quelea
           orderedList.Add(array[i]);
         }
       }
-      //for (int i = (tail - 1)%size; i >= head; i = (i -1) % size)
-      //{
-      //  orderedList.Add(array[i]);
-      //}
-
-      //for (int i = head; i < count; i++)
-      //{
-      //  orderedList.Add(array[i]);
-      //}
-      //if (count == size)
-      //{
-      //  for (int i = 0; i < tail; i++)
-      //  {
-      //    orderedList.Add(array[i]);
-      //  }
-      //}
       return orderedList;
     }
 

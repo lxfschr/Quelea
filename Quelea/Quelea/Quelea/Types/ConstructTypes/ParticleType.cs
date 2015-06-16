@@ -53,7 +53,8 @@ namespace Quelea
       Velocity = MapTo2D(Velocity3D);
       Acceleration = MapTo2D(Acceleration3D);
       Orientation = SetOrientation();
-      Position3DHistory = new PositionHistoryAsDataTree(HistoryLength);
+      Position3DHistory = new PositionHistoryAsCircularArray(HistoryLength);
+      //Position3DHistory = new PositionHistoryAsDataTree(HistoryLength);
       Position3DHistory.Add(Position3D, false);
     }
 

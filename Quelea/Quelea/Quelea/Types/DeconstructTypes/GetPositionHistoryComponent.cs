@@ -59,10 +59,14 @@ namespace Quelea
         IQuelea particle = particles[i];
         branch = trunk.AppendElement(i);
         DataTree<Point3d> particlePositionHistoryTree = particle.Position3DHistory.ToTree();
-        
+
         for (int j = 0; j < particlePositionHistoryTree.BranchCount; j++)
         {
           limb = branch.AppendElement(j);
+          //for (int k = particlePositionHistoryTree.Branch(j).Count - 1; k >= 0; k--)
+          //{
+          //  outTree.Add(particlePositionHistoryTree.Branch(j)[k], limb);
+          //}
           outTree.AddRange(particlePositionHistoryTree.Branch(j), limb);
           
         }

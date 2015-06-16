@@ -749,7 +749,7 @@
   <data name="surfaceForEnvironmentDescription" xml:space="preserve">
     <value>An untrimmed Surface.</value>
   </data>
-  <data name="surfaceEnvironmentGuid" xml:space="preserve">
+  <data name="surfaceEnvironmentOldGuid" xml:space="preserve">
     <value>6366359a-7e08-440a-8cab-78403729c8e2</value>
   </data>
   <data name="curveEmitterGuid" xml:space="preserve">
