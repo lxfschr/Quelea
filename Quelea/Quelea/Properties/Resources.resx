@@ -376,7 +376,7 @@
   <data name="AABoxError" xml:space="preserve">
     <value>Box must be aligned to WorldXY.</value>
   </data>
-  <data name="AABoxEnvGUID" xml:space="preserve">
+  <data name="AABoxEnvOldGuid" xml:space="preserve">
     <value>3703308d-1d46-469a-bdf7-bdeec8359171</value>
   </data>
   <data name="behaviorDescription" xml:space="preserve">

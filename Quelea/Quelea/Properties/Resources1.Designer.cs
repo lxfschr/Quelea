@@ -79,15 +79,6 @@ namespace Quelea.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 3703308d-1d46-469a-bdf7-bdeec8359171.
-        /// </summary>
-        internal static string AABoxEnvGUID {
-            get {
-                return ResourceManager.GetString("AABoxEnvGUID", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Axis Aligned Box Environment.
         /// </summary>
         internal static string AABoxEnvName {
@@ -102,6 +93,15 @@ namespace Quelea.Properties {
         internal static string AABoxEnvNickName {
             get {
                 return ResourceManager.GetString("AABoxEnvNickName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3703308d-1d46-469a-bdf7-bdeec8359171.
+        /// </summary>
+        internal static string AABoxEnvOldGuid {
+            get {
+                return ResourceManager.GetString("AABoxEnvOldGuid", resourceCulture);
             }
         }
         

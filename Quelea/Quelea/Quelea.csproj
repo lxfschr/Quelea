@@ -65,6 +65,7 @@
     <Compile Include="AbstractComponent.cs" />
     <Compile Include="Emitters\SurfaceEmitterType.cs" />
     <Compile Include="Emitters\SurfaceEmitterComponent.cs" />
+    <Compile Include="Environment\AxisAlignedBoxEnvironmentComponentOld.cs" />
     <Compile Include="Environment\SurfaceEnvironmentComponent.cs" />
     <Compile Include="Quelea\IPositionHistory.cs" />
     <Compile Include="Quelea\PositionHistoryAsCircularArray.cs" />
